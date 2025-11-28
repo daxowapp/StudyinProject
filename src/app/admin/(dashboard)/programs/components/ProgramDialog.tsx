@@ -1,0 +1,359 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { useState, useEffect } from "react";
+import { createProgram, updateProgram, deleteProgram } from "../actions";
+import { toast } from "sonner";
+import { Pencil, Plus, Trash2, Loader2, BookOpen } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+
+interface ProgramDialogProps {
+    program?: any;
+    universities: any[];
+    languages: any[];
+}
+
+export function ProgramDialog({ program, universities, languages }: ProgramDialogProps) {
+    const [open, setOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedCatalogProgram, setSelectedCatalogProgram] = useState<any>(null);
+    const [programCatalog, setProgramCatalog] = useState<any[]>([]);
+    
+    // Fetch program catalog from database
+    useEffect(() => {
+        const fetchCatalog = async () => {
+            const supabase = createClient();
+            const { data, error } = await supabase
+                .from("program_catalog")
+                .select("*")
+                .order("category", { ascending: true })
+                .order("title", { ascending: true });
+            
+            if (error) {
+                console.error("Error fetching program catalog:", error);
+                toast.error("Failed to load program catalog");
+            } else {
+                setProgramCatalog(data || []);
+            }
+        };
+        
+        if (open) {
+            fetchCatalog();
+        }
+    }, [open]);
+
+    async function handleSubmit(formData: FormData) {
+        setIsLoading(true);
+        try {
+            const result = program
+                ? await updateProgram(program.id, formData)
+                : await createProgram(formData);
+
+            if (result?.error) {
+                toast.error(result.error);
+            } else {
+                toast.success(program ? "Program updated" : "Program created");
+                setOpen(false);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    async function handleDelete() {
+        if (!confirm("Are you sure?")) return;
+
+        setIsLoading(true);
+        try {
+            const result = await deleteProgram(program.id);
+            if (result?.error) {
+                toast.error(result.error);
+            } else {
+                toast.success("Program deleted");
+                setOpen(false);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+                {program ? (
+                    <Button variant="ghost" size="icon">
+                        <Pencil className="h-4 w-4" />
+                    </Button>
+                ) : (
+                    <Button>
+                        <Plus className="mr-2 h-4 w-4" /> Add Program
+                    </Button>
+                )}
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                    <DialogTitle>
+                        {program ? "Edit University Program" : "Add Program to University"}
+                    </DialogTitle>
+                    <DialogDescription>
+                        Select a program from the catalog and add university-specific details.
+                    </DialogDescription>
+                </DialogHeader>
+                <form action={handleSubmit} className="grid gap-6 py-4">
+                    {/* University Selection */}
+                    <div className="grid gap-2">
+                        <Label htmlFor="university_id">University *</Label>
+                        <Select name="university_id" defaultValue={program?.university_id} required>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select University" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {universities?.map((uni) => (
+                                    <SelectItem key={uni.id} value={uni.id}>
+                                        {uni.name}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <Separator />
+
+                    {/* Program Catalog Selection */}
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-2">
+                            <BookOpen className="h-5 w-5 text-primary" />
+                            <h3 className="font-semibold">Select from Program Catalog</h3>
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="program_catalog_id">Standard Program *</Label>
+                            <Select 
+                                name="program_catalog_id" 
+                                defaultValue={program?.program_catalog_id}
+                                onValueChange={(value) => {
+                                    const catalogProgram = programCatalog.find((p: any) => p.id === value);
+                                    setSelectedCatalogProgram(catalogProgram);
+                                }}
+                                required
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Choose a program from catalog" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {programCatalog.map((catalogProgram: any) => (
+                                        <SelectItem key={catalogProgram.id} value={catalogProgram.id}>
+                                            {catalogProgram.title} ({catalogProgram.level})
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            {selectedCatalogProgram && (
+                                <div className="mt-2 p-3 bg-muted rounded-lg text-sm">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Badge className="bg-blue-100 text-blue-800">
+                                            {selectedCatalogProgram.category}
+                                        </Badge>
+                                        <span className="text-muted-foreground">•</span>
+                                        <span className="text-muted-foreground">
+                                            Duration: {selectedCatalogProgram.typical_duration}
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Custom Title (Optional) */}
+                        <div className="grid gap-2">
+                            <Label htmlFor="custom_title">
+                                Custom Title 
+                                <span className="text-muted-foreground text-xs ml-2">
+                                    (Optional - if university calls it differently)
+                                </span>
+                            </Label>
+                            <Input
+                                id="custom_title"
+                                name="custom_title"
+                                defaultValue={program?.custom_title}
+                                placeholder="e.g. Business Management (if different from catalog)"
+                            />
+                        </div>
+                    </div>
+
+                    <Separator />
+
+                    {/* University-Specific Details */}
+                    <div className="space-y-4">
+                        <h3 className="font-semibold">University-Specific Details</h3>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="duration">Duration (Override if different)</Label>
+                                <Input
+                                    id="duration"
+                                    name="duration"
+                                    defaultValue={program?.duration}
+                                    placeholder={selectedCatalogProgram?.typical_duration || "e.g. 4 Years"}
+                                />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="intake">Intake</Label>
+                                <Input
+                                    id="intake"
+                                    name="intake"
+                                    defaultValue={program?.intake}
+                                    placeholder="e.g. September 2025"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="tuition_fee">Tuition Fee (Yearly) *</Label>
+                                <Input
+                                    id="tuition_fee"
+                                    name="tuition_fee"
+                                    type="number"
+                                    defaultValue={program?.tuition_fee}
+                                    placeholder="0"
+                                    required
+                                />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="currency">Currency</Label>
+                                <Select name="currency" defaultValue={program?.currency || "RMB"}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Currency" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="RMB">RMB</SelectItem>
+                                        <SelectItem value="USD">USD</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="language_id">Language *</Label>
+                                <Select name="language_id" defaultValue={program?.language_id} required>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select Language" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {languages?.map((lang) => (
+                                            <SelectItem key={lang.id} value={lang.id}>
+                                                {lang.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="scholarship_chance">Scholarship Chance</Label>
+                                <Input
+                                    id="scholarship_chance"
+                                    name="scholarship_chance"
+                                    defaultValue={program?.scholarship_chance}
+                                    placeholder="e.g. 10-100%"
+                                />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="application_fee">Application Fee ($)</Label>
+                                <Input
+                                    id="application_fee"
+                                    name="application_fee"
+                                    type="number"
+                                    defaultValue={program?.application_fee}
+                                    placeholder="0"
+                                />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="service_fee">Service Fee ($)</Label>
+                                <Input
+                                    id="service_fee"
+                                    name="service_fee"
+                                    type="number"
+                                    defaultValue={program?.service_fee}
+                                    placeholder="0"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid gap-2">
+                            <Label htmlFor="deadline">Application Deadline</Label>
+                            <Input
+                                id="deadline"
+                                name="deadline"
+                                type="date"
+                                defaultValue={program?.deadline}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex items-center justify-between border p-4 rounded-lg">
+                        <div className="flex items-center space-x-2">
+                            <Switch
+                                id="is_active"
+                                name="is_active"
+                                defaultChecked={program?.is_active ?? true}
+                            />
+                            <Label htmlFor="is_active">Active Program</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Switch
+                                id="has_force_payment"
+                                name="has_force_payment"
+                                defaultChecked={program?.has_force_payment ?? false}
+                            />
+                            <Label htmlFor="has_force_payment" className="text-red-600 font-medium">Force Payment</Label>
+                        </div>
+                    </div>
+
+                    <DialogFooter className="flex justify-between sm:justify-between">
+                        {program && (
+                            <Button
+                                type="button"
+                                variant="destructive"
+                                size="icon"
+                                onClick={handleDelete}
+                                disabled={isLoading}
+                            >
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
+                        )}
+                        <Button type="submit" disabled={isLoading}>
+                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                            {isLoading ? "Saving..." : (program ? "Update Program" : "Add Program")}
+                        </Button>
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
+    );
+}
