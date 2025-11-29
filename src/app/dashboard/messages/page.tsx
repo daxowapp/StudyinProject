@@ -13,7 +13,9 @@ import {
   CreditCard,
   CheckCircle2,
   Calendar,
+  CheckCheck,
 } from 'lucide-react';
+import { MarkAllReadButton } from './components/MarkAllReadButton';
 
 export default async function MessagesPage() {
   const supabase = await createClient();
@@ -106,6 +108,10 @@ export default async function MessagesPage() {
               {actionRequiredCount} Action Required
             </Badge>
           )}
+          <MarkAllReadButton 
+            applicationIds={applicationIds} 
+            unreadCount={unreadCount} 
+          />
         </div>
       </div>
 
