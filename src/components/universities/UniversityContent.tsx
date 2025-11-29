@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
+import { AccommodationSection } from "./AccommodationSection";
 import { 
     CheckCircle2, Globe, MapPin, Users, Calendar, 
     GraduationCap, DollarSign, Clock, Languages,
@@ -196,6 +197,22 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             universityId={university.id}
                             title="Available Scholarship Options"
                             description="Choose the scholarship type that best fits your budget for programs at this university"
+                        />
+                    </motion.div>
+
+                    {/* Accommodation Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                    >
+                        <AccommodationSection 
+                            accommodationAvailable={university.accommodation_available ?? true}
+                            accommodationDescription={university.accommodation_description}
+                            accommodationFeeRange={university.accommodation_fee_range}
+                            accommodationFeatures={university.accommodation_features}
+                            accommodationTypes={university.accommodation_types}
                         />
                     </motion.div>
 

@@ -64,6 +64,11 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         video_url: university.video_url,
         latitude: university.latitude,
         longitude: university.longitude,
+        accommodation_available: university.accommodation_available,
+        accommodation_description: university.accommodation_description,
+        accommodation_fee_range: university.accommodation_fee_range,
+        accommodation_features: university.accommodation_features,
+        accommodation_types: university.accommodation_types,
     };
 
     return (
