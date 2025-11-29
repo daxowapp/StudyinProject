@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signup } from "@/app/(public)/auth/actions";
 import { SubmitButton } from "@/components/ui/submit-button";
 
@@ -14,8 +14,9 @@ import { toast } from "sonner";
 
 export default function RegisterPage() {
     const [isLoading, setIsLoading] = useState(false);
-
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const returnUrl = searchParams.get('returnUrl');
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
@@ -28,14 +29,16 @@ export default function RegisterPage() {
                     toast.success("Account created! Please check your email to confirm your registration.", {
                         duration: 6000,
                     });
-                    // Optional: Redirect to login after a longer delay or let them stay to read the message
+                    // Redirect to login with returnUrl after email confirmation message
                     setTimeout(() => {
-                        router.push("/auth/login");
+                        const loginUrl = returnUrl ? `/auth/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/auth/login";
+                        router.push(loginUrl);
                     }, 4000);
                 } else {
                     toast.success("Account created successfully! Redirecting to login...");
                     setTimeout(() => {
-                        router.push("/auth/login");
+                        const loginUrl = returnUrl ? `/auth/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/auth/login";
+                        router.push(loginUrl);
                     }, 2000);
                 }
             }

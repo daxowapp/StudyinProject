@@ -156,10 +156,12 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
 
                         {/* CTA Buttons */}
                         <div className="flex flex-wrap gap-4">
-                            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg">
-                                Apply Now
-                                <ArrowRight className="ml-2 h-5 w-5" />
-                            </Button>
+                            <Link href={`/apply/${slug}`}>
+                                <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg">
+                                    Apply Now
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </Button>
+                            </Link>
                             <Button size="lg" variant="outline" className="border-2">
                                 Download Brochure
                             </Button>
@@ -321,10 +323,12 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                             <span>Expert Support</span>
                                         </div>
                                     </div>
-                                    <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70" size="lg">
-                                        Start Application
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Button>
+                                    <Link href={`/apply/${slug}`} className="w-full">
+                                        <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70" size="lg">
+                                            Start Application
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </Link>
                                     <Button variant="outline" className="w-full" size="lg">
                                         Contact Advisor
                                     </Button>

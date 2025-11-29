@@ -5,8 +5,9 @@ import { ApplyForm } from '@/components/applications/ApplyForm';
 export default async function ApplyPage({
   params,
 }: {
-  params: { programSlug: string };
+  params: Promise<{ programSlug: string }>;
 }) {
+  const { programSlug } = await params;
   const supabase = await createClient();
 
   // Check if user is authenticated
@@ -16,7 +17,7 @@ export default async function ApplyPage({
 
   if (!user) {
     // Redirect to login with return URL
-    redirect(`/login?returnUrl=/apply/${params.programSlug}`);
+    redirect(`/auth/login?returnUrl=/apply/${programSlug}`);
   }
 
   // Fetch program details
@@ -48,7 +49,7 @@ export default async function ApplyPage({
       )
     `
     )
-    .eq('slug', params.programSlug)
+    .eq('slug', programSlug)
     .eq('is_active', true)
     .single();
 

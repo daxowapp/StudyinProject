@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { login } from "@/app/(public)/auth/actions";
 import { SubmitButton } from "@/components/ui/submit-button"; // We need to create this
 
@@ -14,8 +14,9 @@ import { toast } from "sonner";
 
 export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
-
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const returnUrl = searchParams.get('returnUrl') || '/dashboard';
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
@@ -25,7 +26,7 @@ export default function LoginPage() {
                 toast.error(result.error);
             } else if (result?.success) {
                 toast.success("Login successful! Redirecting...");
-                router.push("/dashboard");
+                router.push(returnUrl);
             }
         } catch (error) {
             toast.error("Something went wrong");

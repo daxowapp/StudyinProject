@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Sparkles, ChevronDown } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, Sparkles, ChevronDown, User, LogOut, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
+import { createClient } from "@/lib/supabase/client";
 
 const navLinks = [
     { name: "Universities", href: "/universities" },
@@ -20,13 +22,39 @@ const navLinks = [
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [user, setUser] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
     const { scrollY } = useScroll();
+    const router = useRouter();
+    const supabase = createClient();
 
     useEffect(() => {
         return scrollY.on("change", (latest) => {
             setScrolled(latest > 50);
         });
     }, [scrollY]);
+
+    useEffect(() => {
+        // Check user authentication
+        const checkUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            setUser(user);
+            setLoading(false);
+        };
+        checkUser();
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, [supabase.auth]);
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.push('/');
+    };
 
     const pathname = usePathname();
     const isHome = pathname === "/";
@@ -97,28 +125,68 @@ export function Navbar() {
                             <ChevronDown className="ml-1 h-3 w-3" />
                         </Button>
 
-                        <Link href="/auth/login">
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                className={`rounded-xl font-semibold ${showSolid
-                                    ? "text-foreground hover:bg-muted"
-                                    : "text-white hover:bg-white/10"
-                                    }`}
-                            >
-                                Sign In
-                            </Button>
-                        </Link>
+                        {!loading && (
+                            user ? (
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className={`rounded-xl font-semibold ${showSolid
+                                                ? "text-foreground hover:bg-muted"
+                                                : "text-white hover:bg-white/10"
+                                                }`}
+                                        >
+                                            <User className="mr-2 h-4 w-4" />
+                                            {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Account'}
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end" className="w-56">
+                                        <DropdownMenuLabel>
+                                            <div className="flex flex-col space-y-1">
+                                                <p className="text-sm font-medium">{user.user_metadata?.full_name || 'My Account'}</p>
+                                                <p className="text-xs text-muted-foreground">{user.email}</p>
+                                            </div>
+                                        </DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                                            <FileText className="mr-2 h-4 w-4" />
+                                            My Applications
+                                        </DropdownMenuItem>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem onClick={handleLogout}>
+                                            <LogOut className="mr-2 h-4 w-4" />
+                                            Log out
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            ) : (
+                                <>
+                                    <Link href="/auth/login">
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className={`rounded-xl font-semibold ${showSolid
+                                                ? "text-foreground hover:bg-muted"
+                                                : "text-white hover:bg-white/10"
+                                                }`}
+                                        >
+                                            Sign In
+                                        </Button>
+                                    </Link>
 
-                        <Link href="/auth/register">
-                            <Button
-                                size="sm"
-                                className="rounded-xl bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
-                            >
-                                <Sparkles className="mr-2 h-4 w-4" />
-                                Get Started
-                            </Button>
-                        </Link>
+                                    <Link href="/auth/register">
+                                        <Button
+                                            size="sm"
+                                            className="rounded-xl bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
+                                        >
+                                            <Sparkles className="mr-2 h-4 w-4" />
+                                            Get Started
+                                        </Button>
+                                    </Link>
+                                </>
+                            )
+                        )}
                     </div>
 
                     {/* Mobile Menu */}
@@ -162,17 +230,52 @@ export function Navbar() {
 
                                 {/* Mobile Auth Buttons */}
                                 <div className="flex flex-col gap-3 pt-4 border-t">
-                                    <Link href="/auth/login" onClick={() => setIsOpen(false)}>
-                                        <Button variant="outline" className="w-full rounded-xl font-semibold h-12">
-                                            Sign In
-                                        </Button>
-                                    </Link>
-                                    <Link href="/auth/register" onClick={() => setIsOpen(false)}>
-                                        <Button className="w-full rounded-xl bg-gradient-to-r from-primary to-red-600 font-bold h-12 shadow-lg">
-                                            <Sparkles className="mr-2 h-4 w-4" />
-                                            Get Started
-                                        </Button>
-                                    </Link>
+                                    {!loading && (
+                                        user ? (
+                                            <>
+                                                <div className="px-4 py-3 bg-muted rounded-xl">
+                                                    <p className="text-sm font-semibold">{user.user_metadata?.full_name || 'My Account'}</p>
+                                                    <p className="text-xs text-muted-foreground">{user.email}</p>
+                                                </div>
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full rounded-xl font-semibold h-12"
+                                                    onClick={() => {
+                                                        setIsOpen(false);
+                                                        router.push('/dashboard');
+                                                    }}
+                                                >
+                                                    <FileText className="mr-2 h-4 w-4" />
+                                                    My Applications
+                                                </Button>
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full rounded-xl font-semibold h-12"
+                                                    onClick={() => {
+                                                        setIsOpen(false);
+                                                        handleLogout();
+                                                    }}
+                                                >
+                                                    <LogOut className="mr-2 h-4 w-4" />
+                                                    Log out
+                                                </Button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                                                    <Button variant="outline" className="w-full rounded-xl font-semibold h-12">
+                                                        Sign In
+                                                    </Button>
+                                                </Link>
+                                                <Link href="/auth/register" onClick={() => setIsOpen(false)}>
+                                                    <Button className="w-full rounded-xl bg-gradient-to-r from-primary to-red-600 font-bold h-12 shadow-lg">
+                                                        <Sparkles className="mr-2 h-4 w-4" />
+                                                        Get Started
+                                                    </Button>
+                                                </Link>
+                                            </>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </SheetContent>

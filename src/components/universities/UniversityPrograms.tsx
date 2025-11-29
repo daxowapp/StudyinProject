@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar } from "lucide-react";
+import Link from "next/link";
 
 interface UniversityProgramsProps {
     programs: any[];
@@ -53,7 +54,9 @@ export function UniversityPrograms({ programs }: UniversityProgramsProps) {
                                 <div className="flex flex-col items-end gap-1 min-w-[120px]">
                                     <span className="text-lg font-bold text-primary">{program.tuition}</span>
                                     <span className="text-xs text-muted-foreground">per year</span>
-                                    <Button className="mt-2 w-full md:w-auto">Apply Now</Button>
+                                    <Link href={`/apply/${program.slug}`} className="mt-2 w-full md:w-auto">
+                                        <Button className="w-full">Apply Now</Button>
+                                    </Link>
                                 </div>
                             </CardContent>
                         </Card>

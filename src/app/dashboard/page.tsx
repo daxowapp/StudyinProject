@@ -14,14 +14,21 @@ export default async function DashboardPage() {
         .from("applications")
         .select(`
             *,
-            program:programs(
-                title,
-                university:universities(name)
+            university_program:university_program_id (
+                id,
+                slug,
+                program_catalog:program_catalog_id (
+                    title,
+                    level
+                ),
+                university:university_id (
+                    name,
+                    slug
+                )
             )
         `)
-        .eq("user_id", user?.id)
-        .order("created_at", { ascending: false })
-        .limit(5);
+        .eq("student_id", user?.id)
+        .order("created_at", { ascending: false });
 
     const stats = {
         total: applications?.length || 0,
@@ -103,16 +110,9 @@ export default async function DashboardPage() {
 
             {/* Recent Applications */}
             <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="h-10 w-1 bg-primary rounded-full" />
-                        <h2 className="text-2xl font-bold">Recent Applications</h2>
-                    </div>
-                    <Link href="/dashboard/applications">
-                        <Button variant="ghost" className="gap-2">
-                            View All <ArrowRight className="h-4 w-4" />
-                        </Button>
-                    </Link>
+                <div className="flex items-center gap-3">
+                    <div className="h-10 w-1 bg-primary rounded-full" />
+                    <h2 className="text-2xl font-bold">My Applications</h2>
                 </div>
                 
                 {applications && applications.length > 0 ? (
@@ -122,9 +122,9 @@ export default async function DashboardPage() {
                                 {applications.map((app: any) => (
                                     <div key={app.id} className="flex flex-col md:flex-row md:items-center justify-between p-6 hover:bg-muted/50 transition-colors">
                                         <div className="space-y-2 mb-4 md:mb-0">
-                                            <p className="font-semibold text-lg">{app.program?.title || "Program"}</p>
+                                            <p className="font-semibold text-lg">{app.university_program?.program_catalog?.title || "Program"}</p>
                                             <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                                {app.program?.university?.name || "University"}
+                                                {app.university_program?.university?.name || "University"}
                                             </p>
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Calendar className="h-3 w-3" />
@@ -135,15 +135,16 @@ export default async function DashboardPage() {
                                             <Badge 
                                                 variant="secondary" 
                                                 className={
-                                                    app.status === "pending" ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-100" :
-                                                    app.status === "submitted" ? "bg-blue-100 text-blue-800 hover:bg-blue-100" :
+                                                    app.status === "pending_documents" || app.status === "pending_payment" ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-100" :
+                                                    app.status === "submitted" || app.status === "under_review" ? "bg-blue-100 text-blue-800 hover:bg-blue-100" :
                                                     app.status === "accepted" ? "bg-green-100 text-green-800 hover:bg-green-100" :
+                                                    app.status === "rejected" ? "bg-red-100 text-red-800 hover:bg-red-100" :
                                                     "bg-gray-100 text-gray-800 hover:bg-gray-100"
                                                 }
                                             >
-                                                {app.status?.charAt(0).toUpperCase() + app.status?.slice(1) || "Unknown"}
+                                                {app.status?.split('_').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || "Unknown"}
                                             </Badge>
-                                            <Link href={`/applications/${app.id}/status`}>
+                                            <Link href={`/dashboard/applications/${app.id}`}>
                                                 <Button variant="outline" size="sm" className="gap-2">
                                                     View Details <ArrowRight className="h-3 w-3" />
                                                 </Button>

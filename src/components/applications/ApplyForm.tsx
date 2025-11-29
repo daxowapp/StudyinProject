@@ -23,7 +23,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { createClient } from '@/lib/supabase/client';
+import { COUNTRIES, COUNTRY_CODES, INTAKE_PERIODS } from '@/lib/constants/countries';
 
 interface ApplyFormProps {
   program: any;
@@ -38,19 +40,24 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
   const [step, setStep] = useState(1); // 1: Info, 2: Documents, 3: Payment, 4: Review
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [applicationId, setApplicationId] = useState<string | null>(null);
   
-  // Form state
+  // Form state - pre-fill from user metadata
   const [formData, setFormData] = useState({
-    student_name: user.user_metadata?.full_name || '',
+    student_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
     student_email: user.email || '',
-    student_phone: '',
-    student_country: '',
-    student_passport: '',
+    student_phone: user.user_metadata?.phone || '',
+    student_country: user.user_metadata?.country || '',
+    student_passport: user.user_metadata?.passport || '',
     preferred_intake: program.intake || '',
-    emergency_contact_name: '',
-    emergency_contact_phone: '',
-    emergency_contact_relationship: '',
+    emergency_contact_name: user.user_metadata?.emergency_contact_name || '',
+    emergency_contact_phone: user.user_metadata?.emergency_contact_phone || '',
+    emergency_contact_relationship: user.user_metadata?.emergency_contact_relationship || '',
   });
+
+  const [phoneCountryCode, setPhoneCountryCode] = useState(user.user_metadata?.phone_country_code || '+86');
+  const [emergencyPhoneCode, setEmergencyPhoneCode] = useState(user.user_metadata?.emergency_phone_code || '+86');
 
   const [uploadedDocuments, setUploadedDocuments] = useState<Record<string, File>>({});
   const [documentUrls, setDocumentUrls] = useState<Record<string, string>>({});
@@ -63,6 +70,14 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle select changes
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData({
+      ...formData,
+      [name]: value,
     });
   };
 
@@ -118,14 +133,22 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
       setLoading(true);
       setError(null);
 
-      // Create application
+      // Create application with phone numbers including country codes
       const { data: application, error: appError } = await supabase
         .from('applications')
         .insert({
           student_id: user.id,
           university_program_id: program.id,
-          ...formData,
-          status: requiresPayment ? 'pending_payment' : 'pending_documents',
+          student_name: formData.student_name,
+          student_email: formData.student_email,
+          student_phone: `${phoneCountryCode} ${formData.student_phone}`,
+          student_country: formData.student_country,
+          student_passport: formData.student_passport,
+          preferred_intake: formData.preferred_intake,
+          emergency_contact_name: formData.emergency_contact_name,
+          emergency_contact_phone: `${emergencyPhoneCode} ${formData.emergency_contact_phone}`,
+          emergency_contact_relationship: formData.emergency_contact_relationship,
+          status: requiresPayment ? 'pending_payment' : 'submitted',
           payment_amount: totalFee,
           payment_currency: program.currency || 'RMB',
           documents_complete: allRequiredDocumentsUploaded(),
@@ -154,19 +177,96 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
         if (docsError) throw docsError;
       }
 
-      // Redirect based on payment requirement
-      if (requiresPayment) {
-        router.push(`/dashboard/applications/${application.id}/payment`);
-      } else {
-        router.push(`/dashboard/applications/${application.id}`);
-      }
-
+      // Show success state
+      setApplicationId(application.id);
+      setSuccess(true);
       setLoading(false);
+      
+      // Redirect to dashboard after 3 seconds
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 3000);
     } catch (err: any) {
       setError(err.message);
       setLoading(false);
     }
   };
+
+  // Show success screen
+  if (success) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="max-w-2xl mx-auto"
+      >
+        <Card className="border-none shadow-2xl bg-gradient-to-br from-green-50 to-blue-50">
+          <CardContent className="p-12 text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <CheckCircle2 className="w-16 h-16 text-white" />
+            </motion.div>
+            
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Application Submitted Successfully! 🎉
+            </h2>
+            
+            <p className="text-lg text-gray-600 mb-6">
+              Your application has been received and is now under review.
+            </p>
+            
+            <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-semibold text-gray-600">Application ID:</span>
+                <span className="text-lg font-bold text-blue-600">{applicationId?.slice(0, 8).toUpperCase()}</span>
+              </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-semibold text-gray-600">Program:</span>
+                <span className="text-sm font-medium text-gray-900">{program.program_catalog.title}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold text-gray-600">University:</span>
+                <span className="text-sm font-medium text-gray-900">{program.university.name}</span>
+              </div>
+            </div>
+            
+            <div className="space-y-3 text-left bg-blue-50 rounded-xl p-6 mb-6">
+              <h3 className="font-semibold text-gray-900 mb-3">What's Next?</h3>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700">You'll receive a confirmation email shortly</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700">Our team will review your application within 2-3 business days</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700">Track your application status in your dashboard</p>
+              </div>
+            </div>
+            
+            <p className="text-sm text-gray-500 mb-6">
+              Redirecting to your dashboard in 3 seconds...
+            </p>
+            
+            <Button
+              onClick={() => router.push('/dashboard')}
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold shadow-lg"
+            >
+              Go to Dashboard Now
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.div>
+    );
+  }
 
   return (
     <div className="space-y-8">
@@ -269,25 +369,46 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
 
                 <div className="space-y-2">
                   <Label htmlFor="student_phone">Phone Number *</Label>
-                  <Input
-                    id="student_phone"
-                    name="student_phone"
-                    type="tel"
-                    value={formData.student_phone}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <div className="flex gap-2">
+                    <Select value={phoneCountryCode} onValueChange={setPhoneCountryCode}>
+                      <SelectTrigger className="w-[120px]">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {COUNTRY_CODES.map((item) => (
+                          <SelectItem key={item.id} value={item.code}>
+                            {item.code} {item.country}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Input
+                      id="student_phone"
+                      name="student_phone"
+                      type="tel"
+                      placeholder="123456789"
+                      value={formData.student_phone}
+                      onChange={handleInputChange}
+                      required
+                      className="flex-1"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="student_country">Country *</Label>
-                  <Input
-                    id="student_country"
-                    name="student_country"
-                    value={formData.student_country}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <Select value={formData.student_country} onValueChange={(value) => handleSelectChange('student_country', value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {COUNTRIES.map((country) => (
+                        <SelectItem key={country} value={country}>
+                          {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
@@ -302,13 +423,19 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="preferred_intake">Preferred Intake</Label>
-                  <Input
-                    id="preferred_intake"
-                    name="preferred_intake"
-                    value={formData.preferred_intake}
-                    onChange={handleInputChange}
-                  />
+                  <Label htmlFor="preferred_intake">Preferred Intake *</Label>
+                  <Select value={formData.preferred_intake} onValueChange={(value) => handleSelectChange('preferred_intake', value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select intake period" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {INTAKE_PERIODS.map((intake) => (
+                        <SelectItem key={intake} value={intake}>
+                          {intake}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
@@ -328,14 +455,30 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
 
                   <div className="space-y-2">
                     <Label htmlFor="emergency_contact_phone">Phone *</Label>
-                    <Input
-                      id="emergency_contact_phone"
-                      name="emergency_contact_phone"
-                      type="tel"
-                      value={formData.emergency_contact_phone}
-                      onChange={handleInputChange}
-                      required
-                    />
+                    <div className="flex gap-2">
+                      <Select value={emergencyPhoneCode} onValueChange={setEmergencyPhoneCode}>
+                        <SelectTrigger className="w-[120px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {COUNTRY_CODES.map((item) => (
+                            <SelectItem key={`emergency-${item.id}`} value={item.code}>
+                              {item.code} {item.country}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Input
+                        id="emergency_contact_phone"
+                        name="emergency_contact_phone"
+                        type="tel"
+                        placeholder="123456789"
+                        value={formData.emergency_contact_phone}
+                        onChange={handleInputChange}
+                        required
+                        className="flex-1"
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -361,6 +504,7 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
                     !formData.student_phone ||
                     !formData.student_country ||
                     !formData.student_passport ||
+                    !formData.preferred_intake ||
                     !formData.emergency_contact_name ||
                     !formData.emergency_contact_phone ||
                     !formData.emergency_contact_relationship

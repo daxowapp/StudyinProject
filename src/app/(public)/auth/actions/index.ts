@@ -50,6 +50,7 @@ export async function signup(formData: FormData) {
             data: {
                 first_name: firstName,
                 last_name: lastName,
+                full_name: `${firstName} ${lastName}`,
                 role: "student",
             },
         },
