@@ -11,10 +11,10 @@ export async function getApplications() {
             *,
             university_program:university_program_id (
                 id,
+                tuition_fee,
                 program_catalog:program_catalog_id (
                     title,
-                    level,
-                    duration
+                    level
                 ),
                 university:university_id (
                     name,

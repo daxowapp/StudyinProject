@@ -61,8 +61,8 @@ export default async function ApplicationsPage() {
                                     <span className="font-medium capitalize">{app.university_program?.program_catalog?.level || "N/A"}</span>
                                 </div>
                                 <div>
-                                    <span className="text-muted-foreground block">Duration</span>
-                                    <span className="font-medium">{app.university_program?.program_catalog?.duration || "N/A"}</span>
+                                    <span className="text-muted-foreground block">Tuition Fee</span>
+                                    <span className="font-medium">{app.university_program?.tuition_fee ? `¥${app.university_program.tuition_fee}` : "N/A"}</span>
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground block">Submitted</span>
