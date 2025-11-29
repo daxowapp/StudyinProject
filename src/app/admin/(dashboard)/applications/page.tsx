@@ -43,13 +43,13 @@ export default async function ApplicationsPage() {
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <div className="space-y-1">
                                 <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                                    {app.user?.first_name} {app.user?.last_name}
+                                    {app.student_name || 'Unknown Student'}
                                     <Badge className={getStatusColor(app.status)}>
-                                        {app.status.replace("_", " ").toUpperCase()}
+                                        {app.status?.replace("_", " ").toUpperCase() || 'PENDING'}
                                     </Badge>
                                 </CardTitle>
                                 <CardDescription>
-                                    Applied to <span className="font-medium text-foreground">{app.program?.title}</span> at {app.program?.university?.name}
+                                    Applied to <span className="font-medium text-foreground">{app.university_program?.program_catalog?.title}</span> at {app.university_program?.university?.name}
                                 </CardDescription>
                             </div>
                             <ApplicationDialog application={app} />
@@ -57,24 +57,22 @@ export default async function ApplicationsPage() {
                         <CardContent>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">
                                 <div>
-                                    <span className="text-muted-foreground block">Stage</span>
-                                    <span className="font-medium capitalize">{app.stage || "New"}</span>
+                                    <span className="text-muted-foreground block">Level</span>
+                                    <span className="font-medium capitalize">{app.university_program?.program_catalog?.level || "N/A"}</span>
                                 </div>
                                 <div>
-                                    <span className="text-muted-foreground block">Payment</span>
-                                    <Badge variant="outline" className={getPaymentColor(app.payment_status)}>
-                                        {app.payment_status.toUpperCase()}
-                                    </Badge>
+                                    <span className="text-muted-foreground block">Duration</span>
+                                    <span className="font-medium">{app.university_program?.program_catalog?.duration || "N/A"}</span>
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground block">Submitted</span>
                                     <span className="font-medium">
-                                        {app.submitted_at ? format(new Date(app.submitted_at), "MMM d, yyyy") : "Draft"}
+                                        {app.created_at ? format(new Date(app.created_at), "MMM d, yyyy") : "N/A"}
                                     </span>
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground block">Email</span>
-                                    <span className="font-medium">{app.user?.email}</span>
+                                    <span className="font-medium">{app.student_email}</span>
                                 </div>
                             </div>
                         </CardContent>

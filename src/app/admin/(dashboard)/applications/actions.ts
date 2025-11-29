@@ -9,8 +9,19 @@ export async function getApplications() {
         .from("applications")
         .select(`
             *,
-            user:profiles(first_name, last_name, email),
-            program:programs(title, university:universities(name))
+            university_program:university_program_id (
+                id,
+                program_catalog:program_catalog_id (
+                    title,
+                    level,
+                    duration
+                ),
+                university:university_id (
+                    name,
+                    logo_url,
+                    city
+                )
+            )
         `)
         .order("created_at", { ascending: false });
 
@@ -30,52 +41,20 @@ export async function updateApplicationStatus(id: string, status: string) {
     return { success: true };
 }
 
-export async function updateApplicationStage(id: string, stage: string) {
-    const supabase = await createClient();
-    const { error } = await supabase
-        .from("applications")
-        .update({ stage })
-        .eq("id", id);
-
-    if (error) return { error: error.message };
-    revalidatePath("/admin/applications");
-    return { success: true };
-}
-
-export async function updatePaymentStatus(id: string, payment_status: string) {
-    const supabase = await createClient();
-    const { error } = await supabase
-        .from("applications")
-        .update({ payment_status })
-        .eq("id", id);
-
-    if (error) return { error: error.message };
-    revalidatePath("/admin/applications");
-    return { success: true };
-}
-
-export async function addComment(id: string, comment: string) {
+export async function addAdminNote(id: string, note: string) {
     const supabase = await createClient();
 
-    // First get existing comments
-    const { data: app, error: fetchError } = await supabase
-        .from("applications")
-        .select("comments")
-        .eq("id", id)
-        .single();
+    // Get current user
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { error: "Not authenticated" };
 
-    if (fetchError) return { error: fetchError.message };
-
-    const currentComments = app.comments || [];
-    const newComment = {
-        text: comment,
-        created_at: new Date().toISOString(),
-        // In a real app, we'd add the author here
-    };
-
+    // Update admin_notes field
     const { error } = await supabase
         .from("applications")
-        .update({ comments: [...currentComments, newComment] })
+        .update({ 
+            admin_notes: note,
+            updated_at: new Date().toISOString()
+        })
         .eq("id", id);
 
     if (error) return { error: error.message };
