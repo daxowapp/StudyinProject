@@ -446,6 +446,52 @@ CREATE POLICY "Students can send messages"
         )
     );
 
+-- Admins can send messages to students
+CREATE POLICY "Admins can send messages"
+    ON application_messages FOR INSERT
+    WITH CHECK (
+        sender_type = 'admin'
+        AND sender_id = auth.uid()
+        AND EXISTS (
+            SELECT 1 FROM auth.users
+            WHERE id = auth.uid()
+            AND raw_user_meta_data->>'role' = 'admin'
+        )
+    );
+
+-- Admins can view all messages
+CREATE POLICY "Admins can view all messages"
+    ON application_messages FOR SELECT
+    USING (
+        EXISTS (
+            SELECT 1 FROM auth.users
+            WHERE id = auth.uid()
+            AND raw_user_meta_data->>'role' = 'admin'
+        )
+    );
+
+-- Admins can update messages
+CREATE POLICY "Admins can update messages"
+    ON application_messages FOR UPDATE
+    USING (
+        EXISTS (
+            SELECT 1 FROM auth.users
+            WHERE id = auth.uid()
+            AND raw_user_meta_data->>'role' = 'admin'
+        )
+    );
+
+-- Students can update their messages (mark as read)
+CREATE POLICY "Students can update their messages"
+    ON application_messages FOR UPDATE
+    USING (
+        EXISTS (
+            SELECT 1 FROM applications a
+            WHERE a.id = application_messages.application_id
+            AND a.student_id = auth.uid()
+        )
+    );
+
 -- Payments: Students can view their own payments
 CREATE POLICY "Students can view their payments"
     ON payment_transactions FOR SELECT
