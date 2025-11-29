@@ -20,16 +20,7 @@ export default async function Home() {
     // Fetch Featured Programs with timeout
     const programsPromise = supabase
       .from("v_university_programs_full")
-      .select(`
-        id,
-        slug,
-        display_title,
-        program_title,
-        level,
-        duration,
-        tuition_fee,
-        university:universities(name, city)
-      `)
+      .select("*")
       .order("created_at", { ascending: false })
       .limit(4);
 
@@ -44,16 +35,37 @@ export default async function Home() {
       console.error("Error fetching programs:", programsError);
     }
 
+    // Fetch university details including cover photos
+    const programsWithUniversities = await Promise.all(
+      (programs || []).map(async (p: any) => {
+        const { data: uni } = await supabase
+          .from("universities")
+          .select("name, city, cover_photo_url")
+          .eq("id", p.university_id)
+          .single();
+        
+        return {
+          ...p,
+          university: uni || { name: p.university_name, city: p.city, cover_photo_url: null }
+        };
+      })
+    );
+
     // Transform data to match component props
-    formattedPrograms = programs?.map((p: any) => ({
+    formattedPrograms = programsWithUniversities.map((p: any) => ({
       id: p.id,
       slug: p.slug,
       title: p.display_title || p.program_title,
       level: p.level,
       duration: p.duration,
       tuition_fee: p.tuition_fee,
-      university: { name: p.university_name, city: p.city }
-    })) || [];
+      currency: p.currency || "CNY",
+      university: {
+        name: p.university?.name || p.university_name,
+        city: p.university?.city || p.city,
+        cover_photo_url: p.university?.cover_photo_url
+      }
+    }));
 
     // Fetch Featured Universities with timeout
     const universitiesPromise = supabase
@@ -66,12 +78,13 @@ export default async function Home() {
         province,
         description,
         logo_url,
+        cover_photo_url,
         founded,
         total_students,
         ranking
       `)
       .order("created_at", { ascending: false })
-      .limit(6);
+      .limit(8);
 
     const { data: universitiesData, error: universitiesError } = await Promise.race([
       universitiesPromise,
@@ -100,7 +113,7 @@ export default async function Home() {
       <StatsSection />
       <ScholarshipsSection />
       <TestimonialsSection />
-      <PartnersSection />
+      <PartnersSection universities={universities || []} />
       <FAQPreviewSection />
     </div>
   );

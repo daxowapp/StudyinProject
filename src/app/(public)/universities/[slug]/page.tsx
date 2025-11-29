@@ -30,6 +30,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
 
     const formattedPrograms = programs?.map((p: any) => ({
         id: p.id,
+        slug: p.slug,
         name: p.display_title || p.program_title,
         level: p.level,
         duration: p.duration,
@@ -46,6 +47,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         province: university.province,
         website: university.website,
         logo_url: university.logo_url,
+        cover_photo_url: university.cover_photo_url,
         gallery_images: university.gallery_images || [],
         badges: university.features || [],
         stats: {

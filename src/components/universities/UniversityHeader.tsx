@@ -18,7 +18,12 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
             {/* Banner Image with Parallax Effect */}
             <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden">
                 {/* Background Image */}
-                {university.gallery_images && university.gallery_images.length > 0 ? (
+                {university.cover_photo_url ? (
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-700"
+                        style={{ backgroundImage: `url(${university.cover_photo_url})` }}
+                    />
+                ) : university.gallery_images && university.gallery_images.length > 0 ? (
                     <div 
                         className="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-700"
                         style={{ backgroundImage: `url(${university.gallery_images[0]})` }}

@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy } from "lucide-react";
+import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface University {
     id: string;
@@ -14,6 +15,7 @@ interface University {
     province?: string;
     description: string;
     logo_url?: string;
+    cover_photo_url?: string;
     founded?: string;
     total_students?: string;
     ranking?: string;
@@ -40,6 +42,22 @@ const item = {
 
 export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUniversitiesSectionProps) {
     const displayUniversities = universities.length > 0 ? universities : [];
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const itemsPerPage = 4;
+    const totalPages = Math.ceil(displayUniversities.length / itemsPerPage);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % totalPages);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+    };
+
+    const visibleUniversities = displayUniversities.slice(
+        currentIndex * itemsPerPage,
+        (currentIndex + 1) * itemsPerPage
+    );
 
     return (
         <section className="py-16 bg-muted/20 relative overflow-hidden">
@@ -69,30 +87,41 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                     </p>
                 </motion.div>
 
-                {/* Universities Grid */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
-                >
-                    {displayUniversities.map((uni, index) => (
+                {/* Universities Carousel */}
+                <div className="relative">
+                    <motion.div
+                        variants={container}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+                        style={{ gridAutoRows: '1fr' }}
+                    >
+                        {visibleUniversities.map((uni, index) => (
                         <motion.div
                             key={uni.id}
                             variants={item}
                             whileHover={{ y: -8 }}
                             transition={{ duration: 0.2 }}
+                            className="flex"
                         >
-                            <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white h-full">
-                                <CardContent className="p-0">
+                            <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white flex flex-col w-full">
+                                <CardContent className="p-0 flex flex-col flex-1">
                                     {/* Image Banner */}
-                                    <div className="relative h-40 overflow-hidden">
-                                        <img
-                                            src={uni.logo_url || "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"}
-                                            alt={uni.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
+                                    <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
+                                        {uni.cover_photo_url ? (
+                                            <img
+                                                src={uni.cover_photo_url}
+                                                alt={uni.name}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <img
+                                                src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
+                                                alt={uni.name}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
                                         {/* Ranking Badge */}
@@ -106,18 +135,18 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                     </div>
 
                                     {/* Content */}
-                                    <div className="p-5">
-                                        <h3 className="font-bold text-lg mb-2 group-hover:text-red-600 transition-colors line-clamp-1">
+                                    <div className="p-5 flex flex-col flex-1">
+                                        <h3 className="font-bold text-lg mb-2 group-hover:text-red-600 transition-colors line-clamp-1 min-h-[1.75rem]">
                                             {uni.name}
                                         </h3>
 
                                         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                                            <MapPin className="h-4 w-4 text-red-600" />
-                                            <span>{uni.city}{uni.province && `, ${uni.province}`}</span>
+                                            <MapPin className="h-4 w-4 text-red-600 shrink-0" />
+                                            <span className="truncate">{uni.city}{uni.province && `, ${uni.province}`}</span>
                                         </div>
 
-                                        {/* Stats */}
-                                        <div className="space-y-2 mb-4">
+                                        {/* Stats - Fixed height */}
+                                        <div className="space-y-2 mb-4 min-h-[4rem]">
                                             {uni.founded && (
                                                 <div className="flex items-center justify-between text-sm">
                                                     <span className="text-muted-foreground">Founded</span>
@@ -132,10 +161,10 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                             )}
                                         </div>
 
-                                        {/* Description & Button */}
-                                        <div className="pt-4 border-t">
+                                        {/* Description & Button - Push to bottom */}
+                                        <div className="pt-4 border-t mt-auto">
                                             {uni.description && (
-                                                <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                                                <p className="text-xs text-muted-foreground mb-3 line-clamp-2 min-h-[2.5rem]">
                                                     {uni.description}
                                                 </p>
                                             )}
@@ -149,8 +178,47 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                 </CardContent>
                             </Card>
                         </motion.div>
-                    ))}
-                </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Navigation Buttons */}
+                    {totalPages > 1 && (
+                        <>
+                            <button
+                                onClick={prevSlide}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white hover:bg-gray-50 text-gray-800 rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-10 hidden lg:flex items-center justify-center"
+                                aria-label="Previous universities"
+                            >
+                                <ChevronLeft className="h-6 w-6" />
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white hover:bg-gray-50 text-gray-800 rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-10 hidden lg:flex items-center justify-center"
+                                aria-label="Next universities"
+                            >
+                                <ChevronRight className="h-6 w-6" />
+                            </button>
+                        </>
+                    )}
+                </div>
+
+                {/* Pagination Dots */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center gap-2 mt-8">
+                        {Array.from({ length: totalPages }).map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentIndex(index)}
+                                className={`h-2 rounded-full transition-all ${
+                                    index === currentIndex
+                                        ? 'w-8 bg-red-600'
+                                        : 'w-2 bg-gray-300 hover:bg-gray-400'
+                                }`}
+                                aria-label={`Go to page ${index + 1}`}
+                            />
+                        ))}
+                    </div>
+                )}
                 {/* Bottom CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

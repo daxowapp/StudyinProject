@@ -13,7 +13,8 @@ import {
     Award, 
     BarChart3, 
     BookOpen,
-    ClipboardCheck
+    ClipboardCheck,
+    Newspaper
 } from "lucide-react";
 import Link from "next/link";
 
@@ -75,6 +76,12 @@ export default function AdminLayout({
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <ClipboardCheck className="h-4 w-4" />
                             Admission Requirements
+                        </Button>
+                    </Link>
+                    <Link href="/admin/articles">
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                            <Newspaper className="h-4 w-4" />
+                            Articles
                         </Button>
                     </Link>
                     <Link href="/admin/applications">

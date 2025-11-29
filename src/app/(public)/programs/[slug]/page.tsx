@@ -1,10 +1,13 @@
-import { ProgramHeader } from "@/components/programs/ProgramHeader";
 import { ProgramRequirements } from "@/components/programs/ProgramRequirements";
+import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Award, BookOpen, GraduationCap } from "lucide-react";
+import { Award, BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const supabase = await createClient();
@@ -32,6 +35,30 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         notFound();
     }
 
+    // Fetch admission requirements for this university and program level
+    const { data: requirements } = await supabase
+        .from("v_university_admission_requirements")
+        .select("*")
+        .eq("university_id", program.university_id)
+        .in("requirement_type", [program.level.toLowerCase(), "all"])
+        .order("category")
+        .order("display_order");
+
+    console.log("Requirements fetched:", requirements);
+
+    // Group requirements by category
+    const groupedRequirements = requirements?.reduce((acc: any, req: any) => {
+        if (!acc[req.category]) {
+            acc[req.category] = [];
+        }
+        acc[req.category].push({
+            name: req.title,
+            required: req.is_required,
+            note: req.custom_note || req.description
+        });
+        return acc;
+    }, {}) || {};
+
     const programData = {
         id: program.id,
         slug: program.slug,
@@ -54,30 +81,11 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             "Core courses information will be updated soon",
         ],
         requirements: {
-            academic: [
-                "High school diploma or equivalent",
-                "Strong academic background",
-                "Minimum GPA of 3.0/4.0",
-            ],
-            language: program.language_name === "English"
-                ? [
-                    "IELTS 6.0 or TOEFL 80 (for non-native English speakers)",
-                    "No Chinese language proficiency required",
-                ]
-                : [
-                    "HSK 4 or above required",
-                    "English proficiency may be beneficial",
-                ],
-            documents: [
-                { name: "Passport Copy", required: true },
-                { name: "High School Transcript", required: true, note: "Must be translated if not in English/Chinese" },
-                { name: "High School Diploma", required: true },
-                { name: program.language_name === "English" ? "English Proficiency Certificate" : "HSK Certificate", required: true },
-                { name: "Personal Statement", required: true },
-                { name: "Two Recommendation Letters", required: false },
-                { name: "Physical Examination Record", required: true },
-                { name: "Non-Criminal Record", required: true },
-            ],
+            academic: groupedRequirements.academic || [],
+            language: groupedRequirements.language || [],
+            documents: groupedRequirements.document || [],
+            financial: groupedRequirements.financial || [],
+            other: groupedRequirements.other || [],
         },
         scholarships: [
             { name: "Chinese Government Scholarship (CSC)", type: "Full Scholarship" },
@@ -92,87 +100,188 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-20">
-            <ProgramHeader program={programData} />
+        <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/10">
+            {/* Hero Section */}
+            <div className="relative bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
+                <div className="absolute inset-0 bg-grid-white/10" />
+                <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative">
+                    <div className="max-w-4xl">
+                        {/* Breadcrumb */}
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                            <Link href="/" className="hover:text-primary">Home</Link>
+                            <span>/</span>
+                            <Link href="/programs" className="hover:text-primary">Programs</Link>
+                            <span>/</span>
+                            <span className="text-foreground">{programData.name}</span>
+                        </div>
 
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="flex flex-col lg:flex-row gap-8">
-                    <div className="flex-1 space-y-12">
-                        {/* Overview */}
-                        <section className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="h-10 w-1 bg-primary rounded-full" />
-                                <h2 className="text-3xl font-bold font-heading">Program Overview</h2>
+                        {/* Program Title */}
+                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
+                            {programData.name}
+                        </h1>
+
+                        {/* University Info */}
+                        <Link href={`/universities/${program.university_id}`} className="group inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
+                            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                <Building2 className="h-6 w-6 text-primary" />
                             </div>
-                            <Card className="border-none shadow-lg">
-                                <CardContent className="p-6">
-                                    <div className="prose max-w-none text-muted-foreground">
-                                        <p className="whitespace-pre-line leading-relaxed text-base">
-                                            {programData.overview}
-                                        </p>
-                                    </div>
+                            <div>
+                                <p className="font-semibold text-lg group-hover:text-primary transition-colors">{programData.university}</p>
+                                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                    <MapPin className="h-3 w-3" />
+                                    {programData.city}
+                                </p>
+                            </div>
+                        </Link>
 
-                                    {programData.curriculum && programData.curriculum.length > 0 && (
-                                        <div className="mt-8 pt-6 border-t">
-                                            <h3 className="font-bold mb-4 flex items-center gap-2">
-                                                <BookOpen className="h-5 w-5 text-primary" />
-                                                Key Courses
-                                            </h3>
-                                            <div className="flex flex-wrap gap-2">
-                                                {programData.curriculum.map((course: string, i: number) => (
-                                                    <div key={i} className="bg-primary/10 text-primary px-4 py-2 rounded-lg text-sm font-medium border border-primary/20">
-                                                        {course}
-                                                    </div>
-                                                ))}
-                                            </div>
+                        {/* Quick Info Badges */}
+                        <div className="flex flex-wrap gap-3 mb-8">
+                            <Badge className="px-4 py-2 text-sm bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
+                                <GraduationCap className="h-4 w-4 mr-2" />
+                                {programData.level}
+                            </Badge>
+                            <Badge className="px-4 py-2 text-sm bg-blue-500/10 text-blue-600 border-blue-500/20">
+                                <Clock className="h-4 w-4 mr-2" />
+                                {programData.duration}
+                            </Badge>
+                            <Badge className="px-4 py-2 text-sm bg-green-500/10 text-green-600 border-green-500/20">
+                                <Globe className="h-4 w-4 mr-2" />
+                                {programData.language}
+                            </Badge>
+                            <Badge className="px-4 py-2 text-sm bg-orange-500/10 text-orange-600 border-orange-500/20">
+                                <Calendar className="h-4 w-4 mr-2" />
+                                Intake: {programData.intake || "Contact University"}
+                            </Badge>
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-wrap gap-4">
+                            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg">
+                                Apply Now
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                            <Button size="lg" variant="outline" className="border-2">
+                                Download Brochure
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container mx-auto px-4 md:px-6 py-12">
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Main Content */}
+                    <div className="lg:col-span-2 space-y-8">
+                        {/* Key Facts */}
+                        <Card className="border-none shadow-xl bg-gradient-to-br from-background to-muted/20">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Star className="h-5 w-5 text-primary" />
+                                    Program Highlights
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="flex items-start gap-4">
+                                        <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                                            <DollarSign className="h-6 w-6 text-primary" />
                                         </div>
-                                    )}
-                                </CardContent>
-                            </Card>
-                        </section>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground">Tuition Fee</p>
+                                            <p className="text-xl font-bold">{programData.tuition}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4">
+                                        <div className="h-12 w-12 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                                            <Clock className="h-6 w-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground">Duration</p>
+                                            <p className="text-xl font-bold">{programData.duration}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4">
+                                        <div className="h-12 w-12 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0">
+                                            <Globe className="h-6 w-6 text-green-600" />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground">Language</p>
+                                            <p className="text-xl font-bold">{programData.language}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-4">
+                                        <div className="h-12 w-12 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
+                                            <Users className="h-6 w-6 text-orange-600" />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm text-muted-foreground">Degree Level</p>
+                                            <p className="text-xl font-bold">{programData.level}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                        {/* Overview */}
+                        <Card className="border-none shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-2xl flex items-center gap-2">
+                                    <BookOpen className="h-6 w-6 text-primary" />
+                                    Program Overview
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="prose max-w-none">
+                                    <p className="text-muted-foreground leading-relaxed text-lg">
+                                        {programData.overview}
+                                    </p>
+                                </div>
+
+                                {programData.curriculum && programData.curriculum.length > 0 && (
+                                    <div className="mt-6 pt-6 border-t">
+                                        <h3 className="font-bold text-lg mb-4">Core Curriculum</h3>
+                                        <div className="grid gap-3">
+                                            {programData.curriculum.map((course: string, i: number) => (
+                                                <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                                                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                                                    <span className="text-sm font-medium">{course}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
 
                         {/* Requirements */}
-                        <section className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="h-10 w-1 bg-primary rounded-full" />
-                                <h2 className="text-3xl font-bold font-heading">Requirements</h2>
-                            </div>
-                            <ProgramRequirements requirements={programData.requirements} />
-                        </section>
+                        <Card className="border-none shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-2xl flex items-center gap-2">
+                                    <CheckCircle2 className="h-6 w-6 text-primary" />
+                                    Admission Requirements
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ProgramRequirements requirements={programData.requirements} />
+                            </CardContent>
+                        </Card>
 
                         {/* Scholarships */}
-                        <section className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="h-10 w-1 bg-primary rounded-full" />
-                                <h2 className="text-3xl font-bold font-heading">Scholarships Available</h2>
-                            </div>
-                            <div className="grid gap-4 sm:grid-cols-2">
-                                {programData.scholarships.map((sch, i) => (
-                                    <Card key={i} className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-primary/10 hover:shadow-xl transition-shadow">
-                                        <CardContent className="p-6">
-                                            <div className="flex items-start gap-3">
-                                                <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                                                    <Award className="h-5 w-5 text-primary" />
-                                                </div>
-                                                <div>
-                                                    <h3 className="font-bold text-base">{sch.name}</h3>
-                                                    <p className="text-sm text-primary mt-1 font-medium">{sch.type}</p>
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </div>
-                        </section>
+                        <Card className="border-none shadow-xl">
+                            <CardContent className="p-8">
+                                <UniversityScholarshipsSection 
+                                    universityId={programData.universityId}
+                                    title="Scholarship Options for This Program"
+                                    description="Choose the scholarship type that best fits your budget"
+                                />
+                            </CardContent>
+                        </Card>
 
                         {/* FAQ */}
-                        <section className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="h-10 w-1 bg-primary rounded-full" />
-                                <h2 className="text-3xl font-bold font-heading">Frequently Asked Questions</h2>
-                            </div>
-                            <Card className="border-none shadow-lg">
-                                <CardContent className="p-6">
+                        <Card className="border-none shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-2xl">Frequently Asked Questions</CardTitle>
+                            </CardHeader>
+                            <CardContent>
                                     <Accordion type="single" collapsible className="w-full">
                                         {programData.faqs.map((faq, i) => (
                                             <AccordionItem key={i} value={`item-${i}`}>
@@ -185,13 +294,99 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                             </AccordionItem>
                                         ))}
                                     </Accordion>
-                                </CardContent>
-                            </Card>
-                        </section>
+                            </CardContent>
+                        </Card>
                     </div>
 
-                    {/* Sidebar Spacer (for sticky box in header) */}
-                    <div className="hidden lg:block w-[350px] shrink-0" />
+                    {/* Sidebar */}
+                    <div className="lg:col-span-1">
+                        <div className="sticky top-24 space-y-6">
+                            {/* Quick Apply Card */}
+                            <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/5 to-primary/10">
+                                <CardHeader>
+                                    <CardTitle className="text-xl">Ready to Apply?</CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                                            <span>Free Application</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                                            <span>Fast Processing</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                                            <span>Expert Support</span>
+                                        </div>
+                                    </div>
+                                    <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70" size="lg">
+                                        Start Application
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                    <Button variant="outline" className="w-full" size="lg">
+                                        Contact Advisor
+                                    </Button>
+                                </CardContent>
+                            </Card>
+
+                            {/* Costs Breakdown */}
+                            <Card className="border-none shadow-xl">
+                                <CardHeader>
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <DollarSign className="h-5 w-5 text-primary" />
+                                        Cost Breakdown
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-3">
+                                    <div className="flex justify-between items-center pb-2 border-b">
+                                        <span className="text-sm text-muted-foreground">Tuition Fee</span>
+                                        <span className="font-semibold">{programData.tuition}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center pb-2 border-b">
+                                        <span className="text-sm text-muted-foreground">Application Fee</span>
+                                        <span className="font-semibold">{programData.applicationFee}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center pb-2 border-b">
+                                        <span className="text-sm text-muted-foreground">Service Fee</span>
+                                        <span className="font-semibold">{programData.serviceFee}</span>
+                                    </div>
+                                    <div className="pt-2">
+                                        <p className="text-xs text-muted-foreground">* Additional costs may include accommodation, visa, and living expenses</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            {/* Why Choose This Program */}
+                            <Card className="border-none shadow-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
+                                <CardHeader>
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <TrendingUp className="h-5 w-5 text-blue-600" />
+                                        Why Choose This Program?
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-3">
+                                    <div className="flex items-start gap-2">
+                                        <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                                        <p className="text-sm">Internationally recognized degree</p>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                                        <p className="text-sm">Experienced faculty members</p>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                                        <p className="text-sm">Modern facilities & resources</p>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                                        <p className="text-sm">Career development support</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

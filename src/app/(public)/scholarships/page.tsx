@@ -1,37 +1,93 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, CheckCircle2, GraduationCap, Building2, Calendar, DollarSign, Sparkles } from "lucide-react";
+import { Award, CheckCircle2, GraduationCap, Building2, Calendar, DollarSign, Sparkles, Check, Info, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
-const scholarships = [
+const scholarshipTypes = [
     {
-        title: "Chinese Government Scholarship (CSC)",
-        type: "Full Scholarship",
-        coverage: ["Tuition Waiver", "Free Accommodation", "Monthly Stipend", "Medical Insurance"],
-        eligibility: ["Non-Chinese citizen", "Good health", "High school graduate (for Bachelor)", "Bachelor degree (for Master)"],
-        deadline: "January - April",
-        icon: GraduationCap,
+        name: "Type A",
+        displayName: "Full Scholarship",
+        coverage: 100,
+        serviceFeeUSD: 3500,
+        serviceFeeCNY: 25000,
+        description: "Best option for students seeking complete tuition coverage",
+        benefits: [
+            "100% tuition fee coverage",
+            "Application support & guidance",
+            "Visa assistance",
+            "Pre-departure orientation",
+            "Accommodation arrangement support"
+        ],
+        color: "from-emerald-500/10 to-emerald-500/5",
+        borderColor: "border-emerald-500/20",
+        badgeColor: "bg-emerald-500/10 text-emerald-700",
+        popular: true
+    },
+    {
+        name: "Type B",
+        displayName: "Partial Scholarship (75%)",
+        coverage: 75,
+        serviceFeeUSD: 2800,
+        serviceFeeCNY: 20000,
+        description: "Great balance between scholarship coverage and service fees",
+        benefits: [
+            "75% tuition fee coverage",
+            "Application support & guidance",
+            "Visa assistance",
+            "Pre-departure orientation",
+            "Accommodation arrangement support"
+        ],
         color: "from-blue-500/10 to-blue-500/5",
+        borderColor: "border-blue-500/20",
+        badgeColor: "bg-blue-500/10 text-blue-700"
     },
     {
-        title: "Confucius Institute Scholarship",
-        type: "Full/Partial Scholarship",
-        coverage: ["Tuition", "Accommodation", "Stipend"],
-        eligibility: ["Chinese language students", "HSK score required", "Non-Chinese citizen"],
-        deadline: "March - May",
-        icon: Award,
+        name: "Type C",
+        displayName: "Half Scholarship (50%)",
+        coverage: 50,
+        serviceFeeUSD: 2200,
+        serviceFeeCNY: 16000,
+        description: "Affordable option with significant tuition reduction",
+        benefits: [
+            "50% tuition fee coverage",
+            "Application support & guidance",
+            "Visa assistance",
+            "Pre-departure orientation",
+            "Accommodation arrangement support"
+        ],
         color: "from-purple-500/10 to-purple-500/5",
+        borderColor: "border-purple-500/20",
+        badgeColor: "bg-purple-500/10 text-purple-700"
     },
     {
-        title: "Provincial Government Scholarships",
-        type: "Partial Scholarship",
-        coverage: ["Tuition Waiver (Partial or Full)"],
-        eligibility: ["Varies by province", "Outstanding academic performance"],
-        deadline: "February - May",
-        icon: Building2,
-        color: "from-green-500/10 to-green-500/5",
-    },
+        name: "Self-Funded",
+        displayName: "Self-Funded (No Scholarship)",
+        coverage: 0,
+        serviceFeeUSD: 1500,
+        serviceFeeCNY: 11000,
+        description: "Pay full tuition with minimal service fees",
+        benefits: [
+            "No scholarship (0% coverage)",
+            "Application support & guidance",
+            "Visa assistance",
+            "Pre-departure orientation",
+            "Accommodation arrangement"
+        ],
+        color: "from-slate-500/10 to-slate-500/5",
+        borderColor: "border-slate-500/20",
+        badgeColor: "bg-slate-500/10 text-slate-700"
+    }
+];
+
+const requiredDocuments = [
+    "Valid passport",
+    "High school certificate (translated version)",
+    "Transcript (translated version)",
+    "English proficiency certificate",
+    "Personal statement",
+    "Passport-size photo",
+    "Portfolio (for Art/Design programs)"
 ];
 
 export default function ScholarshipsPage() {
@@ -46,113 +102,198 @@ export default function ScholarshipsPage() {
                             Financial Support Available
                         </div>
                         <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                            Scholarships & Financial Aid
+                            Scholarship Types & Service Fees
                         </h1>
                         <p className="text-xl text-muted-foreground">
-                            Discover funding opportunities to support your studies in China. From full government scholarships to university-specific grants.
+                            Understand how the Chinese scholarship system works. Choose the scholarship type that fits your budget and get comprehensive support throughout your application journey.
                         </p>
                     </div>
                 </div>
             </div>
 
             <div className="container mx-auto px-4 md:px-6 py-16">
-                {/* Stats Section */}
-                <div className="grid md:grid-cols-3 gap-6 mb-16">
-                    <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
-                        <CardContent className="p-6 text-center">
-                            <div className="h-14 w-14 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                                <DollarSign className="h-7 w-7 text-primary" />
+                {/* How It Works Section */}
+                <Card className="border-none shadow-xl mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
+                    <CardHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                <Info className="h-5 w-5 text-blue-600" />
                             </div>
-                            <div className="text-3xl font-bold mb-2">$50M+</div>
-                            <p className="text-sm text-muted-foreground">Total Scholarships Available</p>
-                        </CardContent>
-                    </Card>
-                    <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
-                        <CardContent className="p-6 text-center">
-                            <div className="h-14 w-14 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                                <Award className="h-7 w-7 text-primary" />
+                            <CardTitle className="text-2xl">How the Scholarship System Works</CardTitle>
+                        </div>
+                        <CardDescription className="text-base">
+                            Chinese universities offer different scholarship types with varying tuition coverage. Each type has an associated service fee that covers application support, visa assistance, and other essential services.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="bg-white dark:bg-slate-900 rounded-lg p-6">
+                                <h4 className="font-semibold mb-3 flex items-center gap-2">
+                                    <Award className="h-5 w-5 text-primary" />
+                                    Scholarship Coverage
+                                </h4>
+                                <p className="text-sm text-muted-foreground">
+                                    Scholarships cover a percentage of your tuition fees (50%, 75%, or 100%). The remaining tuition is paid directly to the university. This is separate from the service fee.
+                                </p>
                             </div>
-                            <div className="text-3xl font-bold mb-2">15+</div>
-                            <p className="text-sm text-muted-foreground">Scholarship Programs</p>
-                        </CardContent>
-                    </Card>
-                    <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
-                        <CardContent className="p-6 text-center">
-                            <div className="h-14 w-14 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                                <GraduationCap className="h-7 w-7 text-primary" />
+                            <div className="bg-white dark:bg-slate-900 rounded-lg p-6">
+                                <h4 className="font-semibold mb-3 flex items-center gap-2">
+                                    <DollarSign className="h-5 w-5 text-primary" />
+                                    Service Fees
+                                </h4>
+                                <p className="text-sm text-muted-foreground">
+                                    Service fees are one-time payments that cover comprehensive application support, document preparation, visa assistance, and pre-departure guidance. Higher scholarship types have higher service fees.
+                                </p>
                             </div>
-                            <div className="text-3xl font-bold mb-2">85%</div>
-                            <p className="text-sm text-muted-foreground">Success Rate</p>
-                        </CardContent>
-                    </Card>
-                </div>
+                        </div>
+                    </CardContent>
+                </Card>
 
-                {/* Scholarships Grid */}
-                <div className="mb-12">
+                {/* Scholarship Types Grid */}
+                <div className="mb-16">
                     <div className="flex items-center gap-3 mb-8">
                         <div className="h-10 w-1 bg-primary rounded-full" />
-                        <h2 className="text-3xl font-bold font-heading">Available Scholarships</h2>
+                        <h2 className="text-3xl font-bold font-heading">Scholarship Types</h2>
                     </div>
-                    <div className="grid gap-8 md:grid-cols-3">
-                        {scholarships.map((sch, index) => (
-                            <Card key={index} className={`border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${sch.color}`}>
-                                <CardHeader>
-                                    <div className="h-14 w-14 rounded-xl bg-primary/20 flex items-center justify-center text-primary mb-4">
-                                        <sch.icon className="h-7 w-7" />
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                        {scholarshipTypes.map((type, index) => (
+                            <Card key={index} className={`border-2 ${type.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${type.color} relative overflow-hidden`}>
+                                {type.popular && (
+                                    <div className="absolute top-4 right-4">
+                                        <Badge className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+                                            Most Popular
+                                        </Badge>
                                     </div>
-                                    <CardTitle className="text-xl">{sch.title}</CardTitle>
-                                    <Badge variant="secondary" className="w-fit mt-2 bg-primary/20 text-primary hover:bg-primary/30">
-                                        {sch.type}
-                                    </Badge>
+                                )}
+                                <CardHeader>
+                                    <div className="mb-4">
+                                        <Badge className={type.badgeColor}>
+                                            {type.name}
+                                        </Badge>
+                                    </div>
+                                    <CardTitle className="text-xl mb-2">{type.displayName}</CardTitle>
+                                    <CardDescription className="text-sm">
+                                        {type.description}
+                                    </CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-6">
-                                    <div className="bg-background/50 backdrop-blur-sm rounded-lg p-4">
+                                    {/* Coverage Badge */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4 text-center">
+                                        <div className="text-4xl font-bold text-primary mb-1">
+                                            {type.coverage}%
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">Tuition Coverage</p>
+                                    </div>
+
+                                    {/* Service Fee */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
+                                        <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
+                                            <DollarSign className="h-4 w-4 text-primary" />
+                                            Service Fee
+                                        </h4>
+                                        <div className="space-y-2">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-sm text-muted-foreground">USD:</span>
+                                                <span className="font-bold text-lg">${type.serviceFeeUSD.toLocaleString()}</span>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-sm text-muted-foreground">CNY:</span>
+                                                <span className="font-semibold">¥{type.serviceFeeCNY.toLocaleString()}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Benefits */}
+                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
                                         <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
                                             <CheckCircle2 className="h-4 w-4 text-primary" />
-                                            Coverage
+                                            What's Included
                                         </h4>
                                         <ul className="space-y-2">
-                                            {sch.coverage.map((item, i) => (
-                                                <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                                    {item}
+                                            {type.benefits.map((benefit, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
+                                                    <Check className="h-3 w-3 text-primary mt-0.5 shrink-0" />
+                                                    <span>{benefit}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className="bg-background/50 backdrop-blur-sm rounded-lg p-4">
-                                        <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
-                                            <GraduationCap className="h-4 w-4 text-primary" />
-                                            Eligibility
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {sch.eligibility.map((item, i) => (
-                                                <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                                    <div className="h-1.5 w-1.5 rounded-full bg-muted-foreground/50" />
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="pt-4 border-t">
-                                        <div className="flex items-center justify-between text-sm mb-4 bg-background/50 backdrop-blur-sm rounded-lg p-3">
-                                            <span className="text-muted-foreground flex items-center gap-2">
-                                                <Calendar className="h-4 w-4" />
-                                                Deadline:
-                                            </span>
-                                            <span className="font-medium">{sch.deadline}</span>
-                                        </div>
-                                        <Link href="/programs?scholarship=true">
-                                            <Button className="w-full" size="lg">
-                                                Find Eligible Programs
-                                            </Button>
-                                        </Link>
-                                    </div>
+
+                                    <Link href="/programs">
+                                        <Button className="w-full" variant={type.popular ? "default" : "outline"}>
+                                            Apply Now
+                                        </Button>
+                                    </Link>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
                 </div>
+
+                {/* Required Documents */}
+                <Card className="border-none shadow-xl mb-16">
+                    <CardHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                                <FileText className="h-5 w-5 text-primary" />
+                            </div>
+                            <CardTitle className="text-2xl">Required Documents</CardTitle>
+                        </div>
+                        <CardDescription>
+                            Prepare these documents for your scholarship application
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {requiredDocuments.map((doc, index) => (
+                                <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-muted/50">
+                                    <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                                        <Check className="h-4 w-4 text-primary" />
+                                    </div>
+                                    <span className="text-sm font-medium">{doc}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                {/* FAQ Section */}
+                <Card className="border-none shadow-xl mb-16">
+                    <CardHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                                <HelpCircle className="h-5 w-5 text-primary" />
+                            </div>
+                            <CardTitle className="text-2xl">Frequently Asked Questions</CardTitle>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="p-4 rounded-lg bg-muted/50">
+                            <h4 className="font-semibold mb-2">What does the service fee cover?</h4>
+                            <p className="text-sm text-muted-foreground">
+                                The service fee is a one-time payment that covers comprehensive application support, document preparation and translation assistance, visa application guidance, university communication, admission processing, and pre-departure orientation.
+                            </p>
+                        </div>
+                        <div className="p-4 rounded-lg bg-muted/50">
+                            <h4 className="font-semibold mb-2">Is the service fee refundable?</h4>
+                            <p className="text-sm text-muted-foreground">
+                                Service fees are generally non-refundable once the application process begins, as they cover the work and resources invested in your application. However, specific refund policies may vary.
+                            </p>
+                        </div>
+                        <div className="p-4 rounded-lg bg-muted/50">
+                            <h4 className="font-semibold mb-2">How do I pay the remaining tuition after scholarship?</h4>
+                            <p className="text-sm text-muted-foreground">
+                                After receiving your scholarship (e.g., 50% coverage), you pay the remaining tuition directly to the university. For example, if tuition is ¥93,000 and you have a 50% scholarship, you pay ¥46,500 to the university.
+                            </p>
+                        </div>
+                        <div className="p-4 rounded-lg bg-muted/50">
+                            <h4 className="font-semibold mb-2">Can I apply for multiple scholarship types?</h4>
+                            <p className="text-sm text-muted-foreground">
+                                You can only receive one scholarship type per program. We recommend choosing the type that best fits your budget and needs. Our team can help you decide which option is best for you.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
 
                 {/* CTA Section */}
                 <Card className="border-none shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background">
@@ -161,19 +302,19 @@ export default function ScholarshipsPage() {
                             <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
                                 <Award className="h-8 w-8 text-primary" />
                             </div>
-                            <h2 className="text-3xl font-bold mb-4">Need Help Applying for Scholarships?</h2>
+                            <h2 className="text-3xl font-bold mb-4">Ready to Start Your Application?</h2>
                             <p className="text-muted-foreground mb-8 text-lg">
-                                Our team can guide you through the scholarship application process, review your documents, and increase your chances of success.
+                                Choose your scholarship type and let our team guide you through every step of the application process. We're here to make studying in China accessible and affordable.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/auth/register">
+                                <Link href="/programs">
                                     <Button size="lg" className="min-w-[200px]">
-                                        Create Account & Apply
+                                        Browse Programs
                                     </Button>
                                 </Link>
-                                <Link href="/how-to-apply">
+                                <Link href="/contact">
                                     <Button size="lg" variant="outline" className="min-w-[200px]">
-                                        Learn More
+                                        Contact Us
                                     </Button>
                                 </Link>
                             </div>

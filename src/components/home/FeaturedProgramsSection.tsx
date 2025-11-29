@@ -14,9 +14,11 @@ interface Program {
     level: string;
     duration: string;
     tuition_fee: string;
+    currency?: string;
     university: {
         name: string;
         city: string;
+        cover_photo_url?: string;
     } | any;
 }
 
@@ -86,63 +88,75 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                             whileHover={{ y: -8 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <Card className="group flex flex-col overflow-hidden h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
+                            <Card className="group flex flex-col overflow-hidden h-full border-none rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 bg-card">
+                                {/* Gradient Top Bar */}
+                                <div className="h-1.5 bg-gradient-to-r from-red-600 via-red-500 to-orange-500" />
+                                
                                 {/* Image Section */}
-                                <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src={`https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop`} // Placeholder for now
-                                        alt={program.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                <div className="relative h-44 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50">
+                                    {program.university?.cover_photo_url ? (
+                                        <img
+                                            src={program.university.cover_photo_url}
+                                            alt={program.title}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                    ) : (
+                                        <img
+                                            src={`https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop`}
+                                            alt={program.title}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                                    {/* Badges */}
-                                    <div className="absolute top-3 right-3 flex gap-2">
-                                        <Badge
-                                            className="bg-white text-slate-900 border-0 font-semibold text-xs shadow-md"
-                                        >
+                                    {/* Level Badge */}
+                                    <div className="absolute top-3 right-3">
+                                        <Badge className="bg-white/95 backdrop-blur-sm text-slate-900 border-0 font-bold text-xs shadow-lg px-3 py-1">
                                             {program.level}
                                         </Badge>
                                     </div>
 
                                     {/* University Name */}
-                                    <div className="absolute bottom-3 left-3">
-                                        <p className="text-white text-xs font-semibold">{program.university?.name}</p>
+                                    <div className="absolute bottom-3 left-3 right-3">
+                                        <p className="text-white text-sm font-bold drop-shadow-lg truncate">
+                                            {program.university?.name}
+                                        </p>
+                                        <div className="flex items-center gap-1 mt-1">
+                                            <MapPin className="h-3 w-3 text-white/90" />
+                                            <p className="text-white/90 text-xs font-medium">{program.university?.city}</p>
+                                        </div>
                                     </div>
                                 </div>
 
                                 {/* Content Section */}
                                 <div className="p-5 flex-1 flex flex-col">
-                                    <h3 className="font-bold text-lg leading-tight mb-4 line-clamp-2 group-hover:text-red-600 transition-colors">
+                                    <h3 className="font-bold text-lg leading-tight mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-red-600 transition-colors">
                                         {program.title}
                                     </h3>
 
-                                    {/* Info Grid */}
-                                    <div className="space-y-2 mb-4 flex-1">
-                                        <div className="flex items-center gap-2 text-sm">
-                                            <MapPin className="h-4 w-4 text-red-600" />
-                                            <span className="text-muted-foreground">{program.university?.city}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-sm">
-                                            <Clock className="h-4 w-4 text-purple-600" />
-                                            <span className="text-muted-foreground">{program.duration} • {program.level}</span>
-                                        </div>
+                                    {/* Duration Info */}
+                                    <div className="flex items-center gap-2 text-sm mb-4 p-2.5 bg-muted/50 rounded-lg">
+                                        <Clock className="h-4 w-4 text-red-600 shrink-0" />
+                                        <span className="text-muted-foreground font-medium">{program.duration}</span>
                                     </div>
 
-                                    {/* Price & Button */}
-                                    <div className="pt-4 border-t flex items-center justify-between">
-                                        <div>
-                                            <p className="text-xs text-muted-foreground">From</p>
-                                            <p className="text-xl font-black text-red-600">
-                                                {program.tuition_fee}
-                                            </p>
+                                    {/* Price Section */}
+                                    <div className="mt-auto pt-4 border-t border-dashed">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <div>
+                                                <p className="text-xs text-muted-foreground font-medium mb-0.5">Tuition Fee</p>
+                                                <p className="text-2xl font-black bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                                                    {program.currency === "USD" ? "$" : "¥"}{program.tuition_fee?.toLocaleString()}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <Link href={`/programs/${program.slug || program.id}`}>
+                                        <Link href={`/programs/${program.slug || program.id}`} className="block">
                                             <Button
                                                 size="sm"
-                                                className="bg-red-600 hover:bg-red-700 text-white rounded-lg"
+                                                className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all group"
                                             >
-                                                View Program
+                                                View Details
+                                                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                             </Button>
                                         </Link>
                                     </div>

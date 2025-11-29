@@ -23,10 +23,12 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useState, useEffect } from "react";
 import { createProgram, updateProgram, deleteProgram } from "../actions";
 import { toast } from "sonner";
-import { Pencil, Plus, Trash2, Loader2, BookOpen } from "lucide-react";
+import { Pencil, Plus, Trash2, Loader2, BookOpen, FileText, CheckCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 interface ProgramDialogProps {
@@ -40,29 +42,58 @@ export function ProgramDialog({ program, universities, languages }: ProgramDialo
     const [isLoading, setIsLoading] = useState(false);
     const [selectedCatalogProgram, setSelectedCatalogProgram] = useState<any>(null);
     const [programCatalog, setProgramCatalog] = useState<any[]>([]);
+    const [admissionRequirements, setAdmissionRequirements] = useState<any[]>([]);
+    const [selectedRequirements, setSelectedRequirements] = useState<string[]>([]);
     
-    // Fetch program catalog from database
+    // Fetch program catalog and admission requirements from database
     useEffect(() => {
-        const fetchCatalog = async () => {
+        const fetchData = async () => {
             const supabase = createClient();
-            const { data, error } = await supabase
+            
+            // Fetch program catalog
+            const { data: catalogData, error: catalogError } = await supabase
                 .from("program_catalog")
                 .select("*")
                 .order("category", { ascending: true })
                 .order("title", { ascending: true });
             
-            if (error) {
-                console.error("Error fetching program catalog:", error);
+            if (catalogError) {
+                console.error("Error fetching program catalog:", catalogError);
                 toast.error("Failed to load program catalog");
             } else {
-                setProgramCatalog(data || []);
+                setProgramCatalog(catalogData || []);
+            }
+
+            // Fetch admission requirements catalog
+            const { data: requirementsData, error: requirementsError } = await supabase
+                .from("admission_requirements_catalog")
+                .select("*")
+                .order("category", { ascending: true })
+                .order("title", { ascending: true });
+            
+            if (requirementsError) {
+                console.error("Error fetching admission requirements:", requirementsError);
+            } else {
+                setAdmissionRequirements(requirementsData || []);
+            }
+
+            // If editing, fetch selected requirements
+            if (program?.university_id) {
+                const { data: selectedReqs } = await supabase
+                    .from("university_admission_requirements")
+                    .select("requirement_id")
+                    .eq("university_id", program.university_id);
+                
+                if (selectedReqs) {
+                    setSelectedRequirements(selectedReqs.map((r: any) => r.requirement_id));
+                }
             }
         };
         
         if (open) {
-            fetchCatalog();
+            fetchData();
         }
-    }, [open]);
+    }, [open, program]);
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
@@ -116,7 +147,7 @@ export function ProgramDialog({ program, universities, languages }: ProgramDialo
                     </Button>
                 )}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>
                         {program ? "Edit University Program" : "Add Program to University"}
@@ -125,7 +156,20 @@ export function ProgramDialog({ program, universities, languages }: ProgramDialo
                         Select a program from the catalog and add university-specific details.
                     </DialogDescription>
                 </DialogHeader>
-                <form action={handleSubmit} className="grid gap-6 py-4">
+                <Tabs defaultValue="details" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2">
+                        <TabsTrigger value="details">
+                            <BookOpen className="h-4 w-4 mr-2" />
+                            Program Details
+                        </TabsTrigger>
+                        <TabsTrigger value="requirements">
+                            <FileText className="h-4 w-4 mr-2" />
+                            Admission Requirements
+                        </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="details">
+                        <form action={handleSubmit} className="grid gap-6 py-4">
                     {/* University Selection */}
                     <div className="grid gap-2">
                         <Label htmlFor="university_id">University *</Label>
@@ -335,24 +379,132 @@ export function ProgramDialog({ program, universities, languages }: ProgramDialo
                         </div>
                     </div>
 
-                    <DialogFooter className="flex justify-between sm:justify-between">
-                        {program && (
+                            <DialogFooter className="flex justify-between sm:justify-between">
+                                {program && (
+                                    <Button
+                                        type="button"
+                                        variant="destructive"
+                                        size="icon"
+                                        onClick={handleDelete}
+                                        disabled={isLoading}
+                                    >
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                )}
+                                <Button type="submit" disabled={isLoading}>
+                                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    {isLoading ? "Saving..." : (program ? "Update Program" : "Add Program")}
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </TabsContent>
+
+                    <TabsContent value="requirements" className="space-y-4">
+                        <div className="text-sm text-muted-foreground mb-4">
+                            Select admission requirements for this program. These will be displayed on the program page.
+                        </div>
+                        
+                        {/* Group requirements by category */}
+                        {['academic', 'language', 'document', 'financial', 'other'].map((category) => {
+                            const categoryReqs = admissionRequirements.filter((req: any) => req.category === category);
+                            if (categoryReqs.length === 0) return null;
+
+                            return (
+                                <div key={category} className="space-y-3">
+                                    <h3 className="font-semibold capitalize flex items-center gap-2">
+                                        <CheckCircle className="h-4 w-4 text-primary" />
+                                        {category} Requirements
+                                    </h3>
+                                    <div className="grid gap-2 pl-6">
+                                        {categoryReqs.map((req: any) => (
+                                            <div key={req.id} className="flex items-start space-x-2 p-2 rounded-lg hover:bg-muted/50">
+                                                <Checkbox
+                                                    id={req.id}
+                                                    checked={selectedRequirements.includes(req.id)}
+                                                    onCheckedChange={(checked) => {
+                                                        if (checked) {
+                                                            setSelectedRequirements([...selectedRequirements, req.id]);
+                                                        } else {
+                                                            setSelectedRequirements(selectedRequirements.filter(id => id !== req.id));
+                                                        }
+                                                    }}
+                                                />
+                                                <div className="flex-1">
+                                                    <Label htmlFor={req.id} className="font-medium cursor-pointer">
+                                                        {req.title}
+                                                    </Label>
+                                                    <p className="text-xs text-muted-foreground mt-1">
+                                                        {req.description}
+                                                    </p>
+                                                    <div className="flex gap-2 mt-1">
+                                                        <Badge variant="outline" className="text-xs">
+                                                            {req.requirement_type}
+                                                        </Badge>
+                                                        {req.is_common && (
+                                                            <Badge variant="secondary" className="text-xs">
+                                                                Common
+                                                            </Badge>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <Separator />
+                                </div>
+                            );
+                        })}
+
+                        <div className="flex justify-end pt-4">
                             <Button
-                                type="button"
-                                variant="destructive"
-                                size="icon"
-                                onClick={handleDelete}
-                                disabled={isLoading}
+                                onClick={async () => {
+                                    if (!program?.university_id) {
+                                        toast.error("Please save the program first before adding requirements");
+                                        return;
+                                    }
+                                    
+                                    setIsLoading(true);
+                                    try {
+                                        const supabase = createClient();
+                                        
+                                        // Delete existing requirements
+                                        await supabase
+                                            .from("university_admission_requirements")
+                                            .delete()
+                                            .eq("university_id", program.university_id);
+                                        
+                                        // Insert new requirements
+                                        if (selectedRequirements.length > 0) {
+                                            const { error } = await supabase
+                                                .from("university_admission_requirements")
+                                                .insert(
+                                                    selectedRequirements.map((reqId, index) => ({
+                                                        university_id: program.university_id,
+                                                        requirement_id: reqId,
+                                                        is_required: true,
+                                                        display_order: index
+                                                    }))
+                                                );
+                                            
+                                            if (error) throw error;
+                                        }
+                                        
+                                        toast.success("Admission requirements updated");
+                                    } catch (error) {
+                                        console.error(error);
+                                        toast.error("Failed to update requirements");
+                                    } finally {
+                                        setIsLoading(false);
+                                    }
+                                }}
+                                disabled={isLoading || !program?.university_id}
                             >
-                                <Trash2 className="h-4 w-4" />
+                                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Save Requirements
                             </Button>
-                        )}
-                        <Button type="submit" disabled={isLoading}>
-                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                            {isLoading ? "Saving..." : (program ? "Update Program" : "Add Program")}
-                        </Button>
-                    </DialogFooter>
-                </form>
+                        </div>
+                    </TabsContent>
+                </Tabs>
             </DialogContent>
         </Dialog>
     );

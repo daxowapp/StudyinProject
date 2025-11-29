@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, MoreHorizontal, Search } from "lucide-react";
+import { Plus, Edit, Search, Award } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
@@ -64,11 +64,20 @@ export default async function AdminUniversitiesPage() {
                                 </TableCell>
                                 <TableCell>{new Date(uni.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <Link href={`/admin/universities/${uni.id}`}>
-                                        <Button variant="ghost" size="icon">
-                                            <MoreHorizontal className="h-4 w-4" />
-                                        </Button>
-                                    </Link>
+                                    <div className="flex items-center justify-end gap-2">
+                                        <Link href={`/admin/universities/${uni.id}/scholarships`}>
+                                            <Button variant="outline" size="sm">
+                                                <Award className="mr-2 h-4 w-4" />
+                                                Scholarships
+                                            </Button>
+                                        </Link>
+                                        <Link href={`/admin/universities/${uni.id}`}>
+                                            <Button variant="outline" size="sm">
+                                                <Edit className="mr-2 h-4 w-4" />
+                                                Edit
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}

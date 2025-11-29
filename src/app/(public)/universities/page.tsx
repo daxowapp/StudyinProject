@@ -18,40 +18,104 @@ export default async function UniversitiesPage() {
     // Fetch universities
     const { data: universities, error } = await supabase
         .from("universities")
-        .select("*");
+        .select("*")
+        .order("name");
 
     if (error) {
-        console.error("Error fetching universities:", error);
-        throw new Error("Failed to fetch universities");
+        console.error("Error fetching universities:", {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+        });
+        // Return empty array instead of throwing to prevent page crash
+        return (
+            <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+                <div className="text-center max-w-lg mx-auto p-6">
+                    <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                    <h1 className="text-2xl font-bold mb-4">Unable to load universities</h1>
+                    <p className="text-muted-foreground mb-2">{error.message}</p>
+                    {error.details && (
+                        <p className="text-sm text-muted-foreground">{error.details}</p>
+                    )}
+                    {error.hint && (
+                        <p className="text-sm text-muted-foreground mt-2">Hint: {error.hint}</p>
+                    )}
+                </div>
+            </div>
+        );
     }
 
-    // Fetch program counts for each university
+    // Handle empty universities
+    if (!universities || universities.length === 0) {
+        console.log("No universities found in database");
+    }
+
+    // Fetch program counts and minimum tuition for each university
     const universitiesWithCounts = await Promise.all(
         (universities || []).map(async (uni) => {
-            const { count } = await supabase
-                .from("university_programs")
-                .select("*", { count: "exact", head: true })
-                .eq("university_id", uni.id)
-                .eq("is_active", true);
-            
-            return {
-                ...uni,
-                programCount: count || 0
-            };
+            try {
+                // Get count
+                const { count } = await supabase
+                    .from("university_programs")
+                    .select("*", { count: "exact", head: true })
+                    .eq("university_id", uni.id)
+                    .eq("is_active", true);
+                
+                // Get minimum tuition
+                const { data: minTuitionData } = await supabase
+                    .from("university_programs")
+                    .select("tuition_fee, currency")
+                    .eq("university_id", uni.id)
+                    .eq("is_active", true)
+                    .order("tuition_fee", { ascending: true })
+                    .limit(1)
+                    .single();
+                
+                return {
+                    ...uni,
+                    programCount: count || 0,
+                    minTuitionFee: minTuitionData?.tuition_fee,
+                    currency: minTuitionData?.currency || "CNY"
+                };
+            } catch (err) {
+                console.error(`Error fetching programs for ${uni.name}:`, err);
+                return {
+                    ...uni,
+                    programCount: 0,
+                    minTuitionFee: null,
+                    currency: "CNY"
+                };
+            }
         })
     );
 
-    // Transform data
-    const formattedUniversities = universitiesWithCounts.map((uni) => ({
-        id: uni.id,
-        name: uni.name,
-        city: uni.city,
-        province: uni.province,
-        programs: uni.programCount,
-        minTuition: "¥20,000",
-        badges: uni.features || [],
-        logo: uni.logo_url,
-    }));
+    // Transform data and filter active universities
+    const formattedUniversities = universitiesWithCounts
+        .filter((uni) => uni.is_active !== false) // Filter active universities
+        .map((uni) => {
+            // Format tuition display
+            let minTuition = "Contact for pricing";
+            if (uni.minTuitionFee) {
+                const currencySymbol = uni.currency === "USD" ? "$" : "¥";
+                minTuition = `${currencySymbol}${uni.minTuitionFee.toLocaleString()}`;
+            }
+            
+            return {
+                id: uni.id,
+                slug: uni.slug || uni.id,
+                name: uni.name || "Unknown University",
+                city: uni.city || "N/A",
+                province: uni.province || "N/A",
+                programs: uni.programCount,
+                minTuition: minTuition,
+                badges: uni.features || [],
+                logo: uni.logo_url,
+                photo: uni.cover_photo_url || uni.photo_url,
+                ranking: uni.ranking,
+                type: uni.type,
+            };
+        });
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">

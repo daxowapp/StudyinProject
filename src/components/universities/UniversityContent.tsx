@@ -5,6 +5,7 @@ import { ExpandableText } from "./ExpandableText";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { 
     CheckCircle2, Globe, MapPin, Users, Calendar, 
     GraduationCap, DollarSign, Clock, Languages,
@@ -183,6 +184,20 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             </div>
                         </motion.div>
                     )}
+
+                    {/* Scholarship Types Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 }}
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                    >
+                        <UniversityScholarshipsSection 
+                            universityId={university.id}
+                            title="Available Scholarship Options"
+                            description="Choose the scholarship type that best fits your budget for programs at this university"
+                        />
+                    </motion.div>
 
                     {/* Video Section */}
                     {university.video_url && (

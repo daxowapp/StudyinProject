@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 import { ProgramFilters, FilterState } from "@/components/programs/ProgramFilters";
 import {
@@ -34,6 +35,9 @@ interface ProgramsClientProps {
 }
 
 export function ProgramsClient({ programs }: ProgramsClientProps) {
+    const searchParams = useSearchParams();
+    const universitySlug = searchParams.get('university');
+    
     const [filters, setFilters] = useState<FilterState>({
         search: '',
         levels: [],
@@ -54,6 +58,20 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
     const availableUniversities = useMemo(() => {
         return Array.from(new Set(programs.map(p => p.university).filter(Boolean)));
     }, [programs]);
+
+    // Initialize university filter from URL
+    useEffect(() => {
+        if (universitySlug && programs.length > 0) {
+            // Find university name from slug (e.g., "ningbo-university" -> "Ningbo University")
+            const universityFromSlug = programs.find(p => 
+                p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
+            )?.university;
+            
+            if (universityFromSlug) {
+                setFilters(prev => ({ ...prev, university: universityFromSlug }));
+            }
+        }
+    }, [universitySlug, programs]);
 
     // Filter programs based on current filters
     const filteredPrograms = useMemo(() => {

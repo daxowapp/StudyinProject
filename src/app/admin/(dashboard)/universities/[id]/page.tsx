@@ -37,9 +37,11 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [saving, setSaving] = useState(false);
     const [programs, setPrograms] = useState<any[]>([]);
     const [logoPreview, setLogoPreview] = useState<string>("");
+    const [coverPhotoPreview, setCoverPhotoPreview] = useState<string>("");
     const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
     const [videoUrl, setVideoUrl] = useState<string>("");
     const [mapLocation, setMapLocation] = useState({ lat: 39.9042, lng: 116.4074 }); // Default: Beijing
+    const [featureInput, setFeatureInput] = useState<string>("");
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",
@@ -49,6 +51,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         description: "",
         website: "",
         logo_url: "",
+        cover_photo_url: "",
         video_url: "",
         gallery_images: [] as string[],
         latitude: "",
@@ -64,24 +67,18 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         const fetchUniversity = async () => {
             const supabase = createClient();
             
-            // Fetch university with programs
+            // Fetch university
             const { data, error } = await supabase
                 .from("universities")
-                .select(`
-                    *,
-                    programs(
-                        id,
-                        title,
-                        level,
-                        duration,
-                        tuition_fee,
-                        language,
-                        intake,
-                        is_active
-                    )
-                `)
+                .select("*")
                 .eq("id", id)
                 .single();
+
+            // Fetch programs from the new university_programs table via view
+            const { data: programsData } = await supabase
+                .from("v_university_programs_full")
+                .select("*")
+                .eq("university_id", id);
 
             if (error) {
                 toast.error("Error fetching university");
@@ -96,6 +93,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     description: data.description || "",
                     website: data.website || "",
                     logo_url: data.logo_url || "",
+                    cover_photo_url: data.cover_photo_url || "",
                     video_url: data.video_url || "",
                     gallery_images: data.gallery_images || [],
                     latitude: data.latitude || "",
@@ -107,12 +105,14 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     features: data.features || [],
                 });
                 setLogoPreview(data.logo_url || "");
+                setCoverPhotoPreview(data.cover_photo_url || "");
                 setVideoUrl(data.video_url || "");
                 setGalleryPreviews(data.gallery_images || []);
                 if (data.latitude && data.longitude) {
                     setMapLocation({ lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) });
                 }
-                setPrograms(data.programs || []);
+                // Set programs from the view data
+                setPrograms(programsData || []);
             }
             setLoading(false);
         };
@@ -139,6 +139,30 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             };
             reader.readAsDataURL(file);
             toast.success('Logo uploaded successfully');
+        }
+    };
+
+    const handleCoverPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                toast.error('Please upload an image file');
+                return;
+            }
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error('Image size should be less than 5MB');
+                return;
+            }
+            // Create preview
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setCoverPhotoPreview(reader.result as string);
+                setFormData({ ...formData, cover_photo_url: reader.result as string });
+            };
+            reader.readAsDataURL(file);
+            toast.success('Cover photo uploaded successfully');
         }
     };
 
@@ -404,6 +428,53 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Cover Photo Upload */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="cover">Cover Photo (Hero Banner)</Label>
+                                        <p className="text-sm text-muted-foreground">This photo will be displayed in the hero section and listing cards. Recommended size: 1920x600px</p>
+                                        <div className="flex items-start gap-4">
+                                            {coverPhotoPreview && (
+                                                <div className="relative w-full h-48 border-2 border-dashed rounded-lg overflow-hidden">
+                                                    <img 
+                                                        src={coverPhotoPreview} 
+                                                        alt="Cover photo preview" 
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setCoverPhotoPreview("");
+                                                            setFormData({ ...formData, cover_photo_url: "" });
+                                                        }}
+                                                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 shadow-lg"
+                                                    >
+                                                        <X className="h-4 w-4" />
+                                                    </button>
+                                                </div>
+                                            )}
+                                            {!coverPhotoPreview && (
+                                                <div className="w-full">
+                                                    <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
+                                                        <input
+                                                            id="cover"
+                                                            type="file"
+                                                            accept="image/*"
+                                                            onChange={handleCoverPhotoUpload}
+                                                            className="hidden"
+                                                        />
+                                                        <label htmlFor="cover" className="cursor-pointer">
+                                                            <ImageIcon className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                                                            <p className="text-sm font-medium">Click to upload cover photo</p>
+                                                            <p className="text-xs text-muted-foreground mt-2">
+                                                                PNG, JPG, GIF up to 5MB • Recommended: 1920x600px
+                                                            </p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -704,6 +775,102 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                     </div>
                                 </div>
 
+                                {/* Features/Tags */}
+                                <div className="space-y-4">
+                                    <h3 className="text-lg font-semibold">Features & Tags</h3>
+                                    <Separator />
+                                    <div className="space-y-3">
+                                        <Label>University Features</Label>
+                                        <p className="text-sm text-muted-foreground">
+                                            Add tags like "Project 985", "C9 League", "Comprehensive University", etc.
+                                        </p>
+                                        
+                                        {/* Display existing features */}
+                                        {formData.features.length > 0 && (
+                                            <div className="flex flex-wrap gap-2 p-4 bg-muted/50 rounded-lg">
+                                                {formData.features.map((feature, index) => (
+                                                    <Badge key={index} variant="secondary" className="text-sm px-3 py-1">
+                                                        {feature}
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => {
+                                                                const newFeatures = formData.features.filter((_, i) => i !== index);
+                                                                setFormData({ ...formData, features: newFeatures });
+                                                            }}
+                                                            className="ml-2 hover:text-destructive"
+                                                        >
+                                                            <X className="h-3 w-3" />
+                                                        </button>
+                                                    </Badge>
+                                                ))}
+                                            </div>
+                                        )}
+                                        
+                                        {/* Add new feature */}
+                                        <div className="flex gap-2">
+                                            <Input
+                                                value={featureInput}
+                                                onChange={(e) => setFeatureInput(e.target.value)}
+                                                onKeyPress={(e) => {
+                                                    if (e.key === 'Enter') {
+                                                        e.preventDefault();
+                                                        if (featureInput.trim() && !formData.features.includes(featureInput.trim())) {
+                                                            setFormData({
+                                                                ...formData,
+                                                                features: [...formData.features, featureInput.trim()]
+                                                            });
+                                                            setFeatureInput("");
+                                                        }
+                                                    }
+                                                }}
+                                                placeholder="Type a feature and press Enter"
+                                            />
+                                            <Button
+                                                type="button"
+                                                onClick={() => {
+                                                    if (featureInput.trim() && !formData.features.includes(featureInput.trim())) {
+                                                        setFormData({
+                                                            ...formData,
+                                                            features: [...formData.features, featureInput.trim()]
+                                                        });
+                                                        setFeatureInput("");
+                                                    }
+                                                }}
+                                                disabled={!featureInput.trim()}
+                                            >
+                                                Add
+                                            </Button>
+                                        </div>
+                                        
+                                        {/* Quick add common features */}
+                                        <div className="space-y-2">
+                                            <p className="text-xs text-muted-foreground">Quick add:</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {["Project 985", "Project 211", "C9 League", "Double First Class", "Comprehensive University", "Research University", "Liberal Arts", "Sciences", "Engineering", "Medical"].map((preset) => (
+                                                    <Button
+                                                        key={preset}
+                                                        type="button"
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => {
+                                                            if (!formData.features.includes(preset)) {
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    features: [...formData.features, preset]
+                                                                });
+                                                            }
+                                                        }}
+                                                        disabled={formData.features.includes(preset)}
+                                                        className="text-xs"
+                                                    >
+                                                        + {preset}
+                                                    </Button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {/* Description */}
                                 <div className="space-y-4">
                                     <h3 className="text-lg font-semibold">Description</h3>
@@ -758,26 +925,38 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <div key={program.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors">
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <h4 className="font-semibold">{program.title}</h4>
+                                                    <h4 className="font-semibold">{program.display_title || program.program_title}</h4>
                                                     <Badge variant={program.is_active ? "default" : "secondary"}>
                                                         {program.is_active ? "Active" : "Inactive"}
                                                     </Badge>
+                                                    <Badge variant="outline">{program.category}</Badge>
                                                 </div>
                                                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                                     <span>{program.level}</span>
                                                     <span>•</span>
                                                     <span>{program.duration}</span>
                                                     <span>•</span>
-                                                    <span>{program.language}</span>
+                                                    <span>{program.language_name || "Not specified"}</span>
                                                     <span>•</span>
-                                                    <span className="font-medium text-foreground">{program.tuition_fee} RMB/year</span>
+                                                    <span className="font-medium text-foreground">{program.tuition_fee} {program.currency}/year</span>
                                                 </div>
                                             </div>
-                                            <Link href={`/admin/programs`}>
-                                                <Button variant="ghost" size="sm">
-                                                    View
-                                                </Button>
-                                            </Link>
+                                            <div className="flex items-center gap-2">
+                                                {program.slug && (
+                                                    <Link href={`/programs/${program.slug}`} target="_blank">
+                                                        <Button variant="outline" size="sm">
+                                                            <Eye className="h-4 w-4 mr-1" />
+                                                            View
+                                                        </Button>
+                                                    </Link>
+                                                )}
+                                                <Link href={`/admin/programs`}>
+                                                    <Button variant="ghost" size="sm">
+                                                        <Edit className="h-4 w-4 mr-1" />
+                                                        Edit
+                                                    </Button>
+                                                </Link>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

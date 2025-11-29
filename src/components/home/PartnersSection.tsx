@@ -1,16 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, CheckCircle, Shield } from "lucide-react";
+import { Award, CheckCircle, Shield, Building2 } from "lucide-react";
 
-const partners = [
-    { name: "Tsinghua University", logo: "🎓" },
-    { name: "Peking University", logo: "📚" },
-    { name: "Fudan University", logo: "🏛️" },
-    { name: "Shanghai Jiao Tong", logo: "🎯" },
-    { name: "Zhejiang University", logo: "⭐" },
-    { name: "Nanjing University", logo: "🌟" },
-];
+interface University {
+    id: string;
+    name: string;
+    logo_url?: string;
+}
+
+interface PartnersSectionProps {
+    universities?: University[];
+}
 
 const recognitions = [
     {
@@ -30,7 +31,8 @@ const recognitions = [
     },
 ];
 
-export function PartnersSection() {
+export function PartnersSection({ universities = [] }: PartnersSectionProps) {
+    const displayUniversities = universities.slice(0, 6);
     return (
         <section className="py-16 bg-muted/20 relative overflow-hidden">
             {/* Decorative Elements */}
@@ -68,21 +70,29 @@ export function PartnersSection() {
                     className="mb-16"
                 >
                     <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
-                        {partners.map((partner, index) => (
+                        {displayUniversities.map((university, index) => (
                             <motion.div
-                                key={index}
+                                key={university.id}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                whileHover={{ scale: 1.1 }}
-                                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group"
+                                whileHover={{ scale: 1.05 }}
+                                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group aspect-square"
                             >
-                                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
-                                    {partner.logo}
+                                <div className="w-full h-20 mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    {university.logo_url ? (
+                                        <img
+                                            src={university.logo_url}
+                                            alt={university.name}
+                                            className="max-w-full max-h-full object-contain"
+                                        />
+                                    ) : (
+                                        <Building2 className="h-12 w-12 text-primary" />
+                                    )}
                                 </div>
-                                <div className="text-xs text-center font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                                    {partner.name}
+                                <div className="text-xs text-center font-semibold text-muted-foreground group-hover:text-primary transition-colors line-clamp-2">
+                                    {university.name}
                                 </div>
                             </motion.div>
                         ))}

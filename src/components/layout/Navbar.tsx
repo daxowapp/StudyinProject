@@ -12,7 +12,9 @@ const navLinks = [
     { name: "Universities", href: "/universities" },
     { name: "Programs", href: "/programs" },
     { name: "Scholarships", href: "/scholarships" },
+    { name: "Articles", href: "/articles" },
     { name: "How to Apply", href: "/how-to-apply" },
+    { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
