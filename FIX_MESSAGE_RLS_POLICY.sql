@@ -14,6 +14,7 @@ CREATE POLICY "Admins can send messages"
     WITH CHECK (
         sender_type = 'admin'
         AND sender_id = auth.uid()
+        AND (auth.jwt() -> 'user_metadata' ->> 'role') = 'admin'
     );
 
 -- Allow students to send messages (reply to admin)
@@ -33,22 +34,14 @@ CREATE POLICY "Students can send messages to their applications"
 CREATE POLICY "Admins can view all messages"
     ON application_messages FOR SELECT
     USING (
-        EXISTS (
-            SELECT 1 FROM auth.users
-            WHERE id = auth.uid()
-            AND raw_user_meta_data->>'role' = 'admin'
-        )
+        (auth.jwt() -> 'user_metadata' ->> 'role') = 'admin'
     );
 
 -- Allow admins to update messages (mark as read, etc.)
 CREATE POLICY "Admins can update messages"
     ON application_messages FOR UPDATE
     USING (
-        EXISTS (
-            SELECT 1 FROM auth.users
-            WHERE id = auth.uid()
-            AND raw_user_meta_data->>'role' = 'admin'
-        )
+        (auth.jwt() -> 'user_metadata' ->> 'role') = 'admin'
     );
 
 -- Allow students to update their messages (mark as read)
