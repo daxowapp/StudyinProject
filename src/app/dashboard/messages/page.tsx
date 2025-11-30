@@ -16,6 +16,7 @@ import {
   CheckCheck,
 } from 'lucide-react';
 import { MarkAllReadButton } from './components/MarkAllReadButton';
+import { MessageReply } from './components/MessageReply';
 
 export default async function MessagesPage() {
   const supabase = await createClient();
@@ -212,6 +213,12 @@ export default async function MessagesPage() {
                     </Link>
                   )}
                 </div>
+
+                {/* Reply Component */}
+                <MessageReply 
+                  applicationId={message.application_id}
+                  originalMessageId={message.id}
+                />
               </CardContent>
             </Card>
           ))}
