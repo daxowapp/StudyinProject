@@ -11,7 +11,7 @@
 -- First, let's find the admin user
 SELECT id, email, role 
 FROM auth.users 
-WHERE email = 'admin@studyatchina.com';
+WHERE email = 'ahmed@studyinturkiye.com';
 
 -- To reset password, you need to use Supabase Auth Admin API
 -- You cannot directly update passwords in SQL for security reasons
@@ -96,7 +96,7 @@ SELECT
     created_at,
     last_sign_in_at
 FROM auth.users 
-WHERE email = 'admin@studyatchina.com';
+WHERE email = 'ahmed@studyinturkiye.com';
 
 -- =====================================================
 -- UPDATE ADMIN METADATA (if needed)
@@ -115,7 +115,7 @@ SET
         '{role}',
         '"admin"'
     )
-WHERE email = 'admin@studyatchina.com';
+WHERE email = 'ahmed@studyinturkiye.com';
 
 -- =====================================================
 -- NOTES
