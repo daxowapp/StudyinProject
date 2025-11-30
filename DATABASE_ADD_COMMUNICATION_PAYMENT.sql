@@ -485,10 +485,29 @@ CREATE POLICY "Students can view their payments"
     ON payment_transactions FOR SELECT
     USING (student_id = auth.uid());
 
+-- Email notifications: System can insert notifications
+CREATE POLICY "System can insert notifications"
+    ON email_notifications FOR INSERT
+    WITH CHECK (true);
+
 -- Email notifications: Users can view their own notifications
 CREATE POLICY "Users can view their notifications"
     ON email_notifications FOR SELECT
     USING (recipient_id = auth.uid());
+
+-- Email notifications: Admins can view all notifications
+CREATE POLICY "Admins can view all notifications"
+    ON email_notifications FOR SELECT
+    USING (
+        (auth.jwt() -> 'user_metadata' ->> 'role') = 'admin'
+    );
+
+-- Email notifications: Admins can update notifications
+CREATE POLICY "Admins can update notifications"
+    ON email_notifications FOR UPDATE
+    USING (
+        (auth.jwt() -> 'user_metadata' ->> 'role') = 'admin'
+    );
 
 -- Notification preferences: Users can manage their own preferences
 CREATE POLICY "Users can manage their notification preferences"
