@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 export default async function UniversityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const supabase = await createClient();
     const { slug } = await params;
-    
+
     const { data: university, error } = await supabase
         .from("universities")
         .select("*")
@@ -69,6 +69,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         accommodation_fee_range: university.accommodation_fee_range,
         accommodation_features: university.accommodation_features,
         accommodation_types: university.accommodation_types,
+        has_fast_track: university.has_fast_track,
     };
 
     return (

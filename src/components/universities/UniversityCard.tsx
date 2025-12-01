@@ -16,8 +16,11 @@ interface University {
     badges: string[];
     logo?: string;
     photo?: string;
-    ranking?: number;
+    ranking?: string;
     type?: string;
+    university_type?: string;
+    institution_category?: string;
+    has_fast_track?: boolean;
 }
 
 interface UniversityCardProps {

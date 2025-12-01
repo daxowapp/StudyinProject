@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Globe, ExternalLink, Heart, Share2, GraduationCap, Star, Award, Users, Calendar, TrendingUp } from "lucide-react";
+import { MapPin, Globe, ExternalLink, Heart, Share2, GraduationCap, Star, Award, Users, Calendar, TrendingUp, Zap } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,25 +19,25 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
             <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden">
                 {/* Background Image */}
                 {university.cover_photo_url ? (
-                    <div 
+                    <div
                         className="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-700"
                         style={{ backgroundImage: `url(${university.cover_photo_url})` }}
                     />
                 ) : university.gallery_images && university.gallery_images.length > 0 ? (
-                    <div 
+                    <div
                         className="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-700"
                         style={{ backgroundImage: `url(${university.gallery_images[0]})` }}
                     />
                 ) : (
-                    <div 
+                    <div
                         className="absolute inset-0 bg-gradient-to-br from-red-600 via-red-700 to-orange-600"
                     />
                 )}
-                
+
                 {/* Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
-                
+
                 {/* Animated Gradient Accent */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-red-600/20 via-transparent to-yellow-500/20 animate-pulse" />
 
@@ -46,25 +46,33 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                     <div className="container mx-auto px-4 md:px-6 pb-8">
                         <div className="max-w-4xl">
                             {/* Ranking Badge */}
-                            {university.badges && university.badges.length > 0 && (
-                                <div className="mb-4 flex flex-wrap gap-2">
-                                    {university.badges.slice(0, 3).map((badge: string, index: number) => (
-                                        <Badge 
-                                            key={index} 
+                            <div className="mb-4 flex flex-wrap gap-2">
+                                {university.has_fast_track && (
+                                    <Badge
+                                        className="bg-yellow-400/90 backdrop-blur-md text-yellow-950 border-yellow-400/30 px-3 py-1 text-sm font-bold shadow-[0_0_15px_rgba(250,204,21,0.6)] border-yellow-300"
+                                    >
+                                        <Zap className="h-3 w-3 mr-1 fill-yellow-950 animate-pulse" />
+                                        Fast Track Acceptance
+                                    </Badge>
+                                )}
+                                {university.badges && university.badges.length > 0 && (
+                                    university.badges.slice(0, 3).map((badge: string, index: number) => (
+                                        <Badge
+                                            key={index}
                                             className="bg-white/20 backdrop-blur-md text-white border-white/30 px-3 py-1 text-sm font-semibold"
                                         >
                                             <Star className="h-3 w-3 mr-1 fill-yellow-400 text-yellow-400" />
                                             {badge}
                                         </Badge>
-                                    ))}
-                                </div>
-                            )}
+                                    ))
+                                )}
+                            </div>
 
                             {/* University Name */}
                             <h1 className="text-4xl md:text-6xl font-black text-white mb-2 drop-shadow-2xl">
                                 {university.name}
                             </h1>
-                            
+
                             {/* Local Name */}
                             {university.nameLocal && university.nameLocal !== university.name && (
                                 <p className="text-xl md:text-2xl text-white/90 mb-4 font-medium">
@@ -91,9 +99,9 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                                     </div>
                                 )}
                                 {university.website && (
-                                    <a 
-                                        href={university.website} 
-                                        target="_blank" 
+                                    <a
+                                        href={university.website}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors"
                                     >
@@ -106,15 +114,15 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
 
                             {/* Action Buttons */}
                             <div className="flex flex-wrap gap-3">
-                                <Button 
-                                    size="lg" 
+                                <Button
+                                    size="lg"
                                     className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-2xl shadow-red-500/50 font-bold px-8"
                                 >
                                     <GraduationCap className="mr-2 h-5 w-5" />
                                     Apply Now
                                 </Button>
-                                <Button 
-                                    size="lg" 
+                                <Button
+                                    size="lg"
                                     variant="outline"
                                     className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
                                     onClick={() => setIsSaved(!isSaved)}
@@ -122,8 +130,8 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                                     <Heart className={`mr-2 h-4 w-4 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
                                     {isSaved ? 'Saved' : 'Save'}
                                 </Button>
-                                <Button 
-                                    size="lg" 
+                                <Button
+                                    size="lg"
                                     variant="outline"
                                     className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
                                 >
@@ -142,8 +150,8 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                     {/* Logo */}
                     <div className="h-28 w-28 md:h-36 md:w-36 rounded-2xl bg-gradient-to-br from-gray-50 to-white shadow-xl flex items-center justify-center border-2 border-gray-200 shrink-0 overflow-hidden">
                         {university.logo_url ? (
-                            <img 
-                                src={university.logo_url} 
+                            <img
+                                src={university.logo_url}
                                 alt={`${university.name} logo`}
                                 className="w-full h-full object-contain p-4"
                             />

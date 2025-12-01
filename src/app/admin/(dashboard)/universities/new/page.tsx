@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -20,6 +21,8 @@ export default function NewUniversityPage() {
         city: "",
         description: "",
         website: "",
+        university_type: "",
+        institution_category: "",
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -104,6 +107,45 @@ export default function NewUniversityPage() {
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="university_type">University Type</Label>
+                            <Select
+                                value={formData.university_type}
+                                onValueChange={(value) => setFormData({ ...formData, university_type: value })}
+                            >
+                                <SelectTrigger id="university_type">
+                                    <SelectValue placeholder="Select university type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Public">Public University</SelectItem>
+                                    <SelectItem value="Private">Private University</SelectItem>
+                                    <SelectItem value="Research">Research University</SelectItem>
+                                    <SelectItem value="Comprehensive">Comprehensive University</SelectItem>
+                                    <SelectItem value="Specialized">Specialized University</SelectItem>
+                                    <SelectItem value="Vocational">Vocational University</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="institution_category">Institution Category</Label>
+                            <Select
+                                value={formData.institution_category}
+                                onValueChange={(value) => setFormData({ ...formData, institution_category: value })}
+                            >
+                                <SelectTrigger id="institution_category">
+                                    <SelectValue placeholder="Select institution category" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="University">University</SelectItem>
+                                    <SelectItem value="College">College</SelectItem>
+                                    <SelectItem value="Language Institute">Language Institute</SelectItem>
+                                    <SelectItem value="Vocational School">Vocational School</SelectItem>
+                                    <SelectItem value="Technical Institute">Technical Institute</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         <div className="pt-4 flex justify-end">

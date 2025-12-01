@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useEffect, use } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -64,6 +66,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         international_students: "",
         ranking: "",
         features: [] as string[],
+        has_fast_track: false,
+        university_type: "",
+        institution_category: "",
     });
 
     useEffect(() => {
@@ -112,6 +117,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     international_students: data.international_students || "",
                     ranking: data.ranking || "",
                     features: data.features || [],
+                    has_fast_track: data.has_fast_track || false,
+                    university_type: data.university_type || "",
+                    institution_category: data.institution_category || "",
                 });
                 setLogoPreview(data.logo_url || "");
                 setCoverPhotoPreview(data.cover_photo_url || "");
@@ -217,8 +225,11 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         // Prepare data with images
         const updateData = {
             ...formData,
+            latitude: formData.latitude === "" ? null : formData.latitude,
+            longitude: formData.longitude === "" ? null : formData.longitude,
             logo_url: logoPreview || formData.logo_url,
             gallery_images: galleryPreviews.length > 0 ? galleryPreviews : formData.gallery_images,
+            has_fast_track: formData.has_fast_track,
         };
 
         const supabase = createClient();
@@ -428,6 +439,55 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 placeholder="https://"
                                             />
                                         </div>
+                                    </div>
+                                    <div className="flex items-center space-x-2 pt-2">
+                                        <Switch
+                                            id="fast-track"
+                                            checked={formData.has_fast_track}
+                                            onCheckedChange={(checked) => setFormData({ ...formData, has_fast_track: checked })}
+                                        />
+                                        <Label htmlFor="fast-track">Fast Track Acceptance (Show badge)</Label>
+                                    </div>
+
+                                    {/* University Type */}
+                                    <div className="space-y-2 pt-4">
+                                        <Label htmlFor="university_type">University Type</Label>
+                                        <Select
+                                            value={formData.university_type}
+                                            onValueChange={(value) => setFormData({ ...formData, university_type: value })}
+                                        >
+                                            <SelectTrigger id="university_type">
+                                                <SelectValue placeholder="Select university type" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Public">Public University</SelectItem>
+                                                <SelectItem value="Private">Private University</SelectItem>
+                                                <SelectItem value="Research">Research University</SelectItem>
+                                                <SelectItem value="Comprehensive">Comprehensive University</SelectItem>
+                                                <SelectItem value="Specialized">Specialized University</SelectItem>
+                                                <SelectItem value="Vocational">Vocational University</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    {/* Institution Category */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="institution_category">Institution Category</Label>
+                                        <Select
+                                            value={formData.institution_category}
+                                            onValueChange={(value) => setFormData({ ...formData, institution_category: value })}
+                                        >
+                                            <SelectTrigger id="institution_category">
+                                                <SelectValue placeholder="Select institution category" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="University">University</SelectItem>
+                                                <SelectItem value="College">College</SelectItem>
+                                                <SelectItem value="Language Institute">Language Institute</SelectItem>
+                                                <SelectItem value="Vocational School">Vocational School</SelectItem>
+                                                <SelectItem value="Technical Institute">Technical Institute</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
 
                                     {/* Logo Upload */}

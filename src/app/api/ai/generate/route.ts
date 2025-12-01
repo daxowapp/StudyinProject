@@ -36,6 +36,12 @@ export async function POST(req: Request) {
                                         - features: array of strings(e.g. "Project 985", "C9 League", "Research University")
                                             - latitude: string(Decimal degrees)
                                                 - longitude: string(Decimal degrees)
+                                                - logo_url: string(URL to official logo if found)
+                                                - cover_photo_url: string(URL to a high-quality campus photo)
+                                                - video_url: string(YouTube or Vimeo URL if found)
+                                                - gallery_images: array of strings(URLs to 3-5 campus photos)
+                                                - university_type: string(Choose ONE: "Public", "Private", "Research", "Comprehensive", "Specialized", or "Vocational")
+                                                - institution_category: string(Choose ONE: "University", "College", "Language Institute", "Vocational School", or "Technical Institute")
       `;
         } else if (type === 'program') {
             systemPrompt = `You are a helpful assistant that provides detailed information about university programs.

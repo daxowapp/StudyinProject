@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Award, CheckCircle, Shield, Building2 } from "lucide-react";
+import Link from "next/link";
 
 interface University {
     id: string;
     name: string;
+    slug: string;
     logo_url?: string;
 }
 
@@ -71,30 +73,31 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                 >
                     <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
                         {displayUniversities.map((university, index) => (
-                            <motion.div
-                                key={university.id}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                whileHover={{ scale: 1.05 }}
-                                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group aspect-square"
-                            >
-                                <div className="w-full h-20 mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    {university.logo_url ? (
-                                        <img
-                                            src={university.logo_url}
-                                            alt={university.name}
-                                            className="max-w-full max-h-full object-contain"
-                                        />
-                                    ) : (
-                                        <Building2 className="h-12 w-12 text-primary" />
-                                    )}
-                                </div>
-                                <div className="text-xs text-center font-semibold text-muted-foreground group-hover:text-primary transition-colors line-clamp-2">
-                                    {university.name}
-                                </div>
-                            </motion.div>
+                            <Link href={`/universities/${university.slug}`} key={university.id} className="block">
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group aspect-square h-full"
+                                >
+                                    <div className="w-full h-20 mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        {university.logo_url ? (
+                                            <img
+                                                src={university.logo_url}
+                                                alt={university.name}
+                                                className="max-w-full max-h-full object-contain"
+                                            />
+                                        ) : (
+                                            <Building2 className="h-12 w-12 text-primary" />
+                                        )}
+                                    </div>
+                                    <div className="text-xs text-center font-semibold text-muted-foreground group-hover:text-primary transition-colors line-clamp-2">
+                                        {university.name}
+                                    </div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                 </motion.div>

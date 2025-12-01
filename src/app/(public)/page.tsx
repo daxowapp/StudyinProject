@@ -26,7 +26,7 @@ export default async function Home() {
 
     const { data: programs, error: programsError } = await Promise.race([
       programsPromise,
-      new Promise<any>((_, reject) => 
+      new Promise<any>((_, reject) =>
         setTimeout(() => reject(new Error('Timeout')), 3000)
       )
     ]).catch(() => ({ data: null, error: null }));
@@ -40,10 +40,10 @@ export default async function Home() {
       (programs || []).map(async (p: any) => {
         const { data: uni } = await supabase
           .from("universities")
-          .select("name, city, cover_photo_url")
+          .select("name, city, cover_photo_url, logo_url")
           .eq("id", p.university_id)
           .single();
-        
+
         return {
           ...p,
           university: uni || { name: p.university_name, city: p.city, cover_photo_url: null }
@@ -63,7 +63,8 @@ export default async function Home() {
       university: {
         name: p.university?.name || p.university_name,
         city: p.university?.city || p.city,
-        cover_photo_url: p.university?.cover_photo_url
+        cover_photo_url: p.university?.cover_photo_url,
+        logo_url: p.university?.logo_url
       }
     }));
 
@@ -81,14 +82,15 @@ export default async function Home() {
         cover_photo_url,
         founded,
         total_students,
-        ranking
+        ranking,
+        has_fast_track
       `)
       .order("created_at", { ascending: false })
       .limit(8);
 
     const { data: universitiesData, error: universitiesError } = await Promise.race([
       universitiesPromise,
-      new Promise<any>((_, reject) => 
+      new Promise<any>((_, reject) =>
         setTimeout(() => reject(new Error('Timeout')), 3000)
       )
     ]).catch(() => ({ data: null, error: null }));

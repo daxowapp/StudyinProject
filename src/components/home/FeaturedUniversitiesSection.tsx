@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy, ChevronLeft, ChevronRight, Zap } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -19,6 +19,7 @@ interface University {
     founded?: string;
     total_students?: string;
     ranking?: string;
+    has_fast_track?: boolean;
 }
 
 interface FeaturedUniversitiesSectionProps {
@@ -90,6 +91,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                 {/* Universities Carousel */}
                 <div className="relative">
                     <motion.div
+                        key={currentIndex}
                         variants={container}
                         initial="hidden"
                         whileInView="show"
@@ -98,86 +100,107 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                         style={{ gridAutoRows: '1fr' }}
                     >
                         {visibleUniversities.map((uni, index) => (
-                        <motion.div
-                            key={uni.id}
-                            variants={item}
-                            whileHover={{ y: -8 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex"
-                        >
-                            <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white flex flex-col w-full">
-                                <CardContent className="p-0 flex flex-col flex-1">
-                                    {/* Image Banner */}
-                                    <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
-                                        {uni.cover_photo_url ? (
-                                            <img
-                                                src={uni.cover_photo_url}
-                                                alt={uni.name}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        ) : (
-                                            <img
-                                                src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
-                                                alt={uni.name}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            <motion.div
+                                key={uni.id}
+                                variants={item}
+                                whileHover={{ y: -8 }}
+                                transition={{ duration: 0.2 }}
+                                className="flex"
+                            >
+                                <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white flex flex-col w-full">
+                                    <CardContent className="p-0 flex flex-col flex-1">
+                                        {/* Image Banner */}
+                                        <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
+                                            {uni.cover_photo_url ? (
+                                                <img
+                                                    src={uni.cover_photo_url}
+                                                    alt={uni.name}
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
+                                                    alt={uni.name}
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                            )}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-                                        {/* Ranking Badge */}
-                                        {uni.ranking && (
-                                            <div className="absolute top-3 right-3">
-                                                <div className="px-2 py-1 rounded-full bg-white text-slate-900 text-xs font-bold shadow-md">
-                                                    {uni.ranking}
+                                            {/* Ranking Badge */}
+                                            {uni.has_fast_track && (
+                                                <div className="absolute top-3 left-3">
+                                                    <div className="px-2 py-1 rounded-full bg-yellow-400 text-yellow-950 text-xs font-bold shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center gap-1 border border-yellow-300">
+                                                        <Zap className="w-3 h-3 animate-pulse fill-yellow-950" />
+                                                        Fast Track
+                                                    </div>
                                                 </div>
+                                            )}
+                                            {uni.ranking && (
+                                                <div className="absolute top-3 right-3 max-w-[45%]">
+                                                    <div className="px-2.5 py-1.5 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-amber-300">
+                                                        <Award className="w-3.5 h-3.5 shrink-0" />
+                                                        <span className="truncate">{uni.ranking}</span>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="p-5 flex flex-col flex-1">
+                                            {/* University Name with Logo */}
+                                            <div className="flex items-start gap-3 mb-2">
+                                                {uni.logo_url && (
+                                                    <div className="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0">
+                                                        <img
+                                                            src={uni.logo_url}
+                                                            alt={uni.name}
+                                                            className="w-full h-full object-contain"
+                                                        />
+                                                    </div>
+                                                )}
+                                                <h3 className="font-bold text-lg line-clamp-1 min-h-[1.75rem] group-hover:text-red-600 transition-colors flex-1">
+                                                    {uni.name}
+                                                </h3>
                                             </div>
-                                        )}
-                                    </div>
 
-                                    {/* Content */}
-                                    <div className="p-5 flex flex-col flex-1">
-                                        <h3 className="font-bold text-lg mb-2 group-hover:text-red-600 transition-colors line-clamp-1 min-h-[1.75rem]">
-                                            {uni.name}
-                                        </h3>
+                                            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                                                <MapPin className="h-4 w-4 text-red-600 shrink-0" />
+                                                <span className="truncate">{uni.city}{uni.province && `, ${uni.province}`}</span>
+                                            </div>
 
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                                            <MapPin className="h-4 w-4 text-red-600 shrink-0" />
-                                            <span className="truncate">{uni.city}{uni.province && `, ${uni.province}`}</span>
+                                            {/* Stats - Fixed height */}
+                                            <div className="space-y-2 mb-4 min-h-[4rem]">
+                                                {uni.founded && (
+                                                    <div className="flex items-center justify-between text-sm">
+                                                        <span className="text-muted-foreground">Founded</span>
+                                                        <span className="font-semibold">{uni.founded}</span>
+                                                    </div>
+                                                )}
+                                                {uni.total_students && (
+                                                    <div className="flex items-center justify-between text-sm">
+                                                        <span className="text-muted-foreground">Students</span>
+                                                        <span className="font-semibold">{uni.total_students}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Description & Button - Push to bottom */}
+                                            <div className="pt-4 border-t mt-auto">
+                                                {uni.description && (
+                                                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2 min-h-[2.5rem]">
+                                                        {uni.description}
+                                                    </p>
+                                                )}
+                                                <Link href={`/universities/${uni.slug}`} className="block">
+                                                    <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
+                                                        View Details
+                                                    </Button>
+                                                </Link>
+                                            </div>
                                         </div>
-
-                                        {/* Stats - Fixed height */}
-                                        <div className="space-y-2 mb-4 min-h-[4rem]">
-                                            {uni.founded && (
-                                                <div className="flex items-center justify-between text-sm">
-                                                    <span className="text-muted-foreground">Founded</span>
-                                                    <span className="font-semibold">{uni.founded}</span>
-                                                </div>
-                                            )}
-                                            {uni.total_students && (
-                                                <div className="flex items-center justify-between text-sm">
-                                                    <span className="text-muted-foreground">Students</span>
-                                                    <span className="font-semibold">{uni.total_students}</span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {/* Description & Button - Push to bottom */}
-                                        <div className="pt-4 border-t mt-auto">
-                                            {uni.description && (
-                                                <p className="text-xs text-muted-foreground mb-3 line-clamp-2 min-h-[2.5rem]">
-                                                    {uni.description}
-                                                </p>
-                                            )}
-                                            <Link href={`/universities/${uni.slug}`} className="block">
-                                                <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
-                                                    View Details
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
                         ))}
                     </motion.div>
 
@@ -209,11 +232,10 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                             <button
                                 key={index}
                                 onClick={() => setCurrentIndex(index)}
-                                className={`h-2 rounded-full transition-all ${
-                                    index === currentIndex
-                                        ? 'w-8 bg-red-600'
-                                        : 'w-2 bg-gray-300 hover:bg-gray-400'
-                                }`}
+                                className={`h-2 rounded-full transition-all ${index === currentIndex
+                                    ? 'w-8 bg-red-600'
+                                    : 'w-2 bg-gray-300 hover:bg-gray-400'
+                                    }`}
                                 aria-label={`Go to page ${index + 1}`}
                             />
                         ))}

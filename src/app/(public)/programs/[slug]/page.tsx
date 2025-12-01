@@ -2,7 +2,7 @@ import { ProgramRequirements } from "@/components/programs/ProgramRequirements";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Award, BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp } from "lucide-react";
+import { Award, BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp, Zap } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,13 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         console.log("No program found for slug:", slug);
         notFound();
     }
+
+    // Fetch university fast track status
+    const { data: university } = await supabase
+        .from("universities")
+        .select("has_fast_track")
+        .eq("id", program.university_id)
+        .single();
 
     // Fetch admission requirements for this university and program level
     const { data: requirements } = await supabase
@@ -152,6 +159,12 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 <Calendar className="h-4 w-4 mr-2" />
                                 Intake: {programData.intake || "Contact University"}
                             </Badge>
+                            {university?.has_fast_track && (
+                                <Badge className="px-4 py-2 text-sm bg-yellow-400/10 text-yellow-600 border-yellow-400/20 shadow-[0_0_10px_rgba(250,204,21,0.3)]">
+                                    <Zap className="h-4 w-4 mr-2 animate-pulse" />
+                                    Fast Track Acceptance
+                                </Badge>
+                            )}
                         </div>
 
                         {/* CTA Buttons */}
@@ -270,7 +283,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                         {/* Scholarships */}
                         <Card className="border-none shadow-xl">
                             <CardContent className="p-8">
-                                <UniversityScholarshipsSection 
+                                <UniversityScholarshipsSection
                                     universityId={programData.universityId}
                                     title="Scholarship Options for This Program"
                                     description="Choose the scholarship type that best fits your budget"
@@ -284,18 +297,18 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 <CardTitle className="text-2xl">Frequently Asked Questions</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                    <Accordion type="single" collapsible className="w-full">
-                                        {programData.faqs.map((faq, i) => (
-                                            <AccordionItem key={i} value={`item-${i}`}>
-                                                <AccordionTrigger className="text-left hover:text-primary">
-                                                    {faq.q}
-                                                </AccordionTrigger>
-                                                <AccordionContent className="text-muted-foreground">
-                                                    {faq.a}
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        ))}
-                                    </Accordion>
+                                <Accordion type="single" collapsible className="w-full">
+                                    {programData.faqs.map((faq, i) => (
+                                        <AccordionItem key={i} value={`item-${i}`}>
+                                            <AccordionTrigger className="text-left hover:text-primary">
+                                                {faq.q}
+                                            </AccordionTrigger>
+                                            <AccordionContent className="text-muted-foreground">
+                                                {faq.a}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    ))}
+                                </Accordion>
                             </CardContent>
                         </Card>
                     </div>
