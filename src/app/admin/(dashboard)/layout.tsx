@@ -1,20 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { 
-    LayoutDashboard, 
-    Building2, 
-    FileText, 
-    Users, 
-    Settings, 
-    LogOut, 
-    GraduationCap, 
-    MessageSquare, 
-    Calendar, 
-    Languages, 
-    Award, 
-    BarChart3, 
+import {
+    LayoutDashboard,
+    Building2,
+    FileText,
+    Users,
+    Settings,
+    LogOut,
+    GraduationCap,
+    MessageSquare,
+    Calendar,
+    Languages,
+    Award,
+    BarChart3,
     BookOpen,
     ClipboardCheck,
-    Newspaper
+    Newspaper,
+    Mail
 } from "lucide-react";
 import Link from "next/link";
 
@@ -78,18 +79,25 @@ export default function AdminLayout({
                             Admission Requirements
                         </Button>
                     </Link>
-                    <Link href="/admin/articles">
-                        <Button variant="ghost" className="w-full justify-start gap-2">
-                            <Newspaper className="h-4 w-4" />
-                            Articles
-                        </Button>
-                    </Link>
                     <Link href="/admin/applications">
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <FileText className="h-4 w-4" />
                             Applications
                         </Button>
                     </Link>
+                    <Link href="/admin/messages">
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                            <Mail className="h-4 w-4" />
+                            Messages
+                        </Button>
+                    </Link>
+                    <Link href="/admin/articles">
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                            <Newspaper className="h-4 w-4" />
+                            Articles
+                        </Button>
+                    </Link>
+
                     <Link href="/admin/leads">
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <MessageSquare className="h-4 w-4" />
@@ -127,14 +135,14 @@ export default function AdminLayout({
                         Sign Out
                     </Button>
                 </div>
-            </aside>
+            </aside >
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col">
+            < main className="flex-1 flex flex-col" >
                 <div className="flex-1 p-4 md:p-8">
                     {children}
                 </div>
-            </main>
+            </main >
         </div >
     );
 }

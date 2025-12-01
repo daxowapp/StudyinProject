@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
     const supabase = await createClient();
-    
+
     // Fetch user's applications
     const { data: { user } } = await supabase.auth.getUser();
     const { data: applications } = await supabase
@@ -32,8 +32,8 @@ export default async function DashboardPage() {
 
     const stats = {
         total: applications?.length || 0,
-        submitted: applications?.filter(a => a.status === "submitted").length || 0,
-        pending: applications?.filter(a => a.status === "pending").length || 0,
+        submitted: applications?.filter(a => a.status === "submitted" || a.status === "under_review").length || 0,
+        pending: applications?.filter(a => ['pending_payment', 'pending_documents', 'rejected'].includes(a.status)).length || 0,
         offers: applications?.filter(a => a.status === "accepted").length || 0,
     };
 
@@ -114,7 +114,7 @@ export default async function DashboardPage() {
                     <div className="h-10 w-1 bg-primary rounded-full" />
                     <h2 className="text-2xl font-bold">My Applications</h2>
                 </div>
-                
+
                 {applications && applications.length > 0 ? (
                     <Card className="border-none shadow-lg">
                         <CardContent className="p-0">
@@ -132,14 +132,14 @@ export default async function DashboardPage() {
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-4">
-                                            <Badge 
-                                                variant="secondary" 
+                                            <Badge
+                                                variant="secondary"
                                                 className={
                                                     app.status === "pending_documents" || app.status === "pending_payment" ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-100" :
-                                                    app.status === "submitted" || app.status === "under_review" ? "bg-blue-100 text-blue-800 hover:bg-blue-100" :
-                                                    app.status === "accepted" ? "bg-green-100 text-green-800 hover:bg-green-100" :
-                                                    app.status === "rejected" ? "bg-red-100 text-red-800 hover:bg-red-100" :
-                                                    "bg-gray-100 text-gray-800 hover:bg-gray-100"
+                                                        app.status === "submitted" || app.status === "under_review" ? "bg-blue-100 text-blue-800 hover:bg-blue-100" :
+                                                            app.status === "accepted" ? "bg-green-100 text-green-800 hover:bg-green-100" :
+                                                                app.status === "rejected" ? "bg-red-100 text-red-800 hover:bg-red-100" :
+                                                                    "bg-gray-100 text-gray-800 hover:bg-gray-100"
                                                 }
                                             >
                                                 {app.status?.split('_').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || "Unknown"}

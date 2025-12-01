@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { ApplicationDialog } from "./components/ApplicationDialog";
 import { format } from "date-fns";
+import { Eye } from "lucide-react";
+import Link from "next/link";
 
 export default async function ApplicationsPage() {
     const applications = await getApplications();
@@ -14,15 +16,9 @@ export default async function ApplicationsPage() {
             case "rejected": return "bg-red-600";
             case "under_review": return "bg-yellow-600";
             case "submitted": return "bg-blue-600";
+            case "pending_payment": return "bg-orange-600";
+            case "pending_documents": return "bg-purple-600";
             default: return "bg-gray-600";
-        }
-    };
-
-    const getPaymentColor = (status: string) => {
-        switch (status) {
-            case "paid": return "text-green-600 border-green-600";
-            case "failed": return "text-red-600 border-red-600";
-            default: return "text-yellow-600 border-yellow-600";
         }
     };
 
@@ -39,9 +35,9 @@ export default async function ApplicationsPage() {
 
             <div className="grid gap-4">
                 {applications?.map((app: any) => (
-                    <Card key={app.id}>
+                    <Card key={app.id} className="hover:shadow-md transition-shadow">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <div className="space-y-1">
+                            <div className="space-y-1 flex-1">
                                 <CardTitle className="text-lg font-semibold flex items-center gap-2">
                                     {app.student_name || 'Unknown Student'}
                                     <Badge className={getStatusColor(app.status)}>
@@ -52,7 +48,14 @@ export default async function ApplicationsPage() {
                                     Applied to <span className="font-medium text-foreground">{app.university_program?.program_catalog?.title}</span> at {app.university_program?.university?.name}
                                 </CardDescription>
                             </div>
-                            <ApplicationDialog application={app} />
+                            <div className="flex items-center gap-2">
+                                <Link href={`/admin/applications/${app.id}`}>
+                                    <Button variant="outline" size="sm" className="gap-2">
+                                        <Eye className="h-4 w-4" />
+                                        View Details
+                                    </Button>
+                                </Link>
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">

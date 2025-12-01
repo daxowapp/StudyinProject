@@ -1,14 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -18,21 +10,22 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { updateApplicationStatus, addAdminNote, sendMessageToStudent, requestPayment, requestDocuments, uploadConditionalLetter } from "../actions";
 import { toast } from "sonner";
-import { Eye, MessageSquare, Send, DollarSign, FileText, Upload, CheckCircle } from "lucide-react";
+import { Send, DollarSign, FileText, Upload, CheckCircle, Save } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface ApplicationDialogProps {
+interface ApplicationManagementFormProps {
     application: any;
 }
 
-export function ApplicationDialog({ application }: ApplicationDialogProps) {
-    const [open, setOpen] = useState(false);
+export function ApplicationManagementForm({ application }: ApplicationManagementFormProps) {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [comment, setComment] = useState("");
     const [messageSubject, setMessageSubject] = useState("");
@@ -69,7 +62,10 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
         try {
             const result = await updateApplicationStatus(application.id, value);
             if (result?.error) toast.error(result.error);
-            else toast.success("Status updated");
+            else {
+                toast.success("Status updated");
+                router.refresh();
+            }
         } finally {
             setIsLoading(false);
         }
@@ -85,6 +81,7 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
             } else {
                 toast.success("Note added");
                 setComment("");
+                router.refresh();
             }
         } finally {
             setIsLoading(false);
@@ -142,6 +139,7 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                 toast.success("Payment request sent to student!");
                 setPaymentAmount("");
                 setPaymentDescription("");
+                router.refresh();
             }
         } finally {
             setIsLoading(false);
@@ -167,6 +165,7 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                 toast.success("Document request sent to student!");
                 setSelectedDocuments([]);
                 setDocumentInstructions("");
+                router.refresh();
             }
         } finally {
             setIsLoading(false);
@@ -190,6 +189,7 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
             } else {
                 toast.success("Conditional acceptance letter uploaded and sent to student!");
                 setSelectedFile(null);
+                router.refresh();
             }
         } finally {
             setIsLoading(false);
@@ -205,153 +205,88 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button variant="outline" size="sm">
-                    <Eye className="mr-2 h-4 w-4" /> View Details
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                    <DialogTitle>Application Management</DialogTitle>
-                    <DialogDescription>
-                        Manage application status, request payments, documents, and more.
-                    </DialogDescription>
-                </DialogHeader>
-
-                <div className="grid gap-6 py-4">
-                    {/* Application Info */}
-                    <div className="grid grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
-                        <div>
-                            <Label className="text-muted-foreground">Student Name</Label>
-                            <p className="font-medium">{application.student_name}</p>
+        <div className="grid gap-6">
+            {/* Status Control Card */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Application Status</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex gap-4 items-end">
+                        <div className="flex-1 space-y-2">
+                            <Label>Change Status</Label>
+                            <Select defaultValue={application.status} onValueChange={handleStatusChange}>
+                                <SelectTrigger>
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="draft">Draft</SelectItem>
+                                    <SelectItem value="pending_documents">Pending Documents</SelectItem>
+                                    <SelectItem value="pending_payment">Pending Payment</SelectItem>
+                                    <SelectItem value="submitted">Submitted</SelectItem>
+                                    <SelectItem value="under_review">Under Review</SelectItem>
+                                    <SelectItem value="accepted">Accepted</SelectItem>
+                                    <SelectItem value="rejected">Rejected</SelectItem>
+                                    <SelectItem value="withdrawn">Withdrawn</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
-                        <div>
-                            <Label className="text-muted-foreground">Email</Label>
-                            <p className="font-medium">{application.student_email}</p>
-                        </div>
-                        <div>
-                            <Label className="text-muted-foreground">Phone</Label>
-                            <p className="font-medium">{application.student_phone || 'N/A'}</p>
-                        </div>
-                        <div>
-                            <Label className="text-muted-foreground">Country</Label>
-                            <p className="font-medium">{application.student_country || 'N/A'}</p>
-                        </div>
+                        <Button
+                            onClick={() => handleStatusChange('accepted')}
+                            disabled={isLoading}
+                            className="gap-2"
+                        >
+                            <CheckCircle className="h-4 w-4" />
+                            Mark as Accepted
+                        </Button>
                     </div>
+                </CardContent>
+            </Card>
 
-                    {/* Status Control */}
-                    <div className="space-y-2">
-                        <Label>Application Status</Label>
-                        <Select defaultValue={application.status} onValueChange={handleStatusChange}>
-                            <SelectTrigger>
-                                <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="draft">Draft</SelectItem>
-                                <SelectItem value="pending_documents">Pending Documents</SelectItem>
-                                <SelectItem value="pending_payment">Pending Payment</SelectItem>
-                                <SelectItem value="submitted">Submitted</SelectItem>
-                                <SelectItem value="under_review">Under Review</SelectItem>
-                                <SelectItem value="accepted">Accepted</SelectItem>
-                                <SelectItem value="rejected">Rejected</SelectItem>
-                                <SelectItem value="withdrawn">Withdrawn</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                    {/* Quick Actions */}
-                    <Card className="p-4">
-                        <Label className="text-sm font-semibold mb-3 block">Quick Actions</Label>
-                        <div className="grid grid-cols-2 gap-2">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => {
-                                    const tabs = document.querySelector('[role="tablist"]');
-                                    const paymentTab = tabs?.querySelector('[value="payment"]') as HTMLElement;
-                                    paymentTab?.click();
-                                }}
-                                className="gap-2"
-                            >
-                                <DollarSign className="h-4 w-4" />
-                                Request Payment
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => {
-                                    const tabs = document.querySelector('[role="tablist"]');
-                                    const docsTab = tabs?.querySelector('[value="documents"]') as HTMLElement;
-                                    docsTab?.click();
-                                }}
-                                className="gap-2"
-                            >
-                                <FileText className="h-4 w-4" />
-                                Request Documents
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => {
-                                    const tabs = document.querySelector('[role="tablist"]');
-                                    const uploadTab = tabs?.querySelector('[value="upload"]') as HTMLElement;
-                                    uploadTab?.click();
-                                }}
-                                className="gap-2"
-                            >
-                                <Upload className="h-4 w-4" />
-                                Upload Letter
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleStatusChange('accepted')}
-                                className="gap-2"
-                            >
-                                <CheckCircle className="h-4 w-4" />
-                                Mark Accepted
-                            </Button>
-                        </div>
-                    </Card>
-
-                    {/* Tabs for Different Actions */}
+            {/* Main Management Tabs */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Application Management</CardTitle>
+                </CardHeader>
+                <CardContent>
                     <Tabs defaultValue="notes" className="w-full">
                         <TabsList className="grid w-full grid-cols-5">
-                            <TabsTrigger value="notes">Notes</TabsTrigger>
-                            <TabsTrigger value="message">Message</TabsTrigger>
-                            <TabsTrigger value="payment">Payment</TabsTrigger>
-                            <TabsTrigger value="documents">Documents</TabsTrigger>
-                            <TabsTrigger value="upload">Upload</TabsTrigger>
+                            <TabsTrigger value="notes">Admin Notes</TabsTrigger>
+                            <TabsTrigger value="message">Send Message</TabsTrigger>
+                            <TabsTrigger value="payment">Request Payment</TabsTrigger>
+                            <TabsTrigger value="documents">Request Documents</TabsTrigger>
+                            <TabsTrigger value="upload">Upload Letter</TabsTrigger>
                         </TabsList>
 
                         {/* Admin Notes Tab */}
-                        <TabsContent value="notes" className="space-y-4">
+                        <TabsContent value="notes" className="space-y-4 mt-6">
                             {application.admin_notes && (
                                 <div className="bg-muted p-4 rounded-lg">
                                     <p className="text-sm font-medium mb-2">Current Notes:</p>
                                     <p className="text-sm whitespace-pre-wrap">{application.admin_notes}</p>
                                 </div>
                             )}
-                            <div className="flex gap-2">
+                            <div className="space-y-2">
+                                <Label>Add or Update Notes (Internal Only)</Label>
                                 <Textarea
-                                    placeholder="Add or update admin notes (internal only, student won't see)..."
+                                    placeholder="Add or update admin notes (student won't see this)..."
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
-                                    className="min-h-[100px]"
+                                    className="min-h-[120px]"
                                 />
                                 <Button
                                     onClick={handleAddNote}
                                     disabled={isLoading || !comment.trim()}
-                                    className="self-end"
+                                    className="gap-2"
                                 >
-                                    Save
+                                    <Save className="h-4 w-4" />
+                                    Save Notes
                                 </Button>
                             </div>
                         </TabsContent>
 
                         {/* Send Message Tab */}
-                        <TabsContent value="message" className="space-y-4">
+                        <TabsContent value="message" className="space-y-4 mt-6">
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label>Message Type</Label>
@@ -381,13 +316,14 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                                         placeholder="Type your message to the student..."
                                         value={messageBody}
                                         onChange={(e) => setMessageBody(e.target.value)}
-                                        className="min-h-[150px]"
+                                        className="min-h-[200px]"
                                     />
                                 </div>
                                 <Button
                                     onClick={handleSendMessage}
                                     disabled={isLoading || !messageSubject.trim() || !messageBody.trim()}
                                     className="w-full gap-2"
+                                    size="lg"
                                 >
                                     <Send className="h-4 w-4" />
                                     Send Message to Student
@@ -396,7 +332,7 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                         </TabsContent>
 
                         {/* Payment Request Tab */}
-                        <TabsContent value="payment" className="space-y-4">
+                        <TabsContent value="payment" className="space-y-4 mt-6">
                             <div className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
@@ -431,29 +367,30 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                                         placeholder="E.g., Application fee, Tuition deposit, etc."
                                         value={paymentDescription}
                                         onChange={(e) => setPaymentDescription(e.target.value)}
-                                        className="min-h-[100px]"
+                                        className="min-h-[120px]"
                                     />
                                 </div>
                                 <Button
                                     onClick={handleRequestPayment}
                                     disabled={isLoading || !paymentAmount || !paymentDescription.trim()}
                                     className="w-full gap-2"
+                                    size="lg"
                                 >
                                     <DollarSign className="h-4 w-4" />
                                     Request Payment from Student
                                 </Button>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-sm text-muted-foreground">
                                     This will send a payment request message to the student and update the application status to "Pending Payment".
                                 </p>
                             </div>
                         </TabsContent>
 
                         {/* Document Request Tab */}
-                        <TabsContent value="documents" className="space-y-4">
+                        <TabsContent value="documents" className="space-y-4 mt-6">
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label>Select Required Documents</Label>
-                                    <div className="grid grid-cols-2 gap-2 max-h-[200px] overflow-y-auto border rounded-lg p-3">
+                                    <div className="grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto border rounded-lg p-4">
                                         {commonDocuments.map((doc) => (
                                             <div key={doc} className="flex items-center space-x-2">
                                                 <Checkbox
@@ -477,25 +414,26 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                                         placeholder="Any specific requirements or deadlines..."
                                         value={documentInstructions}
                                         onChange={(e) => setDocumentInstructions(e.target.value)}
-                                        className="min-h-[80px]"
+                                        className="min-h-[100px]"
                                     />
                                 </div>
                                 <Button
                                     onClick={handleRequestDocuments}
                                     disabled={isLoading || selectedDocuments.length === 0}
                                     className="w-full gap-2"
+                                    size="lg"
                                 >
                                     <FileText className="h-4 w-4" />
                                     Request Documents from Student
                                 </Button>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-sm text-muted-foreground">
                                     This will send a document request message to the student and update the application status to "Pending Documents".
                                 </p>
                             </div>
                         </TabsContent>
 
                         {/* Upload Letter Tab */}
-                        <TabsContent value="upload" className="space-y-4">
+                        <TabsContent value="upload" className="space-y-4 mt-6">
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label>Conditional Acceptance Letter</Label>
@@ -503,29 +441,34 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                                         type="file"
                                         accept=".pdf,.doc,.docx"
                                         onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                                        className="cursor-pointer"
                                     />
                                     {selectedFile && (
-                                        <p className="text-sm text-muted-foreground">
-                                            Selected: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
-                                        </p>
+                                        <div className="p-3 bg-muted rounded-lg">
+                                            <p className="text-sm font-medium">Selected File:</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
+                                            </p>
+                                        </div>
                                     )}
                                 </div>
                                 <Button
                                     onClick={handleUploadLetter}
                                     disabled={isLoading || !selectedFile}
                                     className="w-full gap-2"
+                                    size="lg"
                                 >
                                     <Upload className="h-4 w-4" />
                                     Upload & Send to Student
                                 </Button>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-sm text-muted-foreground">
                                     This will upload the letter, send it to the student, and update the application status to "Accepted".
                                 </p>
                             </div>
                         </TabsContent>
                     </Tabs>
-                </div>
-            </DialogContent>
-        </Dialog>
+                </CardContent>
+            </Card>
+        </div>
     );
 }

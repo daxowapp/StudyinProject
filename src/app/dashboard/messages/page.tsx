@@ -1,27 +1,29 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import {
   Mail,
-  MailOpen,
   Clock,
   AlertCircle,
+  MessageSquare,
+  ChevronDown,
+  ChevronRight,
+  User,
+  Shield,
+  Paperclip,
+  Download,
   FileText,
-  CreditCard,
-  CheckCircle2,
-  Calendar,
-  CheckCheck,
+  Image as ImageIcon,
+  File,
+  RefreshCw,
 } from 'lucide-react';
-import { MarkAllReadButton } from './components/MarkAllReadButton';
-import { MessageReply } from './components/MessageReply';
+import { StudentMessageThreads } from './components/StudentMessageThreads';
 
 export default async function MessagesPage() {
   const supabase = await createClient();
 
-  // Check authentication
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -50,187 +52,111 @@ export default async function MessagesPage() {
             title
           )
         )
+      ),
+      message_attachments (
+        id,
+        file_name,
+        file_url,
+        file_size,
+        file_type,
+        mime_type
       )
     `)
     .in('application_id', applicationIds)
     .order('created_at', { ascending: false });
 
-  const getMessageIcon = (type: string) => {
-    switch (type) {
-      case 'document_request':
-        return <FileText className="w-5 h-5" />;
-      case 'payment_request':
-        return <CreditCard className="w-5 h-5" />;
-      case 'status_update':
-        return <CheckCircle2 className="w-5 h-5" />;
-      case 'acceptance_letter':
-        return <CheckCircle2 className="w-5 h-5 text-green-600" />;
-      default:
-        return <Mail className="w-5 h-5" />;
-    }
-  };
-
-  const getMessageColor = (type: string) => {
-    switch (type) {
-      case 'document_request':
-        return 'border-l-yellow-500 bg-yellow-50';
-      case 'payment_request':
-        return 'border-l-blue-500 bg-blue-50';
-      case 'acceptance_letter':
-        return 'border-l-green-500 bg-green-50';
-      case 'rejection_notice':
-        return 'border-l-red-500 bg-red-50';
-      default:
-        return 'border-l-gray-300 bg-white';
-    }
-  };
-
-  const unreadCount = messages?.filter((m) => !m.is_read).length || 0;
+  const unreadCount = messages?.filter((m) => !m.is_read && m.sender_type === 'admin').length || 0;
   const actionRequiredCount = messages?.filter((m) => m.requires_action && !m.action_completed).length || 0;
+  const totalMessages = messages?.length || 0;
+
+  // Group messages by application
+  const threadMap = new Map<string, any[]>();
+  messages?.forEach(msg => {
+    const key = msg.application_id;
+    if (!threadMap.has(key)) {
+      threadMap.set(key, []);
+    }
+    threadMap.get(key)!.push(msg);
+  });
+
+  const threads = Array.from(threadMap.entries()).map(([applicationId, msgs]) => {
+    msgs.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+    const latestMessage = msgs[msgs.length - 1];
+    const unread = msgs.filter(m => !m.is_read && m.sender_type === 'admin').length;
+    const hasAction = msgs.some(m => m.requires_action && !m.action_completed);
+
+    return {
+      applicationId,
+      programTitle: msgs[0].application?.university_program?.program_catalog?.title || 'N/A',
+      messages: msgs,
+      latestMessage,
+      unreadCount: unread,
+      hasActionRequired: hasAction
+    };
+  });
+
+  threads.sort((a, b) =>
+    new Date(b.latestMessage.created_at).getTime() - new Date(a.latestMessage.created_at).getTime()
+  );
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Messages</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
+          <p className="text-muted-foreground mt-1">
             Communication with admissions team
           </p>
         </div>
-        <div className="flex gap-3">
-          <Badge variant="outline" className="gap-2">
-            <Mail className="w-4 h-4" />
-            {unreadCount} Unread
-          </Badge>
-          {actionRequiredCount > 0 && (
-            <Badge className="bg-yellow-100 text-yellow-800 gap-2">
-              <AlertCircle className="w-4 h-4" />
-              {actionRequiredCount} Action Required
-            </Badge>
-          )}
-          <MarkAllReadButton 
-            applicationIds={applicationIds} 
-            unreadCount={unreadCount} 
-          />
-        </div>
       </div>
 
-      {/* Messages List */}
-      {messages && messages.length > 0 ? (
-        <div className="space-y-4">
-          {messages.map((message: any) => (
-            <Card
-              key={message.id}
-              className={`border-l-4 ${getMessageColor(message.message_type)} ${
-                !message.is_read ? 'shadow-lg' : ''
-              }`}
-            >
-              <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-3 flex-1">
-                    <div className="mt-1">{getMessageIcon(message.message_type)}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <CardTitle className="text-lg">{message.subject}</CardTitle>
-                        {!message.is_read && (
-                          <Badge className="bg-blue-600 text-white">New</Badge>
-                        )}
-                        {message.requires_action && !message.action_completed && (
-                          <Badge className="bg-yellow-100 text-yellow-800">
-                            Action Required
-                          </Badge>
-                        )}
-                      </div>
-                      <CardDescription className="flex items-center gap-2">
-                        <span>
-                          {message.application?.university_program?.program_catalog?.title}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(message.created_at).toLocaleDateString()}
-                        </span>
-                      </CardDescription>
-                    </div>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-700 whitespace-pre-wrap">{message.message}</p>
+      {/* Statistics */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Conversations</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{threads.length}</div>
+          </CardContent>
+        </Card>
 
-                {message.requires_action && !message.action_completed && (
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <div className="flex items-start gap-3">
-                      <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
-                      <div className="flex-1">
-                        <p className="font-semibold text-yellow-900">Action Required</p>
-                        <p className="text-sm text-yellow-800">
-                          {message.action_type === 'upload_document' && 'Please upload the requested document'}
-                          {message.action_type === 'make_payment' && 'Please complete the payment'}
-                          {message.action_type === 'respond' && 'Please respond to this message'}
-                        </p>
-                        {message.action_deadline && (
-                          <p className="text-sm text-yellow-800 mt-1 flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            Deadline: {new Date(message.action_deadline).toLocaleDateString()}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                )}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Unread Messages</CardTitle>
+            <Mail className="h-4 w-4 text-blue-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-blue-600">{unreadCount}</div>
+          </CardContent>
+        </Card>
 
-                {message.attachments && message.attachments.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold">Attachments:</p>
-                    {message.attachments.map((attachment: any, index: number) => (
-                      <a
-                        key={index}
-                        href={attachment.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-blue-600 hover:underline"
-                      >
-                        <FileText className="w-4 h-4" />
-                        {attachment.name}
-                      </a>
-                    ))}
-                  </div>
-                )}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Action Required</CardTitle>
+            <AlertCircle className="h-4 w-4 text-orange-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-orange-600">{actionRequiredCount}</div>
+          </CardContent>
+        </Card>
+      </div>
 
-                <div className="flex gap-2 pt-2">
-                  <Link href={`/dashboard/applications/${message.application_id}`}>
-                    <Button variant="outline" size="sm">
-                      View Application
-                    </Button>
-                  </Link>
-                  {message.requires_action && !message.action_completed && (
-                    <Link href={`/dashboard/applications/${message.application_id}`}>
-                      <Button size="sm" className="bg-yellow-600 hover:bg-yellow-700">
-                        Take Action
-                      </Button>
-                    </Link>
-                  )}
-                </div>
-
-                {/* Reply Component */}
-                <MessageReply 
-                  applicationId={message.application_id}
-                  originalMessageId={message.id}
-                />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      {/* Message Threads */}
+      {threads.length > 0 ? (
+        <StudentMessageThreads threads={threads} />
       ) : (
         <Card>
-          <CardContent className="p-12 text-center">
-            <MailOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No Messages</h3>
-            <p className="text-gray-600">
-              You don't have any messages yet. Messages from the admissions team will appear here.
-            </p>
+          <CardContent className="flex flex-col items-center justify-center h-64 gap-4">
+            <MessageSquare className="w-16 h-16 text-muted-foreground" />
+            <div className="text-center">
+              <h3 className="text-lg font-semibold mb-2">No messages yet</h3>
+              <p className="text-muted-foreground">
+                Messages from the admissions team will appear here
+              </p>
+            </div>
           </CardContent>
         </Card>
       )}

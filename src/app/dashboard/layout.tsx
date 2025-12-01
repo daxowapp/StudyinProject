@@ -10,22 +10,23 @@ export default async function DashboardLayout({
     children: React.ReactNode;
 }) {
     const supabase = await createClient();
-    
+
     // Get current user
     const { data: { user } } = await supabase.auth.getUser();
-    
+
     let unreadCount = 0;
     let pendingPayments = 0;
-    
+    let pendingDocuments = 0;
+
     if (user) {
         // Get user's applications
         const { data: applications } = await supabase
             .from("applications")
             .select("id")
             .eq("student_id", user.id);
-        
+
         const applicationIds = applications?.map(app => app.id) || [];
-        
+
         if (applicationIds.length > 0) {
             // Get unread messages count
             const { count } = await supabase
@@ -33,17 +34,26 @@ export default async function DashboardLayout({
                 .select("*", { count: 'exact', head: true })
                 .in("application_id", applicationIds)
                 .eq("is_read", false);
-            
+
             unreadCount = count || 0;
-            
+
             // Get pending payments count
             const { count: paymentCount } = await supabase
                 .from("payment_transactions")
                 .select("*", { count: 'exact', head: true })
                 .eq("student_id", user.id)
                 .eq("status", "pending");
-            
+
             pendingPayments = paymentCount || 0;
+
+            // Get pending document requests count
+            const { count: docCount } = await supabase
+                .from("document_requests")
+                .select("*", { count: 'exact', head: true })
+                .in("application_id", applicationIds)
+                .in("status", ["pending", "rejected"]); // Count pending and rejected (needing action)
+
+            pendingDocuments = docCount || 0;
         }
     }
     return (
@@ -92,9 +102,16 @@ export default async function DashboardLayout({
                         </Button>
                     </Link>
                     <Link href="/dashboard/documents">
-                        <Button variant="ghost" className="w-full justify-start gap-2">
-                            <FileText className="h-4 w-4" />
-                            Documents
+                        <Button variant="ghost" className="w-full justify-between gap-2">
+                            <div className="flex items-center gap-2">
+                                <FileText className="h-4 w-4" />
+                                Documents
+                            </div>
+                            {pendingDocuments > 0 && (
+                                <Badge className="bg-orange-600 hover:bg-orange-700 text-white">
+                                    {pendingDocuments}
+                                </Badge>
+                            )}
                         </Button>
                     </Link>
                     <Link href="/dashboard/settings">

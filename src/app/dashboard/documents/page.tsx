@@ -1,8 +1,35 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Upload } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { createClient } from "@/lib/supabase/server";
+import { DocumentRequestCard } from "../applications/components/DocumentRequestCard";
+import { redirect } from "next/navigation";
 
-export default function DocumentsPage() {
+export default async function DocumentsPage() {
+    const supabase = await createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        redirect('/auth/login');
+    }
+
+    // Get user's applications
+    const { data: applications } = await supabase
+        .from("applications")
+        .select("id")
+        .eq("student_id", user.id);
+
+    const applicationIds = applications?.map(app => app.id) || [];
+
+    let documentRequests: any[] = [];
+
+    if (applicationIds.length > 0) {
+        const { data: requests } = await supabase
+            .from("document_requests")
+            .select("*")
+            .in("application_id", applicationIds)
+            .order("created_at", { ascending: false });
+
+        documentRequests = requests || [];
+    }
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -12,42 +39,18 @@ export default function DocumentsPage() {
                         Manage your application documents
                     </p>
                 </div>
-                <Button>
-                    <Upload className="mr-2 h-4 w-4" />
-                    Upload Document
-                </Button>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
-                            Passport
-                        </CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">Uploaded</div>
-                        <p className="text-xs text-muted-foreground">
-                            Valid until 2030
-                        </p>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
-                            Transcript
-                        </CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">Missing</div>
-                        <p className="text-xs text-muted-foreground">
-                            Please upload PDF
-                        </p>
-                    </CardContent>
-                </Card>
-            </div>
+            {documentRequests.length > 0 ? (
+                <DocumentRequestCard requests={documentRequests} />
+            ) : (
+                <div className="flex flex-col items-center justify-center p-8 border rounded-lg bg-white text-center">
+                    <p className="text-muted-foreground mb-2">No document requests found.</p>
+                    <p className="text-sm text-gray-500">
+                        When an administrator requests documents for your application, they will appear here.
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
