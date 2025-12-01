@@ -59,7 +59,7 @@ export function Footer() {
                             </div>
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-sm">
-                            Your trusted partner in discovering and applying to China's top universities. 
+                            Your trusted partner in discovering and applying to China's top universities.
                             Join thousands of students who have successfully started their academic journey with us.
                         </p>
                         <div className="flex gap-3">
@@ -157,14 +157,30 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-border">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-sm text-muted-foreground">
-                            &copy; {new Date().getFullYear()} StudyAtChina.com. All rights reserved.
-                        </p>
+                        <div className="flex flex-col items-center md:items-start gap-2">
+                            <p className="text-sm text-muted-foreground">
+                                &copy; {new Date().getFullYear()} StudyAtChina.com. All rights reserved.
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                                Designed and Powered by{" "}
+                                <a
+                                    href="https://daxow.ai"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
+                                >
+                                    Daxow
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </p>
+                        </div>
                         <div className="flex flex-wrap gap-6 justify-center">
                             {[
-                                { name: "Terms of Service", href: "/terms" },
-                                { name: "Privacy Policy", href: "/privacy" },
-                                { name: "Cookie Policy", href: "/cookies" }
+                                { name: "Terms of Service", href: "/terms-of-service" },
+                                { name: "Privacy Policy", href: "/privacy-policy" },
+                                { name: "Cookie Policy", href: "/cookie-policy" }
                             ].map((link) => (
                                 <Link
                                     key={link.name}
