@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Clock, MapPin, ArrowRight, Star, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface Program {
     id: string;
@@ -15,6 +16,8 @@ interface Program {
     duration: string;
     tuition_fee: string;
     currency?: string;
+    language?: string;
+    intake?: string;
     university: {
         name: string;
         city: string;
@@ -43,8 +46,50 @@ const item = {
 };
 
 export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSectionProps) {
+    const [shuffledPrograms, setShuffledPrograms] = useState<Program[]>(programs);
+
+    // Shuffle programs on client side with diversity (different universities)
+    useEffect(() => {
+        const shuffleWithDiversity = (array: Program[]) => {
+            if (array.length === 0) return [];
+
+            // First, shuffle the entire array
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            // Then, ensure diversity by spacing out programs from same university
+            const result: Program[] = [];
+            const usedUniversities = new Set<string>();
+            const remaining: Program[] = [];
+
+            // First pass: pick one from each university
+            for (const program of shuffled) {
+                const uniName = typeof program.university === 'string'
+                    ? program.university
+                    : program.university?.name || '';
+
+                if (!usedUniversities.has(uniName)) {
+                    result.push(program);
+                    usedUniversities.add(uniName);
+                } else {
+                    remaining.push(program);
+                }
+            }
+
+            // Second pass: add remaining programs
+            return [...result, ...remaining];
+        };
+
+        if (programs.length > 0) {
+            setShuffledPrograms(shuffleWithDiversity(programs));
+        }
+    }, [programs]);
+
     // Fallback if no programs provided (e.g. error or loading)
-    const displayPrograms = programs.length > 0 ? programs : [];
+    const displayPrograms = shuffledPrograms.length > 0 ? shuffledPrograms.slice(0, 4) : [];
 
     return (
         <section className="py-16 bg-white relative overflow-hidden">
@@ -138,9 +183,26 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                 {/* Content Section */}
                                 <div className="p-6 flex-1 flex flex-col">
                                     {/* Program Title */}
-                                    <h3 className="font-bold text-xl leading-tight mb-4 line-clamp-2 min-h-[3.5rem] group-hover:text-red-600 transition-colors">
+                                    <h3 className="font-bold text-xl leading-tight mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-red-600 transition-colors">
                                         {program.title}
                                     </h3>
+
+                                    {/* Badges */}
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        <Badge variant="secondary" className="text-xs font-semibold">
+                                            {program.level}
+                                        </Badge>
+                                        {program.language && (
+                                            <Badge variant="outline" className="text-xs font-semibold border-blue-200 text-blue-700">
+                                                🗣️ {program.language}
+                                            </Badge>
+                                        )}
+                                        {program.intake && (
+                                            <Badge variant="outline" className="text-xs font-semibold border-green-200 text-green-700">
+                                                📅 {program.intake}
+                                            </Badge>
+                                        )}
+                                    </div>
 
                                     {/* Info Grid */}
                                     <div className="space-y-3 mb-5">

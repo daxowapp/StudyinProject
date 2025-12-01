@@ -17,12 +17,11 @@ export default async function Home() {
   try {
     const supabase = await createClient();
 
-    // Fetch Featured Programs with timeout
+    // Fetch Featured Programs - get more for variety
     const programsPromise = supabase
       .from("v_university_programs_full")
       .select("*")
-      .order("created_at", { ascending: false })
-      .limit(4);
+      .limit(20); // Fetch 20 to ensure diversity
 
     const { data: programs, error: programsError } = await Promise.race([
       programsPromise,
@@ -46,7 +45,7 @@ export default async function Home() {
 
         return {
           ...p,
-          university: uni || { name: p.university_name, city: p.city, cover_photo_url: null }
+          university: uni || { name: p.university_name, city: p.city, cover_photo_url: null, logo_url: null }
         };
       })
     );
@@ -60,6 +59,8 @@ export default async function Home() {
       duration: p.duration,
       tuition_fee: p.tuition_fee,
       currency: p.currency || "CNY",
+      language: p.language_name,
+      intake: p.intake,
       university: {
         name: p.university?.name || p.university_name,
         city: p.university?.city || p.city,

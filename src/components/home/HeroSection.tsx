@@ -275,21 +275,42 @@ export function HeroSection() {
                             {/* Quick Search Tags */}
                             <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-slate-200">
                                 <span className="text-xs font-semibold text-slate-600">Quick Search:</span>
-                                {[
-                                    "MBA Programs",
-                                    "Engineering",
-                                    "Medicine (MBBS)",
-                                    "Computer Science",
-                                    "Full Scholarship",
-                                    "English Taught"
-                                ].map((tag) => (
-                                    <button
-                                        key={tag}
-                                        className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
-                                    >
-                                        {tag}
-                                    </button>
-                                ))}
+                                <button
+                                    onClick={() => router.push('/programs?field=business&degree=master')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    MBA Programs
+                                </button>
+                                <button
+                                    onClick={() => router.push('/programs?field=engineering&degree=bachelor')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    Engineering
+                                </button>
+                                <button
+                                    onClick={() => router.push('/programs?field=medicine&degree=bachelor')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    Medicine (MBBS)
+                                </button>
+                                <button
+                                    onClick={() => router.push('/programs?field=cs&degree=bachelor')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    Computer Science
+                                </button>
+                                <button
+                                    onClick={() => router.push('/programs?scholarship=full')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    Full Scholarship
+                                </button>
+                                <button
+                                    onClick={() => router.push('/programs?language=english')}
+                                    className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-700 text-xs font-medium transition-all hover:scale-105"
+                                >
+                                    English Taught
+                                </button>
                             </div>
                         </div>
                     </motion.div>

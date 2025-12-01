@@ -12,7 +12,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, LayoutGrid, List, Search } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, X } from "lucide-react";
 
 interface Program {
     id: string;
@@ -37,7 +38,7 @@ interface ProgramsClientProps {
 export function ProgramsClient({ programs }: ProgramsClientProps) {
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
-    
+
     const [filters, setFilters] = useState<FilterState>({
         search: '',
         levels: [],
@@ -59,19 +60,96 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
         return Array.from(new Set(programs.map(p => p.university).filter(Boolean)));
     }, [programs]);
 
-    // Initialize university filter from URL
+    // Initialize filters from URL parameters
     useEffect(() => {
-        if (universitySlug && programs.length > 0) {
-            // Find university name from slug (e.g., "ningbo-university" -> "Ningbo University")
-            const universityFromSlug = programs.find(p => 
-                p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
-            )?.university;
-            
-            if (universityFromSlug) {
-                setFilters(prev => ({ ...prev, university: universityFromSlug }));
+        const degree = searchParams.get('degree');
+        const field = searchParams.get('field');
+        const city = searchParams.get('city');
+        const language = searchParams.get('language');
+        const budget = searchParams.get('budget');
+        const scholarship = searchParams.get('scholarship');
+        const duration = searchParams.get('duration');
+
+        const newFilters: Partial<FilterState> = {};
+
+        // Map degree level from hero search
+        if (degree) {
+            const levelMap: Record<string, string[]> = {
+                'bachelor': ['Bachelor', "Bachelor's", 'Bachelors', 'Undergraduate'],
+                'master': ['Master', "Master's", 'Masters', 'Postgraduate'],
+                'phd': ['PhD', 'Ph.D', 'Doctorate', 'Doctoral'],
+                'diploma': ['Diploma', 'Certificate'],
+                'language': ['Language Course', 'Language', 'Non-Degree']
+            };
+            const possibleLevels = levelMap[degree];
+            if (possibleLevels) {
+                newFilters.levels = possibleLevels;
             }
         }
-    }, [universitySlug, programs]);
+
+        // Map field of study - use keyword matching
+        if (field && field !== 'any') {
+            newFilters.field = field;
+        }
+
+        // Map city
+        if (city && city !== 'any') {
+            // Capitalize city name
+            const capitalizedCity = city.charAt(0).toUpperCase() + city.slice(1);
+            newFilters.cities = [capitalizedCity];
+        }
+
+        // Map language
+        if (language && language !== 'any') {
+            if (language === 'english') {
+                newFilters.languages = ['English'];
+            } else if (language === 'chinese') {
+                newFilters.languages = ['Chinese'];
+            } else if (language === 'both') {
+                newFilters.languages = ['English', 'Chinese'];
+            }
+        }
+
+        // Map budget
+        if (budget && budget !== 'any') {
+            const budgetRanges: Record<string, number> = {
+                '0-3000': 3000,
+                '3000-5000': 5000,
+                '5000-8000': 8000,
+                '8000+': 200000
+            };
+            const maxTuition = budgetRanges[budget];
+            if (maxTuition) {
+                newFilters.maxTuition = maxTuition;
+            }
+        }
+
+        // Map scholarship
+        if (scholarship && scholarship !== 'all') {
+            newFilters.scholarship = scholarship === 'available' || scholarship === 'full' || scholarship === 'partial';
+        }
+
+        // Map duration
+        if (duration && duration !== 'any') {
+            newFilters.duration = duration;
+        }
+
+        // Handle university filter from URL
+        if (universitySlug && programs.length > 0) {
+            const universityFromSlug = programs.find(p =>
+                p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
+            )?.university;
+
+            if (universityFromSlug) {
+                newFilters.university = universityFromSlug;
+            }
+        }
+
+        // Apply all filters at once
+        if (Object.keys(newFilters).length > 0) {
+            setFilters(prev => ({ ...prev, ...newFilters }));
+        }
+    }, [searchParams, universitySlug, programs]);
 
     // Filter programs based on current filters
     const filteredPrograms = useMemo(() => {
@@ -79,20 +157,48 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
             // Search filter
             if (filters.search) {
                 const searchLower = filters.search.toLowerCase();
-                const matchesSearch = 
+                const matchesSearch =
                     program.name.toLowerCase().includes(searchLower) ||
                     program.university.toLowerCase().includes(searchLower);
                 if (!matchesSearch) return false;
             }
 
-            // Level filter
-            if (filters.levels.length > 0 && !filters.levels.includes(program.level)) {
-                return false;
+            // Level filter - case insensitive matching
+            if (filters.levels.length > 0) {
+                const hasMatchingLevel = filters.levels.some(filterLevel =>
+                    program.level.toLowerCase() === filterLevel.toLowerCase()
+                );
+                if (!hasMatchingLevel) return false;
             }
 
-            // Field filter
-            if (filters.field !== 'all' && program.category !== filters.field) {
-                return false;
+            // Field filter - intelligent matching
+            if (filters.field !== 'all') {
+                const fieldLower = filters.field.toLowerCase();
+
+                // Define field keywords for better matching
+                const fieldKeywords: Record<string, string[]> = {
+                    'business': ['business', 'mba', 'management', 'economics', 'finance', 'accounting', 'marketing', 'commerce'],
+                    'engineering': ['engineering', 'engineer', 'mechanical', 'electrical', 'civil', 'chemical', 'industrial', 'technology'],
+                    'medicine': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery'],
+                    'cs': ['computer', 'computing', 'software', 'it', 'information technology', 'data science', 'ai', 'artificial intelligence'],
+                    'arts': ['arts', 'humanities', 'literature', 'history', 'philosophy', 'language', 'culture'],
+                    'science': ['science', 'physics', 'chemistry', 'biology', 'mathematics', 'math'],
+                    'law': ['law', 'legal', 'justice', 'jurisprudence'],
+                    'education': ['education', 'teaching', 'pedagogy', 'training']
+                };
+
+                const keywords = fieldKeywords[fieldLower] || [fieldLower];
+
+                // Check if program name or category matches any keyword
+                const matchesField = keywords.some(keyword => {
+                    const programNameLower = program.name.toLowerCase();
+                    const categoryLower = (program.category || '').toLowerCase();
+                    return programNameLower.includes(keyword) ||
+                        categoryLower.includes(keyword) ||
+                        categoryLower === fieldLower;
+                });
+
+                if (!matchesField) return false;
             }
 
             // Tuition filter
@@ -100,17 +206,22 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
                 return false;
             }
 
-            // Language filter
+            // Language filter - flexible matching
             if (filters.languages.length > 0) {
-                const hasMatchingLanguage = program.badges.some(badge => 
-                    filters.languages.includes(badge)
+                const hasMatchingLanguage = program.badges.some(badge =>
+                    filters.languages.some(filterLang =>
+                        badge.toLowerCase().includes(filterLang.toLowerCase())
+                    )
                 );
                 if (!hasMatchingLanguage) return false;
             }
 
-            // City filter
-            if (filters.cities.length > 0 && !filters.cities.includes(program.city)) {
-                return false;
+            // City filter - case insensitive
+            if (filters.cities.length > 0) {
+                const hasMatchingCity = filters.cities.some(filterCity =>
+                    program.city.toLowerCase() === filterCity.toLowerCase()
+                );
+                if (!hasMatchingCity) return false;
             }
 
             // University filter
@@ -143,10 +254,11 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
                                 <Search className="h-5 w-5 text-primary" />
                                 Filters
                             </h2>
-                            <ProgramFilters 
+                            <ProgramFilters
                                 onFilterChange={setFilters}
                                 availableCities={availableCities}
                                 availableUniversities={availableUniversities}
+                                currentFilters={filters}
                             />
                         </div>
                     </div>
@@ -154,6 +266,81 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
 
                 {/* Main Content */}
                 <div className="flex-1 space-y-6">
+                    {/* Active Filters Display */}
+                    {(filters.levels.length > 0 || filters.cities.length > 0 || filters.languages.length > 0 || filters.field !== 'all' || filters.scholarship) && (
+                        <div className="bg-card rounded-xl border shadow-sm p-4">
+                            <div className="flex items-center justify-between flex-wrap gap-3">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-sm font-semibold text-muted-foreground">Active Filters:</span>
+                                    {filters.levels.map(level => (
+                                        <Badge key={level} variant="secondary" className="gap-1">
+                                            {level}
+                                            <X
+                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
+                                                onClick={() => setFilters(prev => ({ ...prev, levels: prev.levels.filter(l => l !== level) }))}
+                                            />
+                                        </Badge>
+                                    ))}
+                                    {filters.cities.map(city => (
+                                        <Badge key={city} variant="secondary" className="gap-1">
+                                            📍 {city}
+                                            <X
+                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
+                                                onClick={() => setFilters(prev => ({ ...prev, cities: prev.cities.filter(c => c !== city) }))}
+                                            />
+                                        </Badge>
+                                    ))}
+                                    {filters.languages.map(lang => (
+                                        <Badge key={lang} variant="secondary" className="gap-1">
+                                            🗣️ {lang}
+                                            <X
+                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
+                                                onClick={() => setFilters(prev => ({ ...prev, languages: prev.languages.filter(l => l !== lang) }))}
+                                            />
+                                        </Badge>
+                                    ))}
+                                    {filters.field !== 'all' && (
+                                        <Badge variant="secondary" className="gap-1">
+                                            📚 {filters.field === 'cs' ? 'Computer Science' :
+                                                filters.field.charAt(0).toUpperCase() + filters.field.slice(1)}
+                                            <X
+                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
+                                                onClick={() => setFilters(prev => ({ ...prev, field: 'all' }))}
+                                            />
+                                        </Badge>
+                                    )}
+                                    {filters.scholarship && (
+                                        <Badge variant="secondary" className="gap-1">
+                                            🎓 Scholarship
+                                            <X
+                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
+                                                onClick={() => setFilters(prev => ({ ...prev, scholarship: false }))}
+                                            />
+                                        </Badge>
+                                    )}
+                                </div>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setFilters({
+                                        search: '',
+                                        levels: [],
+                                        field: 'all',
+                                        maxTuition: 200000,
+                                        languages: [],
+                                        cities: [],
+                                        duration: 'all',
+                                        scholarship: false,
+                                        university: 'all',
+                                    })}
+                                >
+                                    <X className="h-4 w-4 mr-1" />
+                                    Clear All
+                                </Button>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Top Bar */}
                     <div className="bg-card rounded-xl border shadow-sm p-4">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">

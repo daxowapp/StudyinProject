@@ -31,29 +31,17 @@ interface ProgramFiltersProps {
     onFilterChange: (filters: FilterState) => void;
     availableCities?: string[];
     availableUniversities?: string[];
+    currentFilters: FilterState;
 }
 
-export function ProgramFilters({ onFilterChange, availableCities = [], availableUniversities = [] }: ProgramFiltersProps) {
-    const [filters, setFilters] = useState<FilterState>({
-        search: '',
-        levels: [],
-        field: 'all',
-        maxTuition: 200000,
-        languages: [],
-        cities: [],
-        duration: 'all',
-        scholarship: false,
-        university: 'all',
-    });
-
+export function ProgramFilters({ onFilterChange, availableCities = [], availableUniversities = [], currentFilters }: ProgramFiltersProps) {
     const updateFilters = (updates: Partial<FilterState>) => {
-        const newFilters = { ...filters, ...updates };
-        setFilters(newFilters);
+        const newFilters = { ...currentFilters, ...updates };
         onFilterChange(newFilters);
     };
 
     const toggleArrayFilter = (key: keyof FilterState, value: string) => {
-        const currentArray = filters[key] as string[];
+        const currentArray = currentFilters[key] as string[];
         const newArray = currentArray.includes(value)
             ? currentArray.filter(v => v !== value)
             : [...currentArray, value];
@@ -72,16 +60,15 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             scholarship: false,
             university: 'all',
         };
-        setFilters(defaultFilters);
         onFilterChange(defaultFilters);
     };
 
     return (
         <div className="space-y-4">
             {/* Clear Filters Button */}
-            <Button 
-                variant="outline" 
-                className="w-full" 
+            <Button
+                variant="outline"
+                className="w-full"
                 onClick={clearFilters}
             >
                 <X className="h-4 w-4 mr-2" />
@@ -93,10 +80,10 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 <Label className="text-sm font-medium">Search</Label>
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                        className="pl-9 h-10" 
-                        placeholder="Program or major..." 
-                        value={filters.search}
+                    <Input
+                        className="pl-9 h-10"
+                        placeholder="Program or major..."
+                        value={currentFilters?.search || ''}
                         onChange={(e) => updateFilters({ search: e.target.value })}
                     />
                 </div>
@@ -108,9 +95,9 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 <div className="space-y-2.5">
                     {["Bachelor", "Master", "PhD"].map((level) => (
                         <div key={level} className="flex items-center space-x-2">
-                            <Checkbox 
-                                id={level} 
-                                checked={filters.levels.includes(level)}
+                            <Checkbox
+                                id={level}
+                                checked={currentFilters?.levels?.includes(level) || false}
                                 onCheckedChange={() => toggleArrayFilter('levels', level)}
                             />
                             <Label htmlFor={level} className="font-normal text-sm cursor-pointer">{level}</Label>
@@ -122,7 +109,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             {/* Field of Study */}
             <div className="space-y-2">
                 <Label className="text-sm font-medium">Field of Study</Label>
-                <Select value={filters.field} onValueChange={(value) => updateFilters({ field: value })}>
+                <Select value={currentFilters?.field || 'all'} onValueChange={(value) => updateFilters({ field: value })}>
                     <SelectTrigger className="h-10">
                         <SelectValue placeholder="All Fields" />
                     </SelectTrigger>
@@ -142,10 +129,10 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-center">
                     <Label className="text-sm font-medium">Max Tuition</Label>
-                    <span className="text-sm font-medium text-primary">{filters.maxTuition.toLocaleString()} RMB</span>
+                    <span className="text-sm font-medium text-primary">{(currentFilters?.maxTuition || 200000).toLocaleString()} RMB</span>
                 </div>
                 <Slider
-                    value={[filters.maxTuition]}
+                    value={[currentFilters?.maxTuition || 200000]}
                     max={200000}
                     step={5000}
                     onValueChange={(value) => updateFilters({ maxTuition: value[0] })}
@@ -158,17 +145,17 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 <Label className="text-sm font-medium">Language</Label>
                 <div className="space-y-2.5">
                     <div className="flex items-center space-x-2">
-                        <Checkbox 
-                            id="english-prog" 
-                            checked={filters.languages.includes('English')}
+                        <Checkbox
+                            id="english-prog"
+                            checked={currentFilters?.languages?.includes('English') || false}
                             onCheckedChange={() => toggleArrayFilter('languages', 'English')}
                         />
                         <Label htmlFor="english-prog" className="font-normal text-sm cursor-pointer">English</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <Checkbox 
-                            id="chinese-prog" 
-                            checked={filters.languages.includes('Chinese')}
+                        <Checkbox
+                            id="chinese-prog"
+                            checked={currentFilters?.languages?.includes('Chinese') || false}
                             onCheckedChange={() => toggleArrayFilter('languages', 'Chinese')}
                         />
                         <Label htmlFor="chinese-prog" className="font-normal text-sm cursor-pointer">Chinese</Label>
@@ -179,7 +166,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             {/* City */}
             <div className="space-y-2">
                 <Label className="text-sm font-medium">City</Label>
-                <Select value={filters.cities[0] || 'all'} onValueChange={(value) => updateFilters({ cities: value === 'all' ? [] : [value] })}>
+                <Select value={currentFilters?.cities?.[0] || 'all'} onValueChange={(value) => updateFilters({ cities: value === 'all' ? [] : [value] })}>
                     <SelectTrigger className="h-10">
                         <SelectValue placeholder="All Cities" />
                     </SelectTrigger>
@@ -195,7 +182,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             {/* University */}
             <div className="space-y-2">
                 <Label className="text-sm font-medium">University</Label>
-                <Select value={filters.university} onValueChange={(value) => updateFilters({ university: value })}>
+                <Select value={currentFilters?.university || 'all'} onValueChange={(value) => updateFilters({ university: value })}>
                     <SelectTrigger className="h-10">
                         <SelectValue placeholder="All Universities" />
                     </SelectTrigger>
@@ -211,7 +198,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             {/* Duration */}
             <div className="space-y-2">
                 <Label className="text-sm font-medium">Duration</Label>
-                <Select value={filters.duration} onValueChange={(value) => updateFilters({ duration: value })}>
+                <Select value={currentFilters?.duration || 'all'} onValueChange={(value) => updateFilters({ duration: value })}>
                     <SelectTrigger className="h-10">
                         <SelectValue placeholder="All Durations" />
                     </SelectTrigger>
@@ -229,9 +216,9 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             {/* Scholarship Available */}
             <div className="space-y-3 pt-2">
                 <div className="flex items-center space-x-2">
-                    <Checkbox 
-                        id="scholarship" 
-                        checked={filters.scholarship}
+                    <Checkbox
+                        id="scholarship"
+                        checked={currentFilters?.scholarship || false}
                         onCheckedChange={(checked) => updateFilters({ scholarship: checked as boolean })}
                     />
                     <Label htmlFor="scholarship" className="font-normal text-sm cursor-pointer">Scholarship Available</Label>
