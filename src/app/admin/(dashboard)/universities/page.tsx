@@ -8,17 +8,58 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Search, Award } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Plus, Edit, Award } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
+import { UniversityFilters } from "./filters";
 
-export default async function AdminUniversitiesPage() {
+export default async function AdminUniversitiesPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
     const supabase = await createClient();
-    const { data: universities } = await supabase
+    const params = await searchParams;
+
+    // Parse search params
+    const search = typeof params.search === 'string' ? params.search : '';
+    const city = typeof params.city === 'string' ? params.city : '';
+    const province = typeof params.province === 'string' ? params.province : '';
+
+    // Build query
+    let query = supabase
         .from("universities")
-        .select("*, programs(count)")
-        .order("created_at", { ascending: false });
+        .select("*, university_programs(count)", { count: 'exact' });
+
+    if (search) {
+        query = query.ilike('name', `%${search}%`);
+    }
+    if (city && city !== 'all') {
+        query = query.eq('city', city);
+    }
+    if (province && province !== 'all') {
+        query = query.eq('province', province);
+    }
+
+    const { data: universities } = await query.order("created_at", { ascending: false });
+
+    // Fetch unique cities and provinces for filters
+    // We can do this efficiently by querying distinct values
+    const { data: citiesData } = await supabase
+        .from("universities")
+        .select("city")
+        .not("city", "is", null)
+        .order("city");
+
+    const { data: provincesData } = await supabase
+        .from("universities")
+        .select("province")
+        .not("province", "is", null)
+        .order("province");
+
+    // Extract unique values
+    const cities = Array.from(new Set(citiesData?.map(item => item.city) || [])).filter(Boolean) as string[];
+    const provinces = Array.from(new Set(provincesData?.map(item => item.province) || [])).filter(Boolean) as string[];
 
     return (
         <div className="space-y-8">
@@ -34,12 +75,7 @@ export default async function AdminUniversitiesPage() {
                 </Link>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div className="relative flex-1 max-w-sm">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input className="pl-9" placeholder="Search universities..." />
-                </div>
-            </div>
+            <UniversityFilters cities={cities} provinces={provinces} />
 
             <div className="border rounded-md">
                 <Table>
@@ -58,7 +94,7 @@ export default async function AdminUniversitiesPage() {
                             <TableRow key={uni.id}>
                                 <TableCell className="font-medium">{uni.name}</TableCell>
                                 <TableCell>{uni.city}</TableCell>
-                                <TableCell>{uni.programs[0]?.count || 0}</TableCell>
+                                <TableCell>{uni.university_programs?.[0]?.count || 0}</TableCell>
                                 <TableCell>
                                     <Badge variant="default">Active</Badge>
                                 </TableCell>

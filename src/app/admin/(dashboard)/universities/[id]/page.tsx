@@ -11,13 +11,13 @@ import { Separator } from "@/components/ui/separator";
 import { useState, useEffect, use } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
-import { 
-    ArrowLeft, 
-    Loader2, 
-    Trash2, 
-    Globe, 
-    MapPin, 
-    Users, 
+import {
+    ArrowLeft,
+    Loader2,
+    Trash2,
+    Globe,
+    MapPin,
+    Users,
     Calendar,
     Building2,
     GraduationCap,
@@ -29,6 +29,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { ProgramDialog } from "../../programs/components/ProgramDialog";
+import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
 
 export default function EditUniversityPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -42,6 +44,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [videoUrl, setVideoUrl] = useState<string>("");
     const [mapLocation, setMapLocation] = useState({ lat: 39.9042, lng: 116.4074 }); // Default: Beijing
     const [featureInput, setFeatureInput] = useState<string>("");
+    const [languages, setLanguages] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",
@@ -66,7 +69,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     useEffect(() => {
         const fetchUniversity = async () => {
             const supabase = createClient();
-            
+
             // Fetch university
             const { data, error } = await supabase
                 .from("universities")
@@ -79,6 +82,12 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 .from("v_university_programs_full")
                 .select("*")
                 .eq("university_id", id);
+
+            // Fetch languages for ProgramDialog
+            const { data: languagesData } = await supabase
+                .from("languages")
+                .select("*")
+                .order("name");
 
             if (error) {
                 toast.error("Error fetching university");
@@ -113,6 +122,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 }
                 // Set programs from the view data
                 setPrograms(programsData || []);
+                setLanguages(languagesData || []);
             }
             setLoading(false);
         };
@@ -247,6 +257,29 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         }
     };
 
+    const handleAiDataReceived = (data: any) => {
+        setFormData(prev => ({
+            ...prev,
+            name: data.name || prev.name,
+            name_local: data.name_local || prev.name_local,
+            city: data.city || prev.city,
+            province: data.province || prev.province,
+            description: data.description || prev.description,
+            website: data.website || prev.website,
+            founded: data.founded || prev.founded,
+            total_students: data.total_students || prev.total_students,
+            international_students: data.international_students || prev.international_students,
+            ranking: data.ranking || prev.ranking,
+            features: data.features && Array.isArray(data.features) ? [...new Set([...prev.features, ...data.features])] : prev.features,
+            latitude: data.latitude || prev.latitude,
+            longitude: data.longitude || prev.longitude,
+        }));
+
+        if (data.latitude && data.longitude) {
+            setMapLocation({ lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) });
+        }
+    };
+
     if (loading) {
         return <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
     }
@@ -264,6 +297,13 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     <div>
                         <h1 className="text-3xl font-bold font-heading">{formData.name}</h1>
                         <p className="text-muted-foreground">{formData.city}, {formData.province}</p>
+                    </div>
+                    <div className="ml-4">
+                        <AiGeneratorButton
+                            type="university"
+                            onDataReceived={handleAiDataReceived}
+                            initialQuery={formData.name}
+                        />
                     </div>
                 </div>
                 <div className="flex gap-2">
@@ -389,16 +429,16 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                             />
                                         </div>
                                     </div>
-                                    
+
                                     {/* Logo Upload */}
                                     <div className="space-y-2">
                                         <Label htmlFor="logo">University Logo</Label>
                                         <div className="flex items-start gap-4">
                                             {logoPreview && (
                                                 <div className="relative w-32 h-32 border-2 border-dashed rounded-lg overflow-hidden">
-                                                    <img 
-                                                        src={logoPreview} 
-                                                        alt="Logo preview" 
+                                                    <img
+                                                        src={logoPreview}
+                                                        alt="Logo preview"
                                                         className="w-full h-full object-contain p-2"
                                                     />
                                                     <button
@@ -438,9 +478,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <div className="flex items-start gap-4">
                                             {coverPhotoPreview && (
                                                 <div className="relative w-full h-48 border-2 border-dashed rounded-lg overflow-hidden">
-                                                    <img 
-                                                        src={coverPhotoPreview} 
-                                                        alt="Cover photo preview" 
+                                                    <img
+                                                        src={coverPhotoPreview}
+                                                        alt="Cover photo preview"
                                                         className="w-full h-full object-cover"
                                                     />
                                                     <button
@@ -487,9 +527,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                                     {galleryPreviews.map((preview, index) => (
                                                         <div key={index} className="relative aspect-video border-2 border-dashed rounded-lg overflow-hidden group">
-                                                            <img 
-                                                                src={preview} 
-                                                                alt={`Gallery ${index + 1}`} 
+                                                            <img
+                                                                src={preview}
+                                                                alt={`Gallery ${index + 1}`}
                                                                 className="w-full h-full object-cover"
                                                             />
                                                             <button
@@ -503,7 +543,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                     ))}
                                                 </div>
                                             )}
-                                            
+
                                             {/* Upload Button */}
                                             <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
                                                 <input
@@ -551,10 +591,10 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                         <iframe
                                                             width="100%"
                                                             height="100%"
-                                                            src={`https://www.youtube.com/embed/${formData.video_url.includes('youtu.be') 
+                                                            src={`https://www.youtube.com/embed/${formData.video_url.includes('youtu.be')
                                                                 ? formData.video_url.split('youtu.be/')[1]?.split('?')[0]
                                                                 : formData.video_url.split('v=')[1]?.split('&')[0]
-                                                            }`}
+                                                                }`}
                                                             title="University Video"
                                                             frameBorder="0"
                                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -645,7 +685,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <p className="text-xs text-muted-foreground">
                                             Enter coordinates manually or use Google Maps to find the location
                                         </p>
-                                        
+
                                         {/* Map Preview */}
                                         {formData.latitude && formData.longitude && (
                                             <div className="mt-2 p-3 bg-muted rounded-lg">
@@ -663,7 +703,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
                                                     <MapPin className="h-3 w-3" />
                                                     <span>Location: {formData.latitude}, {formData.longitude}</span>
-                                                    <a 
+                                                    <a
                                                         href={`https://www.google.com/maps/search/?api=1&query=${formData.latitude},${formData.longitude}`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
@@ -784,7 +824,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <p className="text-sm text-muted-foreground">
                                             Add tags like "Project 985", "C9 League", "Comprehensive University", etc.
                                         </p>
-                                        
+
                                         {/* Display existing features */}
                                         {formData.features.length > 0 && (
                                             <div className="flex flex-wrap gap-2 p-4 bg-muted/50 rounded-lg">
@@ -805,7 +845,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 ))}
                                             </div>
                                         )}
-                                        
+
                                         {/* Add new feature */}
                                         <div className="flex gap-2">
                                             <Input
@@ -841,7 +881,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 Add
                                             </Button>
                                         </div>
-                                        
+
                                         {/* Quick add common features */}
                                         <div className="space-y-2">
                                             <p className="text-xs text-muted-foreground">Quick add:</p>
@@ -950,12 +990,17 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                         </Button>
                                                     </Link>
                                                 )}
-                                                <Link href={`/admin/programs`}>
-                                                    <Button variant="ghost" size="sm">
-                                                        <Edit className="h-4 w-4 mr-1" />
-                                                        Edit
-                                                    </Button>
-                                                </Link>
+                                                <ProgramDialog
+                                                    program={program}
+                                                    universities={[{ id: id, name: formData.name }]}
+                                                    languages={languages}
+                                                    trigger={
+                                                        <Button variant="ghost" size="sm">
+                                                            <Edit className="h-4 w-4 mr-1" />
+                                                            Edit
+                                                        </Button>
+                                                    }
+                                                />
                                             </div>
                                         </div>
                                     ))}

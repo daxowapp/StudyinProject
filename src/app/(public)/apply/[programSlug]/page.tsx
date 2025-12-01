@@ -88,6 +88,13 @@ export default async function ApplyPage({
     .eq('university_id', program.university.id)
     .eq('program_level', program.program_catalog.level);
 
+  // Fetch user profile
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,6 +102,7 @@ export default async function ApplyPage({
           program={program}
           requirements={requirements || []}
           user={user}
+          profile={profile}
         />
       </div>
     </div>

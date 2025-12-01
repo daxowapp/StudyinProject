@@ -31,33 +31,34 @@ interface ApplyFormProps {
   program: any;
   requirements: any[];
   user: any;
+  profile?: any;
 }
 
-export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
+export function ApplyForm({ program, requirements, user, profile }: ApplyFormProps) {
   const router = useRouter();
   const supabase = createClient();
-  
+
   const [step, setStep] = useState(1); // 1: Info, 2: Documents, 3: Payment, 4: Review
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [applicationId, setApplicationId] = useState<string | null>(null);
-  
-  // Form state - pre-fill from user metadata
+
+  // Form state - pre-fill from user metadata or profile
   const [formData, setFormData] = useState({
-    student_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+    student_name: profile?.full_name || profile?.name || (profile?.first_name ? `${profile.first_name} ${profile.last_name}` : '') || user.user_metadata?.full_name || user.user_metadata?.name || '',
     student_email: user.email || '',
-    student_phone: user.user_metadata?.phone || '',
-    student_country: user.user_metadata?.country || '',
-    student_passport: user.user_metadata?.passport || '',
+    student_phone: profile?.phone || user.user_metadata?.phone || '',
+    student_country: profile?.nationality || profile?.country || user.user_metadata?.country || '',
+    student_passport: profile?.passport_number || profile?.passport || user.user_metadata?.passport || '',
     preferred_intake: program.intake || '',
-    emergency_contact_name: user.user_metadata?.emergency_contact_name || '',
-    emergency_contact_phone: user.user_metadata?.emergency_contact_phone || '',
-    emergency_contact_relationship: user.user_metadata?.emergency_contact_relationship || '',
+    emergency_contact_name: profile?.emergency_contact_name || user.user_metadata?.emergency_contact_name || '',
+    emergency_contact_phone: profile?.emergency_contact_phone || user.user_metadata?.emergency_contact_phone || '',
+    emergency_contact_relationship: profile?.emergency_contact_relationship || user.user_metadata?.emergency_contact_relationship || '',
   });
 
-  const [phoneCountryCode, setPhoneCountryCode] = useState(user.user_metadata?.phone_country_code || '+86');
-  const [emergencyPhoneCode, setEmergencyPhoneCode] = useState(user.user_metadata?.emergency_phone_code || '+86');
+  const [phoneCountryCode, setPhoneCountryCode] = useState(profile?.phone_country_code || user.user_metadata?.phone_country_code || '+86');
+  const [emergencyPhoneCode, setEmergencyPhoneCode] = useState(profile?.emergency_phone_code || user.user_metadata?.emergency_phone_code || '+86');
 
   const [uploadedDocuments, setUploadedDocuments] = useState<Record<string, File>>({});
   const [documentUrls, setDocumentUrls] = useState<Record<string, string>>({});
@@ -90,7 +91,7 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
       // Upload file to Supabase Storage
       const fileExt = file.name.split('.').pop();
       const fileName = `${user.id}/${requirementId}/${Date.now()}.${fileExt}`;
-      
+
       const { data, error: uploadError } = await supabase.storage
         .from('application-documents')
         .upload(fileName, file);
@@ -181,7 +182,7 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
       setApplicationId(application.id);
       setSuccess(true);
       setLoading(false);
-      
+
       // Redirect to dashboard after 3 seconds
       setTimeout(() => {
         router.push('/dashboard');
@@ -210,15 +211,15 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
             >
               <CheckCircle2 className="w-16 h-16 text-white" />
             </motion.div>
-            
+
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Application Submitted Successfully! 🎉
             </h2>
-            
+
             <p className="text-lg text-gray-600 mb-6">
               Your application has been received and is now under review.
             </p>
-            
+
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-semibold text-gray-600">Application ID:</span>
@@ -233,7 +234,7 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
                 <span className="text-sm font-medium text-gray-900">{program.university.name}</span>
               </div>
             </div>
-            
+
             <div className="space-y-3 text-left bg-blue-50 rounded-xl p-6 mb-6">
               <h3 className="font-semibold text-gray-900 mb-3">What's Next?</h3>
               <div className="flex items-start gap-3">
@@ -249,11 +250,11 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
                 <p className="text-sm text-gray-700">Track your application status in your dashboard</p>
               </div>
             </div>
-            
+
             <p className="text-sm text-gray-500 mb-6">
               Redirecting to your dashboard in 3 seconds...
             </p>
-            
+
             <Button
               onClick={() => router.push('/dashboard')}
               size="lg"
@@ -301,11 +302,10 @@ export function ApplyForm({ program, requirements, user }: ApplyFormProps) {
         ].map((s, idx) => (
           <div key={s.num} className="flex items-center">
             <div
-              className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${
-                step >= s.num
+              className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${step >= s.num
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-200 text-gray-600'
-              }`}
+                }`}
             >
               {step > s.num ? <CheckCircle2 className="w-6 h-6" /> : s.num}
             </div>
