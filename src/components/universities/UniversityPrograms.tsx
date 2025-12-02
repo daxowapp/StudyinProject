@@ -35,7 +35,7 @@ export function UniversityPrograms({ programs }: UniversityProgramsProps) {
                                     <div className="flex items-center gap-2">
                                         <Badge variant="outline">{program.level}</Badge>
                                         {program.badges.map((badge: string) => (
-                                            <Badge key={badge} variant="secondary" className="bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900/30 dark:text-green-400">
+                                            <Badge key={badge} variant="secondary" className="bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400">
                                                 {badge}
                                             </Badge>
                                         ))}

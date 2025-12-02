@@ -137,7 +137,7 @@ export default async function DashboardPage() {
                                                 className={
                                                     app.status === "pending_documents" || app.status === "pending_payment" ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-100" :
                                                         app.status === "submitted" || app.status === "under_review" ? "bg-blue-100 text-blue-800 hover:bg-blue-100" :
-                                                            app.status === "accepted" ? "bg-green-100 text-green-800 hover:bg-green-100" :
+                                                            app.status === "accepted" ? "bg-amber-100 text-amber-800 hover:bg-amber-100" :
                                                                 app.status === "rejected" ? "bg-red-100 text-red-800 hover:bg-red-100" :
                                                                     "bg-gray-100 text-gray-800 hover:bg-gray-100"
                                                 }

@@ -30,7 +30,7 @@ export default async function ProgramsPage() {
                                 <CardTitle className="text-xl font-semibold flex items-center gap-2">
                                     {program.title}
                                     {program.is_active ? (
-                                        <Badge variant="default" className="bg-green-600 hover:bg-green-700">Active</Badge>
+                                        <Badge variant="default" className="bg-amber-600 hover:bg-amber-700">Active</Badge>
                                     ) : (
                                         <Badge variant="secondary">Inactive</Badge>
                                     )}
@@ -58,7 +58,7 @@ export default async function ProgramsPage() {
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground block">Scholarship</span>
-                                    <span className="font-medium text-green-600">
+                                    <span className="font-medium text-amber-600">
                                         {program.scholarship_chance || "N/A"}
                                     </span>
                                 </div>

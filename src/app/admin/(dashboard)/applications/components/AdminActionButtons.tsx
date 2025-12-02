@@ -34,7 +34,7 @@ export function VerifyPaymentButton({ transactionId }: VerifyPaymentButtonProps)
             size="sm"
             onClick={handleVerify}
             disabled={isLoading}
-            className="bg-green-600 hover:bg-green-700 text-white gap-2"
+            className="bg-amber-600 hover:bg-amber-700 text-white gap-2"
         >
             {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -74,7 +74,7 @@ export function ApproveDocumentButton({ requestId }: ApproveDocumentButtonProps)
             size="sm"
             onClick={handleApprove}
             disabled={isLoading}
-            className="bg-green-600 hover:bg-green-700 text-white gap-2"
+            className="bg-amber-600 hover:bg-amber-700 text-white gap-2"
         >
             {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

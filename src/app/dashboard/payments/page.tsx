@@ -258,7 +258,7 @@ export default async function PaymentsPage() {
                         {payment.payment_link_expires_at &&
                           new Date(payment.payment_link_expires_at) > new Date() ? (
                           <Link href={payment.payment_link}>
-                            <Button className="w-full lg:w-auto bg-green-600 hover:bg-green-700">
+                            <Button className="w-full lg:w-auto bg-amber-600 hover:bg-amber-700">
                               <CreditCard className="w-4 h-4 mr-2" />
                               Pay Now
                             </Button>

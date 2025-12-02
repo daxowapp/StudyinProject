@@ -24,7 +24,7 @@ const features = [
         title: "Career Launchpad",
         description: "Access to Asia's largest economy with unmatched internship and job opportunities.",
         icon: Globe,
-        gradient: "from-accent to-green-500",
+        gradient: "from-accent to-yellow-500",
         iconBg: "bg-accent/10",
         iconColor: "text-accent"
     },
@@ -114,7 +114,7 @@ export function WhyStudySection() {
                         </span>
                     </h2>
                     <p className="mt-6 text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                        China combines ancient wisdom with cutting-edge innovation, offering international students 
+                        China combines ancient wisdom with cutting-edge innovation, offering international students
                         an unparalleled educational experience in the heart of Asia's economic powerhouse.
                     </p>
                 </motion.div>
@@ -136,7 +136,7 @@ export function WhyStudySection() {
                             <div className="relative h-full rounded-3xl bg-card border border-border p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                                 {/* Gradient Overlay on Hover */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                                
+
                                 {/* Icon */}
                                 <div className={`relative h-16 w-16 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                                     <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
