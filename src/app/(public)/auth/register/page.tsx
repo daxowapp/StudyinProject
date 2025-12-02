@@ -12,7 +12,9 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function RegisterPage() {
+import { Suspense } from "react";
+
+function RegisterContent() {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -102,5 +104,13 @@ export default function RegisterPage() {
                 </div>
             </CardFooter>
         </Card>
+    );
+}
+
+export default function RegisterPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RegisterContent />
+        </Suspense>
     );
 }

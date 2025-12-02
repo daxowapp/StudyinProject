@@ -14,9 +14,9 @@ import Link from "next/link";
 
 export default async function ScholarshipTypesPage() {
     const supabase = await createClient();
-    
+
     // Fetch university scholarships with university names
-    const { data: scholarships, error } = await supabase
+    const { data: scholarshipTypes, error } = await supabase
         .from("university_scholarships")
         .select(`
             *,
@@ -32,7 +32,7 @@ export default async function ScholarshipTypesPage() {
     }
 
     // Group scholarships by university
-    const groupedByUniversity = scholarships?.reduce((acc: any, scholarship: any) => {
+    const groupedByUniversity = scholarshipTypes?.reduce((acc: any, scholarship: any) => {
         const universityName = scholarship.universities?.name || "Unknown University";
         if (!acc[universityName]) {
             acc[universityName] = [];
@@ -82,7 +82,7 @@ export default async function ScholarshipTypesPage() {
                         <div>
                             <p className="text-sm font-medium text-muted-foreground">Avg Service Fee</p>
                             <p className="text-3xl font-bold">
-                                ${scholarshipTypes && scholarshipTypes.length > 0 
+                                ${scholarshipTypes && scholarshipTypes.length > 0
                                     ? Math.round(scholarshipTypes.reduce((sum, t) => sum + (Number(t.service_fee_usd) || 0), 0) / scholarshipTypes.length)
                                     : 0}
                             </p>
@@ -155,7 +155,7 @@ export default async function ScholarshipTypesPage() {
                     About Scholarship Types
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                    Scholarship types define the different coverage options available to students. Each type has a tuition coverage percentage and an associated service fee. 
+                    Scholarship types define the different coverage options available to students. Each type has a tuition coverage percentage and an associated service fee.
                     These types are displayed on university and program pages to help students understand their financial options.
                 </p>
             </div>

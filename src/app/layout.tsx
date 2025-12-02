@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingBar } from "@/components/ui/loading-bar";
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body
         className={`font-body antialiased flex flex-col min-h-screen`}
       >
-        <LoadingBar />
+        <Suspense fallback={null}>
+          <LoadingBar />
+        </Suspense>
         {children}
         <Toaster />
       </body>

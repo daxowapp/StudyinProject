@@ -46,7 +46,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
     }, [university.id]);
 
     const uniqueLevels = university.programs?.map((p: any) => p.level as string) || [];
-    const programLevels: string[] = ["all", ...Array.from(new Set(uniqueLevels))];
+    const programLevels: string[] = ["all", ...(Array.from(new Set(uniqueLevels)) as string[])];
 
     // Filter programs by level
     const filteredPrograms = programLevel === "all"

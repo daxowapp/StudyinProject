@@ -26,7 +26,7 @@ interface ScholarshipType {
     one_time_allowance: number | null;
 }
 
-const defaultScholarshipTypes = [
+const scholarshipTypes = [
     {
         name: "Type A",
         displayName: "Full Scholarship",
@@ -104,7 +104,7 @@ interface ScholarshipTypesSectionProps {
     compact?: boolean;
 }
 
-export function ScholarshipTypesSection({ 
+export function ScholarshipTypesSection({
     title = "Available Scholarship Types",
     description = "Choose the scholarship type that fits your budget",
     compact = false
@@ -124,8 +124,8 @@ export function ScholarshipTypesSection({
             {/* Scholarship Cards */}
             <div className={`grid gap-6 ${compact ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
                 {scholarshipTypes.map((type, index) => (
-                    <Card 
-                        key={index} 
+                    <Card
+                        key={index}
                         className={`border-2 ${type.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${type.color} relative overflow-hidden`}
                     >
                         {type.popular && (
