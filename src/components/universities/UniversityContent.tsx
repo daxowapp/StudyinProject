@@ -222,6 +222,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     >
                         <UniversityScholarshipsSection
                             universityId={university.id}
+                            universitySlug={university.slug}
                             title="Available Scholarship Options"
                             description="Choose the scholarship type that best fits your budget for programs at this university"
                             showHeader={false}

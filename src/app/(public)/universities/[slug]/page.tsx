@@ -41,6 +41,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
 
     const universityData = {
         id: university.id,
+        slug: university.slug,
         name: university.name,
         nameLocal: university.name_local || university.name,
         city: university.city,

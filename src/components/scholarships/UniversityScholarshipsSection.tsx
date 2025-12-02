@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DollarSign, Check, Award, Home, Heart, Activity } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 interface UniversityScholarship {
@@ -30,6 +31,7 @@ interface UniversityScholarship {
 
 interface UniversityScholarshipsSectionProps {
     universityId: string;
+    universitySlug?: string;
     title?: string;
     description?: string;
     showHeader?: boolean;
@@ -37,6 +39,7 @@ interface UniversityScholarshipsSectionProps {
 
 export function UniversityScholarshipsSection({
     universityId,
+    universitySlug,
     title = "Available Scholarship Types",
     description = "Choose the scholarship type that fits your budget",
     showHeader = true
@@ -44,6 +47,20 @@ export function UniversityScholarshipsSection({
     const [scholarships, setScholarships] = useState<UniversityScholarship[]>([]);
     const [loading, setLoading] = useState(true);
     const supabase = createClient();
+    const router = useRouter();
+
+    const handleApply = async () => {
+        const { data: { user } } = await supabase.auth.getUser();
+        const targetUrl = universitySlug
+            ? `/programs?university=${universitySlug}`
+            : `/programs`;
+
+        if (user) {
+            router.push(targetUrl);
+        } else {
+            router.push(`/auth/register?next=${encodeURIComponent(targetUrl)}`);
+        }
+    };
 
     useEffect(() => {
         fetchScholarships();
@@ -261,11 +278,12 @@ export function UniversityScholarshipsSection({
                                 </div>
 
                                 {/* Apply Button */}
-                                <Link href="/programs" className="mt-auto">
-                                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm">
-                                        Apply Now
-                                    </Button>
-                                </Link>
+                                <Button
+                                    onClick={handleApply}
+                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm mt-auto"
+                                >
+                                    Apply Now
+                                </Button>
                             </div>
                         </div>
                     );
