@@ -101,7 +101,7 @@ export function Sidebar({ className }: SidebarProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
                 <Link href="/admin" className="flex items-center gap-3 font-bold text-xl tracking-tight group relative z-10">
                     <img
-                        src="/logo.png"
+                        src="/logo-red.png"
                         alt="StudyAtChina Admin"
                         className="h-11 w-auto object-contain group-hover:scale-110 transition-all duration-300"
                     />

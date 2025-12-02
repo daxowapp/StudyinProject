@@ -77,9 +77,9 @@ export function Navbar() {
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative h-12 w-auto">
                             <img
-                                src="/logo.png"
+                                src={showSolid ? "/logo-red.png" : "/logo-white.png"}
                                 alt="StudyAtChina Logo"
-                                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                                className="h-12 w-auto object-contain group-hover:scale-105 transition-all duration-500"
                             />
                         </div>
                     </Link>
@@ -200,7 +200,7 @@ export function Navbar() {
                                     {/* Mobile Logo */}
                                     <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
                                         <img
-                                            src="/logo.png"
+                                            src="/logo-red.png"
                                             alt="StudyAtChina Logo"
                                             className="h-10 w-auto object-contain"
                                         />

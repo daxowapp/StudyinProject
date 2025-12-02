@@ -51,7 +51,7 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-6 group">
                             <img
-                                src="/logo.png"
+                                src="/logo-red.png"
                                 alt="StudyAtChina Logo"
                                 className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
                             />
