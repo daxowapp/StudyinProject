@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
+import { ScholarshipCTA } from "@/components/scholarships/ScholarshipCTA";
 import { AccommodationSection } from "./AccommodationSection";
 import {
     CheckCircle2, Globe, MapPin, Users, Calendar,
@@ -90,12 +91,21 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         </motion.div>
                     )}
 
+                    {/* Scholarship CTA */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                    >
+                        <ScholarshipCTA />
+                    </motion.div>
+
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.15 }}
+                            transition={{ delay: 0.2 }}
                         >
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
@@ -196,6 +206,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             universityId={university.id}
                             title="Available Scholarship Options"
                             description="Choose the scholarship type that best fits your budget for programs at this university"
+                            showHeader={false}
                         />
                     </motion.div>
 
