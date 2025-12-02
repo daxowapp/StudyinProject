@@ -51,44 +51,23 @@ export default async function UniversitiesPage() {
         console.log("No universities found in database");
     }
 
-    // Fetch program counts and minimum tuition for each university
-    const universitiesWithCounts = await Promise.all(
-        (universities || []).map(async (uni) => {
-            try {
-                // Get count
-                const { count } = await supabase
-                    .from("university_programs")
-                    .select("*", { count: "exact", head: true })
-                    .eq("university_id", uni.id)
-                    .eq("is_active", true);
+    // Fetch stats from view
+    const { data: stats } = await supabase
+        .from("v_university_stats")
+        .select("*");
 
-                // Get minimum tuition
-                const { data: minTuitionData } = await supabase
-                    .from("university_programs")
-                    .select("tuition_fee, currency")
-                    .eq("university_id", uni.id)
-                    .eq("is_active", true)
-                    .order("tuition_fee", { ascending: true })
-                    .limit(1)
-                    .single();
+    // Create a map for quick lookup
+    const statsMap = new Map(stats?.map((s: any) => [s.university_id, s]) || []);
 
-                return {
-                    ...uni,
-                    programCount: count || 0,
-                    minTuitionFee: minTuitionData?.tuition_fee,
-                    currency: minTuitionData?.currency || "CNY"
-                };
-            } catch (err) {
-                console.error(`Error fetching programs for ${uni.name}:`, err);
-                return {
-                    ...uni,
-                    programCount: 0,
-                    minTuitionFee: null,
-                    currency: "CNY"
-                };
-            }
-        })
-    );
+    const universitiesWithCounts = (universities || []).map((uni) => {
+        const stat = statsMap.get(uni.id);
+        return {
+            ...uni,
+            programCount: stat?.program_count || 0,
+            minTuitionFee: stat?.min_tuition_fee,
+            currency: stat?.currency || "CNY"
+        };
+    });
 
     // Transform data and filter active universities
     const formattedUniversities = universitiesWithCounts

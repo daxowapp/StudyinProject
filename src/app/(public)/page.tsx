@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
   let formattedPrograms: any[] = [];
-  let universities: any[] = [];
+  let universitiesWithStats: any[] = [];
 
   try {
     const supabase = await createClient();
@@ -96,28 +96,46 @@ export default async function Home() {
       )
     ]).catch(() => ({ data: null, error: null }));
 
+    // Fetch stats for these universities
+    if (universitiesData) {
+      const { data: stats } = await supabase
+        .from("v_university_stats")
+        .select("*")
+        .in("university_id", universitiesData.map((u: any) => u.id));
+
+      const statsMap = new Map(stats?.map((s: any) => [s.university_id, s]) || []);
+
+      universitiesWithStats = universitiesData.map((uni: any) => {
+        const stat = statsMap.get(uni.id);
+        return {
+          ...uni,
+          programCount: stat?.program_count || 0,
+          minTuitionFee: stat?.min_tuition_fee,
+          currency: stat?.currency || "CNY"
+        };
+      });
+    }
+
     if (universitiesError) {
       console.error("Error fetching universities:", universitiesError);
     }
-
-    universities = universitiesData || [];
   } catch (error) {
     console.error("Error in Home page:", error);
     // Continue rendering with empty data
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <main className="min-h-screen bg-background">
       <HeroSection />
       <WhyStudySection />
       <HowItWorksSection />
       <FeaturedProgramsSection programs={formattedPrograms} />
-      <FeaturedUniversitiesSection universities={universities || []} />
+      <FeaturedUniversitiesSection universities={universitiesWithStats} />
       <StatsSection />
       <ScholarshipsSection />
       <TestimonialsSection />
-      <PartnersSection universities={universities || []} />
+      <PartnersSection />
       <FAQPreviewSection />
-    </div>
+    </main>
   );
 }

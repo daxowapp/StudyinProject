@@ -20,6 +20,9 @@ interface University {
     total_students?: string;
     ranking?: string;
     has_fast_track?: boolean;
+    programCount?: number;
+    minTuitionFee?: number;
+    currency?: string;
 }
 
 interface FeaturedUniversitiesSectionProps {
@@ -170,13 +173,22 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
 
                                             {/* Stats - Fixed height */}
                                             <div className="space-y-2 mb-4 min-h-[4rem]">
-                                                {uni.founded && (
+                                                {uni.programCount !== undefined && uni.programCount > 0 && (
                                                     <div className="flex items-center justify-between text-sm">
-                                                        <span className="text-muted-foreground">Founded</span>
-                                                        <span className="font-semibold">{uni.founded}</span>
+                                                        <span className="text-muted-foreground">Programs</span>
+                                                        <span className="font-semibold">{uni.programCount}+</span>
                                                     </div>
                                                 )}
-                                                {uni.total_students && (
+                                                {uni.minTuitionFee !== undefined && (
+                                                    <div className="flex items-center justify-between text-sm">
+                                                        <span className="text-muted-foreground">Tuition from</span>
+                                                        <span className="font-semibold">
+                                                            {uni.currency === "USD" ? "$" : "¥"}
+                                                            {uni.minTuitionFee.toLocaleString()}
+                                                        </span>
+                                                    </div>
+                                                )}
+                                                {!uni.minTuitionFee && uni.total_students && (
                                                     <div className="flex items-center justify-between text-sm">
                                                         <span className="text-muted-foreground">Students</span>
                                                         <span className="font-semibold">{uni.total_students}</span>
