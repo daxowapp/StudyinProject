@@ -29,7 +29,9 @@ import {
     Upload,
     X,
     Image as ImageIcon,
-    Plus
+    Plus,
+    Award,
+    Home
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -51,6 +53,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [featureInput, setFeatureInput] = useState<string>("");
     const [languages, setLanguages] = useState<any[]>([]);
     const [accommodations, setAccommodations] = useState<any[]>([]);
+    const [scholarships, setScholarships] = useState<any[]>([]);
     const [showAccommodationDialog, setShowAccommodationDialog] = useState(false);
     const [selectedAccommodation, setSelectedAccommodation] = useState<any>(null);
     const [accommodationFeatureInput, setAccommodationFeatureInput] = useState("");
@@ -106,6 +109,13 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 .eq("university_id", id)
                 .order("display_order", { ascending: true });
 
+            // Fetch scholarships
+            const { data: scholarshipsData } = await supabase
+                .from("university_scholarships")
+                .select("*")
+                .eq("university_id", id)
+                .order("display_order", { ascending: true });
+
             // Fetch languages for ProgramDialog
             const { data: languagesData } = await supabase
                 .from("languages")
@@ -154,6 +164,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 setPrograms(programsData || []);
                 setLanguages(languagesData || []);
                 setAccommodations(accommodationsData || []);
+                setScholarships(scholarshipsData || []);
             }
             setLoading(false);
         };
@@ -466,8 +477,12 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                             <GraduationCap className="h-4 w-4 mr-2" />
                             Programs ({programs.length})
                         </TabsTrigger>
+                        <TabsTrigger value="scholarships">
+                            <Award className="h-4 w-4 mr-2" />
+                            Scholarships ({scholarships.length})
+                        </TabsTrigger>
                         <TabsTrigger value="accommodation">
-                            <Building2 className="h-4 w-4 mr-2" />
+                            <Home className="h-4 w-4 mr-2" />
                             Accommodation ({accommodations.length})
                         </TabsTrigger>
                         <TabsTrigger value="gallery">
@@ -962,6 +977,67 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <Link href="/admin/programs">
                                             <Button variant="outline" className="mt-4">
                                                 Add First Program
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
+                    </TabsContent>
+
+                    {/* Scholarships Tab */}
+                    <TabsContent value="scholarships">
+                        <Card>
+                            <CardHeader>
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <CardTitle>Scholarships</CardTitle>
+                                        <CardDescription>Manage scholarships offered by this university</CardDescription>
+                                    </div>
+                                    <Link href={`/admin/universities/${id}/scholarships`}>
+                                        <Button size="sm">
+                                            <Award className="mr-2 h-4 w-4" />
+                                            Manage Scholarships
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                {scholarships.length > 0 ? (
+                                    <div className="space-y-4">
+                                        {scholarships.map((scholarship: any) => (
+                                            <div key={scholarship.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                                                <div className="flex-1">
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <h4 className="font-semibold">{scholarship.type_name}</h4>
+                                                        <Badge variant={scholarship.is_active ? "default" : "secondary"}>
+                                                            {scholarship.is_active ? "Active" : "Inactive"}
+                                                        </Badge>
+                                                    </div>
+                                                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                                                        <span>{scholarship.tuition_coverage_percentage}% Coverage</span>
+                                                        <span>•</span>
+                                                        <span>{scholarship.duration_years ? `${scholarship.duration_years} Years` : "Full Program"}</span>
+                                                        <span>•</span>
+                                                        <span className="font-medium text-foreground">${Number(scholarship.service_fee_usd).toLocaleString()} Fee</span>
+                                                    </div>
+                                                </div>
+                                                <Link href={`/admin/universities/${id}/scholarships/${scholarship.id}`}>
+                                                    <Button variant="outline" size="sm">
+                                                        <Edit className="h-4 w-4 mr-1" />
+                                                        Edit
+                                                    </Button>
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-12 text-muted-foreground">
+                                        <Award className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                                        <p>No scholarships added yet</p>
+                                        <Link href={`/admin/universities/${id}/scholarships/new`}>
+                                            <Button variant="outline" className="mt-4">
+                                                Add First Scholarship
                                             </Button>
                                         </Link>
                                     </div>
