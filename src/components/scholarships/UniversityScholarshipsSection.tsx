@@ -140,7 +140,7 @@ export function UniversityScholarshipsSection({
             )}
 
             {/* Scholarship Cards */}
-            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {scholarships.map((scholarship, index) => {
                     // Determine theme based on index or type
                     const themes = [
