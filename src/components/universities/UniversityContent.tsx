@@ -90,26 +90,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         </motion.div>
                     )}
 
-                    {/* Scholarship Types Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
-                    >
-                        <UniversityScholarshipsSection
-                            universityId={university.id}
-                            title="Available Scholarship Options"
-                            description="Choose the scholarship type that best fits your budget for programs at this university"
-                        />
-                    </motion.div>
-
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
+                            transition={{ delay: 0.15 }}
                         >
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
@@ -198,6 +184,20 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             </div>
                         </motion.div>
                     )}
+
+                    {/* Scholarship Types Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 }}
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                    >
+                        <UniversityScholarshipsSection
+                            universityId={university.id}
+                            title="Available Scholarship Options"
+                            description="Choose the scholarship type that best fits your budget for programs at this university"
+                        />
+                    </motion.div>
 
                     {/* Accommodation Section */}
                     <motion.div
@@ -358,7 +358,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     <Button size="lg" className="w-full bg-white text-red-600 hover:bg-gray-100 font-bold text-lg h-14 shadow-xl">
                                         Apply Now
                                     </Button>
-                                    <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 h-12">
+                                    <Button size="lg" variant="outline" className="w-full border-2 border-white text-red-600 hover:bg-white/10 h-12">
                                         <Download className="mr-2 h-4 w-4" />
                                         Download Brochure
                                     </Button>
