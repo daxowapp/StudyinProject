@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { AccommodationSection } from "./AccommodationSection";
-import { 
-    CheckCircle2, Globe, MapPin, Users, Calendar, 
+import {
+    CheckCircle2, Globe, MapPin, Users, Calendar,
     GraduationCap, DollarSign, Clock, Languages,
     Award, TrendingUp, BookOpen, FileText, Play,
     Star, Heart, Share2, Download, ChevronRight,
@@ -24,16 +24,16 @@ interface UniversityContentProps {
 
 export function UniversityContent({ university }: UniversityContentProps) {
     const [programLevel, setProgramLevel] = useState<string>("all");
-    
+
     // Get unique program levels
     const uniqueLevels = university.programs?.map((p: any) => p.level as string) || [];
     const programLevels: string[] = ["all", ...Array.from(new Set(uniqueLevels))];
-    
+
     // Filter programs by level
-    const filteredPrograms = programLevel === "all" 
-        ? university.programs 
+    const filteredPrograms = programLevel === "all"
+        ? university.programs
         : university.programs?.filter((p: any) => p.level === programLevel);
-    
+
     return (
         <div className="container mx-auto px-4 -mt-8 pb-20">
             <div className="grid lg:grid-cols-12 gap-8">
@@ -64,7 +64,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32" />
                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24" />
-                            
+
                             <div className="relative z-10">
                                 <div className="flex items-center gap-3 mb-8">
                                     <Sparkles className="h-8 w-8" />
@@ -90,6 +90,20 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         </motion.div>
                     )}
 
+                    {/* Scholarship Types Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                    >
+                        <UniversityScholarshipsSection
+                            universityId={university.id}
+                            title="Available Scholarship Options"
+                            description="Choose the scholarship type that best fits your budget for programs at this university"
+                        />
+                    </motion.div>
+
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
                         <motion.div
@@ -106,76 +120,75 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     {filteredPrograms?.length || 0} Programs
                                 </Badge>
                             </div>
-                            
+
                             {/* Program Level Tabs */}
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {programLevels.map((level) => (
                                     <button
                                         key={level}
                                         onClick={() => setProgramLevel(level)}
-                                        className={`px-6 py-3 rounded-xl font-semibold transition-all ${
-                                            programLevel === level
-                                                ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105'
-                                                : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-red-200'
-                                        }`}
+                                        className={`px-6 py-3 rounded-xl font-semibold transition-all ${programLevel === level
+                                            ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105'
+                                            : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-red-200'
+                                            }`}
                                     >
                                         {level === "all" ? "All Programs" : level}
                                     </button>
                                 ))}
                             </div>
-                            
+
                             <div className="space-y-4">
                                 {filteredPrograms && filteredPrograms.length > 0 ? (
                                     filteredPrograms.map((program: any, index: number) => (
-                                    <motion.div
-                                        key={program.id}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: 0.3 + index * 0.1 }}
-                                        className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 border border-gray-100 hover:border-red-200"
-                                    >
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                                            <div className="flex-1">
-                                                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
-                                                    {program.name}
-                                                </h3>
-                                                <div className="flex flex-wrap gap-2">
-                                                    <Badge className="bg-blue-100 text-blue-700 border-0 px-3 py-1">
-                                                        <GraduationCap className="h-3.5 w-3.5 mr-1.5" />
-                                                        {program.level}
-                                                    </Badge>
-                                                    <Badge className="bg-purple-100 text-purple-700 border-0 px-3 py-1">
-                                                        <Clock className="h-3.5 w-3.5 mr-1.5" />
-                                                        {program.duration}
-                                                    </Badge>
-                                                    <Badge className="bg-green-100 text-green-700 border-0 px-3 py-1">
-                                                        <Languages className="h-3.5 w-3.5 mr-1.5" />
-                                                        {program.language}
-                                                    </Badge>
-                                                    <Badge className="bg-orange-100 text-orange-700 border-0 px-3 py-1">
-                                                        <Calendar className="h-3.5 w-3.5 mr-1.5" />
-                                                        {program.intake}
-                                                    </Badge>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-4">
-                                                <div className="text-right">
-                                                    <div className="text-sm text-gray-500 mb-1">Tuition Fee</div>
-                                                    <div className="text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-                                                        {program.tuition}
+                                        <motion.div
+                                            key={program.id}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.3 + index * 0.1 }}
+                                            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 border border-gray-100 hover:border-red-200"
+                                        >
+                                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                                <div className="flex-1">
+                                                    <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                                                        {program.name}
+                                                    </h3>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        <Badge className="bg-blue-100 text-blue-700 border-0 px-3 py-1">
+                                                            <GraduationCap className="h-3.5 w-3.5 mr-1.5" />
+                                                            {program.level}
+                                                        </Badge>
+                                                        <Badge className="bg-purple-100 text-purple-700 border-0 px-3 py-1">
+                                                            <Clock className="h-3.5 w-3.5 mr-1.5" />
+                                                            {program.duration}
+                                                        </Badge>
+                                                        <Badge className="bg-green-100 text-green-700 border-0 px-3 py-1">
+                                                            <Languages className="h-3.5 w-3.5 mr-1.5" />
+                                                            {program.language}
+                                                        </Badge>
+                                                        <Badge className="bg-orange-100 text-orange-700 border-0 px-3 py-1">
+                                                            <Calendar className="h-3.5 w-3.5 mr-1.5" />
+                                                            {program.intake}
+                                                        </Badge>
                                                     </div>
-                                                    <div className="text-xs text-gray-500">per year</div>
                                                 </div>
-                                                <Link href={`/programs/${program.slug || program.id}`}>
-                                                    <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shrink-0">
-                                                        View Program
-                                                        <ChevronRight className="ml-1 h-4 w-4" />
-                                                    </Button>
-                                                </Link>
+                                                <div className="flex items-center gap-4">
+                                                    <div className="text-right">
+                                                        <div className="text-sm text-gray-500 mb-1">Tuition Fee</div>
+                                                        <div className="text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
+                                                            {program.tuition}
+                                                        </div>
+                                                        <div className="text-xs text-gray-500">per year</div>
+                                                    </div>
+                                                    <Link href={`/programs/${program.slug || program.id}`}>
+                                                        <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shrink-0">
+                                                            View Program
+                                                            <ChevronRight className="ml-1 h-4 w-4" />
+                                                        </Button>
+                                                    </Link>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </motion.div>
-                                ))
+                                        </motion.div>
+                                    ))
                                 ) : (
                                     <div className="text-center py-12 bg-gray-50 rounded-2xl">
                                         <GraduationCap className="h-16 w-16 mx-auto mb-4 text-gray-300" />
@@ -186,20 +199,6 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         </motion.div>
                     )}
 
-                    {/* Scholarship Types Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.25 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
-                    >
-                        <UniversityScholarshipsSection 
-                            universityId={university.id}
-                            title="Available Scholarship Options"
-                            description="Choose the scholarship type that best fits your budget for programs at this university"
-                        />
-                    </motion.div>
-
                     {/* Accommodation Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -207,7 +206,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         transition={{ delay: 0.3 }}
                         className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
                     >
-                        <AccommodationSection 
+                        <AccommodationSection
                             accommodationAvailable={university.accommodation_available ?? true}
                             accommodationDescription={university.accommodation_description}
                             accommodationFeeRange={university.accommodation_fee_range}
@@ -235,10 +234,10 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src={`https://www.youtube.com/embed/${university.video_url.includes('youtu.be') 
+                                        src={`https://www.youtube.com/embed/${university.video_url.includes('youtu.be')
                                             ? university.video_url.split('youtu.be/')[1]?.split('?')[0]
                                             : university.video_url.split('v=')[1]?.split('&')[0]
-                                        }`}
+                                            }`}
                                         title="University Video"
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -264,8 +263,8 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 {university.gallery_images.map((image: string, index: number) => (
                                     <div key={index} className="group relative aspect-video rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-red-200 transition-all">
-                                        <img 
-                                            src={image} 
+                                        <img
+                                            src={image}
                                             alt={`Campus ${index + 1}`}
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -346,7 +345,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         >
                             <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-20 translate-x-20" />
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-16 -translate-x-16" />
-                            
+
                             <div className="relative z-10">
                                 <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4">
                                     <GraduationCap className="h-8 w-8" />
