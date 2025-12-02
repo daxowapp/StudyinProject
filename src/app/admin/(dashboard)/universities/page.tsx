@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Award } from "lucide-react";
+import { Plus, Edit, Award, Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { UniversityFilters } from "./filters";
@@ -105,6 +105,12 @@ export default async function AdminUniversitiesPage({
                                             <Button variant="outline" size="sm">
                                                 <Award className="mr-2 h-4 w-4" />
                                                 Scholarships
+                                            </Button>
+                                        </Link>
+                                        <Link href={`/admin/universities/${uni.id}/accommodation`}>
+                                            <Button variant="outline" size="sm">
+                                                <Home className="mr-2 h-4 w-4" />
+                                                Accommodation
                                             </Button>
                                         </Link>
                                         <Link href={`/admin/universities/${uni.id}`}>

@@ -37,7 +37,6 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
-import { AccommodationDialog } from "../components/AccommodationDialog";
 
 export default function EditUniversityPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -52,11 +51,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [mapLocation, setMapLocation] = useState({ lat: 39.9042, lng: 116.4074 }); // Default: Beijing
     const [featureInput, setFeatureInput] = useState<string>("");
     const [languages, setLanguages] = useState<any[]>([]);
-    const [accommodations, setAccommodations] = useState<any[]>([]);
     const [scholarships, setScholarships] = useState<any[]>([]);
-    const [showAccommodationDialog, setShowAccommodationDialog] = useState(false);
-    const [selectedAccommodation, setSelectedAccommodation] = useState<any>(null);
-    const [accommodationFeatureInput, setAccommodationFeatureInput] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",
@@ -79,10 +74,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         has_fast_track: false,
         university_type: "",
         institution_category: "",
-        accommodation_available: true,
-        accommodation_description: "",
-        accommodation_fee_range: "",
-        accommodation_features: [] as string[],
     });
 
     useEffect(() => {
@@ -101,13 +92,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 .from("v_university_programs_full")
                 .select("*")
                 .eq("university_id", id);
-
-            // Fetch accommodations
-            const { data: accommodationsData } = await supabase
-                .from("university_accommodation")
-                .select("*")
-                .eq("university_id", id)
-                .order("display_order", { ascending: true });
 
             // Fetch scholarships
             const { data: scholarshipsData } = await supabase
@@ -148,10 +132,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     has_fast_track: data.has_fast_track || false,
                     university_type: data.university_type || "",
                     institution_category: data.institution_category || "",
-                    accommodation_available: data.accommodation_available ?? true,
-                    accommodation_description: data.accommodation_description || "",
-                    accommodation_fee_range: data.accommodation_fee_range || "",
-                    accommodation_features: data.accommodation_features || [],
                 });
                 setLogoPreview(data.logo_url || "");
                 setCoverPhotoPreview(data.cover_photo_url || "");
@@ -163,7 +143,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 // Set programs from the view data
                 setPrograms(programsData || []);
                 setLanguages(languagesData || []);
-                setAccommodations(accommodationsData || []);
                 setScholarships(scholarshipsData || []);
             }
             setLoading(false);
@@ -325,56 +304,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         }
     };
 
-    const addAccommodationFeature = () => {
-        if (accommodationFeatureInput.trim()) {
-            setFormData(prev => ({
-                ...prev,
-                accommodation_features: [...prev.accommodation_features, accommodationFeatureInput.trim()]
-            }));
-            setAccommodationFeatureInput("");
-        }
-    };
-
-    const removeAccommodationFeature = (index: number) => {
-        setFormData(prev => ({
-            ...prev,
-            accommodation_features: prev.accommodation_features.filter((_, i) => i !== index)
-        }));
-    };
-
-    const handleDeleteAccommodation = async (accommodationId: string) => {
-        if (!confirm("Are you sure you want to delete this accommodation option?")) return;
-
-        try {
-            const supabase = createClient();
-            const { error } = await supabase
-                .from("university_accommodation")
-                .delete()
-                .eq("id", accommodationId);
-
-            if (error) throw error;
-
-            setAccommodations(prev => prev.filter(a => a.id !== accommodationId));
-            toast.success("Accommodation deleted successfully");
-        } catch (error) {
-            console.error("Error deleting accommodation:", error);
-            toast.error("Failed to delete accommodation");
-        }
-    };
-
-    const handleAccommodationSuccess = async () => {
-        const supabase = createClient();
-        const { data } = await supabase
-            .from("university_accommodation")
-            .select("*")
-            .eq("university_id", id)
-            .order("display_order", { ascending: true });
-
-        setAccommodations(data || []);
-        setShowAccommodationDialog(false); // Close dialog after success
-        setSelectedAccommodation(null); // Clear selected accommodation
-    };
-
     if (loading) {
         return <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
     }
@@ -480,10 +409,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                         <TabsTrigger value="scholarships">
                             <Award className="h-4 w-4 mr-2" />
                             Scholarships ({scholarships.length})
-                        </TabsTrigger>
-                        <TabsTrigger value="accommodation">
-                            <Home className="h-4 w-4 mr-2" />
-                            Accommodation ({accommodations.length})
                         </TabsTrigger>
                         <TabsTrigger value="gallery">
                             <ImageIcon className="h-4 w-4 mr-2" />
@@ -1046,148 +971,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                         </Card>
                     </TabsContent>
 
-                    {/* Accommodation Tab */}
-                    <TabsContent value="accommodation" className="space-y-6">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Accommodation Settings</CardTitle>
-                                <CardDescription>Manage general accommodation information</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="flex items-center space-x-2">
-                                    <Switch
-                                        id="accommodation_available"
-                                        checked={formData.accommodation_available}
-                                        onCheckedChange={(checked) => setFormData({ ...formData, accommodation_available: checked })}
-                                    />
-                                    <Label htmlFor="accommodation_available">Accommodation Available</Label>
-                                </div>
 
-                                {formData.accommodation_available && (
-                                    <>
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="accommodation_description">Description</Label>
-                                            <Textarea
-                                                id="accommodation_description"
-                                                value={formData.accommodation_description}
-                                                onChange={(e) => setFormData({ ...formData, accommodation_description: e.target.value })}
-                                                placeholder="Brief description of accommodation options..."
-                                            />
-                                        </div>
-
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="accommodation_fee_range">Fee Range</Label>
-                                            <Input
-                                                id="accommodation_fee_range"
-                                                value={formData.accommodation_fee_range}
-                                                onChange={(e) => setFormData({ ...formData, accommodation_fee_range: e.target.value })}
-                                                placeholder="e.g. 1200-2500 CNY/month"
-                                            />
-                                        </div>
-
-                                        <div className="grid gap-2">
-                                            <Label>General Facilities</Label>
-                                            <div className="flex gap-2">
-                                                <Input
-                                                    placeholder="Add a facility (e.g. WiFi, AC)"
-                                                    value={accommodationFeatureInput}
-                                                    onChange={(e) => setAccommodationFeatureInput(e.target.value)}
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === 'Enter') {
-                                                            e.preventDefault();
-                                                            addAccommodationFeature();
-                                                        }
-                                                    }}
-                                                />
-                                                <Button type="button" onClick={addAccommodationFeature} size="icon">
-                                                    <Plus className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                            <div className="flex flex-wrap gap-2 mt-2">
-                                                {formData.accommodation_features.map((feature, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm flex items-center gap-2"
-                                                    >
-                                                        {feature}
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => removeAccommodationFeature(index)}
-                                                            className="hover:text-destructive"
-                                                        >
-                                                            <X className="h-3 w-3" />
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </>
-                                )}
-                            </CardContent>
-                        </Card>
-
-                        {formData.accommodation_available && (
-                            <Card>
-                                <CardHeader className="flex flex-row items-center justify-between">
-                                    <div>
-                                        <CardTitle>Room Types</CardTitle>
-                                        <CardDescription>Manage available room types</CardDescription>
-                                    </div>
-                                    <Button onClick={() => {
-                                        setSelectedAccommodation(null);
-                                        setShowAccommodationDialog(true);
-                                    }}>
-                                        <Plus className="mr-2 h-4 w-4" />
-                                        Add Room Type
-                                    </Button>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="space-y-4">
-                                        {accommodations.map((accommodation) => (
-                                            <div
-                                                key={accommodation.id}
-                                                className="flex items-center justify-between p-4 border rounded-lg"
-                                            >
-                                                <div>
-                                                    <h4 className="font-semibold">{accommodation.type}</h4>
-                                                    <p className="text-sm text-muted-foreground">{accommodation.description}</p>
-                                                    <div className="flex gap-4 mt-1 text-sm text-muted-foreground">
-                                                        <span>¥{accommodation.price_cny}/month</span>
-                                                        <span>${accommodation.price_usd}/month</span>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        onClick={() => {
-                                                            setSelectedAccommodation(accommodation);
-                                                            setShowAccommodationDialog(true);
-                                                        }}
-                                                    >
-                                                        <Edit className="h-4 w-4" />
-                                                    </Button>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="text-destructive hover:text-destructive"
-                                                        onClick={() => handleDeleteAccommodation(accommodation.id)}
-                                                    >
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        {accommodations.length === 0 && (
-                                            <div className="text-center py-8 text-muted-foreground">
-                                                No room types added yet.
-                                            </div>
-                                        )}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        )}
-                    </TabsContent>
 
                     {/* Gallery Tab */}
                     <TabsContent value="gallery" className="space-y-6">
@@ -1414,13 +1198,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 languages={languages}
             />
 
-            <AccommodationDialog
-                open={showAccommodationDialog}
-                onOpenChange={setShowAccommodationDialog}
-                universityId={id}
-                accommodation={selectedAccommodation}
-                onSuccess={handleAccommodationSuccess}
-            />
+
         </div>
     );
 }
