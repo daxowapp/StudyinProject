@@ -68,7 +68,7 @@ export default async function StudentApplicationsPage() {
 
     const getStatusColor = (status: string) => {
         switch (status) {
-            case 'accepted': return 'bg-green-100 text-green-800 border-green-200';
+            case 'accepted': return 'bg-amber-100 text-amber-800 border-amber-200';
             case 'rejected': return 'bg-red-100 text-red-800 border-red-200';
             case 'under_review': return 'bg-blue-100 text-blue-800 border-blue-200';
             case 'pending_documents': return 'bg-orange-100 text-orange-800 border-orange-200';
@@ -79,7 +79,7 @@ export default async function StudentApplicationsPage() {
 
     const getStatusIcon = (status: string) => {
         switch (status) {
-            case 'accepted': return <CheckCircle2 className="w-5 h-5 text-green-600" />;
+            case 'accepted': return <CheckCircle2 className="w-5 h-5 text-amber-600" />;
             case 'rejected': return <AlertCircle className="w-5 h-5 text-red-600" />;
             case 'under_review': return <Clock className="w-5 h-5 text-blue-600" />;
             case 'pending_documents': return <FileText className="w-5 h-5 text-orange-600" />;

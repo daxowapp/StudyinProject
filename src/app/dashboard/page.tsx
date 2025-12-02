@@ -80,11 +80,11 @@ export default async function DashboardPage() {
                         <p className="text-xs text-muted-foreground mt-1">Requires your attention</p>
                     </CardContent>
                 </Card>
-                <Card className="border-none shadow-lg bg-gradient-to-br from-green-500/10 to-green-500/5">
+                <Card className="border-none shadow-lg bg-gradient-to-br from-amber-500/10 to-amber-500/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Offers Received</CardTitle>
-                        <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                            <CheckCircle className="h-5 w-5 text-green-600" />
+                        <div className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                            <CheckCircle className="h-5 w-5 text-amber-600" />
                         </div>
                     </CardHeader>
                     <CardContent>

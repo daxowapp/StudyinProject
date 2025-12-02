@@ -171,16 +171,16 @@ export function DocumentRequestCard({ requests }: DocumentRequestCardProps) {
                     return (
                         <div
                             key={request.id}
-                            className={`border rounded-lg p-4 ${isCompleted ? 'bg-green-50 border-green-200' :
+                            className={`border rounded-lg p-4 ${isCompleted ? 'bg-amber-50 border-amber-200' :
                                 isOverdue ? 'bg-red-50 border-red-200' :
                                     'bg-white border-gray-200'
                                 }`}
                         >
                             <div className="flex items-start gap-3">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${isCompleted ? 'bg-green-100' : 'bg-orange-100'
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${isCompleted ? 'bg-amber-100' : 'bg-orange-100'
                                     }`}>
                                     {isCompleted ? (
-                                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                                        <CheckCircle2 className="w-5 h-5 text-amber-600" />
                                     ) : (
                                         <FileText className="w-5 h-5 text-orange-600" />
                                     )}
@@ -190,7 +190,7 @@ export function DocumentRequestCard({ requests }: DocumentRequestCardProps) {
                                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                                         <h4 className="font-semibold">{request.document_name}</h4>
                                         {isCompleted && (
-                                            <Badge className="bg-green-600 text-white text-xs">
+                                            <Badge className="bg-amber-600 text-white text-xs">
                                                 <CheckCircle2 className="w-3 h-3 mr-1" />
                                                 Uploaded
                                             </Badge>
@@ -320,12 +320,12 @@ export function DocumentRequestCard({ requests }: DocumentRequestCardProps) {
                 })}
 
                 {completedCount === totalCount && (
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-4">
                         <div className="flex items-center gap-3">
-                            <CheckCircle2 className="w-6 h-6 text-green-600" />
+                            <CheckCircle2 className="w-6 h-6 text-amber-600" />
                             <div>
-                                <p className="font-semibold text-green-900">All Documents Uploaded!</p>
-                                <p className="text-sm text-green-800">
+                                <p className="font-semibold text-amber-900">All Documents Uploaded!</p>
+                                <p className="text-sm text-amber-800">
                                     Thank you for submitting all required documents. They are now under review.
                                 </p>
                             </div>
