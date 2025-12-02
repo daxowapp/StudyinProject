@@ -35,6 +35,8 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         level: p.level,
         duration: p.duration,
         tuition: `${p.tuition_fee} ${p.currency}`,
+        tuition_fee: p.tuition_fee, // Raw number for Price component
+        currency: p.currency || 'CNY', // Currency code
         language: p.language_name || "Not specified",
         intake: p.intake || "Contact university",
     })) || [];

@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Home, Check, DollarSign, Wifi, Wind, Droplet, Shield, Utensils } from "lucide-react";
+import { Price } from "@/components/currency/Price";
 
 interface AccommodationType {
     type: string; // This might be null in DB now, but we can fallback to room_type
@@ -144,25 +145,26 @@ export function AccommodationSection({
                                     <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-lg p-4">
                                         <div className="flex items-baseline gap-2 mb-1">
                                             <span className="text-2xl font-bold text-blue-600">
-                                                {room.price_min ? (
+                                                {room.price_min && typeof room.price_min === 'number' ? (
                                                     <>
-                                                        {room.currency || '¥'}
-                                                        {room.price_min.toLocaleString()}
-                                                        {room.price_max && room.price_max > room.price_min ? ` - ${room.price_max.toLocaleString()}` : ''}
+                                                        <Price amount={room.price_min} currency={room.currency || 'CNY'} />
+                                                        {room.price_max && room.price_max > room.price_min && (
+                                                            <>
+                                                                {' - '}
+                                                                <Price amount={room.price_max} currency={room.currency || 'CNY'} />
+                                                            </>
+                                                        )}
                                                     </>
+                                                ) : room.price_cny && typeof room.price_cny === 'number' ? (
+                                                    <Price amount={room.price_cny} currency="CNY" />
                                                 ) : (
-                                                    room.price_cny ? `¥${room.price_cny.toLocaleString()}` : 'Price on request'
+                                                    'Price on request'
                                                 )}
                                             </span>
                                             <span className="text-sm text-muted-foreground">
                                                 /{room.billing_period || 'month'}
                                             </span>
                                         </div>
-                                        {room.price_usd && (
-                                            <p className="text-xs text-muted-foreground">
-                                                ≈ ${room.price_usd}/month
-                                            </p>
-                                        )}
                                     </div>
 
                                     {/* Features */}

@@ -49,13 +49,6 @@ export default async function UniversitiesPage() {
 
     // Transform data for client component
     const formattedUniversities = (universities || []).map((uni) => {
-        // Format tuition display
-        let minTuition = "Contact for pricing";
-        if (uni.min_tuition_fee) {
-            const currencySymbol = uni.currency === "USD" ? "$" : "¥";
-            minTuition = `${currencySymbol}${uni.min_tuition_fee.toLocaleString()}`;
-        }
-
         return {
             id: uni.id,
             slug: uni.slug || uni.id,
@@ -63,7 +56,9 @@ export default async function UniversitiesPage() {
             city: uni.city || "N/A",
             province: uni.province || "N/A",
             programs: uni.program_count || 0,
-            minTuition: minTuition,
+            minTuition: uni.min_tuition_fee ? `${uni.currency === "USD" ? "$" : "¥"}${uni.min_tuition_fee.toLocaleString()}` : "Contact for pricing",
+            minTuitionFee: uni.min_tuition_fee, // Raw number for Price component
+            currency: uni.currency || 'CNY', // Currency code
             badges: uni.features || [],
             logo: uni.logo_url,
             photo: uni.cover_photo_url || uni.banner_url,

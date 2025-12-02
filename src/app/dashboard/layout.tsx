@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { LayoutDashboard, FileText, Settings, LogOut, Mail, CreditCard } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { LogoutButton } from "@/components/dashboard/LogoutButton";
 
 export default async function DashboardLayout({
     children,
@@ -122,10 +123,7 @@ export default async function DashboardLayout({
                     </Link>
                 </nav>
                 <div className="border-t p-4">
-                    <Button variant="ghost" className="w-full justify-start gap-2 text-destructive hover:text-destructive hover:bg-destructive/10">
-                        <LogOut className="h-4 w-4" />
-                        Sign Out
-                    </Button>
+                    <LogoutButton />
                 </div>
             </aside>
 

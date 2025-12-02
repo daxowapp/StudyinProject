@@ -6,6 +6,7 @@ import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy, Chev
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Price } from "@/components/currency/Price";
 
 interface University {
     id: string;
@@ -183,8 +184,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                     <div className="flex items-center justify-between text-sm">
                                                         <span className="text-muted-foreground">Tuition from</span>
                                                         <span className="font-semibold">
-                                                            {uni.currency === "USD" ? "$" : "¥"}
-                                                            {uni.minTuitionFee.toLocaleString()}
+                                                            <Price amount={uni.minTuitionFee} currency={uni.currency || 'CNY'} />
                                                         </span>
                                                     </div>
                                                 )}

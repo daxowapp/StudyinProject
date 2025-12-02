@@ -21,6 +21,7 @@ import {
 import { uploadPaymentReceipt, processCardPayment } from '../actions';
 import { toast } from 'sonner';
 import { formatDistanceToNow } from 'date-fns';
+import { Price } from '@/components/currency/Price';
 
 interface PaymentRequestCardProps {
     transaction: {
@@ -175,7 +176,7 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
                             </div>
 
                             <div className="text-3xl font-bold text-gray-900 mb-2">
-                                {transaction.currency} {transaction.amount.toFixed(2)}
+                                <Price amount={transaction.amount} currency={transaction.currency} />
                             </div>
 
                             <p className="text-sm text-muted-foreground mb-2">
@@ -331,7 +332,7 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
                                         ) : (
                                             <>
                                                 <CreditCard className="w-4 h-4" />
-                                                Pay {transaction.currency} {transaction.amount.toFixed(2)}
+                                                Pay <Price amount={transaction.amount} currency={transaction.currency} />
                                             </>
                                         )}
                                     </Button>

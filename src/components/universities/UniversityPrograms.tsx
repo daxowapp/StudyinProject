@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar } from "lucide-react";
 import Link from "next/link";
+import { Price } from "@/components/currency/Price";
 
 interface UniversityProgramsProps {
     programs: any[];
@@ -52,7 +53,13 @@ export function UniversityPrograms({ programs }: UniversityProgramsProps) {
                                 </div>
 
                                 <div className="flex flex-col items-end gap-1 min-w-[120px]">
-                                    <span className="text-lg font-bold text-primary">{program.tuition}</span>
+                                    <span className="text-lg font-bold text-primary">
+                                        {program.tuition_fee && typeof program.tuition_fee === 'number' ? (
+                                            <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} />
+                                        ) : (
+                                            program.tuition || 'Contact for pricing'
+                                        )}
+                                    </span>
                                     <span className="text-xs text-muted-foreground">per year</span>
                                     <Link href={`/apply/${program.slug}`} className="mt-2 w-full md:w-auto">
                                         <Button className="w-full">Apply Now</Button>

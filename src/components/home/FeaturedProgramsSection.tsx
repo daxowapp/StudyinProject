@@ -7,6 +7,7 @@ import { Clock, MapPin, ArrowRight, Star, TrendingUp, Sparkles } from "lucide-re
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Price } from "@/components/currency/Price";
 
 interface Program {
     id: string;
@@ -220,12 +221,12 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                         {/* Tuition */}
                                         <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border border-yellow-200">
                                             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shrink-0">
-                                                <span className="text-white font-bold text-lg">{program.currency === "USD" ? "$" : "¥"}</span>
+                                                <span className="text-white font-bold text-lg">💰</span>
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-xs text-muted-foreground font-medium">Tuition/Year</p>
                                                 <p className="text-sm font-bold text-gray-900 truncate">
-                                                    {program.currency === "USD" ? "$" : "¥"}{program.tuition_fee?.toLocaleString()}
+                                                    <Price amount={parseFloat(program.tuition_fee)} currency={program.currency || 'CNY'} />
                                                 </p>
                                             </div>
                                         </div>

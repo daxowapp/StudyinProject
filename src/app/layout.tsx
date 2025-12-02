@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingBar } from "@/components/ui/loading-bar";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 
 export const metadata: Metadata = {
   title: "StudyAtChina.com - Apply to Top Chinese Universities",
@@ -28,11 +29,13 @@ export default function RootLayout({
       <body
         className={`font-body antialiased flex flex-col min-h-screen`}
       >
-        <Suspense fallback={null}>
-          <LoadingBar />
-        </Suspense>
-        {children}
-        <Toaster />
+        <CurrencyProvider>
+          <Suspense fallback={null}>
+            <LoadingBar />
+          </Suspense>
+          {children}
+          <Toaster />
+        </CurrencyProvider>
       </body>
     </html>
   );

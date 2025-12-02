@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { DollarSign, Check, Award } from "lucide-react";
+import { DollarSign, Check, Award, Sparkles, Star, TrendingUp, Users, GraduationCap, Home as HomeIcon } from "lucide-react";
 import Link from "next/link";
+import { Price } from "@/components/currency/Price";
 import { createClient } from "@/lib/supabase/client";
 
 interface ScholarshipType {
@@ -122,11 +123,11 @@ export function ScholarshipTypesSection({
             </div>
 
             {/* Scholarship Cards */}
-            <div className={`grid gap-6 ${compact ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
+            <div className={`grid gap - 6 ${compact ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-4'} `}>
                 {scholarshipTypes.map((type, index) => (
                     <Card
                         key={index}
-                        className={`border-2 ${type.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${type.color} relative overflow-hidden`}
+                        className={`border - 2 ${type.borderColor} shadow - lg hover: shadow - xl transition - all duration - 300 bg - gradient - to - br ${type.color} relative overflow - hidden`}
                     >
                         {type.popular && (
                             <div className="absolute top-3 right-3">
@@ -167,8 +168,10 @@ export function ScholarshipTypesSection({
                                         <span className="font-bold">${type.serviceFeeUSD.toLocaleString()}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs text-muted-foreground">CNY:</span>
-                                        <span className="font-semibold text-sm">¥{type.serviceFeeCNY.toLocaleString()}</span>
+                                        <span className="text-xs text-muted-foreground">Service Fee:</span>
+                                        <span className="font-semibold text-sm">
+                                            <Price amount={type.serviceFeeCNY} currency="CNY" />
+                                        </span>
                                     </div>
                                 </div>
                             </div>

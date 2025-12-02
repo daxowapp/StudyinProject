@@ -40,10 +40,11 @@ export default async function ProgramsPage() {
         level: p.level,
         duration: p.duration,
         tuition: `${p.tuition_fee} ${p.currency}/Year`,
+        tuition_fee: p.tuition_fee, // Raw number for Price component
+        currency: p.currency || 'CNY', // Currency code
         deadline: p.intake,
         badges: [p.language_name, p.level].filter(Boolean),
         category: p.category,
-        tuition_fee: p.tuition_fee,
         scholarship_chance: p.scholarship_chance,
     })) || [];
 

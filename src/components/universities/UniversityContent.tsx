@@ -16,6 +16,7 @@ import {
     Sparkles, Target, Trophy, Building2, Mail,
     Video, Image as ImageIcon, Phone, MessageCircle
 } from "lucide-react";
+import { Price } from "@/components/currency/Price";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -189,7 +190,11 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                     <div className="text-right">
                                                         <div className="text-sm text-gray-500 mb-1">Tuition Fee</div>
                                                         <div className="text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-                                                            {program.tuition}
+                                                            {program.tuition_fee && typeof program.tuition_fee === 'number' ? (
+                                                                <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} showCurrency={false} />
+                                                            ) : (
+                                                                program.tuition || 'Contact'
+                                                            )}
                                                         </div>
                                                         <div className="text-xs text-gray-500">per year</div>
                                                     </div>

@@ -15,6 +15,7 @@ import {
   FileText,
   AlertCircle,
 } from 'lucide-react';
+import { Price } from '@/components/currency/Price';
 
 export default async function PaymentsPage() {
   const supabase = await createClient();
@@ -130,7 +131,9 @@ export default async function PaymentsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{totalPaid.toFixed(2)} RMB</div>
+            <div className="text-3xl font-bold">
+              <Price amount={totalPaid} currency="CNY" />
+            </div>
             <p className="text-xs text-muted-foreground mt-1">Successfully processed</p>
           </CardContent>
         </Card>
@@ -143,7 +146,9 @@ export default async function PaymentsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{totalPending.toFixed(2)} RMB</div>
+            <div className="text-3xl font-bold">
+              <Price amount={totalPending} currency="CNY" />
+            </div>
             <p className="text-xs text-muted-foreground mt-1">{pendingCount} payment(s) due</p>
           </CardContent>
         </Card>
@@ -189,7 +194,7 @@ export default async function PaymentsPage() {
                       <div>
                         <p className="text-muted-foreground">Amount</p>
                         <p className="font-semibold text-lg">
-                          {payment.amount} {payment.currency}
+                          <Price amount={parseFloat(payment.amount)} currency={payment.currency || 'CNY'} />
                         </p>
                       </div>
                       <div>
@@ -251,7 +256,7 @@ export default async function PaymentsPage() {
                     {payment.status === 'pending' && payment.payment_link && (
                       <>
                         {payment.payment_link_expires_at &&
-                        new Date(payment.payment_link_expires_at) > new Date() ? (
+                          new Date(payment.payment_link_expires_at) > new Date() ? (
                           <Link href={payment.payment_link}>
                             <Button className="w-full lg:w-auto bg-green-600 hover:bg-green-700">
                               <CreditCard className="w-4 h-4 mr-2" />

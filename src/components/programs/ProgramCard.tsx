@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Price } from "@/components/currency/Price";
 
 interface Program {
     id: string;
@@ -13,6 +14,8 @@ interface Program {
     level: string;
     duration: string;
     tuition: string;
+    tuition_fee?: number; // Raw number for Price component
+    currency?: string; // Currency code
     deadline: string;
     badges: string[];
 }
@@ -26,14 +29,14 @@ export function ProgramCard({ program }: ProgramCardProps) {
         <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-none shadow-lg bg-card flex flex-col h-full">
             {/* Header with gradient */}
             <div className="h-2 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
-            
+
             <CardContent className="p-6 flex-1 flex flex-col">
                 {/* Top Section - Level Badge & Icon */}
                 <div className="flex justify-between items-start mb-4">
                     <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                         <GraduationCap className="h-7 w-7 text-primary" />
                     </div>
-                    <Badge 
+                    <Badge
                         variant={program.level === "Master" ? "default" : "secondary"}
                         className="px-3 py-1 text-xs font-semibold"
                     >
@@ -77,7 +80,13 @@ export function ProgramCard({ program }: ProgramCardProps) {
                     <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
                         <DollarSign className="h-4 w-4 text-primary" /> Tuition Fee
                     </span>
-                    <span className="text-base font-bold text-primary">{program.tuition}</span>
+                    <span className="text-base font-bold text-primary">
+                        {typeof program.tuition_fee === 'number' ? (
+                            <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} />
+                        ) : (
+                            program.tuition
+                        )}
+                    </span>
                 </div>
 
                 {/* Badges */}

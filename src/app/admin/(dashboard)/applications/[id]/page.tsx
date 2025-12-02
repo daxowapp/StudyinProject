@@ -8,6 +8,7 @@ import { ArrowLeft, Download, ExternalLink, FileText, CreditCard, AlertCircle, C
 import Link from 'next/link';
 import { ApplicationManagementForm } from '../components/ApplicationManagementForm';
 import { VerifyPaymentButton, ApproveDocumentButton, RejectPaymentButton, RejectDocumentButton } from '../components/AdminActionButtons';
+import { Price } from '@/components/currency/Price';
 
 export default async function ApplicationDetailPage({
     params,
@@ -153,7 +154,11 @@ export default async function ApplicationDetailPage({
                             <div className="space-y-1">
                                 <Label className="text-muted-foreground">Tuition Fee</Label>
                                 <p className="font-medium">
-                                    {application.university_program?.tuition_fee ? `$${application.university_program.tuition_fee}` : 'N/A'}
+                                    {application.university_program?.tuition_fee ? (
+                                        <Price amount={application.university_program.tuition_fee} currency="CNY" />
+                                    ) : (
+                                        'N/A'
+                                    )}
                                 </p>
                             </div>
                         </CardContent>
@@ -189,7 +194,7 @@ export default async function ApplicationDetailPage({
                                                 <div className="flex items-center gap-2">
                                                     <CreditCard className="h-4 w-4 text-muted-foreground" />
                                                     <span className="font-medium">
-                                                        {tx.amount} {tx.currency}
+                                                        <Price amount={parseFloat(tx.amount)} currency={tx.currency || 'CNY'} />
                                                     </span>
                                                 </div>
                                                 <Badge variant="outline">{tx.status}</Badge>
@@ -306,8 +311,8 @@ export default async function ApplicationDetailPage({
                                         >
                                             <div
                                                 className={`max-w-[80%] rounded-lg p-3 ${msg.sender_type === 'admin'
-                                                        ? 'bg-primary text-primary-foreground'
-                                                        : 'bg-muted'
+                                                    ? 'bg-primary text-primary-foreground'
+                                                    : 'bg-muted'
                                                     }`}
                                             >
                                                 <p className="text-sm">{msg.message}</p>

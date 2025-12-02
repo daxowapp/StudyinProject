@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MapPin, BookOpen, DollarSign, Building2, Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Price } from "@/components/currency/Price";
 
 interface University {
     id: string;
@@ -13,6 +14,8 @@ interface University {
     province: string;
     programs: number;
     minTuition: string;
+    minTuitionFee?: number; // Raw number for Price component
+    currency?: string; // Currency code
     badges: string[];
     logo?: string;
     photo?: string;
@@ -111,7 +114,13 @@ export function UniversityCard({ university }: UniversityCardProps) {
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
                             <DollarSign className="h-3 w-3" /> Tuition From
                         </span>
-                        <span className="font-semibold text-primary">{university.minTuition}</span>
+                        <span className="font-semibold text-primary">
+                            {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (
+                                <Price amount={university.minTuitionFee} currency={university.currency || 'CNY'} />
+                            ) : (
+                                university.minTuition
+                            )}
+                        </span>
                     </div>
                 </div>
             </CardContent>

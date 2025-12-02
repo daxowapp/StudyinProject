@@ -23,6 +23,8 @@ import {
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
+import { signout } from "@/app/(public)/auth/actions";
+import { CurrencySelector } from "@/components/currency/CurrencySelector";
 
 const navLinks = [
     { name: "Home", href: "/", icon: Home },
@@ -66,8 +68,13 @@ export function Navbar() {
     }, [supabase.auth]);
 
     const handleLogout = async () => {
-        await supabase.auth.signOut();
-        router.push('/');
+        try {
+            await signout();
+        } catch (error) {
+            // Fallback: if server action fails, try client-side signout
+            await supabase.auth.signOut();
+            router.push('/auth/login');
+        }
     };
 
     const pathname = usePathname();
@@ -121,6 +128,15 @@ export function Navbar() {
                     {/* Right Side (Auth & Mobile Menu) */}
                     <div className="flex items-center gap-3">
                         <div className="hidden lg:flex items-center gap-3">
+                            {/* Currency Selector */}
+                            <CurrencySelector
+                                variant="navbar"
+                                className={scrolled
+                                    ? "text-foreground hover:bg-muted"
+                                    : "text-white hover:bg-white/10"
+                                }
+                            />
+
                             {/* Language Selector */}
                             <Button
                                 variant="ghost"

@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { Price } from "@/components/currency/Price";
 
 export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const supabase = await createClient();
@@ -79,8 +80,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         intake: program.intake,
         deadline: program.intake,
         tuition: `${program.tuition_fee} ${program.currency}/Year`,
+        tuition_fee: program.tuition_fee, // Raw number for Price component
+        currency: program.currency || 'CNY', // Currency code
         applicationFee: program.application_fee ? `${program.application_fee} ${program.currency}` : "800 RMB",
+        application_fee_amount: program.application_fee || 800, // Raw number for Price component
+        application_fee_currency: program.currency || 'CNY',
         serviceFee: program.service_fee ? `${program.service_fee} USD` : "150 USD",
+        service_fee_amount: program.service_fee || 150, // Raw number for Price component
+        service_fee_currency: 'USD',
         totalInitial: "~260 USD",
         badges: [program.language_name, program.level].filter(Boolean),
         overview: program.program_description || "No description available for this program.",
@@ -203,7 +210,13 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                         </div>
                                         <div>
                                             <p className="text-sm text-muted-foreground">Tuition Fee</p>
-                                            <p className="text-xl font-bold">{programData.tuition}</p>
+                                            <p className="text-xl font-bold">
+                                                {programData.tuition_fee && typeof programData.tuition_fee === 'number' ? (
+                                                    <Price amount={programData.tuition_fee} currency={programData.currency} />
+                                                ) : (
+                                                    programData.tuition
+                                                )}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4">
@@ -359,15 +372,33 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 <CardContent className="space-y-3">
                                     <div className="flex justify-between items-center pb-2 border-b">
                                         <span className="text-sm text-muted-foreground">Tuition Fee</span>
-                                        <span className="font-semibold">{programData.tuition}</span>
+                                        <span className="font-semibold">
+                                            {programData.tuition_fee && typeof programData.tuition_fee === 'number' ? (
+                                                <Price amount={programData.tuition_fee} currency={programData.currency} />
+                                            ) : (
+                                                programData.tuition
+                                            )}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between items-center pb-2 border-b">
                                         <span className="text-sm text-muted-foreground">Application Fee</span>
-                                        <span className="font-semibold">{programData.applicationFee}</span>
+                                        <span className="font-semibold">
+                                            {typeof programData.application_fee_amount === 'number' ? (
+                                                <Price amount={programData.application_fee_amount} currency={programData.application_fee_currency} />
+                                            ) : (
+                                                programData.applicationFee
+                                            )}
+                                        </span>
                                     </div>
                                     <div className="flex justify-between items-center pb-2 border-b">
                                         <span className="text-sm text-muted-foreground">Service Fee</span>
-                                        <span className="font-semibold">{programData.serviceFee}</span>
+                                        <span className="font-semibold">
+                                            {typeof programData.service_fee_amount === 'number' ? (
+                                                <Price amount={programData.service_fee_amount} currency={programData.service_fee_currency} />
+                                            ) : (
+                                                programData.serviceFee
+                                            )}
+                                        </span>
                                     </div>
                                     <div className="pt-2">
                                         <p className="text-xs text-muted-foreground">* Additional costs may include accommodation, visa, and living expenses</p>
