@@ -1330,9 +1330,8 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             </Tabs>
 
             <ProgramDialog
-                open={false}
-                onOpenChange={() => { }}
                 universityId={id}
+                universities={[{ id: id, name: formData.name }]}
                 languages={languages}
             />
 

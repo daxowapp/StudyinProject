@@ -37,9 +37,10 @@ interface ProgramDialogProps {
     universities: any[];
     languages: any[];
     trigger?: React.ReactNode;
+    universityId?: string;
 }
 
-export function ProgramDialog({ program, universities, languages, trigger }: ProgramDialogProps) {
+export function ProgramDialog({ program, universities, languages, trigger, universityId }: ProgramDialogProps) {
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedCatalogProgram, setSelectedCatalogProgram] = useState<any>(null);
@@ -47,7 +48,7 @@ export function ProgramDialog({ program, universities, languages, trigger }: Pro
     const [admissionRequirements, setAdmissionRequirements] = useState<any[]>([]);
     const [selectedRequirements, setSelectedRequirements] = useState<string[]>([]);
     const [formState, setFormState] = useState({
-        university_id: program?.university_id || "",
+        university_id: program?.university_id || universityId || "",
         program_catalog_id: program?.program_catalog_id || "",
         custom_title: program?.custom_title || "",
         duration: program?.duration || "",
