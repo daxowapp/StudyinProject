@@ -28,12 +28,14 @@ import {
     Edit,
     Upload,
     X,
-    Image as ImageIcon
+    Image as ImageIcon,
+    Plus
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
+import { AccommodationDialog } from "../components/AccommodationDialog";
 
 export default function EditUniversityPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -48,6 +50,10 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [mapLocation, setMapLocation] = useState({ lat: 39.9042, lng: 116.4074 }); // Default: Beijing
     const [featureInput, setFeatureInput] = useState<string>("");
     const [languages, setLanguages] = useState<any[]>([]);
+    const [accommodations, setAccommodations] = useState<any[]>([]);
+    const [showAccommodationDialog, setShowAccommodationDialog] = useState(false);
+    const [selectedAccommodation, setSelectedAccommodation] = useState<any>(null);
+    const [accommodationFeatureInput, setAccommodationFeatureInput] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",
@@ -70,6 +76,10 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         has_fast_track: false,
         university_type: "",
         institution_category: "",
+        accommodation_available: true,
+        accommodation_description: "",
+        accommodation_fee_range: "",
+        accommodation_features: [] as string[],
     });
 
     useEffect(() => {
@@ -88,6 +98,13 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 .from("v_university_programs_full")
                 .select("*")
                 .eq("university_id", id);
+
+            // Fetch accommodations
+            const { data: accommodationsData } = await supabase
+                .from("university_accommodation")
+                .select("*")
+                .eq("university_id", id)
+                .order("display_order", { ascending: true });
 
             // Fetch languages for ProgramDialog
             const { data: languagesData } = await supabase
@@ -121,6 +138,10 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     has_fast_track: data.has_fast_track || false,
                     university_type: data.university_type || "",
                     institution_category: data.institution_category || "",
+                    accommodation_available: data.accommodation_available ?? true,
+                    accommodation_description: data.accommodation_description || "",
+                    accommodation_fee_range: data.accommodation_fee_range || "",
+                    accommodation_features: data.accommodation_features || [],
                 });
                 setLogoPreview(data.logo_url || "");
                 setCoverPhotoPreview(data.cover_photo_url || "");
@@ -132,6 +153,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 // Set programs from the view data
                 setPrograms(programsData || []);
                 setLanguages(languagesData || []);
+                setAccommodations(accommodationsData || []);
             }
             setLoading(false);
         };
@@ -178,7 +200,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             const reader = new FileReader();
             reader.onloadend = () => {
                 setCoverPhotoPreview(reader.result as string);
-                setFormData({ ...formData, cover_photo_url: reader.result as string });
             };
             reader.readAsDataURL(file);
             toast.success('Cover photo uploaded successfully');
@@ -229,6 +250,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             latitude: formData.latitude === "" ? null : formData.latitude,
             longitude: formData.longitude === "" ? null : formData.longitude,
             logo_url: logoPreview || formData.logo_url,
+            cover_photo_url: coverPhotoPreview || formData.cover_photo_url,
             gallery_images: galleryPreviews.length > 0 ? galleryPreviews : formData.gallery_images,
             has_fast_track: formData.has_fast_track,
         };
@@ -290,6 +312,56 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         if (data.latitude && data.longitude) {
             setMapLocation({ lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) });
         }
+    };
+
+    const addAccommodationFeature = () => {
+        if (accommodationFeatureInput.trim()) {
+            setFormData(prev => ({
+                ...prev,
+                accommodation_features: [...prev.accommodation_features, accommodationFeatureInput.trim()]
+            }));
+            setAccommodationFeatureInput("");
+        }
+    };
+
+    const removeAccommodationFeature = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            accommodation_features: prev.accommodation_features.filter((_, i) => i !== index)
+        }));
+    };
+
+    const handleDeleteAccommodation = async (accommodationId: string) => {
+        if (!confirm("Are you sure you want to delete this accommodation option?")) return;
+
+        try {
+            const supabase = createClient();
+            const { error } = await supabase
+                .from("university_accommodation")
+                .delete()
+                .eq("id", accommodationId);
+
+            if (error) throw error;
+
+            setAccommodations(prev => prev.filter(a => a.id !== accommodationId));
+            toast.success("Accommodation deleted successfully");
+        } catch (error) {
+            console.error("Error deleting accommodation:", error);
+            toast.error("Failed to delete accommodation");
+        }
+    };
+
+    const handleAccommodationSuccess = async () => {
+        const supabase = createClient();
+        const { data } = await supabase
+            .from("university_accommodation")
+            .select("*")
+            .eq("university_id", id)
+            .order("display_order", { ascending: true });
+
+        setAccommodations(data || []);
+        setShowAccommodationDialog(false); // Close dialog after success
+        setSelectedAccommodation(null); // Clear selected accommodation
     };
 
     if (loading) {
@@ -392,6 +464,14 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     <TabsTrigger value="programs">
                         <GraduationCap className="h-4 w-4 mr-2" />
                         Programs ({programs.length})
+                    </TabsTrigger>
+                    <TabsTrigger value="accommodation">
+                        <Building2 className="h-4 w-4 mr-2" />
+                        Accommodation ({accommodations.length})
+                    </TabsTrigger>
+                    <TabsTrigger value="gallery">
+                        <ImageIcon className="h-4 w-4 mr-2" />
+                        Media
                     </TabsTrigger>
                 </TabsList>
 
@@ -496,196 +576,6 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                 <SelectItem value="Technical Institute">Technical Institute</SelectItem>
                                             </SelectContent>
                                         </Select>
-                                    </div>
-
-                                    {/* Logo Upload */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="logo">University Logo</Label>
-                                        <div className="flex items-start gap-4">
-                                            {logoPreview && (
-                                                <div className="relative w-32 h-32 border-2 border-dashed rounded-lg overflow-hidden">
-                                                    <img
-                                                        src={logoPreview}
-                                                        alt="Logo preview"
-                                                        className="w-full h-full object-contain p-2"
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => setLogoPreview("")}
-                                                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                                                    >
-                                                        <X className="h-3 w-3" />
-                                                    </button>
-                                                </div>
-                                            )}
-                                            <div className="flex-1">
-                                                <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
-                                                    <input
-                                                        id="logo"
-                                                        type="file"
-                                                        accept="image/*"
-                                                        onChange={handleLogoUpload}
-                                                        className="hidden"
-                                                    />
-                                                    <label htmlFor="logo" className="cursor-pointer">
-                                                        <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                                                        <p className="text-sm font-medium">Click to upload logo</p>
-                                                        <p className="text-xs text-muted-foreground mt-1">
-                                                            PNG, JPG, GIF up to 5MB
-                                                        </p>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Cover Photo Upload */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="cover">Cover Photo (Hero Banner)</Label>
-                                        <p className="text-sm text-muted-foreground">This photo will be displayed in the hero section and listing cards. Recommended size: 1920x600px</p>
-                                        <div className="flex items-start gap-4">
-                                            {coverPhotoPreview && (
-                                                <div className="relative w-full h-48 border-2 border-dashed rounded-lg overflow-hidden">
-                                                    <img
-                                                        src={coverPhotoPreview}
-                                                        alt="Cover photo preview"
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => {
-                                                            setCoverPhotoPreview("");
-                                                            setFormData({ ...formData, cover_photo_url: "" });
-                                                        }}
-                                                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 shadow-lg"
-                                                    >
-                                                        <X className="h-4 w-4" />
-                                                    </button>
-                                                </div>
-                                            )}
-                                            {!coverPhotoPreview && (
-                                                <div className="w-full">
-                                                    <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
-                                                        <input
-                                                            id="cover"
-                                                            type="file"
-                                                            accept="image/*"
-                                                            onChange={handleCoverPhotoUpload}
-                                                            className="hidden"
-                                                        />
-                                                        <label htmlFor="cover" className="cursor-pointer">
-                                                            <ImageIcon className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
-                                                            <p className="text-sm font-medium">Click to upload cover photo</p>
-                                                            <p className="text-xs text-muted-foreground mt-2">
-                                                                PNG, JPG, GIF up to 5MB • Recommended: 1920x600px
-                                                            </p>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* Gallery Upload */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="gallery">University Gallery</Label>
-                                        <div className="space-y-4">
-                                            {/* Gallery Preview */}
-                                            {galleryPreviews.length > 0 && (
-                                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                                    {galleryPreviews.map((preview, index) => (
-                                                        <div key={index} className="relative aspect-video border-2 border-dashed rounded-lg overflow-hidden group">
-                                                            <img
-                                                                src={preview}
-                                                                alt={`Gallery ${index + 1}`}
-                                                                className="w-full h-full object-cover"
-                                                            />
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => removeGalleryImage(index)}
-                                                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
-                                                            >
-                                                                <X className="h-3 w-3" />
-                                                            </button>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            )}
-
-                                            {/* Upload Button */}
-                                            <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
-                                                <input
-                                                    id="gallery"
-                                                    type="file"
-                                                    accept="image/*"
-                                                    multiple
-                                                    onChange={handleGalleryUpload}
-                                                    className="hidden"
-                                                />
-                                                <label htmlFor="gallery" className="cursor-pointer">
-                                                    <ImageIcon className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                                                    <p className="text-sm font-medium">Click to upload gallery images</p>
-                                                    <p className="text-xs text-muted-foreground mt-1">
-                                                        Multiple images allowed (max 10) • PNG, JPG, GIF up to 5MB each
-                                                    </p>
-                                                    {galleryPreviews.length > 0 && (
-                                                        <p className="text-xs text-primary mt-2">
-                                                            {galleryPreviews.length} / 10 images uploaded
-                                                        </p>
-                                                    )}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Video Section */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="video_url">University Video (YouTube/Vimeo)</Label>
-                                        <Input
-                                            id="video_url"
-                                            type="url"
-                                            value={formData.video_url}
-                                            onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
-                                            placeholder="https://www.youtube.com/watch?v=..."
-                                        />
-                                        <p className="text-xs text-muted-foreground">
-                                            Paste a YouTube or Vimeo video URL to showcase your university
-                                        </p>
-                                        {formData.video_url && (
-                                            <div className="mt-2 p-3 bg-muted rounded-lg">
-                                                <p className="text-sm font-medium mb-2">Video Preview:</p>
-                                                <div className="aspect-video bg-black rounded-lg overflow-hidden">
-                                                    {formData.video_url.includes('youtube.com') || formData.video_url.includes('youtu.be') ? (
-                                                        <iframe
-                                                            width="100%"
-                                                            height="100%"
-                                                            src={`https://www.youtube.com/embed/${formData.video_url.includes('youtu.be')
-                                                                ? formData.video_url.split('youtu.be/')[1]?.split('?')[0]
-                                                                : formData.video_url.split('v=')[1]?.split('&')[0]
-                                                                }`}
-                                                            title="University Video"
-                                                            frameBorder="0"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                            allowFullScreen
-                                                        ></iframe>
-                                                    ) : formData.video_url.includes('vimeo.com') ? (
-                                                        <iframe
-                                                            width="100%"
-                                                            height="100%"
-                                                            src={`https://player.vimeo.com/video/${formData.video_url.split('vimeo.com/')[1]?.split('?')[0]}`}
-                                                            title="University Video"
-                                                            frameBorder="0"
-                                                            allow="autoplay; fullscreen; picture-in-picture"
-                                                            allowFullScreen
-                                                        ></iframe>
-                                                    ) : (
-                                                        <div className="flex items-center justify-center h-full text-white">
-                                                            Invalid video URL
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
 
@@ -1086,7 +976,373 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                         </CardContent>
                     </Card>
                 </TabsContent>
+
+                {/* Accommodation Tab */}
+                <TabsContent value="accommodation" className="space-y-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Accommodation Settings</CardTitle>
+                            <CardDescription>Manage general accommodation information</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="flex items-center space-x-2">
+                                <Switch
+                                    id="accommodation_available"
+                                    checked={formData.accommodation_available}
+                                    onCheckedChange={(checked) => setFormData({ ...formData, accommodation_available: checked })}
+                                />
+                                <Label htmlFor="accommodation_available">Accommodation Available</Label>
+                            </div>
+
+                            {formData.accommodation_available && (
+                                <>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="accommodation_description">Description</Label>
+                                        <Textarea
+                                            id="accommodation_description"
+                                            value={formData.accommodation_description}
+                                            onChange={(e) => setFormData({ ...formData, accommodation_description: e.target.value })}
+                                            placeholder="Brief description of accommodation options..."
+                                        />
+                                    </div>
+
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="accommodation_fee_range">Fee Range</Label>
+                                        <Input
+                                            id="accommodation_fee_range"
+                                            value={formData.accommodation_fee_range}
+                                            onChange={(e) => setFormData({ ...formData, accommodation_fee_range: e.target.value })}
+                                            placeholder="e.g. 1200-2500 CNY/month"
+                                        />
+                                    </div>
+
+                                    <div className="grid gap-2">
+                                        <Label>General Facilities</Label>
+                                        <div className="flex gap-2">
+                                            <Input
+                                                placeholder="Add a facility (e.g. WiFi, AC)"
+                                                value={accommodationFeatureInput}
+                                                onChange={(e) => setAccommodationFeatureInput(e.target.value)}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter') {
+                                                        e.preventDefault();
+                                                        addAccommodationFeature();
+                                                    }
+                                                }}
+                                            />
+                                            <Button type="button" onClick={addAccommodationFeature} size="icon">
+                                                <Plus className="h-4 w-4" />
+                                            </Button>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {formData.accommodation_features.map((feature, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm flex items-center gap-2"
+                                                >
+                                                    {feature}
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removeAccommodationFeature(index)}
+                                                        className="hover:text-destructive"
+                                                    >
+                                                        <X className="h-3 w-3" />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+
+                    {formData.accommodation_available && (
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between">
+                                <div>
+                                    <CardTitle>Room Types</CardTitle>
+                                    <CardDescription>Manage available room types</CardDescription>
+                                </div>
+                                <Button onClick={() => {
+                                    setSelectedAccommodation(null);
+                                    setShowAccommodationDialog(true);
+                                }}>
+                                    <Plus className="mr-2 h-4 w-4" />
+                                    Add Room Type
+                                </Button>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-4">
+                                    {accommodations.map((accommodation) => (
+                                        <div
+                                            key={accommodation.id}
+                                            className="flex items-center justify-between p-4 border rounded-lg"
+                                        >
+                                            <div>
+                                                <h4 className="font-semibold">{accommodation.type}</h4>
+                                                <p className="text-sm text-muted-foreground">{accommodation.description}</p>
+                                                <div className="flex gap-4 mt-1 text-sm text-muted-foreground">
+                                                    <span>¥{accommodation.price_cny}/month</span>
+                                                    <span>${accommodation.price_usd}/month</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() => {
+                                                        setSelectedAccommodation(accommodation);
+                                                        setShowAccommodationDialog(true);
+                                                    }}
+                                                >
+                                                    <Edit className="h-4 w-4" />
+                                                </Button>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="text-destructive hover:text-destructive"
+                                                    onClick={() => handleDeleteAccommodation(accommodation.id)}
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {accommodations.length === 0 && (
+                                        <div className="text-center py-8 text-muted-foreground">
+                                            No room types added yet.
+                                        </div>
+                                    )}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
+                </TabsContent>
+
+                {/* Gallery Tab */}
+                <TabsContent value="gallery" className="space-y-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>University Media</CardTitle>
+                            <CardDescription>Upload logo, cover photo, gallery images and video</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            {/* Logo Upload */}
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold">University Logo</h3>
+                                <Separator />
+                                <Label htmlFor="logo">University Logo</Label>
+                                <div className="flex items-start gap-4">
+                                    {logoPreview && (
+                                        <div className="relative w-32 h-32 border-2 border-dashed rounded-lg overflow-hidden">
+                                            <img
+                                                src={logoPreview}
+                                                alt="Logo preview"
+                                                className="w-full h-full object-contain p-2"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setLogoPreview("")}
+                                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                                            >
+                                                <X className="h-3 w-3" />
+                                            </button>
+                                        </div>
+                                    )}
+                                    <div className="flex-1">
+                                        <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                                            <input
+                                                id="logo"
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleLogoUpload}
+                                                className="hidden"
+                                            />
+                                            <label htmlFor="logo" className="cursor-pointer">
+                                                <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                                                <p className="text-sm font-medium">Click to upload logo</p>
+                                                <p className="text-xs text-muted-foreground mt-1">
+                                                    PNG, JPG, GIF up to 5MB
+                                                </p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Cover Photo Upload */}
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold">Cover Photo</h3>
+                                <Separator />
+                                <Label htmlFor="cover">Cover Photo (Hero Banner)</Label>
+                                <p className="text-sm text-muted-foreground">This photo will be displayed in the hero section and listing cards. Recommended size: 1920x600px</p>
+                                <div className="flex items-start gap-4">
+                                    {coverPhotoPreview && (
+                                        <div className="relative w-full h-48 border-2 border-dashed rounded-lg overflow-hidden">
+                                            <img
+                                                src={coverPhotoPreview}
+                                                alt="Cover photo preview"
+                                                className="w-full h-full object-cover"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setCoverPhotoPreview("");
+                                                }}
+                                                className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 shadow-lg"
+                                            >
+                                                <X className="h-4 w-4" />
+                                            </button>
+                                        </div>
+                                    )}
+                                    {!coverPhotoPreview && (
+                                        <div className="w-full">
+                                            <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
+                                                <input
+                                                    id="cover"
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleCoverPhotoUpload}
+                                                    className="hidden"
+                                                />
+                                                <label htmlFor="cover" className="cursor-pointer">
+                                                    <ImageIcon className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                                                    <p className="text-sm font-medium">Click to upload cover photo</p>
+                                                    <p className="text-xs text-muted-foreground mt-2">
+                                                        PNG, JPG, GIF up to 5MB • Recommended: 1920x600px
+                                                    </p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Gallery Upload */}
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold">University Gallery</h3>
+                                <Separator />
+                                <Label htmlFor="gallery">University Gallery</Label>
+                                <div className="space-y-4">
+                                    {/* Gallery Preview */}
+                                    {galleryPreviews.length > 0 && (
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                            {galleryPreviews.map((preview, index) => (
+                                                <div key={index} className="relative aspect-video border-2 border-dashed rounded-lg overflow-hidden group">
+                                                    <img
+                                                        src={preview}
+                                                        alt={`Gallery ${index + 1}`}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removeGalleryImage(index)}
+                                                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                    >
+                                                        <X className="h-3 w-3" />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Upload Button */}
+                                    <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                                        <input
+                                            id="gallery"
+                                            type="file"
+                                            accept="image/*"
+                                            multiple
+                                            onChange={handleGalleryUpload}
+                                            className="hidden"
+                                        />
+                                        <label htmlFor="gallery" className="cursor-pointer">
+                                            <ImageIcon className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                                            <p className="text-sm font-medium">Click to upload gallery images</p>
+                                            <p className="text-xs text-muted-foreground mt-1">
+                                                Multiple images allowed (max 10) • PNG, JPG, GIF up to 5MB each
+                                            </p>
+                                            {galleryPreviews.length > 0 && (
+                                                <p className="text-xs text-primary mt-2">
+                                                    {galleryPreviews.length} / 10 images uploaded
+                                                </p>
+                                            )}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Video Section */}
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold">University Video</h3>
+                                <Separator />
+                                <Label htmlFor="video_url">University Video (YouTube/Vimeo)</Label>
+                                <Input
+                                    id="video_url"
+                                    type="url"
+                                    value={formData.video_url}
+                                    onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
+                                    placeholder="https://www.youtube.com/watch?v=..."
+                                />
+                                <p className="text-xs text-muted-foreground">
+                                    Paste a YouTube or Vimeo video URL to showcase your university
+                                </p>
+                                {formData.video_url && (
+                                    <div className="mt-2 p-3 bg-muted rounded-lg">
+                                        <p className="text-sm font-medium mb-2">Video Preview:</p>
+                                        <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                                            {formData.video_url.includes('youtube.com') || formData.video_url.includes('youtu.be') ? (
+                                                <iframe
+                                                    width="100%"
+                                                    height="100%"
+                                                    src={`https://www.youtube.com/embed/${formData.video_url.includes('youtu.be')
+                                                        ? formData.video_url.split('youtu.be/')[1]?.split('?')[0]
+                                                        : formData.video_url.split('v=')[1]?.split('&')[0]
+                                                        }`}
+                                                    title="University Video"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            ) : formData.video_url.includes('vimeo.com') ? (
+                                                <iframe
+                                                    width="100%"
+                                                    height="100%"
+                                                    src={`https://player.vimeo.com/video/${formData.video_url.split('vimeo.com/')[1]?.split('?')[0]}`}
+                                                    title="University Video"
+                                                    frameBorder="0"
+                                                    allow="autoplay; fullscreen; picture-in-picture"
+                                                    allowFullScreen
+                                                ></iframe>
+                                            ) : (
+                                                <div className="flex items-center justify-center h-full text-white">
+                                                    Invalid video URL
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
             </Tabs>
+
+            <ProgramDialog
+                open={false}
+                onOpenChange={() => { }}
+                universityId={id}
+                languages={languages}
+            />
+
+            <AccommodationDialog
+                open={showAccommodationDialog}
+                onOpenChange={setShowAccommodationDialog}
+                universityId={id}
+                accommodation={selectedAccommodation}
+                onSuccess={handleAccommodationSuccess}
+            />
         </div>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExpandableText } from "./ExpandableText";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
 interface UniversityContentProps {
     university: any;
@@ -27,6 +28,23 @@ export function UniversityContent({ university }: UniversityContentProps) {
     const [programLevel, setProgramLevel] = useState<string>("all");
 
     // Get unique program levels
+    const [accommodations, setAccommodations] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchAccommodations = async () => {
+            const supabase = createClient();
+            const { data } = await supabase
+                .from("university_accommodation")
+                .select("*")
+                .eq("university_id", university.id)
+                .order("display_order", { ascending: true });
+
+            setAccommodations(data || []);
+        };
+
+        fetchAccommodations();
+    }, [university.id]);
+
     const uniqueLevels = university.programs?.map((p: any) => p.level as string) || [];
     const programLevels: string[] = ["all", ...Array.from(new Set(uniqueLevels))];
 
@@ -222,7 +240,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             accommodationDescription={university.accommodation_description}
                             accommodationFeeRange={university.accommodation_fee_range}
                             accommodationFeatures={university.accommodation_features}
-                            accommodationTypes={university.accommodation_types}
+                            accommodationTypes={accommodations}
                         />
                     </motion.div>
 
