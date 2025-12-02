@@ -1,0 +1,23 @@
+import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env.local" });
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+async function checkCatalog() {
+    const { data: catalog, error } = await supabase
+        .from('admission_requirements_catalog')
+        .select('*');
+
+    if (catalog) {
+        console.log("Catalog Items:");
+        catalog.forEach(c => console.log(`- [${c.id}] ${c.title} (${c.requirement_type})`));
+    } else {
+        console.error("Error fetching catalog:", error);
+    }
+}
+
+checkCatalog();

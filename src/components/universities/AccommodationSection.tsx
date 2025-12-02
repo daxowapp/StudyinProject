@@ -5,9 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { Home, Check, DollarSign, Wifi, Wind, Droplet, Shield, Utensils } from "lucide-react";
 
 interface AccommodationType {
-    type: string;
-    price_cny: number;
-    price_usd: number;
+    type: string; // This might be null in DB now, but we can fallback to room_type
+    room_type?: string;
+    price_cny?: number | null;
+    price_usd?: number | null;
+    price_min?: number | null;
+    price_max?: number | null;
+    currency?: string;
+    billing_period?: string;
     features: string[];
     description: string;
 }
@@ -96,9 +101,9 @@ export function AccommodationSection({
                             {accommodationFeatures.map((feature, index) => {
                                 const Icon = featureIcons[feature] || Check;
                                 return (
-                                    <Badge 
-                                        key={index} 
-                                        variant="secondary" 
+                                    <Badge
+                                        key={index}
+                                        variant="secondary"
                                         className="px-3 py-1.5 text-sm"
                                     >
                                         <Icon className="h-4 w-4 mr-1.5" />
@@ -117,7 +122,7 @@ export function AccommodationSection({
                     <h3 className="text-xl font-bold mb-4">Available Room Types</h3>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {accommodationTypes.map((room, index) => (
-                            <Card 
+                            <Card
                                 key={index}
                                 className="border-2 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg"
                             >
@@ -125,7 +130,7 @@ export function AccommodationSection({
                                     <div className="flex items-start justify-between">
                                         <div>
                                             <CardTitle className="text-lg mb-1">
-                                                {room.type}
+                                                {room.type || room.room_type || 'Accommodation'}
                                             </CardTitle>
                                             <p className="text-xs text-muted-foreground">
                                                 {room.description}
@@ -139,13 +144,25 @@ export function AccommodationSection({
                                     <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-lg p-4">
                                         <div className="flex items-baseline gap-2 mb-1">
                                             <span className="text-2xl font-bold text-blue-600">
-                                                ¥{room.price_cny.toLocaleString()}
+                                                {room.price_min ? (
+                                                    <>
+                                                        {room.currency || '¥'}
+                                                        {room.price_min.toLocaleString()}
+                                                        {room.price_max && room.price_max > room.price_min ? ` - ${room.price_max.toLocaleString()}` : ''}
+                                                    </>
+                                                ) : (
+                                                    room.price_cny ? `¥${room.price_cny.toLocaleString()}` : 'Price on request'
+                                                )}
                                             </span>
-                                            <span className="text-sm text-muted-foreground">/month</span>
+                                            <span className="text-sm text-muted-foreground">
+                                                /{room.billing_period || 'month'}
+                                            </span>
                                         </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            ≈ ${room.price_usd}/month
-                                        </p>
+                                        {room.price_usd && (
+                                            <p className="text-xs text-muted-foreground">
+                                                ≈ ${room.price_usd}/month
+                                            </p>
+                                        )}
                                     </div>
 
                                     {/* Features */}
@@ -155,7 +172,7 @@ export function AccommodationSection({
                                         </p>
                                         <ul className="space-y-1.5">
                                             {room.features.map((feature, idx) => (
-                                                <li 
+                                                <li
                                                     key={idx}
                                                     className="flex items-start gap-2 text-sm"
                                                 >
