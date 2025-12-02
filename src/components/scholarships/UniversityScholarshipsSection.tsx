@@ -140,115 +140,118 @@ export function UniversityScholarshipsSection({
             )}
 
             {/* Scholarship Cards */}
-            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {scholarships.map((scholarship) => {
+            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {scholarships.map((scholarship, index) => {
+                    // Determine theme based on index or type
+                    const themes = [
+                        {
+                            color: "emerald",
+                            border: "border-emerald-500/20",
+                            bg: "bg-gradient-to-br from-emerald-500/10 to-emerald-500/5",
+                            badge: "bg-emerald-500/10 text-emerald-700",
+                            popularBadge: "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white"
+                        },
+                        {
+                            color: "blue",
+                            border: "border-blue-500/20",
+                            bg: "bg-gradient-to-br from-blue-500/10 to-blue-500/5",
+                            badge: "bg-blue-500/10 text-blue-700",
+                            popularBadge: "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
+                        },
+                        {
+                            color: "purple",
+                            border: "border-purple-500/20",
+                            bg: "bg-gradient-to-br from-purple-500/10 to-purple-500/5",
+                            badge: "bg-purple-500/10 text-purple-700",
+                            popularBadge: "bg-gradient-to-r from-purple-500 to-purple-600 text-white"
+                        },
+                        {
+                            color: "slate",
+                            border: "border-slate-500/20",
+                            bg: "bg-gradient-to-br from-slate-500/10 to-slate-500/5",
+                            badge: "bg-slate-500/10 text-slate-700",
+                            popularBadge: "bg-gradient-to-r from-slate-500 to-slate-600 text-white"
+                        }
+                    ];
+
+                    const theme = themes[index % themes.length];
+                    const isPopular = index === 0 && scholarship.tuition_coverage_percentage >= 100;
+
                     const benefits = [];
                     if (scholarship.tuition_coverage_percentage > 0) {
-                        benefits.push(`${scholarship.tuition_coverage_percentage}% tuition coverage`);
+                        benefits.push(`${scholarship.tuition_coverage_percentage}% tuition fee coverage`);
+                    } else {
+                        benefits.push("No scholarship (0% coverage)");
                     }
+                    benefits.push("Application support & guidance");
+                    benefits.push("Visa assistance");
+                    benefits.push("Pre-departure orientation");
                     if (scholarship.includes_accommodation) {
-                        benefits.push(scholarship.accommodation_type || "Free accommodation");
-                    }
-                    if (scholarship.includes_stipend && scholarship.stipend_amount_monthly) {
-                        benefits.push(`${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month stipend`);
-                    }
-                    if (scholarship.includes_medical_insurance) {
-                        benefits.push("Medical insurance");
-                    }
-                    if (scholarship.one_time_allowance && scholarship.one_time_allowance > 0) {
-                        benefits.push(`${scholarship.one_time_allowance} ${scholarship.one_time_allowance_currency} allowance`);
+                        benefits.push("Accommodation arrangement support");
                     }
 
                     return (
-                        <Card
+                        <div
                             key={scholarship.id}
-                            className="h-full border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-primary/5 to-primary/10 relative overflow-hidden flex flex-col"
+                            className={`text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-2 ${theme.border} shadow-lg hover:shadow-xl transition-all duration-300 ${theme.bg} relative overflow-hidden`}
                         >
-                            <CardContent className="p-6 space-y-4 flex-1 flex flex-col">
-                                {/* Type Badge */}
-                                <div className="mb-3">
-                                    <Badge className="bg-primary/10 text-primary">
+                            {isPopular && (
+                                <div className="absolute top-4 right-4">
+                                    <span className={`inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.popularBadge}`}>
+                                        Most Popular
+                                    </span>
+                                </div>
+                            )}
+
+                            <div className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 border-b pb-6 border-border/50">
+                                <div className="mb-4">
+                                    <span className={`inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.badge}`}>
                                         {scholarship.type_name}
-                                    </Badge>
+                                    </span>
                                 </div>
-
-                                {/* Display Name */}
-                                <h3 className="text-lg font-bold min-h-[3.5rem] flex items-center">
+                                <div className="font-semibold text-xl mb-2 line-clamp-2 min-h-[3.5rem]">
                                     {scholarship.display_name || scholarship.type_name}
-                                </h3>
-
-                                {/* Description */}
-                                <div className="min-h-[2.5rem]">
-                                    {scholarship.description && (
-                                        <p className="text-xs text-muted-foreground line-clamp-2">
-                                            {scholarship.description}
-                                        </p>
-                                    )}
                                 </div>
+                                <div className="text-muted-foreground text-sm line-clamp-2 min-h-[2.5rem]">
+                                    {scholarship.description || "Great option for international students."}
+                                </div>
+                            </div>
 
-                                {/* Coverage Badge */}
-                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3 text-center">
-                                    <div className="text-3xl font-bold text-primary mb-1">
+                            <div className="px-6 space-y-6 flex-1 flex flex-col">
+                                {/* Coverage Box */}
+                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 text-center shadow-sm">
+                                    <div className="text-4xl font-bold text-primary mb-1">
                                         {scholarship.tuition_coverage_percentage}%
                                     </div>
                                     <p className="text-xs text-muted-foreground">Tuition Coverage</p>
-                                    {scholarship.duration_years && (
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                            {scholarship.duration_years} year{scholarship.duration_years > 1 ? 's' : ''}
-                                        </p>
-                                    )}
                                 </div>
 
-                                {/* Service Fee */}
-                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3">
-                                    <h4 className="font-semibold mb-2 text-xs flex items-center gap-2">
-                                        <DollarSign className="h-3 w-3 text-primary" />
+                                {/* Service Fee Box */}
+                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm">
+                                    <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
+                                        <DollarSign className="h-4 w-4 text-primary" />
                                         Service Fee
                                     </h4>
-                                    <div className="space-y-1">
+                                    <div className="space-y-2">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-xs text-muted-foreground">USD:</span>
-                                            <span className="font-bold">${Number(scholarship.service_fee_usd).toLocaleString()}</span>
+                                            <span className="text-sm text-muted-foreground">USD:</span>
+                                            <span className="font-bold text-lg">${Number(scholarship.service_fee_usd).toLocaleString()}</span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-xs text-muted-foreground">CNY:</span>
-                                            <span className="font-semibold text-sm">¥{Number(scholarship.service_fee_cny).toLocaleString()}</span>
+                                            <span className="text-sm text-muted-foreground">CNY:</span>
+                                            <span className="font-semibold">¥{Number(scholarship.service_fee_cny).toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Benefits Icons */}
-                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3">
-                                    <h4 className="font-semibold mb-2 text-xs flex items-center gap-2">
-                                        <Check className="h-3 w-3 text-primary" />
-                                        Includes
+                                {/* What's Included Box */}
+                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm flex-1">
+                                    <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-primary" />
+                                        What's Included
                                     </h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {scholarship.includes_accommodation && (
-                                            <Badge variant="secondary" className="text-xs">
-                                                <Home className="h-3 w-3 mr-1" />
-                                                Housing
-                                            </Badge>
-                                        )}
-                                        {scholarship.includes_stipend && (
-                                            <Badge variant="secondary" className="text-xs">
-                                                <DollarSign className="h-3 w-3 mr-1" />
-                                                Stipend
-                                            </Badge>
-                                        )}
-                                        {scholarship.includes_medical_insurance && (
-                                            <Badge variant="secondary" className="text-xs">
-                                                <Activity className="h-3 w-3 mr-1" />
-                                                Insurance
-                                            </Badge>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {/* Benefits List */}
-                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3 flex-1 min-h-[8rem]">
-                                    <ul className="space-y-1">
-                                        {benefits.slice(0, 4).map((benefit, i) => (
+                                    <ul className="space-y-2">
+                                        {benefits.map((benefit, i) => (
                                             <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                                                 <Check className="h-3 w-3 text-primary mt-0.5 shrink-0" />
                                                 <span>{benefit}</span>
@@ -256,8 +259,15 @@ export function UniversityScholarshipsSection({
                                         ))}
                                     </ul>
                                 </div>
-                            </CardContent>
-                        </Card>
+
+                                {/* Apply Button */}
+                                <Link href="/programs" className="mt-auto">
+                                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm">
+                                        Apply Now
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
                     );
                 })}
             </div>
