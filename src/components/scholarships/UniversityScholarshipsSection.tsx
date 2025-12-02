@@ -91,7 +91,7 @@ export function UniversityScholarshipsSection({
             </div>
 
             {/* Scholarship Cards */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {scholarships.map((scholarship) => {
                     const benefits = [];
                     if (scholarship.tuition_coverage_percentage > 0) {
@@ -124,16 +124,18 @@ export function UniversityScholarshipsSection({
                                 </div>
 
                                 {/* Display Name */}
-                                <h3 className="text-lg font-bold">
+                                <h3 className="text-lg font-bold min-h-[3.5rem] flex items-center">
                                     {scholarship.display_name || scholarship.type_name}
                                 </h3>
 
                                 {/* Description */}
-                                {scholarship.description && (
-                                    <p className="text-xs text-muted-foreground line-clamp-2">
-                                        {scholarship.description}
-                                    </p>
-                                )}
+                                <div className="min-h-[2.5rem]">
+                                    {scholarship.description && (
+                                        <p className="text-xs text-muted-foreground line-clamp-2">
+                                            {scholarship.description}
+                                        </p>
+                                    )}
+                                </div>
 
                                 {/* Coverage Badge */}
                                 <div className="bg-white dark:bg-slate-900 rounded-lg p-3 text-center">
@@ -195,7 +197,7 @@ export function UniversityScholarshipsSection({
                                 </div>
 
                                 {/* Benefits List */}
-                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3 flex-1">
+                                <div className="bg-white dark:bg-slate-900 rounded-lg p-3 flex-1 min-h-[8rem]">
                                     <ul className="space-y-1">
                                         {benefits.slice(0, 4).map((benefit, i) => (
                                             <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
