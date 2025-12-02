@@ -33,9 +33,10 @@ interface Program {
 
 interface ProgramsClientProps {
     programs: Program[];
+    universityMap?: Record<string, string>;
 }
 
-export function ProgramsClient({ programs }: ProgramsClientProps) {
+export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientProps) {
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
 
@@ -135,13 +136,21 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
         }
 
         // Handle university filter from URL
-        if (universitySlug && programs.length > 0) {
-            const universityFromSlug = programs.find(p =>
-                p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
-            )?.university;
+        if (universitySlug) {
+            // First try to look up in the map
+            const mappedName = universityMap[universitySlug];
 
-            if (universityFromSlug) {
-                newFilters.university = universityFromSlug;
+            if (mappedName) {
+                newFilters.university = mappedName;
+            } else if (programs.length > 0) {
+                // Fallback to existing logic
+                const universityFromSlug = programs.find(p =>
+                    p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
+                )?.university;
+
+                if (universityFromSlug) {
+                    newFilters.university = universityFromSlug;
+                }
             }
         }
 

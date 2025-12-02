@@ -13,6 +13,16 @@ export default async function ProgramsPage() {
         console.error("Error fetching programs:", error);
     }
 
+    // Fetch universities for slug mapping
+    const { data: universities } = await supabase
+        .from("universities")
+        .select("name, slug");
+
+    const universityMap = universities?.reduce((acc: any, uni: any) => {
+        acc[uni.slug] = uni.name;
+        return acc;
+    }, {}) || {};
+
     // Transform data to match ProgramCard props
     const formattedPrograms = programs?.map((p: any) => ({
         id: p.id,
@@ -46,7 +56,7 @@ export default async function ProgramsPage() {
                 </div>
             </div>
 
-            <ProgramsClient programs={formattedPrograms} />
+            <ProgramsClient programs={formattedPrograms} universityMap={universityMap} />
         </div>
     );
 }
