@@ -105,15 +105,19 @@ export function UniversityScholarshipsSection({
                             Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-                            <Link href="/scholarships">
+                            <a href="#scholarship-cards">
                                 <Button
                                     size="lg"
                                     className="bg-gradient-to-r from-primary via-orange-500 to-red-600 hover:from-primary/90 hover:via-orange-500/90 hover:to-red-600/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-8"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById('scholarship-cards')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }}
                                 >
                                     <Award className="mr-2 h-5 w-5" />
                                     View All Scholarships
                                 </Button>
-                            </Link>
+                            </a>
                             <Link href="/contact">
                                 <Button
                                     size="lg"
@@ -130,7 +134,7 @@ export function UniversityScholarshipsSection({
             </Card>
 
             {/* Scholarship Cards */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {scholarships.map((scholarship) => {
                     const benefits = [];
                     if (scholarship.tuition_coverage_percentage > 0) {
