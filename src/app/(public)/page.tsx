@@ -10,6 +10,9 @@ import { PartnersSection } from "@/components/home/PartnersSection";
 import { FAQPreviewSection } from "@/components/home/FAQPreviewSection";
 import { createClient } from "@/lib/supabase/server";
 
+// Enable ISR with 5 minute revalidation
+export const revalidate = 300;
+
 export default async function Home() {
   let formattedPrograms: any[] = [];
   let universitiesWithStats: any[] = [];
@@ -34,40 +37,42 @@ export default async function Home() {
       console.error("Error fetching programs:", programsError);
     }
 
-    // Fetch university details including cover photos
-    const programsWithUniversities = await Promise.all(
-      (programs || []).map(async (p: any) => {
-        const { data: uni } = await supabase
-          .from("universities")
-          .select("name, city, cover_photo_url, logo_url")
-          .eq("id", p.university_id)
-          .single();
+    // OPTIMIZED: Fetch all universities in ONE query instead of N+1
+    if (programs && programs.length > 0) {
+      const universityIds = [...new Set(programs.map((p: any) => p.university_id))];
 
+      const { data: universities } = await supabase
+        .from("universities")
+        .select("id, name, city, cover_photo_url, logo_url")
+        .in("id", universityIds);
+
+      // Create a Map for O(1) lookup
+      const universityMap = new Map(
+        universities?.map((uni: any) => [uni.id, uni]) || []
+      );
+
+      // Transform data to match component props
+      formattedPrograms = programs.map((p: any) => {
+        const university = universityMap.get(p.university_id);
         return {
-          ...p,
-          university: uni || { name: p.university_name, city: p.city, cover_photo_url: null, logo_url: null }
+          id: p.id,
+          slug: p.slug,
+          title: p.display_title || p.program_title,
+          level: p.level,
+          duration: p.duration,
+          tuition_fee: p.tuition_fee,
+          currency: p.currency || "CNY",
+          language: p.language_name,
+          intake: p.intake,
+          university: {
+            name: university?.name || p.university_name,
+            city: university?.city || p.city,
+            cover_photo_url: university?.cover_photo_url,
+            logo_url: university?.logo_url
+          }
         };
-      })
-    );
-
-    // Transform data to match component props
-    formattedPrograms = programsWithUniversities.map((p: any) => ({
-      id: p.id,
-      slug: p.slug,
-      title: p.display_title || p.program_title,
-      level: p.level,
-      duration: p.duration,
-      tuition_fee: p.tuition_fee,
-      currency: p.currency || "CNY",
-      language: p.language_name,
-      intake: p.intake,
-      university: {
-        name: p.university?.name || p.university_name,
-        city: p.university?.city || p.city,
-        cover_photo_url: p.university?.cover_photo_url,
-        logo_url: p.university?.logo_url
-      }
-    }));
+      });
+    }
 
     // Fetch Featured Universities with timeout
     const universitiesPromise = supabase

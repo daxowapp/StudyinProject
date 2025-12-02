@@ -3,11 +3,18 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
+// Enable ISR with 10 minute revalidation
+export const revalidate = 600;
+
 export default async function ProgramsPage() {
     const supabase = await createClient();
+
+    // OPTIMIZED: Limit initial load, client-side component handles filtering
     const { data: programs, error } = await supabase
         .from("v_university_programs_full")
-        .select("*");
+        .select("*")
+        .eq("is_active", true)
+        .limit(200); // Load first 200 programs for better performance
 
     if (error) {
         console.error("Error fetching programs:", error);

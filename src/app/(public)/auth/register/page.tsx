@@ -1,12 +1,15 @@
 "use client";
 
+import { Chrome } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signup } from "@/app/(public)/auth/actions";
+import { signup, loginWithGoogle } from "@/app/(public)/auth/actions";
 import { SubmitButton } from "@/components/ui/submit-button";
 
 import { useState } from "react";
@@ -16,6 +19,7 @@ import { Suspense } from "react";
 
 function RegisterContent() {
     const [isLoading, setIsLoading] = useState(false);
+    const [isGoogleLoading, setIsGoogleLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const returnUrl = searchParams.get('returnUrl');
@@ -48,6 +52,16 @@ function RegisterContent() {
             toast.error("Something went wrong");
         } finally {
             setIsLoading(false);
+        }
+    }
+
+    async function handleGoogleSignup() {
+        setIsGoogleLoading(true);
+        try {
+            await loginWithGoogle();
+        } catch (error) {
+            toast.error("Failed to sign up with Google");
+            setIsGoogleLoading(false);
         }
     }
 
@@ -95,7 +109,36 @@ function RegisterContent() {
                     <SubmitButton>Create Account</SubmitButton>
                 </form>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex flex-col gap-4">
+                <div className="relative w-full">
+                    <div className="absolute inset-0 flex items-center">
+                        <span className="w-full border-t" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-background px-2 text-muted-foreground">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+                <Button
+                    variant="outline"
+                    className="w-full"
+                    type="button"
+                    onClick={handleGoogleSignup}
+                    disabled={isGoogleLoading || isLoading}
+                >
+                    {isGoogleLoading ? (
+                        <>
+                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                            Connecting...
+                        </>
+                    ) : (
+                        <>
+                            <Chrome className="mr-2 h-4 w-4" />
+                            Continue with Google
+                        </>
+                    )}
+                </Button>
                 <div className="text-center text-sm text-muted-foreground w-full">
                     Already have an account?{" "}
                     <Link href="/auth/login" className="text-primary hover:underline font-medium">

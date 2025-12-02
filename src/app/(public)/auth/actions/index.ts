@@ -89,3 +89,29 @@ export async function resetPassword(formData: FormData) {
 
     return { success: true };
 }
+
+export async function loginWithGoogle() {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+            queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+            },
+        },
+    });
+
+    if (error) {
+        return { error: error.message };
+    }
+
+    if (data.url) {
+        redirect(data.url);
+    }
+
+    return { success: true };
+}
+

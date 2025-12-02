@@ -1,12 +1,14 @@
 "use client";
 
+import { Chrome } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { login } from "@/app/(public)/auth/actions";
+import { login, loginWithGoogle } from "@/app/(public)/auth/actions";
 import { SubmitButton } from "@/components/ui/submit-button"; // We need to create this
 
 import { useState } from "react";
@@ -16,6 +18,7 @@ import { Suspense } from "react";
 
 function LoginContent() {
     const [isLoading, setIsLoading] = useState(false);
+    const [isGoogleLoading, setIsGoogleLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const returnUrl = searchParams.get('returnUrl') || '/dashboard';
@@ -34,6 +37,16 @@ function LoginContent() {
             toast.error("Something went wrong");
         } finally {
             setIsLoading(false);
+        }
+    }
+
+    async function handleGoogleLogin() {
+        setIsGoogleLoading(true);
+        try {
+            await loginWithGoogle();
+        } catch (error) {
+            toast.error("Failed to login with Google");
+            setIsGoogleLoading(false);
         }
     }
 
@@ -74,8 +87,24 @@ function LoginContent() {
                         </span>
                     </div>
                 </div>
-                <Button variant="outline" className="w-full" type="button">
-                    Google
+                <Button
+                    variant="outline"
+                    className="w-full"
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    disabled={isGoogleLoading || isLoading}
+                >
+                    {isGoogleLoading ? (
+                        <>
+                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                            Connecting...
+                        </>
+                    ) : (
+                        <>
+                            <Chrome className="mr-2 h-4 w-4" />
+                            Continue with Google
+                        </>
+                    )}
                 </Button>
                 <div className="text-center text-sm text-muted-foreground">
                     Don&apos;t have an account?{" "}

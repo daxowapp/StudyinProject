@@ -28,7 +28,6 @@ const navLinks = [
     { name: "Home", href: "/", icon: Home },
     { name: "Universities", href: "/universities", icon: Building2 },
     { name: "Programs", href: "/programs", icon: GraduationCap },
-    { name: "Scholarships", href: "/scholarships", icon: Award },
     { name: "Articles", href: "/articles", icon: Newspaper },
     { name: "How to Apply", href: "/how-to-apply", icon: HelpCircle },
     { name: "Contact", href: "/contact", icon: Mail },
