@@ -36,7 +36,7 @@ async function checkProgram() {
     const programLevel = program.program_catalog.level;
     console.log("Program Level:", programLevel);
 
-    // Fetch all requirements for university (Corrected Query)
+    // Fetch all requirements for university (Corrected Query - NO is_mandatory)
     const { data: allRequirements, error: reqError } = await supabase
         .from('university_admission_requirements')
         .select(`

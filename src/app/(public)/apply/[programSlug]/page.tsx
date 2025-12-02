@@ -81,7 +81,6 @@ export default async function ApplyPage({
         title,
         category,
         description,
-        is_mandatory,
         requirement_type
       )
     `
