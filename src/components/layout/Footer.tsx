@@ -50,13 +50,11 @@ export function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-6 group">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-orange-500 text-white font-black text-2xl shadow-lg group-hover:scale-105 transition-transform">
-                                S
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-xl font-black tracking-tight">StudyAtChina</span>
-                                <span className="text-xs text-muted-foreground">Your Future Awaits</span>
-                            </div>
+                            <img
+                                src="/logo.png"
+                                alt="StudyAtChina Logo"
+                                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+                            />
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-sm">
                             Your trusted partner in discovering and applying to China's top universities.

@@ -73,215 +73,207 @@ export function Navbar() {
                     }`}
             >
                 <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-3 group">
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary to-orange-500 rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
-                        <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-orange-500 text-white font-black text-2xl shadow-xl group-hover:scale-105 transition-transform">
-                            S
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="relative h-12 w-auto">
+                            <img
+                                src="/logo.png"
+                                alt="StudyAtChina Logo"
+                                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                            />
                         </div>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className={`text-xl font-black tracking-tight font-heading transition-colors ${showSolid ? "text-foreground" : "text-white"
-                            }`}>
-                            StudyAtChina
-                        </span>
-                        <span className={`text-xs font-medium transition-colors ${showSolid ? "text-muted-foreground" : "text-white/60"
-                            }`}>
-                            Your Future Awaits
-                        </span>
-                    </div>
-                </Link>
+                    </Link>
 
-                {/* Desktop Navigation */}
-                <div className="hidden lg:flex items-center gap-1">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:scale-105 ${showSolid
-                                ? "text-foreground hover:bg-primary/10 hover:text-primary"
-                                : "text-white/90 hover:bg-white/10 hover:text-white"
-                                }`}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Right Side (Auth & Mobile Menu) */}
-                <div className="flex items-center gap-3">
-                    <div className="hidden lg:flex items-center gap-3">
-                        {/* Language Selector */}
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            className={`rounded-xl font-semibold ${scrolled
-                                ? "text-foreground hover:bg-muted"
-                                : "text-white hover:bg-white/10"
-                                }`}
-                        >
-                            EN
-                            <ChevronDown className="ml-1 h-3 w-3" />
-                        </Button>
-
-                        {!loading && (
-                            user ? (
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            className={`rounded-xl font-semibold ${showSolid
-                                                ? "text-foreground hover:bg-muted"
-                                                : "text-white hover:bg-white/10"
-                                                }`}
-                                        >
-                                            <User className="mr-2 h-4 w-4" />
-                                            {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Account'}
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" className="w-56">
-                                        <DropdownMenuLabel>
-                                            <div className="flex flex-col space-y-1">
-                                                <p className="text-sm font-medium">{user.user_metadata?.full_name || 'My Account'}</p>
-                                                <p className="text-xs text-muted-foreground">{user.email}</p>
-                                            </div>
-                                        </DropdownMenuLabel>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                                            <FileText className="mr-2 h-4 w-4" />
-                                            My Applications
-                                        </DropdownMenuItem>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuItem onClick={handleLogout}>
-                                            <LogOut className="mr-2 h-4 w-4" />
-                                            Log out
-                                        </DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            ) : (
-                                <>
-                                    <Link href="/auth/login">
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            className={`rounded-xl font-semibold ${showSolid
-                                                ? "text-foreground hover:bg-muted"
-                                                : "text-white hover:bg-white/10"
-                                                }`}
-                                        >
-                                            Sign In
-                                        </Button>
-                                    </Link>
-
-                                    <Link href="/auth/register">
-                                        <Button
-                                            size="sm"
-                                            className="rounded-xl bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
-                                        >
-                                            <Sparkles className="mr-2 h-4 w-4" />
-                                            Get Started
-                                        </Button>
-                                    </Link>
-                                </>
-                            )
-                        )}
+                    {/* Desktop Navigation */}
+                    <div className="hidden lg:flex items-center gap-1">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:scale-105 ${showSolid
+                                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
+                                    : "text-white/90 hover:bg-white/10 hover:text-white"
+                                    }`}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
 
-                    {/* Mobile Menu */}
-                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                        <SheetTrigger asChild className="lg:hidden">
+                    {/* Right Side (Auth & Mobile Menu) */}
+                    <div className="flex items-center gap-3">
+                        <div className="hidden lg:flex items-center gap-3">
+                            {/* Language Selector */}
                             <Button
                                 variant="ghost"
-                                size="icon"
-                                className={`rounded-xl ${showSolid
+                                size="sm"
+                                className={`rounded-xl font-semibold ${scrolled
                                     ? "text-foreground hover:bg-muted"
                                     : "text-white hover:bg-white/10"
                                     }`}
                             >
-                                <Menu className="h-6 w-6" />
-                                <span className="sr-only">Toggle menu</span>
+                                EN
+                                <ChevronDown className="ml-1 h-3 w-3" />
                             </Button>
-                        </SheetTrigger>
-                        <SheetContent side="right" className="w-[300px] sm:w-[400px] border-l-2">
-                            <div className="flex flex-col gap-8 py-8">
-                                {/* Mobile Logo */}
-                                <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-orange-500 text-white font-bold text-xl">
-                                        S
-                                    </div>
-                                    <span className="text-xl font-bold">StudyAtChina</span>
-                                </Link>
 
-                                {/* Mobile Links */}
-                                <div className="flex flex-col gap-2">
-                                    {navLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            className="px-4 py-3 rounded-xl text-lg font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </div>
-
-                                {/* Mobile Auth Buttons */}
-                                <div className="flex flex-col gap-3 pt-4 border-t">
-                                    {!loading && (
-                                        user ? (
-                                            <>
-                                                <div className="px-4 py-3 bg-muted rounded-xl">
-                                                    <p className="text-sm font-semibold">{user.user_metadata?.full_name || 'My Account'}</p>
+                            {!loading && (
+                                user ? (
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className={`rounded-xl font-semibold ${showSolid
+                                                    ? "text-foreground hover:bg-muted"
+                                                    : "text-white hover:bg-white/10"
+                                                    }`}
+                                            >
+                                                <User className="mr-2 h-4 w-4" />
+                                                {user.user_metadata?.full_name || user.email?.split('@')[0] || 'Account'}
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end" className="w-56">
+                                            <DropdownMenuLabel>
+                                                <div className="flex flex-col space-y-1">
+                                                    <p className="text-sm font-medium">{user.user_metadata?.full_name || 'My Account'}</p>
                                                     <p className="text-xs text-muted-foreground">{user.email}</p>
                                                 </div>
-                                                <Button
-                                                    variant="outline"
-                                                    className="w-full rounded-xl font-semibold h-12"
-                                                    onClick={() => {
-                                                        setIsOpen(false);
-                                                        router.push('/dashboard');
-                                                    }}
-                                                >
-                                                    <FileText className="mr-2 h-4 w-4" />
-                                                    My Applications
-                                                </Button>
-                                                <Button
-                                                    variant="outline"
-                                                    className="w-full rounded-xl font-semibold h-12"
-                                                    onClick={() => {
-                                                        setIsOpen(false);
-                                                        handleLogout();
-                                                    }}
-                                                >
-                                                    <LogOut className="mr-2 h-4 w-4" />
-                                                    Log out
-                                                </Button>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Link href="/auth/login" onClick={() => setIsOpen(false)}>
-                                                    <Button variant="outline" className="w-full rounded-xl font-semibold h-12">
-                                                        Sign In
+                                            </DropdownMenuLabel>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                                                <FileText className="mr-2 h-4 w-4" />
+                                                My Applications
+                                            </DropdownMenuItem>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem onClick={handleLogout}>
+                                                <LogOut className="mr-2 h-4 w-4" />
+                                                Log out
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                ) : (
+                                    <>
+                                        <Link href="/auth/login">
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className={`rounded-xl font-semibold ${showSolid
+                                                    ? "text-foreground hover:bg-muted"
+                                                    : "text-white hover:bg-white/10"
+                                                    }`}
+                                            >
+                                                Sign In
+                                            </Button>
+                                        </Link>
+
+                                        <Link href="/auth/register">
+                                            <Button
+                                                size="sm"
+                                                className="rounded-xl bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-600/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
+                                            >
+                                                <Sparkles className="mr-2 h-4 w-4" />
+                                                Get Started
+                                            </Button>
+                                        </Link>
+                                    </>
+                                )
+                            )}
+                        </div>
+
+                        {/* Mobile Menu */}
+                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                            <SheetTrigger asChild className="lg:hidden">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className={`rounded-xl ${showSolid
+                                        ? "text-foreground hover:bg-muted"
+                                        : "text-white hover:bg-white/10"
+                                        }`}
+                                >
+                                    <Menu className="h-6 w-6" />
+                                    <span className="sr-only">Toggle menu</span>
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right" className="w-[300px] sm:w-[400px] border-l-2">
+                                <div className="flex flex-col gap-8 py-8">
+                                    {/* Mobile Logo */}
+                                    <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+                                        <img
+                                            src="/logo.png"
+                                            alt="StudyAtChina Logo"
+                                            className="h-10 w-auto object-contain"
+                                        />
+                                    </Link>
+
+                                    {/* Mobile Links */}
+                                    <div className="flex flex-col gap-2">
+                                        {navLinks.map((link) => (
+                                            <Link
+                                                key={link.name}
+                                                href={link.href}
+                                                className="px-4 py-3 rounded-xl text-lg font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                                                onClick={() => setIsOpen(false)}
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+
+                                    {/* Mobile Auth Buttons */}
+                                    <div className="flex flex-col gap-3 pt-4 border-t">
+                                        {!loading && (
+                                            user ? (
+                                                <>
+                                                    <div className="px-4 py-3 bg-muted rounded-xl">
+                                                        <p className="text-sm font-semibold">{user.user_metadata?.full_name || 'My Account'}</p>
+                                                        <p className="text-xs text-muted-foreground">{user.email}</p>
+                                                    </div>
+                                                    <Button
+                                                        variant="outline"
+                                                        className="w-full rounded-xl font-semibold h-12"
+                                                        onClick={() => {
+                                                            setIsOpen(false);
+                                                            router.push('/dashboard');
+                                                        }}
+                                                    >
+                                                        <FileText className="mr-2 h-4 w-4" />
+                                                        My Applications
                                                     </Button>
-                                                </Link>
-                                                <Link href="/auth/register" onClick={() => setIsOpen(false)}>
-                                                    <Button className="w-full rounded-xl bg-gradient-to-r from-primary to-red-600 font-bold h-12 shadow-lg">
-                                                        <Sparkles className="mr-2 h-4 w-4" />
-                                                        Get Started
+                                                    <Button
+                                                        variant="outline"
+                                                        className="w-full rounded-xl font-semibold h-12"
+                                                        onClick={() => {
+                                                            setIsOpen(false);
+                                                            handleLogout();
+                                                        }}
+                                                    >
+                                                        <LogOut className="mr-2 h-4 w-4" />
+                                                        Log out
                                                     </Button>
-                                                </Link>
-                                            </>
-                                        )
-                                    )}
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                                                        <Button variant="outline" className="w-full rounded-xl font-semibold h-12">
+                                                            Sign In
+                                                        </Button>
+                                                    </Link>
+                                                    <Link href="/auth/register" onClick={() => setIsOpen(false)}>
+                                                        <Button className="w-full rounded-xl bg-gradient-to-r from-primary to-red-600 font-bold h-12 shadow-lg">
+                                                            <Sparkles className="mr-2 h-4 w-4" />
+                                                            Get Started
+                                                        </Button>
+                                                    </Link>
+                                                </>
+                                            )
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                 </div>
-            </div>
             </motion.nav>
             {/* Spacer for non-home pages */}
             {!isHome && <div className="h-20" />}

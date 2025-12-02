@@ -100,13 +100,11 @@ export function Sidebar({ className }: SidebarProps) {
             <div className="flex h-20 items-center border-b px-6 bg-gradient-to-r from-primary/10 via-orange-500/5 to-transparent relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
                 <Link href="/admin" className="flex items-center gap-3 font-bold text-xl tracking-tight group relative z-10">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-orange-500 to-red-500 text-white shadow-lg shadow-primary/25 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/40 transition-all duration-300">
-                        <span className="text-2xl font-black">A</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="bg-gradient-to-r from-foreground via-primary to-foreground/70 bg-clip-text text-transparent">Admin Panel</span>
-                        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">StudyAtChina</span>
-                    </div>
+                    <img
+                        src="/logo.png"
+                        alt="StudyAtChina Admin"
+                        className="h-11 w-auto object-contain group-hover:scale-110 transition-all duration-300"
+                    />
                 </Link>
             </div>
 
