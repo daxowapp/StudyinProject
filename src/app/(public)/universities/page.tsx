@@ -11,13 +11,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, SlidersHorizontal, MapPin, Building2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { UniversityHeroSearch } from "@/components/universities/UniversityHeroSearch";
 
 export default async function UniversitiesPage() {
     const supabase = await createClient();
 
-    // Fetch universities
+    // Fetch universities from optimized view
     const { data: universities, error } = await supabase
-        .from("universities")
+        .from("v_universities_search")
         .select("*")
         .order("name");
 
@@ -46,58 +47,32 @@ export default async function UniversitiesPage() {
         );
     }
 
-    // Handle empty universities
-    if (!universities || universities.length === 0) {
-        console.log("No universities found in database");
-    }
+    // Transform data for client component
+    const formattedUniversities = (universities || []).map((uni) => {
+        // Format tuition display
+        let minTuition = "Contact for pricing";
+        if (uni.min_tuition_fee) {
+            const currencySymbol = uni.currency === "USD" ? "$" : "¥";
+            minTuition = `${currencySymbol}${uni.min_tuition_fee.toLocaleString()}`;
+        }
 
-    // Fetch stats from view
-    const { data: stats } = await supabase
-        .from("v_university_stats")
-        .select("*");
-
-    // Create a map for quick lookup
-    const statsMap = new Map(stats?.map((s: any) => [s.university_id, s]) || []);
-
-    const universitiesWithCounts = (universities || []).map((uni) => {
-        const stat = statsMap.get(uni.id);
         return {
-            ...uni,
-            programCount: stat?.program_count || 0,
-            minTuitionFee: stat?.min_tuition_fee,
-            currency: stat?.currency || "CNY"
+            id: uni.id,
+            slug: uni.slug || uni.id,
+            name: uni.name || "Unknown University",
+            city: uni.city || "N/A",
+            province: uni.province || "N/A",
+            programs: uni.program_count || 0,
+            minTuition: minTuition,
+            badges: uni.features || [],
+            logo: uni.logo_url,
+            photo: uni.cover_photo_url || uni.banner_url,
+            ranking: uni.ranking,
+            university_type: uni.university_type,
+            institution_category: uni.institution_category,
+            has_fast_track: uni.has_fast_track,
         };
     });
-
-    // Transform data and filter active universities
-    const formattedUniversities = universitiesWithCounts
-        .filter((uni) => uni.is_active !== false) // Filter active universities
-        .map((uni) => {
-            // Format tuition display
-            let minTuition = "Contact for pricing";
-            if (uni.minTuitionFee) {
-                const currencySymbol = uni.currency === "USD" ? "$" : "¥";
-                minTuition = `${currencySymbol}${uni.minTuitionFee.toLocaleString()}`;
-            }
-
-            return {
-                id: uni.id,
-                slug: uni.slug || uni.id,
-                name: uni.name || "Unknown University",
-                city: uni.city || "N/A",
-                province: uni.province || "N/A",
-                programs: uni.programCount,
-                minTuition: minTuition,
-                badges: uni.features || [],
-                logo: uni.logo_url,
-                photo: uni.cover_photo_url || uni.photo_url,
-                ranking: uni.ranking,
-                type: uni.type,
-                university_type: uni.university_type,
-                institution_category: uni.institution_category,
-                has_fast_track: uni.has_fast_track,
-            };
-        });
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -113,13 +88,7 @@ export default async function UniversitiesPage() {
                         </p>
 
                         {/* Search Bar */}
-                        <div className="relative">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                            <Input
-                                placeholder="Search by university name, city, or ranking..."
-                                className="pl-12 h-14 text-lg bg-background/80 backdrop-blur-sm border-2 focus-visible:ring-2"
-                            />
-                        </div>
+                        <UniversityHeroSearch />
                     </div>
                 </div>
             </div>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Change of Email</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #dc2626;
+            /* Primary Red */
+            margin-bottom: 24px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #111827;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+
+        p {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 24px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #dc2626;
+            /* Primary Red */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #b91c1c;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .link {
+            color: #dc2626;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <a href="{{ .SiteURL }}" class="logo">Study At China</a>
+
+            <h1>Confirm Change of Email</h1>
+
+            <p>Follow this link to confirm the update of your email from <strong>{{ .Email }}</strong> to <strong>{{
+                    .NewEmail }}</strong>:</p>
+
+            <div style="margin: 32px 0;">
+                <a href="{{ .ConfirmationURL }}" class="button">Change Email</a>
+            </div>
+
+            <p style="font-size: 14px; color: #6b7280;">
+                Or copy and paste this link into your browser:<br>
+                <a href="{{ .ConfirmationURL }}" class="link" style="word-break: break-all;">{{ .ConfirmationURL }}</a>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>If you didn't request this email, you can safely ignore it.</p>
+            <p>&copy; 2025 Study At China. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>

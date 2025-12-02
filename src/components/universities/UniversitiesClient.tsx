@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { UniversityCard } from "@/components/universities/UniversityCard";
 import { UniversityFilters } from "@/components/universities/UniversityFilters";
 import {
@@ -13,6 +13,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, SlidersHorizontal, Building2 } from "lucide-react";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 
 interface University {
     id: string;
@@ -36,8 +44,20 @@ interface UniversitiesClientProps {
     universities: University[];
 }
 
+import { useRouter, useSearchParams } from "next/navigation";
+
 export function UniversitiesClient({ universities }: UniversitiesClientProps) {
-    const [searchQuery, setSearchQuery] = useState("");
+    const searchParams = useSearchParams();
+    const initialQuery = searchParams.get("search") || "";
+    const [searchQuery, setSearchQuery] = useState(initialQuery);
+
+    // Sync with URL changes
+    useEffect(() => {
+        const query = searchParams.get("search");
+        if (query !== null && query !== searchQuery) {
+            setSearchQuery(query);
+        }
+    }, [searchParams]);
     const [selectedCity, setSelectedCity] = useState("all");
     const [selectedInstitutionType, setSelectedInstitutionType] = useState("all");
     const [selectedUniversityCategory, setSelectedUniversityCategory] = useState("all");
@@ -131,10 +151,48 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
         });
     };
 
+    // ... inside component ...
+
     return (
         <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
-            <aside className="w-full lg:w-80 shrink-0">
+            {/* Mobile Filter Button */}
+            <div className="lg:hidden">
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="outline" className="w-full gap-2">
+                            <SlidersHorizontal className="h-4 w-4" />
+                            Filters
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
+                        <SheetHeader>
+                            <SheetTitle>Filters</SheetTitle>
+                            <SheetDescription>
+                                Narrow down your university search
+                            </SheetDescription>
+                        </SheetHeader>
+                        <div className="mt-6">
+                            <UniversityFilters
+                                searchQuery={searchQuery}
+                                onSearchChange={setSearchQuery}
+                                selectedCity={selectedCity}
+                                onCityChange={setSelectedCity}
+                                cities={cities}
+                                selectedInstitutionType={selectedInstitutionType}
+                                onInstitutionTypeChange={setSelectedInstitutionType}
+                                selectedUniversityCategory={selectedUniversityCategory}
+                                onUniversityCategoryChange={setSelectedUniversityCategory}
+                                filters={filters}
+                                onFiltersChange={setFilters}
+                                onClearFilters={handleClearFilters}
+                            />
+                        </div>
+                    </SheetContent>
+                </Sheet>
+            </div>
+
+            {/* Desktop Sidebar Filters */}
+            <aside className="hidden lg:block w-80 shrink-0">
                 <div className="sticky top-28 space-y-6">
                     <div className="bg-card rounded-xl border shadow-sm p-6">
                         <h2 className="text-lg font-bold mb-6 flex items-center gap-2">
@@ -194,7 +252,7 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                             </div>
                         </div>
                         <div className="flex items-center gap-2 w-full sm:w-auto">
-                            <div className="flex items-center border rounded-lg overflow-hidden">
+                            <div className="flex items-center border rounded-lg overflow-hidden hidden sm:flex">
                                 <Button variant="ghost" size="icon" className="h-10 w-10 bg-primary/10 text-primary rounded-none">
                                     <LayoutGrid className="h-4 w-4" />
                                 </Button>
@@ -203,7 +261,7 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                                 </Button>
                             </div>
                             <Select defaultValue="name">
-                                <SelectTrigger className="w-[200px] h-10">
+                                <SelectTrigger className="w-full sm:w-[200px] h-10">
                                     <SelectValue placeholder="Sort by" />
                                 </SelectTrigger>
                                 <SelectContent>

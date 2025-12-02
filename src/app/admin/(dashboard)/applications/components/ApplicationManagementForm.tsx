@@ -250,12 +250,12 @@ export function ApplicationManagementForm({ application }: ApplicationManagement
                 </CardHeader>
                 <CardContent>
                     <Tabs defaultValue="notes" className="w-full">
-                        <TabsList className="grid w-full grid-cols-5">
-                            <TabsTrigger value="notes">Admin Notes</TabsTrigger>
-                            <TabsTrigger value="message">Send Message</TabsTrigger>
-                            <TabsTrigger value="payment">Request Payment</TabsTrigger>
-                            <TabsTrigger value="documents">Request Documents</TabsTrigger>
-                            <TabsTrigger value="upload">Upload Letter</TabsTrigger>
+                        <TabsList className="flex w-full flex-wrap h-auto gap-2 bg-muted/50 p-1 justify-start">
+                            <TabsTrigger value="notes" className="flex-1 min-w-[120px]">Admin Notes</TabsTrigger>
+                            <TabsTrigger value="message" className="flex-1 min-w-[120px]">Send Message</TabsTrigger>
+                            <TabsTrigger value="payment" className="flex-1 min-w-[120px]">Request Payment</TabsTrigger>
+                            <TabsTrigger value="documents" className="flex-1 min-w-[120px]">Request Documents</TabsTrigger>
+                            <TabsTrigger value="upload" className="flex-1 min-w-[120px]">Upload Letter</TabsTrigger>
                         </TabsList>
 
                         {/* Admin Notes Tab */}
