@@ -123,7 +123,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
   // Check if all required documents are uploaded
   const allRequiredDocumentsUploaded = () => {
     const mandatoryRequirements = requirements.filter(
-      (req) => req.requirement.is_mandatory
+      (req) => req.is_required
     );
     return mandatoryRequirements.every((req) => uploadedDocuments[req.requirement.id]);
   };
@@ -303,8 +303,8 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
           <div key={s.num} className="flex items-center">
             <div
               className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${step >= s.num
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-600'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-600'
                 }`}
             >
               {step > s.num ? <CheckCircle2 className="w-6 h-6" /> : s.num}
@@ -553,7 +553,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
                       <div>
                         <h4 className="font-semibold flex items-center gap-2">
                           {req.requirement.title}
-                          {req.requirement.is_mandatory && (
+                          {req.is_required && (
                             <span className="text-red-500 text-sm">*</span>
                           )}
                         </h4>

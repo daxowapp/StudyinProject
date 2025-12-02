@@ -71,7 +71,7 @@ export default async function ApplyPage({
   }
 
   // Fetch required documents for this program
-  const { data: requirements } = await supabase
+  const { data: allRequirements } = await supabase
     .from('university_admission_requirements')
     .select(
       `
@@ -81,12 +81,19 @@ export default async function ApplyPage({
         title,
         category,
         description,
-        is_mandatory
+        is_mandatory,
+        requirement_type
       )
     `
     )
-    .eq('university_id', program.university.id)
-    .eq('program_level', program.program_catalog.level);
+    .eq('university_id', program.university.id);
+
+  // Filter requirements based on program level
+  const requirements = allRequirements?.filter((req: any) => {
+    const type = req.requirement.requirement_type.toLowerCase();
+    const level = program.program_catalog.level.toLowerCase();
+    return type === 'all' || type === level;
+  });
 
   // Fetch user profile
   const { data: profile } = await supabase
