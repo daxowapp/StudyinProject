@@ -5,18 +5,33 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Menu, Sparkles, ChevronDown, User, LogOut, FileText } from "lucide-react";
+import {
+    Menu,
+    Sparkles,
+    ChevronDown,
+    User,
+    LogOut,
+    FileText,
+    Home,
+    Building2,
+    GraduationCap,
+    Award,
+    Newspaper,
+    HelpCircle,
+    Mail
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
 
 const navLinks = [
-    { name: "Universities", href: "/universities" },
-    { name: "Programs", href: "/programs" },
-    { name: "Scholarships", href: "/scholarships" },
-    { name: "Articles", href: "/articles" },
-    { name: "How to Apply", href: "/how-to-apply" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "/", icon: Home },
+    { name: "Universities", href: "/universities", icon: Building2 },
+    { name: "Programs", href: "/programs", icon: GraduationCap },
+    { name: "Scholarships", href: "/scholarships", icon: Award },
+    { name: "Articles", href: "/articles", icon: Newspaper },
+    { name: "How to Apply", href: "/how-to-apply", icon: HelpCircle },
+    { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 export function Navbar() {
@@ -86,18 +101,22 @@ export function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:scale-105 ${showSolid
-                                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
-                                    : "text-white/90 hover:bg-white/10 hover:text-white"
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const Icon = link.icon;
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:scale-105 ${showSolid
+                                        ? "text-foreground hover:bg-primary/10 hover:text-primary"
+                                        : "text-white/90 hover:bg-white/10 hover:text-white"
+                                        }`}
+                                >
+                                    <Icon className="h-4 w-4" />
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     {/* Right Side (Auth & Mobile Menu) */}
@@ -208,16 +227,20 @@ export function Navbar() {
 
                                     {/* Mobile Links */}
                                     <div className="flex flex-col gap-2">
-                                        {navLinks.map((link) => (
-                                            <Link
-                                                key={link.name}
-                                                href={link.href}
-                                                className="px-4 py-3 rounded-xl text-lg font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all"
-                                                onClick={() => setIsOpen(false)}
-                                            >
-                                                {link.name}
-                                            </Link>
-                                        ))}
+                                        {navLinks.map((link) => {
+                                            const Icon = link.icon;
+                                            return (
+                                                <Link
+                                                    key={link.name}
+                                                    href={link.href}
+                                                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    <Icon className="h-5 w-5" />
+                                                    {link.name}
+                                                </Link>
+                                            );
+                                        })}
                                     </div>
 
                                     {/* Mobile Auth Buttons */}
