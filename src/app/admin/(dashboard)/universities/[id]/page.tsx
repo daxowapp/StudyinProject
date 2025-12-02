@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -318,12 +319,19 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                     </div>
                 </div>
                 <div className="flex gap-2">
-                    <Link href={`/universities/${id}`} target="_blank">
-                        <Button variant="outline" size="sm">
+                    {formData.slug ? (
+                        <Link href={`/universities/${formData.slug}`} target="_blank">
+                            <Button variant="outline" size="sm">
+                                <Eye className="mr-2 h-4 w-4" />
+                                View Public Page
+                            </Button>
+                        </Link>
+                    ) : (
+                        <Button variant="outline" size="sm" disabled>
                             <Eye className="mr-2 h-4 w-4" />
                             View Public Page
                         </Button>
-                    </Link>
+                    )}
                     <Button variant="destructive" size="sm" onClick={handleDelete} disabled={saving}>
                         <Trash2 className="mr-2 h-4 w-4" /> Delete
                     </Button>
@@ -991,10 +999,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                     <Link href="/admin/universities">
                                         <Button type="button" variant="outline">Cancel</Button>
                                     </Link>
-                                    <Button type="submit" disabled={saving}>
-                                        {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    <LoadingButton type="submit" loading={saving} loadingText="Saving...">
                                         Save Changes
-                                    </Button>
+                                    </LoadingButton>
                                 </div>
                             </form>
                         </CardContent>

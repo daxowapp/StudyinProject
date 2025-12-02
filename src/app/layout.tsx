@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { LoadingBar } from "@/components/ui/loading-bar";
 
 export const metadata: Metadata = {
   title: "StudyAtChina.com - Apply to Top Chinese Universities",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body
         className={`font-body antialiased flex flex-col min-h-screen`}
       >
+        <LoadingBar />
         {children}
         <Toaster />
       </body>
