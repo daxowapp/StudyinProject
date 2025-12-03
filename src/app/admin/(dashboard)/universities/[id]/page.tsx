@@ -601,7 +601,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                     type="url"
                                                     value={formData.schedule_call_url}
                                                     onChange={(e) => setFormData({ ...formData, schedule_call_url: e.target.value })}
-                                                    placeholder="e.g., https://calendly.com/..."
+                                                    placeholder="https://booking.studyinturkiye.com/"
                                                 />
                                                 <p className="text-xs text-muted-foreground">Link to booking system</p>
                                             </div>
@@ -612,7 +612,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                     type="url"
                                                     value={formData.advisor_chat_url}
                                                     onChange={(e) => setFormData({ ...formData, advisor_chat_url: e.target.value })}
-                                                    placeholder="e.g., https://wa.me/..."
+                                                    placeholder="https://wa.me/905492006060"
                                                 />
                                                 <p className="text-xs text-muted-foreground">Direct chat link (WhatsApp/Telegram)</p>
                                             </div>

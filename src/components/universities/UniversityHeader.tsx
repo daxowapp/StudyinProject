@@ -14,6 +14,10 @@ interface UniversityHeaderProps {
 export function UniversityHeader({ university }: UniversityHeaderProps) {
     const [isSaved, setIsSaved] = useState(false);
 
+    // Default URLs if not provided by university
+    const scheduleCallUrl = university.schedule_call_url || "https://booking.studyinturkiye.com/";
+    const advisorChatUrl = university.advisor_chat_url || "https://wa.me/905492006060";
+
     return (
         <div className="relative overflow-hidden">
             {/* Banner Image with Parallax Effect */}
@@ -166,33 +170,29 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                                     </Button>
                                 )}
 
-                                {university.schedule_call_url && (
-                                    <Button
-                                        size="lg"
-                                        variant="outline"
-                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
-                                        asChild
-                                    >
-                                        <a href={university.schedule_call_url} target="_blank" rel="noopener noreferrer">
-                                            <Phone className="mr-2 h-4 w-4" />
-                                            Schedule Call
-                                        </a>
-                                    </Button>
-                                )}
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                    asChild
+                                >
+                                    <a href={scheduleCallUrl} target="_blank" rel="noopener noreferrer">
+                                        <Phone className="mr-2 h-4 w-4" />
+                                        Schedule Call
+                                    </a>
+                                </Button>
 
-                                {university.advisor_chat_url && (
-                                    <Button
-                                        size="lg"
-                                        variant="outline"
-                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
-                                        asChild
-                                    >
-                                        <a href={university.advisor_chat_url} target="_blank" rel="noopener noreferrer">
-                                            <MessageCircle className="mr-2 h-4 w-4" />
-                                            Chat Advisor
-                                        </a>
-                                    </Button>
-                                )}
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                    asChild
+                                >
+                                    <a href={advisorChatUrl} target="_blank" rel="noopener noreferrer">
+                                        <MessageCircle className="mr-2 h-4 w-4" />
+                                        Chat Advisor
+                                    </a>
+                                </Button>
 
                                 <Button
                                     size="lg"
