@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export async function adminLogin(formData: FormData) {
     const email = formData.get("email") as string;
@@ -18,7 +18,7 @@ export async function adminLogin(formData: FormData) {
         return redirect("/admin/login?error=Invalid credentials");
     }
 
-    // Check if user is admin
+    // Check if user is actually an admin
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
         const { data: profile } = await supabase
@@ -33,5 +33,22 @@ export async function adminLogin(formData: FormData) {
         }
     }
 
-    return redirect("/admin");
+    revalidatePath("/admin");
+    redirect("/admin");
+}
+
+export async function getSidebarStats() {
+    const supabase = await createClient();
+
+    const { count: newLeadsCount, error } = await supabase
+        .from("leads")
+        .select("*", { count: 'exact', head: true })
+        .eq("status", "new");
+
+    if (error) {
+        console.error("Error fetching sidebar stats:", error);
+        return { newLeadsCount: 0 };
+    }
+
+    return { newLeadsCount: newLeadsCount || 0 };
 }

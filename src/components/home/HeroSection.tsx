@@ -124,6 +124,8 @@ export function HeroSection() {
                         Join <span className="font-bold text-yellow-300">50,000+ students</span> at China's top universities
                     </motion.p>
 
+
+
                     {/* Enhanced Search Widget */}
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}

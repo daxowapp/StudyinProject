@@ -1,3 +1,7 @@
+"use client";
+
+import { submitLead } from "../download-guide/actions";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -39,12 +43,22 @@ export default function ContactPage() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form className="space-y-6">
+                                <form action={async (formData) => {
+                                    const result = await submitLead(formData);
+                                    if (result.success) {
+                                        toast.success("Message sent successfully!");
+                                        (document.getElementById("contact-form") as HTMLFormElement)?.reset();
+                                    } else {
+                                        toast.error("Failed to send message");
+                                    }
+                                }} id="contact-form" className="space-y-6">
+                                    <input type="hidden" name="source" value="contact_us" />
                                     <div className="grid md:grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="firstName">First Name *</Label>
                                             <Input
                                                 id="firstName"
+                                                name="firstName"
                                                 placeholder="John"
                                                 required
                                             />
@@ -53,6 +67,7 @@ export default function ContactPage() {
                                             <Label htmlFor="lastName">Last Name *</Label>
                                             <Input
                                                 id="lastName"
+                                                name="lastName"
                                                 placeholder="Doe"
                                                 required
                                             />
@@ -64,6 +79,7 @@ export default function ContactPage() {
                                             <Label htmlFor="email">Email *</Label>
                                             <Input
                                                 id="email"
+                                                name="email"
                                                 type="email"
                                                 placeholder="john@example.com"
                                                 required
@@ -73,6 +89,7 @@ export default function ContactPage() {
                                             <Label htmlFor="phone">Phone Number</Label>
                                             <Input
                                                 id="phone"
+                                                name="phone"
                                                 type="tel"
                                                 placeholder="+1 (555) 000-0000"
                                             />
@@ -81,7 +98,7 @@ export default function ContactPage() {
 
                                     <div className="space-y-2">
                                         <Label htmlFor="subject">Subject *</Label>
-                                        <Select>
+                                        <Select name="subject">
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select a subject" />
                                             </SelectTrigger>
@@ -100,14 +117,15 @@ export default function ContactPage() {
                                         <Label htmlFor="message">Message *</Label>
                                         <Textarea
                                             id="message"
+                                            name="message"
                                             placeholder="Tell us more about your inquiry..."
                                             rows={6}
                                             required
                                         />
                                     </div>
 
-                                    <Button 
-                                        type="submit" 
+                                    <Button
+                                        type="submit"
                                         className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white"
                                         size="lg"
                                     >

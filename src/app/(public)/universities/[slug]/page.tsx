@@ -73,6 +73,10 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         accommodation_features: university.accommodation_features,
         accommodation_types: university.accommodation_types,
         has_fast_track: university.has_fast_track,
+        brochure_url: university.brochure_url,
+        virtual_tour_url: university.virtual_tour_url,
+        schedule_call_url: university.schedule_call_url,
+        advisor_chat_url: university.advisor_chat_url,
     };
 
     return (

@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getSidebarStats } from "@/app/admin/actions";
 import {
     LayoutDashboard,
     Building2,
@@ -46,6 +47,16 @@ export function Sidebar({ className }: SidebarProps) {
         setCollapsedGroups(newCollapsed);
     };
 
+    const [newLeadsCount, setNewLeadsCount] = useState(0);
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            const { newLeadsCount } = await getSidebarStats();
+            setNewLeadsCount(newLeadsCount);
+        };
+        fetchStats();
+    }, [pathname]); // Refetch on navigation
+
     const sidebarGroups = [
         {
             label: "Overview",
@@ -72,8 +83,8 @@ export function Sidebar({ className }: SidebarProps) {
             label: "Applications & Users",
             icon: Users,
             items: [
-                { icon: FileText, label: "Applications", href: "/admin/applications", badge: 12 },
-                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: 5 },
+                { icon: FileText, label: "Applications", href: "/admin/applications" },
+                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined },
                 { icon: Users, label: "Users", href: "/admin/users" },
             ]
         },
@@ -82,7 +93,7 @@ export function Sidebar({ className }: SidebarProps) {
             icon: Newspaper,
             items: [
                 { icon: Newspaper, label: "Articles", href: "/admin/articles" },
-                { icon: Mail, label: "Messages", href: "/admin/messages", badge: 3 },
+                { icon: Mail, label: "Messages", href: "/admin/messages" },
             ]
         },
         {

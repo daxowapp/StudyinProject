@@ -25,9 +25,10 @@ import { Pencil, Trash2 } from "lucide-react";
 
 interface LeadDialogProps {
     lead: any;
+    trigger?: React.ReactNode;
 }
 
-export function LeadDialog({ lead }: LeadDialogProps) {
+export function LeadDialog({ lead, trigger }: LeadDialogProps) {
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -64,9 +65,11 @@ export function LeadDialog({ lead }: LeadDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="ghost" size="icon">
-                    <Pencil className="h-4 w-4" />
-                </Button>
+                {trigger || (
+                    <Button variant="ghost" size="icon">
+                        <Pencil className="h-4 w-4" />
+                    </Button>
+                )}
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
@@ -76,6 +79,32 @@ export function LeadDialog({ lead }: LeadDialogProps) {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="space-y-1">
+                            <Label className="text-muted-foreground">Name</Label>
+                            <p className="font-medium">{lead.name}</p>
+                        </div>
+                        <div className="space-y-1">
+                            <Label className="text-muted-foreground">Email</Label>
+                            <p className="font-medium">{lead.email}</p>
+                        </div>
+                        <div className="space-y-1">
+                            <Label className="text-muted-foreground">Phone</Label>
+                            <p className="font-medium">{lead.phone || "-"}</p>
+                        </div>
+                        <div className="space-y-1">
+                            <Label className="text-muted-foreground">Country</Label>
+                            <p className="font-medium">{lead.country || "-"}</p>
+                        </div>
+                        <div className="space-y-1 col-span-2">
+                            <Label className="text-muted-foreground">Study Interest</Label>
+                            <p className="font-medium capitalize">{lead.study_interest || "-"}</p>
+                        </div>
+                        <div className="space-y-1 col-span-2">
+                            <Label className="text-muted-foreground">Message</Label>
+                            <p className="text-muted-foreground italic">{lead.message || "No message"}</p>
+                        </div>
+                    </div>
                     <div className="grid gap-2">
                         <Label>Status</Label>
                         <Select defaultValue={lead.status} onValueChange={handleStatusChange}>

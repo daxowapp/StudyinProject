@@ -200,7 +200,9 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                             <div className="pt-4 border-t mt-auto">
                                                 {uni.description && (
                                                     <p className="text-xs text-muted-foreground mb-3 line-clamp-2 min-h-[2.5rem]">
-                                                        {uni.description}
+                                                        {uni.description.length > 150
+                                                            ? `${uni.description.substring(0, 150)}...`
+                                                            : uni.description}
                                                     </p>
                                                 )}
                                                 <Link href={`/universities/${uni.slug}`} className="block">

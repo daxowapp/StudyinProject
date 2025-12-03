@@ -16,6 +16,7 @@ export const revalidate = 300;
 export default async function Home() {
   let formattedPrograms: any[] = [];
   let universitiesWithStats: any[] = [];
+  let user = null;
 
   try {
     const supabase = await createClient();
@@ -124,6 +125,10 @@ export default async function Home() {
     if (universitiesError) {
       console.error("Error fetching universities:", universitiesError);
     }
+    // Fetch user session for conditional rendering
+    const { data: { user: fetchedUser } } = await supabase.auth.getUser();
+    user = fetchedUser;
+
   } catch (error) {
     console.error("Error in Home page:", error);
     // Continue rendering with empty data
@@ -133,7 +138,7 @@ export default async function Home() {
     <main className="min-h-screen bg-background">
       <HeroSection />
       <WhyStudySection />
-      <HowItWorksSection />
+      <HowItWorksSection isLoggedIn={!!user} />
       <FeaturedProgramsSection programs={formattedPrograms} />
       <FeaturedUniversitiesSection universities={universitiesWithStats} />
       <StatsSection />

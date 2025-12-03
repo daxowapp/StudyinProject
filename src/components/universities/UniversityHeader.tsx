@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Globe, ExternalLink, Heart, Share2, GraduationCap, Star, Award, Users, Calendar, TrendingUp, Zap } from "lucide-react";
+import { MapPin, Globe, ExternalLink, Heart, Share2, GraduationCap, Star, Award, Users, Calendar, TrendingUp, Zap, FileText, Video, Phone, MessageCircle, Info } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { RequestInformationDialog } from "./RequestInformationDialog";
 
 interface UniversityHeaderProps {
     university: any;
@@ -121,6 +122,78 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                                     <GraduationCap className="mr-2 h-5 w-5" />
                                     Apply Now
                                 </Button>
+
+                                <RequestInformationDialog
+                                    universityName={university.name}
+                                    universityId={university.id}
+                                    trigger={
+                                        <Button
+                                            size="lg"
+                                            variant="secondary"
+                                            className="bg-white/90 hover:bg-white text-gray-900 font-semibold shadow-lg"
+                                        >
+                                            <Info className="mr-2 h-5 w-5" />
+                                            Request Info
+                                        </Button>
+                                    }
+                                />
+
+                                {university.brochure_url && (
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                        asChild
+                                    >
+                                        <a href={university.brochure_url} target="_blank" rel="noopener noreferrer">
+                                            <FileText className="mr-2 h-4 w-4" />
+                                            Brochure
+                                        </a>
+                                    </Button>
+                                )}
+
+                                {university.virtual_tour_url && (
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                        asChild
+                                    >
+                                        <a href={university.virtual_tour_url} target="_blank" rel="noopener noreferrer">
+                                            <Video className="mr-2 h-4 w-4" />
+                                            Virtual Tour
+                                        </a>
+                                    </Button>
+                                )}
+
+                                {university.schedule_call_url && (
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                        asChild
+                                    >
+                                        <a href={university.schedule_call_url} target="_blank" rel="noopener noreferrer">
+                                            <Phone className="mr-2 h-4 w-4" />
+                                            Schedule Call
+                                        </a>
+                                    </Button>
+                                )}
+
+                                {university.advisor_chat_url && (
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white/20 font-semibold"
+                                        asChild
+                                    >
+                                        <a href={university.advisor_chat_url} target="_blank" rel="noopener noreferrer">
+                                            <MessageCircle className="mr-2 h-4 w-4" />
+                                            Chat Advisor
+                                        </a>
+                                    </Button>
+                                )}
+
                                 <Button
                                     size="lg"
                                     variant="outline"

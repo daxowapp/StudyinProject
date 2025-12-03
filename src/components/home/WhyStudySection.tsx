@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { GraduationCap, Globe, TrendingUp, ShieldCheck, Sparkles, Users, BookOpen, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -166,12 +167,16 @@ export function WhyStudySection() {
                     className="mt-20 text-center"
                 >
                     <div className="inline-flex flex-col sm:flex-row gap-4">
-                        <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
-                            Explore Programs
-                        </button>
-                        <button className="px-8 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all">
-                            Download Guide
-                        </button>
+                        <Link href="/programs">
+                            <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                                Explore Programs
+                            </button>
+                        </Link>
+                        <Link href="/download-guide">
+                            <button className="px-8 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all">
+                                Download Guide
+                            </button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

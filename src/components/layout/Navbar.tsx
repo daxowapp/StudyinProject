@@ -260,6 +260,9 @@ export function Navbar() {
                                                     </a>
                                                 </NavigationMenuLink>
                                             </li>
+                                            <ListItem href="/scholarships" title="Scholarships" icon={Award}>
+                                                Find financial aid and scholarship opportunities.
+                                            </ListItem>
                                             <ListItem href="/articles" title="Articles" icon={Newspaper}>
                                                 Latest news and guides about studying in China.
                                             </ListItem>
@@ -438,6 +441,14 @@ export function Navbar() {
                                             <div className="space-y-3">
                                                 <h4 className="text-sm font-medium text-muted-foreground px-2">Resources</h4>
                                                 <div className="grid grid-cols-1 gap-1">
+                                                    <Link
+                                                        href="/scholarships"
+                                                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        <Award className="h-4 w-4 text-primary" />
+                                                        <span className="text-sm font-medium">Scholarships</span>
+                                                    </Link>
                                                     <Link
                                                         href="/how-to-apply"
                                                         className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"

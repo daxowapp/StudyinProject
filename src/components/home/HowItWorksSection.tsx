@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Search, UserPlus, Upload, CreditCard, CheckCircle, Plane, Sparkles, ArrowRight, Zap } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -55,7 +56,11 @@ const steps = [
     },
 ];
 
-export function HowItWorksSection() {
+interface HowItWorksSectionProps {
+    isLoggedIn?: boolean;
+}
+
+export function HowItWorksSection({ isLoggedIn = false }: HowItWorksSectionProps) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -63,21 +68,21 @@ export function HowItWorksSection() {
         <section ref={ref} id="how-it-works" className="py-16 bg-gradient-to-b from-background via-blue-50/30 to-background relative overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <motion.div 
-                    animate={{ 
+                <motion.div
+                    animate={{
                         scale: [1, 1.2, 1],
                         rotate: [0, 90, 0]
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-20 left-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" 
+                    className="absolute top-20 left-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"
                 />
-                <motion.div 
-                    animate={{ 
+                <motion.div
+                    animate={{
                         scale: [1.2, 1, 1.2],
                         rotate: [90, 0, 90]
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" 
+                    className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"
                 />
             </div>
 
@@ -89,7 +94,7 @@ export function HowItWorksSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-20"
                 >
-                    <motion.div 
+                    <motion.div
                         initial={{ scale: 0 }}
                         animate={isInView ? { scale: 1 } : {}}
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -121,7 +126,7 @@ export function HowItWorksSection() {
                 <div className="relative max-w-7xl mx-auto">
                     {/* Horizontal connecting line */}
                     <div className="hidden lg:block absolute top-12 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-orange-500 opacity-20" />
-                    
+
                     {/* Steps in horizontal grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                         {steps.map((step, index) => (
@@ -133,7 +138,7 @@ export function HowItWorksSection() {
                                 className="relative flex flex-col items-center text-center"
                             >
                                 {/* Step Icon */}
-                                <motion.div 
+                                <motion.div
                                     initial={{ scale: 0 }}
                                     animate={isInView ? { scale: 1 } : {}}
                                     transition={{ delay: step.delay + 0.2, type: "spring", stiffness: 200 }}
@@ -145,11 +150,11 @@ export function HowItWorksSection() {
                                         transition={{ duration: 2, repeat: Infinity, delay: step.delay }}
                                         className={`absolute inset-0 ${step.color} rounded-full`}
                                     />
-                                    
+
                                     {/* Main Circle */}
                                     <div className={`relative h-20 w-20 ${step.color} rounded-full flex items-center justify-center shadow-lg`}>
                                         <step.icon className="h-10 w-10 text-white" strokeWidth={2.5} />
-                                        
+
                                         {/* Step Number */}
                                         <div className="absolute -top-1 -right-1 h-7 w-7 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-background">
                                             <span className={`text-sm font-black ${step.color.replace('bg-', 'text-')}`}>
@@ -184,21 +189,23 @@ export function HowItWorksSection() {
                     transition={{ delay: 1.5, duration: 0.6 }}
                     className="mt-24 text-center"
                 >
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group px-12 py-5 rounded-2xl bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white font-bold text-lg shadow-2xl hover:shadow-3xl transition-all relative overflow-hidden"
-                    >
-                        <motion.div
-                            animate={{ x: ['-100%', '100%'] }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        />
-                        <span className="relative z-10 flex items-center gap-2">
-                            Start Your Application Now
-                            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                    </motion.button>
+                    <Link href={isLoggedIn ? "/programs" : "/auth/login"}>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group px-12 py-5 rounded-2xl bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white font-bold text-lg shadow-2xl hover:shadow-3xl transition-all relative overflow-hidden"
+                        >
+                            <motion.div
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                            />
+                            <span className="relative z-10 flex items-center gap-2">
+                                Start Your Application Now
+                                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                        </motion.button>
+                    </Link>
                     <p className="mt-4 text-sm text-muted-foreground">
                         ⚡ Average completion time: <span className="font-bold text-foreground">15 minutes</span>
                     </p>

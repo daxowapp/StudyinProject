@@ -8,12 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-    Settings, 
-    Mail, 
-    DollarSign, 
-    Bell, 
-    Shield, 
+import {
+    Settings,
+    Mail,
+    DollarSign,
+    Bell,
+    Shield,
     Globe,
     Database,
     Palette,
@@ -82,11 +82,22 @@ export default function AdminSettingsPage() {
                                     <Label htmlFor="platform-url">Platform URL</Label>
                                     <Input id="platform-url" defaultValue="https://studyatchina.com" />
                                 </div>
+                                <div className="space-y-2 col-span-2">
+                                    <Label htmlFor="guide-url">Guide Download Link</Label>
+                                    <Input
+                                        id="guide-url"
+                                        placeholder="https://example.com/guide.pdf"
+                                        defaultValue="https://example.com/guide.pdf"
+                                    />
+                                    <p className="text-xs text-muted-foreground">
+                                        The link sent to students when they request the guide.
+                                    </p>
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="description">Description</Label>
-                                <Textarea 
-                                    id="description" 
+                                <Textarea
+                                    id="description"
                                     defaultValue="Your trusted partner in discovering and applying to China's top universities."
                                     rows={3}
                                 />
