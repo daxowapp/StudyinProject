@@ -12,6 +12,9 @@ import { Plus, Edit, Award, Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { UniversityFilters } from "./filters";
+import { Pagination } from "@/components/ui/pagination";
+
+const ITEMS_PER_PAGE = 10;
 
 export default async function AdminUniversitiesPage({
     searchParams,
@@ -25,6 +28,11 @@ export default async function AdminUniversitiesPage({
     const search = typeof params.search === 'string' ? params.search : '';
     const city = typeof params.city === 'string' ? params.city : '';
     const province = typeof params.province === 'string' ? params.province : '';
+    const page = typeof params.page === 'string' ? parseInt(params.page) : 1;
+
+    // Calculate range
+    const from = (page - 1) * ITEMS_PER_PAGE;
+    const to = from + ITEMS_PER_PAGE - 1;
 
     // Build query
     let query = supabase
@@ -41,23 +49,30 @@ export default async function AdminUniversitiesPage({
         query = query.eq('province', province);
     }
 
-    const { data: universities } = await query.order("created_at", { ascending: false });
+    // Parallelize fetching: Data + Count, Cities, Provinces
+    const [
+        { data: universities, count },
+        { data: citiesData },
+        { data: provincesData }
+    ] = await Promise.all([
+        query
+            .order("created_at", { ascending: false })
+            .range(from, to),
+        supabase
+            .from("universities")
+            .select("city")
+            .not("city", "is", null)
+            .order("city"),
+        supabase
+            .from("universities")
+            .select("province")
+            .not("province", "is", null)
+            .order("province")
+    ]);
 
-    // Fetch unique cities and provinces for filters
-    // We can do this efficiently by querying distinct values
-    const { data: citiesData } = await supabase
-        .from("universities")
-        .select("city")
-        .not("city", "is", null)
-        .order("city");
+    const totalPages = count ? Math.ceil(count / ITEMS_PER_PAGE) : 0;
 
-    const { data: provincesData } = await supabase
-        .from("universities")
-        .select("province")
-        .not("province", "is", null)
-        .order("province");
-
-    // Extract unique values
+    // Extract unique values for filters
     const cities = Array.from(new Set(citiesData?.map(item => item.city) || [])).filter(Boolean) as string[];
     const provinces = Array.from(new Set(provincesData?.map(item => item.province) || [])).filter(Boolean) as string[];
 
@@ -133,6 +148,8 @@ export default async function AdminUniversitiesPage({
                     </TableBody>
                 </Table>
             </div>
+
+            <Pagination totalPages={totalPages} currentPage={page} />
         </div>
     );
 }

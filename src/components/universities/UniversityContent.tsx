@@ -394,10 +394,14 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     <Button size="lg" className="w-full bg-white text-red-600 hover:bg-gray-100 font-bold text-lg h-14 shadow-xl">
                                         Apply Now
                                     </Button>
-                                    <Button size="lg" variant="outline" className="w-full border-2 border-white text-red-600 hover:bg-white/10 h-12">
-                                        <Download className="mr-2 h-4 w-4" />
-                                        Download Brochure
-                                    </Button>
+                                    {university.brochure_url && (
+                                        <Button size="lg" variant="outline" className="w-full border-2 border-white text-red-600 hover:bg-white/10 h-12" asChild>
+                                            <a href={university.brochure_url} target="_blank" rel="noopener noreferrer">
+                                                <Download className="mr-2 h-4 w-4" />
+                                                Download Brochure
+                                            </a>
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
