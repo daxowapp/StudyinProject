@@ -20,6 +20,7 @@ import { Price } from "@/components/currency/Price";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { RequestInformationDialog } from "./RequestInformationDialog";
 
 interface UniversityContentProps {
     university: any;
@@ -405,25 +406,68 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
                             <h3 className="font-bold text-lg mb-4">Quick Actions</h3>
                             <div className="space-y-3">
-                                {[
-                                    { icon: FileText, label: "Request Information", color: "blue" },
-                                    { icon: MessageCircle, label: "Chat with Advisor", color: "purple" },
-                                    { icon: Video, label: "Virtual Campus Tour", color: "green" },
-                                    { icon: Phone, label: "Schedule a Call", color: "orange" },
-                                ].map((action, index) => (
-                                    <button
-                                        key={index}
+                                <RequestInformationDialog
+                                    universityId={university.id}
+                                    universityName={university.name}
+                                    trigger={
+                                        <button className="w-full flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all group text-left">
+                                            <div className="h-12 w-12 rounded-xl bg-blue-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                                <FileText className="h-5 w-5 text-blue-600" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="font-semibold text-gray-900">Request Information</div>
+                                            </div>
+                                            <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                                        </button>
+                                    }
+                                />
+
+                                <a
+                                    href={university.advisor_chat_url || "https://wa.me/905492006060"}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all group text-left"
+                                >
+                                    <div className="h-12 w-12 rounded-xl bg-purple-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                        <MessageCircle className="h-5 w-5 text-purple-600" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="font-semibold text-gray-900">Chat with Advisor</div>
+                                    </div>
+                                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                                </a>
+
+                                {university.virtual_tour_url && (
+                                    <a
+                                        href={university.virtual_tour_url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="w-full flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all group text-left"
                                     >
-                                        <div className={`h-12 w-12 rounded-xl bg-${action.color}-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
-                                            <action.icon className={`h-5 w-5 text-${action.color}-600`} />
+                                        <div className="h-12 w-12 rounded-xl bg-green-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                            <Video className="h-5 w-5 text-green-600" />
                                         </div>
                                         <div className="flex-1">
-                                            <div className="font-semibold text-gray-900">{action.label}</div>
+                                            <div className="font-semibold text-gray-900">Virtual Campus Tour</div>
                                         </div>
                                         <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
-                                    </button>
-                                ))}
+                                    </a>
+                                )}
+
+                                <a
+                                    href={university.schedule_call_url || "https://booking.studyinturkiye.com/"}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all group text-left"
+                                >
+                                    <div className="h-12 w-12 rounded-xl bg-orange-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                        <Phone className="h-5 w-5 text-orange-600" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="font-semibold text-gray-900">Schedule a Call</div>
+                                    </div>
+                                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                                </a>
                             </div>
                         </div>
 
