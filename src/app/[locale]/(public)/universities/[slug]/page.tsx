@@ -64,6 +64,14 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         .eq("locale", locale)
         .single();
 
+    // Fetch accommodation translation
+    const { data: accommodationTranslation } = await supabase
+        .from("accommodation_translations")
+        .select("*")
+        .eq("university_id", university.id)
+        .eq("locale", locale)
+        .single();
+
     const universityData = {
         id: university.id,
         slug: university.slug,
@@ -91,10 +99,10 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         latitude: university.latitude,
         longitude: university.longitude,
         accommodation_available: university.accommodation_available,
-        accommodation_description: university.accommodation_description,
+        accommodation_description: accommodationTranslation?.accommodation_description || university.accommodation_description,
         accommodation_fee_range: university.accommodation_fee_range,
-        accommodation_features: university.accommodation_features,
-        accommodation_types: university.accommodation_types,
+        accommodation_features: accommodationTranslation?.accommodation_features || university.accommodation_features,
+        accommodation_types: accommodationTranslation?.accommodation_types || university.accommodation_types,
         has_fast_track: university.has_fast_track,
         brochure_url: university.brochure_url,
         virtual_tour_url: university.virtual_tour_url,
