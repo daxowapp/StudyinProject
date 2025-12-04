@@ -1,8 +1,11 @@
 import { getPrograms, getUniversities, getLanguages } from "./actions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ProgramDialog } from "./components/ProgramDialog";
 import { format } from "date-fns";
+import Link from "next/link";
+import { Edit, Languages } from "lucide-react";
 
 interface Program {
     id: string;
@@ -68,11 +71,19 @@ export default async function ProgramsPage() {
                                     {program.university?.name} • {program.level} • {program.field}
                                 </CardDescription>
                             </div>
-                            <ProgramDialog
-                                program={program}
-                                universities={universities}
-                                languages={languages}
-                            />
+                            <div className="flex items-center gap-2">
+                                <Link href={`/admin/programs/${program.id}`}>
+                                    <Button variant="outline" size="sm">
+                                        <Languages className="mr-2 h-4 w-4" />
+                                        Translations
+                                    </Button>
+                                </Link>
+                                <ProgramDialog
+                                    program={program}
+                                    universities={universities}
+                                    languages={languages}
+                                />
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2 text-sm">

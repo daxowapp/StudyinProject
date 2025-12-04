@@ -11,10 +11,10 @@ import Link from "next/link";
 import { Price } from "@/components/currency/Price";
 import { getTranslations } from "next-intl/server";
 
-export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const supabase = await createClient();
     const t = await getTranslations('ProgramDetail');
-    const { slug } = await params;
+    const { slug, locale } = await params;
 
     // Fetch program with university details using slug
     const { data: program, error } = await supabase
@@ -37,6 +37,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         console.log("No program found for slug:", slug);
         notFound();
     }
+
+    // Fetch program translation based on locale
+    const { data: translation } = await supabase
+        .from("program_translations")
+        .select("*")
+        .eq("program_id", program.id)
+        .eq("locale", locale)
+        .single();
 
     // Fetch university fast track status
     const { data: university } = await supabase
@@ -69,10 +77,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         return acc;
     }, {}) || {};
 
+    // Use translated content if available, fallback to original
+    const programTitle = translation?.title || program.display_title || program.program_title;
+    const programDescription = translation?.description || program.program_description || t('overview.noDescription');
+
     const programData = {
         id: program.id,
         slug: program.slug,
-        name: program.display_title || program.program_title,
+        name: programTitle,
         university: program.university_name || "Unknown University",
         universityId: program.university_id,
         city: program.city || "N/A",
@@ -92,7 +104,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         service_fee_currency: 'USD',
         totalInitial: "~260 USD",
         badges: [program.language_name, program.level].filter(Boolean),
-        overview: program.program_description || t('overview.noDescription'),
+        overview: programDescription,
         curriculum: [
             t('overview.curriculumPlaceholder'),
         ],
