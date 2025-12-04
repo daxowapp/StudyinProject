@@ -904,5 +904,22 @@
             "scholarshipsDescription": "Explore various scholarship options available",
             "copyright": "© 2024 StudyAtChina. All rights reserved."
         }
+    },
+    "Notifications": {
+        "title": "Notifications",
+        "markAllRead": "Mark all read",
+        "noNotifications": "No notifications yet",
+        "viewAll": "View all notifications",
+        "loading": "Loading notifications...",
+        "types": {
+            "statusChange": "Application Status Update",
+            "documentRequested": "Document Requested",
+            "paymentRequested": "Payment Required",
+            "messageReceived": "New Message",
+            "newApplication": "New Application",
+            "newLead": "New Lead",
+            "documentUploaded": "Document Uploaded",
+            "acceptanceLetter": "Acceptance Letter"
+        }
     }
 }

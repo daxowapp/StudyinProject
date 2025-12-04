@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import { formatDistanceToNow } from 'date-fns';
 import { createClient } from '@/lib/supabase/client';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import {
     FileText,
     Upload,
@@ -57,6 +58,7 @@ interface NotificationBellProps {
 }
 
 export function NotificationBell({ userId, className }: NotificationBellProps) {
+    const t = useTranslations('Notifications');
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [unreadCount, setUnreadCount] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -154,7 +156,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80">
                 <DropdownMenuLabel className="flex items-center justify-between">
-                    <span>Notifications</span>
+                    <span>{t('title')}</span>
                     {unreadCount > 0 && (
                         <Button
                             variant="ghost"
@@ -165,8 +167,8 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                                 markAllAsRead();
                             }}
                         >
-                            <CheckCheck className="h-3 w-3 mr-1" />
-                            Mark all read
+                            <CheckCheck className="h-3 w-3 me-1" />
+                            {t('markAllRead')}
                         </Button>
                     )}
                 </DropdownMenuLabel>
@@ -179,7 +181,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                     ) : notifications.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
                             <Bell className="h-8 w-8 mb-2 opacity-50" />
-                            <p className="text-sm">No notifications yet</p>
+                            <p className="text-sm">{t('noNotifications')}</p>
                         </div>
                     ) : (
                         notifications.map((notification) => {
@@ -245,7 +247,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild className="justify-center">
                     <Link href="/dashboard/notifications" className="w-full text-center text-sm">
-                        View all notifications
+                        {t('viewAll')}
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>

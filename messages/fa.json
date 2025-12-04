@@ -904,5 +904,22 @@
             "scholarshipsDescription": "گزینه‌های مختلف بورسیه موجود را بررسی کنید",
             "copyright": "© ۲۰۲۴ StudyAtChina. تمامی حقوق محفوظ است."
         }
+    },
+    "Notifications": {
+        "title": "اعلان‌ها",
+        "markAllRead": "علامت‌گذاری همه به عنوان خوانده شده",
+        "noNotifications": "هنوز اعلانی وجود ندارد",
+        "viewAll": "مشاهده همه اعلان‌ها",
+        "loading": "در حال بارگذاری اعلان‌ها...",
+        "types": {
+            "statusChange": "به‌روزرسانی وضعیت درخواست",
+            "documentRequested": "مدرک درخواست شده",
+            "paymentRequested": "پرداخت مورد نیاز",
+            "messageReceived": "پیام جدید",
+            "newApplication": "درخواست جدید",
+            "newLead": "سرنخ جدید",
+            "documentUploaded": "مدرک بارگذاری شد",
+            "acceptanceLetter": "نامه پذیرش"
+        }
     }
 }

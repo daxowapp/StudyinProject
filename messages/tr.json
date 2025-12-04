@@ -494,5 +494,22 @@
             "scholarshipsDescription": "Mevcut çeşitli burs seçeneklerini keşfedin",
             "copyright": "© 2024 StudyAtChina. Tüm hakları saklıdır."
         }
+    },
+    "Notifications": {
+        "title": "Bildirimler",
+        "markAllRead": "Tümünü okundu olarak işaretle",
+        "noNotifications": "Henüz bildirim yok",
+        "viewAll": "Tüm bildirimleri görüntüle",
+        "loading": "Bildirimler yükleniyor...",
+        "types": {
+            "statusChange": "Başvuru Durumu Güncellendi",
+            "documentRequested": "Belge Talep Edildi",
+            "paymentRequested": "Ödeme Gerekli",
+            "messageReceived": "Yeni Mesaj",
+            "newApplication": "Yeni Başvuru",
+            "newLead": "Yeni Potansiyel Müşteri",
+            "documentUploaded": "Belge Yüklendi",
+            "acceptanceLetter": "Kabul Mektubu"
+        }
     }
 }

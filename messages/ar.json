@@ -904,5 +904,22 @@
             "scholarshipsDescription": "استكشف خيارات المنح الدراسية المختلفة المتاحة",
             "copyright": "© 2024 StudyAtChina. جميع الحقوق محفوظة."
         }
+    },
+    "Notifications": {
+        "title": "الإشعارات",
+        "markAllRead": "تعليم الكل كمقروء",
+        "noNotifications": "لا توجد إشعارات بعد",
+        "viewAll": "عرض جميع الإشعارات",
+        "loading": "جاري تحميل الإشعارات...",
+        "types": {
+            "statusChange": "تحديث حالة الطلب",
+            "documentRequested": "مطلوب مستند",
+            "paymentRequested": "مطلوب دفع",
+            "messageReceived": "رسالة جديدة",
+            "newApplication": "طلب جديد",
+            "newLead": "عميل محتمل جديد",
+            "documentUploaded": "تم رفع المستند",
+            "acceptanceLetter": "خطاب القبول"
+        }
     }
 }
