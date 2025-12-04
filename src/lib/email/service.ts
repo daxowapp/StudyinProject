@@ -24,7 +24,7 @@ export async function sendEmail(params: SendEmailParams) {
   try {
     // TODO: Integrate with actual email service (Resend, SendGrid, etc.)
     // For now, we'll just log to database
-    
+
     // Example with Resend (uncomment when you have API key):
     /*
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -65,9 +65,9 @@ export async function sendEmail(params: SendEmailParams) {
 
     console.log('Email logged:', emailLog.id);
     return { success: true, emailId: emailLog.id };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
-    
+
     // Log failed email attempt
     await supabase.from('email_notifications').insert({
       recipient_id: params.recipientId,
@@ -78,10 +78,10 @@ export async function sendEmail(params: SendEmailParams) {
       body: params.text || '',
       html_body: params.html,
       status: 'failed',
-      error_message: error.message,
+      error_message: (error as Error).message,
     });
 
-    return { success: false, error: error.message };
+    return { success: false, error: (error as Error).message };
   }
 }
 
@@ -250,7 +250,7 @@ export async function sendMessageReceivedEmail(data: {
  */
 export async function getNotificationPreferences(userId: string) {
   const supabase = await createClient();
-  
+
   const { data, error } = await supabase
     .from('notification_preferences')
     .select('*')

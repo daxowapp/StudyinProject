@@ -1,33 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { DollarSign, Check, Award, Sparkles, Star, TrendingUp, Users, GraduationCap, Home as HomeIcon } from "lucide-react";
+import { DollarSign, Check, Award } from "lucide-react";
 import Link from "next/link";
 import { Price } from "@/components/currency/Price";
-import { createClient } from "@/lib/supabase/client";
 
 interface ScholarshipType {
-    id: string;
-    type_name: string;
-    display_name: string;
+    name: string;
+    displayName: string;
+    coverage: number;
+    serviceFeeUSD: number;
+    serviceFeeCNY: number;
     description: string;
-    tuition_coverage_percentage: number;
-    duration_years: number | null;
-    service_fee_usd: number;
-    service_fee_cny: number;
-    includes_accommodation: boolean;
-    accommodation_type: string | null;
-    includes_stipend: boolean;
-    stipend_amount_monthly: number | null;
-    stipend_currency: string;
-    includes_medical_insurance: boolean;
-    one_time_allowance: number | null;
+    benefits: string[];
+    color: string;
+    borderColor: string;
+    badgeColor: string;
+    popular?: boolean;
 }
 
-const scholarshipTypes = [
+const scholarshipTypes: ScholarshipType[] = [
     {
         name: "Type A",
         displayName: "Full Scholarship",

@@ -4,36 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote, Star, MessageCircle, Heart } from "lucide-react";
 import { motion } from "framer-motion";
-
-const testimonials = [
-    {
-        name: "Sarah Johnson",
-        country: "USA",
-        university: "Tsinghua University",
-        program: "Computer Science",
-        quote: "Studying at Tsinghua was a life-changing experience. The campus is beautiful and the professors are world-class. I've grown both academically and personally.",
-        rating: 5,
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
-    },
-    {
-        name: "Ahmed Hassan",
-        country: "Egypt",
-        university: "Zhejiang University",
-        program: "Civil Engineering",
-        quote: "The application process was smooth thanks to StudyAtChina. I'm now pursuing my Master's in Civil Engineering and loving every moment of it.",
-        rating: 5,
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
-    },
-    {
-        name: "Maria Garcia",
-        country: "Spain",
-        university: "Fudan University",
-        program: "International Business",
-        quote: "Shanghai is an amazing city! I love the culture, the food, and the friends I've made here. The scholarship I received made it all possible.",
-        rating: 5,
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
-    },
-];
+import { useTranslations } from "next-intl";
 
 const container = {
     hidden: { opacity: 0 },
@@ -51,6 +22,29 @@ const item = {
 };
 
 export function TestimonialsSection() {
+    const t = useTranslations('Testimonials');
+
+    const testimonials = [
+        {
+            key: 'sarah',
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+            name: "Sarah Johnson"
+        },
+        {
+            key: 'ahmed',
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+            name: "Ahmed Hassan"
+        },
+        {
+            key: 'maria',
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+            name: "Maria Garcia"
+        },
+    ];
+
     return (
         <section className="py-16 bg-white relative overflow-hidden">
             {/* Decorative Elements */}
@@ -69,13 +63,13 @@ export function TestimonialsSection() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 font-semibold text-sm mb-4">
                         <MessageCircle className="h-4 w-4 text-purple-600" />
-                        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Success Stories</span>
+                        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4">
-                        What Our Students Say
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-base md:text-lg">
-                        Hear from students who have successfully applied through our platform and are now thriving in China.
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -110,7 +104,7 @@ export function TestimonialsSection() {
 
                                     {/* Quote */}
                                     <p className="text-base text-foreground leading-relaxed mb-6 italic">
-                                        "{testimonial.quote}"
+                                        &quot;{t(`testimonials.${testimonial.key}.quote`)}&quot;
                                     </p>
 
                                     {/* Student Info */}
@@ -124,10 +118,10 @@ export function TestimonialsSection() {
                                         <div className="flex-1">
                                             <div className="font-bold text-foreground">{testimonial.name}</div>
                                             <div className="text-xs text-muted-foreground">
-                                                {testimonial.program} • {testimonial.university}
+                                                {t(`testimonials.${testimonial.key}.program`)} • {t(`testimonials.${testimonial.key}.university`)}
                                             </div>
                                             <div className="text-xs text-muted-foreground mt-0.5">
-                                                📍 {testimonial.country}
+                                                📍 {t(`testimonials.${testimonial.key}.country`)}
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +147,7 @@ export function TestimonialsSection() {
                             <Heart className="h-5 w-5 text-red-500" />
                             <span className="text-sm font-semibold">
                                 <span className="text-2xl font-black text-foreground">4.9/5</span>
-                                <span className="text-muted-foreground ml-2">Average Rating</span>
+                                <span className="text-muted-foreground ml-2">{t('averageRating')}</span>
                             </span>
                         </div>
                         <div className="h-8 w-px bg-border hidden md:block" />
@@ -161,7 +155,7 @@ export function TestimonialsSection() {
                             <MessageCircle className="h-5 w-5 text-blue-500" />
                             <span className="text-sm font-semibold">
                                 <span className="text-2xl font-black text-foreground">2,500+</span>
-                                <span className="text-muted-foreground ml-2">Reviews</span>
+                                <span className="text-muted-foreground ml-2">{t('reviews')}</span>
                             </span>
                         </div>
                         <div className="h-8 w-px bg-border hidden md:block" />
@@ -169,7 +163,7 @@ export function TestimonialsSection() {
                             <Star className="h-5 w-5 text-yellow-500" />
                             <span className="text-sm font-semibold">
                                 <span className="text-2xl font-black text-foreground">98%</span>
-                                <span className="text-muted-foreground ml-2">Satisfaction</span>
+                                <span className="text-muted-foreground ml-2">{t('satisfaction')}</span>
                             </span>
                         </div>
                     </div>

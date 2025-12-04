@@ -18,7 +18,7 @@ import { toast } from "sonner";
 
 interface AiGeneratorButtonProps {
     type: "university" | "program";
-    onDataReceived: (data: any) => void;
+    onDataReceived: (data: unknown) => void;
     initialQuery?: string;
     buttonText?: string;
     variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive";

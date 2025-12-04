@@ -13,6 +13,15 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Search, X, Zap } from "lucide-react";
 
+interface UniversityFiltersState {
+    project985: boolean;
+    project211: boolean;
+    doubleFirst: boolean;
+    fastTrack: boolean;
+    scholarships: boolean;
+    english: boolean;
+}
+
 interface UniversityFiltersProps {
     searchQuery: string;
     onSearchChange: (value: string) => void;
@@ -23,15 +32,8 @@ interface UniversityFiltersProps {
     onInstitutionTypeChange: (value: string) => void;
     selectedUniversityCategory: string;
     onUniversityCategoryChange: (value: string) => void;
-    filters: {
-        project985: boolean;
-        project211: boolean;
-        doubleFirst: boolean;
-        fastTrack: boolean;
-        scholarships: boolean;
-        english: boolean;
-    };
-    onFiltersChange: (filters: any) => void;
+    filters: UniversityFiltersState;
+    onFiltersChange: (filters: UniversityFiltersState) => void;
     onClearFilters: () => void;
 }
 
@@ -60,7 +62,7 @@ export function UniversityFilters({
                         className="pl-9 h-10"
                         placeholder="University name..."
                         value={searchQuery}
-                        onChange={(e) => onSearchChange(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.target.value)}
                     />
                 </div>
             </div>
@@ -126,7 +128,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="985"
                             checked={filters.project985}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, project985: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, project985: checked === true })}
                         />
                         <Label htmlFor="985" className="font-normal text-sm cursor-pointer">Project 985</Label>
                     </div>
@@ -134,7 +136,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="211"
                             checked={filters.project211}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, project211: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, project211: checked === true })}
                         />
                         <Label htmlFor="211" className="font-normal text-sm cursor-pointer">Project 211</Label>
                     </div>
@@ -142,7 +144,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="double-first"
                             checked={filters.doubleFirst}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, doubleFirst: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, doubleFirst: checked === true })}
                         />
                         <Label htmlFor="double-first" className="font-normal text-sm cursor-pointer">Double First Class</Label>
                     </div>
@@ -157,7 +159,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="fast-track"
                             checked={filters.fastTrack}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, fastTrack: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, fastTrack: checked === true })}
                         />
                         <Label htmlFor="fast-track" className="font-normal text-sm cursor-pointer flex items-center gap-1.5">
                             <Zap className="h-3.5 w-3.5 text-yellow-500" />
@@ -168,7 +170,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="scholarships"
                             checked={filters.scholarships}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, scholarships: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, scholarships: checked === true })}
                         />
                         <Label htmlFor="scholarships" className="font-normal text-sm cursor-pointer">Scholarships Available</Label>
                     </div>
@@ -176,7 +178,7 @@ export function UniversityFilters({
                         <Checkbox
                             id="english"
                             checked={filters.english}
-                            onCheckedChange={(checked) => onFiltersChange({ ...filters, english: checked })}
+                            onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, english: checked === true })}
                         />
                         <Label htmlFor="english" className="font-normal text-sm cursor-pointer">English Programs</Label>
                     </div>

@@ -36,10 +36,11 @@ export function UniversityCard({ university }: UniversityCardProps) {
             {/* University Photo/Banner */}
             <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 relative overflow-hidden shrink-0">
                 {university.photo ? (
-                    <img
+                    <Image
                         src={university.photo}
                         alt={university.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -59,10 +60,11 @@ export function UniversityCard({ university }: UniversityCardProps) {
                 {/* Logo */}
                 <div className="absolute -top-12 left-6 h-24 w-24 rounded-xl bg-white dark:bg-background shadow-xl flex items-center justify-center border-4 border-background overflow-hidden z-10">
                     {university.logo ? (
-                        <img
+                        <Image
                             src={university.logo}
                             alt={`${university.name} logo`}
-                            className="w-full h-full object-contain p-2"
+                            fill
+                            className="object-contain p-2"
                         />
                     ) : (
                         <Building2 className="h-10 w-10 text-primary" />

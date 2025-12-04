@@ -1,18 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   FileText,
-  Upload,
   CheckCircle2,
   AlertCircle,
   CreditCard,
   User,
-  Mail,
-  Phone,
-  Globe,
   FileCheck,
   ArrowRight,
   Building2,
@@ -28,10 +24,67 @@ import { createClient } from '@/lib/supabase/client';
 import { COUNTRIES, COUNTRY_CODES, INTAKE_PERIODS } from '@/lib/constants/countries';
 
 interface ApplyFormProps {
-  program: any;
-  requirements: any[];
-  user: any;
-  profile?: any;
+  program: {
+    id: string;
+    intake: string;
+    application_fee: number;
+    service_fee?: number;
+    force_payment?: boolean;
+    currency?: string;
+    university: {
+      name: string;
+    };
+    title: string;
+    program_catalog?: {
+      title: string;
+      level: string;
+    };
+  };
+  requirements: {
+    id: string;
+    document_name: string;
+    is_mandatory: boolean;
+    is_required?: boolean;
+    requirement: {
+      id: string;
+      title: string;
+      description?: string;
+    };
+  }[];
+  user: {
+    id: string;
+    email: string;
+    user_metadata: {
+      full_name?: string;
+      name?: string;
+      phone?: string;
+      country?: string;
+      passport?: string;
+      emergency_contact_name?: string;
+      emergency_contact_phone?: string;
+      emergency_contact_relationship?: string;
+      phone_country_code?: string;
+      emergency_phone_code?: string;
+    };
+  };
+  profile?: {
+    full_name?: string;
+    name?: string;
+    first_name?: string;
+    last_name?: string;
+    phone?: string;
+    nationality?: string;
+    country?: string;
+    passport_number?: string;
+    passport?: string;
+    emergency_contact_name?: string;
+    emergency_contact_phone?: string;
+    emergency_contact_relationship?: string;
+    phone_country_code?: string;
+    emergency_phone_code?: string;
+    phone_country_id?: string;
+    emergency_phone_country_id?: string;
+  } | null;
 }
 
 export function ApplyForm({ program, requirements, user, profile }: ApplyFormProps) {
@@ -57,11 +110,52 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
     emergency_contact_relationship: profile?.emergency_contact_relationship || user.user_metadata?.emergency_contact_relationship || '',
   });
 
-  const [phoneCountryCode, setPhoneCountryCode] = useState(profile?.phone_country_code || user.user_metadata?.phone_country_code || '+86');
-  const [emergencyPhoneCode, setEmergencyPhoneCode] = useState(profile?.emergency_phone_code || user.user_metadata?.emergency_phone_code || '+86');
+  const initialPhoneCode = profile?.phone_country_code || user.user_metadata?.phone_country_code || '+86';
+  const initialEmergencyCode = profile?.emergency_phone_code || user.user_metadata?.emergency_phone_code || '+86';
+
+  const [phoneCountryCode, setPhoneCountryCode] = useState(initialPhoneCode);
+  const [emergencyPhoneCode, setEmergencyPhoneCode] = useState(initialEmergencyCode);
+
+  const [phoneCountryId, setPhoneCountryId] = useState(() =>
+    COUNTRY_CODES.find(c => c.code === initialPhoneCode)?.id || 'CN'
+  );
+  const [emergencyPhoneCountryId, setEmergencyPhoneCountryId] = useState(() =>
+    COUNTRY_CODES.find(c => c.code === initialEmergencyCode)?.id || 'CN'
+  );
+
+  const handlePhoneCountryChange = (id: string, type: 'student' | 'emergency') => {
+    const country = COUNTRY_CODES.find(c => c.id === id);
+    if (!country) return;
+
+    if (type === 'student') {
+      setPhoneCountryId(id);
+      setPhoneCountryCode(country.code);
+    } else {
+      setEmergencyPhoneCountryId(id);
+      setEmergencyPhoneCode(country.code);
+    }
+  };
 
   const [uploadedDocuments, setUploadedDocuments] = useState<Record<string, File>>({});
   const [documentUrls, setDocumentUrls] = useState<Record<string, string>>({});
+  const [existingDocuments, setExistingDocuments] = useState<{ id: string; document_type: string; file_url: string; file_name: string; document_name?: string; file_type?: string; file_size?: number }[]>([]);
+  const [reusedDocuments, setReusedDocuments] = useState<Record<string, { id: string; file_url: string; file_name: string; document_name: string; file_type: string; file_size: number }>>({});
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      const { data } = await supabase
+        .from('student_documents')
+        .select('*')
+        .eq('student_id', user.id);
+      if (data) setExistingDocuments(data);
+    };
+    fetchDocuments();
+  }, [user.id, supabase]);
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
 
   const totalFee = (program.application_fee || 0) + (program.service_fee || 0);
   const requiresPayment = program.force_payment && totalFee > 0;
@@ -92,7 +186,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
       const fileExt = file.name.split('.').pop();
       const fileName = `${user.id}/${requirementId}/${Date.now()}.${fileExt}`;
 
-      const { data, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('application-documents')
         .upload(fileName, file);
 
@@ -114,8 +208,8 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
       });
 
       setLoading(false);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError((err as Error).message);
       setLoading(false);
     }
   };
@@ -125,7 +219,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
     const mandatoryRequirements = requirements.filter(
       (req) => req.is_required
     );
-    return mandatoryRequirements.every((req) => uploadedDocuments[req.requirement.id]);
+    return mandatoryRequirements.every((req) => uploadedDocuments[req.requirement.id] || reusedDocuments[req.requirement.id]);
   };
 
   // Create application
@@ -134,52 +228,105 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
       setLoading(true);
       setError(null);
 
-      // Create application with phone numbers including country codes
-      const { data: application, error: appError } = await supabase
-        .from('applications')
-        .insert({
-          student_id: user.id,
-          university_program_id: program.id,
-          student_name: formData.student_name,
-          student_email: formData.student_email,
-          student_phone: `${phoneCountryCode} ${formData.student_phone}`,
-          student_country: formData.student_country,
-          student_passport: formData.student_passport,
-          preferred_intake: formData.preferred_intake,
-          emergency_contact_name: formData.emergency_contact_name,
-          emergency_contact_phone: `${emergencyPhoneCode} ${formData.emergency_contact_phone}`,
-          emergency_contact_relationship: formData.emergency_contact_relationship,
-          status: requiresPayment ? 'pending_payment' : 'submitted',
-          payment_amount: totalFee,
-          payment_currency: program.currency || 'RMB',
-          documents_complete: allRequiredDocumentsUploaded(),
-        })
-        .select()
-        .single();
+      // Prepare data for RPC
+      const applicationData = {
+        student_name: formData.student_name,
+        student_email: formData.student_email,
+        student_phone: `${phoneCountryCode} ${formData.student_phone}`,
+        student_country: formData.student_country,
+        student_passport: formData.student_passport,
+        preferred_intake: formData.preferred_intake,
+        emergency_contact_name: formData.emergency_contact_name,
+        emergency_contact_phone: `${emergencyPhoneCode} ${formData.emergency_contact_phone}`,
+        emergency_contact_relationship: formData.emergency_contact_relationship,
+        status: requiresPayment ? 'pending_payment' : 'submitted',
+        payment_amount: totalFee,
+        payment_currency: program.currency || 'RMB',
+        documents_complete: allRequiredDocumentsUploaded(),
+      };
 
-      if (appError) throw appError;
+      const documentsData = Object.entries(documentUrls).map(([reqId, url]) => {
+        const uploadedFile = uploadedDocuments[reqId];
+        const reusedDoc = reusedDocuments[reqId];
 
-      // Upload document records
-      const documentRecords = Object.entries(documentUrls).map(([reqId, url]) => ({
-        application_id: application.id,
-        requirement_id: reqId,
-        document_name: uploadedDocuments[reqId].name,
-        document_type: uploadedDocuments[reqId].type,
-        file_url: url,
-        file_size: uploadedDocuments[reqId].size,
-        file_type: uploadedDocuments[reqId].name.split('.').pop(),
-      }));
+        if (uploadedFile) {
+          return {
+            requirement_id: reqId,
+            document_name: uploadedFile.name,
+            document_type: uploadedFile.type,
+            file_url: url,
+            file_size: uploadedFile.size,
+            file_type: uploadedFile.name.split('.').pop(),
+          };
+        } else if (reusedDoc) {
+          return {
+            requirement_id: reqId,
+            document_name: reusedDoc.document_name,
+            document_type: reusedDoc.file_type,
+            file_url: url,
+            file_size: reusedDoc.file_size,
+            file_type: reusedDoc.document_name.split('.').pop(),
+          };
+        }
+        return null;
+      }).filter(Boolean);
 
-      if (documentRecords.length > 0) {
-        const { error: docsError } = await supabase
-          .from('application_documents')
-          .insert(documentRecords);
+      const profileData = {
+        full_name: formData.student_name,
+        phone: formData.student_phone,
+        phone_country_code: phoneCountryCode,
+        nationality: formData.student_country,
+        passport_number: formData.student_passport,
+        emergency_contact_name: formData.emergency_contact_name,
+        emergency_contact_phone: formData.emergency_contact_phone,
+        emergency_phone_code: emergencyPhoneCode,
+        emergency_contact_relationship: formData.emergency_contact_relationship,
+      };
 
-        if (docsError) throw docsError;
+      // Call RPC function
+      const { data: rpcData, error: rpcError } = await supabase.rpc('submit_application', {
+        p_student_id: user.id,
+        p_program_id: program.id,
+        p_application_data: applicationData,
+        p_documents_data: documentsData,
+        p_profile_data: profileData
+      });
+
+      if (rpcError) throw rpcError;
+      if (!rpcData.success) throw new Error(rpcData.error || 'Submission failed');
+
+      const newApplicationId = rpcData.application_id;
+
+      // Save documents to student_documents for reuse in future applications
+      // (This is separate from the main submission transaction, so failures here are non-critical)
+      for (const [reqId, file] of Object.entries(uploadedDocuments)) {
+        const req = requirements.find(r => r.requirement?.id === reqId);
+        if (req) {
+          const documentType = req.requirement.title.toLowerCase().replace(/\s+/g, '_');
+
+          // Upsert to student_documents (replace if exists)
+          const { error: studentDocError } = await supabase
+            .from('student_documents')
+            .upsert({
+              student_id: user.id,
+              document_type: documentType,
+              document_name: file.name,
+              file_url: documentUrls[reqId],
+              file_size: file.size,
+              file_type: file.type,
+              uploaded_at: new Date().toISOString(),
+            }, {
+              onConflict: 'student_id,document_type'
+            });
+
+          if (studentDocError) {
+            console.error('Error saving to student_documents:', studentDocError);
+          }
+        }
       }
 
       // Show success state
-      setApplicationId(application.id);
+      setApplicationId(newApplicationId);
       setSuccess(true);
       setLoading(false);
 
@@ -187,8 +334,9 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
       setTimeout(() => {
         router.push('/dashboard');
       }, 3000);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      console.error('Submission error:', err);
+      setError((err as Error).message || 'Failed to submit application');
       setLoading(false);
     }
   };
@@ -227,7 +375,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
               </div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-semibold text-gray-600">Program:</span>
-                <span className="text-sm font-medium text-gray-900">{program.program_catalog.title}</span>
+                <span className="text-sm font-medium text-gray-900">{program.program_catalog?.title}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-gray-600">University:</span>
@@ -236,10 +384,10 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
             </div>
 
             <div className="space-y-3 text-left bg-blue-50 rounded-xl p-6 mb-6">
-              <h3 className="font-semibold text-gray-900 mb-3">What's Next?</h3>
+              <h3 className="font-semibold text-gray-900 mb-3">What&apos;s Next?</h3>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-gray-700">You'll receive a confirmation email shortly</p>
+                <p className="text-sm text-gray-700">You&apos;ll receive a confirmation email shortly</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
@@ -278,7 +426,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
         className="text-center"
       >
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Apply to {program.program_catalog.title}
+          Apply to {program.program_catalog?.title}
         </h1>
         <div className="flex items-center justify-center gap-4 text-gray-600">
           <div className="flex items-center gap-2">
@@ -287,7 +435,7 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
           </div>
           <div className="flex items-center gap-2">
             <GraduationCap className="w-5 h-5" />
-            <span>{program.program_catalog.level}</span>
+            <span>{program.program_catalog?.level}</span>
           </div>
         </div>
       </motion.div>
@@ -370,13 +518,13 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
                 <div className="space-y-2">
                   <Label htmlFor="student_phone">Phone Number *</Label>
                   <div className="flex gap-2">
-                    <Select value={phoneCountryCode} onValueChange={setPhoneCountryCode}>
+                    <Select value={phoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'student')}>
                       <SelectTrigger className="w-[120px]">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                         {COUNTRY_CODES.map((item) => (
-                          <SelectItem key={item.id} value={item.code}>
+                          <SelectItem key={item.id} value={item.id}>
                             {item.code} {item.country}
                           </SelectItem>
                         ))}
@@ -456,13 +604,13 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
                   <div className="space-y-2">
                     <Label htmlFor="emergency_contact_phone">Phone *</Label>
                     <div className="flex gap-2">
-                      <Select value={emergencyPhoneCode} onValueChange={setEmergencyPhoneCode}>
+                      <Select value={emergencyPhoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'emergency')}>
                         <SelectTrigger className="w-[120px]">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           {COUNTRY_CODES.map((item) => (
-                            <SelectItem key={`emergency-${item.id}`} value={item.code}>
+                            <SelectItem key={`emergency-${item.id}`} value={item.id}>
                               {item.code} {item.country}
                             </SelectItem>
                           ))}
@@ -544,50 +692,113 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
                   </AlertDescription>
                 </Alert>
               ) : (
-                requirements.map((req) => (
-                  <div
-                    key={req.requirement.id}
-                    className="border rounded-lg p-4 space-y-3"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="font-semibold flex items-center gap-2">
-                          {req.requirement.title}
-                          {req.is_required && (
-                            <span className="text-red-500 text-sm">*</span>
+                requirements.map((req) => {
+                  const docType = req.requirement.title.toLowerCase().replace(/\s+/g, '_');
+                  const existingDoc = existingDocuments.find(d => d.document_type === docType);
+                  const isReused = reusedDocuments[req.requirement.id];
+                  const isUploaded = uploadedDocuments[req.requirement.id];
+
+                  return (
+                    <div
+                      key={req.requirement.id}
+                      className="border rounded-lg p-4 space-y-3"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h4 className="font-semibold flex items-center gap-2">
+                            {req.requirement.title}
+                            {req.is_required && (
+                              <span className="text-red-500 text-sm">*</span>
+                            )}
+                          </h4>
+                          {req.requirement.description && (
+                            <p className="text-sm text-gray-600 mt-1">
+                              {req.requirement.description}
+                            </p>
                           )}
-                        </h4>
-                        {req.requirement.description && (
-                          <p className="text-sm text-gray-600 mt-1">
-                            {req.requirement.description}
-                          </p>
+                        </div>
+                        {(isUploaded || isReused) && (
+                          <CheckCircle2 className="w-5 h-5 text-green-600" />
                         )}
                       </div>
-                      {uploadedDocuments[req.requirement.id] && (
-                        <CheckCircle2 className="w-5 h-5 text-green-600" />
-                      )}
-                    </div>
 
-                    <div className="flex items-center gap-3">
-                      <Input
-                        type="file"
-                        accept=".pdf,.jpg,.jpeg,.png"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            handleFileUpload(req.requirement.id, file);
-                          }
-                        }}
-                        disabled={loading}
-                      />
-                      {uploadedDocuments[req.requirement.id] && (
-                        <span className="text-sm text-green-600 whitespace-nowrap">
-                          {uploadedDocuments[req.requirement.id].name}
-                        </span>
+                      {/* Existing Document Option */}
+                      {existingDoc && !isUploaded && !isReused && (
+                        <div className="bg-blue-50 p-3 rounded-md flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 text-sm text-blue-700">
+                            <FileCheck className="w-4 h-4" />
+                            <span>Found existing: <strong>{existingDoc.document_name}</strong></span>
+                          </div>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="bg-white hover:bg-blue-100 text-blue-700 border border-blue-200"
+                            onClick={() => {
+                              setReusedDocuments((prev) => ({
+                                ...prev,
+                                [req.requirement.id]: {
+                                  id: existingDoc.id,
+                                  file_url: existingDoc.file_url,
+                                  file_name: existingDoc.file_name,
+                                  document_name: existingDoc.document_name || existingDoc.file_name,
+                                  file_type: existingDoc.file_type || 'application/octet-stream',
+                                  file_size: existingDoc.file_size || 0
+                                }
+                              }));
+                              setDocumentUrls({ ...documentUrls, [req.requirement.id]: existingDoc.file_url });
+                            }}
+                          >
+                            Use Existing
+                          </Button>
+                        </div>
                       )}
+
+                      <div className="flex items-center gap-3">
+                        {isReused ? (
+                          <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 px-3 py-2 rounded-md w-full border border-green-100">
+                            <CheckCircle2 className="w-4 h-4" />
+                            <span>Using existing: <strong>{existingDoc?.document_name}</strong></span>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-6 px-2 ml-auto text-red-500 hover:text-red-700 hover:bg-red-50"
+                              onClick={() => {
+                                const newReused = { ...reusedDocuments };
+                                delete newReused[req.requirement.id];
+                                setReusedDocuments(newReused);
+
+                                const newUrls = { ...documentUrls };
+                                delete newUrls[req.requirement.id];
+                                setDocumentUrls(newUrls);
+                              }}
+                            >
+                              Change
+                            </Button>
+                          </div>
+                        ) : (
+                          <>
+                            <Input
+                              type="file"
+                              accept=".pdf,.jpg,.jpeg,.png"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                  handleFileUpload(req.requirement.id, file);
+                                }
+                              }}
+                              disabled={loading}
+                            />
+                            {uploadedDocuments[req.requirement.id] && (
+                              <span className="text-sm text-green-600 whitespace-nowrap">
+                                {uploadedDocuments[req.requirement.id].name}
+                              </span>
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               )}
 
               <div className="flex justify-between pt-4">

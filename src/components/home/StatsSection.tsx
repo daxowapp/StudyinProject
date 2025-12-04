@@ -3,81 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { GraduationCap, Users, Building2, Award, Globe, TrendingUp, BookOpen, CheckCircle } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
-
-const stats = [
-    {
-        icon: Building2,
-        value: 500,
-        suffix: "+",
-        label: "Partner Universities",
-        description: "Top-ranked institutions",
-        color: "from-red-500 to-orange-500",
-        bgColor: "bg-red-500/10"
-    },
-    {
-        icon: Users,
-        value: 50000,
-        suffix: "+",
-        label: "International Students",
-        description: "From 200+ countries",
-        color: "from-blue-500 to-cyan-500",
-        bgColor: "bg-blue-500/10"
-    },
-    {
-        icon: BookOpen,
-        value: 1000,
-        suffix: "+",
-        label: "Programs Available",
-        description: "All fields of study",
-        color: "from-purple-500 to-pink-500",
-        bgColor: "bg-purple-500/10"
-    },
-    {
-        icon: Award,
-        value: 98,
-        suffix: "%",
-        label: "Success Rate",
-        description: "Admission approval",
-        color: "from-green-500 to-emerald-500",
-        bgColor: "bg-green-500/10"
-    },
-    {
-        icon: Globe,
-        value: 200,
-        suffix: "+",
-        label: "Countries Represented",
-        description: "Global community",
-        color: "from-yellow-500 to-orange-500",
-        bgColor: "bg-yellow-500/10"
-    },
-    {
-        icon: TrendingUp,
-        value: 2,
-        suffix: "M+",
-        label: "Scholarships Awarded",
-        description: "Financial support",
-        color: "from-indigo-500 to-purple-500",
-        bgColor: "bg-indigo-500/10"
-    },
-    {
-        icon: CheckCircle,
-        value: 15,
-        suffix: " min",
-        label: "Application Time",
-        description: "Quick & easy process",
-        color: "from-teal-500 to-cyan-500",
-        bgColor: "bg-teal-500/10"
-    },
-    {
-        icon: GraduationCap,
-        value: 95,
-        suffix: "%",
-        label: "Graduate Employment",
-        description: "Within 6 months",
-        color: "from-pink-500 to-rose-500",
-        bgColor: "bg-pink-500/10"
-    },
-];
+import { useTranslations } from "next-intl";
 
 function CountUpAnimation({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
     const [count, setCount] = useState(0);
@@ -129,6 +55,75 @@ const item = {
 };
 
 export function StatsSection() {
+    const t = useTranslations('Stats');
+
+    const stats = [
+        {
+            key: 'universities',
+            icon: Building2,
+            value: 500,
+            suffix: "+",
+            color: "from-red-500 to-orange-500",
+            bgColor: "bg-red-500/10"
+        },
+        {
+            key: 'students',
+            icon: Users,
+            value: 50000,
+            suffix: "+",
+            color: "from-blue-500 to-cyan-500",
+            bgColor: "bg-blue-500/10"
+        },
+        {
+            key: 'programs',
+            icon: BookOpen,
+            value: 1000,
+            suffix: "+",
+            color: "from-purple-500 to-pink-500",
+            bgColor: "bg-purple-500/10"
+        },
+        {
+            key: 'success',
+            icon: Award,
+            value: 98,
+            suffix: "%",
+            color: "from-green-500 to-emerald-500",
+            bgColor: "bg-green-500/10"
+        },
+        {
+            key: 'countries',
+            icon: Globe,
+            value: 200,
+            suffix: "+",
+            color: "from-yellow-500 to-orange-500",
+            bgColor: "bg-yellow-500/10"
+        },
+        {
+            key: 'scholarships',
+            icon: TrendingUp,
+            value: 2,
+            suffix: "M+",
+            color: "from-indigo-500 to-purple-500",
+            bgColor: "bg-indigo-500/10"
+        },
+        {
+            key: 'time',
+            icon: CheckCircle,
+            value: 15,
+            suffix: " min",
+            color: "from-teal-500 to-cyan-500",
+            bgColor: "bg-teal-500/10"
+        },
+        {
+            key: 'employment',
+            icon: GraduationCap,
+            value: 95,
+            suffix: "%",
+            color: "from-pink-500 to-rose-500",
+            bgColor: "bg-pink-500/10"
+        },
+    ];
+
     return (
         <section className="py-16 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
             {/* Animated Background */}
@@ -161,13 +156,13 @@ export function StatsSection() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 font-semibold text-sm mb-4 text-white">
                         <TrendingUp className="h-4 w-4 text-yellow-400" />
-                        <span>Our Impact</span>
+                        <span>{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4 text-white">
-                        Trusted by Thousands Worldwide
+                        {t('title')}
                     </h2>
                     <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
-                        Join a global community of successful students who have achieved their dreams through our platform
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -208,12 +203,12 @@ export function StatsSection() {
 
                                 {/* Label */}
                                 <div className="text-sm md:text-base font-bold text-white mb-1">
-                                    {stat.label}
+                                    {t(`items.${stat.key}.label`)}
                                 </div>
 
                                 {/* Description */}
                                 <div className="text-xs text-white/60">
-                                    {stat.description}
+                                    {t(`items.${stat.key}.description`)}
                                 </div>
 
                                 {/* Decorative Corner */}

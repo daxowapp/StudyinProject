@@ -50,11 +50,11 @@ CREATE TABLE IF NOT EXISTS university_programs (
 );
 
 -- 3. Create indexes for better performance
-CREATE INDEX idx_program_catalog_category ON program_catalog(category);
-CREATE INDEX idx_program_catalog_level ON program_catalog(level);
-CREATE INDEX idx_university_programs_university ON university_programs(university_id);
-CREATE INDEX idx_university_programs_catalog ON university_programs(program_catalog_id);
-CREATE INDEX idx_university_programs_active ON university_programs(is_active);
+CREATE INDEX IF NOT EXISTS idx_program_catalog_category ON program_catalog(category);
+CREATE INDEX IF NOT EXISTS idx_program_catalog_level ON program_catalog(level);
+CREATE INDEX IF NOT EXISTS idx_university_programs_university ON university_programs(university_id);
+CREATE INDEX IF NOT EXISTS idx_university_programs_catalog ON university_programs(program_catalog_id);
+CREATE INDEX IF NOT EXISTS idx_university_programs_active ON university_programs(is_active);
 
 -- 4. Insert sample program catalog entries
 INSERT INTO program_catalog (title, category, field, level, description, typical_duration) VALUES
@@ -108,11 +108,14 @@ INSERT INTO program_catalog (title, category, field, level, description, typical
 ON CONFLICT (title) DO NOTHING;
 
 -- 5. Create a view for easy querying of university programs with catalog info
-CREATE OR REPLACE VIEW v_university_programs_full AS
+DROP VIEW IF EXISTS v_university_programs_full CASCADE;
+CREATE VIEW v_university_programs_full AS
 SELECT 
     up.id,
+    up.slug,
     up.university_id,
     u.name as university_name,
+    u.slug as university_slug,
     u.city,
     u.province,
     pc.id as program_catalog_id,

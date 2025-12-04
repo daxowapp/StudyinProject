@@ -1,0 +1,645 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "programs": "Programs",
+        "universities": "Universities",
+        "about": "About Us",
+        "contact": "Contact",
+        "login": "Login",
+        "dashboard": "Dashboard",
+        "admin": "Admin",
+        "categories": {
+            "topRanked": {
+                "title": "Top Ranked",
+                "description": "Explore the highest-ranked universities in China."
+            },
+            "medical": {
+                "title": "Medical Schools",
+                "description": "Leading institutions for medicine and healthcare."
+            },
+            "engineering": {
+                "title": "Engineering",
+                "description": "Top technical universities for engineering."
+            },
+            "business": {
+                "title": "Business & Economics",
+                "description": "Premier business schools and economic institutes."
+            },
+            "arts": {
+                "title": "Arts & Humanities",
+                "description": "Centers for arts, culture, and humanities."
+            },
+            "all": {
+                "title": "All Universities",
+                "description": "Browse our complete list of partner universities."
+            }
+        },
+        "levels": {
+            "bachelor": {
+                "title": "Bachelor's Degree",
+                "description": "Undergraduate programs for high school graduates."
+            },
+            "master": {
+                "title": "Master's Degree",
+                "description": "Graduate programs for bachelor's degree holders."
+            },
+            "phd": {
+                "title": "PhD Programs",
+                "description": "Doctoral research programs."
+            },
+            "nonDegree": {
+                "title": "Non-Degree",
+                "description": "Language courses and short-term programs."
+            },
+            "viewAll": "View All Programs"
+        },
+        "viewAllUniversities": "View All Universities",
+        "resources": {
+            "title": "Resources",
+            "scholarships": "Scholarships",
+            "howToApply": "How to Apply",
+            "articles": "Articles & Guides",
+            "contact": "Contact Us"
+        },
+        "user": {
+            "myApplications": "My Applications",
+            "logout": "Log out",
+            "signIn": "Sign In",
+            "getStarted": "Get Started",
+            "myAccount": "My Account",
+            "account": "Account"
+        }
+    },
+    "Common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View",
+        "back": "Back"
+    },
+    "Footer": {
+        "stayUpdated": "Stay Updated",
+        "getLatestUpdates": "Get the Latest Updates",
+        "subscribeText": "Subscribe to receive news about programs, scholarships, and application deadlines.",
+        "description": "Your trusted partner in discovering and applying to China's top universities. Join thousands of students who have successfully started their academic journey with us.",
+        "explore": "Explore",
+        "programs": "Programs",
+        "universities": "Universities",
+        "scholarships": "Scholarships",
+        "howToApply": "How to Apply",
+        "faq": "FAQ",
+        "forStudents": "For Students",
+        "createAccount": "Create Account",
+        "trackApplication": "Track Application",
+        "documentChecklist": "Document Checklist",
+        "studentPortal": "Student Portal",
+        "contact": "Contact",
+        "rightsReserved": "All rights reserved.",
+        "designedBy": "Designed and Powered by",
+        "termsOfService": "Terms of Service",
+        "privacyPolicy": "Privacy Policy",
+        "cookiePolicy": "Cookie Policy"
+    },
+    "Hero": {
+        "admissionsOpen": "Admissions Open for 2025",
+        "title": "Your Future Starts Here",
+        "subtitle": "Join <bold>50,000+ students</bold> at China's top universities",
+        "searchButton": "Search <bold>500+</bold> Programs",
+        "browseByCategory": "Browse by Category",
+        "scrollToExplore": "Scroll to explore",
+        "stats": {
+            "universities": "Universities",
+            "students": "Students",
+            "success": "Success",
+            "scholarships": "Scholarships"
+        },
+        "tabs": {
+            "programs": "Programs",
+            "universities": "Universities",
+            "scholarships": "Scholarships"
+        },
+        "placeholders": {
+            "degree": "Degree Level",
+            "field": "Field of Study",
+            "city": "City",
+            "language": "Language",
+            "budget": "Budget (USD/Year)",
+            "scholarship": "Scholarship",
+            "duration": "Duration"
+        },
+        "options": {
+            "any": "Any",
+            "all": "All"
+        }
+    },
+    "WhyStudy": {
+        "badge": "Why Choose China",
+        "title": "Your Gateway to <gradient>Global Success</gradient>",
+        "description": "China combines ancient wisdom with cutting-edge innovation, offering international students an unparalleled educational experience in the heart of Asia's economic powerhouse.",
+        "cta": {
+            "explore": "Explore Programs",
+            "download": "Download Guide"
+        },
+        "features": {
+            "worldClass": {
+                "title": "World-Class Universities",
+                "description": "Study at globally ranked institutions with cutting-edge research facilities and renowned faculty."
+            },
+            "affordable": {
+                "title": "Affordable Excellence",
+                "description": "Premium education at competitive costs with generous scholarship opportunities up to 100%."
+            },
+            "career": {
+                "title": "Career Launchpad",
+                "description": "Access to Asia's largest economy with unmatched internship and job opportunities."
+            },
+            "safe": {
+                "title": "Safe & Vibrant",
+                "description": "Experience one of the world's safest countries with a thriving international community."
+            },
+            "culture": {
+                "title": "Cultural Immersion",
+                "description": "Discover 5,000 years of history while living in ultra-modern, dynamic cities."
+            },
+            "network": {
+                "title": "Global Network",
+                "description": "Join a community of 500,000+ international students from 200+ countries."
+            },
+            "english": {
+                "title": "English Programs",
+                "description": "Choose from 1,000+ programs taught entirely in English across all disciplines."
+            },
+            "recognition": {
+                "title": "Recognition Worldwide",
+                "description": "Earn degrees recognized by UNESCO, WHO, and professional bodies globally."
+            }
+        }
+    },
+    "HowItWorks": {
+        "badge": "Lightning Fast Process",
+        "title": "From Application to <gradient>Admission</gradient>",
+        "description": "A streamlined 6-step journey designed to get you from browsing programs to receiving your admission letter in record time.",
+        "cta": {
+            "button": "Start Your Application Now",
+            "time": "Average completion time: <bold>15 minutes</bold>"
+        },
+        "steps": {
+            "discover": {
+                "title": "Discover Programs",
+                "description": "Browse 500+ programs from top Chinese universities tailored to your goals."
+            },
+            "profile": {
+                "title": "Create Profile",
+                "description": "Set up your account and complete your academic profile in minutes."
+            },
+            "upload": {
+                "title": "Upload Documents",
+                "description": "Submit certificates, transcripts, and required documents securely."
+            },
+            "pay": {
+                "title": "Pay Application Fee",
+                "description": "Make secure payments via Stripe with multiple currency options."
+            },
+            "track": {
+                "title": "Track Progress",
+                "description": "Monitor your application status with real-time updates and notifications."
+            },
+            "admission": {
+                "title": "Get Admission",
+                "description": "Receive your offer letter, visa documents, and start your journey!"
+            }
+        }
+    },
+    "Stats": {
+        "badge": "Our Impact",
+        "title": "Trusted by Thousands Worldwide",
+        "description": "Join a global community of successful students who have achieved their dreams through our platform",
+        "items": {
+            "universities": {
+                "label": "Partner Universities",
+                "description": "Top-ranked institutions"
+            },
+            "students": {
+                "label": "International Students",
+                "description": "From 200+ countries"
+            },
+            "programs": {
+                "label": "Programs Available",
+                "description": "All fields of study"
+            },
+            "success": {
+                "label": "Success Rate",
+                "description": "Admission approval"
+            },
+            "countries": {
+                "label": "Countries Represented",
+                "description": "Global community"
+            },
+            "scholarships": {
+                "label": "Scholarships Awarded",
+                "description": "Financial support"
+            },
+            "time": {
+                "label": "Application Time",
+                "description": "Quick & easy process"
+            },
+            "employment": {
+                "label": "Graduate Employment",
+                "description": "Within 6 months"
+            }
+        }
+    },
+    "FeaturedPrograms": {
+        "badge": "Featured Programs",
+        "title": "Popular Programs",
+        "description": "Explore our most sought-after programs at China's top universities",
+        "duration": "Duration",
+        "tuition": "Tuition/Year",
+        "explore": "Explore Program",
+        "viewAll": "View All Programs"
+    },
+    "FeaturedUniversities": {
+        "badge": "Top Universities",
+        "title": "Elite Universities",
+        "description": "Study at China's most prestigious institutions",
+        "fastTrack": "Fast Track",
+        "programs": "Programs",
+        "tuitionFrom": "Tuition from",
+        "students": "Students",
+        "viewDetails": "View Details",
+        "viewAll": "View All Universities"
+    },
+    "Scholarships": {
+        "badge": "Financial Support",
+        "title": "Scholarships & Financial Aid",
+        "description": "Study in China is affordable. Explore various scholarship opportunities available for international students.",
+        "items": {
+            "csc": {
+                "title": "Chinese Government Scholarship (CSC)",
+                "description": "Full or partial scholarship for international students. Covers tuition, accommodation, and stipend.",
+                "amount": "Up to $10,000/year"
+            },
+            "university": {
+                "title": "University Scholarships",
+                "description": "Merit-based scholarships offered directly by universities for outstanding applicants.",
+                "amount": "Up to $8,000/year"
+            },
+            "provincial": {
+                "title": "Provincial Government Scholarships",
+                "description": "Scholarships funded by local governments to attract international talent to specific regions.",
+                "amount": "Up to $6,000/year"
+            }
+        },
+        "awardAmount": "Award Amount",
+        "learnMore": "Learn More",
+        "stats": {
+            "awarded": "Awarded Annually",
+            "funding": "Receive Funding",
+            "full": "Full Scholarships",
+            "eligible": "Programs Eligible"
+        },
+        "viewAll": "View All Scholarships"
+    },
+    "Testimonials": {
+        "badge": "Success Stories",
+        "title": "What Our Students Say",
+        "description": "Hear from students who have successfully applied through our platform and are now thriving in China.",
+        "testimonials": {
+            "sarah": {
+                "quote": "Studying at Tsinghua was a life-changing experience. The campus is beautiful and the professors are world-class. I've grown both academically and personally.",
+                "program": "Computer Science",
+                "university": "Tsinghua University",
+                "country": "USA"
+            },
+            "ahmed": {
+                "quote": "The application process was smooth thanks to StudyAtChina. I'm now pursuing my Master's in Civil Engineering and loving every moment of it.",
+                "program": "Civil Engineering",
+                "university": "Zhejiang University",
+                "country": "Egypt"
+            },
+            "maria": {
+                "quote": "Shanghai is an amazing city! I love the culture, the food, and the friends I've made here. The scholarship I received made it all possible.",
+                "program": "International Business",
+                "university": "Fudan University",
+                "country": "Spain"
+            }
+        },
+        "averageRating": "Average Rating",
+        "reviews": "Reviews",
+        "satisfaction": "Satisfaction"
+    },
+    "Partners": {
+        "badge": "Trusted Partners",
+        "title": "Partner Universities",
+        "description": "We collaborate with China's most prestigious institutions to bring you the best educational opportunities",
+        "recognitions": {
+            "unesco": {
+                "title": "UNESCO Recognized",
+                "description": "All partner universities are UNESCO recognized"
+            },
+            "government": {
+                "title": "Government Approved",
+                "description": "Officially approved by Chinese Ministry of Education"
+            },
+            "accredited": {
+                "title": "Globally Accredited",
+                "description": "Degrees recognized in 180+ countries worldwide"
+            }
+        }
+    },
+    "FAQ": {
+        "badge": "Got Questions?",
+        "title": "Frequently Asked Questions",
+        "description": "Find answers to common questions about studying in China",
+        "items": {
+            "deadline": {
+                "question": "When is the application deadline?",
+                "answer": "Deadlines vary by university and program. Generally, for the September intake, applications close between March and June. Check specific program pages for exact dates."
+            },
+            "language": {
+                "question": "Do I need to know Chinese to study in China?",
+                "answer": "Not necessarily! There are thousands of English-taught programs available for Bachelor, Master, and PhD degrees. However, learning some basic Chinese is recommended for daily life."
+            },
+            "work": {
+                "question": "Can I work while studying?",
+                "answer": "International students can work part-time or take internships with permission from their university and the immigration office. Policies have become more flexible in recent years."
+            },
+            "scholarships": {
+                "question": "How do I apply for scholarships?",
+                "answer": "You can apply for scholarships directly through our platform when submitting your application. We will guide you on the required documents for CSC and university scholarships."
+            },
+            "visa": {
+                "question": "What are the visa requirements?",
+                "answer": "You'll need a valid passport, admission letter, and JW202 form from your university. We provide comprehensive visa guidance and support throughout the process."
+            },
+            "process": {
+                "question": "How long does the application process take?",
+                "answer": "The typical application process takes 2-4 weeks. Once submitted, universities usually respond within 4-8 weeks. We keep you updated at every step."
+            }
+        },
+        "seeAll": "See All FAQs",
+        "contactSupport": "Contact Support",
+        "footer": "Still have questions? Our support team is available 24/7 to help you."
+    },
+    "Universities": {
+        "title": "Explore Top Chinese Universities",
+        "subtitle": "Discover {count}+ prestigious institutions across China. From Project 985 to C9 League universities.",
+        "error": {
+            "title": "Unable to load universities",
+            "hint": "Hint: {hint}"
+        },
+        "search": {
+            "placeholder": "Search by university name, city, or ranking..."
+        },
+        "filters": {
+            "title": "Filters",
+            "description": "Narrow down your university search",
+            "clear": "Clear Filters"
+        },
+        "stats": {
+            "title": "Quick Stats",
+            "total": "Total Universities",
+            "showing": "Showing",
+            "cities": "Cities"
+        },
+        "sort": {
+            "label": "Sort by",
+            "name": "Name: A-Z",
+            "programs": "Most Programs",
+            "city": "City"
+        },
+        "noResults": {
+            "title": "No universities found",
+            "description": "Try adjusting your filters or search criteria"
+        }
+    },
+    "Programs": {
+        "title": "Discover Your Perfect Program",
+        "subtitle": "Browse through {count}+ programs from top Chinese universities. Find the perfect match for your academic journey.",
+        "filters": {
+            "title": "Filters",
+            "active": "Active Filters:",
+            "clear": "Clear Filters",
+            "clearAll": "Clear All"
+        },
+        "stats": {
+            "total": "Total Programs",
+            "showing": "Showing"
+        },
+        "sort": {
+            "label": "Sort by",
+            "relevance": "Most Relevant",
+            "tuitionLow": "Tuition: Low to High",
+            "tuitionHigh": "Tuition: High to Low",
+            "deadline": "Deadline: Soonest",
+            "popular": "Most Popular"
+        },
+        "noResults": {
+            "title": "No programs found",
+            "description": "Try adjusting your filters or search criteria"
+        }
+    },
+    "ProgramDetail": {
+        "breadcrumb": {
+            "home": "Home",
+            "programs": "Programs"
+        },
+        "badges": {
+            "intake": "Intake: {intake}",
+            "contactUniversity": "Contact University",
+            "fastTrack": "Fast Track Acceptance"
+        },
+        "buttons": {
+            "apply": "Apply Now",
+            "downloadBrochure": "Download Brochure",
+            "viewUniversity": "View University",
+            "startApplication": "Start Application",
+            "contactAdvisor": "Contact Advisor"
+        },
+        "highlights": {
+            "title": "Program Highlights",
+            "tuition": "Tuition Fee",
+            "duration": "Duration",
+            "language": "Language",
+            "level": "Degree Level"
+        },
+        "overview": {
+            "title": "Program Overview",
+            "noDescription": "No description available for this program.",
+            "curriculum": "Core Curriculum",
+            "curriculumPlaceholder": "Core courses information will be updated soon"
+        },
+        "requirements": {
+            "title": "Admission Requirements"
+        },
+        "scholarships": {
+            "title": "Scholarship Options for This Program",
+            "description": "Choose the scholarship type that best fits your budget"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "deadline": "The application deadline is {deadline}."
+        },
+        "sidebar": {
+            "ready": "Ready to Apply?",
+            "free": "Free Application",
+            "fast": "Fast Processing",
+            "expert": "Expert Support",
+            "cost": "Cost Breakdown",
+            "applicationFee": "Application Fee",
+            "serviceFee": "Service Fee",
+            "disclaimer": "* Additional costs may include accommodation, visa, and living expenses",
+            "why": "Why Choose This Program?",
+            "reasons": {
+                "degree": "Internationally recognized degree",
+                "faculty": "Experienced faculty members",
+                "facilities": "Modern facilities & resources",
+                "career": "Career development support"
+            }
+        }
+    },
+    "UniversityDetail": {
+        "about": "About",
+        "whyChooseUs": "Why Choose Us",
+        "programs": {
+            "title": "Programs",
+            "allPrograms": "All Programs",
+            "noPrograms": "No programs found for this level.",
+            "viewProgram": "View Program",
+            "tuitionFee": "Tuition Fee",
+            "perYear": "per year"
+        },
+        "scholarships": {
+            "title": "Available Scholarship Options",
+            "description": "Choose the scholarship type that best fits your budget for programs at this university"
+        },
+        "campus": {
+            "tour": "Campus Tour",
+            "gallery": "Campus Gallery",
+            "viewImage": "View Image"
+        },
+        "admission": {
+            "title": "Admission Requirements",
+            "academic": "Academic Requirements",
+            "language": "Language Requirements",
+            "highSchool": "High school diploma or equivalent",
+            "gpa": "Minimum GPA of 3.0/4.0",
+            "transcripts": "Academic transcripts",
+            "ielts": "IELTS 6.0 or TOEFL 80+",
+            "hsk": "HSK 4 for Chinese programs",
+            "english": "English proficiency certificate"
+        },
+        "sidebar": {
+            "ready": "Ready to Apply?",
+            "startJourney": "Start your journey at {university}",
+            "applyNow": "Apply Now",
+            "downloadBrochure": "Download Brochure",
+            "quickActions": "Quick Actions",
+            "requestInfo": "Request Information",
+            "chatAdvisor": "Chat with Advisor",
+            "virtualTour": "Virtual Campus Tour",
+            "scheduleCall": "Schedule a Call",
+            "quickFacts": "Quick Facts",
+            "location": "Location",
+            "founded": "Founded",
+            "students": "Students",
+            "international": "International",
+            "ranking": "Ranking",
+            "officialWebsite": "Official Website"
+        }
+    },
+    "RequestInformation": {
+        "title": "Request Information",
+        "description": "Get more details about {university}. Fill out the form below.",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "interest": "Interest",
+        "selectInterest": "Select your interest",
+        "interests": {
+            "admission": "Admission Requirements",
+            "programs": "Available Programs",
+            "scholarships": "Scholarship Opportunities",
+            "campus": "Campus Life",
+            "other": "Other"
+        },
+        "message": "Message",
+        "messagePlaceholder": "I am interested in studying at {university}...",
+        "submit": "Send Request",
+        "sending": "Sending...",
+        "success": "Request sent successfully! We will contact you soon.",
+        "error": "Failed to send request. Please try again."
+    },
+    "UniversityScholarships": {
+        "loading": "Loading scholarships...",
+        "noScholarships": "No scholarships available for this university yet.",
+        "options": "Scholarship Options",
+        "discover": "Discover More Opportunities",
+        "explore": "Explore All Scholarship Options",
+        "description": "Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.",
+        "viewAll": "View All Scholarships",
+        "advice": "Get Personalized Advice",
+        "mostPopular": "Most Popular",
+        "defaultDescription": "Great option for international students.",
+        "tuitionCoverage": "Tuition Coverage",
+        "serviceFee": "Service Fee",
+        "whatsIncluded": "What's Included",
+        "applyNow": "Apply Now",
+        "howItWorks": {
+            "title": "How Scholarships Work",
+            "description": "The scholarship covers a percentage of your tuition fees. You pay the remaining tuition to the university + the one-time service fee for application support, visa assistance, and guidance.",
+            "learnMore": "Learn more about scholarships →"
+        },
+        "benefits": {
+            "tuitionCoverage": "{percentage}% tuition fee coverage",
+            "noScholarship": "No scholarship (0% coverage)",
+            "support": "Application support & guidance",
+            "visa": "Visa assistance",
+            "orientation": "Pre-departure orientation",
+            "accommodation": "Accommodation arrangement support"
+        }
+    },
+    "Accommodation": {
+        "notAvailable": "Accommodation information not available",
+        "badge": "Student Accommodation",
+        "title": "On-Campus Housing Options",
+        "priceRange": "Price Range",
+        "generalFacilities": "General Facilities",
+        "availableRoomTypes": "Available Room Types",
+        "defaultTitle": "Accommodation",
+        "priceOnRequest": "Price on request",
+        "month": "month",
+        "roomFeatures": "Room Features:",
+        "importantInfo": {
+            "title": "Important Information",
+            "fees": "Accommodation fees are paid per semester or academic year",
+            "availability": "Room allocation is subject to availability",
+            "prices": "Prices may vary and should be confirmed with the university",
+            "deposit": "Deposit may be required upon check-in"
+        }
+    },
+    "UniversityHeader": {
+        "fastTrack": "Fast Track Acceptance",
+        "est": "Est. {founded}",
+        "studentsCount": "{students} Students",
+        "website": "Website",
+        "applyNow": "Apply Now",
+        "requestInfo": "Request Info",
+        "brochure": "Brochure",
+        "virtualTour": "Virtual Tour",
+        "scheduleCall": "Schedule Call",
+        "chatAdvisor": "Chat Advisor",
+        "save": "Save",
+        "saved": "Saved",
+        "share": "Share",
+        "founded": "Founded",
+        "students": "Students",
+        "ranking": "Ranking",
+        "international": "International"
+    }
+}

@@ -11,8 +11,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, SlidersHorizontal, Building2 } from "lucide-react";
+import { LayoutGrid, List, SlidersHorizontal, Building2 } from "lucide-react";
 import {
     Sheet,
     SheetContent,
@@ -44,9 +43,11 @@ interface UniversitiesClientProps {
     universities: University[];
 }
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function UniversitiesClient({ universities }: UniversitiesClientProps) {
+    const t = useTranslations('Universities');
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("search") || "";
     const [searchQuery, setSearchQuery] = useState(initialQuery);
@@ -57,7 +58,7 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
         if (query !== null && query !== searchQuery) {
             setSearchQuery(query);
         }
-    }, [searchParams]);
+    }, [searchParams, searchQuery]);
     const [selectedCity, setSelectedCity] = useState("all");
     const [selectedInstitutionType, setSelectedInstitutionType] = useState("all");
     const [selectedUniversityCategory, setSelectedUniversityCategory] = useState("all");
@@ -161,14 +162,14 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                     <SheetTrigger asChild>
                         <Button variant="outline" className="w-full gap-2">
                             <SlidersHorizontal className="h-4 w-4" />
-                            Filters
+                            {t('filters.title')}
                         </Button>
                     </SheetTrigger>
                     <SheetContent side="left" className="w-[300px] sm:w-[400px] overflow-y-auto">
                         <SheetHeader>
-                            <SheetTitle>Filters</SheetTitle>
+                            <SheetTitle>{t('filters.title')}</SheetTitle>
                             <SheetDescription>
-                                Narrow down your university search
+                                {t('filters.description')}
                             </SheetDescription>
                         </SheetHeader>
                         <div className="mt-6">
@@ -197,7 +198,7 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                     <div className="bg-card rounded-xl border shadow-sm p-6">
                         <h2 className="text-lg font-bold mb-6 flex items-center gap-2">
                             <SlidersHorizontal className="h-5 w-5 text-primary" />
-                            Filters
+                            {t('filters.title')}
                         </h2>
                         <UniversityFilters
                             searchQuery={searchQuery}
@@ -219,19 +220,19 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                     <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border p-6">
                         <h3 className="font-bold mb-4 flex items-center gap-2">
                             <Building2 className="h-5 w-5 text-primary" />
-                            Quick Stats
+                            {t('stats.title')}
                         </h3>
                         <div className="space-y-3 text-sm">
                             <div className="flex justify-between">
-                                <span className="text-muted-foreground">Total Universities</span>
+                                <span className="text-muted-foreground">{t('stats.total')}</span>
                                 <span className="font-bold">{universities.length}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-muted-foreground">Showing</span>
+                                <span className="text-muted-foreground">{t('stats.showing')}</span>
                                 <span className="font-bold text-primary">{filteredUniversities.length}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-muted-foreground">Cities</span>
+                                <span className="text-muted-foreground">{t('stats.cities')}</span>
                                 <span className="font-bold">{cities.length}</span>
                             </div>
                         </div>
@@ -247,8 +248,8 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                         <div className="flex items-center gap-3">
                             <div className="h-10 w-1 bg-primary rounded-full" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Showing</p>
-                                <p className="font-bold text-lg">{filteredUniversities.length} Universities</p>
+                                <p className="text-sm text-muted-foreground">{t('stats.showing')}</p>
+                                <p className="font-bold text-lg">{filteredUniversities.length} {t('stats.total').replace('Total ', '')}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -262,12 +263,12 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                             </div>
                             <Select defaultValue="name">
                                 <SelectTrigger className="w-full sm:w-[200px] h-10">
-                                    <SelectValue placeholder="Sort by" />
+                                    <SelectValue placeholder={t('sort.label')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="name">Name: A-Z</SelectItem>
-                                    <SelectItem value="programs">Most Programs</SelectItem>
-                                    <SelectItem value="city">City</SelectItem>
+                                    <SelectItem value="name">{t('sort.name')}</SelectItem>
+                                    <SelectItem value="programs">{t('sort.programs')}</SelectItem>
+                                    <SelectItem value="city">{t('sort.city')}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -286,11 +287,11 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                                     <div className="h-16 w-16 rounded-full bg-muted mx-auto mb-4 flex items-center justify-center">
                                         <Building2 className="h-8 w-8 text-muted-foreground" />
                                     </div>
-                                    <h3 className="text-xl font-bold mb-2">No universities found</h3>
+                                    <h3 className="text-xl font-bold mb-2">{t('noResults.title')}</h3>
                                     <p className="text-muted-foreground mb-6">
-                                        Try adjusting your filters or search criteria
+                                        {t('noResults.description')}
                                     </p>
-                                    <Button variant="outline" onClick={handleClearFilters}>Clear Filters</Button>
+                                    <Button variant="outline" onClick={handleClearFilters}>{t('filters.clear')}</Button>
                                 </div>
                             </div>
                         </div>

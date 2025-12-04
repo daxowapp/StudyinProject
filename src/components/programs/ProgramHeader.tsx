@@ -4,8 +4,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Clock, Calendar, DollarSign, BookOpen } from "lucide-react";
 import Link from "next/link";
 
+interface Program {
+    level: string;
+    badges: string[];
+    name: string;
+    university: string;
+    city: string;
+    duration: string;
+    language: string;
+    intake: string;
+    tuition: string;
+    applicationFee: string;
+    serviceFee: string;
+    totalInitial: string;
+    deadline: string;
+}
+
 interface ProgramHeaderProps {
-    program: any;
+    program: Program;
 }
 
 export function ProgramHeader({ program }: ProgramHeaderProps) {

@@ -12,8 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, X } from "lucide-react";
-import { useState } from "react";
+import { Search, X } from "lucide-react";
 
 export interface FilterState {
     search: string;

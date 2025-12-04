@@ -2,12 +2,14 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Clock, MapPin, ArrowRight, Star, TrendingUp, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Clock, MapPin, ArrowRight, Star } from "lucide-react";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Price } from "@/components/currency/Price";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface Program {
     id: string;
@@ -24,7 +26,13 @@ interface Program {
         city: string;
         cover_photo_url?: string;
         logo_url?: string;
-    } | any;
+    } | {
+        name: string;
+        city: string;
+        cover_photo_url?: string;
+        logo_url?: string;
+        [key: string]: unknown;
+    };
 }
 
 interface FeaturedProgramsSectionProps {
@@ -47,6 +55,7 @@ const item = {
 };
 
 export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSectionProps) {
+    const t = useTranslations('FeaturedPrograms');
     const [shuffledPrograms, setShuffledPrograms] = useState<Program[]>(programs);
 
     // Shuffle programs on client side with diversity (different universities)
@@ -110,13 +119,13 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-yellow-500/10 border border-red-500/20 font-semibold text-sm mb-4">
                         <Star className="h-4 w-4 text-red-600" />
-                        <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">Featured Programs</span>
+                        <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4">
-                        Popular Programs
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-base md:text-lg">
-                        Explore our most sought-after programs at China's top universities
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -128,7 +137,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                     viewport={{ once: true }}
                     className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
                 >
-                    {displayPrograms.map((program, index) => (
+                    {displayPrograms.map((program) => (
                         <motion.div
                             key={program.id}
                             variants={item}
@@ -139,10 +148,11 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                 {/* Image Section with Overlay */}
                                 <div className="relative h-48 overflow-hidden">
                                     {program.university?.cover_photo_url ? (
-                                        <img
+                                        <Image
                                             src={program.university.cover_photo_url}
                                             alt={program.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500" />
@@ -153,10 +163,11 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                     {program.university?.logo_url && (
                                         <div className="absolute top-4 left-4">
                                             <div className="w-14 h-14 rounded-xl bg-white shadow-xl flex items-center justify-center p-2 border-2 border-white/50">
-                                                <img
+                                                <Image
                                                     src={program.university.logo_url}
                                                     alt={program.university.name}
-                                                    className="w-full h-full object-contain"
+                                                    fill
+                                                    className="object-contain p-1"
                                                 />
                                             </div>
                                         </div>
@@ -213,7 +224,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                                 <Clock className="h-5 w-5 text-white" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-xs text-muted-foreground font-medium">Duration</p>
+                                                <p className="text-xs text-muted-foreground font-medium">{t('duration')}</p>
                                                 <p className="text-sm font-bold text-gray-900 truncate">{program.duration}</p>
                                             </div>
                                         </div>
@@ -224,7 +235,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                                 <span className="text-white font-bold text-lg">💰</span>
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-xs text-muted-foreground font-medium">Tuition/Year</p>
+                                                <p className="text-xs text-muted-foreground font-medium">{t('tuition')}</p>
                                                 <p className="text-sm font-bold text-gray-900 truncate">
                                                     <Price amount={parseFloat(program.tuition_fee)} currency={program.currency || 'CNY'} />
                                                 </p>
@@ -239,7 +250,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                                 size="lg"
                                                 className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
                                             >
-                                                Explore Program
+                                                {t('explore')}
                                                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                             </Button>
                                         </Link>
@@ -260,7 +271,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                 >
                     <Link href="/programs">
                         <Button size="lg" variant="outline" className="rounded-xl border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold">
-                            View All Programs
+                            {t('viewAll')}
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </Link>

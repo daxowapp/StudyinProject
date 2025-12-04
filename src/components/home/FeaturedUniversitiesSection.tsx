@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, GraduationCap, Users, Award, ArrowRight, Sparkles, Trophy, ChevronLeft, ChevronRight, Zap } from "lucide-react";
-import Link from "next/link";
+import { MapPin, Award, ArrowRight, Trophy, ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Price } from "@/components/currency/Price";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface University {
     id: string;
@@ -46,6 +48,7 @@ const item = {
 };
 
 export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUniversitiesSectionProps) {
+    const t = useTranslations('FeaturedUniversities');
     const displayUniversities = universities.length > 0 ? universities : [];
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 4;
@@ -82,13 +85,13 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-yellow-500/10 border border-red-500/20 font-semibold text-sm mb-4">
                         <Trophy className="h-4 w-4 text-red-600" />
-                        <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">Top Universities</span>
+                        <span className="bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4">
-                        Elite Universities
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-base md:text-lg">
-                        Study at China's most prestigious institutions
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -103,7 +106,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                         className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
                         style={{ gridAutoRows: '1fr' }}
                     >
-                        {visibleUniversities.map((uni, index) => (
+                        {visibleUniversities.map((uni) => (
                             <motion.div
                                 key={uni.id}
                                 variants={item}
@@ -116,16 +119,20 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                         {/* Image Banner */}
                                         <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
                                             {uni.cover_photo_url ? (
-                                                <img
+                                                <Image
                                                     src={uni.cover_photo_url}
                                                     alt={uni.name}
-                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    unoptimized={uni.cover_photo_url.startsWith('data:')}
                                                 />
                                             ) : (
-                                                <img
+                                                <Image
                                                     src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
                                                     alt={uni.name}
-                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    unoptimized
                                                 />
                                             )}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -135,7 +142,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 <div className="absolute top-3 left-3">
                                                     <div className="px-2 py-1 rounded-full bg-yellow-400 text-yellow-950 text-xs font-bold shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center gap-1 border border-yellow-300">
                                                         <Zap className="w-3 h-3 animate-pulse fill-yellow-950" />
-                                                        Fast Track
+                                                        {t('fastTrack')}
                                                     </div>
                                                 </div>
                                             )}
@@ -154,11 +161,13 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                             {/* University Name with Logo */}
                                             <div className="flex items-start gap-3 mb-2">
                                                 {uni.logo_url && (
-                                                    <div className="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0">
-                                                        <img
+                                                    <div className="relative w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0">
+                                                        <Image
                                                             src={uni.logo_url}
                                                             alt={uni.name}
-                                                            className="w-full h-full object-contain"
+                                                            fill
+                                                            className="object-contain p-1"
+                                                            unoptimized={uni.logo_url.startsWith('data:')}
                                                         />
                                                     </div>
                                                 )}
@@ -176,13 +185,13 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                             <div className="space-y-2 mb-4 min-h-[4rem]">
                                                 {uni.programCount !== undefined && uni.programCount > 0 && (
                                                     <div className="flex items-center justify-between text-sm">
-                                                        <span className="text-muted-foreground">Programs</span>
+                                                        <span className="text-muted-foreground">{t('programs')}</span>
                                                         <span className="font-semibold">{uni.programCount}+</span>
                                                     </div>
                                                 )}
                                                 {uni.minTuitionFee !== undefined && (
                                                     <div className="flex items-center justify-between text-sm">
-                                                        <span className="text-muted-foreground">Tuition from</span>
+                                                        <span className="text-muted-foreground">{t('tuitionFrom')}</span>
                                                         <span className="font-semibold">
                                                             <Price amount={uni.minTuitionFee} currency={uni.currency || 'CNY'} />
                                                         </span>
@@ -190,7 +199,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 )}
                                                 {!uni.minTuitionFee && uni.total_students && (
                                                     <div className="flex items-center justify-between text-sm">
-                                                        <span className="text-muted-foreground">Students</span>
+                                                        <span className="text-muted-foreground">{t('students')}</span>
                                                         <span className="font-semibold">{uni.total_students}</span>
                                                     </div>
                                                 )}
@@ -207,7 +216,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 )}
                                                 <Link href={`/universities/${uni.slug}`} className="block">
                                                     <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg">
-                                                        View Details
+                                                        {t('viewDetails')}
                                                     </Button>
                                                 </Link>
                                             </div>
@@ -265,7 +274,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                 >
                     <Link href="/universities">
                         <Button size="lg" variant="outline" className="rounded-xl border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold">
-                            View All Universities
+                            {t('viewAll')}
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </Link>

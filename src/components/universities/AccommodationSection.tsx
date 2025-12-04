@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Home, Check, DollarSign, Wifi, Wind, Droplet, Shield, Utensils } from "lucide-react";
 import { Price } from "@/components/currency/Price";
+import { useTranslations } from "next-intl";
 
 interface AccommodationType {
     type: string; // This might be null in DB now, but we can fallback to room_type
@@ -26,7 +27,7 @@ interface AccommodationSectionProps {
     accommodationTypes?: AccommodationType[] | null;
 }
 
-const featureIcons: Record<string, any> = {
+const featureIcons: Record<string, React.ElementType> = {
     'WiFi': Wifi,
     'Air Conditioning': Wind,
     'AC': Wind,
@@ -44,11 +45,13 @@ export function AccommodationSection({
     accommodationFeatures = [],
     accommodationTypes = []
 }: AccommodationSectionProps) {
+    const t = useTranslations('Accommodation');
+
     if (!accommodationAvailable) {
         return (
             <div className="text-center py-12">
                 <Home className="h-16 w-16 mx-auto mb-4 text-muted-foreground opacity-20" />
-                <p className="text-muted-foreground">Accommodation information not available</p>
+                <p className="text-muted-foreground">{t('notAvailable')}</p>
             </div>
         );
     }
@@ -60,11 +63,11 @@ export function AccommodationSection({
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 font-semibold text-sm mb-4">
                     <Home className="h-4 w-4 text-blue-600" />
                     <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        Student Accommodation
+                        {t('badge')}
                     </span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold font-heading mb-2">
-                    On-Campus Housing Options
+                    {t('title')}
                 </h2>
                 {accommodationDescription && (
                     <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -80,7 +83,7 @@ export function AccommodationSection({
                         <div className="flex items-center justify-center gap-3">
                             <DollarSign className="h-6 w-6 text-blue-600" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Price Range</p>
+                                <p className="text-sm text-muted-foreground">{t('priceRange')}</p>
                                 <p className="text-2xl font-bold text-blue-600">{accommodationFeeRange}</p>
                             </div>
                         </div>
@@ -94,7 +97,7 @@ export function AccommodationSection({
                     <CardHeader>
                         <CardTitle className="text-lg flex items-center gap-2">
                             <Check className="h-5 w-5 text-green-600" />
-                            General Facilities
+                            {t('generalFacilities')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -120,7 +123,7 @@ export function AccommodationSection({
             {/* Room Types */}
             {accommodationTypes && accommodationTypes.length > 0 && (
                 <div>
-                    <h3 className="text-xl font-bold mb-4">Available Room Types</h3>
+                    <h3 className="text-xl font-bold mb-4">{t('availableRoomTypes')}</h3>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {accommodationTypes.map((room, index) => (
                             <Card
@@ -131,7 +134,7 @@ export function AccommodationSection({
                                     <div className="flex items-start justify-between">
                                         <div>
                                             <CardTitle className="text-lg mb-1">
-                                                {room.type || room.room_type || 'Accommodation'}
+                                                {room.type || room.room_type || t('defaultTitle')}
                                             </CardTitle>
                                             <p className="text-xs text-muted-foreground">
                                                 {room.description}
@@ -158,11 +161,11 @@ export function AccommodationSection({
                                                 ) : room.price_cny && typeof room.price_cny === 'number' ? (
                                                     <Price amount={room.price_cny} currency="CNY" />
                                                 ) : (
-                                                    'Price on request'
+                                                    t('priceOnRequest')
                                                 )}
                                             </span>
                                             <span className="text-sm text-muted-foreground">
-                                                /{room.billing_period || 'month'}
+                                                /{room.billing_period || t('month')}
                                             </span>
                                         </div>
                                     </div>
@@ -170,7 +173,7 @@ export function AccommodationSection({
                                     {/* Features */}
                                     <div>
                                         <p className="text-xs font-semibold mb-2 text-muted-foreground">
-                                            Room Features:
+                                            {t('roomFeatures')}
                                         </p>
                                         <ul className="space-y-1.5">
                                             {room.features.map((feature, idx) => (
@@ -199,12 +202,12 @@ export function AccommodationSection({
                             <Home className="h-4 w-4 text-amber-600" />
                         </div>
                         <div className="flex-1">
-                            <h4 className="font-semibold mb-1 text-sm">Important Information</h4>
+                            <h4 className="font-semibold mb-1 text-sm">{t('importantInfo.title')}</h4>
                             <ul className="text-xs text-muted-foreground space-y-1">
-                                <li>• Accommodation fees are paid per semester or academic year</li>
-                                <li>• Room allocation is subject to availability</li>
-                                <li>• Prices may vary and should be confirmed with the university</li>
-                                <li>• Deposit may be required upon check-in</li>
+                                <li>• {t('importantInfo.fees')}</li>
+                                <li>• {t('importantInfo.availability')}</li>
+                                <li>• {t('importantInfo.prices')}</li>
+                                <li>• {t('importantInfo.deposit')}</li>
                             </ul>
                         </div>
                     </div>

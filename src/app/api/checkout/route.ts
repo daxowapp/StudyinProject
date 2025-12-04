@@ -3,6 +3,7 @@ import Stripe from "stripe";
 
 // Initialize Stripe (use a test key if env var is missing for now to prevent crash)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_mock", {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     apiVersion: "2025-11-17.clover" as any, // Cast to any to avoid strict type checking issues if types are slightly off, or use exact string from error
 });
 
@@ -37,8 +38,8 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json({ sessionId: session.id, url: session.url });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Stripe Checkout Error:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

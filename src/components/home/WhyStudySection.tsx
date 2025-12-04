@@ -1,75 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { GraduationCap, Globe, TrendingUp, ShieldCheck, Sparkles, Users, BookOpen, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
-
-const features = [
-    {
-        title: "World-Class Universities",
-        description: "Study at globally ranked institutions with cutting-edge research facilities and renowned faculty.",
-        icon: GraduationCap,
-        gradient: "from-primary to-red-600",
-        iconBg: "bg-primary/10",
-        iconColor: "text-primary"
-    },
-    {
-        title: "Affordable Excellence",
-        description: "Premium education at competitive costs with generous scholarship opportunities up to 100%.",
-        icon: TrendingUp,
-        gradient: "from-secondary to-yellow-500",
-        iconBg: "bg-secondary/10",
-        iconColor: "text-secondary"
-    },
-    {
-        title: "Career Launchpad",
-        description: "Access to Asia's largest economy with unmatched internship and job opportunities.",
-        icon: Globe,
-        gradient: "from-accent to-yellow-500",
-        iconBg: "bg-accent/10",
-        iconColor: "text-accent"
-    },
-    {
-        title: "Safe & Vibrant",
-        description: "Experience one of the world's safest countries with a thriving international community.",
-        icon: ShieldCheck,
-        gradient: "from-blue-500 to-purple-500",
-        iconBg: "bg-blue-500/10",
-        iconColor: "text-blue-500"
-    },
-    {
-        title: "Cultural Immersion",
-        description: "Discover 5,000 years of history while living in ultra-modern, dynamic cities.",
-        icon: Sparkles,
-        gradient: "from-purple-500 to-pink-500",
-        iconBg: "bg-purple-500/10",
-        iconColor: "text-purple-500"
-    },
-    {
-        title: "Global Network",
-        description: "Join a community of 500,000+ international students from 200+ countries.",
-        icon: Users,
-        gradient: "from-pink-500 to-rose-500",
-        iconBg: "bg-pink-500/10",
-        iconColor: "text-pink-500"
-    },
-    {
-        title: "English Programs",
-        description: "Choose from 1,000+ programs taught entirely in English across all disciplines.",
-        icon: BookOpen,
-        gradient: "from-orange-500 to-amber-500",
-        iconBg: "bg-orange-500/10",
-        iconColor: "text-orange-500"
-    },
-    {
-        title: "Recognition Worldwide",
-        description: "Earn degrees recognized by UNESCO, WHO, and professional bodies globally.",
-        icon: Trophy,
-        gradient: "from-amber-500 to-yellow-500",
-        iconBg: "bg-amber-500/10",
-        iconColor: "text-amber-500"
-    },
-];
+import { useTranslations } from "next-intl";
 
 const container = {
     hidden: { opacity: 0 },
@@ -87,6 +21,75 @@ const item = {
 };
 
 export function WhyStudySection() {
+    const t = useTranslations('WhyStudy');
+
+    const features = [
+        {
+            title: t('features.worldClass.title'),
+            description: t('features.worldClass.description'),
+            icon: GraduationCap,
+            gradient: "from-primary to-red-600",
+            iconBg: "bg-primary/10",
+            iconColor: "text-primary"
+        },
+        {
+            title: t('features.affordable.title'),
+            description: t('features.affordable.description'),
+            icon: TrendingUp,
+            gradient: "from-secondary to-yellow-500",
+            iconBg: "bg-secondary/10",
+            iconColor: "text-secondary"
+        },
+        {
+            title: t('features.career.title'),
+            description: t('features.career.description'),
+            icon: Globe,
+            gradient: "from-accent to-yellow-500",
+            iconBg: "bg-accent/10",
+            iconColor: "text-accent"
+        },
+        {
+            title: t('features.safe.title'),
+            description: t('features.safe.description'),
+            icon: ShieldCheck,
+            gradient: "from-blue-500 to-purple-500",
+            iconBg: "bg-blue-500/10",
+            iconColor: "text-blue-500"
+        },
+        {
+            title: t('features.culture.title'),
+            description: t('features.culture.description'),
+            icon: Sparkles,
+            gradient: "from-purple-500 to-pink-500",
+            iconBg: "bg-purple-500/10",
+            iconColor: "text-purple-500"
+        },
+        {
+            title: t('features.network.title'),
+            description: t('features.network.description'),
+            icon: Users,
+            gradient: "from-pink-500 to-rose-500",
+            iconBg: "bg-pink-500/10",
+            iconColor: "text-pink-500"
+        },
+        {
+            title: t('features.english.title'),
+            description: t('features.english.description'),
+            icon: BookOpen,
+            gradient: "from-orange-500 to-amber-500",
+            iconBg: "bg-orange-500/10",
+            iconColor: "text-orange-500"
+        },
+        {
+            title: t('features.recognition.title'),
+            description: t('features.recognition.description'),
+            icon: Trophy,
+            gradient: "from-amber-500 to-yellow-500",
+            iconBg: "bg-amber-500/10",
+            iconColor: "text-amber-500"
+        },
+    ];
+
     return (
         <section className="py-16 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
             {/* Decorative Elements */}
@@ -105,18 +108,22 @@ export function WhyStudySection() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6">
                         <Sparkles className="h-4 w-4" />
-                        <span>Why Choose China</span>
+                        <span>{t('badge')}</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter font-heading mb-6">
-                        Your Gateway to
-                        <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-orange-500">
-                            Global Success
-                        </span>
+                        {t.rich('title', {
+                            gradient: (chunks) => (
+                                <>
+                                    <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-600 to-orange-500">
+                                        {chunks}
+                                    </span>
+                                </>
+                            )
+                        })}
                     </h2>
                     <p className="mt-6 text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                        China combines ancient wisdom with cutting-edge innovation, offering international students
-                        an unparalleled educational experience in the heart of Asia's economic powerhouse.
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -169,12 +176,12 @@ export function WhyStudySection() {
                     <div className="inline-flex flex-col sm:flex-row gap-4">
                         <Link href="/programs">
                             <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
-                                Explore Programs
+                                {t('cta.explore')}
                             </button>
                         </Link>
                         <Link href="/download-guide">
                             <button className="px-8 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all">
-                                Download Guide
+                                {t('cta.download')}
                             </button>
                         </Link>
                     </div>

@@ -1,0 +1,327 @@
+{
+    "Navbar": {
+        "home": "Ana Sayfa",
+        "programs": "Programlar",
+        "universities": "Üniversiteler",
+        "about": "Hakkımızda",
+        "contact": "İletişim",
+        "login": "Giriş Yap",
+        "dashboard": "Panel",
+        "admin": "Yönetici"
+    },
+    "Common": {
+        "loading": "Yükleniyor...",
+        "error": "Bir hata oluştu",
+        "submit": "Gönder",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "view": "Görüntüle",
+        "back": "Geri"
+    },
+    "Footer": {
+        "stayUpdated": "Güncel Kalın",
+        "getLatestUpdates": "En Son Güncellemeleri Alın",
+        "subscribeText": "Programlar, burslar ve başvuru tarihleri hakkında haber almak için abone olun.",
+        "description": "Çin'in en iyi üniversitelerini keşfetmek ve başvurmak için güvenilir ortağınız.",
+        "explore": "Keşfet",
+        "programs": "Programlar",
+        "universities": "Üniversiteler",
+        "scholarships": "Burslar",
+        "howToApply": "Nasıl Başvurulur",
+        "faq": "SSS",
+        "forStudents": "Öğrenciler İçin",
+        "createAccount": "Hesap Oluştur",
+        "trackApplication": "Başvuruyu Takip Et",
+        "documentChecklist": "Belge Listesi",
+        "studentPortal": "Öğrenci Portalı",
+        "contact": "İletişim",
+        "rightsReserved": "Tüm hakları saklıdır.",
+        "designedBy": "Tasarım ve Altyapı:",
+        "termsOfService": "Hizmet Şartları",
+        "privacyPolicy": "Gizlilik Politikası",
+        "cookiePolicy": "Çerez Politikası"
+    },
+    "Hero": {
+        "admissionsOpen": "2025 Kayıtları Başladı",
+        "title": "Geleceğiniz Burada Başlıyor",
+        "subtitle": "Çin'in en iyi üniversitelerinde <bold>50.000+ öğrenciye</bold> katılın",
+        "searchButton": "<bold>500+</bold> Programı Ara",
+        "browseByCategory": "Kategoriye Göre Göz At",
+        "scrollToExplore": "Keşfetmek için kaydır",
+        "stats": {
+            "universities": "Üniversite",
+            "students": "Öğrenci",
+            "success": "Başarı",
+            "scholarships": "Burs"
+        },
+        "tabs": {
+            "programs": "Programlar",
+            "universities": "Üniversiteler",
+            "scholarships": "Burslar"
+        },
+        "placeholders": {
+            "degree": "Derece Seviyesi",
+            "field": "Çalışma Alanı",
+            "city": "Şehir",
+            "language": "Dil",
+            "budget": "Bütçe (USD/Yıl)",
+            "scholarship": "Burs",
+            "duration": "Süre"
+        },
+        "options": {
+            "any": "Herhangi",
+            "all": "Tümü"
+        }
+    },
+    "WhyStudy": {
+        "badge": "Neden Çin'i Seçmelisiniz",
+        "title": "<gradient>Küresel Başarıya</gradient> Açılan Kapınız",
+        "description": "Çin, kadim bilgelik ile en son yenilikleri birleştirerek, Asya'nın ekonomik güç merkezinin kalbinde uluslararası öğrencilere benzersiz bir eğitim deneyimi sunuyor.",
+        "cta": {
+            "explore": "Programları Keşfet",
+            "download": "Rehberi İndir"
+        },
+        "features": {
+            "worldClass": {
+                "title": "Dünya Klasında Üniversiteler",
+                "description": "Son teknoloji araştırma tesisleri ve ünlü öğretim üyeleri ile küresel sıralamadaki kurumlarda eğitim alın."
+            },
+            "affordable": {
+                "title": "Uygun Fiyatlı Mükemmellik",
+                "description": "%100'e varan cömert burs fırsatları ile rekabetçi maliyetlerle birinci sınıf eğitim."
+            },
+            "career": {
+                "title": "Kariyer Basamağı",
+                "description": "Eşsiz staj ve iş fırsatları ile Asya'nın en büyük ekonomisine erişim."
+            },
+            "safe": {
+                "title": "Güvenli ve Canlı",
+                "description": "Gelişen bir uluslararası toplulukla dünyanın en güvenli ülkelerinden birini deneyimleyin."
+            },
+            "culture": {
+                "title": "Kültürel Daldırma",
+                "description": "Ultra modern, dinamik şehirlerde yaşarken 5.000 yıllık tarihi keşfedin."
+            },
+            "network": {
+                "title": "Küresel Ağ",
+                "description": "200'den fazla ülkeden 500.000'den fazla uluslararası öğrenciden oluşan bir topluluğa katılın."
+            },
+            "english": {
+                "title": "İngilizce Programlar",
+                "description": "Tüm disiplinlerde tamamen İngilizce olarak öğretilen 1.000'den fazla program arasından seçim yapın."
+            },
+            "recognition": {
+                "title": "Dünya Çapında Tanınırlık",
+                "description": "UNESCO, WHO ve küresel meslek kuruluşları tarafından tanınan dereceler kazanın."
+            }
+        }
+    },
+    "HowItWorks": {
+        "badge": "Yıldırım Hızında Süreç",
+        "title": "Başvurudan <gradient>Kabul</gradient>e",
+        "description": "Programlara göz atmaktan kabul mektubunuzu almaya kadar sizi rekor sürede ulaştırmak için tasarlanmış 6 adımlı akıcı bir yolculuk.",
+        "cta": {
+            "button": "Başvurunuza Şimdi Başlayın",
+            "time": "Ortalama tamamlanma süresi: <bold>15 dakika</bold>"
+        },
+        "steps": {
+            "discover": {
+                "title": "Programları Keşfet",
+                "description": "Hedeflerinize uygun en iyi Çin üniversitelerinden 500+ programa göz atın."
+            },
+            "profile": {
+                "title": "Profil Oluştur",
+                "description": "Hesabınızı kurun ve akademik profilinizi dakikalar içinde tamamlayın."
+            },
+            "upload": {
+                "title": "Belgeleri Yükle",
+                "description": "Sertifikaları, transkriptleri ve gerekli belgeleri güvenli bir şekilde gönderin."
+            },
+            "pay": {
+                "title": "Başvuru Ücretini Öde",
+                "description": "Birden fazla para birimi seçeneği ile Stripe üzerinden güvenli ödeme yapın."
+            },
+            "track": {
+                "title": "İlerlemeyi Takip Et",
+                "description": "Gerçek zamanlı güncellemeler ve bildirimlerle başvuru durumunuzu izleyin."
+            },
+            "admission": {
+                "title": "Kabul Al",
+                "description": "Teklif mektubunuzu, vize belgelerinizi alın ve yolculuğunuza başlayın!"
+            }
+        }
+    },
+    "Stats": {
+        "badge": "Etkimiz",
+        "title": "Dünya Çapında Binlerce Kişi Tarafından Güveniliyor",
+        "description": "Platformumuz aracılığıyla hayallerine ulaşan başarılı öğrencilerden oluşan küresel bir topluluğa katılın",
+        "items": {
+            "universities": {
+                "label": "Ortak Üniversiteler",
+                "description": "Üst düzey kurumlar"
+            },
+            "students": {
+                "label": "Uluslararası Öğrenciler",
+                "description": "200+ ülkeden"
+            },
+            "programs": {
+                "label": "Mevcut Programlar",
+                "description": "Tüm çalışma alanları"
+            },
+            "success": {
+                "label": "Başarı Oranı",
+                "description": "Kabul onayı"
+            },
+            "countries": {
+                "label": "Temsil Edilen Ülkeler",
+                "description": "Küresel topluluk"
+            },
+            "scholarships": {
+                "label": "Verilen Burslar",
+                "description": "Finansal destek"
+            },
+            "time": {
+                "label": "Başvuru Süresi",
+                "description": "Hızlı ve kolay süreç"
+            },
+            "employment": {
+                "label": "Mezun İstihdamı",
+                "description": "6 ay içinde"
+            }
+        }
+    },
+    "FeaturedPrograms": {
+        "badge": "Öne Çıkan Programlar",
+        "title": "Popüler Programlar",
+        "description": "Çin'in en iyi üniversitelerindeki en çok aranan programlarımızı keşfedin",
+        "duration": "Süre",
+        "tuition": "Yıllık Ücret",
+        "explore": "Programı İncele",
+        "viewAll": "Tüm Programları Gör"
+    },
+    "FeaturedUniversities": {
+        "badge": "En İyi Üniversiteler",
+        "title": "Seçkin Üniversiteler",
+        "description": "Çin'in en prestijli kurumlarında eğitim alın",
+        "fastTrack": "Hızlı Başvuru",
+        "programs": "Programlar",
+        "tuitionFrom": "Başlangıç Fiyatı",
+        "students": "Öğrenciler",
+        "viewDetails": "Detayları Gör",
+        "viewAll": "Tüm Üniversiteleri Gör"
+    },
+    "Scholarships": {
+        "badge": "Finansal Destek",
+        "title": "Burslar ve Finansal Yardım",
+        "description": "Çin'de eğitim ekonomiktir. Uluslararası öğrenciler için mevcut olan çeşitli burs fırsatlarını keşfedin.",
+        "items": {
+            "csc": {
+                "title": "Çin Hükümeti Bursu (CSC)",
+                "description": "Uluslararası öğrenciler için tam veya kısmi burs. Eğitim ücreti, konaklama ve harçlığı kapsar.",
+                "amount": "Yılda 10.000$'a kadar"
+            },
+            "university": {
+                "title": "Üniversite Bursları",
+                "description": "Üstün başarılı başvuru sahipleri için doğrudan üniversiteler tarafından sunulan başarıya dayalı burslar.",
+                "amount": "Yılda 8.000$'a kadar"
+            },
+            "provincial": {
+                "title": "Eyalet Hükümeti Bursları",
+                "description": "Uluslararası yetenekleri belirli bölgelere çekmek için yerel yönetimler tarafından finanse edilen burslar.",
+                "amount": "Yılda 6.000$'a kadar"
+            }
+        },
+        "awardAmount": "Burs Miktarı",
+        "learnMore": "Daha Fazla Bilgi",
+        "stats": {
+            "awarded": "Yıllık Verilen",
+            "funding": "Fon Alan",
+            "full": "Tam Burslar",
+            "eligible": "Uygun Programlar"
+        },
+        "viewAll": "Tüm Bursları Gör"
+    },
+    "Testimonials": {
+        "badge": "Başarı Hikayeleri",
+        "title": "Öğrencilerimiz Ne Diyor",
+        "description": "Platformumuz aracılığıyla başarıyla başvuru yapan ve şu anda Çin'de gelişmekte olan öğrencilerden haber alın.",
+        "testimonials": {
+            "sarah": {
+                "quote": "Tsinghua'da okumak hayatımı değiştiren bir deneyimdi. Kampüs güzel ve profesörler dünya standartlarında. Hem akademik hem de kişisel olarak geliştim.",
+                "program": "Bilgisayar Bilimleri",
+                "university": "Tsinghua Üniversitesi",
+                "country": "ABD"
+            },
+            "ahmed": {
+                "quote": "StudyAtChina sayesinde başvuru süreci sorunsuz geçti. Şimdi İnşaat Mühendisliği yüksek lisansımı yapıyorum ve her anını seviyorum.",
+                "program": "İnşaat Mühendisliği",
+                "university": "Zhejiang Üniversitesi",
+                "country": "Mısır"
+            },
+            "maria": {
+                "quote": "Şanghay harika bir şehir! Kültürü, yemeği ve burada edindiğim arkadaşları seviyorum. Aldığım burs her şeyi mümkün kıldı.",
+                "program": "Uluslararası İşletme",
+                "university": "Fudan Üniversitesi",
+                "country": "İspanya"
+            }
+        },
+        "averageRating": "Ortalama Puan",
+        "reviews": "Yorumlar",
+        "satisfaction": "Memnuniyet"
+    },
+    "Partners": {
+        "badge": "Güvenilir Ortaklar",
+        "title": "Anlaşmalı Üniversiteler",
+        "description": "Size en iyi eğitim fırsatlarını sunmak için Çin'in en prestijli kurumlarıyla işbirliği yapıyoruz",
+        "recognitions": {
+            "unesco": {
+                "title": "UNESCO Tarafından Tanınan",
+                "description": "Tüm anlaşmalı üniversiteler UNESCO tarafından tanınmaktadır"
+            },
+            "government": {
+                "title": "Hükümet Onaylı",
+                "description": "Çin Eğitim Bakanlığı tarafından resmen onaylanmıştır"
+            },
+            "accredited": {
+                "title": "Küresel Akreditasyon",
+                "description": "Diplomalar dünya çapında 180'den fazla ülkede tanınmaktadır"
+            }
+        }
+    },
+    "FAQ": {
+        "badge": "Sorularınız mı Var?",
+        "title": "Sıkça Sorulan Sorular",
+        "description": "Çin'de eğitim hakkında sık sorulan soruların yanıtlarını bulun",
+        "items": {
+            "deadline": {
+                "question": "Başvuru son tarihi ne zaman?",
+                "answer": "Son tarihler üniversiteye ve programa göre değişir. Genellikle Eylül dönemi için başvurular Mart ve Haziran ayları arasında kapanır. Kesin tarihler için ilgili program sayfalarını kontrol edin."
+            },
+            "language": {
+                "question": "Çin'de okumak için Çince bilmem gerekiyor mu?",
+                "answer": "Şart değil! Lisans, Yüksek Lisans ve Doktora dereceleri için binlerce İngilizce eğitimli program mevcuttur. Ancak, günlük yaşam için temel düzeyde Çince öğrenmeniz önerilir."
+            },
+            "work": {
+                "question": "Okurken çalışabilir miyim?",
+                "answer": "Uluslararası öğrenciler, üniversitelerinden ve göçmenlik bürosundan izin alarak yarı zamanlı çalışabilir veya staj yapabilirler. Politikalar son yıllarda daha esnek hale gelmiştir."
+            },
+            "scholarships": {
+                "question": "Burslara nasıl başvurabilirim?",
+                "answer": "Başvurunuzu yaparken doğrudan platformumuz üzerinden burslara başvurabilirsiniz. CSC ve üniversite bursları için gerekli belgeler konusunda size rehberlik edeceğiz."
+            },
+            "visa": {
+                "question": "Vize gereksinimleri nelerdir?",
+                "answer": "Geçerli bir pasaport, kabul mektubu ve üniversitenizden JW202 formuna ihtiyacınız olacak. Süreç boyunca kapsamlı vize rehberliği ve desteği sağlıyoruz."
+            },
+            "process": {
+                "question": "Başvuru süreci ne kadar sürer?",
+                "answer": "Tipik başvuru süreci 2-4 hafta sürer. Gönderildikten sonra üniversiteler genellikle 4-8 hafta içinde yanıt verir. Her adımda sizi bilgilendiriyoruz."
+            }
+        },
+        "seeAll": "Tüm SSS'leri Gör",
+        "contactSupport": "Destek ile İletişime Geç",
+        "footer": "Hala sorularınız mı var? Destek ekibimiz size yardımcı olmak için 7/24 hizmetinizdedir."
+    }
+}

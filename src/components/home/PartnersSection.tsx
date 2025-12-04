@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Award, CheckCircle, Shield, Building2 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 interface University {
     id: string;
@@ -15,26 +17,25 @@ interface PartnersSectionProps {
     universities?: University[];
 }
 
-const recognitions = [
-    {
-        icon: Award,
-        title: "UNESCO Recognized",
-        description: "All partner universities are UNESCO recognized"
-    },
-    {
-        icon: Shield,
-        title: "Government Approved",
-        description: "Officially approved by Chinese Ministry of Education"
-    },
-    {
-        icon: CheckCircle,
-        title: "Globally Accredited",
-        description: "Degrees recognized in 180+ countries worldwide"
-    },
-];
-
 export function PartnersSection({ universities = [] }: PartnersSectionProps) {
+    const t = useTranslations('Partners');
     const displayUniversities = universities.slice(0, 6);
+
+    const recognitions = [
+        {
+            key: 'unesco',
+            icon: Award
+        },
+        {
+            key: 'government',
+            icon: Shield
+        },
+        {
+            key: 'accredited',
+            icon: CheckCircle
+        },
+    ];
+
     return (
         <section className="py-16 bg-muted/20 relative overflow-hidden">
             {/* Decorative Elements */}
@@ -53,13 +54,13 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 font-semibold text-sm mb-4">
                         <Award className="h-4 w-4 text-primary" />
-                        <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Trusted Partners</span>
+                        <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4">
-                        Partner Universities
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                        We collaborate with China's most prestigious institutions to bring you the best educational opportunities
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -84,10 +85,13 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                                 >
                                     <div className="w-full h-20 mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
                                         {university.logo_url ? (
-                                            <img
+                                            <Image
                                                 src={university.logo_url}
                                                 alt={university.name}
+                                                width={80}
+                                                height={80}
                                                 className="max-w-full max-h-full object-contain"
+                                                unoptimized
                                             />
                                         ) : (
                                             <Building2 className="h-12 w-12 text-primary" />
@@ -123,8 +127,8 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                                 <recognition.icon className="h-6 w-6 text-primary" />
                             </div>
                             <div>
-                                <h3 className="font-bold text-foreground mb-1">{recognition.title}</h3>
-                                <p className="text-sm text-muted-foreground">{recognition.description}</p>
+                                <h3 className="font-bold text-foreground mb-1">{t(`recognitions.${recognition.key}.title`)}</h3>
+                                <p className="text-sm text-muted-foreground">{t(`recognitions.${recognition.key}.description`)}</p>
                             </div>
                         </motion.div>
                     ))}

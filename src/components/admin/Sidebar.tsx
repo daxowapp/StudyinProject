@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
-import { getSidebarStats } from "@/app/admin/actions";
+import { getSidebarStats } from "@/app/[locale]/admin/actions";
 import {
     LayoutDashboard,
     Building2,
@@ -30,8 +30,9 @@ import {
     User,
     Sparkles
 } from "lucide-react";
+import Image from "next/image";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
+type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function Sidebar({ className }: SidebarProps) {
     const pathname = usePathname();
@@ -48,11 +49,13 @@ export function Sidebar({ className }: SidebarProps) {
     };
 
     const [newLeadsCount, setNewLeadsCount] = useState(0);
+    const [pendingDocumentsCount, setPendingDocumentsCount] = useState(0);
 
     useEffect(() => {
         const fetchStats = async () => {
-            const { newLeadsCount } = await getSidebarStats();
+            const { newLeadsCount, pendingDocumentsCount } = await getSidebarStats();
             setNewLeadsCount(newLeadsCount);
+            setPendingDocumentsCount(pendingDocumentsCount || 0);
         };
         fetchStats();
     }, [pathname]); // Refetch on navigation
@@ -84,6 +87,7 @@ export function Sidebar({ className }: SidebarProps) {
             icon: Users,
             items: [
                 { icon: FileText, label: "Applications", href: "/admin/applications" },
+                { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined },
                 { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined },
                 { icon: Users, label: "Users", href: "/admin/users" },
             ]
@@ -111,10 +115,13 @@ export function Sidebar({ className }: SidebarProps) {
             <div className="flex h-20 items-center border-b px-6 bg-gradient-to-r from-primary/10 via-orange-500/5 to-transparent relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
                 <Link href="/admin" className="flex items-center gap-3 font-bold text-xl tracking-tight group relative z-10">
-                    <img
+                    <Image
                         src="/logo-red.png"
                         alt="StudyAtChina Admin"
+                        width={150}
+                        height={44}
                         className="h-11 w-auto object-contain group-hover:scale-110 transition-all duration-300"
+                        priority
                     />
                 </Link>
             </div>
@@ -124,7 +131,6 @@ export function Sidebar({ className }: SidebarProps) {
                 <div className="space-y-6">
                     {sidebarGroups.map((group, groupIndex) => {
                         const isCollapsed = collapsedGroups.has(groupIndex);
-                        const hasActiveItem = group.items.some(item => pathname === item.href);
 
                         return (
                             <div key={groupIndex} className="space-y-2">

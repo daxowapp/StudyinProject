@@ -9,12 +9,14 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code } from "lucide-react";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useState, useRef } from "react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function HeroSection() {
+    const t = useTranslations('Hero');
     const router = useRouter();
     const [filters, setFilters] = useState({
         degree: "",
@@ -52,10 +54,12 @@ export function HeroSection() {
                 {/* Mesh Gradient Background */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
 
-                <img
+                <Image
                     src="/hero-bg.png"
                     alt="Study in China"
-                    className="w-full h-full object-cover mix-blend-soft-light opacity-20"
+                    fill
+                    className="object-cover mix-blend-soft-light opacity-20"
+                    priority
                 />
 
                 {/* Subtle Grid Pattern */}
@@ -99,7 +103,7 @@ export function HeroSection() {
                         className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xl px-6 py-2.5 text-sm font-semibold text-white shadow-2xl border border-white/20"
                     >
                         <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
-                        <span className="tracking-wide">Admissions Open for 2025</span>
+                        <span className="tracking-wide">{t('admissionsOpen')}</span>
                         <div className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
                     </motion.div>
 
@@ -111,7 +115,7 @@ export function HeroSection() {
                         className="space-y-6"
                     >
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter font-heading text-white drop-shadow-2xl">
-                            Your Future Starts Here
+                            {t('title')}
                         </h1>
                     </motion.div>
 
@@ -121,7 +125,9 @@ export function HeroSection() {
                         transition={{ delay: 0.4, duration: 0.8 }}
                         className="text-base md:text-xl text-white/90 font-light max-w-2xl leading-relaxed drop-shadow-lg"
                     >
-                        Join <span className="font-bold text-yellow-300">50,000+ students</span> at China's top universities
+                        {t.rich('subtitle', {
+                            bold: (chunks) => <span className="font-bold text-yellow-300">{chunks}</span>
+                        })}
                     </motion.p>
 
 
@@ -136,7 +142,7 @@ export function HeroSection() {
                         <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50">
                             {/* Search Tabs */}
                             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-                                {["Programs", "Universities", "Scholarships"].map((tab) => (
+                                {[t('tabs.programs'), t('tabs.universities'), t('tabs.scholarships')].map((tab) => (
                                     <button
                                         key={tab}
                                         className="px-4 py-2 rounded-xl bg-red-600 text-white font-semibold text-sm whitespace-nowrap first:bg-red-600 hover:bg-red-700 transition-colors"
@@ -152,11 +158,11 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, degree: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Degree Level" />
+                                            <SelectValue placeholder={t('placeholders.degree')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="bachelor">Bachelor's</SelectItem>
-                                            <SelectItem value="master">Master's</SelectItem>
+                                            <SelectItem value="bachelor">Bachelor&apos;s</SelectItem>
+                                            <SelectItem value="master">Master&apos;s</SelectItem>
                                             <SelectItem value="phd">PhD</SelectItem>
                                             <SelectItem value="diploma">Diploma</SelectItem>
                                             <SelectItem value="language">Language Course</SelectItem>
@@ -168,7 +174,7 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, field: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Field of Study" />
+                                            <SelectValue placeholder={t('placeholders.field')} />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem value="business">Business & Economics</SelectItem>
@@ -187,10 +193,10 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, city: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="City" />
+                                            <SelectValue placeholder={t('placeholders.city')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">Any City</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} City</SelectItem>
                                             <SelectItem value="beijing">Beijing</SelectItem>
                                             <SelectItem value="shanghai">Shanghai</SelectItem>
                                             <SelectItem value="guangzhou">Guangzhou</SelectItem>
@@ -205,10 +211,10 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, language: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Language" />
+                                            <SelectValue placeholder={t('placeholders.language')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">Any Language</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} Language</SelectItem>
                                             <SelectItem value="english">English</SelectItem>
                                             <SelectItem value="chinese">Chinese</SelectItem>
                                             <SelectItem value="both">Both</SelectItem>
@@ -220,10 +226,10 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, budget: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Budget (USD/Year)" />
+                                            <SelectValue placeholder={t('placeholders.budget')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">Any Budget</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} Budget</SelectItem>
                                             <SelectItem value="0-3000">Under $3,000</SelectItem>
                                             <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
                                             <SelectItem value="5000-8000">$5,000 - $8,000</SelectItem>
@@ -236,10 +242,10 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, scholarship: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Scholarship" />
+                                            <SelectValue placeholder={t('placeholders.scholarship')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="all">All Programs</SelectItem>
+                                            <SelectItem value="all">{t('options.all')} Programs</SelectItem>
                                             <SelectItem value="available">Scholarship Available</SelectItem>
                                             <SelectItem value="full">Full Scholarship</SelectItem>
                                             <SelectItem value="partial">Partial Scholarship</SelectItem>
@@ -251,10 +257,10 @@ export function HeroSection() {
                                 <div className="w-full">
                                     <Select onValueChange={(v) => setFilters({ ...filters, duration: v })}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
-                                            <SelectValue placeholder="Duration" />
+                                            <SelectValue placeholder={t('placeholders.duration')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">Any Duration</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} Duration</SelectItem>
                                             <SelectItem value="1">1 Year</SelectItem>
                                             <SelectItem value="2">2 Years</SelectItem>
                                             <SelectItem value="3">3 Years</SelectItem>
@@ -271,12 +277,14 @@ export function HeroSection() {
                                 className="w-full h-14 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
                             >
                                 <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                                Search {" "}<span className="font-black">500+</span>{" "} Programs
+                                {t.rich('searchButton', {
+                                    bold: (chunks) => <span className="font-black mx-1">{chunks}</span>
+                                })}
                             </Button>
 
                             {/* Quick Search Tags */}
                             <div className="flex flex-col items-center gap-4 mt-6 pt-6 border-t border-slate-200">
-                                <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">Browse by Category</span>
+                                <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{t('browseByCategory')}</span>
                                 <div className="flex flex-wrap justify-center gap-3">
                                     <button
                                         onClick={() => router.push('/programs?field=business&degree=master')}
@@ -333,10 +341,10 @@ export function HeroSection() {
                         className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 w-full max-w-3xl"
                     >
                         {[
-                            { icon: GraduationCap, value: "500+", label: "Universities", color: "text-yellow-400" },
-                            { icon: Globe, value: "50k+", label: "Students", color: "text-yellow-300" },
-                            { icon: Award, value: "98%", label: "Success", color: "text-amber-400" },
-                            { icon: TrendingUp, value: "$2M+", label: "Scholarships", color: "text-orange-400" }
+                            { icon: GraduationCap, value: "500+", label: t('stats.universities'), color: "text-yellow-400" },
+                            { icon: Globe, value: "50k+", label: t('stats.students'), color: "text-yellow-300" },
+                            { icon: Award, value: "98%", label: t('stats.success'), color: "text-amber-400" },
+                            { icon: TrendingUp, value: "$2M+", label: t('stats.scholarships'), color: "text-orange-400" }
                         ].map((stat, index) => (
                             <motion.div
                                 key={index}
@@ -364,7 +372,7 @@ export function HeroSection() {
                             transition={{ duration: 2, repeat: Infinity }}
                             className="flex flex-col items-center gap-2 text-white/60 cursor-pointer hover:text-white/90 transition-colors"
                         >
-                            <span className="text-sm font-medium">Scroll to explore</span>
+                            <span className="text-sm font-medium">{t('scrollToExplore')}</span>
                             <ChevronDown className="h-6 w-6" />
                         </motion.div>
                     </motion.div>

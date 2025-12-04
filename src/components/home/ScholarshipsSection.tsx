@@ -3,38 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Award, DollarSign, GraduationCap, Sparkles, TrendingUp } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
-
-const scholarships = [
-    {
-        title: "Chinese Government Scholarship (CSC)",
-        description: "Full or partial scholarship for international students. Covers tuition, accommodation, and stipend.",
-        amount: "Up to $10,000/year",
-        icon: Award,
-        color: "from-yellow-500 to-orange-500",
-        bgColor: "bg-yellow-500/10",
-        iconColor: "text-yellow-600"
-    },
-    {
-        title: "University Scholarships",
-        description: "Merit-based scholarships offered directly by universities for outstanding applicants.",
-        amount: "Up to $8,000/year",
-        icon: GraduationCap,
-        color: "from-blue-500 to-purple-500",
-        bgColor: "bg-blue-500/10",
-        iconColor: "text-blue-600"
-    },
-    {
-        title: "Provincial Government Scholarships",
-        description: "Scholarships funded by local governments to attract international talent to specific regions.",
-        amount: "Up to $6,000/year",
-        icon: TrendingUp,
-        color: "from-green-500 to-teal-500",
-        bgColor: "bg-green-500/10",
-        iconColor: "text-green-600"
-    },
-];
+import { useTranslations } from "next-intl";
 
 const container = {
     hidden: { opacity: 0 },
@@ -52,6 +23,32 @@ const item = {
 };
 
 export function ScholarshipsSection() {
+    const t = useTranslations('Scholarships');
+
+    const scholarships = [
+        {
+            key: 'csc',
+            icon: Award,
+            color: "from-yellow-500 to-orange-500",
+            bgColor: "bg-yellow-500/10",
+            iconColor: "text-yellow-600"
+        },
+        {
+            key: 'university',
+            icon: GraduationCap,
+            color: "from-blue-500 to-purple-500",
+            bgColor: "bg-blue-500/10",
+            iconColor: "text-blue-600"
+        },
+        {
+            key: 'provincial',
+            icon: TrendingUp,
+            color: "from-green-500 to-teal-500",
+            bgColor: "bg-green-500/10",
+            iconColor: "text-green-600"
+        },
+    ];
+
     return (
         <section className="py-16 bg-gradient-to-b from-background via-yellow-50/20 to-background relative overflow-hidden">
             {/* Decorative Elements */}
@@ -70,13 +67,13 @@ export function ScholarshipsSection() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 font-semibold text-sm mb-4">
                         <DollarSign className="h-4 w-4 text-yellow-600" />
-                        <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">Financial Support</span>
+                        <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">{t('badge')}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4">
-                        Scholarships & Financial Aid
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-base md:text-lg">
-                        Study in China is affordable. Explore various scholarship opportunities available for international students.
+                        {t('description')}
                     </p>
                 </motion.div>
 
@@ -104,21 +101,21 @@ export function ScholarshipsSection() {
 
                                     {/* Title */}
                                     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                                        {scholarship.title}
+                                        {t(`items.${scholarship.key}.title`)}
                                     </h3>
 
                                     {/* Description */}
                                     <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                                        {scholarship.description}
+                                        {t(`items.${scholarship.key}.description`)}
                                     </p>
 
                                     {/* Amount */}
                                     <div className="pt-4 border-t border-border">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <p className="text-xs text-muted-foreground mb-1">Award Amount</p>
+                                                <p className="text-xs text-muted-foreground mb-1">{t('awardAmount')}</p>
                                                 <p className={`text-lg font-black bg-gradient-to-r ${scholarship.color} bg-clip-text text-transparent`}>
-                                                    {scholarship.amount}
+                                                    {t(`items.${scholarship.key}.amount`)}
                                                 </p>
                                             </div>
                                             <Link href="/scholarships">
@@ -127,7 +124,7 @@ export function ScholarshipsSection() {
                                                     variant="ghost"
                                                     className="text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg"
                                                 >
-                                                    Learn More
+                                                    {t('learnMore')}
                                                     <ArrowRight className="ml-1 h-4 w-4" />
                                                 </Button>
                                             </Link>
@@ -149,10 +146,10 @@ export function ScholarshipsSection() {
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                         {[
-                            { value: "$2M+", label: "Awarded Annually" },
-                            { value: "85%", label: "Receive Funding" },
-                            { value: "100%", label: "Full Scholarships" },
-                            { value: "500+", label: "Programs Eligible" }
+                            { value: "$2M+", label: t('stats.awarded') },
+                            { value: "85%", label: t('stats.funding') },
+                            { value: "100%", label: t('stats.full') },
+                            { value: "500+", label: t('stats.eligible') }
                         ].map((stat, index) => (
                             <div key={index}>
                                 <div className="text-3xl md:text-4xl font-black mb-2">{stat.value}</div>
@@ -173,7 +170,7 @@ export function ScholarshipsSection() {
                     <Link href="/scholarships">
                         <Button size="lg" className="rounded-xl bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-8">
                             <Sparkles className="mr-2 h-5 w-5" />
-                            View All Scholarships
+                            {t('viewAll')}
                         </Button>
                     </Link>
                 </motion.div>

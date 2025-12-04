@@ -1,11 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { Instagram, Linkedin, Twitter, Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
+import { Instagram, Linkedin, Twitter, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { NewsletterForm } from "./NewsletterForm";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function Footer() {
+    const t = useTranslations('Footer');
+
     return (
         <footer className="relative bg-gradient-to-b from-background to-muted/50 border-t-2 border-border overflow-hidden">
             {/* Decorative Background */}
@@ -27,21 +31,12 @@ export function Footer() {
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-3">
                                 <Sparkles className="h-5 w-5" />
-                                <span className="text-sm font-bold uppercase tracking-wider">Stay Updated</span>
+                                <span className="text-sm font-bold uppercase tracking-wider">{t('stayUpdated')}</span>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-black mb-2">Get the Latest Updates</h3>
-                            <p className="text-white/90">Subscribe to receive news about programs, scholarships, and application deadlines.</p>
+                            <h3 className="text-2xl md:text-3xl font-black mb-2">{t('getLatestUpdates')}</h3>
+                            <p className="text-white/90">{t('subscribeText')}</p>
                         </div>
-                        <div className="flex gap-2 w-full md:w-auto">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="flex-1 md:w-64 px-4 py-3 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                            />
-                            <Button className="bg-white text-primary hover:bg-white/90 font-bold rounded-xl px-6">
-                                <Send className="h-4 w-4" />
-                            </Button>
-                        </div>
+                        <NewsletterForm />
                     </div>
                 </motion.div>
 
@@ -50,15 +45,16 @@ export function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-6 group">
-                            <img
+                            <Image
                                 src="/logo-red.png"
                                 alt="StudyAtChina Logo"
+                                width={150}
+                                height={48}
                                 className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
                             />
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-sm">
-                            Your trusted partner in discovering and applying to China's top universities.
-                            Join thousands of students who have successfully started their academic journey with us.
+                            {t('description')}
                         </p>
                         <div className="flex gap-3">
                             {[
@@ -80,16 +76,16 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">Explore</h3>
+                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('explore')}</h3>
                         <ul className="space-y-3">
                             {[
-                                { name: "Programs", href: "/programs" },
-                                { name: "Universities", href: "/universities" },
-                                { name: "Scholarships", href: "/scholarships" },
-                                { name: "How to Apply", href: "/how-to-apply" },
-                                { name: "FAQ", href: "/faq" }
+                                { name: t('programs'), href: "/programs" },
+                                { name: t('universities'), href: "/universities" },
+                                { name: t('scholarships'), href: "/scholarships" },
+                                { name: t('howToApply'), href: "/how-to-apply" },
+                                { name: t('faq'), href: "/faq" }
                             ].map((link) => (
-                                <li key={link.name}>
+                                <li key={link.href}>
                                     <Link
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
@@ -103,13 +99,13 @@ export function Footer() {
 
                     {/* For Students */}
                     <div>
-                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">For Students</h3>
+                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('forStudents')}</h3>
                         <ul className="space-y-3">
                             {[
-                                { name: "Create Account", href: "/auth/register" },
-                                { name: "Track Application", href: "/dashboard" },
-                                { name: "Document Checklist", href: "/dashboard/documents" },
-                                { name: "Student Portal", href: "/dashboard" }
+                                { name: t('createAccount'), href: "/auth/register" },
+                                { name: t('trackApplication'), href: "/dashboard" },
+                                { name: t('documentChecklist'), href: "/dashboard/documents" },
+                                { name: t('studentPortal'), href: "/dashboard" }
                             ].map((link) => (
                                 <li key={link.name}>
                                     <Link
@@ -125,7 +121,7 @@ export function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">Contact</h3>
+                        <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('contact')}</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
                                 <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -157,10 +153,10 @@ export function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <div className="flex flex-col items-center md:items-start gap-2">
                             <p className="text-sm text-muted-foreground">
-                                &copy; {new Date().getFullYear()} StudyAtChina.com. All rights reserved.
+                                &copy; {new Date().getFullYear()} StudyAtChina.com. {t('rightsReserved')}
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                Designed and Powered by{" "}
+                                {t('designedBy')}{" "}
                                 <a
                                     href="https://daxow.ai"
                                     target="_blank"
@@ -176,12 +172,12 @@ export function Footer() {
                         </div>
                         <div className="flex flex-wrap gap-6 justify-center">
                             {[
-                                { name: "Terms of Service", href: "/terms-of-service" },
-                                { name: "Privacy Policy", href: "/privacy-policy" },
-                                { name: "Cookie Policy", href: "/cookie-policy" }
+                                { name: t('termsOfService'), href: "/terms-of-service" },
+                                { name: t('privacyPolicy'), href: "/privacy-policy" },
+                                { name: t('cookiePolicy'), href: "/cookie-policy" }
                             ].map((link) => (
                                 <Link
-                                    key={link.name}
+                                    key={link.href}
                                     href={link.href}
                                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                 >

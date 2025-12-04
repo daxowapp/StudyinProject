@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 import { ProgramFilters, FilterState } from "@/components/programs/ProgramFilters";
 import {
@@ -37,6 +38,7 @@ interface ProgramsClientProps {
 }
 
 export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientProps) {
+    const t = useTranslations('Programs');
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
 
@@ -158,7 +160,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
         if (Object.keys(newFilters).length > 0) {
             setFilters(prev => ({ ...prev, ...newFilters }));
         }
-    }, [searchParams, universitySlug, programs]);
+    }, [searchParams, universitySlug, programs, universityMap]);
 
     // Filter programs based on current filters
     const filteredPrograms = useMemo(() => {
@@ -261,7 +263,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                         <div className="bg-card rounded-xl border shadow-sm p-6">
                             <h2 className="text-lg font-bold mb-6 flex items-center gap-2">
                                 <Search className="h-5 w-5 text-primary" />
-                                Filters
+                                {t('filters.title')}
                             </h2>
                             <ProgramFilters
                                 onFilterChange={setFilters}
@@ -280,7 +282,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                         <div className="bg-card rounded-xl border shadow-sm p-4">
                             <div className="flex items-center justify-between flex-wrap gap-3">
                                 <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-sm font-semibold text-muted-foreground">Active Filters:</span>
+                                    <span className="text-sm font-semibold text-muted-foreground">{t('filters.active')}</span>
                                     {filters.levels.map(level => (
                                         <Badge key={level} variant="secondary" className="gap-1">
                                             {level}
@@ -344,7 +346,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                                     })}
                                 >
                                     <X className="h-4 w-4 mr-1" />
-                                    Clear All
+                                    {t('filters.clearAll')}
                                 </Button>
                             </div>
                         </div>
@@ -356,8 +358,8 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                             <div className="flex items-center gap-3">
                                 <div className="h-10 w-1 bg-primary rounded-full" />
                                 <div>
-                                    <p className="text-sm text-muted-foreground">Showing</p>
-                                    <p className="font-bold text-lg">{filteredPrograms.length} Programs</p>
+                                    <p className="text-sm text-muted-foreground">{t('stats.showing')}</p>
+                                    <p className="font-bold text-lg">{filteredPrograms.length} {t('stats.total').replace('Total ', '')}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -371,14 +373,14 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                                 </div>
                                 <Select defaultValue="relevance">
                                     <SelectTrigger className="w-[200px] h-10">
-                                        <SelectValue placeholder="Sort by" />
+                                        <SelectValue placeholder={t('sort.label')} />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="relevance">Most Relevant</SelectItem>
-                                        <SelectItem value="tuition-low">Tuition: Low to High</SelectItem>
-                                        <SelectItem value="tuition-high">Tuition: High to Low</SelectItem>
-                                        <SelectItem value="deadline">Deadline: Soonest</SelectItem>
-                                        <SelectItem value="popular">Most Popular</SelectItem>
+                                        <SelectItem value="relevance">{t('sort.relevance')}</SelectItem>
+                                        <SelectItem value="tuition-low">{t('sort.tuitionLow')}</SelectItem>
+                                        <SelectItem value="tuition-high">{t('sort.tuitionHigh')}</SelectItem>
+                                        <SelectItem value="deadline">{t('sort.deadline')}</SelectItem>
+                                        <SelectItem value="popular">{t('sort.popular')}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -397,9 +399,9 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                                         <div className="h-16 w-16 rounded-full bg-muted mx-auto mb-4 flex items-center justify-center">
                                             <Search className="h-8 w-8 text-muted-foreground" />
                                         </div>
-                                        <h3 className="text-xl font-bold mb-2">No programs found</h3>
+                                        <h3 className="text-xl font-bold mb-2">{t('noResults.title')}</h3>
                                         <p className="text-muted-foreground mb-6">
-                                            Try adjusting your filters or search criteria
+                                            {t('noResults.description')}
                                         </p>
                                     </div>
                                 </div>

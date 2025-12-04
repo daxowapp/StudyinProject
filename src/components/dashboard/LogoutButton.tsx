@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { signout } from "@/app/(public)/auth/actions";
+import { signout } from "@/app/[locale]/(auth)/actions";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -13,7 +13,7 @@ export function LogoutButton() {
         setIsLoading(true);
         try {
             await signout();
-        } catch (error) {
+        } catch {
             toast.error("Failed to sign out. Please try again.");
             setIsLoading(false);
         }

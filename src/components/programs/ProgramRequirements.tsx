@@ -1,12 +1,31 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Check, FileText, DollarSign, Info } from "lucide-react";
 
+interface RequirementItem {
+    name: string;
+    note?: string;
+}
+
+interface DocumentItem {
+    name: string;
+    note?: string;
+    required?: boolean;
+}
+
+interface ProgramRequirementsData {
+    academic?: RequirementItem[];
+    language?: RequirementItem[];
+    documents?: DocumentItem[];
+    financial?: RequirementItem[];
+    other?: RequirementItem[];
+}
+
 interface ProgramRequirementsProps {
-    requirements: any;
+    requirements: ProgramRequirementsData;
 }
 
 export function ProgramRequirements({ requirements }: ProgramRequirementsProps) {
-    const renderRequirement = (req: any) => {
+    const renderRequirement = (req: RequirementItem | string) => {
         if (typeof req === 'string') return req;
         return (
             <div>
@@ -30,7 +49,7 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                                     Academic
                                 </h3>
                                 <ul className="space-y-2 text-sm text-muted-foreground">
-                                    {requirements.academic.map((req: any, i: number) => (
+                                    {requirements.academic?.map((req: RequirementItem, i: number) => (
                                         <li key={i} className="flex items-start gap-2">
                                             <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                                             {renderRequirement(req)}
@@ -46,7 +65,7 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                                     Language
                                 </h3>
                                 <ul className="space-y-2 text-sm text-muted-foreground">
-                                    {requirements.language.map((req: any, i: number) => (
+                                    {requirements.language?.map((req: RequirementItem, i: number) => (
                                         <li key={i} className="flex items-start gap-2">
                                             <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                                             {renderRequirement(req)}
@@ -66,7 +85,7 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                     <Card>
                         <CardContent className="p-0">
                             <div className="divide-y">
-                                {requirements.documents.map((doc: any, i: number) => (
+                                {requirements.documents?.map((doc: DocumentItem, i: number) => (
                                     <div key={i} className="p-4 flex items-center justify-between hover:bg-muted/50 transition-colors">
                                         <div className="flex items-center gap-3">
                                             <FileText className="h-5 w-5 text-muted-foreground" />
@@ -93,7 +112,7 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                     <Card>
                         <CardContent className="p-6">
                             <ul className="space-y-3">
-                                {requirements.financial.map((req: any, i: number) => (
+                                {requirements.financial?.map((req: RequirementItem, i: number) => (
                                     <li key={i} className="flex items-start gap-3">
                                         <DollarSign className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
                                         <div className="flex-1">
@@ -114,7 +133,7 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                     <Card>
                         <CardContent className="p-6">
                             <ul className="space-y-3">
-                                {requirements.other.map((req: any, i: number) => (
+                                {requirements.other?.map((req: RequirementItem, i: number) => (
                                     <li key={i} className="flex items-start gap-3">
                                         <Info className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" />
                                         <div className="flex-1">

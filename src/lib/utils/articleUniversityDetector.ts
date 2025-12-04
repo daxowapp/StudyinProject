@@ -5,9 +5,19 @@
 
 import { createClient } from "@/lib/supabase/server";
 
-export async function detectUniversitiesInArticle(content: string, title: string): Promise<any[]> {
+interface University {
+    id: string;
+    name: string;
+    name_local?: string;
+    slug: string;
+    city?: string;
+    province?: string;
+    logo_url?: string;
+}
+
+export async function detectUniversitiesInArticle(content: string, title: string): Promise<University[]> {
     const supabase = await createClient();
-    
+
     // Fetch all universities
     const { data: universities } = await supabase
         .from("universities")
@@ -18,19 +28,19 @@ export async function detectUniversitiesInArticle(content: string, title: string
 
     // Combine title and content for searching
     const fullText = `${title} ${content}`.toLowerCase();
-    
+
     // Find universities mentioned in the article
     const mentionedUniversities = universities.filter((university) => {
         const universityName = university.name.toLowerCase();
         const universityNameLocal = university.name_local?.toLowerCase() || "";
-        
+
         // Check if university name appears in the text
         // Use word boundaries to avoid partial matches
         const nameRegex = new RegExp(`\\b${escapeRegex(universityName)}\\b`, 'i');
-        const localNameRegex = universityNameLocal 
+        const localNameRegex = universityNameLocal
             ? new RegExp(`\\b${escapeRegex(universityNameLocal)}\\b`, 'i')
             : null;
-        
+
         return nameRegex.test(fullText) || (localNameRegex && localNameRegex.test(fullText));
     });
 
@@ -48,21 +58,21 @@ function escapeRegex(str: string): string {
  * Client-side version for detecting universities
  */
 export function detectUniversitiesClient(
-    content: string, 
-    title: string, 
-    universities: any[]
-): any[] {
+    content: string,
+    title: string,
+    universities: University[]
+): University[] {
     const fullText = `${title} ${content}`.toLowerCase();
-    
+
     return universities.filter((university) => {
         const universityName = university.name.toLowerCase();
         const universityNameLocal = university.name_local?.toLowerCase() || "";
-        
+
         const nameRegex = new RegExp(`\\b${escapeRegex(universityName)}\\b`, 'i');
-        const localNameRegex = universityNameLocal 
+        const localNameRegex = universityNameLocal
             ? new RegExp(`\\b${escapeRegex(universityNameLocal)}\\b`, 'i')
             : null;
-        
+
         return nameRegex.test(fullText) || (localNameRegex && localNameRegex.test(fullText));
     });
 }

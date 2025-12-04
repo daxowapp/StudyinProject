@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { ExpandableText } from "./ExpandableText";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
@@ -10,11 +9,10 @@ import { ScholarshipCTA } from "@/components/scholarships/ScholarshipCTA";
 import { AccommodationSection } from "./AccommodationSection";
 import {
     CheckCircle2, Globe, MapPin, Users, Calendar,
-    GraduationCap, DollarSign, Clock, Languages,
-    Award, TrendingUp, BookOpen, FileText, Play,
-    Star, Heart, Share2, Download, ChevronRight,
-    Sparkles, Target, Trophy, Building2, Mail,
-    Video, Image as ImageIcon, Phone, MessageCircle
+    GraduationCap, Clock, Languages,
+    Award, TrendingUp, FileText,
+    Download, ChevronRight,
+    Sparkles, Video, Phone, MessageCircle
 } from "lucide-react";
 import { Price } from "@/components/currency/Price";
 import { motion } from "framer-motion";
@@ -22,15 +20,75 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { RequestInformationDialog } from "./RequestInformationDialog";
 
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+
+
+
+interface AccommodationType {
+    type: string;
+    room_type?: string;
+    price_cny?: number | null;
+    price_usd?: number | null;
+    price_min?: number | null;
+    price_max?: number | null;
+    currency?: string;
+    billing_period?: string;
+    features: string[];
+    description: string;
+}
+
+interface Program {
+    id: string;
+    slug?: string;
+    name: string;
+    level: string;
+    duration: string;
+    language: string;
+    intake: string;
+    tuition: string;
+    tuition_fee?: number;
+    currency?: string;
+}
+
+interface University {
+    id: string;
+    slug: string;
+    name: string;
+    overview: string;
+    highlights?: string[];
+    programs?: Program[];
+    accommodation_available?: boolean;
+    accommodation_description?: string;
+    accommodation_fee_range?: string;
+    accommodation_features?: string[];
+    video_url?: string;
+    gallery_images?: string[];
+    brochure_url?: string;
+    advisor_chat_url?: string;
+    virtual_tour_url?: string;
+    schedule_call_url?: string;
+    website?: string;
+    city: string;
+    province: string;
+    stats: {
+        founded: string;
+        students: string;
+        intlStudents: string;
+        ranking: string;
+    };
+}
+
 interface UniversityContentProps {
-    university: any;
+    university: University;
 }
 
 export function UniversityContent({ university }: UniversityContentProps) {
+    const t = useTranslations('UniversityDetail');
     const [programLevel, setProgramLevel] = useState<string>("all");
 
     // Get unique program levels
-    const [accommodations, setAccommodations] = useState<any[]>([]);
+    const [accommodations, setAccommodations] = useState<AccommodationType[]>([]);
 
     useEffect(() => {
         const fetchAccommodations = async () => {
@@ -47,13 +105,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
         fetchAccommodations();
     }, [university.id]);
 
-    const uniqueLevels = university.programs?.map((p: any) => p.level as string) || [];
+    const uniqueLevels = university.programs?.map((p) => p.level) || [];
     const programLevels: string[] = ["all", ...(Array.from(new Set(uniqueLevels)) as string[])];
 
     // Filter programs by level
     const filteredPrograms = programLevel === "all"
         ? university.programs
-        : university.programs?.filter((p: any) => p.level === programLevel);
+        : university.programs?.filter((p) => p.level === programLevel);
 
     return (
         <div className="container mx-auto px-4 -mt-8 pb-20">
@@ -68,7 +126,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                            <h2 className="text-4xl font-black">About</h2>
+                            <h2 className="text-4xl font-black">{t('about')}</h2>
                         </div>
                         <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                             <ExpandableText text={university.overview} maxLength={500} />
@@ -89,7 +147,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             <div className="relative z-10">
                                 <div className="flex items-center gap-3 mb-8">
                                     <Sparkles className="h-8 w-8" />
-                                    <h2 className="text-4xl font-black">Why Choose Us</h2>
+                                    <h2 className="text-4xl font-black">{t('whyChooseUs')}</h2>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {university.highlights.map((highlight: string, index: number) => (
@@ -130,10 +188,10 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                                    <h2 className="text-4xl font-black">Programs</h2>
+                                    <h2 className="text-4xl font-black">{t('programs.title')}</h2>
                                 </div>
                                 <Badge className="bg-red-600 text-white px-4 py-2 text-lg">
-                                    {filteredPrograms?.length || 0} Programs
+                                    {filteredPrograms?.length || 0} {t('programs.title')}
                                 </Badge>
                             </div>
 
@@ -143,19 +201,19 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     <button
                                         key={level}
                                         onClick={() => setProgramLevel(level)}
-                                        className={`px-6 py-3 rounded-xl font-semibold transition-all ${programLevel === level
+                                        className={`px - 6 py - 3 rounded - xl font - semibold transition - all ${programLevel === level
                                             ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105'
                                             : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-red-200'
-                                            }`}
+                                            } `}
                                     >
-                                        {level === "all" ? "All Programs" : level}
+                                        {level === "all" ? t('programs.allPrograms') : level}
                                     </button>
                                 ))}
                             </div>
 
                             <div className="space-y-4">
                                 {filteredPrograms && filteredPrograms.length > 0 ? (
-                                    filteredPrograms.map((program: any, index: number) => (
+                                    filteredPrograms.map((program, index) => (
                                         <motion.div
                                             key={program.id}
                                             initial={{ opacity: 0, x: -20 }}
@@ -189,7 +247,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                 </div>
                                                 <div className="flex items-center gap-4">
                                                     <div className="text-right">
-                                                        <div className="text-sm text-gray-500 mb-1">Tuition Fee</div>
+                                                        <div className="text-sm text-gray-500 mb-1">{t('programs.tuitionFee')}</div>
                                                         <div className="text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
                                                             {program.tuition_fee && typeof program.tuition_fee === 'number' ? (
                                                                 <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} showCurrency={false} />
@@ -197,11 +255,11 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                                 program.tuition || 'Contact'
                                                             )}
                                                         </div>
-                                                        <div className="text-xs text-gray-500">per year</div>
+                                                        <div className="text-xs text-gray-500">{t('programs.perYear')}</div>
                                                     </div>
                                                     <Link href={`/programs/${program.slug || program.id}`}>
                                                         <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shrink-0">
-                                                            View Program
+                                                            {t('programs.viewProgram')}
                                                             <ChevronRight className="ml-1 h-4 w-4" />
                                                         </Button>
                                                     </Link>
@@ -212,7 +270,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 ) : (
                                     <div className="text-center py-12 bg-gray-50 rounded-2xl">
                                         <GraduationCap className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                                        <p className="text-gray-500 text-lg">No programs found for this level.</p>
+                                        <p className="text-gray-500 text-lg">{t('programs.noPrograms')}</p>
                                     </div>
                                 )}
                             </div>
@@ -229,8 +287,8 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         <UniversityScholarshipsSection
                             universityId={university.id}
                             universitySlug={university.slug}
-                            title="Available Scholarship Options"
-                            description="Choose the scholarship type that best fits your budget for programs at this university"
+                            title={t('scholarships.title')}
+                            description={t('scholarships.description')}
                             showHeader={false}
                         />
                     </motion.div>
@@ -262,7 +320,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             <div className="p-8">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                                    <h2 className="text-4xl font-black">Campus Tour</h2>
+                                    <h2 className="text-4xl font-black">{t('campus.tour')}</h2>
                                 </div>
                             </div>
                             <div className="aspect-video bg-black">
@@ -294,18 +352,19 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                                <h2 className="text-4xl font-black">Campus Gallery</h2>
+                                <h2 className="text-4xl font-black">{t('campus.gallery')}</h2>
                             </div>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 {university.gallery_images.map((image: string, index: number) => (
                                     <div key={index} className="group relative aspect-video rounded-2xl overflow-hidden border-2 border-gray-100 hover:border-red-200 transition-all">
-                                        <img
+                                        <Image
                                             src={image}
-                                            alt={`Campus ${index + 1}`}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            alt={`Campus ${index + 1} `}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                            <p className="text-white font-semibold">View Image</p>
+                                            <p className="text-white font-semibold">{t('campus.viewImage')}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -322,46 +381,46 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                            <h2 className="text-4xl font-black">Admission Requirements</h2>
+                            <h2 className="text-4xl font-black">{t('admission.title')}</h2>
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
                                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2 text-blue-900">
                                     <FileText className="h-6 w-6" />
-                                    Academic Requirements
+                                    {t('admission.academic')}
                                 </h3>
                                 <ul className="space-y-2 text-gray-700">
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" />
-                                        <span>High school diploma or equivalent</span>
+                                        <span>{t('admission.highSchool')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" />
-                                        <span>Minimum GPA of 3.0/4.0</span>
+                                        <span>{t('admission.gpa')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" />
-                                        <span>Academic transcripts</span>
+                                        <span>{t('admission.transcripts')}</span>
                                     </li>
                                 </ul>
                             </div>
                             <div className="p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200">
                                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2 text-green-900">
                                     <Languages className="h-6 w-6" />
-                                    Language Requirements
+                                    {t('admission.language')}
                                 </h3>
                                 <ul className="space-y-2 text-gray-700">
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
-                                        <span>IELTS 6.0 or TOEFL 80+</span>
+                                        <span>{t('admission.ielts')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
-                                        <span>HSK 4 for Chinese programs</span>
+                                        <span>{t('admission.hsk')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
-                                        <span>English proficiency certificate</span>
+                                        <span>{t('admission.english')}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -386,19 +445,19 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4">
                                     <GraduationCap className="h-8 w-8" />
                                 </div>
-                                <h3 className="text-3xl font-black mb-2">Ready to Apply?</h3>
+                                <h3 className="text-3xl font-black mb-2">{t('sidebar.ready')}</h3>
                                 <p className="text-white/90 mb-6">
-                                    Start your journey at {university.name}
+                                    {t('sidebar.startJourney', { university: university.name })}
                                 </p>
                                 <div className="space-y-3">
                                     <Button size="lg" className="w-full bg-white text-red-600 hover:bg-gray-100 font-bold text-lg h-14 shadow-xl">
-                                        Apply Now
+                                        {t('sidebar.applyNow')}
                                     </Button>
                                     {university.brochure_url && (
                                         <Button size="lg" variant="outline" className="w-full border-2 border-white text-red-600 hover:bg-white/10 h-12" asChild>
                                             <a href={university.brochure_url} target="_blank" rel="noopener noreferrer">
                                                 <Download className="mr-2 h-4 w-4" />
-                                                Download Brochure
+                                                {t('sidebar.downloadBrochure')}
                                             </a>
                                         </Button>
                                     )}
@@ -408,7 +467,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
 
                         {/* Quick Actions */}
                         <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
-                            <h3 className="font-bold text-lg mb-4">Quick Actions</h3>
+                            <h3 className="font-bold text-lg mb-4">{t('sidebar.quickActions')}</h3>
                             <div className="space-y-3">
                                 <RequestInformationDialog
                                     universityId={university.id}
@@ -419,7 +478,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                 <FileText className="h-5 w-5 text-blue-600" />
                                             </div>
                                             <div className="flex-1">
-                                                <div className="font-semibold text-gray-900">Request Information</div>
+                                                <div className="font-semibold text-gray-900">{t('sidebar.requestInfo')}</div>
                                             </div>
                                             <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
                                         </button>
@@ -436,7 +495,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                         <MessageCircle className="h-5 w-5 text-purple-600" />
                                     </div>
                                     <div className="flex-1">
-                                        <div className="font-semibold text-gray-900">Chat with Advisor</div>
+                                        <div className="font-semibold text-gray-900">{t('sidebar.chatAdvisor')}</div>
                                     </div>
                                     <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
                                 </a>
@@ -452,7 +511,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                             <Video className="h-5 w-5 text-green-600" />
                                         </div>
                                         <div className="flex-1">
-                                            <div className="font-semibold text-gray-900">Virtual Campus Tour</div>
+                                            <div className="font-semibold text-gray-900">{t('sidebar.virtualTour')}</div>
                                         </div>
                                         <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
                                     </a>
@@ -468,7 +527,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                         <Phone className="h-5 w-5 text-orange-600" />
                                     </div>
                                     <div className="flex-1">
-                                        <div className="font-semibold text-gray-900">Schedule a Call</div>
+                                        <div className="font-semibold text-gray-900">{t('sidebar.scheduleCall')}</div>
                                     </div>
                                     <ChevronRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
                                 </a>
@@ -477,18 +536,18 @@ export function UniversityContent({ university }: UniversityContentProps) {
 
                         {/* Quick Facts */}
                         <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
-                            <h3 className="font-bold text-lg mb-4">Quick Facts</h3>
+                            <h3 className="font-bold text-lg mb-4">{t('sidebar.quickFacts')}</h3>
                             <div className="space-y-4">
                                 {[
-                                    { icon: MapPin, label: "Location", value: `${university.city}, ${university.province}`, color: "text-red-600" },
-                                    { icon: Calendar, label: "Founded", value: university.stats.founded, color: "text-blue-600" },
-                                    { icon: Users, label: "Students", value: university.stats.students, color: "text-purple-600" },
-                                    { icon: TrendingUp, label: "International", value: university.stats.intlStudents, color: "text-green-600" },
-                                    { icon: Award, label: "Ranking", value: university.stats.ranking, color: "text-yellow-600" },
+                                    { icon: MapPin, label: t('sidebar.location'), value: `${university.city}, ${university.province} `, color: "text-red-600" },
+                                    { icon: Calendar, label: t('sidebar.founded'), value: university.stats.founded, color: "text-blue-600" },
+                                    { icon: Users, label: t('sidebar.students'), value: university.stats.students, color: "text-purple-600" },
+                                    { icon: TrendingUp, label: t('sidebar.international'), value: university.stats.intlStudents, color: "text-green-600" },
+                                    { icon: Award, label: t('sidebar.ranking'), value: university.stats.ranking, color: "text-yellow-600" },
                                 ].map((fact, index) => (
                                     <div key={index} className="flex items-center justify-between py-3 border-b last:border-0">
                                         <div className="flex items-center gap-3">
-                                            <fact.icon className={`h-5 w-5 ${fact.color}`} />
+                                            <fact.icon className={`h - 5 w - 5 ${fact.color} `} />
                                             <span className="text-sm text-gray-600">{fact.label}</span>
                                         </div>
                                         <span className="font-bold text-sm text-gray-900">{fact.value}</span>
@@ -499,7 +558,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 <Link href={university.website} target="_blank">
                                     <Button variant="outline" className="w-full mt-4">
                                         <Globe className="h-4 w-4 mr-2" />
-                                        Official Website
+                                        {t('sidebar.officialWebsite')}
                                     </Button>
                                 </Link>
                             )}

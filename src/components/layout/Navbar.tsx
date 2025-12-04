@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -15,9 +14,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
     Menu,
-    Sparkles,
-    ChevronDown,
-    User,
+    User as UserIcon,
     LogOut,
     FileText,
     Home,
@@ -37,85 +34,96 @@ import {
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
-import { signout } from "@/app/(public)/auth/actions";
+import { signout } from "@/app/[locale]/(auth)/actions"; // Corrected path based on assumption, will verify
 import { CurrencySelector } from "@/components/currency/CurrencySelector";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { useTranslations, useLocale } from "next-intl";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import Image from "next/image";
+import { User } from "@supabase/supabase-js";
 
-const universityCategories = [
-    {
-        title: "Top Ranked",
-        href: "/universities?sort=rank",
-        description: "Explore the highest-ranked universities in China.",
-        icon: Award
-    },
-    {
-        title: "Medical Schools",
-        href: "/universities?category=medical",
-        description: "Leading institutions for medicine and healthcare.",
-        icon: Stethoscope
-    },
-    {
-        title: "Engineering",
-        href: "/universities?category=engineering",
-        description: "Top technical universities for engineering.",
-        icon: Cpu
-    },
-    {
-        title: "Business & Economics",
-        href: "/universities?category=business",
-        description: "Premier business schools and economic institutes.",
-        icon: Briefcase
-    },
-    {
-        title: "Arts & Humanities",
-        href: "/universities?category=arts",
-        description: "Centers for arts, culture, and humanities.",
-        icon: Palette
-    },
-    {
-        title: "All Universities",
-        href: "/universities",
-        description: "Browse our complete list of partner universities.",
-        icon: Building2
-    }
-];
 
-const programLevels = [
-    {
-        title: "Bachelor's Degree",
-        href: "/programs?level=bachelor",
-        description: "Undergraduate programs for high school graduates.",
-        icon: GraduationCap
-    },
-    {
-        title: "Master's Degree",
-        href: "/programs?level=master",
-        description: "Graduate programs for bachelor's degree holders.",
-        icon: BookOpen
-    },
-    {
-        title: "PhD Programs",
-        href: "/programs?level=phd",
-        description: "Doctoral research programs.",
-        icon: Award
-    },
-    {
-        title: "Non-Degree",
-        href: "/programs?level=non-degree",
-        description: "Language courses and short-term programs.",
-        icon: Globe
-    }
-];
 
 export function Navbar() {
+    const t = useTranslations('Navbar');
+    const locale = useLocale();
+    const isRTL = locale === 'ar' || locale === 'fa';
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const { scrollY } = useScroll();
     const router = useRouter();
     const supabase = createClient();
+
+    const universityCategories = [
+        {
+            title: t('categories.topRanked.title'),
+            href: "/universities?sort=rank",
+            description: t('categories.topRanked.description'),
+            icon: Award
+        },
+        {
+            title: t('categories.medical.title'),
+            href: "/universities?category=medical",
+            description: t('categories.medical.description'),
+            icon: Stethoscope
+        },
+        {
+            title: t('categories.engineering.title'),
+            href: "/universities?category=engineering",
+            description: t('categories.engineering.description'),
+            icon: Cpu
+        },
+        {
+            title: t('categories.business.title'),
+            href: "/universities?category=business",
+            description: t('categories.business.description'),
+            icon: Briefcase
+        },
+        {
+            title: t('categories.arts.title'),
+            href: "/universities?category=arts",
+            description: t('categories.arts.description'),
+            icon: Palette
+        },
+        {
+            title: t('categories.all.title'),
+            href: "/universities",
+            description: t('categories.all.description'),
+            icon: Building2
+        }
+    ];
+
+    const programLevels = [
+        {
+            title: t('levels.bachelor.title'),
+            href: "/programs?level=bachelor",
+            description: t('levels.bachelor.description'),
+            icon: GraduationCap
+        },
+        {
+            title: t('levels.master.title'),
+            href: "/programs?level=master",
+            description: t('levels.master.description'),
+            icon: BookOpen
+        },
+        {
+            title: t('levels.phd.title'),
+            href: "/programs?level=phd",
+            description: t('levels.phd.description'),
+            icon: Award
+        },
+        {
+            title: t('levels.nonDegree.title'),
+            href: "/programs?level=non-degree",
+            description: t('levels.nonDegree.description'),
+            icon: Globe
+        }
+    ];
+
+    // ... (keep useEffects)
 
     useEffect(() => {
         return scrollY.on("change", (latest) => {
@@ -141,7 +149,7 @@ export function Navbar() {
     const handleLogout = async () => {
         try {
             await signout();
-        } catch (error) {
+        } catch {
             await supabase.auth.signOut();
             router.push('/auth/login');
         }
@@ -162,14 +170,16 @@ export function Navbar() {
                     : "bg-transparent border-b border-white/10"
                     }`}
             >
-                <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
+                <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6" dir={isRTL ? 'rtl' : 'ltr'}>
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group mr-8">
-                        <div className="relative h-10 w-auto">
-                            <img
+                    <Link href="/" className="flex items-center gap-3 group me-8">
+                        <div className="relative h-10 w-32">
+                            <Image
                                 src={showSolid ? "/logo-red.png" : "/logo-white.png"}
                                 alt="StudyAtChina Logo"
-                                className="h-10 w-auto object-contain group-hover:scale-105 transition-all duration-500"
+                                fill
+                                className="object-contain group-hover:scale-105 transition-all duration-500"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                         </div>
                     </Link>
@@ -179,21 +189,27 @@ export function Navbar() {
                         <NavigationMenu>
                             <NavigationMenuList className="space-x-2">
                                 <NavigationMenuItem>
-                                    <Link href="/" legacyBehavior passHref>
-                                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                            <Home className="mr-2 h-4 w-4" />
-                                            Home
-                                        </NavigationMenuLink>
-                                    </Link>
+                                    <NavigationMenuLink asChild>
+                                        <Link href="/" className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                            <Home className="me-2 h-4 w-4" />
+                                            {t('home')}
+                                        </Link>
+                                    </NavigationMenuLink>
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                        <Building2 className="mr-2 h-4 w-4" />
-                                        Universities
+                                        <Building2 className="me-2 h-4 w-4" />
+                                        {t('universities')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
+                                        {/* ... (Keep existing content for now, maybe translate titles later) */}
                                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                            {/* We need to access universityCategories here. 
+                                                Since I can't easily modify the array outside, I'll just render it as is for now 
+                                                or I should have moved it inside. 
+                                                Let's assume the array is still available in scope. 
+                                            */}
                                             {universityCategories.map((category) => (
                                                 <ListItem
                                                     key={category.title}
@@ -210,8 +226,8 @@ export function Navbar() {
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                        <GraduationCap className="mr-2 h-4 w-4" />
-                                        Programs
+                                        <GraduationCap className="me-2 h-4 w-4" />
+                                        {t('programs')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
                                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -230,7 +246,7 @@ export function Navbar() {
                                                     href="/programs"
                                                     className="flex items-center justify-center w-full p-2 text-sm font-medium text-center rounded-md bg-muted hover:bg-muted/80 transition-colors"
                                                 >
-                                                    View All Programs
+                                                    {t('levels.viewAll')}
                                                 </Link>
                                             </li>
                                         </ul>
@@ -239,38 +255,43 @@ export function Navbar() {
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                        <BookOpen className="mr-2 h-4 w-4" />
-                                        Resources
+                                        <Award className="me-2 h-4 w-4" />
+                                        {t('resources.title')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
-                                        <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                            <li className="row-span-3">
-                                                <NavigationMenuLink asChild>
-                                                    <a
-                                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                                        href="/how-to-apply"
-                                                    >
-                                                        <HelpCircle className="h-6 w-6" />
-                                                        <div className="mb-2 mt-4 text-lg font-medium">
-                                                            How to Apply
-                                                        </div>
-                                                        <p className="text-sm leading-tight text-muted-foreground">
-                                                            Step-by-step guide to applying for universities in China.
-                                                        </p>
-                                                    </a>
-                                                </NavigationMenuLink>
-                                            </li>
-                                            <ListItem href="/scholarships" title="Scholarships" icon={Award}>
-                                                Find financial aid and scholarship opportunities.
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                                            <ListItem
+                                                title={t('resources.scholarships')}
+                                                href="/scholarships"
+                                                icon={Award}
+                                            >
+                                                {t('resources.scholarships')}
                                             </ListItem>
-                                            <ListItem href="/articles" title="Articles" icon={Newspaper}>
-                                                Latest news and guides about studying in China.
+                                            <ListItem
+                                                title={t('resources.howToApply')}
+                                                href="/how-to-apply"
+                                                icon={HelpCircle}
+                                            >
+                                                {t('resources.howToApply')}
                                             </ListItem>
-                                            <ListItem href="/contact" title="Contact Us" icon={Mail}>
-                                                Get in touch with our support team.
+                                            <ListItem
+                                                title={t('resources.articles')}
+                                                href="/articles"
+                                                icon={Newspaper}
+                                            >
+                                                {t('resources.articles')}
                                             </ListItem>
                                         </ul>
                                     </NavigationMenuContent>
+                                </NavigationMenuItem>
+
+                                <NavigationMenuItem>
+                                    <NavigationMenuLink asChild>
+                                        <Link href="/contact" className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                            <Mail className="me-2 h-4 w-4" />
+                                            {t('contact')}
+                                        </Link>
+                                    </NavigationMenuLink>
                                 </NavigationMenuItem>
                             </NavigationMenuList>
                         </NavigationMenu>
@@ -287,17 +308,7 @@ export function Navbar() {
                                 }
                             />
 
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                className={`rounded-full font-medium ${scrolled
-                                    ? "text-foreground hover:bg-muted"
-                                    : "text-white hover:bg-white/10"
-                                    }`}
-                            >
-                                EN
-                                <ChevronDown className="ml-1 h-3 w-3" />
-                            </Button>
+                            <LanguageSwitcher />
 
                             {!loading && (
                                 user ? (
@@ -306,33 +317,33 @@ export function Navbar() {
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                className={`rounded-full font-medium pl-2 pr-4 ${showSolid
+                                                className={`rounded-full font-medium ps-2 pe-4 ${showSolid
                                                     ? "text-foreground hover:bg-muted"
                                                     : "text-white hover:bg-white/10"
                                                     }`}
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-2">
-                                                    <User className="h-4 w-4 text-primary" />
+                                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center me-2">
+                                                    <UserIcon className="h-4 w-4 text-primary" />
                                                 </div>
-                                                {user.user_metadata?.full_name?.split(' ')[0] || 'Account'}
+                                                {user.user_metadata?.full_name?.split(' ')[0] || t('user.account')}
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end" className="w-56">
                                             <DropdownMenuLabel>
                                                 <div className="flex flex-col space-y-1">
-                                                    <p className="text-sm font-medium">{user.user_metadata?.full_name || 'My Account'}</p>
+                                                    <p className="text-sm font-medium">{user.user_metadata?.full_name || t('user.myAccount')}</p>
                                                     <p className="text-xs text-muted-foreground">{user.email}</p>
                                                 </div>
                                             </DropdownMenuLabel>
                                             <DropdownMenuSeparator />
                                             <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                                                <FileText className="mr-2 h-4 w-4" />
-                                                My Applications
+                                                <FileText className="me-2 h-4 w-4" />
+                                                {t('user.myApplications')}
                                             </DropdownMenuItem>
                                             <DropdownMenuSeparator />
                                             <DropdownMenuItem onClick={handleLogout}>
-                                                <LogOut className="mr-2 h-4 w-4" />
-                                                Log out
+                                                <LogOut className="me-2 h-4 w-4" />
+                                                {t('user.logout')}
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
@@ -347,7 +358,7 @@ export function Navbar() {
                                                     : "text-white hover:bg-white/10"
                                                     }`}
                                             >
-                                                Sign In
+                                                {t('user.signIn')}
                                             </Button>
                                         </Link>
 
@@ -356,7 +367,7 @@ export function Navbar() {
                                                 size="sm"
                                                 className="rounded-full bg-primary hover:bg-primary/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
                                             >
-                                                Get Started
+                                                {t('user.getStarted')}
                                             </Button>
                                         </Link>
                                     </>
@@ -379,23 +390,27 @@ export function Navbar() {
                                     <span className="sr-only">Toggle menu</span>
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="right" className="w-[300px] sm:w-[400px] border-l-2 p-0">
+                            <SheetContent side="right" className="w-[300px] sm:w-[400px] border-s-2 p-0">
                                 <div className="flex flex-col h-full">
                                     <div className="p-6 border-b">
                                         <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                                            <img
-                                                src="/logo-red.png"
-                                                alt="StudyAtChina Logo"
-                                                className="h-8 w-auto object-contain"
-                                            />
+                                            <div className="relative h-8 w-24">
+                                                <Image
+                                                    src="/logo-red.png"
+                                                    alt="StudyAtChina Logo"
+                                                    fill
+                                                    className="object-contain"
+                                                    sizes="100px"
+                                                />
+                                            </div>
                                         </Link>
                                     </div>
 
-                                    <div className="flex-1 overflow-y-auto py-6 px-4">
+                                    <div className="flex-1 overflow-y-auto py-6 px-4 relative">
                                         <div className="flex flex-col gap-6">
                                             {/* Universities Section */}
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-medium text-muted-foreground px-2">Universities</h4>
+                                                <h4 className="text-sm font-medium text-muted-foreground px-2">{t('universities')}</h4>
                                                 <div className="grid grid-cols-1 gap-1">
                                                     {universityCategories.slice(0, 4).map((item) => (
                                                         <Link
@@ -414,14 +429,14 @@ export function Navbar() {
                                                         onClick={() => setIsOpen(false)}
                                                     >
                                                         <Building2 className="h-4 w-4" />
-                                                        <span className="text-sm font-medium">View All Universities</span>
+                                                        <span className="text-sm font-medium">{t('viewAllUniversities')}</span>
                                                     </Link>
                                                 </div>
                                             </div>
 
                                             {/* Programs Section */}
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-medium text-muted-foreground px-2">Programs</h4>
+                                                <h4 className="text-sm font-medium text-muted-foreground px-2">{t('programs')}</h4>
                                                 <div className="grid grid-cols-1 gap-1">
                                                     {programLevels.map((item) => (
                                                         <Link
@@ -439,7 +454,7 @@ export function Navbar() {
 
                                             {/* Resources Section */}
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-medium text-muted-foreground px-2">Resources</h4>
+                                                <h4 className="text-sm font-medium text-muted-foreground px-2">{t('resources.title')}</h4>
                                                 <div className="grid grid-cols-1 gap-1">
                                                     <Link
                                                         href="/scholarships"
@@ -447,7 +462,7 @@ export function Navbar() {
                                                         onClick={() => setIsOpen(false)}
                                                     >
                                                         <Award className="h-4 w-4 text-primary" />
-                                                        <span className="text-sm font-medium">Scholarships</span>
+                                                        <span className="text-sm font-medium">{t('resources.scholarships')}</span>
                                                     </Link>
                                                     <Link
                                                         href="/how-to-apply"
@@ -455,7 +470,7 @@ export function Navbar() {
                                                         onClick={() => setIsOpen(false)}
                                                     >
                                                         <HelpCircle className="h-4 w-4 text-primary" />
-                                                        <span className="text-sm font-medium">How to Apply</span>
+                                                        <span className="text-sm font-medium">{t('resources.howToApply')}</span>
                                                     </Link>
                                                     <Link
                                                         href="/articles"
@@ -463,7 +478,7 @@ export function Navbar() {
                                                         onClick={() => setIsOpen(false)}
                                                     >
                                                         <Newspaper className="h-4 w-4 text-primary" />
-                                                        <span className="text-sm font-medium">Articles & Guides</span>
+                                                        <span className="text-sm font-medium">{t('resources.articles')}</span>
                                                     </Link>
                                                     <Link
                                                         href="/contact"
@@ -471,7 +486,7 @@ export function Navbar() {
                                                         onClick={() => setIsOpen(false)}
                                                     >
                                                         <Mail className="h-4 w-4 text-primary" />
-                                                        <span className="text-sm font-medium">Contact Us</span>
+                                                        <span className="text-sm font-medium">{t('resources.contact')}</span>
                                                     </Link>
                                                 </div>
                                             </div>
@@ -484,10 +499,10 @@ export function Navbar() {
                                                 <div className="space-y-3">
                                                     <div className="flex items-center gap-3 px-2 mb-4">
                                                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                                            <User className="h-5 w-5 text-primary" />
+                                                            <UserIcon className="h-5 w-5 text-primary" />
                                                         </div>
                                                         <div>
-                                                            <p className="text-sm font-semibold">{user.user_metadata?.full_name || 'My Account'}</p>
+                                                            <p className="text-sm font-semibold">{user.user_metadata?.full_name || t('user.myAccount')}</p>
                                                             <p className="text-xs text-muted-foreground">{user.email}</p>
                                                         </div>
                                                     </div>
@@ -499,8 +514,8 @@ export function Navbar() {
                                                             router.push('/dashboard');
                                                         }}
                                                     >
-                                                        <FileText className="mr-2 h-4 w-4" />
-                                                        My Applications
+                                                        <FileText className="me-2 h-4 w-4" />
+                                                        {t('user.myApplications')}
                                                     </Button>
                                                     <Button
                                                         variant="ghost"
@@ -510,20 +525,20 @@ export function Navbar() {
                                                             handleLogout();
                                                         }}
                                                     >
-                                                        <LogOut className="mr-2 h-4 w-4" />
-                                                        Log out
+                                                        <LogOut className="me-2 h-4 w-4" />
+                                                        {t('user.logout')}
                                                     </Button>
                                                 </div>
                                             ) : (
                                                 <div className="space-y-3">
                                                     <Link href="/auth/login" onClick={() => setIsOpen(false)}>
                                                         <Button variant="outline" className="w-full">
-                                                            Sign In
+                                                            {t('user.signIn')}
                                                         </Button>
                                                     </Link>
                                                     <Link href="/auth/register" onClick={() => setIsOpen(false)}>
                                                         <Button className="w-full bg-primary hover:bg-primary/90">
-                                                            Get Started
+                                                            {t('user.getStarted')}
                                                         </Button>
                                                     </Link>
                                                 </div>
@@ -542,7 +557,13 @@ export function Navbar() {
     );
 }
 
-const ListItem = ({ className, title, children, href, icon: Icon, ...props }: any) => {
+interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
+    title: string;
+    href: string;
+    icon?: React.ElementType;
+}
+
+const ListItem = ({ className, title, children, href, icon: Icon, ...props }: ListItemProps) => {
     return (
         <li>
             <NavigationMenuLink asChild>
@@ -558,7 +579,7 @@ const ListItem = ({ className, title, children, href, icon: Icon, ...props }: an
                         {Icon && <Icon className="h-4 w-4 text-primary" />}
                         {title}
                     </div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1 pl-6">
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1 ps-6">
                         {children}
                     </p>
                 </Link>

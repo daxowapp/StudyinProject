@@ -46,15 +46,13 @@ INSERT INTO admission_requirements_catalog (title, category, requirement_type, d
 ('Academic Transcripts', 'academic', 'all', 'Official academic transcripts from all previous institutions', true),
 ('Graduation Certificate', 'academic', 'all', 'Notarized graduation certificate', true);
 
--- Language Requirements
+-- Language Requirements (Updated to "all" level)
 INSERT INTO admission_requirements_catalog (title, category, requirement_type, description, is_common) VALUES
-('IELTS 6.0', 'language', 'bachelor', 'IELTS score of 6.0 or above for English-taught programs', true),
-('IELTS 6.5', 'language', 'master', 'IELTS score of 6.5 or above for English-taught programs', true),
-('TOEFL 80', 'language', 'bachelor', 'TOEFL iBT score of 80 or above for English-taught programs', true),
-('TOEFL 90', 'language', 'master', 'TOEFL iBT score of 90 or above for English-taught programs', true),
-('HSK 4', 'language', 'bachelor', 'HSK Level 4 or above for Chinese-taught programs', true),
-('HSK 5', 'language', 'master', 'HSK Level 5 or above for Chinese-taught programs', true),
-('HSK 6', 'language', 'phd', 'HSK Level 6 for Chinese-taught PhD programs', true),
+('IELTS', 'language', 'all', 'IELTS score required for English-taught programs (minimum 6.0 for Bachelor, 6.5 for Master)', true),
+('TOEFL', 'language', 'all', 'TOEFL iBT score required for English-taught programs (minimum 80 for Bachelor, 90 for Master)', true),
+('HSK', 'language', 'all', 'HSK Level required for Chinese-taught programs (Level 4+ for Bachelor, Level 5+ for Master, Level 6 for PhD)', true),
+('PTE Academic', 'language', 'all', 'PTE Academic score for English-taught programs', true),
+('Duolingo English Test', 'language', 'all', 'Duolingo English Test score for English-taught programs', true),
 ('English Proficiency Waiver', 'language', 'all', 'Waiver available for students from English-speaking countries', true);
 
 -- Document Requirements

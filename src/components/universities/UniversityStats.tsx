@@ -1,8 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Building2, Trophy, Languages } from "lucide-react";
+import { Users, Building2, Trophy, Globe } from "lucide-react";
+
+interface Stats {
+    founded: string;
+    students: string;
+    ranking: string;
+    intlStudents: string;
+}
 
 interface UniversityStatsProps {
-    stats: any;
+    stats: Stats;
 }
 
 export function UniversityStats({ stats }: UniversityStatsProps) {
@@ -32,4 +39,4 @@ export function UniversityStats({ stats }: UniversityStatsProps) {
     );
 }
 
-import { Globe } from "lucide-react";
+

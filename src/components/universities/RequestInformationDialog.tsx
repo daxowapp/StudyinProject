@@ -14,9 +14,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { submitLead } from "@/app/(public)/download-guide/actions";
+import { submitLead } from "@/app/[locale]/(public)/download-guide/actions";
 import { toast } from "sonner";
 import { Loader2, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface RequestInformationDialogProps {
     universityName: string;
@@ -25,6 +26,7 @@ interface RequestInformationDialogProps {
 }
 
 export function RequestInformationDialog({ universityName, universityId, trigger }: RequestInformationDialogProps) {
+    const t = useTranslations('RequestInformation');
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -38,13 +40,13 @@ export function RequestInformationDialog({ universityName, universityId, trigger
             const result = await submitLead(formData);
 
             if (result.success) {
-                toast.success("Request sent successfully! We will contact you soon.");
+                toast.success(t('success'));
                 setOpen(false);
             } else {
-                toast.error("Failed to send request. Please try again.");
+                toast.error(t('error'));
             }
-        } catch (error) {
-            toast.error("An error occurred. Please try again.");
+        } catch {
+            toast.error(t('error'));
         } finally {
             setLoading(false);
         }
@@ -53,13 +55,13 @@ export function RequestInformationDialog({ universityName, universityId, trigger
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                {trigger || <Button>Request Information</Button>}
+                {trigger || <Button>{t('title')}</Button>}
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                    <DialogTitle>Request Information</DialogTitle>
+                    <DialogTitle>{t('title')}</DialogTitle>
                     <DialogDescription>
-                        Get more details about {universityName}. Fill out the form below.
+                        {t('description', { university: universityName })}
                     </DialogDescription>
                 </DialogHeader>
                 <form action={handleSubmit} className="space-y-4 mt-4">
@@ -68,47 +70,47 @@ export function RequestInformationDialog({ universityName, universityId, trigger
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="firstName">First Name *</Label>
+                            <Label htmlFor="firstName">{t('firstName')} *</Label>
                             <Input id="firstName" name="firstName" required placeholder="John" />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="lastName">Last Name *</Label>
+                            <Label htmlFor="lastName">{t('lastName')} *</Label>
                             <Input id="lastName" name="lastName" required placeholder="Doe" />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email">{t('email')} *</Label>
                         <Input id="email" name="email" type="email" required placeholder="john@example.com" />
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
+                        <Label htmlFor="phone">{t('phone')}</Label>
                         <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" />
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="subject">Interest *</Label>
+                        <Label htmlFor="subject">{t('interest')} *</Label>
                         <Select name="subject" defaultValue="admission">
                             <SelectTrigger>
-                                <SelectValue placeholder="Select your interest" />
+                                <SelectValue placeholder={t('selectInterest')} />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="admission">Admission Requirements</SelectItem>
-                                <SelectItem value="programs">Available Programs</SelectItem>
-                                <SelectItem value="scholarships">Scholarship Opportunities</SelectItem>
-                                <SelectItem value="campus">Campus Life</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
+                                <SelectItem value="admission">{t('interests.admission')}</SelectItem>
+                                <SelectItem value="programs">{t('interests.programs')}</SelectItem>
+                                <SelectItem value="scholarships">{t('interests.scholarships')}</SelectItem>
+                                <SelectItem value="campus">{t('interests.campus')}</SelectItem>
+                                <SelectItem value="other">{t('interests.other')}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="message">Message</Label>
+                        <Label htmlFor="message">{t('message')}</Label>
                         <Textarea
                             id="message"
                             name="message"
-                            placeholder={`I am interested in studying at ${universityName}...`}
+                            placeholder={t('messagePlaceholder', { university: universityName })}
                             rows={4}
                         />
                     </div>
@@ -117,12 +119,12 @@ export function RequestInformationDialog({ universityName, universityId, trigger
                         {loading ? (
                             <>
                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                Sending...
+                                {t('sending')}
                             </>
                         ) : (
                             <>
                                 <Send className="mr-2 h-4 w-4" />
-                                Send Request
+                                {t('submit')}
                             </>
                         )}
                     </Button>

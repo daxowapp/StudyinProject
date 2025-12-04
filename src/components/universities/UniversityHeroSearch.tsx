@@ -5,8 +5,10 @@ import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
+import { useTranslations } from "next-intl";
 
 export function UniversityHeroSearch() {
+    const t = useTranslations('Universities');
     const router = useRouter();
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("search") || "";
@@ -32,10 +34,10 @@ export function UniversityHeroSearch() {
     return (
         <div className="w-full max-w-2xl mt-8">
             <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Search className="absolute left-4 rtl:right-4 rtl:left-auto top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
-                    placeholder="Search by university name, city, or ranking..."
-                    className="pl-12 h-14 text-lg bg-background/95 backdrop-blur text-foreground border-0 shadow-xl"
+                    placeholder={t('search.placeholder')}
+                    className="pl-12 rtl:pr-12 rtl:pl-4 h-14 text-lg bg-background/95 backdrop-blur text-foreground border-0 shadow-xl"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
