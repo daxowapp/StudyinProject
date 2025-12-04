@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProgramDialog } from "./components/ProgramDialog";
+import { BulkTranslateButton } from "./components/BulkTranslateButton";
 import { format } from "date-fns";
 import Link from "next/link";
 import { Edit, Languages } from "lucide-react";
@@ -48,7 +49,10 @@ export default async function ProgramsPage() {
                         Manage university programs and scholarship details.
                     </p>
                 </div>
-                <ProgramDialog universities={universities} languages={languages} />
+                <div className="flex items-center gap-2">
+                    <BulkTranslateButton />
+                    <ProgramDialog universities={universities} languages={languages} />
+                </div>
             </div>
 
             <div className="grid gap-6">
