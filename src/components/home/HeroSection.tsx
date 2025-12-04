@@ -62,6 +62,8 @@ export function HeroSection() {
                     fill
                     className="object-cover mix-blend-soft-light opacity-20"
                     priority
+                    loading="eager"
+                    sizes="100vw"
                 />
 
                 {/* Subtle Grid Pattern */}

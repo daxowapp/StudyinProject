@@ -12,18 +12,21 @@ const playfair = Playfair_Display({
     subsets: ['latin'],
     variable: '--font-heading',
     display: 'swap',
+    preload: true,
 });
 
 const jakarta = Plus_Jakarta_Sans({
     subsets: ['latin'],
     variable: '--font-body',
     display: 'swap',
+    preload: true,
 });
 
 const cairo = Cairo({
     subsets: ['arabic'],
     variable: '--font-cairo',
     display: 'swap',
+    preload: false, // Only preload for RTL users
 });
 
 export default async function LocaleLayout({
@@ -49,6 +52,15 @@ export default async function LocaleLayout({
 
     return (
         <html lang={locale} dir={dir} suppressHydrationWarning>
+            <head>
+                {/* Preconnect to critical origins */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                {/* Preload hero image for LCP */}
+                <link rel="preload" as="image" href="/hero-bg.png" fetchPriority="high" />
+                {/* DNS prefetch */}
+                <link rel="dns-prefetch" href="https://jhxujkhfzsahwjxuaydl.supabase.co" />
+            </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
                 <NextIntlClientProvider messages={messages}>
                     <CurrencyProvider>
