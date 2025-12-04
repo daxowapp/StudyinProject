@@ -446,31 +446,36 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
         </div>
       </motion.div>
 
-      {/* Progress Steps */}
-      <div className="flex items-center justify-center gap-4">
-        {[
-          { num: 1, label: 'Personal Info' },
-          { num: 2, label: 'Documents' },
-          ...(requiresPayment ? [{ num: 3, label: 'Payment' }] : []),
-          { num: requiresPayment ? 4 : 3, label: 'Review' },
-        ].map((s, idx) => (
-          <div key={s.num} className="flex items-center">
-            <div
-              className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold ${step >= s.num
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-600'
-                }`}
-            >
-              {step > s.num ? <CheckCircle2 className="w-6 h-6" /> : s.num}
+      {/* Progress Steps - Responsive */}
+      <div className="overflow-x-auto pb-2">
+        <div className="flex items-center justify-center gap-2 md:gap-4 min-w-max px-4">
+          {[
+            { num: 1, label: 'Info', fullLabel: 'Personal Info' },
+            { num: 2, label: 'Docs', fullLabel: 'Documents' },
+            ...(requiresPayment ? [{ num: 3, label: 'Pay', fullLabel: 'Payment' }] : []),
+            { num: requiresPayment ? 4 : 3, label: 'Review', fullLabel: 'Review' },
+          ].map((s, idx) => (
+            <div key={s.num} className="flex items-center">
+              <div
+                className={`flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full font-semibold text-sm ${step >= s.num
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-600'
+                  }`}
+              >
+                {step > s.num ? <CheckCircle2 className="w-4 h-4 md:w-6 md:h-6" /> : s.num}
+              </div>
+              <span className="ml-1 md:ml-2 text-xs md:text-sm font-medium text-gray-700 hidden sm:inline">
+                {s.fullLabel}
+              </span>
+              <span className="ml-1 text-xs font-medium text-gray-700 sm:hidden">
+                {s.label}
+              </span>
+              {idx < (requiresPayment ? 3 : 2) && (
+                <div className="w-4 md:w-12 h-0.5 bg-gray-300 mx-1 md:mx-4" />
+              )}
             </div>
-            <span className="ml-2 text-sm font-medium text-gray-700">
-              {s.label}
-            </span>
-            {idx < (requiresPayment ? 3 : 2) && (
-              <div className="w-12 h-0.5 bg-gray-300 mx-4" />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {error && (
@@ -499,10 +504,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="student_name">Full Name *</Label>
+                  <Label htmlFor="student_name">Full Name (as in passport) *</Label>
                   <Input
                     id="student_name"
                     name="student_name"
+                    placeholder="e.g. John Smith"
                     value={formData.student_name}
                     onChange={handleInputChange}
                     required
@@ -510,11 +516,12 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_email">Email *</Label>
+                  <Label htmlFor="student_email">Email Address *</Label>
                   <Input
                     id="student_email"
                     name="student_email"
                     type="email"
+                    placeholder="e.g. john@example.com"
                     value={formData.student_email}
                     onChange={handleInputChange}
                     required
@@ -522,10 +529,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_phone">Phone Number *</Label>
+                  <Label htmlFor="student_phone">Mobile Phone Number *</Label>
+                  <p className="text-xs text-muted-foreground">Enter your phone number without country code</p>
                   <div className="flex gap-2">
                     <Select value={phoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'student')}>
-                      <SelectTrigger className="w-[120px]">
+                      <SelectTrigger className="w-[100px] md:w-[120px]">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -540,7 +548,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                       id="student_phone"
                       name="student_phone"
                       type="tel"
-                      placeholder="123456789"
+                      placeholder="e.g. 555 123 4567"
                       value={formData.student_phone}
                       onChange={handleInputChange}
                       required
@@ -570,6 +578,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   <Input
                     id="student_passport"
                     name="student_passport"
+                    placeholder="e.g. AB1234567"
                     value={formData.student_passport}
                     onChange={handleInputChange}
                     required
@@ -601,10 +610,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 <h3 className="font-semibold mb-4">Emergency Contact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact_name">Name *</Label>
+                    <Label htmlFor="emergency_contact_name">Contact Name *</Label>
                     <Input
                       id="emergency_contact_name"
                       name="emergency_contact_name"
+                      placeholder="e.g. Parent or Guardian name"
                       value={formData.emergency_contact_name}
                       onChange={handleInputChange}
                       required
@@ -612,10 +622,10 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact_phone">Phone *</Label>
+                    <Label htmlFor="emergency_contact_phone">Phone Number *</Label>
                     <div className="flex gap-2">
                       <Select value={emergencyPhoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'emergency')}>
-                        <SelectTrigger className="w-[120px]">
+                        <SelectTrigger className="w-[100px] md:w-[120px]">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -630,7 +640,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                         id="emergency_contact_phone"
                         name="emergency_contact_phone"
                         type="tel"
-                        placeholder="123456789"
+                        placeholder="e.g. 555 123 4567"
                         value={formData.emergency_contact_phone}
                         onChange={handleInputChange}
                         required
