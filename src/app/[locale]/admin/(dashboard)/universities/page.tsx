@@ -35,10 +35,10 @@ export default async function AdminUniversitiesPage({
     const from = (page - 1) * ITEMS_PER_PAGE;
     const to = from + ITEMS_PER_PAGE - 1;
 
-    // Build query
+    // Build query - only select needed columns for performance
     let query = supabase
         .from("universities")
-        .select("*, university_programs(count)", { count: 'exact' });
+        .select("id, name, city, created_at, university_programs(count)", { count: 'exact' });
 
     if (search) {
         query = query.ilike('name', `%${search}%`);
@@ -63,12 +63,12 @@ export default async function AdminUniversitiesPage({
             .from("universities")
             .select("city")
             .not("city", "is", null)
-            .order("city"),
+            .limit(50),
         supabase
             .from("universities")
             .select("province")
             .not("province", "is", null)
-            .order("province")
+            .limit(50)
     ]);
 
     const totalPages = count ? Math.ceil(count / ITEMS_PER_PAGE) : 0;
