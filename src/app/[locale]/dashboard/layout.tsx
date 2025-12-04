@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { User, Settings, FileText, CreditCard, LayoutDashboard, Mail } from "lucide-react";
+import { User, Settings, FileText, CreditCard, LayoutDashboard, Mail, Bell } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
 import { getTranslations } from "next-intl/server";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 
 export default async function DashboardLayout({
     children,
@@ -62,13 +63,14 @@ export default async function DashboardLayout({
         <div className="flex min-h-screen bg-muted/20">
             {/* Sidebar */}
             <aside className="hidden w-64 flex-col border-r bg-background md:flex">
-                <div className="flex h-16 items-center border-b px-6">
+                <div className="flex h-16 items-center justify-between border-b px-6">
                     <Link href="/" className="flex items-center gap-2 font-bold text-lg">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                             S
                         </div>
                         StudyAtChina
                     </Link>
+                    {user && <NotificationBell userId={user.id} />}
                 </div>
                 <nav className="flex-1 space-y-1 p-4">
                     <Link href="/dashboard">
