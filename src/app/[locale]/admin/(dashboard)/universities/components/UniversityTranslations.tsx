@@ -166,6 +166,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
                         <TabsContent key={locale.code} value={locale.code} className="space-y-4 mt-4">
                             <div className="flex justify-end gap-2">
                                 <Button
+                                    type="button"
                                     variant="outline"
                                     size="sm"
                                     onClick={() => handleGenerateAI(locale.code)}
@@ -179,6 +180,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
                                     Generate with AI
                                 </Button>
                                 <Button
+                                    type="button"
                                     size="sm"
                                     onClick={() => handleSave(locale.code)}
                                     disabled={saving}

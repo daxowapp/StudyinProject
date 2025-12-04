@@ -173,6 +173,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                         <TabsContent key={locale.code} value={locale.code} className="space-y-4 mt-4">
                             <div className="flex justify-end gap-2">
                                 <Button
+                                    type="button"
                                     variant="outline"
                                     size="sm"
                                     onClick={() => handleGenerateAI(locale.code)}
@@ -186,6 +187,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                                     Generate with AI
                                 </Button>
                                 <Button
+                                    type="button"
                                     size="sm"
                                     onClick={() => handleSave(locale.code)}
                                     disabled={saving}
@@ -230,6 +232,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                                             dir={isRTL(locale.code) ? "rtl" : "ltr"}
                                         />
                                         <Button
+                                            type="button"
                                             variant="ghost"
                                             size="icon"
                                             onClick={() => removeArrayItem(locale.code, "requirements", index)}
@@ -238,7 +241,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                                         </Button>
                                     </div>
                                 ))}
-                                <Button variant="outline" size="sm" onClick={() => addArrayItem(locale.code, "requirements")}>
+                                <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem(locale.code, "requirements")}>
                                     <Plus className="mr-2 h-4 w-4" />
                                     Add Requirement
                                 </Button>
@@ -254,6 +257,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                                             dir={isRTL(locale.code) ? "rtl" : "ltr"}
                                         />
                                         <Button
+                                            type="button"
                                             variant="ghost"
                                             size="icon"
                                             onClick={() => removeArrayItem(locale.code, "career_prospects", index)}
@@ -262,7 +266,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
                                         </Button>
                                     </div>
                                 ))}
-                                <Button variant="outline" size="sm" onClick={() => addArrayItem(locale.code, "career_prospects")}>
+                                <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem(locale.code, "career_prospects")}>
                                     <Plus className="mr-2 h-4 w-4" />
                                     Add Career Prospect
                                 </Button>
