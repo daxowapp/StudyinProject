@@ -223,6 +223,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
                                             dir={locale.code === "ar" || locale.code === "fa" ? "rtl" : "ltr"}
                                         />
                                         <Button
+                                            type="button"
                                             variant="ghost"
                                             size="icon"
                                             onClick={() => removeFeature(locale.code, index)}
@@ -232,7 +233,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
                                         </Button>
                                     </div>
                                 ))}
-                                <Button variant="outline" size="sm" onClick={() => addFeature(locale.code)}>
+                                <Button type="button" variant="outline" size="sm" onClick={() => addFeature(locale.code)}>
                                     Add Feature
                                 </Button>
                             </div>
