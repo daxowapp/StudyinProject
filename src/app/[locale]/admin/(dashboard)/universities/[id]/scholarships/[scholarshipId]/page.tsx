@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Save } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
+import { ScholarshipTranslations, ScholarshipTranslationData } from "../../../components/ScholarshipTranslations";
 
 export default function EditUniversityScholarshipPage() {
     const router = useRouter();
@@ -23,6 +24,7 @@ export default function EditUniversityScholarshipPage() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [universityName, setUniversityName] = useState("");
+    const [translations, setTranslations] = useState<ScholarshipTranslationData[]>([]);
     const [formData, setFormData] = useState({
         type_name: "",
         display_name: "",
@@ -48,11 +50,24 @@ export default function EditUniversityScholarshipPage() {
         fetchUniversity();
         if (scholarshipId && scholarshipId !== "new") {
             fetchScholarship();
+            fetchTranslations();
         } else {
             setLoading(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scholarshipId, universityId]);
+
+    const fetchTranslations = async () => {
+        try {
+            const { data } = await supabase
+                .from("scholarship_translations")
+                .select("*")
+                .eq("scholarship_id", scholarshipId);
+            setTranslations(data || []);
+        } catch (error) {
+            console.error("Error fetching translations:", error);
+        }
+    };
 
     const fetchUniversity = async () => {
         try {
@@ -433,6 +448,21 @@ export default function EditUniversityScholarshipPage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {/* Translations - Only show for existing scholarships */}
+                    {scholarshipId !== "new" && (
+                        <ScholarshipTranslations
+                            scholarshipId={scholarshipId}
+                            initialTranslations={translations}
+                            baseData={{
+                                display_name: formData.display_name,
+                                description: formData.description,
+                                accommodation_type: formData.accommodation_type,
+                                additional_benefits: [],
+                                requirements: [],
+                            }}
+                        />
+                    )}
                 </div>
 
                 {/* Sidebar */}
