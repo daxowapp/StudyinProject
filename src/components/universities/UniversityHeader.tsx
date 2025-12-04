@@ -249,7 +249,7 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
             <div className="container mx-auto px-4 md:px-6 relative -mt-20 mb-12 z-10">
                 <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center border border-gray-100">
                     {/* Logo */}
-                    <div className="h-28 w-28 md:h-36 md:w-36 rounded-2xl bg-gradient-to-br from-gray-50 to-white shadow-xl flex items-center justify-center border-2 border-gray-200 shrink-0 overflow-hidden">
+                    <div className="relative h-28 w-28 md:h-36 md:w-36 rounded-2xl bg-gradient-to-br from-gray-50 to-white shadow-xl flex items-center justify-center border-2 border-gray-200 shrink-0 overflow-hidden">
                         {university.logo_url ? (
                             <Image
                                 src={university.logo_url}

@@ -181,6 +181,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
                         <motion.div
+                            id="programs-section"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
@@ -450,7 +451,18 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     {t('sidebar.startJourney', { university: university.name })}
                                 </p>
                                 <div className="space-y-3">
-                                    <Button size="lg" className="w-full bg-white text-red-600 hover:bg-gray-100 font-bold text-lg h-14 shadow-xl">
+                                    <Button
+                                        size="lg"
+                                        className="w-full bg-white text-red-600 hover:bg-gray-100 font-bold text-lg h-14 shadow-xl"
+                                        onClick={() => {
+                                            const programsSection = document.getElementById('programs-section');
+                                            if (programsSection) {
+                                                programsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                                programsSection.classList.add('ring-4', 'ring-red-500', 'ring-opacity-50');
+                                                setTimeout(() => programsSection.classList.remove('ring-4', 'ring-red-500', 'ring-opacity-50'), 2000);
+                                            }
+                                        }}
+                                    >
                                         {t('sidebar.applyNow')}
                                     </Button>
                                     {university.brochure_url && (
