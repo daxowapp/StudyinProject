@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -35,8 +35,9 @@ export function BulkTranslateButton() {
     const [loading, setLoading] = useState(false);
     const [programs, setPrograms] = useState<Program[]>([]);
     const [translations, setTranslations] = useState<TranslationStatus[]>([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [progress, setProgress] = useState({ current: 0, total: 0, success: 0, error: 0 });
     const [isRunning, setIsRunning] = useState(false);
+    const abortRef = useRef(false);
 
     const fetchPrograms = async () => {
         setLoading(true);
@@ -75,55 +76,58 @@ export function BulkTranslateButton() {
 
         setPrograms(programsData || []);
         setTranslations(translationsNeeded);
+        setProgress({ current: 0, total: translationsNeeded.length, success: 0, error: 0 });
         setLoading(false);
     };
 
-    const startTranslation = async () => {
+    const processTranslations = useCallback(async () => {
         setIsRunning(true);
-        setCurrentIndex(0);
-    };
+        abortRef.current = false;
+        const supabase = createClient();
 
-    useEffect(() => {
-        if (!isRunning || currentIndex >= translations.length) {
-            if (currentIndex >= translations.length && translations.length > 0) {
-                setIsRunning(false);
-                const successCount = translations.filter(t => t.status === "success").length;
-                toast.success(`Completed! ${successCount} translations generated.`);
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (let i = 0; i < translations.length; i++) {
+            if (abortRef.current) break;
+
+            const current = translations[i];
+            const program = programs.find(p => p.id === current.programId);
+
+            if (!program) {
+                errorCount++;
+                setTranslations(prev => prev.map((t, idx) =>
+                    idx === i ? { ...t, status: "error", error: "Program not found" } : t
+                ));
+                setProgress(prev => ({ ...prev, current: i + 1, error: errorCount }));
+                continue;
             }
-            return;
-        }
-
-        const processCurrentTranslation = async () => {
-            const current = translations[currentIndex];
 
             // Update status to processing
-            setTranslations(prev => prev.map((t, i) =>
-                i === currentIndex ? { ...t, status: "processing" } : t
+            setTranslations(prev => prev.map((t, idx) =>
+                idx === i ? { ...t, status: "processing" } : t
             ));
 
             try {
-                const supabase = createClient();
-                const program = programs.find(p => p.id === current.programId);
-
-                if (!program) {
-                    throw new Error("Program not found");
-                }
-
                 const title = program.display_title || program.program_title;
                 const description = program.program_description || "";
 
-                // Call AI to generate translation
+                // Use 'translation' type which is supported by the AI endpoint
                 const aiResponse = await fetch("/api/ai/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        type: "program_translation",
-                        query: `Translate to ${LOCALES.find(l => l.code === current.locale)?.name}: ${JSON.stringify({ title, description })}`
+                        type: "translation",
+                        query: `Translate to ${LOCALES.find(l => l.code === current.locale)?.name}: ${JSON.stringify({
+                            name: title,
+                            description: description,
+                            features: []
+                        })}`
                     }),
                 });
 
                 if (!aiResponse.ok) {
-                    throw new Error("AI generation failed");
+                    throw new Error(`API error: ${aiResponse.status}`);
                 }
 
                 const translatedData = await aiResponse.json();
@@ -134,33 +138,36 @@ export function BulkTranslateButton() {
                     .insert({
                         program_id: current.programId,
                         locale: current.locale,
-                        title: translatedData.title || title,
+                        title: translatedData.name || title,
                         description: translatedData.description || description,
-                        requirements: translatedData.requirements || [],
-                        career_prospects: translatedData.career_prospects || [],
+                        requirements: [],
+                        career_prospects: [],
                     });
 
                 if (insertError) {
                     throw new Error(insertError.message);
                 }
 
-                // Mark as success
-                setTranslations(prev => prev.map((t, i) =>
-                    i === currentIndex ? { ...t, status: "success" } : t
+                successCount++;
+                setTranslations(prev => prev.map((t, idx) =>
+                    idx === i ? { ...t, status: "success" } : t
                 ));
             } catch (error) {
-                // Mark as error
-                setTranslations(prev => prev.map((t, i) =>
-                    i === currentIndex ? { ...t, status: "error", error: (error as Error).message } : t
+                errorCount++;
+                setTranslations(prev => prev.map((t, idx) =>
+                    idx === i ? { ...t, status: "error", error: (error as Error).message } : t
                 ));
             }
 
-            // Move to next
-            setCurrentIndex(prev => prev + 1);
-        };
+            setProgress(prev => ({ ...prev, current: i + 1, success: successCount, error: errorCount }));
 
-        processCurrentTranslation();
-    }, [isRunning, currentIndex, translations, programs]);
+            // Small delay to prevent rate limiting
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+
+        setIsRunning(false);
+        toast.success(`Completed! ${successCount} translations generated, ${errorCount} failed.`);
+    }, [translations, programs]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -169,19 +176,18 @@ export function BulkTranslateButton() {
 
     const handleClose = () => {
         if (isRunning) {
-            if (!confirm("Translation is in progress. Are you sure you want to close?")) {
+            if (!confirm("Translation is in progress. Stop and close?")) {
                 return;
             }
+            abortRef.current = true;
         }
         setOpen(false);
         setIsRunning(false);
         setTranslations([]);
-        setCurrentIndex(0);
+        setProgress({ current: 0, total: 0, success: 0, error: 0 });
     };
 
-    const successCount = translations.filter(t => t.status === "success").length;
-    const errorCount = translations.filter(t => t.status === "error").length;
-    const progress = translations.length > 0 ? (currentIndex / translations.length) * 100 : 0;
+    const progressPercent = progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
 
     return (
         <>
@@ -210,10 +216,10 @@ export function BulkTranslateButton() {
                                 <span>{translations.length} translations needed</span>
                                 <div className="flex items-center gap-4">
                                     <span className="flex items-center gap-1 text-green-600">
-                                        <Check className="h-4 w-4" /> {successCount}
+                                        <Check className="h-4 w-4" /> {progress.success}
                                     </span>
                                     <span className="flex items-center gap-1 text-red-600">
-                                        <X className="h-4 w-4" /> {errorCount}
+                                        <X className="h-4 w-4" /> {progress.error}
                                     </span>
                                 </div>
                             </div>
@@ -221,9 +227,9 @@ export function BulkTranslateButton() {
                             {/* Progress Bar */}
                             {isRunning && (
                                 <div className="space-y-2">
-                                    <Progress value={progress} />
+                                    <Progress value={progressPercent} />
                                     <p className="text-sm text-center text-muted-foreground">
-                                        {currentIndex} / {translations.length} completed
+                                        {progress.current} / {progress.total} completed
                                     </p>
                                 </div>
                             )}
@@ -255,9 +261,7 @@ export function BulkTranslateButton() {
                                                     <Check className="h-4 w-4 text-green-600" />
                                                 )}
                                                 {t.status === "error" && (
-                                                    <div className="flex items-center gap-1 text-red-600">
-                                                        <AlertCircle className="h-4 w-4" />
-                                                    </div>
+                                                    <AlertCircle className="h-4 w-4 text-red-600" />
                                                 )}
                                             </div>
                                         </div>
@@ -273,10 +277,10 @@ export function BulkTranslateButton() {
                             {/* Actions */}
                             <div className="flex justify-end gap-2">
                                 <Button variant="outline" onClick={handleClose}>
-                                    Cancel
+                                    {isRunning ? "Stop" : "Close"}
                                 </Button>
                                 <Button
-                                    onClick={startTranslation}
+                                    onClick={processTranslations}
                                     disabled={isRunning || translations.length === 0}
                                 >
                                     {isRunning ? (
