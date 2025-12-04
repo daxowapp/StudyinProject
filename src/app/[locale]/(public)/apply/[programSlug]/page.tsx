@@ -102,6 +102,29 @@ export default async function ApplyPage({
     .eq('id', user.id)
     .single();
 
+  // Fetch open intakes from academic years
+  const { data: intakes } = await supabase
+    .from('intakes')
+    .select(`
+      id,
+      name,
+      start_date,
+      end_date,
+      is_open,
+      academic_year:academic_year_id (
+        id,
+        name,
+        is_active
+      )
+    `)
+    .eq('is_open', true)
+    .order('start_date', { ascending: true });
+
+  // Filter intakes where academic year is active
+  const openIntakes = intakes?.filter((intake) =>
+    (intake.academic_year as unknown as { is_active: boolean })?.is_active
+  ) || [];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,8 +133,10 @@ export default async function ApplyPage({
           requirements={requirements || []}
           user={user as User & { email: string }}
           profile={profile}
+          intakes={openIntakes}
         />
       </div>
     </div>
   );
 }
+

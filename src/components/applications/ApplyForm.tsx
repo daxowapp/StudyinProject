@@ -21,7 +21,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { createClient } from '@/lib/supabase/client';
-import { COUNTRIES, COUNTRY_CODES, INTAKE_PERIODS } from '@/lib/constants/countries';
+import { COUNTRIES, COUNTRY_CODES } from '@/lib/constants/countries';
 
 interface ApplyFormProps {
   program: {
@@ -85,9 +85,15 @@ interface ApplyFormProps {
     phone_country_id?: string;
     emergency_phone_country_id?: string;
   } | null;
+  intakes?: {
+    id: string;
+    name: string;
+    start_date: string;
+    end_date: string;
+  }[];
 }
 
-export function ApplyForm({ program, requirements, user, profile }: ApplyFormProps) {
+export function ApplyForm({ program, requirements, user, profile, intakes = [] }: ApplyFormProps) {
   const router = useRouter();
   const supabase = createClient();
 
@@ -577,11 +583,15 @@ export function ApplyForm({ program, requirements, user, profile }: ApplyFormPro
                       <SelectValue placeholder="Select intake period" />
                     </SelectTrigger>
                     <SelectContent>
-                      {INTAKE_PERIODS.map((intake) => (
-                        <SelectItem key={intake} value={intake}>
-                          {intake}
-                        </SelectItem>
-                      ))}
+                      {intakes.length > 0 ? (
+                        intakes.map((intake) => (
+                          <SelectItem key={intake.id} value={intake.name}>
+                            {intake.name}
+                          </SelectItem>
+                        ))
+                      ) : (
+                        <SelectItem value="September 2025">September 2025</SelectItem>
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
