@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, Sparkles, Check, X, AlertCircle } from "lucide-react";
+import { Loader2, Sparkles, Check, X, AlertCircle, Globe } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 
@@ -25,9 +25,9 @@ interface TranslationStatus {
 }
 
 const LOCALES = [
-    { code: "ar", name: "Arabic" },
-    { code: "fa", name: "Farsi" },
-    { code: "tr", name: "Turkish" },
+    { code: "ar", name: "Arabic", flag: "🇸🇦" },
+    { code: "fa", name: "Farsi", flag: "🇮🇷" },
+    { code: "tr", name: "Turkish", flag: "🇹🇷" },
 ];
 
 export function BulkTranslateButton() {
@@ -43,13 +43,11 @@ export function BulkTranslateButton() {
         setLoading(true);
         const supabase = createClient();
 
-        // Get all active programs
         const { data: programsData } = await supabase
             .from("v_university_programs_full")
             .select("id, display_title, program_title, program_description")
             .eq("is_active", true);
 
-        // Get existing translations
         const { data: existingTranslations } = await supabase
             .from("program_translations")
             .select("program_id, locale");
@@ -58,7 +56,6 @@ export function BulkTranslateButton() {
             existingTranslations?.map(t => `${t.program_id}_${t.locale}`) || []
         );
 
-        // Filter programs that need translations
         const translationsNeeded: TranslationStatus[] = [];
 
         programsData?.forEach(program => {
@@ -103,7 +100,6 @@ export function BulkTranslateButton() {
                 continue;
             }
 
-            // Update status to processing
             setTranslations(prev => prev.map((t, idx) =>
                 idx === i ? { ...t, status: "processing" } : t
             ));
@@ -112,7 +108,6 @@ export function BulkTranslateButton() {
                 const title = program.display_title || program.program_title;
                 const description = program.program_description || "";
 
-                // Use 'translation' type which is supported by the AI endpoint
                 const aiResponse = await fetch("/api/ai/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -132,7 +127,6 @@ export function BulkTranslateButton() {
 
                 const translatedData = await aiResponse.json();
 
-                // Save to database
                 const { error: insertError } = await supabase
                     .from("program_translations")
                     .insert({
@@ -160,8 +154,6 @@ export function BulkTranslateButton() {
             }
 
             setProgress(prev => ({ ...prev, current: i + 1, success: successCount, error: errorCount }));
-
-            // Small delay to prevent rate limiting
             await new Promise(resolve => setTimeout(resolve, 500));
         }
 
@@ -187,101 +179,117 @@ export function BulkTranslateButton() {
         setProgress({ current: 0, total: 0, success: 0, error: 0 });
     };
 
+    const getLocaleFlag = (code: string) => LOCALES.find(l => l.code === code)?.flag || "🌐";
     const progressPercent = progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
 
     return (
         <>
             <Button variant="outline" onClick={handleOpen}>
                 <Sparkles className="mr-2 h-4 w-4 text-purple-500" />
-                Translate All Programs
+                Translate All
             </Button>
 
             <Dialog open={open} onOpenChange={handleClose}>
-                <DialogContent className="max-w-2xl max-h-[80vh]">
+                <DialogContent className="sm:max-w-xl">
                     <DialogHeader>
-                        <DialogTitle>Bulk Translate Programs</DialogTitle>
+                        <DialogTitle className="flex items-center gap-2">
+                            <Globe className="h-5 w-5 text-primary" />
+                            Bulk Translate Programs
+                        </DialogTitle>
                         <DialogDescription>
-                            Generate AI translations for all programs in Arabic, Farsi, and Turkish.
+                            Generate AI translations for Arabic, Farsi, and Turkish.
                         </DialogDescription>
                     </DialogHeader>
 
                     {loading ? (
-                        <div className="flex items-center justify-center py-8">
-                            <Loader2 className="h-8 w-8 animate-spin" />
+                        <div className="flex flex-col items-center justify-center py-12 gap-3">
+                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                            <p className="text-sm text-muted-foreground">Loading programs...</p>
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            {/* Stats */}
-                            <div className="flex items-center justify-between text-sm">
-                                <span>{translations.length} translations needed</span>
-                                <div className="flex items-center gap-4">
-                                    <span className="flex items-center gap-1 text-green-600">
+                            {/* Stats Bar */}
+                            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm font-medium">{translations.length} translations</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-sm">
+                                    <span className="flex items-center gap-1.5 text-green-600 font-medium">
                                         <Check className="h-4 w-4" /> {progress.success}
                                     </span>
-                                    <span className="flex items-center gap-1 text-red-600">
+                                    <span className="flex items-center gap-1.5 text-red-500 font-medium">
                                         <X className="h-4 w-4" /> {progress.error}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Progress Bar */}
-                            {isRunning && (
+                            {(isRunning || progress.current > 0) && (
                                 <div className="space-y-2">
-                                    <Progress value={progressPercent} />
-                                    <p className="text-sm text-center text-muted-foreground">
-                                        {progress.current} / {progress.total} completed
+                                    <Progress value={progressPercent} className="h-2" />
+                                    <p className="text-xs text-center text-muted-foreground">
+                                        {progress.current} of {progress.total} completed ({Math.round(progressPercent)}%)
                                     </p>
                                 </div>
                             )}
 
                             {/* Translations List */}
-                            <ScrollArea className="h-[400px] border rounded-lg p-2">
-                                <div className="space-y-1">
+                            <ScrollArea className="h-[320px] rounded-lg border">
+                                <div className="divide-y">
                                     {translations.map((t, index) => (
                                         <div
                                             key={`${t.programId}-${t.locale}`}
-                                            className={`flex items-center justify-between p-2 rounded text-sm ${t.status === "processing" ? "bg-blue-50 dark:bg-blue-950" :
-                                                    t.status === "success" ? "bg-green-50 dark:bg-green-950" :
-                                                        t.status === "error" ? "bg-red-50 dark:bg-red-950" :
-                                                            "bg-muted/50"
+                                            className={`flex items-center justify-between px-3 py-2.5 transition-colors ${t.status === "processing" ? "bg-blue-50 dark:bg-blue-950/30" :
+                                                    t.status === "success" ? "bg-green-50/50 dark:bg-green-950/20" :
+                                                        t.status === "error" ? "bg-red-50/50 dark:bg-red-950/20" :
+                                                            ""
                                                 }`}
                                         >
-                                            <div className="flex-1 truncate">
-                                                <span className="font-medium">{t.programName}</span>
-                                                <span className="text-muted-foreground ml-2">({t.locale.toUpperCase()})</span>
+                                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                                                <span className="text-base">{getLocaleFlag(t.locale)}</span>
+                                                <span className="font-medium truncate text-sm">{t.programName}</span>
                                             </div>
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2 shrink-0">
                                                 {t.status === "pending" && (
-                                                    <span className="text-muted-foreground">Pending</span>
+                                                    <span className="text-xs text-muted-foreground px-2 py-0.5 bg-muted rounded">
+                                                        Pending
+                                                    </span>
                                                 )}
                                                 {t.status === "processing" && (
                                                     <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
                                                 )}
                                                 {t.status === "success" && (
-                                                    <Check className="h-4 w-4 text-green-600" />
+                                                    <div className="h-5 w-5 rounded-full bg-green-500 flex items-center justify-center">
+                                                        <Check className="h-3 w-3 text-white" />
+                                                    </div>
                                                 )}
                                                 {t.status === "error" && (
-                                                    <AlertCircle className="h-4 w-4 text-red-600" />
+                                                    <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center">
+                                                        <X className="h-3 w-3 text-white" />
+                                                    </div>
                                                 )}
                                             </div>
                                         </div>
                                     ))}
                                     {translations.length === 0 && (
-                                        <div className="text-center py-8 text-muted-foreground">
-                                            All programs already have translations!
+                                        <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                                            <Check className="h-10 w-10 text-green-500 mb-2" />
+                                            <p className="font-medium">All Done!</p>
+                                            <p className="text-sm">All programs have translations.</p>
                                         </div>
                                     )}
                                 </div>
                             </ScrollArea>
 
                             {/* Actions */}
-                            <div className="flex justify-end gap-2">
+                            <div className="flex justify-end gap-2 pt-2">
                                 <Button variant="outline" onClick={handleClose}>
-                                    {isRunning ? "Stop" : "Close"}
+                                    {isRunning ? "Stop & Close" : "Close"}
                                 </Button>
                                 <Button
                                     onClick={processTranslations}
                                     disabled={isRunning || translations.length === 0}
+                                    className="min-w-[140px]"
                                 >
                                     {isRunning ? (
                                         <>
@@ -291,7 +299,7 @@ export function BulkTranslateButton() {
                                     ) : (
                                         <>
                                             <Sparkles className="mr-2 h-4 w-4" />
-                                            Start Translation
+                                            Start
                                         </>
                                     )}
                                 </Button>
