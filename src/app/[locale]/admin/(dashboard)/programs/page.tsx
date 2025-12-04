@@ -6,7 +6,7 @@ import { ProgramDialog } from "./components/ProgramDialog";
 import { BulkTranslateButton } from "./components/BulkTranslateButton";
 import { format } from "date-fns";
 import Link from "next/link";
-import { Edit, Languages } from "lucide-react";
+import { Languages } from "lucide-react";
 
 interface Program {
     id: string;

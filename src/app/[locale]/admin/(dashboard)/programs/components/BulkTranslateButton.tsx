@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, Sparkles, Check, X, AlertCircle, Globe } from "lucide-react";
+import { Loader2, Sparkles, Check, X, Globe } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 
@@ -236,13 +236,13 @@ export function BulkTranslateButton() {
                             {/* Translations List */}
                             <ScrollArea className="h-[320px] rounded-lg border">
                                 <div className="divide-y">
-                                    {translations.map((t, index) => (
+                                    {translations.map((t) => (
                                         <div
                                             key={`${t.programId}-${t.locale}`}
                                             className={`flex items-center justify-between px-3 py-2.5 transition-colors ${t.status === "processing" ? "bg-blue-50 dark:bg-blue-950/30" :
-                                                    t.status === "success" ? "bg-green-50/50 dark:bg-green-950/20" :
-                                                        t.status === "error" ? "bg-red-50/50 dark:bg-red-950/20" :
-                                                            ""
+                                                t.status === "success" ? "bg-green-50/50 dark:bg-green-950/20" :
+                                                    t.status === "error" ? "bg-red-50/50 dark:bg-red-950/20" :
+                                                        ""
                                                 }`}
                                         >
                                             <div className="flex items-center gap-2 flex-1 min-w-0">
