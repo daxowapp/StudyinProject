@@ -9,9 +9,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
@@ -40,19 +39,10 @@ export function HeroSection() {
         router.push(`/programs?${params.toString()}`);
     };
 
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
     return (
-        <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-slate-900">
-            {/* Animated Background with Parallax */}
-            <motion.div style={{ y }} className="absolute inset-0 z-0">
+        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-slate-900">
+            {/* Static Background - No Animation for Faster LCP */}
+            <div className="absolute inset-0 z-0">
                 {/* Mesh Gradient Background */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
 
@@ -69,80 +59,40 @@ export function HeroSection() {
                 {/* Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
 
-                {/* Floating Orbs - China Colors */}
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.3, 0.5, 0.3]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1.2, 1, 1.2],
-                        opacity: [0.2, 0.4, 0.2]
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.25, 0.45, 0.25]
-                    }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"
-                />
-            </motion.div>
+                {/* Static Orbs - CSS Animation Only */}
+                <div className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+            </div>
 
-            <motion.div style={{ opacity }} className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
+            <div className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
                 <div className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto">
 
-                    {/* Premium Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, type: "spring" }}
-                        className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xl px-6 py-2.5 text-sm font-semibold text-white shadow-2xl border border-white/20"
-                    >
+                    {/* Premium Badge - CSS Animation */}
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xl px-6 py-2.5 text-sm font-semibold text-white shadow-2xl border border-white/20 animate-fade-in">
                         <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
                         <span className="tracking-wide">{t('admissionsOpen')}</span>
                         <div className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
-                    </motion.div>
+                    </div>
 
-                    {/* Hero Heading with Gradient */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                        className="space-y-6"
-                    >
+                    {/* Hero Heading - CSS Animation */}
+                    <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter font-heading text-white drop-shadow-2xl">
                             {t('title')}
                         </h1>
-                    </motion.div>
+                    </div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-base md:text-xl text-white/90 font-light max-w-2xl leading-relaxed drop-shadow-lg"
-                    >
+                    <p className="text-base md:text-xl text-white/90 font-light max-w-2xl leading-relaxed drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                         {t.rich('subtitle', {
                             bold: (chunks) => <span className="font-bold text-yellow-300">{chunks}</span>
                         })}
-                    </motion.p>
+                    </p>
 
 
 
-                    {/* Enhanced Search Widget */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.8 }}
-                        className="w-full max-w-5xl mt-12"
-                    >
+
+                    {/* Enhanced Search Widget - CSS Animation */}
+                    <div className="w-full max-w-5xl mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                         <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50" dir={isRTL ? 'rtl' : 'ltr'}>
                             {/* Search Tabs */}
                             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
@@ -335,53 +285,36 @@ export function HeroSection() {
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    {/* Stats with Enhanced Design */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.9, duration: 1 }}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 w-full max-w-3xl"
-                    >
+                    {/* Stats with Enhanced Design - CSS Animation */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 w-full max-w-3xl animate-fade-in" style={{ animationDelay: '0.4s' }}>
                         {[
                             { icon: GraduationCap, value: "500+", label: t('stats.universities'), color: "text-yellow-400" },
                             { icon: Globe, value: "50k+", label: t('stats.students'), color: "text-yellow-300" },
                             { icon: Award, value: "98%", label: t('stats.success'), color: "text-amber-400" },
                             { icon: TrendingUp, value: "$2M+", label: t('stats.scholarships'), color: "text-orange-400" }
                         ].map((stat, index) => (
-                            <motion.div
+                            <div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1 + index * 0.1 }}
                                 className="flex flex-col items-center text-white"
                             >
                                 <stat.icon className={`h-6 w-6 mb-2 ${stat.color}`} />
                                 <span className="text-xl md:text-2xl font-black font-heading">{stat.value}</span>
                                 <span className="text-xs opacity-70 mt-1">{stat.label}</span>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
 
-                    {/* Scroll Indicator */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5 }}
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                    >
-                        <motion.div
-                            animate={{ y: [0, 10, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            className="flex flex-col items-center gap-2 text-white/60 cursor-pointer hover:text-white/90 transition-colors"
-                        >
+                    {/* Scroll Indicator - CSS Animation */}
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                        <div className="flex flex-col items-center gap-2 text-white/60 cursor-pointer hover:text-white/90 transition-colors animate-bounce">
                             <span className="text-sm font-medium">{t('scrollToExplore')}</span>
                             <ChevronDown className="h-6 w-6" />
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 </div>
-            </motion.div>
+            </div>
         </section>
     );
 }
