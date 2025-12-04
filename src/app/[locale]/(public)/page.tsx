@@ -49,7 +49,8 @@ interface PageUniversity {
   currency?: string;
 }
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   let formattedPrograms: PageProgram[] = [];
   let universitiesWithStats: PageUniversity[] = [];
   let user = null;
@@ -145,12 +146,22 @@ export default async function Home() {
         .select("*")
         .in("university_id", (universitiesData as { id: string }[]).map((u) => u.id));
 
+      // Fetch translations for universities based on locale
+      const { data: translations } = await supabase
+        .from("university_translations")
+        .select("*")
+        .in("university_id", (universitiesData as { id: string }[]).map((u) => u.id));
+
       const statsMap = new Map((stats as { university_id: string; program_count: number; min_tuition_fee: number; currency: string }[] | null)?.map((s) => [s.university_id, s]) || []);
+      const translationsMap = new Map((translations as { university_id: string; locale: string; name: string; description: string }[] | null)?.map((t) => [`${t.university_id}_${t.locale}`, t]) || []);
 
       universitiesWithStats = (universitiesData as { id: string; name: string; slug: string; city: string; province: string; description: string; logo_url: string; cover_photo_url: string; founded: number; total_students: number; ranking: number; has_fast_track: boolean }[]).map((uni) => {
         const stat = statsMap.get(uni.id);
+        const translation = translationsMap.get(`${uni.id}_${locale}`);
         return {
           ...uni,
+          name: translation?.name || uni.name,
+          description: translation?.description || uni.description,
           founded: String(uni.founded), // Convert to string
           total_students: String(uni.total_students), // Convert to string
           ranking: String(uni.ranking), // Convert to string
