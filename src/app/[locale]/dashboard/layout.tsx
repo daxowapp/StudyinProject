@@ -4,6 +4,7 @@ import { User, Settings, FileText, CreditCard, LayoutDashboard, Mail } from "luc
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
+import { getTranslations } from "next-intl/server";
 
 export default async function DashboardLayout({
     children,
@@ -11,6 +12,7 @@ export default async function DashboardLayout({
     children: React.ReactNode;
 }) {
     const supabase = await createClient();
+    const t = await getTranslations('Dashboard.sidebar');
 
     // Get current user
     const { data: { user } } = await supabase.auth.getUser();
@@ -72,20 +74,20 @@ export default async function DashboardLayout({
                     <Link href="/dashboard">
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <LayoutDashboard className="h-4 w-4" />
-                            My Applications
+                            {t('myApplications')}
                         </Button>
                     </Link>
                     <Link href="/dashboard/profile">
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <User className="h-4 w-4" />
-                            Profile
+                            {t('profile')}
                         </Button>
                     </Link>
                     <Link href="/dashboard/messages">
                         <Button variant="ghost" className="w-full justify-between gap-2">
                             <div className="flex items-center gap-2">
                                 <Mail className="h-4 w-4" />
-                                Messages
+                                {t('messages')}
                             </div>
                             {unreadCount > 0 && (
                                 <Badge className="bg-red-600 hover:bg-red-700 text-white">
@@ -98,7 +100,7 @@ export default async function DashboardLayout({
                         <Button variant="ghost" className="w-full justify-between gap-2">
                             <div className="flex items-center gap-2">
                                 <CreditCard className="h-4 w-4" />
-                                Payments
+                                {t('payments')}
                             </div>
                             {pendingPayments > 0 && (
                                 <Badge className="bg-yellow-600 hover:bg-yellow-700 text-white">
@@ -111,7 +113,7 @@ export default async function DashboardLayout({
                         <Button variant="ghost" className="w-full justify-between gap-2">
                             <div className="flex items-center gap-2">
                                 <FileText className="h-4 w-4" />
-                                Documents
+                                {t('documents')}
                             </div>
                             {pendingDocuments > 0 && (
                                 <Badge className="bg-orange-600 hover:bg-orange-700 text-white">
@@ -123,7 +125,7 @@ export default async function DashboardLayout({
                     <Link href="/dashboard/settings">
                         <Button variant="ghost" className="w-full justify-start gap-2">
                             <Settings className="h-4 w-4" />
-                            Settings
+                            {t('settings')}
                         </Button>
                     </Link>
                 </nav>

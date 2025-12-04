@@ -28,7 +28,7 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    redirect('/auth/login?returnUrl=/dashboard/applications/' + id);
+    redirect('/login?returnUrl=/dashboard/applications/' + id);
   }
 
   // Fetch application details

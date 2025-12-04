@@ -7,7 +7,68 @@
         "contact": "İletişim",
         "login": "Giriş Yap",
         "dashboard": "Panel",
-        "admin": "Yönetici"
+        "admin": "Yönetici",
+        "categories": {
+            "topRanked": {
+                "title": "En İyiler",
+                "description": "Çin'deki en yüksek dereceli üniversiteleri keşfedin."
+            },
+            "medical": {
+                "title": "Tıp Fakülteleri",
+                "description": "Tıp ve sağlık alanında önde gelen kurumlar."
+            },
+            "engineering": {
+                "title": "Mühendislik",
+                "description": "Mühendislik için en iyi teknik üniversiteler."
+            },
+            "business": {
+                "title": "İşletme & Ekonomi",
+                "description": "Seçkin işletme okulları ve ekonomi enstitüleri."
+            },
+            "arts": {
+                "title": "Sanat & Beşeri Bilimler",
+                "description": "Sanat, kültür ve beşeri bilimler merkezleri."
+            },
+            "all": {
+                "title": "Tüm Üniversiteler",
+                "description": "Anlaşmalı üniversitelerimizin tam listesine göz atın."
+            }
+        },
+        "levels": {
+            "bachelor": {
+                "title": "Lisans Derecesi",
+                "description": "Lise mezunları için lisans programları."
+            },
+            "master": {
+                "title": "Yüksek Lisans Derecesi",
+                "description": "Lisans mezunları için lisansüstü programlar."
+            },
+            "phd": {
+                "title": "Doktora Programları",
+                "description": "Doktora araştırma programları."
+            },
+            "nonDegree": {
+                "title": "Derecesiz",
+                "description": "Dil kursları ve kısa dönem programlar."
+            },
+            "viewAll": "Tüm Programları Gör"
+        },
+        "viewAllUniversities": "Tüm Üniversiteleri Gör",
+        "resources": {
+            "title": "Kaynaklar",
+            "scholarships": "Burslar",
+            "howToApply": "Nasıl Başvurulur",
+            "articles": "Makaleler & Rehberler",
+            "contact": "Bize Ulaşın"
+        },
+        "user": {
+            "myApplications": "Başvurularım",
+            "logout": "Çıkış Yap",
+            "signIn": "Giriş Yap",
+            "getStarted": "Başlayın",
+            "myAccount": "Hesabım",
+            "account": "Hesap"
+        }
     },
     "Common": {
         "loading": "Yükleniyor...",
@@ -323,5 +384,115 @@
         "seeAll": "Tüm SSS'leri Gör",
         "contactSupport": "Destek ile İletişime Geç",
         "footer": "Hala sorularınız mı var? Destek ekibimiz size yardımcı olmak için 7/24 hizmetinizdedir."
+    },
+    "Dashboard": {
+        "sidebar": {
+            "myApplications": "Başvurularım",
+            "profile": "Profil",
+            "messages": "Mesajlar",
+            "payments": "Ödemeler",
+            "documents": "Belgeler",
+            "settings": "Ayarlar",
+            "logout": "Çıkış Yap"
+        },
+        "title": "Panel",
+        "subtitle": "Tekrar hoş geldiniz! İşte başvuru genel bakışınız.",
+        "newApplication": "Yeni Başvuru",
+        "stats": {
+            "totalApplications": "Toplam Başvuru",
+            "submitted": "{count} gönderildi",
+            "pendingActions": "Bekleyen İşlemler",
+            "requiresAttention": "İlginizi gerektiriyor",
+            "offersReceived": "Alınan Teklifler",
+            "congratulations": "Tebrikler!",
+            "successRate": "Başarı Oranı",
+            "acceptanceRate": "Kabul oranı"
+        },
+        "recentApplications": "Başvurularım",
+        "appliedOn": "{date} tarihinde başvuruldu",
+        "viewDetails": "Detayları Gör",
+        "noApplications": {
+            "title": "Henüz Başvuru Yok",
+            "description": "Programlara göz atarak ve ilk başvurunuzu göndererek yolculuğunuza başlayın."
+        },
+        "browsePrograms": "Programlara Göz At"
+    },
+    "Profile": {
+        "title": "Profilim",
+        "subtitle": "Kişisel bilgilerinizi ve tercihlerinizi yönetin",
+        "completion": "Profil Tamamlama",
+        "completeProfile": "Gelecekteki başvuruları hızlandırmak için profilinizi tamamlayın",
+        "photo": {
+            "title": "Profil Fotoğrafı",
+            "description": "Profesyonel bir fotoğraf yükleyin",
+            "upload": "Fotoğraf Yükle",
+            "uploading": "Yükleniyor...",
+            "hint": "JPG, PNG veya GIF. Maks 5MB."
+        },
+        "personalInfo": {
+            "title": "Kişisel Bilgiler",
+            "description": "Başvurular için temel bilgileriniz"
+        },
+        "fullName": "Ad Soyad *",
+        "dob": "Doğum Tarihi",
+        "phone": "Telefon Numarası",
+        "nationality": "Uyruk",
+        "passportNumber": "Pasaport Numarası",
+        "address": {
+            "title": "Adres",
+            "description": "Mevcut ikamet adresiniz",
+            "street": "Sokak Adresi",
+            "city": "Şehir",
+            "postalCode": "Posta Kodu"
+        },
+        "emergency": {
+            "title": "Acil Durum İletişimi",
+            "description": "Acil durumda aranacak kişi",
+            "name": "İsim",
+            "phone": "Telefon",
+            "relationship": "Yakınlık Derecesi"
+        },
+        "save": "Profili Kaydet",
+        "saving": "Kaydediliyor..."
+    },
+    "Status": {
+        "pending_documents": "Belge Bekliyor",
+        "pending_payment": "Ödeme Bekliyor",
+        "submitted": "Gönderildi",
+        "under_review": "İnceleniyor",
+        "accepted": "Kabul Edildi",
+        "rejected": "Reddedildi",
+        "unknown": "Bilinmiyor"
+    },
+    "Auth": {
+        "login": {
+            "title": "Giriş Yap",
+            "description": "Hesabınıza erişmek için e-posta ve şifrenizi girin",
+            "emailLabel": "E-posta",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "Şifre",
+            "forgotPassword": "Şifrenizi mi unuttunuz?",
+            "submit": "Giriş Yap",
+            "orContinueWith": "Veya şununla devam et",
+            "continueWithGoogle": "Google ile Devam Et",
+            "connecting": "Bağlanıyor...",
+            "noAccount": "Hesabınız yok mu?",
+            "signUp": "Kaydol",
+            "success": "Giriş başarılı! Yönlendiriliyor...",
+            "error": "Bir şeyler ters gitti",
+            "googleError": "Google ile giriş yapılamadı"
+        },
+        "layout": {
+            "branding": "StudyAtChina",
+            "heroTitle": "Çin Üniversitelerine Açılan Kapınız",
+            "heroDescription": "Hayallerini Çin'in en iyi üniversitelerinde sürdüren binlerce uluslararası öğrenciye katılın.",
+            "programsTitle": "500+ Program",
+            "programsDescription": "En iyi Çin üniversitelerinden programlara erişin",
+            "guidanceTitle": "Uzman Rehberliği",
+            "guidanceDescription": "Başvuru yolculuğunuz boyunca destek alın",
+            "scholarshipsTitle": "Burs Fırsatları",
+            "scholarshipsDescription": "Mevcut çeşitli burs seçeneklerini keşfedin",
+            "copyright": "© 2024 StudyAtChina. Tüm hakları saklıdır."
+        }
     }
 }

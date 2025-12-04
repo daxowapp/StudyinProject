@@ -393,12 +393,48 @@
             "hint": "تلميح: {hint}"
         },
         "search": {
-            "placeholder": "البحث باسم الجامعة أو المدينة أو التصنيف..."
+            "placeholder": "البحث باسم الجامعة أو المدينة أو التصنيف...",
+            "label": "بحث",
+            "universityPlaceholder": "اسم الجامعة..."
         },
         "filters": {
             "title": "الفلاتر",
             "description": "تضييق نطاق البحث عن الجامعات",
-            "clear": "مسح الفلاتر"
+            "clear": "مسح الفلاتر",
+            "clearAll": "مسح جميع الفلاتر",
+            "city": "المدينة",
+            "allCities": "جميع المدن",
+            "institutionType": "نوع المؤسسة",
+            "allTypes": "جميع الأنواع",
+            "universityCategory": "فئة الجامعة",
+            "allCategories": "جميع الفئات",
+            "rankingRecognition": "التصنيف والاعتراف",
+            "specialFeatures": "ميزات خاصة",
+            "institutionTypes": {
+                "university": "جامعة",
+                "college": "كلية",
+                "languageInstitute": "معهد لغات",
+                "vocationalSchool": "مدرسة مهنية",
+                "technicalInstitute": "معهد تقني"
+            },
+            "categories": {
+                "public": "حكومية",
+                "private": "خاصة",
+                "research": "بحثية",
+                "comprehensive": "شاملة",
+                "specialized": "متخصصة",
+                "vocational": "مهنية"
+            },
+            "rankings": {
+                "project985": "مشروع 985",
+                "project211": "مشروع 211",
+                "doubleFirstClass": "الدرجة الأولى المزدوجة"
+            },
+            "features": {
+                "fastTrack": "قبول سريع",
+                "scholarships": "منح دراسية متاحة",
+                "englishPrograms": "برامج باللغة الإنجليزية"
+            }
         },
         "stats": {
             "title": "إحصائيات سريعة",
@@ -424,7 +460,45 @@
             "title": "الفلاتر",
             "active": "الفلاتر النشطة:",
             "clear": "مسح الفلاتر",
-            "clearAll": "مسح الكل"
+            "clearAll": "مسح جميع الفلاتر",
+            "search": "بحث",
+            "searchPlaceholder": "البرنامج أو التخصص...",
+            "studyLevel": "مستوى الدراسة",
+            "fieldOfStudy": "مجال الدراسة",
+            "allFields": "جميع المجالات",
+            "maxTuition": "الحد الأقصى للرسوم",
+            "language": "اللغة",
+            "city": "المدينة",
+            "allCities": "جميع المدن",
+            "university": "الجامعة",
+            "allUniversities": "جميع الجامعات",
+            "duration": "المدة",
+            "allDurations": "جميع المدد",
+            "scholarshipAvailable": "منحة دراسية متاحة",
+            "levels": {
+                "bachelor": "البكالوريوس",
+                "master": "الماجستير",
+                "phd": "الدكتوراه"
+            },
+            "fields": {
+                "business": "الأعمال والإدارة",
+                "engineering": "الهندسة والتكنولوجيا",
+                "medicine": "الطب والعلوم الصحية",
+                "arts": "الفنون والعلوم الإنسانية",
+                "science": "العلوم الطبيعية",
+                "education": "التعليم"
+            },
+            "languages": {
+                "english": "الإنجليزية",
+                "chinese": "الصينية"
+            },
+            "durations": {
+                "2years": "سنتان",
+                "3years": "3 سنوات",
+                "4years": "4 سنوات",
+                "5years": "5 سنوات",
+                "6years": "6 سنوات"
+            }
         },
         "stats": {
             "total": "إجمالي البرامج",
@@ -441,7 +515,20 @@
         "noResults": {
             "title": "لم يتم العثور على برامج",
             "description": "حاول ضبط الفلاتر أو معايير البحث"
+        },
+        "card": {
+            "duration": "المدة",
+            "intake": "الدفعة",
+            "tuitionFee": "الرسوم الدراسية",
+            "viewProgram": "عرض البرنامج",
+            "contact": "تواصل"
         }
+    },
+    "UniversitiesCard": {
+        "programs": "البرامج",
+        "tuitionFrom": "الرسوم من",
+        "viewUniversity": "عرض الجامعة",
+        "viewPrograms": "عرض البرامج"
     },
     "ProgramDetail": {
         "breadcrumb": {
@@ -482,7 +569,12 @@
         },
         "faq": {
             "title": "الأسئلة الشائعة",
-            "deadline": "الموعد النهائي للتقديم هو {deadline}."
+            "deadline": "الموعد النهائي للتقديم هو {deadline}.",
+            "accommodationQ": "هل السكن متوفر؟",
+            "accommodationA": "نعم، السكن داخل الحرم الجامعي متاح للطلاب الدوليين.",
+            "workQ": "هل يمكنني العمل بدوام جزئي؟",
+            "workA": "نعم، يمكن للطلاب الدوليين التقدم لبرامج العمل والدراسة أو التدريب مع التصاريح المناسبة.",
+            "deadlineQ": "ما هو الموعد النهائي للتقديم؟"
         },
         "sidebar": {
             "ready": "جاهز للتقديم؟",
@@ -641,5 +733,176 @@
         "students": "الطلاب",
         "ranking": "التصنيف",
         "international": "دولي"
+    },
+    "Dashboard": {
+        "sidebar": {
+            "myApplications": "طلباتي",
+            "profile": "الملف الشخصي",
+            "messages": "الرسائل",
+            "payments": "المدفوعات",
+            "documents": "المستندات",
+            "settings": "الإعدادات",
+            "logout": "تسجيل الخروج"
+        },
+        "title": "لوحة التحكم",
+        "subtitle": "مرحباً بعودتك! إليك نظرة عامة على طلباتك.",
+        "newApplication": "طلب جديد",
+        "stats": {
+            "totalApplications": "إجمالي الطلبات",
+            "submitted": "{count} تم إرسالها",
+            "pendingActions": "إجراءات معلقة",
+            "requiresAttention": "يتطلب انتباهك",
+            "offersReceived": "العروض المستلمة",
+            "congratulations": "تهانينا!",
+            "successRate": "معدل النجاح",
+            "acceptanceRate": "معدل القبول"
+        },
+        "recentApplications": "طلباتي",
+        "appliedOn": "تم التقديم في {date}",
+        "viewDetails": "عرض التفاصيل",
+        "noApplications": {
+            "title": "لا توجد طلبات بعد",
+            "description": "ابدأ رحلتك بتصفح البرامج وتقديم طلبك الأول."
+        },
+        "browsePrograms": "تصفح البرامج"
+    },
+    "Profile": {
+        "title": "ملفي الشخصي",
+        "subtitle": "إدارة معلوماتك الشخصية وتفضيلاتك",
+        "completion": "اكتمال الملف الشخصي",
+        "completeProfile": "أكمل ملفك الشخصي لتسريع الطلبات المستقبلية",
+        "photo": {
+            "title": "صورة الملف الشخصي",
+            "description": "تحميل صورة احترافية",
+            "upload": "تحميل صورة",
+            "uploading": "جاري التحميل...",
+            "hint": "JPG أو PNG أو GIF. الحد الأقصى 5 ميجابايت."
+        },
+        "personalInfo": {
+            "title": "المعلومات الشخصية",
+            "description": "تفاصيلك الأساسية للطلبات"
+        },
+        "fullName": "الاسم الكامل *",
+        "dob": "تاريخ الميلاد",
+        "phone": "رقم الهاتف",
+        "nationality": "الجنسية",
+        "passportNumber": "رقم الجواز",
+        "address": {
+            "title": "العنوان",
+            "description": "عنوان إقامتك الحالي",
+            "street": "عنوان الشارع",
+            "city": "المدينة",
+            "postalCode": "الرمز البريدي"
+        },
+        "emergency": {
+            "title": "جهة الاتصال في حالات الطوارئ",
+            "description": "الشخص الذي يمكن الاتصال به في حالة الطوارئ",
+            "name": "الاسم",
+            "phone": "الهاتف",
+            "relationship": "العلاقة"
+        },
+        "save": "حفظ الملف الشخصي",
+        "saving": "جاري الحفظ...",
+        "success": "تم تحديث الملف الشخصي بنجاح!",
+        "error": "حدث خطأ أثناء تحديث الملف الشخصي"
+    },
+    "Documents": {
+        "title": "مستنداتي",
+        "subtitle": "إدارة مستنداتك لطلبات الجامعة",
+        "stats": {
+            "total": "إجمالي المستندات",
+            "uploaded": "الملفات المرفوعة",
+            "verified": "تم التحقق",
+            "approved": "تمت الموافقة من قبل المسؤول",
+            "pending": "قيد المراجعة",
+            "awaiting": "في انتظار التحقق"
+        },
+        "yourDocuments": "مستنداتك",
+        "manageDocuments": "رفع وإدارة مستندات الطلب",
+        "uploadDocument": "رفع مستند",
+        "noDocuments": "لا توجد مستندات بعد",
+        "uploadFirst": "ارفع مستندك الأول للبدء",
+        "size": "الحجم",
+        "uploaded": "تاريخ الرفع",
+        "download": "تحميل",
+        "delete": "حذف",
+        "deleteConfirm": "هل أنت متأكد أنك تريد حذف \"{name}\"؟",
+        "uploadDialog": {
+            "title": "رفع مستند",
+            "description": "اختر نوع المستند وارفع ملفك",
+            "type": "نوع المستند *",
+            "selectType": "اختر نوع المستند",
+            "alreadyUploaded": "(تم الرفع مسبقاً)",
+            "file": "الملف *",
+            "selected": "تم الاختيار",
+            "formats": "الصيغ المقبولة: PDF, JPG, PNG, DOC, DOCX. الحد الأقصى 10 ميجابايت.",
+            "cancel": "إلغاء",
+            "uploading": "جاري الرفع...",
+            "upload": "رفع"
+        },
+        "error": {
+            "fileSize": "يجب أن يكون حجم الملف أقل من 10 ميجابايت",
+            "selectFile": "يرجى اختيار نوع المستند والملف",
+            "fileType": "يرجى رفع ملف صورة",
+            "imageSize": "يجب أن يكون حجم الصورة أقل من 5 ميجابايت"
+        },
+        "success": {
+            "uploaded": "تم رفع المستند بنجاح!",
+            "deleted": "تم حذف المستند"
+        },
+        "types": {
+            "passport": "جواز السفر",
+            "transcript": "كشف الدرجات الأكاديمي",
+            "diploma": "الشهادة/الدبلوم",
+            "recommendation_letter": "خطاب التوصية",
+            "personal_statement": "البيان الشخصي",
+            "cv": "السيرة الذاتية",
+            "language_certificate": "شهادة اللغة (IELTS/TOEFL)",
+            "photo": "صورة جواز السفر",
+            "bank_statement": "كشف حساب بنكي",
+            "health_certificate": "شهادة صحية",
+            "police_clearance": "صحيفة الحالة الجنائية",
+            "other": "مستند آخر"
+        }
+    },
+    "Status": {
+        "pending_documents": "بانتظار المستندات",
+        "pending_payment": "بانتظار الدفع",
+        "submitted": "تم الإرسال",
+        "under_review": "قيد المراجعة",
+        "accepted": "مقبول",
+        "rejected": "مرفوض",
+        "unknown": "غير معروف"
+    },
+    "Auth": {
+        "login": {
+            "title": "تسجيل الدخول",
+            "description": "أدخل بريدك الإلكتروني وكلمة المرور للوصول إلى حسابك",
+            "emailLabel": "البريد الإلكتروني",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "كلمة المرور",
+            "forgotPassword": "نسيت كلمة المرور؟",
+            "submit": "تسجيل الدخول",
+            "orContinueWith": "أو تابع باستخدام",
+            "continueWithGoogle": "المتابعة باستخدام Google",
+            "connecting": "جاري الاتصال...",
+            "noAccount": "ليس لديك حساب؟",
+            "signUp": "إنشاء حساب",
+            "success": "تم تسجيل الدخول بنجاح! جاري إعادة التوجيه...",
+            "error": "حدث خطأ ما",
+            "googleError": "فشل تسجيل الدخول باستخدام Google"
+        },
+        "layout": {
+            "branding": "StudyAtChina",
+            "heroTitle": "بوابتك إلى الجامعات الصينية",
+            "heroDescription": "انضم إلى آلاف الطلاب الدوليين الذين يسعون لتحقيق أحلامهم في أفضل الجامعات الصينية.",
+            "programsTitle": "500+ برنامج",
+            "programsDescription": "الوصول إلى برامج من أفضل الجامعات الصينية",
+            "guidanceTitle": "توجيه الخبراء",
+            "guidanceDescription": "احصل على الدعم طوال رحلة التقديم الخاصة بك",
+            "scholarshipsTitle": "فرص المنح الدراسية",
+            "scholarshipsDescription": "استكشف خيارات المنح الدراسية المختلفة المتاحة",
+            "copyright": "© 2024 StudyAtChina. جميع الحقوق محفوظة."
+        }
     }
 }

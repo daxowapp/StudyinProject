@@ -11,6 +11,7 @@ import { User, MapPin, Users, Upload, Save, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { updateProfile, uploadProfilePhoto } from "./actions";
 import { COUNTRIES, COUNTRY_CODES } from "@/lib/constants/countries";
+import { useTranslations } from "next-intl";
 
 interface ProfileEditFormProps {
     user: any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -20,6 +21,7 @@ interface ProfileEditFormProps {
 export default function ProfileEditForm({ user, profile }: ProfileEditFormProps) {
     const [loading, setLoading] = useState(false);
     const [uploadingPhoto, setUploadingPhoto] = useState(false);
+    const t = useTranslations('Profile');
 
     // Helper to get initial value with fallbacks
     const getInitialValue = (key: string, fallback: string = "") => {
@@ -110,7 +112,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
         if (result.error) {
             toast.error(result.error);
         } else {
-            toast.success("Profile photo updated!");
+            toast.success(t('success'));
             setProfilePhotoUrl(result.url || "");
         }
         setUploadingPhoto(false);
@@ -125,7 +127,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
         if (result.error) {
             toast.error(result.error);
         } else {
-            toast.success("Profile updated successfully!");
+            toast.success(t('success'));
         }
         setLoading(false);
     };
@@ -146,7 +148,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
             <Card className="border-none shadow-lg bg-gradient-to-br from-blue-50 to-purple-50">
                 <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium">Profile Completion</span>
+                        <span className="text-sm font-medium">{t('completion')}</span>
                         <span className="text-sm font-bold text-blue-600">{completionPercentage}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
@@ -156,7 +158,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         />
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
-                        Complete your profile to speed up future applications
+                        {t('completeProfile')}
                     </p>
                 </CardContent>
             </Card>
@@ -166,9 +168,9 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <User className="h-5 w-5" />
-                        Profile Photo
+                        {t('photo')}
                     </CardTitle>
-                    <CardDescription>Upload a professional photo</CardDescription>
+                    <CardDescription>{t('uploadPhoto')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center gap-6">
@@ -186,7 +188,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                                     ) : (
                                         <Upload className="h-4 w-4" />
                                     )}
-                                    {uploadingPhoto ? "Uploading..." : "Upload Photo"}
+                                    {uploadingPhoto ? t('uploading') : t('uploadPhoto')}
                                 </div>
                             </Label>
                             <Input
@@ -198,7 +200,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                                 disabled={uploadingPhoto}
                             />
                             <p className="text-xs text-muted-foreground">
-                                JPG, PNG or GIF. Max 5MB.
+                                {t('photoRequirements')}
                             </p>
                         </div>
                     </div>
@@ -210,14 +212,14 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <User className="h-5 w-5" />
-                        Personal Information
+                        {t('personalInfo')}
                     </CardTitle>
-                    <CardDescription>Your basic details for applications</CardDescription>
+                    <CardDescription>{t('personalInfoDesc')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="full_name">Full Name *</Label>
+                            <Label htmlFor="full_name">{t('fullName')} *</Label>
                             <Input
                                 id="full_name"
                                 name="full_name"
@@ -228,7 +230,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="date_of_birth">Date of Birth</Label>
+                            <Label htmlFor="date_of_birth">{t('dateOfBirth')}</Label>
                             <Input
                                 id="date_of_birth"
                                 name="date_of_birth"
@@ -239,7 +241,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="phone">Phone Number</Label>
+                            <Label htmlFor="phone">{t('phone')}</Label>
                             <div className="flex gap-2">
                                 <Select
                                     value={phoneCountryId}
@@ -269,13 +271,13 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="nationality">Nationality</Label>
+                            <Label htmlFor="nationality">{t('nationality')}</Label>
                             <Select
                                 value={formData.nationality}
                                 onValueChange={(value) => handleSelectChange("nationality", value)}
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select your country" />
+                                    <SelectValue placeholder={t('selectCountry')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {COUNTRIES.map((country) => (
@@ -288,7 +290,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2 md:col-span-2">
-                            <Label htmlFor="passport_number">Passport Number</Label>
+                            <Label htmlFor="passport_number">{t('passportNumber')}</Label>
                             <Input
                                 id="passport_number"
                                 name="passport_number"
@@ -306,13 +308,13 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <MapPin className="h-5 w-5" />
-                        Address
+                        {t('address')}
                     </CardTitle>
-                    <CardDescription>Your current residential address</CardDescription>
+                    <CardDescription>{t('addressDesc')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="address">Street Address</Label>
+                        <Label htmlFor="address">{t('streetAddress')}</Label>
                         <Input
                             id="address"
                             name="address"
@@ -323,7 +325,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="city">City</Label>
+                            <Label htmlFor="city">{t('city')}</Label>
                             <Input
                                 id="city"
                                 name="city"
@@ -333,7 +335,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="postal_code">Postal Code</Label>
+                            <Label htmlFor="postal_code">{t('postalCode')}</Label>
                             <Input
                                 id="postal_code"
                                 name="postal_code"
@@ -351,14 +353,14 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Users className="h-5 w-5" />
-                        Emergency Contact
+                        {t('emergencyContact')}
                     </CardTitle>
-                    <CardDescription>Person to contact in case of emergency</CardDescription>
+                    <CardDescription>{t('emergencyContactDesc')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_name">Name</Label>
+                            <Label htmlFor="emergency_contact_name">{t('name')}</Label>
                             <Input
                                 id="emergency_contact_name"
                                 name="emergency_contact_name"
@@ -369,7 +371,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_phone">Phone</Label>
+                            <Label htmlFor="emergency_contact_phone">{t('phone')}</Label>
                             <div className="flex gap-2">
                                 <Select
                                     value={emergencyPhoneCountryId}
@@ -399,7 +401,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_relationship">Relationship</Label>
+                            <Label htmlFor="emergency_contact_relationship">{t('relationship')}</Label>
                             <Input
                                 id="emergency_contact_relationship"
                                 name="emergency_contact_relationship"
@@ -418,12 +420,12 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                     {loading ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Saving...
+                            {t('saving')}
                         </>
                     ) : (
                         <>
                             <Save className="mr-2 h-4 w-4" />
-                            Save Profile
+                            {t('save')}
                         </>
                     )}
                 </Button>

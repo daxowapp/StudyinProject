@@ -151,7 +151,7 @@ export function Navbar() {
             await signout();
         } catch {
             await supabase.auth.signOut();
-            router.push('/auth/login');
+            router.push('/login');
         }
     };
 
@@ -173,7 +173,7 @@ export function Navbar() {
                 <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6" dir={isRTL ? 'rtl' : 'ltr'}>
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group me-8">
-                        <div className="relative h-10 w-32">
+                        <div className="relative h-12 w-40">
                             <Image
                                 src={showSolid ? "/logo-red.png" : "/logo-white.png"}
                                 alt="StudyAtChina Logo"
@@ -187,7 +187,7 @@ export function Navbar() {
                     {/* Desktop Navigation - Mega Menu */}
                     <div className="hidden lg:flex items-center justify-center flex-1">
                         <NavigationMenu>
-                            <NavigationMenuList className="space-x-2">
+                            <NavigationMenuList className={cn("gap-2", isRTL && "flex-row-reverse")}>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild>
                                         <Link href="/" className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
@@ -204,7 +204,7 @@ export function Navbar() {
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
                                         {/* ... (Keep existing content for now, maybe translate titles later) */}
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]" dir={isRTL ? 'rtl' : 'ltr'}>
                                             {/* We need to access universityCategories here. 
                                                 Since I can't easily modify the array outside, I'll just render it as is for now 
                                                 or I should have moved it inside. 
@@ -230,7 +230,7 @@ export function Navbar() {
                                         {t('programs')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]" dir={isRTL ? 'rtl' : 'ltr'}>
                                             {programLevels.map((level) => (
                                                 <ListItem
                                                     key={level.title}
@@ -259,7 +259,7 @@ export function Navbar() {
                                         {t('resources.title')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2" dir={isRTL ? 'rtl' : 'ltr'}>
                                             <ListItem
                                                 title={t('resources.scholarships')}
                                                 href="/scholarships"
@@ -349,7 +349,7 @@ export function Navbar() {
                                     </DropdownMenu>
                                 ) : (
                                     <>
-                                        <Link href="/auth/login">
+                                        <Link href="/login">
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
@@ -362,7 +362,7 @@ export function Navbar() {
                                             </Button>
                                         </Link>
 
-                                        <Link href="/auth/register">
+                                        <Link href="/register">
                                             <Button
                                                 size="sm"
                                                 className="rounded-full bg-primary hover:bg-primary/90 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-6"
@@ -531,12 +531,12 @@ export function Navbar() {
                                                 </div>
                                             ) : (
                                                 <div className="space-y-3">
-                                                    <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                                                    <Link href="/login" onClick={() => setIsOpen(false)}>
                                                         <Button variant="outline" className="w-full">
                                                             {t('user.signIn')}
                                                         </Button>
                                                     </Link>
-                                                    <Link href="/auth/register" onClick={() => setIsOpen(false)}>
+                                                    <Link href="/register" onClick={() => setIsOpen(false)}>
                                                         <Button className="w-full bg-primary hover:bg-primary/90">
                                                             {t('user.getStarted')}
                                                         </Button>

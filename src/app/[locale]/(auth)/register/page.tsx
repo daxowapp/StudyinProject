@@ -37,13 +37,13 @@ function RegisterContent() {
                     });
                     // Redirect to login with returnUrl after email confirmation message
                     setTimeout(() => {
-                        const loginUrl = returnUrl ? `/auth/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/auth/login";
+                        const loginUrl = returnUrl ? `/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/login";
                         router.push(loginUrl);
                     }, 4000);
                 } else {
                     toast.success("Account created successfully! Redirecting to login...");
                     setTimeout(() => {
-                        const loginUrl = returnUrl ? `/auth/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/auth/login";
+                        const loginUrl = returnUrl ? `/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/login";
                         router.push(loginUrl);
                     }, 2000);
                 }
@@ -141,7 +141,7 @@ function RegisterContent() {
                 </Button>
                 <div className="text-center text-sm text-muted-foreground w-full">
                     Already have an account?{" "}
-                    <Link href="/auth/login" className="text-primary hover:underline font-medium">
+                    <Link href="/login" className="text-primary hover:underline font-medium">
                         Sign in
                     </Link>
                 </div>

@@ -1,9 +1,12 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Price } from "@/components/currency/Price";
+import { useTranslations } from "next-intl";
 
 interface Program {
     id: string;
@@ -25,6 +28,8 @@ interface ProgramCardProps {
 }
 
 export function ProgramCard({ program }: ProgramCardProps) {
+    const t = useTranslations('Programs.card');
+
     return (
         <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-none shadow-lg bg-card flex flex-col h-full">
             {/* Header with gradient */}
@@ -63,22 +68,22 @@ export function ProgramCard({ program }: ProgramCardProps) {
                 <div className="grid grid-cols-2 gap-3 mb-4 p-4 bg-muted/30 rounded-lg">
                     <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
-                            <Clock className="h-3 w-3" /> Duration
+                            <Clock className="h-3 w-3" /> {t('duration')}
                         </span>
                         <span className="text-sm font-semibold">{program.duration}</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
-                            <Calendar className="h-3 w-3" /> Intake
+                            <Calendar className="h-3 w-3" /> {t('intake')}
                         </span>
-                        <span className="text-sm font-semibold truncate">{program.deadline || "Contact"}</span>
+                        <span className="text-sm font-semibold truncate">{program.deadline || t('contact')}</span>
                     </div>
                 </div>
 
                 {/* Tuition - Highlighted */}
                 <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg mb-4 border border-primary/20">
                     <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                        <DollarSign className="h-4 w-4 text-primary" /> Tuition Fee
+                        <DollarSign className="h-4 w-4 text-primary" /> {t('tuitionFee')}
                     </span>
                     <span className="text-base font-bold text-primary">
                         {typeof program.tuition_fee === 'number' ? (
@@ -107,7 +112,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
             <CardFooter className="p-6 pt-0">
                 <Link href={`/programs/${program.slug || program.id}`} className="w-full">
                     <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group">
-                        View Program
+                        {t('viewProgram')}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                 </Link>
@@ -115,3 +120,4 @@ export function ProgramCard({ program }: ProgramCardProps) {
         </Card>
     );
 }
+

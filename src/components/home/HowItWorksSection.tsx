@@ -188,7 +188,7 @@ export function HowItWorksSection({ isLoggedIn = false }: HowItWorksSectionProps
                     transition={{ delay: 1.5, duration: 0.6 }}
                     className="mt-24 text-center"
                 >
-                    <Link href={isLoggedIn ? "/programs" : "/auth/login"}>
+                    <Link href={isLoggedIn ? "/programs" : "/login"}>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

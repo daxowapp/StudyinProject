@@ -21,7 +21,7 @@ export default async function StudentApplicationsPage() {
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-        redirect('/auth/login?returnUrl=/dashboard/applications');
+        redirect('/login?returnUrl=/dashboard/applications');
     }
 
     // Fetch all applications for this student

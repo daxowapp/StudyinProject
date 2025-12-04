@@ -36,6 +36,7 @@ import { toast } from "sonner";
 import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
 import { RequirementsManager } from "./requirements/RequirementsManager";
+import { UniversityTranslations } from "../components/UniversityTranslations";
 import Image from "next/image";
 
 interface Program {
@@ -90,6 +91,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [featureInput, setFeatureInput] = useState<string>("");
     const [languages, setLanguages] = useState<Language[]>([]);
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
+    const [translations, setTranslations] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",
@@ -148,6 +150,12 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 .select("*")
                 .order("name");
 
+            // Fetch translations
+            const { data: translationsData } = await supabase
+                .from("university_translations")
+                .select("*")
+                .eq("university_id", id);
+
             if (error) {
                 toast.error("Error fetching university");
                 router.push("/admin/universities");
@@ -186,6 +194,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 setPrograms(programsData || []);
                 setLanguages(languagesData || []);
                 setScholarships(scholarshipsData || []);
+                setTranslations(translationsData || []);
             }
             setLoading(false);
         };
@@ -532,7 +541,23 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                             <ImageIcon className="h-4 w-4 mr-2" />
                             Media
                         </TabsTrigger>
+                        <TabsTrigger value="translations">
+                            <Globe className="h-4 w-4 mr-2" />
+                            Translations
+                        </TabsTrigger>
                     </TabsList>
+
+                    <TabsContent value="translations">
+                        <UniversityTranslations
+                            universityId={id}
+                            initialTranslations={translations}
+                            baseData={{
+                                name: formData.name,
+                                description: formData.description,
+                                features: formData.features
+                            }}
+                        />
+                    </TabsContent>
 
                     {/* Details Tab */}
                     <TabsContent value="details">

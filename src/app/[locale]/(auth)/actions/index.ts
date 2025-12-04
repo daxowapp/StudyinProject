@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient, createAdminClient } from "@/lib/supabase/server";
 
+// Force rebuild after rename
+
 export async function login(formData: FormData) {
     const supabase = await createClient();
 
@@ -71,7 +73,7 @@ export async function signout() {
     const supabase = await createClient();
     await supabase.auth.signOut();
     revalidatePath("/", "layout");
-    redirect("/auth/login");
+    redirect("/login");
 }
 
 export async function resetPassword(formData: FormData) {
@@ -80,7 +82,7 @@ export async function resetPassword(formData: FormData) {
     const email = formData.get("email") as string;
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?next=/auth/reset-password`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/callback?next=/reset-password`,
     });
 
     if (error) {
@@ -96,7 +98,7 @@ export async function loginWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/callback`,
             queryParams: {
                 access_type: 'offline',
                 prompt: 'consent',

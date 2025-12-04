@@ -26,7 +26,7 @@ export default async function PaymentsPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/auth/login?returnUrl=/dashboard/payments');
+    redirect('/login?returnUrl=/dashboard/payments');
   }
 
   // Fetch all payment transactions

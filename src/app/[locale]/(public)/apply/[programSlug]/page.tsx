@@ -18,7 +18,7 @@ export default async function ApplyPage({
 
   if (!user) {
     // Redirect to login with return URL
-    redirect(`/auth/login?returnUrl=/apply/${programSlug}`);
+    redirect(`/login?returnUrl=/apply/${programSlug}`);
   }
 
   // Fetch program details

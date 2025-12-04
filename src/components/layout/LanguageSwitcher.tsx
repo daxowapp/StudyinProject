@@ -34,8 +34,9 @@ export function LanguageSwitcher() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" disabled={isPending}>
-                    <Globe className="h-5 w-5" />
+                <Button variant="ghost" size="sm" disabled={isPending} className="gap-2">
+                    <Globe className="h-4 w-4" />
+                    <span className="font-medium">{languages.find((l) => l.code === locale)?.name}</span>
                     <span className="sr-only">Switch language</span>
                 </Button>
             </DropdownMenuTrigger>

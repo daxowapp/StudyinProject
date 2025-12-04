@@ -46,7 +46,7 @@ export default async function MessagesPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/auth/login?returnUrl=/dashboard/messages');
+    redirect('/login?returnUrl=/dashboard/messages');
   }
 
   // Fetch all applications for this student

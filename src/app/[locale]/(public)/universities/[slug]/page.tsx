@@ -3,7 +3,7 @@ import { UniversityContent } from "@/components/universities/UniversityContent";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 
-export default async function UniversityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function UniversityDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const supabase = await createClient();
     const { slug } = await params;
 
@@ -55,10 +55,19 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         };
     }) || [];
 
+    // Fetch translation for current locale
+    const { locale } = await params;
+    const { data: translation } = await supabase
+        .from("university_translations")
+        .select("*")
+        .eq("university_id", university.id)
+        .eq("locale", locale)
+        .single();
+
     const universityData = {
         id: university.id,
         slug: university.slug,
-        name: university.name,
+        name: translation?.name || university.name,
         nameLocal: university.name_local || university.name,
         city: university.city,
         province: university.province,
@@ -66,7 +75,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         logo_url: university.logo_url,
         cover_photo_url: university.cover_photo_url,
         gallery_images: university.gallery_images || [],
-        badges: university.features || [],
+        badges: translation?.features || university.features || [],
         stats: {
             founded: university.founded || "N/A",
             students: university.total_students || "N/A",
@@ -75,8 +84,8 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             programs: formattedPrograms.length.toString() + "+",
             acceptance: "15%"
         },
-        overview: university.description || "No description available.",
-        highlights: university.features || [],
+        overview: translation?.description || university.description || "No description available.",
+        highlights: translation?.features || university.features || [],
         programs: formattedPrograms,
         video_url: university.video_url,
         latitude: university.latitude,

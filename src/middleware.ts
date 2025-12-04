@@ -5,6 +5,8 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
+// Force rebuild
+
 export async function middleware(request: NextRequest) {
     // 1. Run Supabase Auth Middleware to update session
     // We pass the request to updateSession, but we don't return its response immediately
@@ -91,7 +93,7 @@ export async function middleware(request: NextRequest) {
     if (pathWithoutLocale.startsWith('/dashboard')) {
         if (!user) {
             const locale = hasLocalePrefix ? pathname.split('/')[1] : routing.defaultLocale;
-            return NextResponse.redirect(new URL(`/${locale}/auth/login`, request.url));
+            return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
         }
     }
 

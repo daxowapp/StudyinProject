@@ -9,14 +9,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { login, loginWithGoogle } from "@/app/[locale]/(auth)/actions";
-import { SubmitButton } from "@/components/ui/submit-button"; // We need to create this
+import { SubmitButton } from "@/components/ui/submit-button";
 
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { Suspense } from "react";
+import { useTranslations } from "next-intl";
 
 function LoginContent() {
+    const t = useTranslations('Auth.login');
     const [isLoading, setIsLoading] = useState(false);
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
     const router = useRouter();
@@ -30,11 +32,11 @@ function LoginContent() {
             if (result?.error) {
                 toast.error(result.error);
             } else if (result?.success) {
-                toast.success("Login successful! Redirecting...");
+                toast.success(t('success'));
                 router.push(returnUrl);
             }
         } catch {
-            toast.error("Something went wrong");
+            toast.error(t('error'));
         } finally {
             setIsLoading(false);
         }
@@ -45,7 +47,7 @@ function LoginContent() {
         try {
             await loginWithGoogle();
         } catch {
-            toast.error("Failed to login with Google");
+            toast.error(t('googleError'));
             setIsGoogleLoading(false);
         }
     }
@@ -53,27 +55,27 @@ function LoginContent() {
     return (
         <Card className="border-none shadow-xl">
             <CardHeader className="space-y-1">
-                <CardTitle className="text-2xl font-bold text-center">Sign in</CardTitle>
+                <CardTitle className="text-2xl font-bold text-center">{t('title')}</CardTitle>
                 <CardDescription className="text-center">
-                    Enter your email and password to access your account
+                    {t('description')}
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <form action={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" name="email" type="email" placeholder="m@example.com" required />
+                        <Label htmlFor="email">{t('emailLabel')}</Label>
+                        <Input id="email" name="email" type="email" placeholder={t('emailPlaceholder')} required />
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                            <Label htmlFor="password">Password</Label>
-                            <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
-                                Forgot password?
+                            <Label htmlFor="password">{t('passwordLabel')}</Label>
+                            <Link href="/forgot-password" className="text-sm text-primary hover:underline">
+                                {t('forgotPassword')}
                             </Link>
                         </div>
                         <Input id="password" name="password" type="password" required />
                     </div>
-                    <SubmitButton>Sign In</SubmitButton>
+                    <SubmitButton>{t('submit')}</SubmitButton>
                 </form>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
@@ -83,7 +85,7 @@ function LoginContent() {
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
                         <span className="bg-background px-2 text-muted-foreground">
-                            Or continue with
+                            {t('orContinueWith')}
                         </span>
                     </div>
                 </div>
@@ -97,19 +99,19 @@ function LoginContent() {
                     {isGoogleLoading ? (
                         <>
                             <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                            Connecting...
+                            {t('connecting')}
                         </>
                     ) : (
                         <>
                             <Chrome className="mr-2 h-4 w-4" />
-                            Continue with Google
+                            {t('continueWithGoogle')}
                         </>
                     )}
                 </Button>
                 <div className="text-center text-sm text-muted-foreground">
-                    Don&apos;t have an account?{" "}
-                    <Link href="/auth/register" className="text-primary hover:underline font-medium">
-                        Sign up
+                    {t('noAccount')}{" "}
+                    <Link href="/register" className="text-primary hover:underline font-medium">
+                        {t('signUp')}
                     </Link>
                 </div>
             </CardFooter>

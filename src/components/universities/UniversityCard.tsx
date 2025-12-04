@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -5,6 +7,7 @@ import { MapPin, BookOpen, DollarSign, Building2, Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Price } from "@/components/currency/Price";
+import { useTranslations } from "next-intl";
 
 interface University {
     id: string;
@@ -31,6 +34,8 @@ interface UniversityCardProps {
 }
 
 export function UniversityCard({ university }: UniversityCardProps) {
+    const t = useTranslations('UniversitiesCard');
+
     return (
         <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-none shadow-sm bg-card group flex flex-col h-full">
             {/* University Photo/Banner */}
@@ -108,13 +113,13 @@ export function UniversityCard({ university }: UniversityCardProps) {
                 <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-dashed mt-auto">
                     <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <BookOpen className="h-3 w-3" /> Programs
+                            <BookOpen className="h-3 w-3" /> {t('programs')}
                         </span>
                         <span className="font-semibold">{university.programs}</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <DollarSign className="h-3 w-3" /> Tuition From
+                            <DollarSign className="h-3 w-3" /> {t('tuitionFrom')}
                         </span>
                         <span className="font-semibold text-primary">
                             {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (
@@ -129,12 +134,13 @@ export function UniversityCard({ university }: UniversityCardProps) {
 
             <CardFooter className="p-6 pt-0 flex gap-2 shrink-0">
                 <Link href={`/universities/${university.slug}`} className="w-full">
-                    <Button className="w-full">View University</Button>
+                    <Button className="w-full">{t('viewUniversity')}</Button>
                 </Link>
                 <Link href={`/programs?university=${university.slug}`} className="w-full">
-                    <Button variant="outline" className="w-full">View Programs</Button>
+                    <Button variant="outline" className="w-full">{t('viewPrograms')}</Button>
                 </Link>
             </CardFooter>
         </Card>
     );
 }
+

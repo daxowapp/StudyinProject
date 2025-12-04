@@ -15,10 +15,14 @@ export default function Error({
     }, [error]);
 
     return (
-        <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-center">
-            <h2 className="text-2xl font-bold">Something went wrong!</h2>
-            <p className="text-muted-foreground">{error.message || "An unexpected error occurred."}</p>
-            <Button onClick={() => reset()}>Try again</Button>
-        </div>
+        <html lang="en" className="h-full">
+            <body className="h-full">
+                <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-center">
+                    <h2 className="text-2xl font-bold">Something went wrong!</h2>
+                    <p className="text-muted-foreground">{error.message || "An unexpected error occurred."}</p>
+                    <Button onClick={() => reset()}>Try again</Button>
+                </div>
+            </body>
+        </html>
     );
 }

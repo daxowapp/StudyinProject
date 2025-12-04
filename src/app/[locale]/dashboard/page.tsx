@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus, FileText, Clock, CheckCircle, TrendingUp, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getTranslations } from "next-intl/server";
 
 interface Application {
     id: string;
@@ -21,6 +22,8 @@ interface Application {
 
 export default async function DashboardPage() {
     const supabase = await createClient();
+    const t = await getTranslations('Dashboard');
+    const tStatus = await getTranslations('Status');
 
     // Fetch user's applications
     const { data: { user } } = await supabase.auth.getUser();
@@ -56,12 +59,12 @@ export default async function DashboardPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold font-heading mb-2">Dashboard</h1>
-                    <p className="text-muted-foreground">Welcome back! Here&apos;s your application overview.</p>
+                    <h1 className="text-3xl md:text-4xl font-bold font-heading mb-2">{t('title')}</h1>
+                    <p className="text-muted-foreground">{t('subtitle')}</p>
                 </div>
                 <Link href="/programs">
                     <Button size="lg" className="gap-2">
-                        <Plus className="h-5 w-5" /> New Application
+                        <Plus className="h-5 w-5" /> {t('newApplication')}
                     </Button>
                 </Link>
             </div>
@@ -70,7 +73,7 @@ export default async function DashboardPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <Card className="border-none shadow-lg bg-gradient-to-br from-blue-500/10 to-blue-500/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.totalApplications')}</CardTitle>
                         <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
                             <FileText className="h-5 w-5 text-blue-600" />
                         </div>
@@ -78,37 +81,37 @@ export default async function DashboardPage() {
                     <CardContent>
                         <div className="text-3xl font-bold">{stats.total}</div>
                         <p className="text-xs text-muted-foreground mt-1">
-                            {stats.submitted} submitted, {stats.pending} pending
+                            {t('stats.submitted', { count: stats.submitted })}, {stats.pending} {t('stats.pendingActions')}
                         </p>
                     </CardContent>
                 </Card>
                 <Card className="border-none shadow-lg bg-gradient-to-br from-yellow-500/10 to-yellow-500/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pending Actions</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.pendingActions')}</CardTitle>
                         <div className="h-10 w-10 rounded-full bg-yellow-500/20 flex items-center justify-center">
                             <Clock className="h-5 w-5 text-yellow-600" />
                         </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-bold">{stats.pending}</div>
-                        <p className="text-xs text-muted-foreground mt-1">Requires your attention</p>
+                        <p className="text-xs text-muted-foreground mt-1">{t('stats.requiresAttention')}</p>
                     </CardContent>
                 </Card>
                 <Card className="border-none shadow-lg bg-gradient-to-br from-amber-500/10 to-amber-500/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Offers Received</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.offersReceived')}</CardTitle>
                         <div className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center">
                             <CheckCircle className="h-5 w-5 text-amber-600" />
                         </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-bold">{stats.offers}</div>
-                        <p className="text-xs text-muted-foreground mt-1">Congratulations!</p>
+                        <p className="text-xs text-muted-foreground mt-1">{t('stats.congratulations')}</p>
                     </CardContent>
                 </Card>
                 <Card className="border-none shadow-lg bg-gradient-to-br from-purple-500/10 to-purple-500/5">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Success Rate</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.successRate')}</CardTitle>
                         <div className="h-10 w-10 rounded-full bg-purple-500/20 flex items-center justify-center">
                             <TrendingUp className="h-5 w-5 text-purple-600" />
                         </div>
@@ -117,7 +120,7 @@ export default async function DashboardPage() {
                         <div className="text-3xl font-bold">
                             {stats.total > 0 ? Math.round((stats.offers / stats.total) * 100) : 0}%
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1">Acceptance rate</p>
+                        <p className="text-xs text-muted-foreground mt-1">{t('stats.acceptanceRate')}</p>
                     </CardContent>
                 </Card>
             </div>
@@ -126,7 +129,7 @@ export default async function DashboardPage() {
             <div className="space-y-6">
                 <div className="flex items-center gap-3">
                     <div className="h-10 w-1 bg-primary rounded-full" />
-                    <h2 className="text-2xl font-bold">My Applications</h2>
+                    <h2 className="text-2xl font-bold">{t('recentApplications')}</h2>
                 </div>
 
                 {applications && applications.length > 0 ? (
@@ -142,7 +145,7 @@ export default async function DashboardPage() {
                                             </p>
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Calendar className="h-3 w-3" />
-                                                Applied on {new Date(app.created_at).toLocaleDateString()}
+                                                {t('appliedOn', { date: new Date(app.created_at).toLocaleDateString() })}
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-4">
@@ -156,11 +159,11 @@ export default async function DashboardPage() {
                                                                     "bg-gray-100 text-gray-800 hover:bg-gray-100"
                                                 }
                                             >
-                                                {app.status?.split('_').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || "Unknown"}
+                                                {tStatus(app.status as any) || app.status}
                                             </Badge>
                                             <Link href={`/dashboard/applications/${app.id}`}>
                                                 <Button variant="outline" size="sm" className="gap-2">
-                                                    View Details <ArrowRight className="h-3 w-3" />
+                                                    {t('viewDetails')} <ArrowRight className="h-3 w-3" />
                                                 </Button>
                                             </Link>
                                         </div>
@@ -176,13 +179,13 @@ export default async function DashboardPage() {
                                 <div className="h-16 w-16 rounded-full bg-muted mx-auto mb-4 flex items-center justify-center">
                                     <FileText className="h-8 w-8 text-muted-foreground" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">No Applications Yet</h3>
+                                <h3 className="text-xl font-bold mb-2">{t('noApplications.title')}</h3>
                                 <p className="text-muted-foreground mb-6">
-                                    Start your journey by browsing programs and submitting your first application.
+                                    {t('noApplications.description')}
                                 </p>
                                 <Link href="/programs">
                                     <Button size="lg" className="gap-2">
-                                        <Plus className="h-5 w-5" /> Browse Programs
+                                        <Plus className="h-5 w-5" /> {t('browsePrograms')}
                                     </Button>
                                 </Link>
                             </div>

@@ -9,7 +9,7 @@ export async function submitApplication(formData: FormData) {
     // Get current user
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-        redirect("/auth/login");
+        redirect("/login");
     }
 
     const programId = formData.get("programId") as string;

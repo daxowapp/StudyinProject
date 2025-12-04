@@ -109,9 +109,9 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             { name: "University Scholarship", type: "Tuition Waiver" },
         ],
         faqs: [
-            { q: "Is accommodation provided?", a: "Yes, on-campus accommodation is available for international students." },
-            { q: "Can I work part-time?", a: "Yes, international students can apply for work-study programs or internships with proper permits." },
-            { q: "What is the application deadline?", a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
+            { q: t('faq.accommodationQ'), a: t('faq.accommodationA') },
+            { q: t('faq.workQ'), a: t('faq.workA') },
+            { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
         ],
     };
 

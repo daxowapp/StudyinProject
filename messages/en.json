@@ -393,12 +393,48 @@
             "hint": "Hint: {hint}"
         },
         "search": {
-            "placeholder": "Search by university name, city, or ranking..."
+            "placeholder": "Search by university name, city, or ranking...",
+            "label": "Search",
+            "universityPlaceholder": "University name..."
         },
         "filters": {
             "title": "Filters",
             "description": "Narrow down your university search",
-            "clear": "Clear Filters"
+            "clear": "Clear Filters",
+            "clearAll": "Clear All Filters",
+            "city": "City",
+            "allCities": "All Cities",
+            "institutionType": "Institution Type",
+            "allTypes": "All Types",
+            "universityCategory": "University Category",
+            "allCategories": "All Categories",
+            "rankingRecognition": "Ranking & Recognition",
+            "specialFeatures": "Special Features",
+            "institutionTypes": {
+                "university": "University",
+                "college": "College",
+                "languageInstitute": "Language Institute",
+                "vocationalSchool": "Vocational School",
+                "technicalInstitute": "Technical Institute"
+            },
+            "categories": {
+                "public": "Public",
+                "private": "Private",
+                "research": "Research",
+                "comprehensive": "Comprehensive",
+                "specialized": "Specialized",
+                "vocational": "Vocational"
+            },
+            "rankings": {
+                "project985": "Project 985",
+                "project211": "Project 211",
+                "doubleFirstClass": "Double First Class"
+            },
+            "features": {
+                "fastTrack": "Fast Track Acceptance",
+                "scholarships": "Scholarships Available",
+                "englishPrograms": "English Programs"
+            }
         },
         "stats": {
             "title": "Quick Stats",
@@ -424,7 +460,45 @@
             "title": "Filters",
             "active": "Active Filters:",
             "clear": "Clear Filters",
-            "clearAll": "Clear All"
+            "clearAll": "Clear All Filters",
+            "search": "Search",
+            "searchPlaceholder": "Program or major...",
+            "studyLevel": "Study Level",
+            "fieldOfStudy": "Field of Study",
+            "allFields": "All Fields",
+            "maxTuition": "Max Tuition",
+            "language": "Language",
+            "city": "City",
+            "allCities": "All Cities",
+            "university": "University",
+            "allUniversities": "All Universities",
+            "duration": "Duration",
+            "allDurations": "All Durations",
+            "scholarshipAvailable": "Scholarship Available",
+            "levels": {
+                "bachelor": "Bachelor",
+                "master": "Master",
+                "phd": "PhD"
+            },
+            "fields": {
+                "business": "Business & Management",
+                "engineering": "Engineering & Technology",
+                "medicine": "Medicine & Health Sciences",
+                "arts": "Arts & Humanities",
+                "science": "Natural Sciences",
+                "education": "Education"
+            },
+            "languages": {
+                "english": "English",
+                "chinese": "Chinese"
+            },
+            "durations": {
+                "2years": "2 Years",
+                "3years": "3 Years",
+                "4years": "4 Years",
+                "5years": "5 Years",
+                "6years": "6 Years"
+            }
         },
         "stats": {
             "total": "Total Programs",
@@ -441,7 +515,20 @@
         "noResults": {
             "title": "No programs found",
             "description": "Try adjusting your filters or search criteria"
+        },
+        "card": {
+            "duration": "Duration",
+            "intake": "Intake",
+            "tuitionFee": "Tuition Fee",
+            "viewProgram": "View Program",
+            "contact": "Contact"
         }
+    },
+    "UniversitiesCard": {
+        "programs": "Programs",
+        "tuitionFrom": "Tuition From",
+        "viewUniversity": "View University",
+        "viewPrograms": "View Programs"
     },
     "ProgramDetail": {
         "breadcrumb": {
@@ -482,7 +569,12 @@
         },
         "faq": {
             "title": "Frequently Asked Questions",
-            "deadline": "The application deadline is {deadline}."
+            "deadline": "The application deadline is {deadline}.",
+            "accommodationQ": "Is accommodation provided?",
+            "accommodationA": "Yes, on-campus accommodation is available for international students.",
+            "workQ": "Can I work part-time?",
+            "workA": "Yes, international students can apply for work-study programs or internships with proper permits.",
+            "deadlineQ": "What is the application deadline?"
         },
         "sidebar": {
             "ready": "Ready to Apply?",
@@ -641,5 +733,176 @@
         "students": "Students",
         "ranking": "Ranking",
         "international": "International"
+    },
+    "Dashboard": {
+        "sidebar": {
+            "myApplications": "My Applications",
+            "profile": "Profile",
+            "messages": "Messages",
+            "payments": "Payments",
+            "documents": "Documents",
+            "settings": "Settings",
+            "logout": "Log out"
+        },
+        "title": "Dashboard",
+        "subtitle": "Welcome back! Here's your application overview.",
+        "newApplication": "New Application",
+        "stats": {
+            "totalApplications": "Total Applications",
+            "submitted": "{count} submitted",
+            "pendingActions": "Pending Actions",
+            "requiresAttention": "Requires your attention",
+            "offersReceived": "Offers Received",
+            "congratulations": "Congratulations!",
+            "successRate": "Success Rate",
+            "acceptanceRate": "Acceptance rate"
+        },
+        "recentApplications": "My Applications",
+        "appliedOn": "Applied on {date}",
+        "viewDetails": "View Details",
+        "noApplications": {
+            "title": "No Applications Yet",
+            "description": "Start your journey by browsing programs and submitting your first application."
+        },
+        "browsePrograms": "Browse Programs"
+    },
+    "Profile": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences",
+        "completion": "Profile Completion",
+        "completeProfile": "Complete your profile to speed up future applications",
+        "photo": {
+            "title": "Profile Photo",
+            "description": "Upload a professional photo",
+            "upload": "Upload Photo",
+            "uploading": "Uploading...",
+            "hint": "JPG, PNG or GIF. Max 5MB."
+        },
+        "personalInfo": {
+            "title": "Personal Information",
+            "description": "Your basic details for applications"
+        },
+        "fullName": "Full Name *",
+        "dob": "Date of Birth",
+        "phone": "Phone Number",
+        "nationality": "Nationality",
+        "passportNumber": "Passport Number",
+        "address": {
+            "title": "Address",
+            "description": "Your current residential address",
+            "street": "Street Address",
+            "city": "City",
+            "postalCode": "Postal Code"
+        },
+        "emergency": {
+            "title": "Emergency Contact",
+            "description": "Person to contact in case of emergency",
+            "name": "Name",
+            "phone": "Phone",
+            "relationship": "Relationship"
+        },
+        "save": "Save Profile",
+        "saving": "Saving...",
+        "success": "Profile updated successfully!",
+        "error": "An error occurred while updating profile"
+    },
+    "Documents": {
+        "title": "My Documents",
+        "subtitle": "Manage your documents for university applications",
+        "stats": {
+            "total": "Total Documents",
+            "uploaded": "Uploaded files",
+            "verified": "Verified",
+            "approved": "Approved by admin",
+            "pending": "Pending Review",
+            "awaiting": "Awaiting verification"
+        },
+        "yourDocuments": "Your Documents",
+        "manageDocuments": "Upload and manage your application documents",
+        "uploadDocument": "Upload Document",
+        "noDocuments": "No documents yet",
+        "uploadFirst": "Upload your first document to get started",
+        "size": "Size",
+        "uploaded": "Uploaded",
+        "download": "Download",
+        "delete": "Delete",
+        "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+        "uploadDialog": {
+            "title": "Upload Document",
+            "description": "Select the document type and upload your file",
+            "type": "Document Type *",
+            "selectType": "Select document type",
+            "alreadyUploaded": "(Already Uploaded)",
+            "file": "File *",
+            "selected": "Selected",
+            "formats": "Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max 10MB.",
+            "cancel": "Cancel",
+            "uploading": "Uploading...",
+            "upload": "Upload"
+        },
+        "error": {
+            "fileSize": "File must be less than 10MB",
+            "selectFile": "Please select a document type and file",
+            "fileType": "Please upload an image file",
+            "imageSize": "Image must be less than 5MB"
+        },
+        "success": {
+            "uploaded": "Document uploaded successfully!",
+            "deleted": "Document deleted"
+        },
+        "types": {
+            "passport": "Passport",
+            "transcript": "Academic Transcript",
+            "diploma": "Diploma/Certificate",
+            "recommendation_letter": "Recommendation Letter",
+            "personal_statement": "Personal Statement",
+            "cv": "CV/Resume",
+            "language_certificate": "Language Certificate (IELTS/TOEFL)",
+            "photo": "Passport Photo",
+            "bank_statement": "Bank Statement",
+            "health_certificate": "Health Certificate",
+            "police_clearance": "Police Clearance",
+            "other": "Other Document"
+        }
+    },
+    "Status": {
+        "pending_documents": "Pending Documents",
+        "pending_payment": "Pending Payment",
+        "submitted": "Submitted",
+        "under_review": "Under Review",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "unknown": "Unknown"
+    },
+    "Auth": {
+        "login": {
+            "title": "Sign in",
+            "description": "Enter your email and password to access your account",
+            "emailLabel": "Email",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "Password",
+            "forgotPassword": "Forgot password?",
+            "submit": "Sign In",
+            "orContinueWith": "Or continue with",
+            "continueWithGoogle": "Continue with Google",
+            "connecting": "Connecting...",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up",
+            "success": "Login successful! Redirecting...",
+            "error": "Something went wrong",
+            "googleError": "Failed to login with Google"
+        },
+        "layout": {
+            "branding": "StudyAtChina",
+            "heroTitle": "Your Gateway to Chinese Universities",
+            "heroDescription": "Join thousands of international students pursuing their dreams in China's top universities.",
+            "programsTitle": "500+ Programs",
+            "programsDescription": "Access programs from top Chinese universities",
+            "guidanceTitle": "Expert Guidance",
+            "guidanceDescription": "Get support throughout your application journey",
+            "scholarshipsTitle": "Scholarship Opportunities",
+            "scholarshipsDescription": "Explore various scholarship options available",
+            "copyright": "© 2024 StudyAtChina. All rights reserved."
+        }
     }
 }

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Search, X, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface UniversityFiltersState {
     project985: boolean;
@@ -51,16 +52,19 @@ export function UniversityFilters({
     onFiltersChange,
     onClearFilters,
 }: UniversityFiltersProps) {
+    const t = useTranslations('Universities.filters');
+    const tSearch = useTranslations('Universities.search');
+
     return (
         <div className="space-y-4">
             {/* Search */}
             <div className="space-y-2">
-                <Label className="text-sm font-medium">Search</Label>
+                <Label className="text-sm font-medium">{tSearch('label')}</Label>
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                         className="pl-9 h-10"
-                        placeholder="University name..."
+                        placeholder={tSearch('universityPlaceholder')}
                         value={searchQuery}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.target.value)}
                     />
@@ -69,13 +73,13 @@ export function UniversityFilters({
 
             {/* City */}
             <div className="space-y-2">
-                <Label className="text-sm font-medium">City</Label>
+                <Label className="text-sm font-medium">{t('city')}</Label>
                 <Select value={selectedCity} onValueChange={onCityChange}>
                     <SelectTrigger className="h-10">
-                        <SelectValue placeholder="All Cities" />
+                        <SelectValue placeholder={t('allCities')} />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">All Cities</SelectItem>
+                        <SelectItem value="all">{t('allCities')}</SelectItem>
                         {cities.map((city) => (
                             <SelectItem key={city} value={city}>{city}</SelectItem>
                         ))}
@@ -85,44 +89,44 @@ export function UniversityFilters({
 
             {/* Institution Category */}
             <div className="space-y-2">
-                <Label className="text-sm font-medium">Institution Type</Label>
+                <Label className="text-sm font-medium">{t('institutionType')}</Label>
                 <Select value={selectedInstitutionType} onValueChange={onInstitutionTypeChange}>
                     <SelectTrigger className="h-10">
-                        <SelectValue placeholder="All Types" />
+                        <SelectValue placeholder={t('allTypes')} />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">All Types</SelectItem>
-                        <SelectItem value="University">University</SelectItem>
-                        <SelectItem value="College">College</SelectItem>
-                        <SelectItem value="Language Institute">Language Institute</SelectItem>
-                        <SelectItem value="Vocational School">Vocational School</SelectItem>
-                        <SelectItem value="Technical Institute">Technical Institute</SelectItem>
+                        <SelectItem value="all">{t('allTypes')}</SelectItem>
+                        <SelectItem value="University">{t('institutionTypes.university')}</SelectItem>
+                        <SelectItem value="College">{t('institutionTypes.college')}</SelectItem>
+                        <SelectItem value="Language Institute">{t('institutionTypes.languageInstitute')}</SelectItem>
+                        <SelectItem value="Vocational School">{t('institutionTypes.vocationalSchool')}</SelectItem>
+                        <SelectItem value="Technical Institute">{t('institutionTypes.technicalInstitute')}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
 
             {/* University Type */}
             <div className="space-y-2">
-                <Label className="text-sm font-medium">University Category</Label>
+                <Label className="text-sm font-medium">{t('universityCategory')}</Label>
                 <Select value={selectedUniversityCategory} onValueChange={onUniversityCategoryChange}>
                     <SelectTrigger className="h-10">
-                        <SelectValue placeholder="All Categories" />
+                        <SelectValue placeholder={t('allCategories')} />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">All Categories</SelectItem>
-                        <SelectItem value="Public">Public</SelectItem>
-                        <SelectItem value="Private">Private</SelectItem>
-                        <SelectItem value="Research">Research</SelectItem>
-                        <SelectItem value="Comprehensive">Comprehensive</SelectItem>
-                        <SelectItem value="Specialized">Specialized</SelectItem>
-                        <SelectItem value="Vocational">Vocational</SelectItem>
+                        <SelectItem value="all">{t('allCategories')}</SelectItem>
+                        <SelectItem value="Public">{t('categories.public')}</SelectItem>
+                        <SelectItem value="Private">{t('categories.private')}</SelectItem>
+                        <SelectItem value="Research">{t('categories.research')}</SelectItem>
+                        <SelectItem value="Comprehensive">{t('categories.comprehensive')}</SelectItem>
+                        <SelectItem value="Specialized">{t('categories.specialized')}</SelectItem>
+                        <SelectItem value="Vocational">{t('categories.vocational')}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
 
             {/* Ranking Type */}
             <div className="space-y-3 pt-2">
-                <Label className="text-sm font-medium">Ranking & Recognition</Label>
+                <Label className="text-sm font-medium">{t('rankingRecognition')}</Label>
                 <div className="space-y-2.5">
                     <div className="flex items-center space-x-2">
                         <Checkbox
@@ -130,7 +134,7 @@ export function UniversityFilters({
                             checked={filters.project985}
                             onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, project985: checked === true })}
                         />
-                        <Label htmlFor="985" className="font-normal text-sm cursor-pointer">Project 985</Label>
+                        <Label htmlFor="985" className="font-normal text-sm cursor-pointer">{t('rankings.project985')}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <Checkbox
@@ -138,7 +142,7 @@ export function UniversityFilters({
                             checked={filters.project211}
                             onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, project211: checked === true })}
                         />
-                        <Label htmlFor="211" className="font-normal text-sm cursor-pointer">Project 211</Label>
+                        <Label htmlFor="211" className="font-normal text-sm cursor-pointer">{t('rankings.project211')}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <Checkbox
@@ -146,14 +150,14 @@ export function UniversityFilters({
                             checked={filters.doubleFirst}
                             onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, doubleFirst: checked === true })}
                         />
-                        <Label htmlFor="double-first" className="font-normal text-sm cursor-pointer">Double First Class</Label>
+                        <Label htmlFor="double-first" className="font-normal text-sm cursor-pointer">{t('rankings.doubleFirstClass')}</Label>
                     </div>
                 </div>
             </div>
 
             {/* Features */}
             <div className="space-y-3 pt-2">
-                <Label className="text-sm font-medium">Special Features</Label>
+                <Label className="text-sm font-medium">{t('specialFeatures')}</Label>
                 <div className="space-y-2.5">
                     <div className="flex items-center space-x-2">
                         <Checkbox
@@ -163,7 +167,7 @@ export function UniversityFilters({
                         />
                         <Label htmlFor="fast-track" className="font-normal text-sm cursor-pointer flex items-center gap-1.5">
                             <Zap className="h-3.5 w-3.5 text-yellow-500" />
-                            Fast Track Acceptance
+                            {t('features.fastTrack')}
                         </Label>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -172,7 +176,7 @@ export function UniversityFilters({
                             checked={filters.scholarships}
                             onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, scholarships: checked === true })}
                         />
-                        <Label htmlFor="scholarships" className="font-normal text-sm cursor-pointer">Scholarships Available</Label>
+                        <Label htmlFor="scholarships" className="font-normal text-sm cursor-pointer">{t('features.scholarships')}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                         <Checkbox
@@ -180,7 +184,7 @@ export function UniversityFilters({
                             checked={filters.english}
                             onCheckedChange={(checked: boolean | 'indeterminate') => onFiltersChange({ ...filters, english: checked === true })}
                         />
-                        <Label htmlFor="english" className="font-normal text-sm cursor-pointer">English Programs</Label>
+                        <Label htmlFor="english" className="font-normal text-sm cursor-pointer">{t('features.englishPrograms')}</Label>
                     </div>
                 </div>
             </div>
@@ -189,9 +193,10 @@ export function UniversityFilters({
             <div className="pt-4 border-t">
                 <Button variant="outline" className="w-full" size="sm" onClick={onClearFilters}>
                     <X className="h-4 w-4 mr-2" />
-                    Clear All Filters
+                    {t('clearAll')}
                 </Button>
             </div>
         </div>
     );
 }
+

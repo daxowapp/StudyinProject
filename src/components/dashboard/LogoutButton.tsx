@@ -5,9 +5,11 @@ import { LogOut } from "lucide-react";
 import { signout } from "@/app/[locale]/(auth)/actions";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export function LogoutButton() {
     const [isLoading, setIsLoading] = useState(false);
+    const t = useTranslations('Dashboard.sidebar');
 
     const handleLogout = async () => {
         setIsLoading(true);
@@ -27,7 +29,7 @@ export function LogoutButton() {
             disabled={isLoading}
         >
             <LogOut className="h-4 w-4" />
-            {isLoading ? "Signing out..." : "Sign Out"}
+            {isLoading ? t('logout') + "..." : t('logout')}
         </Button>
     );
 }

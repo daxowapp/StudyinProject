@@ -12,6 +12,7 @@ import { Plus, Edit, Award, Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { UniversityFilters } from "./filters";
+import { UniversityActions } from "./components/UniversityActions";
 import { Pagination } from "@/components/ui/pagination";
 
 const ITEMS_PER_PAGE = 10;
@@ -123,29 +124,11 @@ export default async function AdminUniversitiesPage({
                                 </TableCell>
                                 <TableCell>{new Date(uni.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <div className="flex items-center justify-end gap-2">
-                                        <Link href={`/admin/universities/${uni.id}/scholarships`}>
-                                            <Button variant="outline" size="sm">
-                                                <Award className="mr-2 h-4 w-4" />
-                                                Scholarships
-                                            </Button>
-                                        </Link>
-                                        <Link href={`/admin/universities/${uni.id}/accommodation`}>
-                                            <Button variant="outline" size="sm">
-                                                <Home className="mr-2 h-4 w-4" />
-                                                Accommodation
-                                            </Button>
-                                        </Link>
-                                        <Link href={`/admin/universities/${uni.id}`}>
-                                            <Button variant="outline" size="sm">
-                                                <Edit className="mr-2 h-4 w-4" />
-                                                Edit
-                                            </Button>
-                                        </Link>
-                                    </div>
+                                    <UniversityActions id={uni.id} />
                                 </TableCell>
                             </TableRow>
                         ))}
+
                         {(!universities || universities.length === 0) && (
                             <TableRow>
                                 <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
@@ -155,9 +138,9 @@ export default async function AdminUniversitiesPage({
                         )}
                     </TableBody>
                 </Table>
-            </div>
+            </div >
 
             <Pagination totalPages={totalPages} currentPage={page} />
-        </div>
+        </div >
     );
 }

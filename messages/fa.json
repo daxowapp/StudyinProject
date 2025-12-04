@@ -393,12 +393,48 @@
             "hint": "راهنما: {hint}"
         },
         "search": {
-            "placeholder": "جستجو بر اساس نام دانشگاه، شهر یا رتبه..."
+            "placeholder": "جستجو بر اساس نام دانشگاه، شهر یا رتبه...",
+            "label": "جستجو",
+            "universityPlaceholder": "نام دانشگاه..."
         },
         "filters": {
             "title": "فیلترها",
             "description": "محدود کردن جستجوی دانشگاه",
-            "clear": "پاک کردن فیلترها"
+            "clear": "پاک کردن فیلترها",
+            "clearAll": "پاک کردن همه فیلترها",
+            "city": "شهر",
+            "allCities": "همه شهرها",
+            "institutionType": "نوع مؤسسه",
+            "allTypes": "همه انواع",
+            "universityCategory": "دسته‌بندی دانشگاه",
+            "allCategories": "همه دسته‌ها",
+            "rankingRecognition": "رتبه‌بندی و اعتبار",
+            "specialFeatures": "ویژگی‌های خاص",
+            "institutionTypes": {
+                "university": "دانشگاه",
+                "college": "کالج",
+                "languageInstitute": "مؤسسه زبان",
+                "vocationalSchool": "مدرسه حرفه‌ای",
+                "technicalInstitute": "مؤسسه فنی"
+            },
+            "categories": {
+                "public": "دولتی",
+                "private": "خصوصی",
+                "research": "تحقیقاتی",
+                "comprehensive": "جامع",
+                "specialized": "تخصصی",
+                "vocational": "حرفه‌ای"
+            },
+            "rankings": {
+                "project985": "پروژه ۹۸۵",
+                "project211": "پروژه ۲۱۱",
+                "doubleFirstClass": "کلاس اول دوگانه"
+            },
+            "features": {
+                "fastTrack": "پذیرش سریع",
+                "scholarships": "بورسیه موجود",
+                "englishPrograms": "برنامه‌های انگلیسی"
+            }
         },
         "stats": {
             "title": "آمار سریع",
@@ -424,7 +460,45 @@
             "title": "فیلترها",
             "active": "فیلترهای فعال:",
             "clear": "پاک کردن فیلترها",
-            "clearAll": "پاک کردن همه"
+            "clearAll": "پاک کردن همه فیلترها",
+            "search": "جستجو",
+            "searchPlaceholder": "برنامه یا رشته...",
+            "studyLevel": "مقطع تحصیلی",
+            "fieldOfStudy": "رشته تحصیلی",
+            "allFields": "همه رشته‌ها",
+            "maxTuition": "حداکثر شهریه",
+            "language": "زبان",
+            "city": "شهر",
+            "allCities": "همه شهرها",
+            "university": "دانشگاه",
+            "allUniversities": "همه دانشگاه‌ها",
+            "duration": "مدت زمان",
+            "allDurations": "همه مدت‌ها",
+            "scholarshipAvailable": "بورسیه موجود",
+            "levels": {
+                "bachelor": "کارشناسی",
+                "master": "کارشناسی ارشد",
+                "phd": "دکترا"
+            },
+            "fields": {
+                "business": "تجارت و مدیریت",
+                "engineering": "مهندسی و فناوری",
+                "medicine": "پزشکی و علوم بهداشتی",
+                "arts": "هنر و علوم انسانی",
+                "science": "علوم طبیعی",
+                "education": "آموزش"
+            },
+            "languages": {
+                "english": "انگلیسی",
+                "chinese": "چینی"
+            },
+            "durations": {
+                "2years": "۲ سال",
+                "3years": "۳ سال",
+                "4years": "۴ سال",
+                "5years": "۵ سال",
+                "6years": "۶ سال"
+            }
         },
         "stats": {
             "total": "کل برنامه‌ها",
@@ -441,7 +515,20 @@
         "noResults": {
             "title": "برنامه‌ای یافت نشد",
             "description": "فیلترها یا معیارهای جستجو را تنظیم کنید"
+        },
+        "card": {
+            "duration": "مدت زمان",
+            "intake": "دوره پذیرش",
+            "tuitionFee": "شهریه",
+            "viewProgram": "مشاهده برنامه",
+            "contact": "تماس"
         }
+    },
+    "UniversitiesCard": {
+        "programs": "برنامه‌ها",
+        "tuitionFrom": "شهریه از",
+        "viewUniversity": "مشاهده دانشگاه",
+        "viewPrograms": "مشاهده برنامه‌ها"
     },
     "ProgramDetail": {
         "breadcrumb": {
@@ -482,7 +569,12 @@
         },
         "faq": {
             "title": "سوالات متداول",
-            "deadline": "مهلت درخواست {deadline} است."
+            "deadline": "مهلت درخواست {deadline} است.",
+            "accommodationQ": "آیا اسکان فراهم می‌شود؟",
+            "accommodationA": "بله، اسکان در پردیس برای دانشجویان بین‌المللی در دسترس است.",
+            "workQ": "آیا می‌توانم پاره‌وقت کار کنم؟",
+            "workA": "بله، دانشجویان بین‌المللی می‌توانند با مجوزهای مناسب برای برنامه‌های کار-تحصیل یا کارآموزی درخواست دهند.",
+            "deadlineQ": "مهلت درخواست چه زمانی است؟"
         },
         "sidebar": {
             "ready": "آماده درخواست هستید؟",
@@ -641,5 +733,176 @@
         "students": "دانشجویان",
         "ranking": "رتبه‌بندی",
         "international": "بین‌المللی"
+    },
+    "Dashboard": {
+        "sidebar": {
+            "myApplications": "درخواست‌های من",
+            "profile": "پروفایل",
+            "messages": "پیام‌ها",
+            "payments": "پرداخت‌ها",
+            "documents": "مدارک",
+            "settings": "تنظیمات",
+            "logout": "خروج"
+        },
+        "title": "داشبورد",
+        "subtitle": "خوش آمدید! در اینجا مروری بر درخواست‌های شما وجود دارد.",
+        "newApplication": "درخواست جدید",
+        "stats": {
+            "totalApplications": "کل درخواست‌ها",
+            "submitted": "{count} ارسال شده",
+            "pendingActions": "اقدامات معوق",
+            "requiresAttention": "نیاز به توجه",
+            "offersReceived": "پیشنهادات دریافتی",
+            "congratulations": "تبریک!",
+            "successRate": "نرخ موفقیت",
+            "acceptanceRate": "نرخ پذیرش"
+        },
+        "recentApplications": "درخواست‌های اخیر",
+        "appliedOn": "درخواست شده در {date}",
+        "viewDetails": "مشاهده جزئیات",
+        "noApplications": {
+            "title": "هنوز درخواستی وجود ندارد",
+            "description": "سفر خود را با مرور برنامه‌ها و ارسال اولین درخواست خود آغاز کنید."
+        },
+        "browsePrograms": "مرور برنامه‌ها"
+    },
+    "Profile": {
+        "title": "پروفایل من",
+        "subtitle": "اطلاعات شخصی و تنظیمات خود را مدیریت کنید",
+        "completion": "تکمیل پروفایل",
+        "completeProfile": "پروفایل خود را تکمیل کنید تا درخواست‌های آینده سریع‌تر انجام شود",
+        "photo": {
+            "title": "عکس پروفایل",
+            "description": "آپلود عکس حرفه‌ای",
+            "upload": "آپلود عکس",
+            "uploading": "در حال آپلود...",
+            "hint": "JPG، PNG یا GIF. حداکثر ۵ مگابایت."
+        },
+        "personalInfo": {
+            "title": "اطلاعات شخصی",
+            "description": "جزئیات اصلی شما برای درخواست‌ها"
+        },
+        "fullName": "نام کامل *",
+        "dob": "تاریخ تولد",
+        "phone": "شماره تلفن",
+        "nationality": "ملیت",
+        "passportNumber": "شماره پاسپورت",
+        "address": {
+            "title": "آدرس",
+            "description": "آدرس محل سکونت فعلی شما",
+            "street": "آدرس خیابان",
+            "city": "شهر",
+            "postalCode": "کد پستی"
+        },
+        "emergency": {
+            "title": "تماس اضطراری",
+            "description": "شخصی که در مواقع اضطراری باید با او تماس گرفته شود",
+            "name": "نام",
+            "phone": "تلفن",
+            "relationship": "رابطه"
+        },
+        "save": "ذخیره پروفایل",
+        "saving": "در حال ذخیره...",
+        "success": "پروفایل با موفقیت به‌روزرسانی شد!",
+        "error": "خطایی در هنگام به‌روزرسانی پروفایل رخ داد"
+    },
+    "Documents": {
+        "title": "مدارک من",
+        "subtitle": "مدیریت مدارک شما برای درخواست‌های دانشگاه",
+        "stats": {
+            "total": "کل مدارک",
+            "uploaded": "فایل‌های آپلود شده",
+            "verified": "تایید شده",
+            "approved": "تایید شده توسط مدیر",
+            "pending": "در انتظار بررسی",
+            "awaiting": "در انتظار تایید"
+        },
+        "yourDocuments": "مدارک شما",
+        "manageDocuments": "آپلود و مدیریت مدارک درخواست",
+        "uploadDocument": "آپلود مدرک",
+        "noDocuments": "هنوز مدرکی وجود ندارد",
+        "uploadFirst": "اولین مدرک خود را برای شروع آپلود کنید",
+        "size": "اندازه",
+        "uploaded": "آپلود شده",
+        "download": "دانلود",
+        "delete": "حذف",
+        "deleteConfirm": "آیا مطمئن هستید که می‌خواهید \"{name}\" را حذف کنید؟",
+        "uploadDialog": {
+            "title": "آپلود مدرک",
+            "description": "نوع مدرک را انتخاب کنید و فایل خود را آپلود کنید",
+            "type": "نوع مدرک *",
+            "selectType": "انتخاب نوع مدرک",
+            "alreadyUploaded": "(قبلاً آپلود شده)",
+            "file": "فایل *",
+            "selected": "انتخاب شده",
+            "formats": "فرمت‌های پذیرفته شده: PDF, JPG, PNG, DOC, DOCX. حداکثر ۱۰ مگابایت.",
+            "cancel": "لغو",
+            "uploading": "در حال آپلود...",
+            "upload": "آپلود"
+        },
+        "error": {
+            "fileSize": "فایل باید کمتر از ۱۰ مگابایت باشد",
+            "selectFile": "لطفاً نوع مدرک و فایل را انتخاب کنید",
+            "fileType": "لطفاً یک فایل تصویری آپلود کنید",
+            "imageSize": "تصویر باید کمتر از ۵ مگابایت باشد"
+        },
+        "success": {
+            "uploaded": "مدرک با موفقیت آپلود شد!",
+            "deleted": "مدرک حذف شد"
+        },
+        "types": {
+            "passport": "پاسپورت",
+            "transcript": "ریزنمرات تحصیلی",
+            "diploma": "مدرک/گواهینامه",
+            "recommendation_letter": "توصیه‌نامه",
+            "personal_statement": "انگیزه‌نامه",
+            "cv": "رزومه/CV",
+            "language_certificate": "مدرک زبان (IELTS/TOEFL)",
+            "photo": "عکس پاسپورت",
+            "bank_statement": "صورت‌حساب بانکی",
+            "health_certificate": "گواهی سلامت",
+            "police_clearance": "گواهی عدم سوءپیشینه",
+            "other": "سایر مدارک"
+        }
+    },
+    "Status": {
+        "pending_documents": "در انتظار مدارک",
+        "pending_payment": "در انتظار پرداخت",
+        "submitted": "ارسال شده",
+        "under_review": "در حال بررسی",
+        "accepted": "پذیرفته شده",
+        "rejected": "رد شده",
+        "unknown": "ناشناخته"
+    },
+    "Auth": {
+        "login": {
+            "title": "ورود",
+            "description": "برای دسترسی به حساب خود، ایمیل و رمز عبور خود را وارد کنید",
+            "emailLabel": "ایمیل",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "رمز عبور",
+            "forgotPassword": "رمز عبور را فراموش کرده‌اید؟",
+            "submit": "ورود",
+            "orContinueWith": "یا ادامه دهید با",
+            "continueWithGoogle": "ادامه با گوگل",
+            "connecting": "در حال اتصال...",
+            "noAccount": "حساب کاربری ندارید؟",
+            "signUp": "ثبت نام",
+            "success": "ورود با موفقیت انجام شد! در حال تغییر مسیر...",
+            "error": "مشکلی پیش آمد",
+            "googleError": "ورود با گوگل ناموفق بود"
+        },
+        "layout": {
+            "branding": "StudyAtChina",
+            "heroTitle": "دروازه شما به دانشگاه‌های چین",
+            "heroDescription": "به هزاران دانشجوی بین‌المللی بپیوندید که رویاهای خود را در دانشگاه‌های برتر چین دنبال می‌کنند.",
+            "programsTitle": "۵۰۰+ برنامه",
+            "programsDescription": "دسترسی به برنامه‌های دانشگاه‌های برتر چین",
+            "guidanceTitle": "راهنمایی تخصصی",
+            "guidanceDescription": "در طول سفر درخواست خود پشتیبانی دریافت کنید",
+            "scholarshipsTitle": "فرصت‌های بورسیه",
+            "scholarshipsDescription": "گزینه‌های مختلف بورسیه موجود را بررسی کنید",
+            "copyright": "© ۲۰۲۴ StudyAtChina. تمامی حقوق محفوظ است."
+        }
     }
 }

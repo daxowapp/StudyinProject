@@ -12,12 +12,14 @@ import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown,
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
 import { useState, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
 export function HeroSection() {
     const t = useTranslations('Hero');
     const router = useRouter();
+    const locale = useLocale();
+    const isRTL = locale === 'ar' || locale === 'fa';
     const [filters, setFilters] = useState({
         degree: "",
         field: "",
@@ -139,7 +141,7 @@ export function HeroSection() {
                         transition={{ delay: 0.6, duration: 0.8 }}
                         className="w-full max-w-5xl mt-12"
                     >
-                        <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50">
+                        <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50" dir={isRTL ? 'rtl' : 'ltr'}>
                             {/* Search Tabs */}
                             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
                                 {[t('tabs.programs'), t('tabs.universities'), t('tabs.scholarships')].map((tab) => (

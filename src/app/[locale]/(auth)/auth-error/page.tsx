@@ -28,7 +28,7 @@ export default function AuthErrorPage() {
                         <li>Temporary service unavailability</li>
                     </ul>
                     <div className="flex flex-col gap-2 pt-4">
-                        <Link href="/auth/login" className="w-full">
+                        <Link href="/login" className="w-full">
                             <Button className="w-full">
                                 Try Again
                             </Button>

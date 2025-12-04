@@ -7,8 +7,28 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
+import { useState, useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
+
 export function Footer() {
     const t = useTranslations('Footer');
+    const [user, setUser] = useState<User | null>(null);
+    const supabase = createClient();
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            setUser(user);
+        };
+        checkUser();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, [supabase.auth]);
 
     return (
         <footer className="relative bg-gradient-to-b from-background to-muted/50 border-t-2 border-border overflow-hidden">
@@ -102,11 +122,11 @@ export function Footer() {
                         <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('forStudents')}</h3>
                         <ul className="space-y-3">
                             {[
-                                { name: t('createAccount'), href: "/auth/register" },
-                                { name: t('trackApplication'), href: "/dashboard" },
-                                { name: t('documentChecklist'), href: "/dashboard/documents" },
-                                { name: t('studentPortal'), href: "/dashboard" }
-                            ].map((link) => (
+                                { name: t('createAccount'), href: "/register", show: !user },
+                                { name: t('trackApplication'), href: "/dashboard", show: true },
+                                { name: t('documentChecklist'), href: "/dashboard/documents", show: true },
+                                { name: t('studentPortal'), href: "/dashboard", show: true }
+                            ].filter(link => link.show).map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
@@ -134,9 +154,14 @@ export function Footer() {
                             </li>
                             <li className="flex items-start gap-3">
                                 <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-muted-foreground">
-                                    +86 123 456 7890
-                                </span>
+                                <a
+                                    href="https://wa.me/905492006060"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                >
+                                    +90 549 200 60 60
+                                </a>
                             </li>
                             <li className="flex items-start gap-3">
                                 <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
