@@ -36,7 +36,8 @@ import { toast } from "sonner";
 import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
 import { RequirementsManager } from "./requirements/RequirementsManager";
-import { UniversityTranslations } from "../components/UniversityTranslations";
+import { UniversityTranslations, type Translation } from "../components/UniversityTranslations";
+
 import Image from "next/image";
 
 interface Program {
@@ -91,7 +92,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
     const [featureInput, setFeatureInput] = useState<string>("");
     const [languages, setLanguages] = useState<Language[]>([]);
     const [scholarships, setScholarships] = useState<Scholarship[]>([]);
-    const [translations, setTranslations] = useState<any[]>([]);
+    const [translations, setTranslations] = useState<Translation[]>([]);
     const [formData, setFormData] = useState({
         name: "",
         name_local: "",

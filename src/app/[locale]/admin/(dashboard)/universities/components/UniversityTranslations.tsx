@@ -11,7 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Sparkles, Save } from "lucide-react";
 
-interface Translation {
+export interface Translation {
     id?: string;
     university_id: string;
     locale: string;
@@ -55,7 +55,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
     const [saving, setSaving] = useState(false);
     const [generating, setGenerating] = useState<string | null>(null);
 
-    const handleChange = (locale: string, field: keyof Translation, value: any) => {
+    const handleChange = (locale: string, field: keyof Translation, value: string | string[]) => {
         setTranslations(prev => ({
             ...prev,
             [locale]: {
@@ -106,8 +106,8 @@ export function UniversityTranslations({ universityId, initialTranslations, base
                 [locale]: { ...prev[locale], id: data.id },
             }));
             toast.success(`Saved ${LOCALES.find(l => l.code === locale)?.name} translation`);
-        } catch (error: any) {
-            toast.error("Error saving translation: " + error.message);
+        } catch (error) {
+            toast.error("Error saving translation: " + (error as Error).message);
         } finally {
             setSaving(false);
         }

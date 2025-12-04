@@ -141,7 +141,7 @@ export default async function DashboardPage() {
                                         <div className="space-y-2 mb-4 md:mb-0">
                                             <p className="font-semibold text-lg">{app.university_program?.program_catalog?.title || "Program"}</p>
                                             <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                                {app.university_program?.university?.name || "University"}
+                                                {app.university_program?.university?.name || "Unknown University"}
                                             </p>
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Calendar className="h-3 w-3" />
@@ -159,7 +159,7 @@ export default async function DashboardPage() {
                                                                     "bg-gray-100 text-gray-800 hover:bg-gray-100"
                                                 }
                                             >
-                                                {tStatus(app.status as any) || app.status}
+                                                {tStatus(app.status as string) || app.status}
                                             </Badge>
                                             <Link href={`/dashboard/applications/${app.id}`}>
                                                 <Button variant="outline" size="sm" className="gap-2">
