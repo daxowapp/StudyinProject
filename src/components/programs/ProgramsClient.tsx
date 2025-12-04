@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid, List, Search, X, SlidersHorizontal } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 interface Program {
     id: string;
@@ -41,6 +42,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
     const t = useTranslations('Programs');
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     const [filters, setFilters] = useState<FilterState>({
         search: '',
@@ -254,23 +256,68 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
         });
     }, [programs, filters]);
 
+    // Count active filters
+    const activeFilterCount = useMemo(() => {
+        let count = 0;
+        if (filters.levels.length > 0) count += filters.levels.length;
+        if (filters.cities.length > 0) count += filters.cities.length;
+        if (filters.languages.length > 0) count += filters.languages.length;
+        if (filters.field !== 'all') count++;
+        if (filters.scholarship) count++;
+        if (filters.university !== 'all') count++;
+        return count;
+    }, [filters]);
+
+    // Filter content component for reuse
+    const FilterContent = () => (
+        <ProgramFilters
+            onFilterChange={setFilters}
+            availableCities={availableCities}
+            availableUniversities={availableUniversities}
+            currentFilters={filters}
+        />
+    );
+
     return (
         <div className="container mx-auto px-4 md:px-6 py-8">
-            <div className="flex flex-col lg:flex-row gap-8">
-                {/* Sidebar Filters */}
-                <aside className="w-full lg:w-80 shrink-0">
+            <div className="flex flex-col lg:flex-row gap-6">
+                {/* Mobile Filters Button */}
+                <div className="lg:hidden">
+                    <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="outline" className="w-full justify-between h-12">
+                                <span className="flex items-center gap-2">
+                                    <SlidersHorizontal className="h-4 w-4" />
+                                    {t('filters.title')}
+                                </span>
+                                {activeFilterCount > 0 && (
+                                    <Badge className="ml-2">{activeFilterCount}</Badge>
+                                )}
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="w-[300px] sm:w-[350px] overflow-y-auto">
+                            <SheetHeader>
+                                <SheetTitle className="flex items-center gap-2">
+                                    <Search className="h-5 w-5 text-primary" />
+                                    {t('filters.title')}
+                                </SheetTitle>
+                            </SheetHeader>
+                            <div className="mt-6">
+                                <FilterContent />
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+
+                {/* Desktop Sidebar Filters */}
+                <aside className="hidden lg:block w-72 shrink-0">
                     <div className="sticky top-28 space-y-6">
                         <div className="bg-card rounded-xl border shadow-sm p-6">
                             <h2 className="text-lg font-bold mb-6 flex items-center gap-2">
                                 <Search className="h-5 w-5 text-primary" />
                                 {t('filters.title')}
                             </h2>
-                            <ProgramFilters
-                                onFilterChange={setFilters}
-                                availableCities={availableCities}
-                                availableUniversities={availableUniversities}
-                                currentFilters={filters}
-                            />
+                            <FilterContent />
                         </div>
                     </div>
                 </aside>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { createClient } from "@/lib/supabase/server";
 
 // Initialize Stripe (use a test key if env var is missing for now to prevent crash)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_mock", {
@@ -9,6 +10,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_mock", {
 
 export async function POST(request: Request) {
     try {
+        // 1. Verify the request is from an authenticated user
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            return NextResponse.json({ error: "Unauthorized - Please login to continue" }, { status: 401 });
+        }
+
         const { applicationId, amount, currency = "usd" } = await request.json();
 
         // In a real app, validate the application exists and amount is correct from DB

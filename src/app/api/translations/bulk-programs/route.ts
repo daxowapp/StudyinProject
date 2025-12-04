@@ -7,6 +7,24 @@ export async function POST(request: NextRequest) {
     try {
         const supabase = await createClient();
 
+        // 1. Verify the request is from an authenticated admin
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        // Check if user is admin
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', user.id)
+            .single();
+
+        if (profile?.role !== 'admin') {
+            return NextResponse.json({ error: "Forbidden - Admin access required" }, { status: 403 });
+        }
+
         // Get all programs that need translations
         const { data: programs, error: programsError } = await supabase
             .from("v_university_programs_full")

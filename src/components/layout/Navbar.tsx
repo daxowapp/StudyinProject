@@ -396,18 +396,25 @@ export function Navbar() {
                             </SheetTrigger>
                             <SheetContent side="right" className="w-[300px] sm:w-[400px] border-s-2 p-0">
                                 <div className="flex flex-col h-full">
-                                    <div className="p-6 border-b">
-                                        <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                                            <div className="relative h-8 w-24">
-                                                <Image
-                                                    src="/logo-red.png"
-                                                    alt="StudyAtChina Logo"
-                                                    fill
-                                                    className="object-contain"
-                                                    sizes="100px"
-                                                />
-                                            </div>
-                                        </Link>
+                                    <div className="p-4 border-b">
+                                        <div className="flex items-center justify-between">
+                                            <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+                                                <div className="relative h-8 w-24">
+                                                    <Image
+                                                        src="/logo-red.png"
+                                                        alt="StudyAtChina Logo"
+                                                        fill
+                                                        className="object-contain"
+                                                        sizes="100px"
+                                                    />
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        {/* Mobile Language & Currency Controls */}
+                                        <div className="flex items-center gap-2 mt-4 pt-4 border-t">
+                                            <LanguageSwitcher />
+                                            <CurrencySelector variant="navbar" className="text-foreground hover:bg-muted" />
+                                        </div>
                                     </div>
 
                                     <div className="flex-1 overflow-y-auto py-6 px-4 relative">
