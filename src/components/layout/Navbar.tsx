@@ -42,6 +42,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import Image from "next/image";
 import { User } from "@supabase/supabase-js";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 
 
 
@@ -312,41 +313,44 @@ export function Navbar() {
 
                             {!loading && (
                                 user ? (
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className={`rounded-full font-medium ps-2 pe-4 ${showSolid
-                                                    ? "text-foreground hover:bg-muted"
-                                                    : "text-white hover:bg-white/10"
-                                                    }`}
-                                            >
-                                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center me-2">
-                                                    <UserIcon className="h-4 w-4 text-primary" />
-                                                </div>
-                                                {user.user_metadata?.full_name?.split(' ')[0] || t('user.account')}
-                                            </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end" className="w-56">
-                                            <DropdownMenuLabel>
-                                                <div className="flex flex-col space-y-1">
-                                                    <p className="text-sm font-medium">{user.user_metadata?.full_name || t('user.myAccount')}</p>
-                                                    <p className="text-xs text-muted-foreground">{user.email}</p>
-                                                </div>
-                                            </DropdownMenuLabel>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                                                <FileText className="me-2 h-4 w-4" />
-                                                {t('user.myApplications')}
-                                            </DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem onClick={handleLogout}>
-                                                <LogOut className="me-2 h-4 w-4" />
-                                                {t('user.logout')}
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                    <div className="flex items-center gap-2">
+                                        <NotificationBell userId={user.id} className={showSolid ? "" : "text-white hover:bg-white/10"} />
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className={`rounded-full font-medium ps-2 pe-4 ${showSolid
+                                                        ? "text-foreground hover:bg-muted"
+                                                        : "text-white hover:bg-white/10"
+                                                        }`}
+                                                >
+                                                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center me-2">
+                                                        <UserIcon className="h-4 w-4 text-primary" />
+                                                    </div>
+                                                    {user.user_metadata?.full_name?.split(' ')[0] || t('user.account')}
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end" className="w-56">
+                                                <DropdownMenuLabel>
+                                                    <div className="flex flex-col space-y-1">
+                                                        <p className="text-sm font-medium">{user.user_metadata?.full_name || t('user.myAccount')}</p>
+                                                        <p className="text-xs text-muted-foreground">{user.email}</p>
+                                                    </div>
+                                                </DropdownMenuLabel>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                                                    <FileText className="me-2 h-4 w-4" />
+                                                    {t('user.myApplications')}
+                                                </DropdownMenuItem>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem onClick={handleLogout}>
+                                                    <LogOut className="me-2 h-4 w-4" />
+                                                    {t('user.logout')}
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </div>
                                 ) : (
                                     <>
                                         <Link href="/login">
