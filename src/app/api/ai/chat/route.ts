@@ -92,6 +92,7 @@ export async function POST(request: NextRequest) {
                 .limit(5);
 
             if (applications) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 userApplications = applications.map((app: any) => ({
                     id: app.id,
                     status: app.status,
