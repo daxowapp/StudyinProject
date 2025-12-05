@@ -60,6 +60,34 @@ export default async function PaymentSuccessPage({ searchParams }: PageProps) {
                             updated_at: new Date().toISOString(),
                         })
                         .eq("id", application_id);
+
+                    // Send emails
+                    try {
+                        const { sendPaymentSuccessEmail, sendAdminNewPaymentEmail } = await import('@/lib/email/service');
+                        const { data: appData } = await supabase.from('applications').select('student_id, student_email, student_name').eq('id', application_id).single();
+
+                        if (appData) {
+                            // 1. To Student
+                            await sendPaymentSuccessEmail({
+                                studentId: appData.student_id,
+                                studentEmail: appData.student_email,
+                                studentName: appData.student_name,
+                                amount: amount,
+                                currency: currency,
+                                applicationId: application_id
+                            });
+
+                            // 2. To Admin
+                            await sendAdminNewPaymentEmail({
+                                studentName: appData.student_name,
+                                amount: amount,
+                                currency: currency,
+                                applicationId: application_id
+                            });
+                        }
+                    } catch (e) {
+                        console.error("Failed to send payment emails:", e);
+                    }
                 }
             }
         } catch (error) {

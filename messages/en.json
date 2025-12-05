@@ -498,7 +498,9 @@
                 "4years": "4 Years",
                 "5years": "5 Years",
                 "6years": "6 Years"
-            }
+            },
+            "matchingPrograms": "programs match",
+            "applyFilters": "Apply Filters"
         },
         "stats": {
             "total": "Total Programs",
@@ -521,7 +523,73 @@
             "intake": "Intake",
             "tuitionFee": "Tuition Fee",
             "viewProgram": "View Program",
-            "contact": "Contact"
+            "contact": "Contact",
+            "scholarship": "Scholarship",
+            "addToCompare": "Add to compare",
+            "removeFromCompare": "Remove from compare",
+            "level": "Level",
+            "features": "Features",
+            "viewFullDetails": "View Full Details",
+            "applyNow": "Apply Now"
+        },
+        "compare": {
+            "title": "Compare Programs",
+            "comparing": "Comparing",
+            "more": "more",
+            "clear": "Clear",
+            "compareNow": "Compare Now",
+            "university": "University",
+            "location": "Location",
+            "level": "Level",
+            "duration": "Duration",
+            "tuition": "Tuition",
+            "intake": "Intake",
+            "language": "Language",
+            "viewDetails": "View Details",
+            "apply": "Apply"
+        },
+        "emptyState": {
+            "title": "No Programs Found",
+            "description": "We couldn't find any programs. Try browsing our full catalog.",
+            "filteredDescription": "No programs match your current filters. Try adjusting your search criteria.",
+            "currentFilters": "Your current filters:",
+            "scholarship": "Scholarship",
+            "clearFilters": "Clear All Filters",
+            "tryInstead": "Popular searches to try:",
+            "browseAll": "Browse All Programs",
+            "exploreUniversities": "Explore Universities"
+        },
+        "recentlyViewed": {
+            "title": "Recently Viewed",
+            "clear": "Clear",
+            "viewAgain": "View again",
+            "justNow": "Just now",
+            "minutesAgo": "{count}m ago",
+            "hoursAgo": "{count}h ago",
+            "daysAgo": "{count}d ago"
+        }
+    },
+    "GuidedTour": {
+        "skip": "Skip Tour",
+        "next": "Next",
+        "finish": "Got it!",
+        "programs": {
+            "search": {
+                "title": "Find Your Program",
+                "content": "Use the search bar to find programs by name, field of study, or keywords."
+            },
+            "filters": {
+                "title": "Refine Your Search",
+                "content": "Use filters to narrow down by degree level, location, language, and budget."
+            },
+            "card": {
+                "title": "Program Details",
+                "content": "Click on any program card to see full details, requirements, and how to apply."
+            },
+            "compare": {
+                "title": "Compare Programs",
+                "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
+            }
         }
     },
     "UniversitiesCard": {

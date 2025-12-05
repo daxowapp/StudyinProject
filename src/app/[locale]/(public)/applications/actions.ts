@@ -31,11 +31,48 @@ export async function submitApplication(formData: FormData) {
             passport_number: passportNumber
         },
         documents: {} // Placeholder
-    }).select().single();
+    }).select(`
+        *,
+        university_program:program_id (
+            id,
+            program_catalog:program_catalog_id (
+                title
+            ),
+            university:university_id (
+                name
+            )
+        )
+    `).single();
 
     if (error) {
         console.error("Application submission error:", error);
         return { error: error.message };
+    }
+
+    // Send emails
+    try {
+        const { sendApplicationSubmittedEmail, sendAdminNewApplicationEmail } = await import('@/lib/email/service');
+
+        // 1. To Student
+        await sendApplicationSubmittedEmail({
+            studentId: user.id,
+            studentEmail: user.email!, // Assumed present if auth passed
+            studentName: `${firstName} ${lastName}`,
+            programTitle: data.university_program?.program_catalog?.title || 'Program',
+            universityName: data.university_program?.university?.name || 'University',
+            applicationId: data.id
+        });
+
+        // 2. To Admin
+        await sendAdminNewApplicationEmail({
+            studentName: `${firstName} ${lastName}`,
+            programTitle: data.university_program?.program_catalog?.title || 'Program',
+            applicationId: data.id
+        });
+
+    } catch (e) {
+        console.error("Failed to send submission emails:", e);
+        // Don't fail the request, just log
     }
 
     return { applicationId: data.id };

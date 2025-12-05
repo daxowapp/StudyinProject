@@ -521,7 +521,73 @@
             "intake": "الدفعة",
             "tuitionFee": "الرسوم الدراسية",
             "viewProgram": "عرض البرنامج",
-            "contact": "تواصل"
+            "contact": "تواصل",
+            "scholarship": "منحة دراسية",
+            "addToCompare": "أضف للمقارنة",
+            "removeFromCompare": "إزالة من المقارنة",
+            "level": "المستوى",
+            "features": "المميزات",
+            "viewFullDetails": "عرض التفاصيل الكاملة",
+            "applyNow": "قدم الآن"
+        },
+        "compare": {
+            "title": "مقارنة البرامج",
+            "comparing": "تتم المقارنة",
+            "more": "المزيد",
+            "clear": "مسح",
+            "compareNow": "قارن الآن",
+            "university": "الجامعة",
+            "location": "الموقع",
+            "level": "المستوى",
+            "duration": "المدة",
+            "tuition": "الرسوم",
+            "intake": "الدفعة",
+            "language": "اللغة",
+            "viewDetails": "عرض التفاصيل",
+            "apply": "قدم"
+        },
+        "emptyState": {
+            "title": "لم يتم العثور على برامج",
+            "description": "لم نتمكن من العثور على أي برامج. جرب تصفح المحتوى الكامل.",
+            "filteredDescription": "لا توجد برامج تطابق فلاترك الحالية. جرب تعديل معايير البحث.",
+            "currentFilters": "الفلاتر الحالية:",
+            "scholarship": "منحة دراسية",
+            "clearFilters": "مسح جميع الفلاتر",
+            "tryInstead": "عمليات بحث شائعة للتجربة:",
+            "browseAll": "تصفح جميع البرامج",
+            "exploreUniversities": "استكشف الجامعات"
+        },
+        "recentlyViewed": {
+            "title": "شوهد مؤخراً",
+            "clear": "مسح",
+            "viewAgain": "عرض مجدداً",
+            "justNow": "الآن",
+            "minutesAgo": "منذ {count} دقيقة",
+            "hoursAgo": "منذ {count} ساعة",
+            "daysAgo": "منذ {count} يوم"
+        }
+    },
+    "GuidedTour": {
+        "skip": "تخطي الجولة",
+        "next": "التالي",
+        "finish": "فهمت!",
+        "programs": {
+            "search": {
+                "title": "ابحث عن برنامجك",
+                "content": "استخدم شريط البحث للعثور على البرامج حسب الاسم أو مجال الدراسة أو الكلمات المفتاحية."
+            },
+            "filters": {
+                "title": "حسّن بحثك",
+                "content": "استخدم الفلاتر للتضييق حسب المستوى الدراسي والموقع واللغة والميزانية."
+            },
+            "card": {
+                "title": "تفاصيل البرنامج",
+                "content": "انقر على أي بطاقة برنامج لرؤية التفاصيل الكاملة والمتطلبات وكيفية التقديم."
+            },
+            "compare": {
+                "title": "قارن البرامج",
+                "content": "اختر حتى 3 برامج لمقارنتها جنباً إلى جنب واتخذ أفضل قرار."
+            }
         }
     },
     "UniversitiesCard": {

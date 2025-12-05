@@ -2,16 +2,21 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { Resend } from 'resend';
+import { emailTemplates } from './templates';
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY || '');
+
+// Helper to get admin email
+const getAdminEmail = () => process.env.ADMIN_EMAIL || 'admin@studyatchina.com';
+const getSenderEmail = () => process.env.EMAIL_FROM || 'StudyAtChina <noreply@studyatchina.com>';
 
 export interface SendEmailParams {
   to: string;
   subject: string;
   html: string;
-  text?: string;
-  recipientId: string;
+  text?: string; // Auto-generated if not provided? For now, optional
+  recipientId?: string; // Optional if sending to admin
   applicationId?: string;
   messageId?: string;
   paymentId?: string;
@@ -19,19 +24,19 @@ export interface SendEmailParams {
 }
 
 /**
- * Send email using Resend API and log to database
+ * Core: Send email using Resend API and log to database
  */
 export async function sendEmail(params: SendEmailParams) {
   const supabase = await createClient();
 
   try {
-    // Send email via Resend
+    // 1. Send via Resend
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'StudyAtChina <noreply@studyatchina.com>',
+      from: getSenderEmail(),
       to: params.to,
       subject: params.subject,
       html: params.html,
-      text: params.text,
+      text: params.text || '', // Resend likes text version too
     });
 
     if (resendError) {
@@ -41,56 +46,60 @@ export async function sendEmail(params: SendEmailParams) {
 
     console.log('Email sent via Resend:', resendData?.id);
 
-    // Log email to database
-    const { data: emailLog, error: logError } = await supabase
-      .from('email_notifications')
-      .insert({
+    // 2. Log to database
+    // Only log if we have a recipient ID (internal user) or if we want to log admin emails too (maybe with null recipient_id)
+    // The current schema demands recipient_id? Let's check schema. 
+    // Usually it's better to log everything. If recipientId is missing (e.g. admin), we might skip or put a dummy ID if schema enforces it.
+    // We'll proceed with logging if recipientId is present.
+
+    if (params.recipientId) {
+      const { error: logError } = await supabase
+        .from('email_notifications')
+        .insert({
+          recipient_id: params.recipientId,
+          recipient_email: params.to,
+          application_id: params.applicationId,
+          message_id: params.messageId,
+          payment_id: params.paymentId,
+          email_type: params.emailType,
+          subject: params.subject,
+          body: params.text || '',
+          html_body: params.html,
+          status: 'sent',
+          resend_id: resendData?.id,
+          sent_at: new Date().toISOString(),
+        });
+
+      if (logError) {
+        console.error('Error logging email:', logError);
+      }
+    }
+
+    return { success: true, resendId: resendData?.id };
+  } catch (error: unknown) {
+    console.error('Error sending email:', error);
+
+    // Log failure if possible
+    if (params.recipientId) {
+      await supabase.from('email_notifications').insert({
         recipient_id: params.recipientId,
         recipient_email: params.to,
         application_id: params.applicationId,
-        message_id: params.messageId,
-        payment_id: params.paymentId,
         email_type: params.emailType,
         subject: params.subject,
         body: params.text || '',
         html_body: params.html,
-        status: 'sent',
-        resend_id: resendData?.id,
-        sent_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
-
-    if (logError) {
-      console.error('Error logging email:', logError);
-      // Don't throw - email was sent successfully
+        status: 'failed',
+        error_message: (error as Error).message,
+      });
     }
-
-    console.log('Email logged:', emailLog?.id);
-    return { success: true, emailId: emailLog?.id, resendId: resendData?.id };
-  } catch (error: unknown) {
-    console.error('Error sending email:', error);
-
-    // Log failed email attempt
-    await supabase.from('email_notifications').insert({
-      recipient_id: params.recipientId,
-      recipient_email: params.to,
-      application_id: params.applicationId,
-      email_type: params.emailType,
-      subject: params.subject,
-      body: params.text || '',
-      html_body: params.html,
-      status: 'failed',
-      error_message: (error as Error).message,
-    });
 
     return { success: false, error: (error as Error).message };
   }
 }
 
-/**
- * Send application submitted email
- */
+// --- STUDENT NOTIFICATIONS ---
+
 export async function sendApplicationSubmittedEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -99,9 +108,7 @@ export async function sendApplicationSubmittedEmail(data: {
   universityName: string;
   applicationId: string;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.applicationSubmitted(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -113,9 +120,6 @@ export async function sendApplicationSubmittedEmail(data: {
   });
 }
 
-/**
- * Send status changed email
- */
 export async function sendStatusChangedEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -125,9 +129,7 @@ export async function sendStatusChangedEmail(data: {
   newStatus: string;
   applicationId: string;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.statusChanged(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -139,9 +141,6 @@ export async function sendStatusChangedEmail(data: {
   });
 }
 
-/**
- * Send document requested email
- */
 export async function sendDocumentRequestedEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -151,9 +150,7 @@ export async function sendDocumentRequestedEmail(data: {
   deadline: string;
   applicationId: string;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.documentRequested(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -165,9 +162,6 @@ export async function sendDocumentRequestedEmail(data: {
   });
 }
 
-/**
- * Send payment requested email
- */
 export async function sendPaymentRequestedEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -177,11 +171,9 @@ export async function sendPaymentRequestedEmail(data: {
   paymentType: string;
   paymentLink: string;
   deadline: string;
-  paymentId: string;
+  paymentId?: string;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.paymentRequested(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -193,9 +185,26 @@ export async function sendPaymentRequestedEmail(data: {
   });
 }
 
-/**
- * Send acceptance letter email
- */
+export async function sendPaymentSuccessEmail(data: {
+  studentId: string;
+  studentEmail: string;
+  studentName: string;
+  amount: number;
+  currency: string;
+  applicationId: string;
+}) {
+  const template = emailTemplates.paymentSuccess(data);
+  return sendEmail({
+    to: data.studentEmail,
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    recipientId: data.studentId,
+    applicationId: data.applicationId,
+    emailType: 'payment_success',
+  });
+}
+
 export async function sendAcceptanceLetterEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -206,9 +215,7 @@ export async function sendAcceptanceLetterEmail(data: {
   letterUrl: string;
   applicationId: string;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.acceptanceLetter(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -220,9 +227,6 @@ export async function sendAcceptanceLetterEmail(data: {
   });
 }
 
-/**
- * Send message received email
- */
 export async function sendMessageReceivedEmail(data: {
   studentId: string;
   studentEmail: string;
@@ -233,9 +237,7 @@ export async function sendMessageReceivedEmail(data: {
   messageId: string;
   requiresAction: boolean;
 }) {
-  const { emailTemplates } = await import('./templates');
   const template = emailTemplates.messageReceived(data);
-
   return sendEmail({
     to: data.studentEmail,
     subject: template.subject,
@@ -248,55 +250,56 @@ export async function sendMessageReceivedEmail(data: {
   });
 }
 
-/**
- * Get user's notification preferences
- */
-export async function getNotificationPreferences(userId: string) {
-  const supabase = await createClient();
+// --- ADMIN NOTIFICATIONS ---
 
-  const { data, error } = await supabase
-    .from('notification_preferences')
-    .select('*')
-    .eq('user_id', userId)
-    .single();
-
-  if (error && error.code !== 'PGRST116') {
-    console.error('Error fetching preferences:', error);
-    return null;
-  }
-
-  // Return default preferences if none exist
-  if (!data) {
-    return {
-      email_application_updates: true,
-      email_messages: true,
-      email_payment_requests: true,
-      email_document_requests: true,
-      email_status_changes: true,
-      email_deadlines: true,
-      email_marketing: false,
-    };
-  }
-
-  return data;
+export async function sendAdminNewApplicationEmail(data: {
+  studentName: string;
+  programTitle: string;
+  applicationId: string;
+}) {
+  const template = emailTemplates.adminNewApplication(data);
+  return sendEmail({
+    to: getAdminEmail(),
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    // recipientId: undefined, // Admins might not have ID or we don't want to log them as 'recipient' in same table logic
+    applicationId: data.applicationId,
+    emailType: 'admin_new_application',
+  });
 }
 
-/**
- * Check if user wants to receive this type of email
- */
-export async function shouldSendEmail(userId: string, emailType: string): Promise<boolean> {
-  const prefs = await getNotificationPreferences(userId);
-  if (!prefs) return true; // Default to sending if no preferences
+export async function sendAdminNewPaymentEmail(data: {
+  studentName: string;
+  amount: number;
+  currency: string;
+  applicationId: string;
+}) {
+  const template = emailTemplates.adminNewPayment(data);
+  return sendEmail({
+    to: getAdminEmail(),
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    applicationId: data.applicationId,
+    emailType: 'admin_payment_received',
+  });
+}
 
-  const typeMap: Record<string, keyof typeof prefs> = {
-    application_submitted: 'email_application_updates',
-    status_changed: 'email_status_changes',
-    document_requested: 'email_document_requests',
-    payment_requested: 'email_payment_requests',
-    message_received: 'email_messages',
-    acceptance_letter: 'email_application_updates',
-  };
-
-  const prefKey = typeMap[emailType];
-  return prefKey ? prefs[prefKey] : true;
+export async function sendAdminNewMessageEmail(data: {
+  studentName: string;
+  message: string;
+  applicationId: string;
+  messageId: string;
+}) {
+  const template = emailTemplates.adminNewMessage(data);
+  return sendEmail({
+    to: getAdminEmail(),
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    applicationId: data.applicationId,
+    messageId: data.messageId,
+    emailType: 'admin_new_message',
+  });
 }

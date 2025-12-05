@@ -3,16 +3,22 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Sparkles, Languages } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
-import { ScholarshipTranslations, ScholarshipTranslationData } from "../../../components/ScholarshipTranslations";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner";
+import { ScholarshipFormContent, ScholarshipFormData } from "../../../components/ScholarshipFormContent";
+
+const LOCALES = [
+    { code: "ar", name: "Arabic", dir: "rtl" },
+    { code: "fa", name: "Farsi", dir: "rtl" },
+    { code: "tr", name: "Turkish", dir: "ltr" },
+    { code: "en", name: "English", dir: "ltr" },
+];
 
 export default function EditUniversityScholarshipPage() {
     const router = useRouter();
@@ -23,9 +29,11 @@ export default function EditUniversityScholarshipPage() {
 
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [generating, setGenerating] = useState(false);
     const [universityName, setUniversityName] = useState("");
-    const [translations, setTranslations] = useState<ScholarshipTranslationData[]>([]);
-    const [formData, setFormData] = useState({
+
+    // Main English Data
+    const [formData, setFormData] = useState<ScholarshipFormData>({
         type_name: "",
         display_name: "",
         description: "",
@@ -42,126 +50,227 @@ export default function EditUniversityScholarshipPage() {
         one_time_allowance_currency: "CNY",
         service_fee_usd: 0,
         service_fee_cny: 0,
-        is_active: true,
         display_order: 0,
+        additional_benefits: [],
+        requirements: [],
     });
 
+    const [isActive, setIsActive] = useState(true);
+
+    // Translations Map (locale -> data)
+    const [translations, setTranslations] = useState<Record<string, ScholarshipFormData>>({});
+
     useEffect(() => {
-        fetchUniversity();
-        if (scholarshipId && scholarshipId !== "new") {
-            fetchScholarship();
-            fetchTranslations();
-        } else {
+        const init = async () => {
+            await fetchUniversity();
+            if (scholarshipId && scholarshipId !== "new") {
+                await Promise.all([fetchScholarship(), fetchTranslations()]);
+            }
             setLoading(false);
-        }
+        };
+        init();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scholarshipId, universityId]);
 
-    const fetchTranslations = async () => {
-        try {
-            const { data } = await supabase
-                .from("scholarship_translations")
-                .select("*")
-                .eq("scholarship_id", scholarshipId);
-            setTranslations(data || []);
-        } catch (error) {
-            console.error("Error fetching translations:", error);
-        }
-    };
-
     const fetchUniversity = async () => {
-        try {
-            const { data, error } = await supabase
-                .from("universities")
-                .select("name")
-                .eq("id", universityId)
-                .single();
-
-            if (error) throw error;
-            if (data) setUniversityName(data.name);
-        } catch (error) {
-            console.error("Error fetching university:", error);
-        }
+        const { data } = await supabase.from("universities").select("name").eq("id", universityId).single();
+        if (data) setUniversityName(data.name);
     };
 
     const fetchScholarship = async () => {
+        const { data, error } = await supabase.from("university_scholarships").select("*").eq("id", scholarshipId).single();
+        if (error || !data) return;
+
+        setFormData({
+            type_name: data.type_name || "",
+            display_name: data.display_name || "",
+            description: data.description || "",
+            tuition_coverage_percentage: data.tuition_coverage_percentage || 100,
+            duration_years: data.duration_years || 4,
+            includes_accommodation: data.includes_accommodation || false,
+            accommodation_type: data.accommodation_type || "",
+            includes_stipend: data.includes_stipend || false,
+            stipend_amount_monthly: Number(data.stipend_amount_monthly) || 0,
+            stipend_currency: data.stipend_currency || "CNY",
+            stipend_duration_months: data.stipend_duration_months || 12,
+            includes_medical_insurance: data.includes_medical_insurance || false,
+            one_time_allowance: Number(data.one_time_allowance) || 0,
+            one_time_allowance_currency: data.one_time_allowance_currency || "CNY",
+            service_fee_usd: Number(data.service_fee_usd) || 0,
+            service_fee_cny: Number(data.service_fee_cny) || 0,
+            display_order: data.display_order || 0,
+            additional_benefits: data.additional_benefits || [],
+            requirements: data.requirements || [],
+        });
+        setIsActive(data.is_active ?? true);
+    };
+
+    const fetchTranslations = async () => {
+        const { data } = await supabase.from("scholarship_translations").select("*").eq("scholarship_id", scholarshipId);
+        if (data) {
+            const map: Record<string, ScholarshipFormData> = {};
+            data.forEach((t: any) => {
+                map[t.locale] = {
+                    display_name: t.display_name || "",
+                    description: t.description || "",
+                    accommodation_type: t.accommodation_type || "",
+                    additional_benefits: t.additional_benefits || [],
+                    requirements: t.requirements || [],
+                };
+            });
+            setTranslations(map);
+        }
+    };
+
+    // Helper to merge shared data into translation view
+    const getCombinedData = (locale: string): ScholarshipFormData => {
+        if (locale === "en") return formData;
+
+        const trans = translations[locale] || {};
+
+        // Explicitly construct the data to strictly separate shared vs translated fields
+        // This prevents any accidental overwrites if 'trans' has undefined keys
+        return {
+            // Shared numeric/boolean fields - ALWAYS from formData
+            tuition_coverage_percentage: formData.tuition_coverage_percentage,
+            duration_years: formData.duration_years,
+            includes_accommodation: formData.includes_accommodation,
+            includes_stipend: formData.includes_stipend,
+            stipend_amount_monthly: formData.stipend_amount_monthly,
+            stipend_currency: formData.stipend_currency,
+            stipend_duration_months: formData.stipend_duration_months,
+            includes_medical_insurance: formData.includes_medical_insurance,
+            one_time_allowance: formData.one_time_allowance,
+            one_time_allowance_currency: formData.one_time_allowance_currency,
+            service_fee_usd: formData.service_fee_usd,
+            service_fee_cny: formData.service_fee_cny,
+            type_name: formData.type_name,
+            display_order: formData.display_order,
+
+            // Translated text fields - Try trans first, fallback to empty (NOT formData which is English)
+            display_name: trans.display_name || "",
+            description: trans.description || "",
+            accommodation_type: trans.accommodation_type || "",
+
+            // Arrays - Try trans, fallback to empty
+            additional_benefits: trans.additional_benefits || [],
+            requirements: trans.requirements || [],
+        };
+    };
+
+    const handleFieldChange = (locale: string, field: keyof ScholarshipFormData, value: any) => {
+        if (locale === "en") {
+            setFormData(prev => ({ ...prev, [field]: value }));
+        } else {
+            setTranslations(prev => ({
+                ...prev,
+                [locale]: {
+                    ...(prev[locale] || {}),
+                    [field]: value
+                }
+            }));
+        }
+    };
+
+    const handleTranslateAll = async () => {
+        setGenerating(true);
+        let successCount = 0;
+        let failCount = 0;
+
         try {
-            const { data, error } = await supabase
-                .from("university_scholarships")
-                .select("*")
-                .eq("id", scholarshipId)
-                .single();
+            for (const locale of LOCALES) {
+                if (locale.code === 'en') continue;
 
-            if (error) throw error;
+                try {
+                    const response = await fetch("/api/ai/generate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            type: "scholarship_translation",
+                            query: `Translate to ${locale.name}: ${JSON.stringify(formData)}`
+                        }),
+                    });
 
-            if (data) {
-                setFormData({
-                    type_name: data.type_name || "",
-                    display_name: data.display_name || "",
-                    description: data.description || "",
-                    tuition_coverage_percentage: data.tuition_coverage_percentage || 100,
-                    duration_years: data.duration_years || 4,
-                    includes_accommodation: data.includes_accommodation || false,
-                    accommodation_type: data.accommodation_type || "",
-                    includes_stipend: data.includes_stipend || false,
-                    stipend_amount_monthly: Number(data.stipend_amount_monthly) || 0,
-                    stipend_currency: data.stipend_currency || "CNY",
-                    stipend_duration_months: data.stipend_duration_months || 12,
-                    includes_medical_insurance: data.includes_medical_insurance || false,
-                    one_time_allowance: Number(data.one_time_allowance) || 0,
-                    one_time_allowance_currency: data.one_time_allowance_currency || "CNY",
-                    service_fee_usd: Number(data.service_fee_usd) || 0,
-                    service_fee_cny: Number(data.service_fee_cny) || 0,
-                    is_active: data.is_active ?? true,
-                    display_order: data.display_order || 0,
-                });
+                    if (!response.ok) throw new Error("Failed");
+                    const data = await response.json();
+
+                    setTranslations(prev => ({
+                        ...prev,
+                        [locale.code]: {
+                            ...(prev[locale.code] || {}), // preserve existing
+                            // Only update translated fields
+                            display_name: data.display_name || prev[locale.code]?.display_name || "",
+                            description: data.description || prev[locale.code]?.description || "",
+                            accommodation_type: data.accommodation_type || prev[locale.code]?.accommodation_type || "",
+                            additional_benefits: data.additional_benefits || prev[locale.code]?.additional_benefits || [],
+                            requirements: data.requirements || prev[locale.code]?.requirements || [],
+                        }
+                    }));
+                    successCount++;
+                } catch (e) {
+                    console.error(e);
+                    failCount++;
+                }
             }
-        } catch (error) {
-            console.error("Error fetching scholarship:", error);
-            alert("Error loading scholarship");
+            if (failCount === 0) toast.success(`Translated to ${successCount} languages`);
+            else toast.warning(`Translated to ${successCount}, failed ${failCount}`);
         } finally {
-            setLoading(false);
+            setGenerating(false);
         }
     };
 
     const handleSave = async () => {
         setSaving(true);
         try {
-            const dataToSave = {
+            // 1. Save Main Scholarship
+            const mainData = {
                 ...formData,
                 university_id: universityId,
+                is_active: isActive,
                 updated_at: new Date().toISOString(),
             };
 
+            let currentScholarshipId = scholarshipId;
+
             if (scholarshipId === "new") {
-                const { error } = await supabase
-                    .from("university_scholarships")
-                    .insert([dataToSave]);
-
+                const { data, error } = await supabase.from("university_scholarships").insert([mainData]).select().single();
                 if (error) throw error;
-                alert("Scholarship created successfully!");
+                currentScholarshipId = data.id;
             } else {
-                const { error } = await supabase
-                    .from("university_scholarships")
-                    .update(dataToSave)
-                    .eq("id", scholarshipId);
-
+                const { error } = await supabase.from("university_scholarships").update(mainData).eq("id", scholarshipId);
                 if (error) throw error;
-                alert("Scholarship updated successfully!");
             }
 
+            // 2. Save Translations
+            const upsertData = Object.entries(translations).map(([locale, data]) => ({
+                scholarship_id: currentScholarshipId,
+                locale,
+                display_name: data.display_name,
+                description: data.description,
+                accommodation_type: data.accommodation_type,
+                additional_benefits: data.additional_benefits,
+                requirements: data.requirements,
+                updated_at: new Date().toISOString(),
+            }));
+
+            if (upsertData.length > 0) {
+                const { error: transError } = await supabase
+                    .from("scholarship_translations")
+                    .upsert(upsertData, { onConflict: 'scholarship_id, locale' });
+                if (transError) throw transError;
+            }
+
+            toast.success("Saved successfully");
             router.push(`/admin/universities/${universityId}/scholarships`);
         } catch (error) {
-            console.error("Error saving scholarship:", error);
-            alert("Error saving scholarship");
+            console.error("Error saving:", error);
+            toast.error("Error saving scholarship");
         } finally {
             setSaving(false);
         }
     };
 
-    if (loading) {
-        return <div className="p-8">Loading...</div>;
-    }
+    if (loading) return <div className="p-8"><Loader2 className="animate-spin" /></div>;
 
     return (
         <div className="space-y-8">
@@ -178,296 +287,49 @@ export default function EditUniversityScholarshipPage() {
                             {scholarshipId === "new" ? "Create Scholarship" : "Edit Scholarship"}
                         </h1>
                         <p className="text-muted-foreground">
-                            {universityName} - {scholarshipId === "new" ? "Add a new scholarship type" : "Update scholarship details"}
+                            {universityName}
                         </p>
                     </div>
                 </div>
                 <div className="flex gap-2">
+                    <Button variant="secondary" onClick={handleTranslateAll} disabled={generating || saving}>
+                        {generating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Languages className="mr-2 h-4 w-4" />}
+                        Translate All
+                    </Button>
                     <Button onClick={handleSave} disabled={saving}>
-                        <Save className="mr-2 h-4 w-4" />
-                        {saving ? "Saving..." : "Save Changes"}
+                        {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                        Save Changes
                     </Button>
                 </div>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-                {/* Main Form */}
-                <div className="lg:col-span-2 space-y-6">
-                    {/* Basic Information */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Basic Information</CardTitle>
-                            <CardDescription>Core details about the scholarship</CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="type_name">Type Name (e.g., Type A) *</Label>
-                                    <Input
-                                        id="type_name"
-                                        value={formData.type_name}
-                                        onChange={(e) => setFormData({ ...formData, type_name: e.target.value })}
-                                        placeholder="Type A"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="display_order">Display Order</Label>
-                                    <Input
-                                        id="display_order"
-                                        type="number"
-                                        value={formData.display_order}
-                                        onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) || 0 })}
-                                    />
-                                </div>
-                            </div>
+                {/* Main Content Area */}
+                <div className="lg:col-span-2">
+                    <Tabs defaultValue="en" className="w-full">
+                        <TabsList className="grid w-full grid-cols-4 mb-8">
+                            {LOCALES.map(locale => (
+                                <TabsTrigger key={locale.code} value={locale.code} className="flex gap-2">
+                                    {locale.name}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
 
-                            <div className="space-y-2">
-                                <Label htmlFor="display_name">Display Name</Label>
-                                <Input
-                                    id="display_name"
-                                    value={formData.display_name}
-                                    onChange={(e) => setFormData({ ...formData, display_name: e.target.value })}
-                                    placeholder="Type A: Full Scholarship with Stipend"
+                        {LOCALES.map(locale => (
+                            <TabsContent key={locale.code} value={locale.code}>
+                                <ScholarshipFormContent
+                                    locale={locale.code}
+                                    isDefault={locale.code === "en"}
+                                    data={getCombinedData(locale.code)}
+                                    onChange={(field, value) => handleFieldChange(locale.code, field, value)}
                                 />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="description">Description</Label>
-                                <Textarea
-                                    id="description"
-                                    value={formData.description}
-                                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                    placeholder="Free tuition, free accommodation on campus and 2500RMB/month stipend"
-                                    rows={3}
-                                />
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Tuition Coverage */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Tuition Coverage</CardTitle>
-                            <CardDescription>How much tuition is covered</CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="coverage">Coverage Percentage *</Label>
-                                    <div className="flex items-center gap-4">
-                                        <Input
-                                            id="coverage"
-                                            type="number"
-                                            min="0"
-                                            max="100"
-                                            value={formData.tuition_coverage_percentage}
-                                            onChange={(e) => setFormData({ ...formData, tuition_coverage_percentage: parseInt(e.target.value) || 0 })}
-                                        />
-                                        <Badge className="text-lg px-4 py-2">
-                                            {formData.tuition_coverage_percentage}%
-                                        </Badge>
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="duration">Duration (Years)</Label>
-                                    <Input
-                                        id="duration"
-                                        type="number"
-                                        min="1"
-                                        value={formData.duration_years}
-                                        onChange={(e) => setFormData({ ...formData, duration_years: parseInt(e.target.value) || 1 })}
-                                        placeholder="4"
-                                    />
-                                    <p className="text-xs text-muted-foreground">Leave empty for full program duration</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Accommodation */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Accommodation</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between p-4 rounded-lg bg-muted">
-                                <div>
-                                    <Label htmlFor="includes_accommodation">Includes Accommodation</Label>
-                                    <p className="text-xs text-muted-foreground">Does this scholarship include housing?</p>
-                                </div>
-                                <Switch
-                                    id="includes_accommodation"
-                                    checked={formData.includes_accommodation}
-                                    onCheckedChange={(checked) => setFormData({ ...formData, includes_accommodation: checked })}
-                                />
-                            </div>
-
-                            {formData.includes_accommodation && (
-                                <div className="space-y-2">
-                                    <Label htmlFor="accommodation_type">Accommodation Type</Label>
-                                    <Input
-                                        id="accommodation_type"
-                                        value={formData.accommodation_type}
-                                        onChange={(e) => setFormData({ ...formData, accommodation_type: e.target.value })}
-                                        placeholder="Free university dormitory"
-                                    />
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
-
-                    {/* Stipend */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Monthly Stipend</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between p-4 rounded-lg bg-muted">
-                                <div>
-                                    <Label htmlFor="includes_stipend">Includes Stipend</Label>
-                                    <p className="text-xs text-muted-foreground">Monthly living allowance</p>
-                                </div>
-                                <Switch
-                                    id="includes_stipend"
-                                    checked={formData.includes_stipend}
-                                    onCheckedChange={(checked) => setFormData({ ...formData, includes_stipend: checked })}
-                                />
-                            </div>
-
-                            {formData.includes_stipend && (
-                                <div className="grid md:grid-cols-3 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="stipend_amount">Amount/Month</Label>
-                                        <Input
-                                            id="stipend_amount"
-                                            type="number"
-                                            min="0"
-                                            value={formData.stipend_amount_monthly}
-                                            onChange={(e) => setFormData({ ...formData, stipend_amount_monthly: parseFloat(e.target.value) || 0 })}
-                                            placeholder="2500"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="stipend_currency">Currency</Label>
-                                        <Input
-                                            id="stipend_currency"
-                                            value={formData.stipend_currency}
-                                            onChange={(e) => setFormData({ ...formData, stipend_currency: e.target.value })}
-                                            placeholder="CNY"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="stipend_duration">Months/Year</Label>
-                                        <Input
-                                            id="stipend_duration"
-                                            type="number"
-                                            min="1"
-                                            max="12"
-                                            value={formData.stipend_duration_months}
-                                            onChange={(e) => setFormData({ ...formData, stipend_duration_months: parseInt(e.target.value) || 12 })}
-                                            placeholder="12"
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
-
-                    {/* Other Benefits */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Other Benefits</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between p-4 rounded-lg bg-muted">
-                                <div>
-                                    <Label htmlFor="includes_medical">Medical Insurance</Label>
-                                    <p className="text-xs text-muted-foreground">Includes health insurance</p>
-                                </div>
-                                <Switch
-                                    id="includes_medical"
-                                    checked={formData.includes_medical_insurance}
-                                    onCheckedChange={(checked) => setFormData({ ...formData, includes_medical_insurance: checked })}
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="one_time_allowance">One-Time Allowance (Optional)</Label>
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    <Input
-                                        id="one_time_allowance"
-                                        type="number"
-                                        min="0"
-                                        value={formData.one_time_allowance}
-                                        onChange={(e) => setFormData({ ...formData, one_time_allowance: parseFloat(e.target.value) || 0 })}
-                                        placeholder="10000"
-                                    />
-                                    <Input
-                                        value={formData.one_time_allowance_currency}
-                                        onChange={(e) => setFormData({ ...formData, one_time_allowance_currency: e.target.value })}
-                                        placeholder="CNY"
-                                    />
-                                </div>
-                                <p className="text-xs text-muted-foreground">One-time cash allowance (e.g., 10000 RMB)</p>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Service Fees */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Service Fees</CardTitle>
-                            <CardDescription>What students pay for application support</CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="service_fee_usd">Service Fee (USD) *</Label>
-                                    <Input
-                                        id="service_fee_usd"
-                                        type="number"
-                                        min="0"
-                                        step="0.01"
-                                        value={formData.service_fee_usd}
-                                        onChange={(e) => setFormData({ ...formData, service_fee_usd: parseFloat(e.target.value) || 0 })}
-                                        placeholder="3500.00"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="service_fee_cny">Service Fee (CNY) *</Label>
-                                    <Input
-                                        id="service_fee_cny"
-                                        type="number"
-                                        min="0"
-                                        step="0.01"
-                                        value={formData.service_fee_cny}
-                                        onChange={(e) => setFormData({ ...formData, service_fee_cny: parseFloat(e.target.value) || 0 })}
-                                        placeholder="25000.00"
-                                    />
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Translations - Only show for existing scholarships */}
-                    {scholarshipId !== "new" && (
-                        <ScholarshipTranslations
-                            scholarshipId={scholarshipId}
-                            initialTranslations={translations}
-                            baseData={{
-                                display_name: formData.display_name,
-                                description: formData.description,
-                                accommodation_type: formData.accommodation_type,
-                                additional_benefits: [],
-                                requirements: [],
-                            }}
-                        />
-                    )}
+                            </TabsContent>
+                        ))}
+                    </Tabs>
                 </div>
 
                 {/* Sidebar */}
                 <div className="space-y-6">
-                    {/* Status */}
                     <Card>
                         <CardHeader>
                             <CardTitle>Status</CardTitle>
@@ -476,84 +338,17 @@ export default function EditUniversityScholarshipPage() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <Label htmlFor="is_active">Active</Label>
-                                    <p className="text-xs text-muted-foreground">
-                                        Show this scholarship to students
-                                    </p>
+                                    <p className="text-xs text-muted-foreground">Show to students</p>
                                 </div>
                                 <Switch
                                     id="is_active"
-                                    checked={formData.is_active}
-                                    onCheckedChange={(checked) => setFormData({ ...formData, is_active: checked })}
+                                    checked={isActive}
+                                    onCheckedChange={setIsActive}
                                 />
                             </div>
                         </CardContent>
                     </Card>
-
-                    {/* Preview */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Preview</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-3">
-                                <div>
-                                    <Badge>{formData.type_name || "Type Name"}</Badge>
-                                </div>
-                                <h3 className="font-bold text-lg">{formData.display_name || "Display Name"}</h3>
-                                <p className="text-sm text-muted-foreground">{formData.description || "Description"}</p>
-
-                                <div className="text-center p-4 bg-muted rounded-lg">
-                                    <div className="text-3xl font-bold text-primary">
-                                        {formData.tuition_coverage_percentage}%
-                                    </div>
-                                    <p className="text-xs text-muted-foreground">Tuition Coverage</p>
-                                    {formData.duration_years && (
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                            {formData.duration_years} year{formData.duration_years > 1 ? 's' : ''}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div className="space-y-2 text-sm">
-                                    {formData.includes_accommodation && (
-                                        <div className="flex items-center gap-2">
-                                            <span>🏠</span>
-                                            <span>{formData.accommodation_type || "Accommodation"}</span>
-                                        </div>
-                                    )}
-                                    {formData.includes_stipend && (
-                                        <div className="flex items-center gap-2">
-                                            <span>💰</span>
-                                            <span>{formData.stipend_amount_monthly} {formData.stipend_currency}/month</span>
-                                        </div>
-                                    )}
-                                    {formData.includes_medical_insurance && (
-                                        <div className="flex items-center gap-2">
-                                            <span>🏥</span>
-                                            <span>Medical Insurance</span>
-                                        </div>
-                                    )}
-                                    {formData.one_time_allowance > 0 && (
-                                        <div className="flex items-center gap-2">
-                                            <span>💵</span>
-                                            <span>{formData.one_time_allowance} {formData.one_time_allowance_currency}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="pt-3 border-t space-y-1">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-muted-foreground">Service Fee (USD):</span>
-                                        <span className="font-bold">${formData.service_fee_usd.toLocaleString()}</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-muted-foreground">Service Fee (CNY):</span>
-                                        <span className="font-semibold">¥{formData.service_fee_cny.toLocaleString()}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    {/* Add more sidebar items if needed */}
                 </div>
             </div>
         </div>

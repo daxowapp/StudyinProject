@@ -115,7 +115,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             name: university?.name || p.university_name,
             city: university?.city || p.city,
             cover_photo_url: sanitizeImageUrl(university?.cover_photo_url),
-            logo_url: sanitizeImageUrl(university?.logo_url)
+            logo_url: university?.logo_url // Allow base64 for logos
           }
         };
       });
@@ -178,7 +178,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           ...uni,
           name: translation?.name || uni.name,
           description: translation?.description || uni.description,
-          logo_url: sanitizeImageUrl(uni.logo_url),
+          logo_url: uni.logo_url, // Allow base64 for logos
           cover_photo_url: sanitizeImageUrl(uni.cover_photo_url),
           founded: String(uni.founded),
           total_students: String(uni.total_students),

@@ -1,4 +1,5 @@
 import { ProgramsClient } from "@/components/programs/ProgramsClient";
+import { ProgramsWrapper } from "@/components/programs/ProgramsWrapper";
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
@@ -102,7 +103,10 @@ export default async function ProgramsPage() {
                 </div>
             </div>
 
-            <ProgramsClient programs={formattedPrograms} universityMap={universityMap} />
+            <ProgramsWrapper>
+                <ProgramsClient programs={formattedPrograms} universityMap={universityMap} />
+            </ProgramsWrapper>
         </div>
     );
 }
+

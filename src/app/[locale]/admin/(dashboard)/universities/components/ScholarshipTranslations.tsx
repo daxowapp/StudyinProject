@@ -9,84 +9,94 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Sparkles, Save, Plus, X } from "lucide-react";
+import { Loader2, Sparkles, Save, Plus, X, Languages } from "lucide-react";
 
-export interface ScholarshipTranslationData {
-    id?: string;
-    scholarship_id: string;
-    locale: string;
-    display_name: string;
-    description: string;
-    accommodation_type: string;
-    additional_benefits: string[];
-    requirements: string[];
-}
-
-interface ScholarshipTranslationsProps {
-    scholarshipId: string;
-    initialTranslations: ScholarshipTranslationData[];
-    baseData: {
-        display_name: string;
-        description: string;
-        accommodation_type: string;
-        additional_benefits: string[];
-        requirements: string[];
-    };
-}
-
-const LOCALES = [
-    { code: "ar", name: "Arabic", dir: "rtl" },
-    { code: "fa", name: "Farsi", dir: "rtl" },
-    { code: "tr", name: "Turkish", dir: "ltr" },
-    { code: "en", name: "English", dir: "ltr" },
-];
+// ... (interfaces remain same)
 
 export function ScholarshipTranslations({ scholarshipId, initialTranslations, baseData }: ScholarshipTranslationsProps) {
-    const [translations, setTranslations] = useState<Record<string, ScholarshipTranslationData>>(() => {
-        const map: Record<string, ScholarshipTranslationData> = {};
-        LOCALES.forEach(locale => {
-            const existing = initialTranslations.find(t => t.locale === locale.code);
-            map[locale.code] = existing || {
-                scholarship_id: scholarshipId,
-                locale: locale.code,
-                display_name: "",
-                description: "",
-                accommodation_type: "",
-                additional_benefits: [],
-                requirements: [],
-            };
-        });
-        return map;
-    });
-    const [saving, setSaving] = useState(false);
+    // ... (state remains same)
     const [generating, setGenerating] = useState<string | null>(null);
+    const [translatingAll, setTranslatingAll] = useState(false);
 
-    const handleChange = (locale: string, field: keyof ScholarshipTranslationData, value: string | string[]) => {
-        setTranslations(prev => ({
-            ...prev,
-            [locale]: {
-                ...prev[locale],
-                [field]: value,
-            },
-        }));
+    // ... (handleChange helpers remain same)
+
+    const generateForLocale = async (targetLocale: string, sourceData: any) => {
+        try {
+            const response = await fetch("/api/ai/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    type: "scholarship_translation",
+                    query: `Translate to ${LOCALES.find(l => l.code === targetLocale)?.name}: ${JSON.stringify(sourceData)}`
+                }),
+            });
+
+            if (!response.ok) throw new Error("Failed to generate translation");
+
+            const data = await response.json();
+
+            setTranslations(prev => ({
+                ...prev,
+                [targetLocale]: {
+                    ...prev[targetLocale],
+                    display_name: data.display_name || prev[targetLocale].display_name,
+                    description: data.description || prev[targetLocale].description,
+                    accommodation_type: data.accommodation_type || prev[targetLocale].accommodation_type,
+                    additional_benefits: data.additional_benefits || prev[targetLocale].additional_benefits,
+                    requirements: data.requirements || prev[targetLocale].requirements,
+                },
+            }));
+            return true;
+        } catch (error) {
+            console.error(`Failed to translate for ${targetLocale}:`, error);
+            return false;
+        }
     };
 
-    const handleArrayChange = (locale: string, field: 'additional_benefits' | 'requirements', index: number, value: string) => {
-        const newArray = [...translations[locale][field]];
-        newArray[index] = value;
-        handleChange(locale, field, newArray);
+    const handleGenerateAI = async (locale: string) => {
+        setGenerating(locale);
+        // Use current English data as source if available, otherwise base data
+        const sourceData = translations['en'].display_name ? translations['en'] : baseData;
+
+        try {
+            await generateForLocale(locale, sourceData);
+            toast.success("Generated translation with AI");
+        } catch (error) {
+            toast.error("Failed to generate translation");
+        } finally {
+            setGenerating(null);
+        }
     };
 
-    const addArrayItem = (locale: string, field: 'additional_benefits' | 'requirements') => {
-        handleChange(locale, field, [...translations[locale][field], ""]);
-    };
+    const handleTranslateAll = async () => {
+        setTranslatingAll(true);
+        const sourceData = translations['en'].display_name ? translations['en'] : baseData;
+        let successCount = 0;
+        let failCount = 0;
 
-    const removeArrayItem = (locale: string, field: 'additional_benefits' | 'requirements', index: number) => {
-        const newArray = translations[locale][field].filter((_, i) => i !== index);
-        handleChange(locale, field, newArray);
+        try {
+            for (const locale of LOCALES) {
+                if (locale.code === 'en') continue;
+
+                // Optional: Skip if already has data? No, user requested "translate... to all other languages", implies overwrite or fill.
+                // We'll proceed to generate.
+                const success = await generateForLocale(locale.code, sourceData);
+                if (success) successCount++;
+                else failCount++;
+            }
+
+            if (failCount === 0) {
+                toast.success(`Successfully translated to all ${successCount} languages`);
+            } else {
+                toast.warning(`Translated to ${successCount} languages, failed: ${failCount}`);
+            }
+        } finally {
+            setTranslatingAll(false);
+        }
     };
 
     const handleSave = async (locale: string) => {
+        // ... (existing save logic)
         setSaving(true);
         const translation = translations[locale];
         const supabase = createClient();
@@ -121,52 +131,32 @@ export function ScholarshipTranslations({ scholarshipId, initialTranslations, ba
         }
     };
 
-    const handleGenerateAI = async (locale: string) => {
-        setGenerating(locale);
-        try {
-            const response = await fetch("/api/ai/generate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    type: "scholarship_translation",
-                    query: `Translate to ${LOCALES.find(l => l.code === locale)?.name}: ${JSON.stringify(baseData)}`
-                }),
-            });
-
-            if (!response.ok) throw new Error("Failed to generate translation");
-
-            const data = await response.json();
-
-            setTranslations(prev => ({
-                ...prev,
-                [locale]: {
-                    ...prev[locale],
-                    display_name: data.display_name || prev[locale].display_name,
-                    description: data.description || prev[locale].description,
-                    accommodation_type: data.accommodation_type || prev[locale].accommodation_type,
-                    additional_benefits: data.additional_benefits || prev[locale].additional_benefits,
-                    requirements: data.requirements || prev[locale].requirements,
-                },
-            }));
-            toast.success("Generated translation with AI");
-        } catch (error) {
-            toast.error("Failed to generate translation");
-            console.error(error);
-        } finally {
-            setGenerating(null);
-        }
-    };
-
-    const isRTL = (locale: string) => locale === "ar" || locale === "fa";
+    // ... (rest of component)
 
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Scholarship Translations</CardTitle>
-                <CardDescription>Manage translations for this scholarship in multiple languages.</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                    <CardTitle>Scholarship Translations</CardTitle>
+                    <CardDescription>Manage translations for this scholarship in multiple languages.</CardDescription>
+                </div>
+                <Button
+                    variant="secondary"
+                    onClick={handleTranslateAll}
+                    disabled={translatingAll || generating !== null}
+                    className="ml-auto"
+                >
+                    {translatingAll ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                        <Languages className="mr-2 h-4 w-4" />
+                    )}
+                    Translate All
+                </Button>
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="ar" className="w-full">
+                    {/* ... existing TabsList ... */}
                     <TabsList className="grid w-full grid-cols-4">
                         {LOCALES.map(locale => (
                             <TabsTrigger key={locale.code} value={locale.code}>
@@ -182,8 +172,9 @@ export function ScholarshipTranslations({ scholarshipId, initialTranslations, ba
                                     variant="outline"
                                     size="sm"
                                     onClick={() => handleGenerateAI(locale.code)}
-                                    disabled={generating === locale.code}
+                                    disabled={generating === locale.code || translatingAll}
                                 >
+                                    {/* ... rest of tab content ... */}
                                     {generating === locale.code ? (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     ) : (

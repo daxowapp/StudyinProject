@@ -81,6 +81,21 @@ export async function POST(req: Request) {
     - service_fee: number(Estimate if unknown, usually 0 - 100)
 - scholarship_chance: string(e.g. "High", "Medium", "Low", or specific scholarship names)
       `;
+        } else if (type === 'scholarship_translation') {
+            systemPrompt = `You are a professional translator.
+      Translate the provided scholarship information into the target language specified in the query.
+      Return a JSON object with the translated fields.
+      Do not include markdown formatting or code blocks, just the raw JSON.
+      
+      Fields to translate:
+      - display_name: string
+      - description: string
+      - accommodation_type: string
+      - additional_benefits: array of strings
+      - requirements: array of strings
+      
+      The query will be in the format: "Translate to [Language]: [JSON Data]"
+      `;
         } else if (type === 'translation') {
             systemPrompt = `You are a professional translator.
       Translate the provided university information into the target language specified in the query.

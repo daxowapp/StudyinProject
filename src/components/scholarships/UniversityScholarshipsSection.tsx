@@ -7,7 +7,7 @@ import { Check, Award, Heart, DollarSign } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 interface UniversityScholarship {
     id: string;
@@ -27,6 +27,7 @@ interface UniversityScholarship {
     includes_medical_insurance: boolean;
     one_time_allowance: number | null;
     one_time_allowance_currency: string;
+    additional_benefits: string[] | null;
 }
 
 interface UniversityScholarshipsSectionProps {
@@ -45,6 +46,7 @@ export function UniversityScholarshipsSection({
     showHeader = true
 }: UniversityScholarshipsSectionProps) {
     const t = useTranslations('UniversityScholarships');
+    const locale = useLocale();
     const [scholarships, setScholarships] = useState<UniversityScholarship[]>([]);
     const [loading, setLoading] = useState(true);
     const supabase = createClient();
@@ -66,15 +68,60 @@ export function UniversityScholarshipsSection({
     useEffect(() => {
         const fetchScholarships = async () => {
             try {
-                const { data, error } = await supabase
+                // Fetch scholarships
+                const { data: scholarshipsData, error: scholarshipsError } = await supabase
                     .from("university_scholarships")
                     .select("*")
                     .eq("university_id", universityId)
                     .eq("is_active", true)
                     .order("display_order", { ascending: true });
 
-                if (error) throw error;
-                setScholarships(data || []);
+                if (scholarshipsError) throw scholarshipsError;
+
+                if (!scholarshipsData || scholarshipsData.length === 0) {
+                    setScholarships([]);
+                    return;
+                }
+
+                // If locale is default (en), just use the data
+                // If locale is different, try to fetch translations
+                if (locale === 'en') {
+                    setScholarships(scholarshipsData);
+                    return;
+                }
+
+                // Fetch translations for these scholarships
+                const scholarshipIds = scholarshipsData.map(s => s.id);
+                const { data: translationsData, error: translationsError } = await supabase
+                    .from("scholarship_translations")
+                    .select("*")
+                    .in("scholarship_id", scholarshipIds)
+                    .eq("locale", locale);
+
+                if (translationsError) {
+                    console.error("Error fetching translations:", translationsError);
+                    // Fallback to original data
+                    setScholarships(scholarshipsData);
+                    return;
+                }
+
+                // Merge translations
+                const mergedScholarships = scholarshipsData.map(scholarship => {
+                    const translation = translationsData?.find(tr => tr.scholarship_id === scholarship.id);
+                    if (translation) {
+                        return {
+                            ...scholarship,
+                            display_name: translation.display_name || scholarship.display_name,
+                            description: translation.description || scholarship.description,
+                            accommodation_type: translation.accommodation_type || scholarship.accommodation_type,
+                            additional_benefits: translation.additional_benefits || scholarship.additional_benefits,
+                        };
+                    }
+                    return scholarship;
+                });
+
+                setScholarships(mergedScholarships);
+
             } catch (error) {
                 console.error("Error fetching scholarships:", error);
             } finally {
@@ -83,7 +130,7 @@ export function UniversityScholarshipsSection({
         };
 
         fetchScholarships();
-    }, [universityId, supabase]);
+    }, [universityId, supabase, locale]);
 
     if (loading) {
         return <div className="text-center py-8">{t('loading')}</div>;
@@ -195,17 +242,23 @@ export function UniversityScholarshipsSection({
                     const theme = themes[index % themes.length];
                     const isPopular = index === 0 && scholarship.tuition_coverage_percentage >= 100;
 
-                    const benefits = [];
-                    if (scholarship.tuition_coverage_percentage > 0) {
-                        benefits.push(t('benefits.tuitionCoverage', { percentage: scholarship.tuition_coverage_percentage }));
+                    let benefits: string[] = [];
+                    // Prefer additional_benefits from DB (or translation)
+                    if (scholarship.additional_benefits && scholarship.additional_benefits.length > 0) {
+                        benefits = scholarship.additional_benefits;
                     } else {
-                        benefits.push(t('benefits.noScholarship'));
-                    }
-                    benefits.push(t('benefits.support'));
-                    benefits.push(t('benefits.visa'));
-                    benefits.push(t('benefits.orientation'));
-                    if (scholarship.includes_accommodation) {
-                        benefits.push(t('benefits.accommodation'));
+                        // Fallback to defaults
+                        if (scholarship.tuition_coverage_percentage > 0) {
+                            benefits.push(t('benefits.tuitionCoverage', { percentage: scholarship.tuition_coverage_percentage }));
+                        } else {
+                            benefits.push(t('benefits.noScholarship'));
+                        }
+                        benefits.push(t('benefits.support'));
+                        benefits.push(t('benefits.visa'));
+                        benefits.push(t('benefits.orientation'));
+                        if (scholarship.includes_accommodation) {
+                            benefits.push(t('benefits.accommodation'));
+                        }
                     }
 
                     return (

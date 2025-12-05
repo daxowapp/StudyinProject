@@ -127,16 +127,12 @@ export async function sendReply(formData: FormData) {
 
     // Send email notification to admin
     try {
-        const { sendMessageReceivedEmail } = await import('@/lib/email/service');
-        await sendMessageReceivedEmail({
-            studentId: user.id,
-            studentEmail: application.student_email,
-            studentName: application.student_name,
-            subject: 'New Reply from Student',
+        const { sendAdminNewMessageEmail } = await import('@/lib/email/service');
+        await sendAdminNewMessageEmail({
+            studentName: application.student_name || 'Student',
             message: message,
             applicationId: applicationId,
-            messageId: replyMessage.id,
-            requiresAction: false
+            messageId: replyMessage.id
         });
     } catch (emailError) {
         console.error('Error sending email:', emailError);

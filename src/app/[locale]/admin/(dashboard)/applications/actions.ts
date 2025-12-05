@@ -41,6 +41,42 @@ export async function updateApplicationStatus(id: string, status: string) {
         .eq("id", id);
 
     if (error) return { error: error.message };
+
+    // Get application details for email
+    const { data: appData } = await supabase
+        .from("applications")
+        .select(`
+            student_id, 
+            student_email, 
+            student_name,
+            university_program:university_program_id (
+                program_catalog:program_catalog_id (title)
+            ),
+            status
+        `)
+        .eq("id", id)
+        .single();
+
+    const app = appData as any; // Safe cast for joined data
+
+    // Send status update email
+    if (app) {
+        try {
+            const { sendStatusChangedEmail } = await import('@/lib/email/service');
+            await sendStatusChangedEmail({
+                studentId: app.student_id,
+                studentEmail: app.student_email,
+                studentName: app.student_name,
+                programTitle: app.university_program?.program_catalog?.title || 'Program',
+                oldStatus: 'Application', // We don't have old status easily here without prior fetch, but template handles it fine or we can omit/adjust
+                newStatus: status,
+                applicationId: id
+            });
+        } catch (e) {
+            console.error('Error sending status email:', e);
+        }
+    }
+
     revalidatePath("/admin/applications");
     return { success: true };
 }
@@ -71,7 +107,8 @@ export async function sendMessageToStudent(
     subject: string,
     message: string,
     messageType: string = 'general',
-    requiresAction: boolean = false
+    requiresAction: boolean = false,
+    skipEmail: boolean = false
 ) {
     const supabase = await createClient();
 
@@ -107,31 +144,33 @@ export async function sendMessageToStudent(
     if (messageError) return { error: messageError.message };
 
     // Send email notification (will be logged to email_notifications table)
-    try {
-        // Dynamic import to avoid build issues if email service isn't fully set up
-        const { sendMessageReceivedEmail } = await import('@/lib/email/service');
-        await sendMessageReceivedEmail({
-            studentId: application.student_id,
-            studentEmail: application.student_email,
-            studentName: application.student_name,
-            subject: subject,
-            message: message,
-            applicationId: applicationId,
-            messageId: messageData.id,
-            requiresAction: requiresAction
-        });
+    if (!skipEmail) {
+        try {
+            // Dynamic import to avoid build issues if email service isn't fully set up
+            const { sendMessageReceivedEmail } = await import('@/lib/email/service');
+            await sendMessageReceivedEmail({
+                studentId: application.student_id,
+                studentEmail: application.student_email,
+                studentName: application.student_name,
+                subject: subject,
+                message: message,
+                applicationId: applicationId,
+                messageId: messageData.id,
+                requiresAction: requiresAction
+            });
 
-        // Update message to mark email as sent
-        await supabase
-            .from("application_messages")
-            .update({
-                email_sent: true,
-                email_sent_at: new Date().toISOString()
-            })
-            .eq("id", messageData.id);
-    } catch (emailError) {
-        console.error("Error sending email:", emailError);
-        // Don't fail the whole operation if email fails
+            // Update message to mark email as sent
+            await supabase
+                .from("application_messages")
+                .update({
+                    email_sent: true,
+                    email_sent_at: new Date().toISOString()
+                })
+                .eq("id", messageData.id);
+        } catch (emailError) {
+            console.error("Error sending email:", emailError);
+            // Don't fail the whole operation if email fails
+        }
     }
 
     revalidatePath("/admin/applications");
@@ -167,10 +206,10 @@ export async function requestPayment(
     if (updateError) return { error: updateError.message };
 
     // 2. Insert into payment_transactions (for Student Dashboard compatibility)
-    // First get student_id which is required by the schema
+    // First get student details
     const { data: app } = await supabase
         .from("applications")
-        .select("student_id")
+        .select("student_id, student_email, student_name")
         .eq("id", applicationId)
         .single();
 
@@ -197,15 +236,34 @@ export async function requestPayment(
         return { error: `Failed to create payment transaction: ${insertError.message}` };
     }
 
-    // 3. Send message to student
+    // 3. Send message to student (and specialized email)
     const message = `Payment Request\n\nAmount: ${currency} ${amount}\n\nDescription: ${description}\n\nPlease complete the payment to proceed with your application.`;
+
+    // Send specialized email
+    try {
+        const { sendPaymentRequestedEmail } = await import('@/lib/email/service');
+        await sendPaymentRequestedEmail({
+            studentId: app.student_id,
+            studentEmail: app.student_email,
+            studentName: app.student_name,
+            amount,
+            currency,
+            paymentType: 'Application Fee',
+            paymentLink: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/applications/${applicationId}`,
+            deadline: 'Immediate', // Or handle specific deadline
+            paymentId: undefined
+        });
+    } catch (e) {
+        console.error("Error sending payment email:", e);
+    }
 
     await sendMessageToStudent(
         applicationId,
         'Payment Request',
         message,
         'payment_request',
-        true
+        true,
+        true // Skip generic email
     );
 
     revalidatePath("/admin/applications");
@@ -255,16 +313,43 @@ export async function requestDocuments(
         return { error: `Failed to create document requests: ${insertError.message}` };
     }
 
-    // 3. Create message
+    // 3. Create message (and send specialized email)
     const documentList = documents.map((doc, i) => `${i + 1}. ${doc}`).join('\n');
     const message = `Document Request\n\nPlease upload the following documents:\n\n${documentList}${additionalInstructions ? '\n\nAdditional Instructions:\n' + additionalInstructions : ''}`;
+
+    // Get student details for email
+    const { data: app } = await supabase
+        .from("applications")
+        .select("student_id, student_email, student_name")
+        .eq("id", applicationId)
+        .single();
+
+    if (app) {
+        try {
+            const { sendDocumentRequestedEmail } = await import('@/lib/email/service');
+            // Send email for first document (simplified for now, or could combine)
+            // Ideally we'd have a 'sendDocumentsRequestedEmail' (plural), but singular works for notification content
+            await sendDocumentRequestedEmail({
+                studentId: app.student_id,
+                studentEmail: app.student_email,
+                studentName: app.student_name,
+                documentName: documents.join(', '), // List them
+                description: additionalInstructions || 'Please upload the requested documents via your dashboard.',
+                deadline: 'ASAP',
+                applicationId: applicationId
+            });
+        } catch (e) {
+            console.error("Error sending document email:", e);
+        }
+    }
 
     await sendMessageToStudent(
         applicationId,
         'Document Request',
         message,
         'document_request',
-        true
+        true,
+        true // Skip generic email
     );
 
     revalidatePath("/admin/applications");
@@ -314,12 +399,21 @@ export async function uploadConditionalLetter(
 
     if (updateError) return { error: updateError.message };
 
-    // 2. Insert into acceptance_letters (if table exists, for completeness)
-    const { data: app } = await supabase
+    const { data: appData } = await supabase
         .from("applications")
-        .select("student_id")
+        .select(`
+            student_id, 
+            student_email, 
+            student_name,
+            university_program:university_program_id (
+                program_catalog:program_catalog_id (title),
+                university:university_id (name)
+            )
+        `)
         .eq("id", applicationId)
         .single();
+
+    const app = appData as any; // Bypass TS inference for deep joins
 
     if (app) {
         // Check if table exists first or just try insert and ignore error? 
@@ -336,6 +430,23 @@ export async function uploadConditionalLetter(
             // Ignore if table doesn't exist or other error, as column update is primary
             console.log("Could not insert into acceptance_letters table", e);
         }
+
+        // Send specialized email
+        try {
+            const { sendAcceptanceLetterEmail } = await import('@/lib/email/service');
+            await sendAcceptanceLetterEmail({
+                studentId: app.student_id,
+                studentEmail: app.student_email,
+                studentName: app.student_name,
+                programTitle: app.university_program?.program_catalog?.title || 'Program',
+                universityName: app.university_program?.university?.name || 'University',
+                letterNumber: `AL-${applicationId.slice(0, 8).toUpperCase()}`, // Generate or use real if exists
+                letterUrl: publicUrl,
+                applicationId: applicationId
+            });
+        } catch (e) {
+            console.error("Error sending acceptance email:", e);
+        }
     }
 
     // 3. Send message to student
@@ -346,7 +457,8 @@ export async function uploadConditionalLetter(
         'Conditional Acceptance Letter',
         message,
         'acceptance_letter',
-        false
+        false,
+        true // Skip generic email
     );
 
     revalidatePath("/admin/applications");
