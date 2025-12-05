@@ -60,26 +60,31 @@ export async function updateApplicationStatus(id: string, status: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const app = appData as any; // Safe cast for joined data
 
+    let emailResult = { success: false, error: null as string | null };
+
     // Send status update email
     if (app) {
         try {
             const { sendStatusChangedEmail } = await import('@/lib/email/service');
-            await sendStatusChangedEmail({
+            const result = await sendStatusChangedEmail({
                 studentId: app.student_id,
                 studentEmail: app.student_email,
                 studentName: app.student_name,
                 programTitle: app.university_program?.program_catalog?.title || 'Program',
-                oldStatus: 'Application', // We don't have old status easily here without prior fetch, but template handles it fine or we can omit/adjust
+                oldStatus: 'Application',
                 newStatus: status,
                 applicationId: id
             });
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            emailResult = result as any;
         } catch (e) {
             console.error('Error sending status email:', e);
+            emailResult.error = (e as Error).message;
         }
     }
 
     revalidatePath("/admin/applications");
-    return { success: true };
+    return { success: true, emailSent: emailResult.success, emailError: emailResult.error };
 }
 
 export async function addAdminNote(id: string, note: string) {

@@ -77,8 +77,16 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
         setIsLoading(true);
         try {
             const result = await updateApplicationStatus(application.id, value);
-            if (result?.error) toast.error(result.error);
-            else toast.success("Status updated");
+            if (result?.error) {
+                toast.error(result.error);
+            } else {
+                toast.success("Status updated");
+                if (result.emailSent) {
+                    toast.success("Email notification sent");
+                } else if (result.emailError) {
+                    toast.error(`Email failed: ${result.emailError}`);
+                }
+            }
         } finally {
             setIsLoading(false);
         }
