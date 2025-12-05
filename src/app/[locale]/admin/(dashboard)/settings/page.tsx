@@ -14,13 +14,81 @@ import {
     DollarSign,
     Bell,
     Shield,
-    Database
+    Database,
+    Bot,
+    Sparkles,
+    Save
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { createClient } from "@/lib/supabase/client";
+
+const DEFAULT_AI_PROMPT = `You are a friendly and knowledgeable study abroad advisor for StudyAtChina, helping international students pursue their education in China.
+
+## Your Capabilities:
+- Help students find suitable programs and universities
+- Explain admission requirements and application processes
+- Provide information about scholarships (CSC, provincial, university-specific)
+- Answer questions about student life in China
+- Guide students through visa requirements
+- Explain costs and living expenses
+
+## Guidelines:
+1. Be warm, encouraging, and professional
+2. Provide accurate information based on your knowledge
+3. If you're unsure, say so and suggest contacting the support team
+4. Keep responses concise but helpful
+5. Use bullet points and formatting for clarity
+6. Respond in the same language the user writes in`;
 
 export default function AdminSettingsPage() {
     const [loading, setLoading] = useState(false);
+    const [aiPrompt, setAiPrompt] = useState(DEFAULT_AI_PROMPT);
+    const [aiLoading, setAiLoading] = useState(false);
+
+    // Load AI prompt from database on mount
+    useEffect(() => {
+        const loadAiPrompt = async () => {
+            try {
+                const supabase = createClient();
+                const { data } = await supabase
+                    .from('site_settings')
+                    .select('value')
+                    .eq('key', 'ai_chat_prompt')
+                    .single();
+
+                if (data?.value) {
+                    setAiPrompt(data.value);
+                }
+            } catch {
+                // Table might not exist yet, use default
+            }
+        };
+        loadAiPrompt();
+    }, []);
+
+    const handleSaveAiPrompt = async () => {
+        setAiLoading(true);
+        try {
+            const supabase = createClient();
+
+            // Upsert the setting
+            const { error } = await supabase
+                .from('site_settings')
+                .upsert(
+                    { key: 'ai_chat_prompt', value: aiPrompt },
+                    { onConflict: 'key' }
+                );
+
+            if (error) throw error;
+            toast.success("AI prompt saved successfully!");
+        } catch (error) {
+            console.error('Error saving AI prompt:', error);
+            toast.error("Failed to save AI prompt. Make sure site_settings table exists.");
+        } finally {
+            setAiLoading(false);
+        }
+    };
 
     const handleSave = async () => {
         setLoading(true);
@@ -39,10 +107,14 @@ export default function AdminSettingsPage() {
             </div>
 
             <Tabs defaultValue="general" className="space-y-6">
-                <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
+                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
                     <TabsTrigger value="general">
                         <Settings className="h-4 w-4 mr-2" />
                         General
+                    </TabsTrigger>
+                    <TabsTrigger value="ai">
+                        <Bot className="h-4 w-4 mr-2" />
+                        AI Chat
                     </TabsTrigger>
                     <TabsTrigger value="email">
                         <Mail className="h-4 w-4 mr-2" />
@@ -61,6 +133,66 @@ export default function AdminSettingsPage() {
                         Advanced
                     </TabsTrigger>
                 </TabsList>
+
+                {/* AI Chat Settings */}
+                <TabsContent value="ai" className="space-y-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Sparkles className="h-5 w-5 text-primary" />
+                                AI Chat Configuration
+                            </CardTitle>
+                            <CardDescription>
+                                Customize the AI chat assistant&apos;s behavior and personality.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="ai-prompt">System Prompt</Label>
+                                <p className="text-sm text-muted-foreground">
+                                    This prompt tells the AI how to behave. Be specific about your brand voice, what information to provide, and how to respond.
+                                </p>
+                                <Textarea
+                                    id="ai-prompt"
+                                    value={aiPrompt}
+                                    onChange={(e) => setAiPrompt(e.target.value)}
+                                    rows={15}
+                                    className="font-mono text-sm"
+                                    placeholder="Enter your custom AI prompt..."
+                                />
+                            </div>
+                            <div className="flex items-center justify-between pt-4">
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setAiPrompt(DEFAULT_AI_PROMPT)}
+                                >
+                                    Reset to Default
+                                </Button>
+                                <Button
+                                    onClick={handleSaveAiPrompt}
+                                    disabled={aiLoading}
+                                >
+                                    <Save className="h-4 w-4 mr-2" />
+                                    {aiLoading ? "Saving..." : "Save AI Prompt"}
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>AI Usage Tips</CardTitle>
+                            <CardDescription>Best practices for configuring your AI assistant.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-3 text-sm text-muted-foreground">
+                            <p>• <strong>Be specific</strong> about your platform name, services, and brand voice</p>
+                            <p>• <strong>Include key information</strong> like tuition ranges, popular programs, and deadlines</p>
+                            <p>• <strong>Set boundaries</strong> - tell the AI what topics to avoid or redirect</p>
+                            <p>• <strong>Language support</strong> - the AI automatically responds in the user&apos;s language</p>
+                            <p>• <strong>Test regularly</strong> - try different questions to ensure good responses</p>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
                 {/* General Settings */}
                 <TabsContent value="general" className="space-y-6">

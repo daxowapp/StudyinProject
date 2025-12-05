@@ -1069,5 +1069,23 @@
             "uploadFailed": "Failed to upload document. Please try again.",
             "paymentFailed": "Payment failed. Please try again."
         }
+    },
+    "AISearch": {
+        "placeholder": "Try: 'Master's in Engineering under 30000 RMB in Beijing'",
+        "search": "Search",
+        "filters": "AI understood",
+        "error": "Something went wrong. Please try again."
+    },
+    "AIChat": {
+        "title": "AI Advisor",
+        "subtitle": "Here to help you",
+        "greeting": "Hi! 👋 I'm your AI study advisor. I can help you find programs, learn about scholarships, and guide you through the application process. How can I help you today?",
+        "inputPlaceholder": "Type your message...",
+        "thinking": "Thinking...",
+        "error": "Sorry, I encountered an error. Please try again.",
+        "quickStart": "Quick start",
+        "quickFind": "Find Programs",
+        "quickScholarship": "Scholarships",
+        "quickApply": "How to Apply"
     }
 }
