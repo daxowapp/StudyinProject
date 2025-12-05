@@ -334,9 +334,9 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
 
                             <div className="bg-white border rounded-lg p-6">
                                 <div className="flex items-center justify-center gap-4 mb-6">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Visa_Logo_2014.svg" alt="Visa" className="h-8" />
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" className="h-8" />
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" className="h-6" />
+                                    <Image src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Visa_Logo_2014.svg" alt="Visa" width={64} height={32} className="h-8 w-auto" unoptimized />
+                                    <Image src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" width={64} height={32} className="h-8 w-auto" unoptimized />
+                                    <Image src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" width={64} height={24} className="h-6 w-auto" unoptimized />
                                 </div>
                                 <Button
                                     onClick={handleCardPayment}

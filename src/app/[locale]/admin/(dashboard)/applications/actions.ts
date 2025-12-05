@@ -57,6 +57,7 @@ export async function updateApplicationStatus(id: string, status: string) {
         .eq("id", id)
         .single();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const app = appData as any; // Safe cast for joined data
 
     // Send status update email
@@ -413,6 +414,7 @@ export async function uploadConditionalLetter(
         .eq("id", applicationId)
         .single();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const app = appData as any; // Bypass TS inference for deep joins
 
     if (app) {

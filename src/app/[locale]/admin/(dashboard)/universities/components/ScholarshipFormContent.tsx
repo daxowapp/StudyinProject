@@ -36,6 +36,7 @@ interface ScholarshipFormContentProps {
     locale: string;
     isDefault: boolean;
     data: ScholarshipFormData;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (field: keyof ScholarshipFormData, value: any) => void;
 }
 

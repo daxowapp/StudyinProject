@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, ChevronRight, Sparkles, Search, GitCompareArrows, GraduationCap } from "lucide-react";
+import { ChevronRight, Sparkles, Search, GitCompareArrows, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -130,8 +130,8 @@ export function WelcomeTour({ storageKey = "welcomeTourComplete", onComplete }: 
                                 key={i}
                                 onClick={() => setCurrentSlide(i)}
                                 className={`h-2 rounded-full transition-all ${i === currentSlide
-                                        ? "w-6 bg-primary"
-                                        : "w-2 bg-muted hover:bg-muted-foreground/30"
+                                    ? "w-6 bg-primary"
+                                    : "w-2 bg-muted hover:bg-muted-foreground/30"
                                     }`}
                             />
                         ))}

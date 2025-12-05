@@ -4,7 +4,7 @@ import { useRecentlyViewed } from "./RecentlyViewedContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, ArrowRight, GraduationCap, MapPin, Trash2, X } from "lucide-react";
+import { Clock, ArrowRight, GraduationCap, MapPin, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";

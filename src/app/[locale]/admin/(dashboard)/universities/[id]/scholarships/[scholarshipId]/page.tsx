@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Save, Loader2, Sparkles, Languages } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Languages } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -109,6 +109,7 @@ export default function EditUniversityScholarshipPage() {
         const { data } = await supabase.from("scholarship_translations").select("*").eq("scholarship_id", scholarshipId);
         if (data) {
             const map: Record<string, ScholarshipFormData> = {};
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             data.forEach((t: any) => {
                 map[t.locale] = {
                     display_name: t.display_name || "",
@@ -158,6 +159,7 @@ export default function EditUniversityScholarshipPage() {
         };
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFieldChange = (locale: string, field: keyof ScholarshipFormData, value: any) => {
         if (locale === "en") {
             setFormData(prev => ({ ...prev, [field]: value }));
