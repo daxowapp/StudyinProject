@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface ChineseAvatarProps {
@@ -22,7 +22,7 @@ export function ChineseAvatar({
         lg: 'w-16 h-16'
     };
 
-    const avatarVariants = {
+    const avatarVariants: Variants = {
         idle: {
             y: [0, -2, 0],
             transition: {
