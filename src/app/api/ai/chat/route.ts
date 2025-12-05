@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
-import { CHAT_SYSTEM_PROMPT, SEARCH_SYSTEM_PROMPT } from '@/lib/ai/prompts';
+import { CHAT_SYSTEM_PROMPT } from '@/lib/ai/prompts';
 import { createClient } from '@/lib/supabase/server';
 
 interface ChatMessage {
@@ -92,14 +92,7 @@ export async function POST(request: NextRequest) {
                 .limit(5);
 
             if (applications) {
-                userApplications = applications.map((app: {
-                    id: string;
-                    status: string;
-                    university_programs: {
-                        program_catalog: { title: string };
-                        universities: { name: string }
-                    }
-                }) => ({
+                userApplications = applications.map((app: any) => ({
                     id: app.id,
                     status: app.status,
                     program_title: app.university_programs?.program_catalog?.title || 'Unknown',
@@ -254,7 +247,7 @@ User location hint: ${userLocation || 'Unknown'}`;
 }
 
 // GET endpoint to fetch chat history
-export async function GET(_request: NextRequest) {
+export async function GET() {
     try {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
