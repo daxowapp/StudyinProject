@@ -5,11 +5,6 @@ import Link from "next/link";
 import Stripe from "stripe";
 import { createClient } from "@/lib/supabase/server";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    apiVersion: "2025-11-17.clover" as any,
-});
-
 interface PageProps {
     searchParams: Promise<{ session_id?: string; application_id?: string }>;
 }
@@ -22,8 +17,14 @@ export default async function PaymentSuccessPage({ searchParams }: PageProps) {
     let currency = "usd";
     let errorMessage = "";
 
-    if (session_id) {
+    if (session_id && process.env.STRIPE_SECRET_KEY) {
         try {
+            // Initialize Stripe lazily to avoid build errors
+            const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                apiVersion: "2025-11-17.clover" as any,
+            });
+
             // Verify the session with Stripe
             const session = await stripe.checkout.sessions.retrieve(session_id);
 
