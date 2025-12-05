@@ -60,6 +60,8 @@ export async function updateApplicationStatus(id: string, status: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const app = appData as any; // Safe cast for joined data
 
+    const apiKey = process.env.RESEND_API_KEY || '';
+    const maskedKey = apiKey ? `${apiKey.substring(0, 5)}...` : 'MISSING';
     let emailResult = { success: false, error: null as string | null };
 
     // Send status update email
@@ -79,7 +81,7 @@ export async function updateApplicationStatus(id: string, status: string) {
             emailResult = result as any;
         } catch (e) {
             console.error('Error sending status email:', e);
-            emailResult.error = (e as Error).message;
+            emailResult.error = `${(e as Error).message} [Key: ${maskedKey}]`;
         }
     }
 
