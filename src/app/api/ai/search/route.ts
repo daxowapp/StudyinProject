@@ -95,7 +95,9 @@ export async function POST(request: NextRequest) {
         }
 
         // Execute primary search
-        let { data: programs, error } = await dbQuery.limit(20);
+        const result = await dbQuery.limit(20);
+        let programs = result.data;
+        const error = result.error;
 
         // FALLBACK STRATEGY: If no results, try relaxing constraints
         if (!error && (!programs || programs.length === 0)) {

@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
-import { CHAT_SYSTEM_PROMPT, CHEN_WEI_GREETINGS, APPLICATION_FLOW_PROMPTS } from '@/lib/ai/prompts';
+import { CHAT_SYSTEM_PROMPT, SEARCH_SYSTEM_PROMPT } from '@/lib/ai/prompts';
 import { createClient } from '@/lib/supabase/server';
 
 interface ChatMessage {
@@ -254,7 +254,7 @@ User location hint: ${userLocation || 'Unknown'}`;
 }
 
 // GET endpoint to fetch chat history
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
     try {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
