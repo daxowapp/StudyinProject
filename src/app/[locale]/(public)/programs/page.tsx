@@ -1,10 +1,48 @@
 import { ProgramsClient } from "@/components/programs/ProgramsClient";
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
 // Enable ISR with 10 minute revalidation
 export const revalidate = 600;
 
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params;
+
+    const title = 'Study Programs in China - Bachelor, Master & PhD';
+    const description = 'Browse 500+ degree programs at top Chinese universities. Find Bachelor, Master, and PhD programs taught in English & Chinese with scholarship opportunities.';
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/programs`,
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+        },
+        alternates: {
+            canonical: `${baseUrl}/${locale}/programs`,
+            languages: {
+                'en': `${baseUrl}/en/programs`,
+                'ar': `${baseUrl}/ar/programs`,
+                'fa': `${baseUrl}/fa/programs`,
+                'tr': `${baseUrl}/tr/programs`,
+            },
+        },
+    };
+}
 export default async function ProgramsPage() {
     const supabase = await createClient();
     const t = await getTranslations('Programs');

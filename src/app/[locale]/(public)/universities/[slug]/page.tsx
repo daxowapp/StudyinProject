@@ -2,7 +2,69 @@ import { UniversityHeader } from "@/components/universities/UniversityHeader";
 import { UniversityContent } from "@/components/universities/UniversityContent";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import { UniversityJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ slug: string; locale: string }>
+}): Promise<Metadata> {
+    const supabase = await createClient();
+    const { slug, locale } = await params;
+
+    const { data: university } = await supabase
+        .from("universities")
+        .select("name, description, city, province, cover_photo_url")
+        .eq("slug", slug)
+        .single();
+
+    if (!university) {
+        return {
+            title: 'University Not Found',
+        };
+    }
+
+    const title = `${university.name} - Programs, Fees & How to Apply`;
+    const description = university.description?.slice(0, 160) ||
+        `Study at ${university.name} in ${university.city}, China. Explore programs, scholarships, and application requirements.`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/universities/${slug}`,
+            type: 'website',
+            images: university.cover_photo_url ? [
+                {
+                    url: university.cover_photo_url,
+                    width: 1200,
+                    height: 630,
+                    alt: university.name,
+                },
+            ] : undefined,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: university.cover_photo_url ? [university.cover_photo_url] : undefined,
+        },
+        alternates: {
+            canonical: `${baseUrl}/${locale}/universities/${slug}`,
+            languages: {
+                'en': `${baseUrl}/en/universities/${slug}`,
+                'ar': `${baseUrl}/ar/universities/${slug}`,
+                'fa': `${baseUrl}/fa/universities/${slug}`,
+                'tr': `${baseUrl}/tr/universities/${slug}`,
+            },
+        },
+    };
+}
 export default async function UniversityDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const supabase = await createClient();
     const { slug } = await params;
@@ -112,6 +174,22 @@ export default async function UniversityDetailPage({ params }: { params: Promise
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+            <UniversityJsonLd
+                name={universityData.name}
+                url={`${baseUrl}/en/universities/${universityData.slug}`}
+                logo={universityData.logo_url}
+                description={universityData.overview}
+                address={{ city: universityData.city, province: universityData.province }}
+                foundingDate={universityData.stats.founded}
+                numberOfStudents={parseInt(universityData.stats.students) || undefined}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Home', url: baseUrl },
+                    { name: 'Universities', url: `${baseUrl}/en/universities` },
+                    { name: universityData.name, url: `${baseUrl}/en/universities/${universityData.slug}` },
+                ]}
+            />
             <UniversityHeader university={universityData} />
             <UniversityContent university={universityData} />
         </div>

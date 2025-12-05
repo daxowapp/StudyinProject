@@ -3,6 +3,45 @@ import { Building2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { UniversityHeroSearch } from "@/components/universities/UniversityHeroSearch";
 import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params;
+
+    const title = 'Top Chinese Universities for International Students';
+    const description = 'Explore 100+ prestigious Chinese universities. Find programs, scholarships, admission requirements, and application guidance for studying in China.';
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/universities`,
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+        },
+        alternates: {
+            canonical: `${baseUrl}/${locale}/universities`,
+            languages: {
+                'en': `${baseUrl}/en/universities`,
+                'ar': `${baseUrl}/ar/universities`,
+                'fa': `${baseUrl}/fa/universities`,
+                'tr': `${baseUrl}/tr/universities`,
+            },
+        },
+    };
+}
 
 export default async function UniversitiesPage() {
     const supabase = await createClient();

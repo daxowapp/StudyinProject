@@ -22,6 +22,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { createClient } from '@/lib/supabase/client';
 import { COUNTRIES, COUNTRY_CODES } from '@/lib/constants/countries';
+import { useTranslations } from 'next-intl';
 
 interface ApplyFormProps {
   program: {
@@ -96,6 +97,7 @@ interface ApplyFormProps {
 export function ApplyForm({ program, requirements, user, profile, intakes = [] }: ApplyFormProps) {
   const router = useRouter();
   const supabase = createClient();
+  const t = useTranslations('Apply');
 
   const [step, setStep] = useState(1); // 1: Info, 2: Documents, 3: Payment, 4: Review
   const [loading, setLoading] = useState(false);
@@ -119,15 +121,15 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
   // Helper function to get list of missing required fields
   const getMissingFields = () => {
     const missing: string[] = [];
-    if (!formData.student_name) missing.push('Full Name');
-    if (!formData.student_email) missing.push('Email Address');
-    if (!formData.student_phone) missing.push('Mobile Phone Number');
-    if (!formData.student_country) missing.push('Country');
-    if (!formData.student_passport) missing.push('Passport Number');
-    if (!formData.preferred_intake) missing.push('Preferred Intake');
-    if (!formData.emergency_contact_name) missing.push('Emergency Contact Name');
-    if (!formData.emergency_contact_phone) missing.push('Emergency Contact Phone');
-    if (!formData.emergency_contact_relationship) missing.push('Emergency Contact Relationship');
+    if (!formData.student_name) missing.push(t('labels.fullName'));
+    if (!formData.student_email) missing.push(t('labels.email'));
+    if (!formData.student_phone) missing.push(t('labels.phone'));
+    if (!formData.student_country) missing.push(t('labels.country'));
+    if (!formData.student_passport) missing.push(t('labels.passport'));
+    if (!formData.preferred_intake) missing.push(t('labels.preferredIntake'));
+    if (!formData.emergency_contact_name) missing.push(t('labels.emergencyContactName'));
+    if (!formData.emergency_contact_phone) missing.push(t('labels.emergencyContactPhone'));
+    if (!formData.emergency_contact_relationship) missing.push(t('labels.emergencyContactRelationship'));
     return missing;
   };
 
@@ -522,11 +524,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="student_name">Full Name (as in passport) *</Label>
+                  <Label htmlFor="student_name">{t('labels.fullName')} *</Label>
                   <Input
                     id="student_name"
                     name="student_name"
-                    placeholder="e.g. John Smith"
+                    placeholder={t('placeholders.fullName')}
                     value={formData.student_name}
                     onChange={handleInputChange}
                     required
@@ -534,12 +536,12 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_email">Email Address *</Label>
+                  <Label htmlFor="student_email">{t('labels.email')} *</Label>
                   <Input
                     id="student_email"
                     name="student_email"
                     type="email"
-                    placeholder="e.g. john@example.com"
+                    placeholder={t('placeholders.email')}
                     value={formData.student_email}
                     onChange={handleInputChange}
                     required
@@ -547,8 +549,8 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_phone">Mobile Phone Number *</Label>
-                  <p className="text-xs text-muted-foreground">Enter your phone number without country code</p>
+                  <Label htmlFor="student_phone">{t('labels.phone')} *</Label>
+                  <p className="text-xs text-muted-foreground">{t('hints.phoneHint')}</p>
                   <div className="flex gap-2">
                     <Select value={phoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'student')}>
                       <SelectTrigger className="w-[100px] md:w-[120px]">
@@ -576,7 +578,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_country">Country *</Label>
+                  <Label htmlFor="student_country">{t('labels.country')} *</Label>
                   <Select value={formData.student_country} onValueChange={(value) => handleSelectChange('student_country', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your country" />
@@ -592,11 +594,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="student_passport">Passport Number *</Label>
+                  <Label htmlFor="student_passport">{t('labels.passport')} *</Label>
                   <Input
                     id="student_passport"
                     name="student_passport"
-                    placeholder="e.g. AB1234567"
+                    placeholder={t('placeholders.passport')}
                     value={formData.student_passport}
                     onChange={handleInputChange}
                     required
@@ -604,7 +606,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="preferred_intake">Preferred Intake *</Label>
+                  <Label htmlFor="preferred_intake">{t('labels.preferredIntake')} *</Label>
                   <Select value={formData.preferred_intake} onValueChange={(value) => handleSelectChange('preferred_intake', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select intake period" />
@@ -628,11 +630,11 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 <h3 className="font-semibold mb-4">Emergency Contact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact_name">Contact Name *</Label>
+                    <Label htmlFor="emergency_contact_name">{t('labels.emergencyContactName')} *</Label>
                     <Input
                       id="emergency_contact_name"
                       name="emergency_contact_name"
-                      placeholder="e.g. Parent or Guardian name"
+                      placeholder={t('placeholders.emergencyName')}
                       value={formData.emergency_contact_name}
                       onChange={handleInputChange}
                       required
@@ -640,7 +642,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact_phone">Phone Number *</Label>
+                    <Label htmlFor="emergency_contact_phone">{t('labels.emergencyContactPhone')} *</Label>
                     <div className="flex gap-2">
                       <Select value={emergencyPhoneCountryId} onValueChange={(value) => handlePhoneCountryChange(value, 'emergency')}>
                         <SelectTrigger className="w-[100px] md:w-[120px]">
@@ -668,13 +670,13 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact_relationship">Relationship *</Label>
+                    <Label htmlFor="emergency_contact_relationship">{t('labels.emergencyContactRelationship')} *</Label>
                     <Input
                       id="emergency_contact_relationship"
                       name="emergency_contact_relationship"
                       value={formData.emergency_contact_relationship}
                       onChange={handleInputChange}
-                      placeholder="e.g., Parent, Spouse"
+                      placeholder={t('placeholders.relationship')}
                       required
                     />
                   </div>
@@ -687,7 +689,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   <div className="flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-amber-800">Please fill in the following required fields:</p>
+                      <p className="font-medium text-amber-800">{t('validation.missingFieldsTitle')}</p>
                       <ul className="mt-2 text-sm text-amber-700 list-disc list-inside space-y-1">
                         {missingFields.map((field) => (
                           <li key={field}>{field}</li>
@@ -704,7 +706,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                   disabled={!canProceedToStep2}
                   className={!canProceedToStep2 ? 'opacity-50 cursor-not-allowed' : ''}
                 >
-                  Continue to Documents
+                  {t('buttons.continueToDocuments')}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>

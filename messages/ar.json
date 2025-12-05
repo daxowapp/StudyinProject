@@ -921,5 +921,85 @@
             "documentUploaded": "تم رفع المستند",
             "acceptanceLetter": "خطاب القبول"
         }
+    },
+    "Apply": {
+        "title": "التقديم للبرنامج",
+        "steps": {
+            "info": "المعلومات",
+            "documents": "المستندات",
+            "payment": "الدفع",
+            "review": "المراجعة",
+            "personalInfo": "المعلومات الشخصية",
+            "requiredDocuments": "المستندات المطلوبة",
+            "paymentInfo": "الدفع",
+            "reviewSubmit": "المراجعة والتقديم"
+        },
+        "labels": {
+            "fullName": "الاسم الكامل (كما في جواز السفر)",
+            "email": "البريد الإلكتروني",
+            "phone": "رقم الهاتف المحمول",
+            "country": "الدولة",
+            "passport": "رقم جواز السفر",
+            "preferredIntake": "موعد القبول المفضل",
+            "emergencyContactName": "اسم جهة الاتصال في الطوارئ",
+            "emergencyContactPhone": "هاتف جهة الاتصال في الطوارئ",
+            "emergencyContactRelationship": "صلة القرابة"
+        },
+        "placeholders": {
+            "fullName": "مثال: محمد أحمد علي",
+            "email": "مثال: mohammed@example.com",
+            "phone": "مثال: 555 123 4567",
+            "passport": "مثال: AB1234567",
+            "emergencyName": "مثال: اسم الوالد أو الوصي",
+            "emergencyPhone": "مثال: 555 123 4567",
+            "relationship": "مثال: والد، زوج/زوجة"
+        },
+        "hints": {
+            "phoneHint": "أدخل رقم هاتفك بدون رمز الدولة",
+            "passportHint": "أدخل رقم جواز السفر كما هو موضح"
+        },
+        "buttons": {
+            "continueToDocuments": "متابعة إلى المستندات",
+            "continueToPayment": "متابعة إلى الدفع",
+            "continueToReview": "متابعة إلى المراجعة",
+            "submitApplication": "تقديم الطلب",
+            "back": "رجوع",
+            "uploadDocument": "رفع",
+            "selectFile": "اختيار ملف"
+        },
+        "validation": {
+            "missingFieldsTitle": "يرجى ملء الحقول المطلوبة التالية:",
+            "required": "هذا الحقل مطلوب"
+        },
+        "documents": {
+            "title": "المستندات المطلوبة",
+            "description": "يرجى رفع المستندات التالية. الصيغ المقبولة: PDF، JPG، PNG (الحد الأقصى 10 ميغابايت)",
+            "mandatory": "مطلوب",
+            "optional": "اختياري",
+            "uploaded": "تم الرفع",
+            "pending": "قيد الانتظار"
+        },
+        "payment": {
+            "title": "رسوم التقديم",
+            "applicationFee": "رسوم التقديم",
+            "serviceFee": "رسوم الخدمة",
+            "total": "المجموع",
+            "payNow": "ادفع الآن",
+            "payLater": "ادفع لاحقاً"
+        },
+        "review": {
+            "title": "مراجعة طلبك",
+            "personalDetails": "البيانات الشخصية",
+            "uploadedDocuments": "المستندات المرفوعة",
+            "confirmSubmit": "أؤكد أن جميع المعلومات المقدمة صحيحة",
+            "submitting": "جاري التقديم...",
+            "success": "تم تقديم الطلب بنجاح!",
+            "successMessage": "تم تقديم طلبك. ستتلقى رسالة تأكيد بالبريد الإلكتروني قريباً."
+        },
+        "errors": {
+            "generic": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+            "uploadFailed": "فشل رفع المستند. يرجى المحاولة مرة أخرى.",
+            "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
+        }
     }
 }

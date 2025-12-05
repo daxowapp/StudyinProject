@@ -9,6 +9,7 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { PartnersSection } from "@/components/home/PartnersSection";
 import { FAQPreviewSection } from "@/components/home/FAQPreviewSection";
 import { createClient } from "@/lib/supabase/server";
+import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 
 // Enable ISR with 5 minute revalidation
 export const revalidate = 300;
@@ -203,6 +204,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="min-h-screen bg-background">
+      <OrganizationJsonLd />
       <HeroSection />
       <WhyStudySection />
       <HowItWorksSection isLoggedIn={!!user} />

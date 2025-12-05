@@ -1,11 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Mail,
-  AlertCircle,
-  MessageSquare,
-} from 'lucide-react';
+import { Mail, AlertCircle, MessageSquare } from 'lucide-react';
 import { StudentMessageThreads } from './components/StudentMessageThreads';
 
 interface Attachment {

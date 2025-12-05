@@ -10,6 +10,61 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Price } from "@/components/currency/Price";
 import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
+import { CourseJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ slug: string; locale: string }>
+}): Promise<Metadata> {
+    const supabase = await createClient();
+    const { slug, locale } = await params;
+
+    const { data: program } = await supabase
+        .from("v_university_programs_full")
+        .select("display_title, program_title, program_description, university_name, level, tuition_fee, currency")
+        .eq("slug", slug)
+        .single();
+
+    if (!program) {
+        return {
+            title: 'Program Not Found',
+        };
+    }
+
+    const programName = program.display_title || program.program_title;
+    const title = `${programName} at ${program.university_name}`;
+    const description = program.program_description?.slice(0, 160) ||
+        `Study ${programName} (${program.level}) at ${program.university_name} in China. Tuition: ${program.tuition_fee} ${program.currency}/year.`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/programs/${slug}`,
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+        },
+        alternates: {
+            canonical: `${baseUrl}/${locale}/programs/${slug}`,
+            languages: {
+                'en': `${baseUrl}/en/programs/${slug}`,
+                'ar': `${baseUrl}/ar/programs/${slug}`,
+                'fa': `${baseUrl}/fa/programs/${slug}`,
+                'tr': `${baseUrl}/tr/programs/${slug}`,
+            },
+        },
+    };
+}
 
 export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const supabase = await createClient();
@@ -129,6 +184,30 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/10">
+            <CourseJsonLd
+                name={programData.name}
+                description={programData.overview}
+                provider={programData.university}
+                providerUrl={`${baseUrl}/en/universities/${programData.universityId}`}
+                url={`${baseUrl}/en/programs/${programData.slug}`}
+                duration={programData.duration}
+                educationalLevel={programData.level}
+                inLanguage={programData.language}
+                offers={programData.tuition_fee ? { price: programData.tuition_fee, currency: programData.currency } : undefined}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Home', url: baseUrl },
+                    { name: 'Programs', url: `${baseUrl}/en/programs` },
+                    { name: programData.name, url: `${baseUrl}/en/programs/${programData.slug}` },
+                ]}
+            />
+            <FAQJsonLd
+                questions={programData.faqs.map((faq: { q: string; a: string }) => ({
+                    question: faq.q,
+                    answer: faq.a,
+                }))}
+            />
             {/* Hero Section */}
             <div className="relative bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
                 <div className="absolute inset-0 bg-grid-white/10" />

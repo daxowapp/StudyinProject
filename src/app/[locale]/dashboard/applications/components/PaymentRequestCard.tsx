@@ -19,7 +19,7 @@ import {
     X
 } from 'lucide-react';
 import Image from 'next/image';
-import { uploadPaymentReceipt, processCardPayment } from '../actions';
+import { uploadPaymentReceipt } from '../actions';
 import { toast } from 'sonner';
 import { formatDistanceToNow } from 'date-fns';
 import { Price } from '@/components/currency/Price';
@@ -104,20 +104,34 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
     const handleCardPayment = async () => {
         setIsProcessing(true);
         try {
-            // TODO: Integrate Stripe payment form
-            // For now, just simulate payment
-            const result = await processCardPayment(transaction.id);
+            // Call our checkout API to create a Stripe Checkout Session
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    applicationId: transaction.id,
+                    amount: transaction.amount,
+                    currency: transaction.currency.toLowerCase(),
+                }),
+            });
 
-            if (result.error) {
-                toast.error(result.error);
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to create checkout session');
+            }
+
+            // Redirect to Stripe Checkout
+            if (data.url) {
+                window.location.href = data.url;
             } else {
-                toast.success('Payment processed successfully!');
-                setTimeout(() => window.location.reload(), 1500);
+                throw new Error('No checkout URL received');
             }
         } catch (err) {
             console.error(err);
-            toast.error("Payment failed");
-        } finally {
+            toast.error((err as Error).message || "Payment failed");
             setIsProcessing(false);
         }
     };
@@ -318,31 +332,33 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
                                 </div>
                             </div>
 
-                            <div className="bg-white border rounded-lg p-6 space-y-4">
-                                <div className="text-center py-8">
-                                    <CreditCard className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                    <p className="text-gray-600 mb-4">
-                                        Stripe payment integration will be added here
-                                    </p>
-                                    <Button
-                                        onClick={handleCardPayment}
-                                        disabled={isProcessing}
-                                        className="gap-2"
-                                        size="lg"
-                                    >
-                                        {isProcessing ? (
-                                            <>
-                                                <Loader2 className="w-4 h-4 animate-spin" />
-                                                Processing...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <CreditCard className="w-4 h-4" />
-                                                Pay <Price amount={transaction.amount} currency={transaction.currency} />
-                                            </>
-                                        )}
-                                    </Button>
+                            <div className="bg-white border rounded-lg p-6">
+                                <div className="flex items-center justify-center gap-4 mb-6">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Visa_Logo_2014.svg" alt="Visa" className="h-8" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" className="h-8" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Pay" className="h-6" />
                                 </div>
+                                <Button
+                                    onClick={handleCardPayment}
+                                    disabled={isProcessing}
+                                    className="w-full gap-2 bg-gradient-to-r from-primary to-primary/80"
+                                    size="lg"
+                                >
+                                    {isProcessing ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                            Redirecting to payment...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <CreditCard className="w-4 h-4" />
+                                            Pay <Price amount={transaction.amount} currency={transaction.currency} /> Securely
+                                        </>
+                                    )}
+                                </Button>
+                                <p className="text-xs text-center text-muted-foreground mt-3">
+                                    Powered by Stripe. Your payment is 100% secure.
+                                </p>
                             </div>
                         </TabsContent>
                     </Tabs>

@@ -511,5 +511,493 @@
             "documentUploaded": "Belge Yüklendi",
             "acceptanceLetter": "Kabul Mektubu"
         }
+    },
+    "Universities": {
+        "title": "Çin'in En İyi Üniversitelerini Keşfedin",
+        "subtitle": "{count}+ prestijli kurumu keşfedin. 985 Projesi'nden C9 Ligi üniversitelerine kadar.",
+        "error": {
+            "title": "Üniversiteler yüklenemedi",
+            "hint": "İpucu: {hint}"
+        },
+        "search": {
+            "placeholder": "Üniversite adı, şehir veya sıralama ile ara...",
+            "label": "Ara",
+            "universityPlaceholder": "Üniversite adı..."
+        },
+        "filters": {
+            "title": "Filtreler",
+            "description": "Üniversite aramanızı daraltın",
+            "clear": "Filtreleri Temizle",
+            "clearAll": "Tüm Filtreleri Temizle",
+            "city": "Şehir",
+            "allCities": "Tüm Şehirler",
+            "institutionType": "Kurum Türü",
+            "allTypes": "Tüm Türler",
+            "universityCategory": "Üniversite Kategorisi",
+            "allCategories": "Tüm Kategoriler",
+            "rankingRecognition": "Sıralama ve Tanınma",
+            "specialFeatures": "Özel Özellikler",
+            "institutionTypes": {
+                "university": "Üniversite",
+                "college": "Kolej",
+                "languageInstitute": "Dil Enstitüsü",
+                "vocationalSchool": "Meslek Yüksekokulu",
+                "technicalInstitute": "Teknik Enstitü"
+            },
+            "categories": {
+                "public": "Devlet",
+                "private": "Özel",
+                "research": "Araştırma",
+                "comprehensive": "Kapsamlı",
+                "specialized": "Uzman",
+                "vocational": "Mesleki"
+            },
+            "rankings": {
+                "project985": "985 Projesi",
+                "project211": "211 Projesi",
+                "doubleFirstClass": "Çift Birinci Sınıf"
+            },
+            "features": {
+                "fastTrack": "Hızlı Kabul",
+                "scholarships": "Burs Mevcut",
+                "englishPrograms": "İngilizce Programlar"
+            }
+        },
+        "stats": {
+            "title": "Hızlı İstatistikler",
+            "total": "Toplam Üniversite",
+            "showing": "Gösterilen",
+            "cities": "Şehirler"
+        },
+        "sort": {
+            "label": "Sırala",
+            "name": "İsim: A-Z",
+            "programs": "En Çok Program",
+            "city": "Şehir"
+        },
+        "noResults": {
+            "title": "Üniversite bulunamadı",
+            "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
+        }
+    },
+    "Programs": {
+        "title": "Mükemmel Programınızı Keşfedin",
+        "subtitle": "En iyi Çin üniversitelerinden {count}+ programa göz atın. Akademik yolculuğunuz için mükemmel eşleşmeyi bulun.",
+        "filters": {
+            "title": "Filtreler",
+            "active": "Aktif Filtreler:",
+            "clear": "Filtreleri Temizle",
+            "clearAll": "Tüm Filtreleri Temizle",
+            "search": "Ara",
+            "searchPlaceholder": "Program veya bölüm...",
+            "studyLevel": "Eğitim Seviyesi",
+            "fieldOfStudy": "Çalışma Alanı",
+            "allFields": "Tüm Alanlar",
+            "maxTuition": "Maks Ücret",
+            "language": "Dil",
+            "city": "Şehir",
+            "allCities": "Tüm Şehirler",
+            "university": "Üniversite",
+            "allUniversities": "Tüm Üniversiteler",
+            "duration": "Süre",
+            "allDurations": "Tüm Süreler",
+            "scholarshipAvailable": "Burs Mevcut",
+            "levels": {
+                "bachelor": "Lisans",
+                "master": "Yüksek Lisans",
+                "phd": "Doktora"
+            },
+            "fields": {
+                "business": "İşletme ve Yönetim",
+                "engineering": "Mühendislik ve Teknoloji",
+                "medicine": "Tıp ve Sağlık Bilimleri",
+                "arts": "Sanat ve Beşeri Bilimler",
+                "science": "Doğa Bilimleri",
+                "education": "Eğitim"
+            },
+            "languages": {
+                "english": "İngilizce",
+                "chinese": "Çince"
+            },
+            "durations": {
+                "2years": "2 Yıl",
+                "3years": "3 Yıl",
+                "4years": "4 Yıl",
+                "5years": "5 Yıl",
+                "6years": "6 Yıl"
+            }
+        },
+        "stats": {
+            "total": "Toplam Program",
+            "showing": "Gösterilen"
+        },
+        "sort": {
+            "label": "Sırala",
+            "relevance": "En Alakalı",
+            "tuitionLow": "Ücret: Düşükten Yükseğe",
+            "tuitionHigh": "Ücret: Yüksekten Düşüğe",
+            "deadline": "Son Tarih: En Yakın",
+            "popular": "En Popüler"
+        },
+        "noResults": {
+            "title": "Program bulunamadı",
+            "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
+        },
+        "card": {
+            "duration": "Süre",
+            "intake": "Dönem",
+            "tuitionFee": "Öğrenim Ücreti",
+            "viewProgram": "Programı Gör",
+            "contact": "İletişim"
+        }
+    },
+    "UniversitiesCard": {
+        "programs": "Programlar",
+        "tuitionFrom": "Ücret Başlangıcı",
+        "viewUniversity": "Üniversiteyi Gör",
+        "viewPrograms": "Programları Gör"
+    },
+    "ProgramDetail": {
+        "breadcrumb": {
+            "home": "Ana Sayfa",
+            "programs": "Programlar"
+        },
+        "badges": {
+            "intake": "Dönem: {intake}",
+            "contactUniversity": "Üniversite ile İletişim",
+            "fastTrack": "Hızlı Kabul"
+        },
+        "buttons": {
+            "apply": "Şimdi Başvur",
+            "downloadBrochure": "Broşürü İndir",
+            "viewUniversity": "Üniversiteyi Gör",
+            "startApplication": "Başvuruyu Başlat",
+            "contactAdvisor": "Danışmanla İletişim"
+        },
+        "highlights": {
+            "title": "Program Özellikleri",
+            "tuition": "Öğrenim Ücreti",
+            "duration": "Süre",
+            "language": "Dil",
+            "level": "Derece Seviyesi"
+        },
+        "overview": {
+            "title": "Program Genel Bakış",
+            "noDescription": "Bu program için açıklama mevcut değil.",
+            "curriculum": "Temel Müfredat",
+            "curriculumPlaceholder": "Temel dersler bilgisi yakında güncellenecek"
+        },
+        "requirements": {
+            "title": "Kabul Gereksinimleri"
+        },
+        "scholarships": {
+            "title": "Bu Program İçin Burs Seçenekleri",
+            "description": "Bütçenize en uygun burs türünü seçin"
+        },
+        "faq": {
+            "title": "Sıkça Sorulan Sorular",
+            "deadline": "Başvuru son tarihi {deadline}.",
+            "accommodationQ": "Konaklama sağlanıyor mu?",
+            "accommodationA": "Evet, uluslararası öğrenciler için kampüs içi konaklama mevcuttur.",
+            "workQ": "Yarı zamanlı çalışabilir miyim?",
+            "workA": "Evet, uluslararası öğrenciler uygun izinlerle iş-eğitim programlarına veya stajlara başvurabilirler.",
+            "deadlineQ": "Başvuru son tarihi nedir?"
+        },
+        "sidebar": {
+            "ready": "Başvurmaya Hazır mısınız?",
+            "free": "Ücretsiz Başvuru",
+            "fast": "Hızlı İşlem",
+            "expert": "Uzman Desteği",
+            "cost": "Maliyet Dağılımı",
+            "applicationFee": "Başvuru Ücreti",
+            "serviceFee": "Hizmet Ücreti",
+            "disclaimer": "* Ek maliyetler konaklama, vize ve yaşam giderlerini içerebilir",
+            "why": "Neden Bu Programı Seçmelisiniz?",
+            "reasons": {
+                "degree": "Uluslararası tanınır derece",
+                "faculty": "Deneyimli öğretim üyeleri",
+                "facilities": "Modern tesisler ve kaynaklar",
+                "career": "Kariyer geliştirme desteği"
+            }
+        }
+    },
+    "UniversityDetail": {
+        "about": "Hakkında",
+        "whyChooseUs": "Neden Bizi Seçmelisiniz",
+        "programs": {
+            "title": "Programlar",
+            "allPrograms": "Tüm Programlar",
+            "noPrograms": "Bu seviye için program bulunamadı.",
+            "viewProgram": "Programı Gör",
+            "tuitionFee": "Öğrenim Ücreti",
+            "perYear": "yıllık"
+        },
+        "scholarships": {
+            "title": "Mevcut Burs Seçenekleri",
+            "description": "Bu üniversitedeki programlar için bütçenize en uygun burs türünü seçin"
+        },
+        "campus": {
+            "tour": "Kampüs Turu",
+            "gallery": "Kampüs Galerisi",
+            "viewImage": "Resmi Görüntüle"
+        },
+        "admission": {
+            "title": "Kabul Gereksinimleri",
+            "academic": "Akademik Gereksinimler",
+            "language": "Dil Gereksinimleri",
+            "highSchool": "Lise diploması veya dengi",
+            "gpa": "Minimum GPA 3.0/4.0",
+            "transcripts": "Akademik transkript",
+            "ielts": "IELTS 6.0 veya TOEFL 80+",
+            "hsk": "Çince programlar için HSK 4",
+            "english": "İngilizce yeterlilik belgesi"
+        },
+        "sidebar": {
+            "ready": "Başvurmaya Hazır mısınız?",
+            "startJourney": "{university}'de yolculuğunuza başlayın",
+            "applyNow": "Şimdi Başvur",
+            "downloadBrochure": "Broşürü İndir",
+            "quickActions": "Hızlı İşlemler",
+            "requestInfo": "Bilgi İste",
+            "chatAdvisor": "Danışmanla Sohbet",
+            "virtualTour": "Sanal Kampüs Turu",
+            "scheduleCall": "Görüşme Planla",
+            "quickFacts": "Hızlı Bilgiler",
+            "location": "Konum",
+            "founded": "Kuruluş",
+            "students": "Öğrenciler",
+            "international": "Uluslararası",
+            "ranking": "Sıralama",
+            "officialWebsite": "Resmi Web Sitesi"
+        }
+    },
+    "RequestInformation": {
+        "title": "Bilgi İste",
+        "description": "{university} hakkında daha fazla bilgi edinin. Aşağıdaki formu doldurun.",
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "E-posta",
+        "phone": "Telefon Numarası",
+        "interest": "İlgi Alanı",
+        "selectInterest": "İlgi alanınızı seçin",
+        "interests": {
+            "admission": "Kabul Gereksinimleri",
+            "programs": "Mevcut Programlar",
+            "scholarships": "Burs Fırsatları",
+            "campus": "Kampüs Hayatı",
+            "other": "Diğer"
+        },
+        "message": "Mesaj",
+        "messagePlaceholder": "{university}'de okumakla ilgileniyorum...",
+        "submit": "Talep Gönder",
+        "sending": "Gönderiliyor...",
+        "success": "Talep başarıyla gönderildi! Yakında sizinle iletişime geçeceğiz.",
+        "error": "Talep gönderilemedi. Lütfen tekrar deneyin."
+    },
+    "UniversityScholarships": {
+        "loading": "Burslar yükleniyor...",
+        "noScholarships": "Bu üniversite için henüz burs mevcut değil.",
+        "options": "Burs Seçenekleri",
+        "discover": "Daha Fazla Fırsat Keşfedin",
+        "explore": "Tüm Burs Seçeneklerini Keşfedin",
+        "description": "Hangi bursun size uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk gereksinimlerini anlamak ve akademik yolculuğunuz için mükemmel olanı bulmak için tam burs rehberimize göz atın.",
+        "viewAll": "Tüm Bursları Gör",
+        "advice": "Kişiselleştirilmiş Tavsiye Al",
+        "mostPopular": "En Popüler",
+        "defaultDescription": "Uluslararası öğrenciler için harika seçenek.",
+        "tuitionCoverage": "Öğrenim Karşılama",
+        "serviceFee": "Hizmet Ücreti",
+        "whatsIncluded": "Neler Dahil",
+        "applyNow": "Şimdi Başvur",
+        "howItWorks": {
+            "title": "Burslar Nasıl Çalışır",
+            "description": "Burs, öğrenim ücretlerinizin bir yüzdesini karşılar. Kalan öğrenim ücretini üniversiteye + başvuru desteği, vize yardımı ve rehberlik için tek seferlik hizmet ücretini ödersiniz.",
+            "learnMore": "Burslar hakkında daha fazla bilgi →"
+        },
+        "benefits": {
+            "tuitionCoverage": "%{percentage} öğrenim ücreti karşılama",
+            "noScholarship": "Burs yok (%0 karşılama)",
+            "support": "Başvuru desteği ve rehberlik",
+            "visa": "Vize yardımı",
+            "orientation": "Uçuş öncesi oryantasyon",
+            "accommodation": "Konaklama düzenleme desteği"
+        }
+    },
+    "Accommodation": {
+        "notAvailable": "Konaklama bilgisi mevcut değil",
+        "badge": "Öğrenci Konaklama",
+        "title": "Kampüs İçi Konaklama Seçenekleri",
+        "priceRange": "Fiyat Aralığı",
+        "generalFacilities": "Genel Tesisler",
+        "availableRoomTypes": "Mevcut Oda Türleri",
+        "defaultTitle": "Konaklama",
+        "priceOnRequest": "İstek üzerine fiyat",
+        "month": "ay",
+        "roomFeatures": "Oda Özellikleri:",
+        "importantInfo": {
+            "title": "Önemli Bilgiler",
+            "fees": "Konaklama ücretleri dönem veya akademik yıl bazında ödenir",
+            "availability": "Oda tahsisi müsaitliğe bağlıdır",
+            "prices": "Fiyatlar değişebilir ve üniversite ile teyit edilmelidir",
+            "deposit": "Giriş sırasında depozito gerekebilir"
+        }
+    },
+    "UniversityHeader": {
+        "fastTrack": "Hızlı Kabul",
+        "est": "Krl. {founded}",
+        "studentsCount": "{students} Öğrenci",
+        "website": "Web Sitesi",
+        "applyNow": "Şimdi Başvur",
+        "requestInfo": "Bilgi İste",
+        "brochure": "Broşür",
+        "virtualTour": "Sanal Tur",
+        "scheduleCall": "Görüşme Planla",
+        "chatAdvisor": "Danışman",
+        "save": "Kaydet",
+        "saved": "Kaydedildi",
+        "share": "Paylaş",
+        "founded": "Kuruluş",
+        "students": "Öğrenciler",
+        "ranking": "Sıralama",
+        "international": "Uluslararası"
+    },
+    "Documents": {
+        "title": "Belgelerim",
+        "subtitle": "Üniversite başvuruları için belgelerinizi yönetin",
+        "stats": {
+            "total": "Toplam Belge",
+            "uploaded": "Yüklenen dosyalar",
+            "verified": "Doğrulanmış",
+            "approved": "Yönetici onaylı",
+            "pending": "İnceleme Bekliyor",
+            "awaiting": "Doğrulama bekleniyor"
+        },
+        "yourDocuments": "Belgeleriniz",
+        "manageDocuments": "Başvuru belgelerinizi yükleyin ve yönetin",
+        "uploadDocument": "Belge Yükle",
+        "noDocuments": "Henüz belge yok",
+        "uploadFirst": "Başlamak için ilk belgenizi yükleyin",
+        "size": "Boyut",
+        "uploaded": "Yüklendi",
+        "download": "İndir",
+        "delete": "Sil",
+        "deleteConfirm": "\"{name}\" belgesini silmek istediğinizden emin misiniz?",
+        "uploadDialog": {
+            "title": "Belge Yükle",
+            "description": "Belge türünü seçin ve dosyanızı yükleyin",
+            "type": "Belge Türü *",
+            "selectType": "Belge türü seçin",
+            "alreadyUploaded": "(Zaten Yüklendi)",
+            "file": "Dosya *",
+            "selected": "Seçildi",
+            "formats": "Kabul edilen formatlar: PDF, JPG, PNG, DOC, DOCX. Maks 10MB.",
+            "cancel": "İptal",
+            "uploading": "Yükleniyor...",
+            "upload": "Yükle"
+        },
+        "error": {
+            "fileSize": "Dosya 10MB'dan küçük olmalıdır",
+            "selectFile": "Lütfen belge türü ve dosya seçin",
+            "fileType": "Lütfen bir resim dosyası yükleyin",
+            "imageSize": "Resim 5MB'dan küçük olmalıdır"
+        },
+        "success": {
+            "uploaded": "Belge başarıyla yüklendi!",
+            "deleted": "Belge silindi"
+        },
+        "types": {
+            "passport": "Pasaport",
+            "transcript": "Akademik Transkript",
+            "diploma": "Diploma/Sertifika",
+            "recommendation_letter": "Tavsiye Mektubu",
+            "personal_statement": "Kişisel Beyan",
+            "cv": "CV/Özgeçmiş",
+            "language_certificate": "Dil Sertifikası (IELTS/TOEFL)",
+            "photo": "Pasaport Fotoğrafı",
+            "bank_statement": "Banka Ekstresi",
+            "health_certificate": "Sağlık Raporu",
+            "police_clearance": "Sabıka Kaydı",
+            "other": "Diğer Belge"
+        }
+    },
+    "Apply": {
+        "title": "Programa Başvur",
+        "steps": {
+            "info": "Bilgi",
+            "documents": "Belgeler",
+            "payment": "Ödeme",
+            "review": "İnceleme",
+            "personalInfo": "Kişisel Bilgiler",
+            "requiredDocuments": "Gerekli Belgeler",
+            "paymentInfo": "Ödeme",
+            "reviewSubmit": "İncele ve Gönder"
+        },
+        "labels": {
+            "fullName": "Ad Soyad (pasaportta yazıldığı gibi)",
+            "email": "E-posta Adresi",
+            "phone": "Cep Telefonu Numarası",
+            "country": "Ülke",
+            "passport": "Pasaport Numarası",
+            "preferredIntake": "Tercih Edilen Dönem",
+            "emergencyContactName": "Acil Durum İletişim Adı",
+            "emergencyContactPhone": "Acil Durum İletişim Telefonu",
+            "emergencyContactRelationship": "Yakınlık Derecesi"
+        },
+        "placeholders": {
+            "fullName": "örn. Ahmet Yılmaz",
+            "email": "örn. ahmet@ornek.com",
+            "phone": "örn. 555 123 4567",
+            "passport": "örn. AB1234567",
+            "emergencyName": "örn. Veli veya Vasi adı",
+            "emergencyPhone": "örn. 555 123 4567",
+            "relationship": "örn. Ebeveyn, Eş"
+        },
+        "hints": {
+            "phoneHint": "Ülke kodu olmadan telefon numaranızı girin",
+            "passportHint": "Pasaport numaranızı tam olarak yazıldığı gibi girin"
+        },
+        "buttons": {
+            "continueToDocuments": "Belgelere Devam Et",
+            "continueToPayment": "Ödemeye Devam Et",
+            "continueToReview": "İncelemeye Devam Et",
+            "submitApplication": "Başvuruyu Gönder",
+            "back": "Geri",
+            "uploadDocument": "Yükle",
+            "selectFile": "Dosya Seç"
+        },
+        "validation": {
+            "missingFieldsTitle": "Lütfen aşağıdaki gerekli alanları doldurun:",
+            "required": "Bu alan zorunludur"
+        },
+        "documents": {
+            "title": "Gerekli Belgeler",
+            "description": "Lütfen aşağıdaki belgeleri yükleyin. Kabul edilen formatlar: PDF, JPG, PNG (maks 10MB)",
+            "mandatory": "Zorunlu",
+            "optional": "İsteğe Bağlı",
+            "uploaded": "Yüklendi",
+            "pending": "Bekliyor"
+        },
+        "payment": {
+            "title": "Başvuru Ücreti",
+            "applicationFee": "Başvuru Ücreti",
+            "serviceFee": "Hizmet Ücreti",
+            "total": "Toplam",
+            "payNow": "Şimdi Öde",
+            "payLater": "Sonra Öde"
+        },
+        "review": {
+            "title": "Başvurunuzu İnceleyin",
+            "personalDetails": "Kişisel Bilgiler",
+            "uploadedDocuments": "Yüklenen Belgeler",
+            "confirmSubmit": "Sağlanan tüm bilgilerin doğru olduğunu onaylıyorum",
+            "submitting": "Gönderiliyor...",
+            "success": "Başvuru Başarıyla Gönderildi!",
+            "successMessage": "Başvurunuz gönderildi. Kısa süre içinde onay e-postası alacaksınız."
+        },
+        "errors": {
+            "generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
+            "uploadFailed": "Belge yüklenemedi. Lütfen tekrar deneyin.",
+            "paymentFailed": "Ödeme başarısız. Lütfen tekrar deneyin."
+        }
     }
 }

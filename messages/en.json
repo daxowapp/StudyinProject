@@ -921,5 +921,85 @@
             "documentUploaded": "Document Uploaded",
             "acceptanceLetter": "Acceptance Letter"
         }
+    },
+    "Apply": {
+        "title": "Apply for Program",
+        "steps": {
+            "info": "Info",
+            "documents": "Docs",
+            "payment": "Pay",
+            "review": "Review",
+            "personalInfo": "Personal Information",
+            "requiredDocuments": "Required Documents",
+            "paymentInfo": "Payment",
+            "reviewSubmit": "Review & Submit"
+        },
+        "labels": {
+            "fullName": "Full Name (as in passport)",
+            "email": "Email Address",
+            "phone": "Mobile Phone Number",
+            "country": "Country",
+            "passport": "Passport Number",
+            "preferredIntake": "Preferred Intake",
+            "emergencyContactName": "Emergency Contact Name",
+            "emergencyContactPhone": "Emergency Contact Phone",
+            "emergencyContactRelationship": "Relationship"
+        },
+        "placeholders": {
+            "fullName": "e.g. John Smith",
+            "email": "e.g. john@example.com",
+            "phone": "e.g. 555 123 4567",
+            "passport": "e.g. AB1234567",
+            "emergencyName": "e.g. Parent or Guardian name",
+            "emergencyPhone": "e.g. 555 123 4567",
+            "relationship": "e.g. Parent, Spouse"
+        },
+        "hints": {
+            "phoneHint": "Enter your phone number without country code",
+            "passportHint": "Enter your passport number exactly as shown"
+        },
+        "buttons": {
+            "continueToDocuments": "Continue to Documents",
+            "continueToPayment": "Continue to Payment",
+            "continueToReview": "Continue to Review",
+            "submitApplication": "Submit Application",
+            "back": "Back",
+            "uploadDocument": "Upload",
+            "selectFile": "Select File"
+        },
+        "validation": {
+            "missingFieldsTitle": "Please fill in the following required fields:",
+            "required": "This field is required"
+        },
+        "documents": {
+            "title": "Required Documents",
+            "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
+            "mandatory": "Required",
+            "optional": "Optional",
+            "uploaded": "Uploaded",
+            "pending": "Pending"
+        },
+        "payment": {
+            "title": "Application Fee",
+            "applicationFee": "Application Fee",
+            "serviceFee": "Service Fee",
+            "total": "Total",
+            "payNow": "Pay Now",
+            "payLater": "Pay Later"
+        },
+        "review": {
+            "title": "Review Your Application",
+            "personalDetails": "Personal Details",
+            "uploadedDocuments": "Uploaded Documents",
+            "confirmSubmit": "I confirm that all information provided is accurate",
+            "submitting": "Submitting...",
+            "success": "Application Submitted Successfully!",
+            "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
+        },
+        "errors": {
+            "generic": "An error occurred. Please try again.",
+            "uploadFailed": "Failed to upload document. Please try again.",
+            "paymentFailed": "Payment failed. Please try again."
+        }
     }
 }

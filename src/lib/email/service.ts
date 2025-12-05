@@ -1,6 +1,10 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { Resend } from 'resend';
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 export interface SendEmailParams {
   to: string;
@@ -16,28 +20,26 @@ export interface SendEmailParams {
 
 /**
  * Send email using Resend API and log to database
- * For now, we'll just log to database. You can integrate Resend, SendGrid, or any email service
  */
 export async function sendEmail(params: SendEmailParams) {
   const supabase = await createClient();
 
   try {
-    // TODO: Integrate with actual email service (Resend, SendGrid, etc.)
-    // For now, we'll just log to database
-
-    // Example with Resend (uncomment when you have API key):
-    /*
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const { data, error } = await resend.emails.send({
-      from: 'StudyAtChina <noreply@studyatchina.com>',
+    // Send email via Resend
+    const { data: resendData, error: resendError } = await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'StudyAtChina <noreply@studyatchina.com>',
       to: params.to,
       subject: params.subject,
       html: params.html,
       text: params.text,
     });
-    
-    if (error) throw error;
-    */
+
+    if (resendError) {
+      console.error('Resend error:', resendError);
+      throw new Error(resendError.message);
+    }
+
+    console.log('Email sent via Resend:', resendData?.id);
 
     // Log email to database
     const { data: emailLog, error: logError } = await supabase
@@ -52,7 +54,8 @@ export async function sendEmail(params: SendEmailParams) {
         subject: params.subject,
         body: params.text || '',
         html_body: params.html,
-        status: 'sent', // Change to 'pending' when using real email service
+        status: 'sent',
+        resend_id: resendData?.id,
         sent_at: new Date().toISOString(),
       })
       .select()
@@ -60,11 +63,11 @@ export async function sendEmail(params: SendEmailParams) {
 
     if (logError) {
       console.error('Error logging email:', logError);
-      throw logError;
+      // Don't throw - email was sent successfully
     }
 
-    console.log('Email logged:', emailLog.id);
-    return { success: true, emailId: emailLog.id };
+    console.log('Email logged:', emailLog?.id);
+    return { success: true, emailId: emailLog?.id, resendId: resendData?.id };
   } catch (error: unknown) {
     console.error('Error sending email:', error);
 
