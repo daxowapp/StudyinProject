@@ -116,6 +116,24 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
     emergency_contact_relationship: profile?.emergency_contact_relationship || user.user_metadata?.emergency_contact_relationship || '',
   });
 
+  // Helper function to get list of missing required fields
+  const getMissingFields = () => {
+    const missing: string[] = [];
+    if (!formData.student_name) missing.push('Full Name');
+    if (!formData.student_email) missing.push('Email Address');
+    if (!formData.student_phone) missing.push('Mobile Phone Number');
+    if (!formData.student_country) missing.push('Country');
+    if (!formData.student_passport) missing.push('Passport Number');
+    if (!formData.preferred_intake) missing.push('Preferred Intake');
+    if (!formData.emergency_contact_name) missing.push('Emergency Contact Name');
+    if (!formData.emergency_contact_phone) missing.push('Emergency Contact Phone');
+    if (!formData.emergency_contact_relationship) missing.push('Emergency Contact Relationship');
+    return missing;
+  };
+
+  const missingFields = getMissingFields();
+  const canProceedToStep2 = missingFields.length === 0;
+
   const initialPhoneCode = profile?.phone_country_code || user.user_metadata?.phone_country_code || '+86';
   const initialEmergencyCode = profile?.emergency_phone_code || user.user_metadata?.emergency_phone_code || '+86';
 
@@ -663,20 +681,28 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 </div>
               </div>
 
+              {/* Missing Fields Indicator */}
+              {missingFields.length > 0 && (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-4">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-amber-800">Please fill in the following required fields:</p>
+                      <ul className="mt-2 text-sm text-amber-700 list-disc list-inside space-y-1">
+                        {missingFields.map((field) => (
+                          <li key={field}>{field}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="flex justify-end pt-4">
                 <Button
                   onClick={() => setStep(2)}
-                  disabled={
-                    !formData.student_name ||
-                    !formData.student_email ||
-                    !formData.student_phone ||
-                    !formData.student_country ||
-                    !formData.student_passport ||
-                    !formData.preferred_intake ||
-                    !formData.emergency_contact_name ||
-                    !formData.emergency_contact_phone ||
-                    !formData.emergency_contact_relationship
-                  }
+                  disabled={!canProceedToStep2}
+                  className={!canProceedToStep2 ? 'opacity-50 cursor-not-allowed' : ''}
                 >
                   Continue to Documents
                   <ArrowRight className="ml-2 w-4 h-4" />
