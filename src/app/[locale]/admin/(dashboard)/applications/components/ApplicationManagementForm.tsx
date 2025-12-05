@@ -261,7 +261,10 @@ export function ApplicationManagementForm({ application }: ApplicationManagement
             {/* Main Management Tabs */}
             <Card>
                 <CardHeader>
-                    <CardTitle>Application Management</CardTitle>
+                    <CardTitle className="flex justify-between items-center">
+                        Application Management
+                        <span className="text-xs text-muted-foreground font-normal">v1.1 (Debug)</span>
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Tabs defaultValue="notes" className="w-full">
