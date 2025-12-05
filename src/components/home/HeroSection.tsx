@@ -9,8 +9,9 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
@@ -39,10 +40,19 @@ export function HeroSection() {
         router.push(`/programs?${params.toString()}`);
     };
 
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
     return (
-        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-slate-900">
-            {/* Static Background - No Animation for Faster LCP */}
-            <div className="absolute inset-0 z-0">
+        <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-slate-900">
+            {/* Animated Background with Parallax */}
+            <motion.div style={{ y }} className="absolute inset-0 z-0">
                 {/* Mesh Gradient Background */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
 
@@ -59,13 +69,34 @@ export function HeroSection() {
                 {/* Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
 
-                {/* Static Orbs - CSS Animation Only */}
-                <div className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-            </div>
+                {/* Floating Orbs - China Colors */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.2, 1, 1.2],
+                        opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.25, 0.45, 0.25]
+                    }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"
+                />
+            </motion.div>
 
-            <div className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
+            <motion.div style={{ opacity }} className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
                 <div className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto">
 
                     {/* Premium Badge - CSS Animation */}
@@ -314,7 +345,7 @@ export function HeroSection() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
