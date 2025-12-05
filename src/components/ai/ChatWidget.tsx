@@ -1,18 +1,29 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { MessageCircle, X, Send, Loader2, Sparkles, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
+import { X, Send, Loader2, Minimize2, Maximize2, History, LogIn, UserPlus, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChineseAvatar, ChineseAvatarSmall } from './ChineseAvatar';
+import { ChatMessageContent } from './ChatMessageContent';
+import { CHEN_WEI_GREETINGS } from '@/lib/ai/prompts';
+import Link from 'next/link';
 
 interface Message {
     id: string;
     role: 'user' | 'assistant';
     content: string;
+    timestamp?: string;
+}
+
+interface ChatSession {
+    id: string;
+    messages: Message[];
+    updated_at: string;
 }
 
 interface ChatWidgetProps {
@@ -21,36 +32,104 @@ interface ChatWidgetProps {
 
 export function ChatWidget({ className }: ChatWidgetProps) {
     const t = useTranslations('AIChat');
-    const locale = useLocale();
+    const locale = useLocale() as 'en' | 'ar' | 'fa' | 'tr';
     const [isOpen, setIsOpen] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isTalking, setIsTalking] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [showHistory, setShowHistory] = useState(false);
+    const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
+    const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+    const [hasAutoOpened, setHasAutoOpened] = useState(false);
+    const [userLocation, setUserLocation] = useState<string>('');
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Initial greeting
+    // Check auth status and load chat history
+    useEffect(() => {
+        const checkAuthAndLoadHistory = async () => {
+            try {
+                const response = await fetch('/api/ai/chat');
+                const data = await response.json();
+
+                setIsAuthenticated(data.isAuthenticated);
+                if (data.sessions && data.sessions.length > 0) {
+                    setChatHistory(data.sessions);
+                }
+            } catch (error) {
+                console.error('Failed to check auth status:', error);
+            }
+        };
+
+        checkAuthAndLoadHistory();
+    }, []);
+
+    // Detect user's location/timezone for greeting
+    useEffect(() => {
+        try {
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            setUserLocation(timezone);
+        } catch {
+            setUserLocation('Unknown');
+        }
+    }, []);
+
+    // Auto-open chat on first visit
+    useEffect(() => {
+        const hasSeenChat = localStorage.getItem('chenwei_chat_seen');
+        if (!hasSeenChat && !hasAutoOpened) {
+            // Delay auto-open for better UX
+            const timer = setTimeout(() => {
+                setIsOpen(true);
+                setHasAutoOpened(true);
+                localStorage.setItem('chenwei_chat_seen', 'true');
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [hasAutoOpened]);
+
+    // Initial greeting based on locale
     useEffect(() => {
         if (isOpen && messages.length === 0) {
+            const greeting = CHEN_WEI_GREETINGS[locale] || CHEN_WEI_GREETINGS.en;
             setMessages([
                 {
                     id: 'greeting',
                     role: 'assistant',
-                    content: t('greeting') || "Hi! 👋 I'm your AI study advisor. I can help you find programs, learn about scholarships, and guide you through the application process. How can I help you today?",
+                    content: greeting,
+                    timestamp: new Date().toISOString(),
                 },
             ]);
         }
-    }, [isOpen, messages.length, t]);
+    }, [isOpen, messages.length, locale]);
 
     // Scroll to bottom on new messages
     useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTo({
-                top: scrollRef.current.scrollHeight,
-                behavior: 'smooth',
-            });
-        }
+        const scrollToBottom = () => {
+            if (scrollRef.current) {
+                // ScrollArea uses a viewport div inside
+                const viewport = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+                if (viewport) {
+                    viewport.scrollTo({
+                        top: viewport.scrollHeight,
+                        behavior: 'smooth',
+                    });
+                } else {
+                    scrollRef.current.scrollTo({
+                        top: scrollRef.current.scrollHeight,
+                        behavior: 'smooth',
+                    });
+                }
+            }
+        };
+
+        // Scroll immediately and after a small delay for streaming content
+        scrollToBottom();
+        const timer = setTimeout(scrollToBottom, 100);
+        return () => clearTimeout(timer);
     }, [messages]);
 
     // Focus input when opened
@@ -60,6 +139,19 @@ export function ChatWidget({ className }: ChatWidgetProps) {
         }
     }, [isOpen, isMinimized]);
 
+    const loadChatSession = (session: ChatSession) => {
+        setMessages(session.messages);
+        setCurrentSessionId(session.id);
+        setShowHistory(false);
+    };
+
+    const startNewChat = () => {
+        setMessages([]);
+        setCurrentSessionId(null);
+        setShowHistory(false);
+        // Greeting will be added by useEffect
+    };
+
     const sendMessage = useCallback(async () => {
         if (!input.trim() || isLoading) return;
 
@@ -67,11 +159,13 @@ export function ChatWidget({ className }: ChatWidgetProps) {
             id: Date.now().toString(),
             role: 'user',
             content: input.trim(),
+            timestamp: new Date().toISOString(),
         };
 
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setIsLoading(true);
+        setIsTalking(true);
 
         // Add placeholder for assistant response
         const assistantId = (Date.now() + 1).toString();
@@ -87,6 +181,8 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                         content: m.content,
                     })),
                     locale,
+                    sessionId: currentSessionId,
+                    userLocation,
                 }),
             });
 
@@ -117,6 +213,12 @@ export function ChatWidget({ className }: ChatWidgetProps) {
 
                         try {
                             const parsed = JSON.parse(data);
+
+                            // Capture session ID if returned
+                            if (parsed.sessionId && !currentSessionId) {
+                                setCurrentSessionId(parsed.sessionId);
+                            }
+
                             if (parsed.content) {
                                 fullContent += parsed.content;
                                 setMessages(prev =>
@@ -144,8 +246,9 @@ export function ChatWidget({ className }: ChatWidgetProps) {
             );
         } finally {
             setIsLoading(false);
+            setIsTalking(false);
         }
-    }, [input, isLoading, messages, locale, t]);
+    }, [input, isLoading, messages, locale, currentSessionId, userLocation, t]);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -155,9 +258,9 @@ export function ChatWidget({ className }: ChatWidgetProps) {
     };
 
     const quickActions = [
-        { label: t('quickFind') || 'Find Programs', query: 'Help me find a program' },
-        { label: t('quickScholarship') || 'Scholarships', query: 'What scholarships are available?' },
-        { label: t('quickApply') || 'How to Apply', query: 'How do I apply to a Chinese university?' },
+        { label: t('quickFind') || '🎓 Find Programs', query: 'Help me find a program that matches my interests' },
+        { label: t('quickScholarship') || '💰 Scholarships', query: 'What scholarships are available for international students?' },
+        { label: t('quickApply') || '📝 Start Application', query: "I'd like to apply for a program" },
     ];
 
     const handleQuickAction = (query: string) => {
@@ -167,7 +270,7 @@ export function ChatWidget({ className }: ChatWidgetProps) {
 
     return (
         <>
-            {/* Floating Button */}
+            {/* Floating Button with Chen Wei Avatar */}
             <AnimatePresence>
                 {!isOpen && (
                     <motion.div
@@ -179,11 +282,33 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                         <Button
                             onClick={() => setIsOpen(true)}
                             size="lg"
-                            className="h-14 w-14 rounded-full shadow-2xl bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-500"
+                            className="h-16 w-16 rounded-full shadow-2xl bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 hover:from-red-600 hover:to-yellow-600 p-0 overflow-visible"
                         >
-                            <MessageCircle className="h-6 w-6" />
+                            <ChineseAvatar size="lg" isAnimating={true} />
                         </Button>
-                        <span className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white animate-pulse" />
+                        {/* Notification badge */}
+                        <motion.span
+                            className="absolute -top-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                        >
+                            <MessageSquare className="h-3 w-3 text-white" />
+                        </motion.span>
+                        {/* Name tag */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 1 }}
+                            className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap"
+                        >
+                            <span className="text-sm font-medium text-gray-800">
+                                {locale === 'ar' ? 'مرحباً! أنا تشن وي' :
+                                    locale === 'fa' ? 'سلام! من چن وی هستم' :
+                                        locale === 'tr' ? 'Merhaba! Ben Chen Wei' :
+                                            "Hi! I'm Chen Wei 👋"}
+                            </span>
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2 h-2 bg-white transform rotate-45" />
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -199,24 +324,35 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                             'fixed z-50 bg-background border shadow-2xl rounded-2xl overflow-hidden',
                             isMinimized
                                 ? 'bottom-6 right-6 w-80 h-14'
-                                : 'bottom-6 right-6 w-96 h-[600px] max-h-[80vh]',
+                                : 'bottom-6 right-6 w-[400px] h-[650px] max-h-[85vh]',
                             className
                         )}
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary/10 to-purple-500/10">
+                        <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-red-500/10 via-orange-500/10 to-yellow-500/10">
                             <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-full bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center">
-                                    <Sparkles className="h-5 w-5 text-white" />
-                                </div>
+                                <ChineseAvatar size="md" isAnimating={true} isTalking={isTalking} />
                                 {!isMinimized && (
                                     <div>
-                                        <h3 className="font-semibold">{t('title') || 'AI Advisor'}</h3>
-                                        <p className="text-xs text-muted-foreground">{t('subtitle') || 'Here to help you'}</p>
+                                        <h3 className="font-semibold text-gray-900">Chen Wei 陈伟</h3>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isTalking ? (t('typing') || 'Typing...') : (t('subtitle') || 'Your Study Advisor')}
+                                        </p>
                                     </div>
                                 )}
                             </div>
                             <div className="flex items-center gap-1">
+                                {!isMinimized && isAuthenticated && (
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => setShowHistory(!showHistory)}
+                                        className="h-8 w-8"
+                                        title="Chat History"
+                                    >
+                                        <History className="h-4 w-4" />
+                                    </Button>
+                                )}
                                 <Button
                                     variant="ghost"
                                     size="icon"
@@ -239,8 +375,77 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                         {/* Content */}
                         {!isMinimized && (
                             <>
+                                {/* History Panel */}
+                                {showHistory && (
+                                    <div className="absolute inset-0 top-[72px] bg-background z-10 p-4">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h4 className="font-semibold">{t('chatHistory') || 'Chat History'}</h4>
+                                            <Button variant="outline" size="sm" onClick={startNewChat}>
+                                                {t('newChat') || 'New Chat'}
+                                            </Button>
+                                        </div>
+                                        <ScrollArea className="h-[calc(100%-60px)]">
+                                            {chatHistory.length === 0 ? (
+                                                <p className="text-center text-muted-foreground py-8">
+                                                    {t('noHistory') || 'No previous conversations'}
+                                                </p>
+                                            ) : (
+                                                <div className="space-y-2">
+                                                    {chatHistory.map((session) => (
+                                                        <button
+                                                            key={session.id}
+                                                            onClick={() => loadChatSession(session)}
+                                                            className="w-full p-3 text-left rounded-lg hover:bg-muted transition-colors"
+                                                        >
+                                                            <p className="text-sm font-medium truncate">
+                                                                {session.messages[1]?.content.slice(0, 50) || 'New conversation'}...
+                                                            </p>
+                                                            <p className="text-xs text-muted-foreground mt-1">
+                                                                {new Date(session.updated_at).toLocaleDateString()}
+                                                            </p>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </ScrollArea>
+                                        <Button
+                                            variant="ghost"
+                                            className="w-full mt-2"
+                                            onClick={() => setShowHistory(false)}
+                                        >
+                                            {t('backToChat') || 'Back to Chat'}
+                                        </Button>
+                                    </div>
+                                )}
+
+                                {/* Login prompt for guests */}
+                                {!isAuthenticated && messages.length > 2 && (
+                                    <div className="mx-4 mt-2 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
+                                        <p className="text-xs text-gray-600 mb-2">
+                                            {t('loginPrompt') || '🔐 Log in to save your chat history and track applications'}
+                                        </p>
+                                        <div className="flex gap-2">
+                                            <Link href={`/${locale}/login`} className="flex-1">
+                                                <Button variant="outline" size="sm" className="w-full text-xs">
+                                                    <LogIn className="h-3 w-3 mr-1" />
+                                                    {t('login') || 'Log In'}
+                                                </Button>
+                                            </Link>
+                                            <Link href={`/${locale}/register`} className="flex-1">
+                                                <Button size="sm" className="w-full text-xs bg-gradient-to-r from-red-500 to-orange-500">
+                                                    <UserPlus className="h-3 w-3 mr-1" />
+                                                    {t('register') || 'Register'}
+                                                </Button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )}
+
                                 {/* Messages */}
-                                <ScrollArea className="h-[calc(100%-140px)] p-4" ref={scrollRef}>
+                                <ScrollArea className={cn(
+                                    "p-4",
+                                    !isAuthenticated && messages.length > 2 ? "h-[calc(100%-220px)]" : "h-[calc(100%-140px)]"
+                                )} ref={scrollRef}>
                                     <div className="space-y-4">
                                         {messages.map((message) => (
                                             <div
@@ -250,30 +455,28 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                                                     message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
                                                 )}
                                             >
+                                                {message.role === 'assistant' ? (
+                                                    <ChineseAvatarSmall isTalking={isTalking && message.id === messages[messages.length - 1]?.id} />
+                                                ) : (
+                                                    <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center shrink-0">
+                                                        <span className="text-sm">👤</span>
+                                                    </div>
+                                                )}
                                                 <div
                                                     className={cn(
-                                                        'h-8 w-8 rounded-full flex items-center justify-center shrink-0',
+                                                        'rounded-2xl px-4 py-3 max-w-[85%]',
                                                         message.role === 'user'
-                                                            ? 'bg-primary text-white'
-                                                            : 'bg-gradient-to-r from-primary/20 to-purple-500/20'
+                                                            ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-br-sm'
+                                                            : 'bg-white border border-gray-100 shadow-sm rounded-bl-sm'
                                                     )}
                                                 >
-                                                    {message.role === 'user' ? (
-                                                        <User className="h-4 w-4" />
+                                                    {message.content ? (
+                                                        <ChatMessageContent
+                                                            content={message.content}
+                                                            isUser={message.role === 'user'}
+                                                        />
                                                     ) : (
-                                                        <Bot className="h-4 w-4 text-primary" />
-                                                    )}
-                                                </div>
-                                                <div
-                                                    className={cn(
-                                                        'rounded-2xl px-4 py-2 max-w-[80%] whitespace-pre-wrap',
-                                                        message.role === 'user'
-                                                            ? 'bg-primary text-white rounded-br-sm'
-                                                            : 'bg-muted rounded-bl-sm'
-                                                    )}
-                                                >
-                                                    {message.content || (
-                                                        <span className="flex items-center gap-2">
+                                                        <span className="flex items-center gap-2 text-sm text-gray-500">
                                                             <Loader2 className="h-4 w-4 animate-spin" />
                                                             {t('thinking') || 'Thinking...'}
                                                         </span>
@@ -287,13 +490,13 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                                     {messages.length <= 1 && (
                                         <div className="mt-4 space-y-2">
                                             <p className="text-xs text-muted-foreground">{t('quickStart') || 'Quick start'}:</p>
-                                            <div className="flex flex-wrap gap-2">
+                                            <div className="flex flex-col gap-2">
                                                 {quickActions.map((action) => (
                                                     <Button
                                                         key={action.label}
                                                         variant="outline"
                                                         size="sm"
-                                                        className="rounded-full text-xs"
+                                                        className="justify-start text-xs h-auto py-2 px-3"
                                                         onClick={() => handleQuickAction(action.query)}
                                                     >
                                                         {action.label}
@@ -320,7 +523,7 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                                             onClick={sendMessage}
                                             disabled={!input.trim() || isLoading}
                                             size="icon"
-                                            className="rounded-full shrink-0"
+                                            className="rounded-full shrink-0 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
                                         >
                                             {isLoading ? (
                                                 <Loader2 className="h-4 w-4 animate-spin" />

@@ -999,5 +999,31 @@
             "uploadFailed": "Belge yüklenemedi. Lütfen tekrar deneyin.",
             "paymentFailed": "Ödeme başarısız. Lütfen tekrar deneyin."
         }
+    },
+    "AISearch": {
+        "placeholder": "Deneyin: 'Pekin'de 30000 RMB altında Mühendislik Yüksek Lisansı'",
+        "search": "Ara",
+        "filters": "AI anladı",
+        "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    },
+    "AIChat": {
+        "title": "Chen Wei 陈伟",
+        "subtitle": "Eğitim Danışmanınız",
+        "typing": "Yazıyor...",
+        "greeting": "Merhaba! 👋 Ben Chen Wei (陈伟), kişisel eğitim danışmanınız. Çin'de sizin için mükemmel programı bulmanıza, sorularınızı yanıtlamanıza ve hatta başvuru sürecinde size rehberlik etmek için buradayım. Bugün size nasıl yardımcı olabilirim?",
+        "inputPlaceholder": "Mesajınızı yazın...",
+        "thinking": "Düşünüyor...",
+        "error": "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.",
+        "quickStart": "Hızlı başlangıç:",
+        "quickFind": "🎓 Program Bul",
+        "quickScholarship": "💰 Burslar",
+        "quickApply": "📝 Başvuru Başlat",
+        "chatHistory": "Sohbet Geçmişi",
+        "newChat": "Yeni Sohbet",
+        "noHistory": "Önceki konuşma yok",
+        "backToChat": "Sohbete Dön",
+        "loginPrompt": "🔐 Sohbet geçmişinizi kaydetmek ve başvuruları takip etmek için giriş yapın",
+        "login": "Giriş Yap",
+        "register": "Kayıt Ol"
     }
 }

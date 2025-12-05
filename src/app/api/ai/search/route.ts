@@ -3,10 +3,6 @@ import OpenAI from 'openai';
 import { createClient } from '@/lib/supabase/server';
 import { SEARCH_SYSTEM_PROMPT, SEARCH_RESULT_PROMPT } from '@/lib/ai/prompts';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
 interface SearchFilters {
     level?: string;
     city?: string;
@@ -22,6 +18,18 @@ interface SearchFilters {
 
 export async function POST(request: NextRequest) {
     try {
+        // Check if API key is configured
+        if (!process.env.OPENAI_API_KEY) {
+            return NextResponse.json(
+                { error: 'OpenAI API key not configured' },
+                { status: 500 }
+            );
+        }
+
+        const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY,
+        });
+
         const { query } = await request.json();
 
         if (!query || typeof query !== 'string') {
@@ -60,8 +68,11 @@ export async function POST(request: NextRequest) {
             .eq('is_active', true);
 
         // Apply filters
+        // Apply filters
         if (filters.level) {
-            dbQuery = dbQuery.ilike('level', `%${filters.level}%`);
+            // Handle "Master's" -> "Master", "Bachelor's" -> "Bachelor"
+            const cleanLevel = filters.level.replace(/'s$/i, '').replace(/s$/i, '');
+            dbQuery = dbQuery.ilike('level', `%${cleanLevel}%`);
         }
         if (filters.city) {
             dbQuery = dbQuery.ilike('city', `%${filters.city}%`);
@@ -76,17 +87,40 @@ export async function POST(request: NextRequest) {
             dbQuery = dbQuery.gte('tuition_fee', filters.minTuition);
         }
         if (filters.field) {
-            dbQuery = dbQuery.or(`program_title.ilike.%${filters.field}%,category.ilike.%${filters.field}%`);
+            // Broader search across multiple fields
+            dbQuery = dbQuery.or(`program_title.ilike.%${filters.field}%,display_title.ilike.%${filters.field}%,category.ilike.%${filters.field}%`);
         }
         if (filters.university) {
             dbQuery = dbQuery.ilike('university_name', `%${filters.university}%`);
         }
-        if (filters.fastTrack) {
-            // Join with universities to check fast_track
-            // For now, we'll filter this in memory after fetching
-        }
 
-        const { data: programs, error } = await dbQuery.limit(20);
+        // Execute primary search
+        let { data: programs, error } = await dbQuery.limit(20);
+
+        // FALLBACK STRATEGY: If no results, try relaxing constraints
+        if (!error && (!programs || programs.length === 0)) {
+            console.log("No strict results, attempting relaxed search...");
+            let relaxedQuery = supabase
+                .from('v_university_programs_full')
+                .select('*')
+                .eq('is_active', true);
+
+            // Keep only the most important filters (Field & Level)
+            if (filters.field) {
+                relaxedQuery = relaxedQuery.or(`program_title.ilike.%${filters.field}%,display_title.ilike.%${filters.field}%,category.ilike.%${filters.field}%`);
+            }
+            if (filters.level) {
+                const cleanLevel = filters.level.replace(/'s$/i, '').replace(/s$/i, '');
+                relaxedQuery = relaxedQuery.ilike('level', `%${cleanLevel}%`);
+            }
+
+            // Limit fallback results
+            const { data: fallbackPrograms } = await relaxedQuery.limit(10);
+            if (fallbackPrograms && fallbackPrograms.length > 0) {
+                programs = fallbackPrograms;
+                console.log("Found results with relaxed query");
+            }
+        }
 
         if (error) {
             console.error('Database error:', error);
