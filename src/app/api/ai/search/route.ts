@@ -22,7 +22,7 @@ interface SearchFilters {
 
 export async function POST(request: NextRequest) {
     try {
-        const { query, locale = 'en' } = await request.json();
+        const { query } = await request.json();
 
         if (!query || typeof query !== 'string') {
             return NextResponse.json(

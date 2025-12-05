@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
 import { Search, Sparkles, X, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -38,7 +37,6 @@ interface AISearchBarProps {
 
 export function AISearchBar({ onResults, className, placeholder }: AISearchBarProps) {
     const t = useTranslations('AISearch');
-    const router = useRouter();
     const [query, setQuery] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [filters, setFilters] = useState<SearchFilters>({});
