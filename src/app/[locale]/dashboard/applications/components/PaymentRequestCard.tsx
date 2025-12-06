@@ -386,49 +386,49 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
                                 </a>
                             </div>
                         </div>
-                            </div>
-                        </div>
-                        <Button
-                            variant="destructive"
-                            size="sm"
-                            className="w-full mt-3"
-                            onClick={async () => {
-                                if (confirm("Are you sure you want to reset your payment status? This will allow you to re-upload a receipt or pay by card.")) {
-                                    setIsProcessing(true);
-                                    const result = await resetPaymentStatus(transaction.id);
-                                    if (result.error) {
-                                        toast.error(result.error);
-                                    } else {
-                                        toast.success("Payment status reset");
-                                    }
-                                    setIsProcessing(false);
-                                }
-                            }}
-                            disabled={isProcessing}
-                        >
-                            <RotateCcw className="w-4 h-4 mr-2" />
-                            Reset / Re-upload Receipt
-                        </Button>
                     </div>
+
+                    <Button
+                        variant="destructive"
+                        size="sm"
+                        className="w-full mt-3"
+                        onClick={async () => {
+                            if (confirm("Are you sure you want to reset your payment status? This will allow you to re-upload a receipt or pay by card.")) {
+                                setIsProcessing(true);
+                                const result = await resetPaymentStatus(transaction.id);
+                                if (result.error) {
+                                    toast.error(result.error);
+                                } else {
+                                    toast.success("Payment status reset");
+                                }
+                                setIsProcessing(false);
+                            }
+                        }}
+                        disabled={isProcessing}
+                    >
+                        <RotateCcw className="w-4 h-4 mr-2" />
+                        Reset / Re-upload Receipt
+                    </Button>
+
                 </CardContent >
             )
-}
+            }
 
-{
-    isCompleted && (
-                <CardContent>
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <div className="flex items-start gap-3">
-                            <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
-                            <div className="flex-1">
-                                <p className="font-semibold text-green-900 text-sm">Payment Completed</p>
-                                <p className="text-sm text-green-800 mt-1">
-                                    Your payment has been verified and processed successfully.
-                                </p>
+            {
+                isCompleted && (
+                    <CardContent>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div className="flex items-start gap-3">
+                                <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5" />
+                                <div className="flex-1">
+                                    <p className="font-semibold text-green-900 text-sm">Payment Completed</p>
+                                    <p className="text-sm text-green-800 mt-1">
+                                        Your payment has been verified and processed successfully.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                            </div>
-                        </div>
+
                         <Button
                             variant="destructive"
                             size="sm"
@@ -450,10 +450,10 @@ export function PaymentRequestCard({ transaction }: PaymentRequestCardProps) {
                             <RotateCcw className="w-4 h-4 mr-2" />
                             Reset / Re-upload Receipt
                         </Button>
-                    </div >
-                </CardContent >
-            )
-}
+
+                    </CardContent >
+                )
+            }
         </Card >
     );
 }

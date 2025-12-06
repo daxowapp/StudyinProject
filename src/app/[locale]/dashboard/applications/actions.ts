@@ -195,7 +195,7 @@ export async function processCardPayment(transactionId: string) {
         return { error: (error as Error).message };
     }
 }
-}
+
 
 export async function resetPaymentStatus(transactionId: string) {
     const supabase = await createClient();
