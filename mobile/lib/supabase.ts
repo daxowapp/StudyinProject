@@ -1,24 +1,51 @@
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
+import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
-// Custom storage adapter for Expo SecureStore
+// Check if we're on web
+const isWeb = Platform.OS === 'web';
+
+// Custom storage adapter that works on both web and native
 const ExpoSecureStoreAdapter = {
-    getItem: async (key: string) => {
+    getItem: async (key: string): Promise<string | null> => {
+        if (isWeb) {
+            // Use localStorage on web
+            if (typeof window !== 'undefined' && window.localStorage) {
+                return window.localStorage.getItem(key);
+            }
+            return null;
+        }
+        // Use SecureStore on native
         return await SecureStore.getItemAsync(key);
     },
-    setItem: async (key: string, value: string) => {
+    setItem: async (key: string, value: string): Promise<void> => {
+        if (isWeb) {
+            // Use localStorage on web
+            if (typeof window !== 'undefined' && window.localStorage) {
+                window.localStorage.setItem(key, value);
+            }
+            return;
+        }
+        // Use SecureStore on native
         await SecureStore.setItemAsync(key, value);
     },
-    removeItem: async (key: string) => {
+    removeItem: async (key: string): Promise<void> => {
+        if (isWeb) {
+            // Use localStorage on web
+            if (typeof window !== 'undefined' && window.localStorage) {
+                window.localStorage.removeItem(key);
+            }
+            return;
+        }
+        // Use SecureStore on native
         await SecureStore.deleteItemAsync(key);
     },
 };
 
 // Supabase configuration
-// In production, use environment variables
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://mxmrdnzmaztskbkqeusm.supabase.co';
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bXJkbnptYXp0c2ticWV1c20iLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMjg4NzExMSwiZXhwIjoyMDQ4NDYzMTExfQ.TE4bE_S-aafykyjL-Pm5lbtJUKj_5bEYcDXpSfAFjpc';
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bXJkbnptYXp0c2tia3FldXNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyMzk5MjIsImV4cCI6MjA3OTgxNTkyMn0.BjPnOV0EyLJiwbEt043iO87ONkcqlGTcV7XB2tfDqks';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
@@ -58,15 +85,4 @@ export type Program = {
     description?: string;
     university_id: string;
     university?: University;
-};
-
-export type Scholarship = {
-    id: string;
-    name: string;
-    type: string;
-    description?: string;
-    award_amount?: number;
-    deadline?: string;
-    eligibility?: string;
-    is_active: boolean;
 };

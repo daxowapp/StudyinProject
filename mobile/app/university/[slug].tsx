@@ -1,8 +1,10 @@
-import { View, Text, ScrollView, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable, ActivityIndicator, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useUniversity } from '../../hooks/useData';
+
+const { width } = Dimensions.get('window');
 
 export default function UniversityDetailScreen() {
     const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -11,378 +13,580 @@ export default function UniversityDetailScreen() {
 
     if (loading) {
         return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#DC2626" />
-                    <Text style={styles.loadingText}>Loading university...</Text>
-                </View>
-            </SafeAreaView>
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#DC2626" />
+                <Text style={styles.loadingText}>Loading university...</Text>
+            </View>
         );
     }
 
     if (error || !university) {
         return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.errorContainer}>
-                    <Text style={styles.errorEmoji}>😕</Text>
-                    <Text style={styles.errorTitle}>University not found</Text>
-                    <Pressable style={styles.backButton} onPress={() => router.back()}>
-                        <Text style={styles.backButtonText}>Go Back</Text>
-                    </Pressable>
-                </View>
-            </SafeAreaView>
+            <View style={styles.errorContainer}>
+                <Text style={styles.errorIcon}>😔</Text>
+                <Text style={styles.errorTitle}>University Not Found</Text>
+                <Text style={styles.errorText}>{error || 'Unable to load university details'}</Text>
+                <Pressable style={styles.backButton} onPress={() => router.back()}>
+                    <Text style={styles.backButtonText}>Go Back</Text>
+                </Pressable>
+            </View>
         );
     }
 
     return (
-        <SafeAreaView style={styles.container} edges={['top']}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                {/* Hero Header */}
-                <MotiView
-                    from={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: 'spring' }}
-                >
-                    <View style={styles.hero}>
-                        <Pressable style={styles.backBtn} onPress={() => router.back()}>
-                            <Text style={styles.backBtnText}>← Back</Text>
-                        </Pressable>
-                        <View style={styles.heroContent}>
-                            <View style={styles.logoPlaceholder}>
-                                <Text style={styles.logoEmoji}>🏛️</Text>
-                            </View>
-                            <Text style={styles.universityName}>{university.name}</Text>
-                            <Text style={styles.universityLocation}>
-                                📍 {university.city}{university.province ? `, ${university.province}` : ''}
-                            </Text>
+        <View style={styles.container}>
+            {/* Hero Image */}
+            <View style={styles.heroContainer}>
+                <View style={styles.heroImage}>
+                    {university.logo_url ? (
+                        <Image source={{ uri: university.logo_url }} style={styles.heroImageContent} />
+                    ) : (
+                        <View style={styles.heroPlaceholder}>
+                            <Text style={styles.heroPlaceholderText}>🏛️</Text>
                         </View>
+                    )}
+                    <View style={styles.heroOverlay} />
+                </View>
+
+                {/* Back Button */}
+                <SafeAreaView edges={['top']} style={styles.headerAbsolute}>
+                    <Pressable style={styles.backBtn} onPress={() => router.back()}>
+                        <Text style={styles.backBtnText}>←</Text>
+                    </Pressable>
+                    <View style={styles.headerActions}>
+                        <Pressable style={styles.actionBtn}>
+                            <Text style={styles.actionBtnText}>❤️</Text>
+                        </Pressable>
+                        <Pressable style={styles.actionBtn}>
+                            <Text style={styles.actionBtnText}>↗️</Text>
+                        </Pressable>
                     </View>
+                </SafeAreaView>
+            </View>
+
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}
+                style={styles.scrollView}
+            >
+                {/* University Info Card */}
+                <MotiView
+                    from={{ opacity: 0, translateY: 30 }}
+                    animate={{ opacity: 1, translateY: 0 }}
+                    transition={{ type: 'spring' }}
+                    style={styles.infoCard}
+                >
+                    <View style={styles.logoContainer}>
+                        {university.logo_url ? (
+                            <Image source={{ uri: university.logo_url }} style={styles.logo} />
+                        ) : (
+                            <View style={styles.logoPlaceholder}>
+                                <Text style={styles.logoPlaceholderText}>🏛️</Text>
+                            </View>
+                        )}
+                    </View>
+
+                    <Text style={styles.universityName}>{university.name}</Text>
+
+                    <View style={styles.locationRow}>
+                        <Text style={styles.locationIcon}>📍</Text>
+                        <Text style={styles.locationText}>{university.city}, China</Text>
+                    </View>
+
+                    {university.ranking && (
+                        <View style={styles.rankingBadge}>
+                            <Text style={styles.rankingText}>🏆 Ranked #{university.ranking} in China</Text>
+                        </View>
+                    )}
                 </MotiView>
 
-                {/* Stats Row */}
+                {/* Stats Grid */}
                 <MotiView
                     from={{ opacity: 0, translateY: 20 }}
                     animate={{ opacity: 1, translateY: 0 }}
                     transition={{ type: 'spring', delay: 100 }}
+                    style={styles.statsGrid}
                 >
-                    <View style={styles.statsRow}>
-                        {university.ranking && (
-                            <View style={styles.statCard}>
-                                <Text style={styles.statValue}>#{university.ranking}</Text>
-                                <Text style={styles.statLabel}>Ranking</Text>
-                            </View>
-                        )}
-                        {university.total_students && (
-                            <View style={styles.statCard}>
-                                <Text style={styles.statValue}>
-                                    {university.total_students > 1000
-                                        ? `${(university.total_students / 1000).toFixed(0)}K`
-                                        : university.total_students}
-                                </Text>
-                                <Text style={styles.statLabel}>Students</Text>
-                            </View>
-                        )}
-                        {university.founded && (
-                            <View style={styles.statCard}>
-                                <Text style={styles.statValue}>{university.founded}</Text>
-                                <Text style={styles.statLabel}>Founded</Text>
-                            </View>
-                        )}
-                        <View style={styles.statCard}>
-                            <Text style={styles.statValue}>{programs.length}</Text>
-                            <Text style={styles.statLabel}>Programs</Text>
-                        </View>
+                    <View style={styles.statCard}>
+                        <Text style={styles.statIcon}>📚</Text>
+                        <Text style={styles.statNumber}>{programs.length || 0}</Text>
+                        <Text style={styles.statLabel}>Programs</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <Text style={styles.statIcon}>👨‍🎓</Text>
+                        <Text style={styles.statNumber}>{university.total_students?.toLocaleString() || 'N/A'}</Text>
+                        <Text style={styles.statLabel}>Students</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <Text style={styles.statIcon}>🌍</Text>
+                        <Text style={styles.statNumber}>{university.international_students?.toLocaleString() || 'N/A'}</Text>
+                        <Text style={styles.statLabel}>International</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <Text style={styles.statIcon}>📅</Text>
+                        <Text style={styles.statNumber}>{university.founded || 'N/A'}</Text>
+                        <Text style={styles.statLabel}>Founded</Text>
                     </View>
                 </MotiView>
 
-                {/* Description */}
+                {/* About Section */}
                 {university.description && (
                     <MotiView
-                        from={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ type: 'timing', delay: 200 }}
+                        from={{ opacity: 0, translateY: 20 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ type: 'spring', delay: 150 }}
+                        style={styles.section}
                     >
-                        <View style={styles.section}>
-                            <Text style={styles.sectionTitle}>About</Text>
-                            <Text style={styles.description} numberOfLines={6}>
-                                {university.description}
-                            </Text>
+                        <Text style={styles.sectionTitle}>About</Text>
+                        <View style={styles.aboutCard}>
+                            <Text style={styles.aboutText}>{university.description}</Text>
                         </View>
                     </MotiView>
                 )}
 
-                {/* Programs */}
+                {/* Programs Section */}
                 <MotiView
                     from={{ opacity: 0, translateY: 20 }}
                     animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ type: 'spring', delay: 300 }}
+                    transition={{ type: 'spring', delay: 200 }}
+                    style={styles.section}
                 >
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Programs ({programs.length})</Text>
+                    <View style={styles.sectionHeader}>
+                        <Text style={styles.sectionTitle}>Available Programs</Text>
+                        <Text style={styles.programCount}>{programs.length} programs</Text>
+                    </View>
 
-                        {programs.length === 0 ? (
-                            <View style={styles.emptyPrograms}>
-                                <Text style={styles.emptyText}>No programs available</Text>
-                            </View>
-                        ) : (
-                            programs.slice(0, 10).map((program, index) => (
-                                <MotiView
-                                    key={program.id}
-                                    from={{ opacity: 0, translateX: 20 }}
-                                    animate={{ opacity: 1, translateX: 0 }}
-                                    transition={{ type: 'spring', delay: 400 + index * 50 }}
-                                >
-                                    <Pressable style={styles.programCard}>
-                                        <View style={styles.programInfo}>
-                                            <Text style={styles.programTitle}>{program.title}</Text>
-                                            <View style={styles.programMeta}>
-                                                <Text style={styles.programLevel}>{program.level}</Text>
-                                                {program.duration && (
-                                                    <Text style={styles.programDuration}>• {program.duration}</Text>
-                                                )}
+                    {programs.length === 0 ? (
+                        <View style={styles.emptyPrograms}>
+                            <Text style={styles.emptyIcon}>📋</Text>
+                            <Text style={styles.emptyText}>No programs available yet</Text>
+                        </View>
+                    ) : (
+                        programs.slice(0, 5).map((program: any, index: number) => (
+                            <MotiView
+                                key={program.id}
+                                from={{ opacity: 0, translateX: -20 }}
+                                animate={{ opacity: 1, translateX: 0 }}
+                                transition={{ type: 'spring', delay: 250 + index * 80 }}
+                            >
+                                <Pressable style={styles.programCard}>
+                                    <View style={styles.programIcon}>
+                                        <Text style={styles.programIconText}>📚</Text>
+                                    </View>
+                                    <View style={styles.programContent}>
+                                        <Text style={styles.programTitle} numberOfLines={1}>{program.title}</Text>
+                                        <View style={styles.programMeta}>
+                                            <View style={styles.programBadge}>
+                                                <Text style={styles.programBadgeText}>{program.level || 'Bachelor'}</Text>
                                             </View>
+                                            {program.duration && (
+                                                <Text style={styles.programDuration}>⏱️ {program.duration}</Text>
+                                            )}
                                         </View>
-                                        {program.tuition_fee && (
-                                            <Text style={styles.programFee}>
-                                                ¥{program.tuition_fee.toLocaleString()}
-                                            </Text>
-                                        )}
-                                    </Pressable>
-                                </MotiView>
-                            ))
-                        )}
+                                    </View>
+                                    {program.tuition_fee && (
+                                        <Text style={styles.programFee}>
+                                            ¥{program.tuition_fee.toLocaleString()}
+                                        </Text>
+                                    )}
+                                </Pressable>
+                            </MotiView>
+                        ))
+                    )}
 
-                        {programs.length > 10 && (
-                            <Pressable style={styles.viewAllButton}>
-                                <Text style={styles.viewAllText}>View All {programs.length} Programs</Text>
-                            </Pressable>
-                        )}
+                    {programs.length > 5 && (
+                        <Pressable style={styles.viewAllButton}>
+                            <Text style={styles.viewAllText}>View All Programs →</Text>
+                        </Pressable>
+                    )}
+                </MotiView>
+
+                {/* CTA */}
+                <MotiView
+                    from={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring', delay: 400 }}
+                    style={styles.ctaSection}
+                >
+                    <View style={styles.ctaCard}>
+                        <Text style={styles.ctaTitle}>Ready to Apply?</Text>
+                        <Text style={styles.ctaText}>Start your application to {university.name}</Text>
+                        <Pressable style={styles.applyButton}>
+                            <Text style={styles.applyButtonText}>Apply Now</Text>
+                        </Pressable>
                     </View>
                 </MotiView>
 
-                {/* Apply CTA */}
-                <View style={styles.ctaSection}>
-                    <Pressable style={styles.applyButton}>
-                        <Text style={styles.applyButtonText}>Apply Now</Text>
-                    </Pressable>
-                    {university.website && (
-                        <Pressable style={styles.websiteButton}>
-                            <Text style={styles.websiteButtonText}>Visit Website</Text>
-                        </Pressable>
-                    )}
-                </View>
-
                 <View style={{ height: 40 }} />
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: '#0A0A0B',
     },
     loadingContainer: {
         flex: 1,
+        backgroundColor: '#0A0A0B',
         justifyContent: 'center',
         alignItems: 'center',
     },
     loadingText: {
-        marginTop: 12,
-        color: '#6B7280',
+        marginTop: 16,
+        color: '#71717A',
+        fontSize: 14,
     },
     errorContainer: {
         flex: 1,
+        backgroundColor: '#0A0A0B',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 40,
+        padding: 32,
     },
-    errorEmoji: {
-        fontSize: 64,
-        marginBottom: 16,
+    errorIcon: {
+        fontSize: 60,
+        marginBottom: 20,
     },
     errorTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#1F2937',
-        marginBottom: 16,
+        fontSize: 24,
+        fontWeight: '700',
+        color: '#FFFFFF',
+        marginBottom: 8,
+    },
+    errorText: {
+        fontSize: 14,
+        color: '#71717A',
+        textAlign: 'center',
+        marginBottom: 24,
     },
     backButton: {
         backgroundColor: '#DC2626',
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        borderRadius: 12,
+        paddingHorizontal: 32,
+        paddingVertical: 16,
+        borderRadius: 14,
     },
     backButtonText: {
         color: '#FFFFFF',
+        fontSize: 16,
         fontWeight: '600',
     },
-    hero: {
-        backgroundColor: '#DC2626',
-        paddingTop: 20,
-        paddingBottom: 40,
+    heroContainer: {
+        height: 200,
+        position: 'relative',
+    },
+    heroImage: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#27272A',
+    },
+    heroImageContent: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+    },
+    heroPlaceholder: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#18181B',
+    },
+    heroPlaceholderText: {
+        fontSize: 60,
+    },
+    heroOverlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+    },
+    headerAbsolute: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         paddingHorizontal: 20,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        paddingTop: 10,
     },
     backBtn: {
-        marginBottom: 20,
+        width: 44,
+        height: 44,
+        borderRadius: 14,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     backBtnText: {
+        fontSize: 20,
         color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: '500',
     },
-    heroContent: {
+    headerActions: {
+        flexDirection: 'row',
+        gap: 10,
+    },
+    actionBtn: {
+        width: 44,
+        height: 44,
+        borderRadius: 14,
+        backgroundColor: 'rgba(0,0,0,0.5)',
         alignItems: 'center',
+        justifyContent: 'center',
+    },
+    actionBtnText: {
+        fontSize: 18,
+    },
+    scrollView: {
+        flex: 1,
+        marginTop: -40,
+    },
+    scrollContent: {
+        paddingHorizontal: 24,
+    },
+    infoCard: {
+        backgroundColor: '#18181B',
+        borderRadius: 28,
+        padding: 24,
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#27272A',
+        marginBottom: 20,
+    },
+    logoContainer: {
+        marginTop: -60,
+        marginBottom: 16,
+    },
+    logo: {
+        width: 80,
+        height: 80,
+        borderRadius: 24,
+        borderWidth: 4,
+        borderColor: '#18181B',
     },
     logoPlaceholder: {
         width: 80,
         height: 80,
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        borderRadius: 20,
+        borderRadius: 24,
+        backgroundColor: '#27272A',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 16,
+        borderWidth: 4,
+        borderColor: '#18181B',
     },
-    logoEmoji: {
-        fontSize: 40,
+    logoPlaceholderText: {
+        fontSize: 36,
     },
     universityName: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 22,
+        fontWeight: '800',
         color: '#FFFFFF',
         textAlign: 'center',
-        marginBottom: 8,
+        marginBottom: 12,
+        letterSpacing: -0.5,
     },
-    universityLocation: {
-        fontSize: 16,
-        color: 'rgba(255,255,255,0.9)',
-    },
-    statsRow: {
+    locationRow: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: -20,
-        marginHorizontal: 20,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 16,
-        padding: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 5,
+        alignItems: 'center',
+        marginBottom: 16,
+    },
+    locationIcon: {
+        fontSize: 14,
+        marginRight: 6,
+    },
+    locationText: {
+        fontSize: 14,
+        color: '#71717A',
+    },
+    rankingBadge: {
+        backgroundColor: '#DC2626',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 12,
+    },
+    rankingText: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#FFFFFF',
+    },
+    statsGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 12,
+        marginBottom: 24,
     },
     statCard: {
+        flex: 1,
+        minWidth: (width - 60) / 2 - 6,
+        backgroundColor: '#18181B',
+        borderRadius: 20,
+        padding: 16,
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#27272A',
     },
-    statValue: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#1F2937',
+    statIcon: {
+        fontSize: 24,
+        marginBottom: 8,
+    },
+    statNumber: {
+        fontSize: 18,
+        fontWeight: '800',
+        color: '#FFFFFF',
+        marginBottom: 4,
     },
     statLabel: {
         fontSize: 12,
-        color: '#6B7280',
-        marginTop: 4,
+        color: '#71717A',
     },
     section: {
-        paddingHorizontal: 20,
-        marginTop: 24,
+        marginBottom: 24,
     },
-    sectionTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#1F2937',
-        marginBottom: 12,
-    },
-    description: {
-        fontSize: 15,
-        color: '#4B5563',
-        lineHeight: 24,
-    },
-    emptyPrograms: {
-        padding: 20,
-        alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 12,
-    },
-    emptyText: {
-        color: '#6B7280',
-    },
-    programCard: {
+    sectionHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#FFFFFF',
-        padding: 16,
-        borderRadius: 12,
-        marginBottom: 10,
+        marginBottom: 16,
     },
-    programInfo: {
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#FFFFFF',
+    },
+    programCount: {
+        fontSize: 13,
+        color: '#71717A',
+    },
+    aboutCard: {
+        backgroundColor: '#18181B',
+        borderRadius: 20,
+        padding: 20,
+        borderWidth: 1,
+        borderColor: '#27272A',
+    },
+    aboutText: {
+        fontSize: 14,
+        color: '#A1A1AA',
+        lineHeight: 24,
+    },
+    emptyPrograms: {
+        backgroundColor: '#18181B',
+        borderRadius: 20,
+        padding: 40,
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#27272A',
+    },
+    emptyIcon: {
+        fontSize: 40,
+        marginBottom: 12,
+    },
+    emptyText: {
+        fontSize: 14,
+        color: '#71717A',
+    },
+    programCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#18181B',
+        borderRadius: 18,
+        padding: 16,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#27272A',
+    },
+    programIcon: {
+        width: 48,
+        height: 48,
+        borderRadius: 14,
+        backgroundColor: '#6366F1',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    programIconText: {
+        fontSize: 22,
+    },
+    programContent: {
         flex: 1,
+        marginLeft: 14,
     },
     programTitle: {
         fontSize: 15,
         fontWeight: '600',
-        color: '#1F2937',
-        marginBottom: 4,
+        color: '#FFFFFF',
+        marginBottom: 6,
     },
     programMeta: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    programLevel: {
-        fontSize: 13,
-        color: '#6B7280',
+    programBadge: {
+        backgroundColor: '#27272A',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 8,
+    },
+    programBadgeText: {
+        fontSize: 11,
+        color: '#FFFFFF',
+        fontWeight: '600',
     },
     programDuration: {
-        fontSize: 13,
-        color: '#6B7280',
-        marginLeft: 6,
+        fontSize: 12,
+        color: '#71717A',
+        marginLeft: 10,
     },
     programFee: {
         fontSize: 14,
-        fontWeight: '600',
+        fontWeight: '700',
         color: '#DC2626',
     },
     viewAllButton: {
-        paddingVertical: 14,
+        backgroundColor: '#27272A',
+        borderRadius: 14,
+        paddingVertical: 16,
         alignItems: 'center',
         marginTop: 8,
     },
     viewAllText: {
-        color: '#DC2626',
+        fontSize: 14,
         fontWeight: '600',
+        color: '#FFFFFF',
     },
     ctaSection: {
-        paddingHorizontal: 20,
-        marginTop: 24,
-        gap: 12,
+        marginTop: 8,
+    },
+    ctaCard: {
+        backgroundColor: '#18181B',
+        borderRadius: 24,
+        padding: 24,
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#DC2626',
+    },
+    ctaTitle: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: '#FFFFFF',
+        marginBottom: 8,
+    },
+    ctaText: {
+        fontSize: 14,
+        color: '#71717A',
+        textAlign: 'center',
+        marginBottom: 20,
     },
     applyButton: {
         backgroundColor: '#DC2626',
-        paddingVertical: 16,
-        borderRadius: 12,
+        paddingHorizontal: 48,
+        paddingVertical: 18,
+        borderRadius: 14,
+        width: '100%',
         alignItems: 'center',
     },
     applyButtonText: {
+        fontSize: 16,
+        fontWeight: '700',
         color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    websiteButton: {
-        backgroundColor: '#FFFFFF',
-        paddingVertical: 16,
-        borderRadius: 12,
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#E5E7EB',
-    },
-    websiteButtonText: {
-        color: '#374151',
-        fontSize: 16,
-        fontWeight: '600',
     },
 });

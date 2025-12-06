@@ -1,4 +1,39 @@
+import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Check if we're on web
+const isWeb = Platform.OS === 'web';
+
+// Web-compatible storage wrapper
+const storage = {
+    getItem: async (key: string): Promise<string | null> => {
+        if (isWeb && typeof window !== 'undefined' && window.localStorage) {
+            return window.localStorage.getItem(key);
+        }
+        return AsyncStorage.getItem(key);
+    },
+    setItem: async (key: string, value: string): Promise<void> => {
+        if (isWeb && typeof window !== 'undefined' && window.localStorage) {
+            window.localStorage.setItem(key, value);
+            return;
+        }
+        await AsyncStorage.setItem(key, value);
+    },
+    removeItem: async (key: string): Promise<void> => {
+        if (isWeb && typeof window !== 'undefined' && window.localStorage) {
+            window.localStorage.removeItem(key);
+            return;
+        }
+        await AsyncStorage.removeItem(key);
+    },
+    multiRemove: async (keys: string[]): Promise<void> => {
+        if (isWeb && typeof window !== 'undefined' && window.localStorage) {
+            keys.forEach(key => window.localStorage.removeItem(key));
+            return;
+        }
+        await AsyncStorage.multiRemove(keys);
+    },
+};
 
 // Cache keys
 const CACHE_KEYS = {
@@ -10,7 +45,7 @@ const CACHE_KEYS = {
     LAST_SYNC: 'cache:last_sync',
 };
 
-// Generic cache helpers using AsyncStorage
+// Generic cache helpers using storage wrapper
 export const cache = {
     // Set data with timestamp
     set: async <T>(key: string, data: T) => {
@@ -18,12 +53,12 @@ export const cache = {
             data,
             timestamp: Date.now(),
         };
-        await AsyncStorage.setItem(key, JSON.stringify(cached));
+        await storage.setItem(key, JSON.stringify(cached));
     },
 
     // Get cached data (returns null if expired or not found)
     get: async <T>(key: string, maxAgeMs: number = 5 * 60 * 1000): Promise<T | null> => {
-        const raw = await AsyncStorage.getItem(key);
+        const raw = await storage.getItem(key);
         if (!raw) return null;
 
         try {
@@ -43,7 +78,7 @@ export const cache = {
 
     // Get cached data even if expired (for offline fallback)
     getStale: async <T>(key: string): Promise<T | null> => {
-        const raw = await AsyncStorage.getItem(key);
+        const raw = await storage.getItem(key);
         if (!raw) return null;
 
         try {
@@ -56,13 +91,13 @@ export const cache = {
 
     // Clear specific cache
     clear: async (key: string) => {
-        await AsyncStorage.removeItem(key);
+        await storage.removeItem(key);
     },
 
     // Clear all cache
     clearAll: async () => {
         const keys = Object.values(CACHE_KEYS);
-        await AsyncStorage.multiRemove(keys);
+        await storage.multiRemove(keys);
     },
 };
 
@@ -96,7 +131,7 @@ export const appCache = {
 
 // Auth token storage (separate from cache)
 export const authStorage = {
-    setToken: async (token: string) => AsyncStorage.setItem('auth:token', token),
-    getToken: () => AsyncStorage.getItem('auth:token'),
-    clearToken: () => AsyncStorage.removeItem('auth:token'),
+    setToken: async (token: string) => storage.setItem('auth:token', token),
+    getToken: () => storage.getItem('auth:token'),
+    clearToken: () => storage.removeItem('auth:token'),
 };

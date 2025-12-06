@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+import { MotiView } from 'moti';
 
-// Tab bar icons component
 function TabIcon({ name, focused }: { name: string; focused: boolean }) {
     const icons: Record<string, string> = {
         index: '🏠',
@@ -12,11 +12,22 @@ function TabIcon({ name, focused }: { name: string; focused: boolean }) {
     };
 
     return (
-        <View style={styles.iconContainer}>
-            <Text style={[styles.icon, focused && styles.iconFocused]}>
-                {icons[name] || '📱'}
-            </Text>
-        </View>
+        <MotiView
+            animate={{
+                scale: focused ? 1.1 : 1,
+            }}
+            transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 20,
+            }}
+        >
+            <View style={[styles.iconContainer, focused && styles.iconContainerActive]}>
+                <View style={styles.iconText}>
+                    <View style={{ fontSize: 24 }}>{icons[name]}</View>
+                </View>
+            </View>
+        </MotiView>
     );
 }
 
@@ -25,18 +36,23 @@ export default function TabsLayout() {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: '#DC2626',
-                tabBarInactiveTintColor: '#6B7280',
+                tabBarInactiveTintColor: '#94A3B8',
                 tabBarStyle: {
                     backgroundColor: '#FFFFFF',
-                    borderTopWidth: 1,
-                    borderTopColor: '#E5E7EB',
-                    height: 88,
-                    paddingBottom: 24,
-                    paddingTop: 12,
+                    borderTopWidth: 0,
+                    height: Platform.OS === 'ios' ? 85 : 65,
+                    paddingBottom: Platform.OS === 'ios' ? 25 : 8,
+                    paddingTop: 8,
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: -4 },
+                    shadowOpacity: 0.1,
+                    shadowRadius: 16,
+                    elevation: 12,
                 },
                 tabBarLabelStyle: {
-                    fontSize: 11,
-                    fontWeight: '600',
+                    fontSize: 10,
+                    fontWeight: '700',
+                    marginTop: 4,
                 },
                 headerShown: false,
             }}
@@ -51,21 +67,21 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="explore"
                 options={{
-                    title: 'Explore',
+                    title: 'Search',
                     tabBarIcon: ({ focused }) => <TabIcon name="explore" focused={focused} />,
                 }}
             />
             <Tabs.Screen
                 name="scholarships"
                 options={{
-                    title: 'Scholarships',
+                    title: 'Programs',
                     tabBarIcon: ({ focused }) => <TabIcon name="scholarships" focused={focused} />,
                 }}
             />
             <Tabs.Screen
                 name="messages"
                 options={{
-                    title: 'Messages',
+                    title: 'Saved',
                     tabBarIcon: ({ focused }) => <TabIcon name="messages" focused={focused} />,
                 }}
             />
@@ -84,12 +100,14 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
+        width: 48,
+        height: 32,
+        borderRadius: 12,
     },
-    icon: {
+    iconContainerActive: {
+        backgroundColor: '#FEE2E2',
+    },
+    iconText: {
         fontSize: 24,
-        opacity: 0.6,
-    },
-    iconFocused: {
-        opacity: 1,
     },
 });

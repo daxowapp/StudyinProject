@@ -18,14 +18,20 @@ export function useUniversities() {
             setLoading(true);
             setIsOffline(false);
 
-            // Try to fetch from network
+            console.log('[useUniversities] Fetching from Supabase...');
+
             const { data, error } = await supabase
                 .from('universities')
-                .select('*')
+                .select('id, name, slug, city, ranking, logo_url')
                 .order('ranking', { ascending: true, nullsFirst: false })
                 .limit(50);
 
-            if (error) throw error;
+            if (error) {
+                console.error('[useUniversities] Supabase error:', JSON.stringify(error, null, 2));
+                throw error;
+            }
+
+            console.log('[useUniversities] Fetched', data?.length, 'universities');
 
             // Cache the data
             if (data) {
@@ -34,9 +40,11 @@ export function useUniversities() {
 
             setUniversities(data || []);
         } catch (err) {
+            console.error('[useUniversities] Error:', err);
             // Try to load from cache
             const cached = await appCache.getUniversitiesStale();
             if (cached && cached.length > 0) {
+                console.log('[useUniversities] Using cached data:', cached.length, 'universities');
                 setUniversities(cached as University[]);
                 setIsOffline(true);
             } else {
@@ -119,14 +127,19 @@ export function useFeaturedPrograms() {
             }
 
             const { data, error } = await supabase
-                .from('v_university_programs_full')
-                .select('*')
+                .from('university_programs')
+                .select('*, universities(name, slug)')
                 .eq('is_active', true)
                 .limit(6);
 
             if (!error && data) {
-                await appCache.setPrograms(data);
-                setPrograms(data);
+                // Transform data to include university_name
+                const transformed = data.map((p: any) => ({
+                    ...p,
+                    university_name: p.universities?.name || 'University'
+                }));
+                await appCache.setPrograms(transformed);
+                setPrograms(transformed);
             }
         } catch {
             // Try stale cache
@@ -140,52 +153,6 @@ export function useFeaturedPrograms() {
     }
 
     return { programs, loading };
-}
-
-// Hook to fetch scholarships with caching
-export function useScholarships() {
-    const [scholarships, setScholarships] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [isOffline, setIsOffline] = useState(false);
-
-    useEffect(() => {
-        fetchScholarships();
-    }, []);
-
-    async function fetchScholarships() {
-        try {
-            setLoading(true);
-            setIsOffline(false);
-
-            const { data, error } = await supabase
-                .from('scholarships')
-                .select('*')
-                .eq('is_active', true)
-                .order('deadline', { ascending: true });
-
-            if (error) throw error;
-
-            if (data) {
-                await appCache.setScholarships(data);
-            }
-
-            setScholarships(data || []);
-        } catch (err) {
-            // Try cached data
-            const cached = await appCache.getScholarshipsStale();
-            if (cached && cached.length > 0) {
-                setScholarships(cached as any[]);
-                setIsOffline(true);
-            } else {
-                setError((err as Error).message);
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    return { scholarships, loading, error, isOffline, refetch: fetchScholarships };
 }
 
 // Hook to search programs
@@ -205,9 +172,10 @@ export function useSearchPrograms(query: string) {
         try {
             setLoading(true);
             const { data, error } = await supabase
-                .from('v_university_programs_full')
-                .select('*')
-                .or(`title.ilike.%${query}%,university_name.ilike.%${query}%`)
+                .from('university_programs')
+                .select('*, universities(name)')
+                .or(`title.ilike.%${query}%`)
+                .eq('is_active', true)
                 .limit(10);
 
             if (!error) {

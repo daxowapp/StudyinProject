@@ -1,321 +1,411 @@
-import { View, Text, ScrollView, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
-import { useScholarships } from '../../hooks/useData';
+import { useRouter } from 'expo-router';
 
-function getDaysUntil(deadline: string): number {
-    const now = new Date();
-    const end = new Date(deadline);
-    const diff = end.getTime() - now.getTime();
-    return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-}
+const mockScholarships = [
+    {
+        id: '1',
+        name: 'Chinese Government Scholarship (CSC)',
+        type: 'Full',
+        coverage: ['Tuition', 'Accommodation', 'Stipend', 'Insurance'],
+        deadline: '2025-03-01',
+        eligibility: 'All international students',
+        color: '#DC2626',
+    },
+    {
+        id: '2',
+        name: 'Provincial Government Scholarship',
+        type: 'Partial',
+        coverage: ['Tuition', 'Stipend'],
+        deadline: '2025-04-15',
+        eligibility: 'Undergraduate & Masters',
+        color: '#F59E0B',
+    },
+    {
+        id: '3',
+        name: 'University Excellence Award',
+        type: 'Merit',
+        coverage: ['Tuition Waiver'],
+        deadline: '2025-05-01',
+        eligibility: 'High achievers',
+        color: '#10B981',
+    },
+    {
+        id: '4',
+        name: 'Belt & Road Scholarship',
+        type: 'Full',
+        coverage: ['Tuition', 'Accommodation', 'Stipend'],
+        deadline: '2025-02-28',
+        eligibility: 'B&R countries',
+        color: '#8B5CF6',
+    },
+];
 
 export default function ScholarshipsScreen() {
-    const { scholarships, loading, error } = useScholarships();
-
-    // Get featured scholarship (first one or one with highest value)
-    const featured = scholarships.length > 0 ? scholarships[0] : null;
+    const router = useRouter();
 
     return (
-        <SafeAreaView style={styles.container} edges={['top']}>
-            {/* Header */}
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Scholarships</Text>
-                <Text style={styles.headerSubtitle}>Find funding for your studies</Text>
-            </View>
+        <View style={styles.container}>
+            <SafeAreaView edges={['top']} style={styles.safeArea}>
+                <MotiView
+                    from={{ opacity: 0, translateY: -20 }}
+                    animate={{ opacity: 1, translateY: 0 }}
+                    transition={{ type: 'timing', duration: 500 }}
+                >
+                    <View style={styles.header}>
+                        <View>
+                            <Text style={styles.headerTitle}>Scholarships</Text>
+                            <Text style={styles.headerSubtitle}>Fund your education</Text>
+                        </View>
+                        <View style={styles.headerIcon}>
+                            <Text style={styles.headerIconText}>🎓</Text>
+                        </View>
+                    </View>
+                </MotiView>
 
-            {loading ? (
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#DC2626" />
-                    <Text style={styles.loadingText}>Loading scholarships...</Text>
-                </View>
-            ) : error ? (
-                <View style={styles.errorContainer}>
-                    <Text style={styles.errorText}>⚠️ {error}</Text>
-                </View>
-            ) : (
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    {/* Featured Scholarship */}
-                    {featured && (
-                        <MotiView
-                            from={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ type: 'spring' }}
-                        >
-                            <Pressable style={styles.featuredCard}>
-                                <View style={styles.featuredBadge}>
-                                    <Text style={styles.featuredBadgeText}>🌟 Featured</Text>
+                <MotiView
+                    from={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: 'spring', delay: 100 }}
+                    style={styles.bannerContainer}
+                >
+                    <View style={styles.banner}>
+                        <View style={styles.bannerContent}>
+                            <Text style={styles.bannerEmoji}>🌟</Text>
+                            <View style={styles.bannerText}>
+                                <Text style={styles.bannerTitle}>CSC Scholarship 2025</Text>
+                                <Text style={styles.bannerSubtitle}>Applications now open!</Text>
+                            </View>
+                        </View>
+                        <Pressable style={styles.bannerButton}>
+                            <Text style={styles.bannerButtonText}>Apply</Text>
+                        </Pressable>
+                    </View>
+                </MotiView>
+
+                <MotiView
+                    from={{ opacity: 0, translateY: 20 }}
+                    animate={{ opacity: 1, translateY: 0 }}
+                    transition={{ type: 'spring', delay: 200 }}
+                    style={styles.statsContainer}
+                >
+                    <View style={styles.statCard}>
+                        <Text style={styles.statNumber}>4</Text>
+                        <Text style={styles.statLabel}>Available</Text>
+                    </View>
+                    <View style={[styles.statCard, styles.statCardAccent]}>
+                        <Text style={[styles.statNumber, styles.statNumberWhite]}>100%</Text>
+                        <Text style={[styles.statLabel, styles.statLabelWhite]}>Coverage</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <Text style={styles.statNumber}>30+</Text>
+                        <Text style={styles.statLabel}>Days Left</Text>
+                    </View>
+                </MotiView>
+            </SafeAreaView>
+
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.listContent}
+            >
+                <Text style={styles.sectionTitle}>Available Scholarships</Text>
+
+                {mockScholarships.map((scholarship, index) => (
+                    <MotiView
+                        key={scholarship.id}
+                        from={{ opacity: 0, translateY: 20 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ type: 'spring', delay: 300 + index * 80 }}
+                    >
+                        <Pressable style={styles.scholarshipCard}>
+                            <View style={styles.cardHeader}>
+                                <View style={[styles.cardIcon, { backgroundColor: scholarship.color }]}>
+                                    <Text style={styles.cardIconText}>🎓</Text>
                                 </View>
-                                <Text style={styles.featuredTitle}>{featured.name}</Text>
-                                <Text style={styles.featuredSubtitle}>{featured.type || 'Scholarship'}</Text>
-
-                                <View style={styles.featuredDetails}>
-                                    <View style={styles.featuredDetailItem}>
-                                        <Text style={styles.featuredDetailLabel}>Award</Text>
-                                        <Text style={styles.featuredDetailValue}>
-                                            {featured.award_amount
-                                                ? `¥${featured.award_amount.toLocaleString()}`
-                                                : 'Full Ride'}
+                                <View style={styles.cardInfo}>
+                                    <Text style={styles.cardTitle} numberOfLines={2}>{scholarship.name}</Text>
+                                    <View style={styles.cardMeta}>
+                                        <View style={[styles.typeBadge, { backgroundColor: scholarship.color + '26' }]}>
+                                            <Text style={[styles.typeText, { color: scholarship.color }]}>{scholarship.type}</Text>
+                                        </View>
+                                        <Text style={styles.deadline}>
+                                            📅 {new Date(scholarship.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                         </Text>
                                     </View>
-                                    {featured.deadline && (
-                                        <>
-                                            <View style={styles.featuredDetailItem}>
-                                                <Text style={styles.featuredDetailLabel}>Deadline</Text>
-                                                <Text style={styles.featuredDetailValue}>
-                                                    {new Date(featured.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                                </Text>
-                                            </View>
-                                            <View style={styles.featuredDetailItem}>
-                                                <Text style={styles.featuredDetailLabel}>Days Left</Text>
-                                                <Text style={[styles.featuredDetailValue, { color: '#FCA5A5' }]}>
-                                                    {getDaysUntil(featured.deadline)}
-                                                </Text>
-                                            </View>
-                                        </>
-                                    )}
                                 </View>
-
-                                <Pressable style={styles.applyButton}>
-                                    <Text style={styles.applyButtonText}>Apply Now</Text>
-                                </Pressable>
-                            </Pressable>
-                        </MotiView>
-                    )}
-
-                    {/* All Scholarships */}
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>
-                            {scholarships.length > 0 ? `All Scholarships (${scholarships.length})` : 'No Scholarships Available'}
-                        </Text>
-
-                        {scholarships.length === 0 ? (
-                            <View style={styles.emptyState}>
-                                <Text style={styles.emptyIcon}>🎓</Text>
-                                <Text style={styles.emptyText}>
-                                    Scholarship information is being updated. Check back soon!
-                                </Text>
                             </View>
-                        ) : (
-                            scholarships.map((scholarship, index) => (
-                                <MotiView
-                                    key={scholarship.id}
-                                    from={{ opacity: 0, translateY: 20 }}
-                                    animate={{ opacity: 1, translateY: 0 }}
-                                    transition={{ type: 'spring', delay: index * 80 }}
-                                >
-                                    <Pressable style={styles.scholarshipCard}>
-                                        <View style={styles.scholarshipHeader}>
-                                            <View style={styles.typeChip}>
-                                                <Text style={styles.typeChipText}>{scholarship.type || 'Scholarship'}</Text>
-                                            </View>
-                                            {scholarship.deadline && (
-                                                <Text style={styles.daysLeft}>
-                                                    {getDaysUntil(scholarship.deadline)} days left
-                                                </Text>
-                                            )}
-                                        </View>
-                                        <Text style={styles.scholarshipName}>{scholarship.name}</Text>
-                                        {scholarship.award_amount && (
-                                            <Text style={styles.scholarshipAward}>
-                                                💰 ¥{scholarship.award_amount.toLocaleString()}
-                                            </Text>
-                                        )}
-                                        {scholarship.deadline && (
-                                            <Text style={styles.scholarshipDeadline}>
-                                                📅 Deadline: {new Date(scholarship.deadline).toLocaleDateString()}
-                                            </Text>
-                                        )}
-                                        {scholarship.description && (
-                                            <Text style={styles.scholarshipDescription} numberOfLines={2}>
-                                                {scholarship.description}
-                                            </Text>
-                                        )}
-                                    </Pressable>
-                                </MotiView>
-                            ))
-                        )}
-                    </View>
 
-                    <View style={{ height: 100 }} />
-                </ScrollView>
-            )}
-        </SafeAreaView>
+                            <View style={styles.coverageSection}>
+                                <Text style={styles.coverageLabel}>Coverage:</Text>
+                                <View style={styles.coverageTags}>
+                                    {scholarship.coverage.map((item, i) => (
+                                        <View key={i} style={styles.coverageTag}>
+                                            <Text style={styles.coverageTagText}>{item}</Text>
+                                        </View>
+                                    ))}
+                                </View>
+                            </View>
+
+                            <View style={styles.cardFooter}>
+                                <Text style={styles.eligibility}>✓ {scholarship.eligibility}</Text>
+                                <Pressable style={styles.learnMoreButton}>
+                                    <Text style={styles.learnMoreText}>Learn More</Text>
+                                </Pressable>
+                            </View>
+                        </Pressable>
+                    </MotiView>
+                ))}
+
+                <View style={{ height: 100 }} />
+            </ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: '#FCFCFC',
+    },
+    safeArea: {
+        backgroundColor: '#FC FCFC',
     },
     header: {
-        paddingHorizontal: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 24,
         paddingTop: 10,
-        paddingBottom: 16,
+        paddingBottom: 20,
     },
     headerTitle: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#1F2937',
+        fontSize: 32,
+        fontWeight: '800',
+        color: '#1E293B',
     },
     headerSubtitle: {
         fontSize: 14,
-        color: '#6B7280',
+        color: '#64748B',
         marginTop: 4,
     },
-    loadingContainer: {
-        flex: 1,
+    headerIcon: {
+        width: 50,
+        height: 50,
+        borderRadius: 16,
+        backgroundColor: '#DC2626',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
+        shadowColor: '#DC2626',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 6,
     },
-    loadingText: {
-        marginTop: 12,
-        color: '#6B7280',
+    headerIconText: {
+        fontSize: 24,
     },
-    errorContainer: {
-        padding: 20,
-        alignItems: 'center',
+    bannerContainer: {
+        paddingHorizontal: 24,
+        marginBottom: 20,
     },
-    errorText: {
-        color: '#DC2626',
-    },
-    featuredCard: {
-        marginHorizontal: 20,
-        backgroundColor: '#1E3A5F',
+    banner: {
+        backgroundColor: '#FFFFFF',
         borderRadius: 20,
-        padding: 24,
+        padding: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        shadowColor: '#DC2626',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 16,
+        elevation: 4,
+        borderWidth: 2,
+        borderColor: '#FEE2E2',
+    },
+    bannerContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+    },
+    bannerEmoji: {
+        fontSize: 32,
+        marginRight: 16,
+    },
+    bannerText: {
+        flex: 1,
+    },
+    bannerTitle: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#1E293B',
+        marginBottom: 4,
+    },
+    bannerSubtitle: {
+        fontSize: 13,
+        color: '#64748B',
+    },
+    bannerButton: {
+        backgroundColor: '#DC2626',
+        paddingHorizontal: 20,
+        paddingVertical: 12,
+        borderRadius: 12,
+    },
+    bannerButtonText: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: '700',
+    },
+    statsContainer: {
+        flexDirection: 'row',
+        paddingHorizontal: 24,
+        gap: 12,
         marginBottom: 24,
     },
-    featuredBadge: {
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        alignSelf: 'flex-start',
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 20,
-        marginBottom: 16,
-    },
-    featuredBadgeText: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        fontWeight: '600',
-    },
-    featuredTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        marginBottom: 4,
-    },
-    featuredSubtitle: {
-        fontSize: 14,
-        color: 'rgba(255,255,255,0.8)',
-        marginBottom: 20,
-    },
-    featuredDetails: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
-    featuredDetailItem: {
-        alignItems: 'center',
-    },
-    featuredDetailLabel: {
-        fontSize: 12,
-        color: 'rgba(255,255,255,0.6)',
-        marginBottom: 4,
-    },
-    featuredDetailValue: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-    },
-    applyButton: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 12,
-        paddingVertical: 14,
-        alignItems: 'center',
-    },
-    applyButtonText: {
-        color: '#1E3A5F',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    section: {
-        paddingHorizontal: 20,
-    },
-    sectionTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#1F2937',
-        marginBottom: 16,
-    },
-    emptyState: {
-        alignItems: 'center',
-        padding: 40,
+    statCard: {
+        flex: 1,
         backgroundColor: '#FFFFFF',
         borderRadius: 16,
-    },
-    emptyIcon: {
-        fontSize: 48,
-        marginBottom: 12,
-    },
-    emptyText: {
-        fontSize: 14,
-        color: '#6B7280',
-        textAlign: 'center',
-    },
-    scholarshipCard: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 16,
-        padding: 16,
-        marginBottom: 12,
+        paddingVertical: 16,
+        alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
+        shadowOpacity: 0.06,
         shadowRadius: 8,
         elevation: 2,
     },
-    scholarshipHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 12,
+    statCardAccent: {
+        backgroundColor: '#DC2626',
     },
-    typeChip: {
-        backgroundColor: '#DBEAFE',
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        borderRadius: 12,
-    },
-    typeChipText: {
-        fontSize: 12,
-        fontWeight: '600',
-        color: '#1D4ED8',
-    },
-    daysLeft: {
-        fontSize: 12,
-        color: '#DC2626',
-        fontWeight: '600',
-    },
-    scholarshipName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#1F2937',
-        marginBottom: 8,
-    },
-    scholarshipAward: {
-        fontSize: 14,
-        color: '#059669',
+    statNumber: {
+        fontSize: 20,
+        fontWeight: '800',
+        color: '#1E293B',
         marginBottom: 4,
     },
-    scholarshipDeadline: {
-        fontSize: 13,
-        color: '#6B7280',
+    statNumberWhite: {
+        color: '#FFFFFF',
+    },
+    statLabel: {
+        fontSize: 11,
+        color: '#64748B',
+        fontWeight: '500',
+    },
+    statLabelWhite: {
+        color: 'rgba(255,255,255,0.9)',
+    },
+    listContent: {
+        paddingHorizontal: 24,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#1E293B',
+        marginBottom: 16,
+    },
+    scholarshipCard: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
+        padding: 20,
+        marginBottom: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.06,
+        shadowRadius: 12,
+        elevation: 3,
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        marginBottom: 16,
+    },
+    cardIcon: {
+        width: 56,
+        height: 56,
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    cardIconText: {
+        fontSize: 26,
+    },
+    cardInfo: {
+        flex: 1,
+        marginLeft: 14,
+    },
+    cardTitle: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: '#1E293B',
+        lineHeight: 22,
         marginBottom: 8,
     },
-    scholarshipDescription: {
+    cardMeta: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    typeBadge: {
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+        borderRadius: 10,
+        marginRight: 12,
+    },
+    typeText: {
+        fontSize: 12,
+        fontWeight: '600',
+    },
+    deadline: {
+        fontSize: 12,
+        color: '#64748B',
+    },
+    coverageSection: {
+        marginBottom: 16,
+    },
+    coverageLabel: {
+        fontSize: 12,
+        color: '#64748B',
+        marginBottom: 8,
+    },
+    coverageTags: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
+    },
+    coverageTag: {
+        backgroundColor: '#F8FAFC',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 10,
+    },
+    coverageTagText: {
+        fontSize: 12,
+        color: '#475569',
+        fontWeight: '500',
+    },
+    cardFooter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    eligibility: {
+        fontSize: 12,
+        color: '#10B981',
+        fontWeight: '500',
+    },
+    learnMoreButton: {
+        backgroundColor: '#FEF3C7',
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 12,
+    },
+    learnMoreText: {
         fontSize: 13,
-        color: '#6B7280',
-        lineHeight: 20,
+        color: '#78350F',
+        fontWeight: '700',
     },
 });
