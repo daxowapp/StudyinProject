@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 // Initialize Stripe (use a test key if env var is missing for now to prevent crash)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_mock", {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    apiVersion: "2025-11-17.clover" as any, // Cast to any to avoid strict type checking issues if types are slightly off, or use exact string from error
+    apiVersion: "2023-10-16" as any,
 });
 
 export async function POST(request: Request) {

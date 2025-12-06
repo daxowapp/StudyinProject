@@ -26,17 +26,18 @@ export async function uploadDocument(
     try {
         // Upload to storage
         const fileExt = file.name.split('.').pop();
-        const fileName = `${userId}/${documentType}/${Date.now()}.${fileExt}`;
+        // Use student-documents folder to be consistent with other uploads
+        const fileName = `student-documents/${userId}/${documentType}/${Date.now()}.${fileExt}`;
 
         const { error: uploadError } = await supabase.storage
-            .from('application-documents')
+            .from('documents')
             .upload(fileName, file);
 
         if (uploadError) throw uploadError;
 
         // Get public URL
         const { data: { publicUrl } } = supabase.storage
-            .from('application-documents')
+            .from('documents')
             .getPublicUrl(fileName);
 
         // Save to student_documents
@@ -79,11 +80,11 @@ export async function deleteDocument(userId: string, documentId: string) {
 
         // Extract file path from URL
         const urlParts = doc.file_url.split('/');
-        const filePath = urlParts.slice(urlParts.indexOf('application-documents') + 1).join('/');
+        const filePath = urlParts.slice(urlParts.indexOf('documents') + 1).join('/');
 
         // Delete from storage
         const { error: storageError } = await supabase.storage
-            .from('application-documents')
+            .from('documents')
             .remove([filePath]);
 
         if (storageError) console.error("Storage delete error:", storageError);

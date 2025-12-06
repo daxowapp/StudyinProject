@@ -195,3 +195,33 @@ export async function processCardPayment(transactionId: string) {
         return { error: (error as Error).message };
     }
 }
+}
+
+export async function resetPaymentStatus(transactionId: string) {
+    const supabase = await createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { error: 'Not authenticated' };
+
+    try {
+        // Reset status to pending
+        const { error: updateError } = await supabase
+            .from('payment_transactions')
+            .update({
+                status: 'pending',
+                receipt_url: null,
+                payment_method: null,
+                updated_at: new Date().toISOString()
+            })
+            .eq('id', transactionId)
+            .eq('student_id', user.id); // Ensure ownership
+
+        if (updateError) throw updateError;
+
+        revalidatePath('/dashboard/applications');
+        return { success: true };
+    } catch (error: unknown) {
+        console.error('Error resetting payment:', error);
+        return { error: (error as Error).message };
+    }
+}
