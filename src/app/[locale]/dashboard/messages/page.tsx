@@ -73,7 +73,8 @@ export default async function MessagesPage() {
         file_size,
         file_type,
         mime_type
-      )
+      ),
+      parent_message_id
     `)
     .in('application_id', applicationIds)
     .order('created_at', { ascending: false })

@@ -74,7 +74,8 @@ export async function sendReply(formData: FormData) {
             subject: 'Re: Student Reply',
             message: message,
             requires_action: false,
-            is_read: false
+            is_read: false,
+            parent_message_id: formData.get('originalMessageId') as string || null
         })
         .select()
         .single();

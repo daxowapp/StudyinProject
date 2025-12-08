@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { Search, UserPlus, Upload, CreditCard, CheckCircle, Plane, ArrowRight, Zap } from "lucide-react";
+import { Search, UserPlus, Upload, Award, CheckCircle, Plane, ArrowRight, Zap } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
@@ -38,8 +38,8 @@ export function HowItWorksSection({ isLoggedIn = false }: HowItWorksSectionProps
             delay: 0.4
         },
         {
-            key: 'pay',
-            icon: CreditCard,
+            key: 'scholarship',
+            icon: Award,
             color: "bg-yellow-500",
             lightColor: "bg-yellow-100",
             delay: 0.6

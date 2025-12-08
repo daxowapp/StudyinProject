@@ -1,37 +1,37 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, UserPlus, Upload, CreditCard, CheckCircle, Plane, ArrowRight } from "lucide-react";
+import { Search, UserPlus, Upload, Award, CheckCircle, Plane, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const steps = [
     {
         title: "Discover Programs",
-        description: "Use our search engine to find the perfect program and university for you. Filter by major, city, tuition, and language.",
+        description: "Browse 500+ programs from top Chinese universities tailored to your goals.",
         icon: Search,
     },
     {
         title: "Create Profile",
-        description: "Register an account and complete your student profile. You only need to enter your information once.",
+        description: "Set up your account and complete your academic profile in minutes.",
         icon: UserPlus,
     },
     {
         title: "Upload Documents",
-        description: "Upload clear scans of your passport, transcripts, and other required documents. Our system checks for common errors.",
+        description: "Submit certificates, transcripts, and required documents securely.",
         icon: Upload,
     },
     {
-        title: "Pay Fees",
-        description: "Pay the application and service fees securely via Stripe. We accept all major credit cards.",
-        icon: CreditCard,
+        title: "Choose Scholarship Type",
+        description: "Each university has scholarship types available. Choose one and apply.",
+        icon: Award,
     },
     {
-        title: "Track Application",
-        description: "We submit your application to the university and track its progress. You'll receive real-time updates.",
+        title: "Track Progress",
+        description: "Monitor your application status with real-time updates and notifications.",
         icon: CheckCircle,
     },
     {
-        title: "Visa & Arrival",
-        description: "Once accepted, we help you with the JW202 visa form and provide pre-departure guidance.",
+        title: "Get Admission",
+        description: "Receive your offer letter, visa documents, and start your journey!",
         icon: Plane,
     },
 ];

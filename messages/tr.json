@@ -200,9 +200,13 @@
                 "title": "Belgeleri Yükle",
                 "description": "Sertifikaları, transkriptleri ve gerekli belgeleri güvenli bir şekilde gönderin."
             },
+            "scholarship": {
+                "title": "Burs Türünü Seçin",
+                "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
+            },
             "pay": {
-                "title": "Başvuru Ücretini Öde",
-                "description": "Birden fazla para birimi seçeneği ile Stripe üzerinden güvenli ödeme yapın."
+                "title": "Burs Türünü Seçin",
+                "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
             },
             "track": {
                 "title": "İlerlemeyi Takip Et",
@@ -1025,5 +1029,62 @@
         "loginPrompt": "🔐 Sohbet geçmişinizi kaydetmek ve başvuruları takip etmek için giriş yapın",
         "login": "Giriş Yap",
         "register": "Kayıt Ol"
+    },
+    "PaymentDashboard": {
+        "title": "Ödemeler",
+        "subtitle": "Başvuru ödemelerinizi yönetin",
+        "totalAmount": "Toplam Tutar",
+        "totalPaid": "Toplam Ödenen",
+        "pending": "Bekleyen",
+        "rest": "Kalan Tutar",
+        "totalTransactions": "Toplam İşlem",
+        "successfullyProcessed": "Başarıyla işlendi",
+        "paymentDue": "vadesi gelen ödeme",
+        "allTime": "Tüm zamanlar",
+        "amount": "Tutar",
+        "status": "Durum",
+        "created": "Oluşturulma Tarihi",
+        "method": "Yöntem",
+        "payNow": "Şimdi Öde",
+        "viewApplication": "Başvuruyu Görüntüle",
+        "paymentProof": "Ödeme Kanıtı",
+        "noPayments": "Ödeme Yok",
+        "noPaymentsDesc": "Bekleyen ödemeniz bulunmamaktadır.",
+        "contactSupport": "Destek İle İletişime Geçin"
+    },
+    "Refunds": {
+        "title": "İade Talepleri",
+        "statusTitle": "İade Durumu",
+        "requestButton": "İade Talep Et",
+        "submittedTitle": "İade Talebi Gönderildi",
+        "submittedOn": "{date} tarihinde gönderildi",
+        "reasonLabel": "Sebep",
+        "adminResponseLabel": "Yönetici Yanıtı",
+        "rejectedTitle": "Başvuru Reddedildi",
+        "rejectedMessage": "Geri ödeme/İade için uygun olabilirsiniz. Talep göndermek için düğmeye tıklayın.",
+        "modalTitle": "İade Talep Et",
+        "modalDescription": "İade talebinde bulunun. Lütfen neden iade talep ettiğinizi açıklayın.",
+        "modalReasonLabel": "İade Sebebi",
+        "modalPlaceholder": "Reddedildim çünkü...",
+        "submitButton": "Talebi Gönder",
+        "cancelButton": "İptal",
+        "successMessage": "İade talebi başarıyla gönderildi",
+        "errorMessage": "Talep gönderilemedi",
+        "table": {
+            "student": "Öğrenci",
+            "program": "Üniversite / Program",
+            "reason": "Sebep",
+            "status": "Durum",
+            "date": "Tarih",
+            "actions": "İşlemler",
+            "approve": "Onayla",
+            "reject": "Reddet",
+            "noRequests": "İade talebi bulunamadı",
+            "approveTitle": "İade Talebini Onayla",
+            "rejectTitle": "İade Talebini Reddet",
+            "approveDescription": "Bu işlem, talebi onaylandı olarak işaretleyecek ve başvuru ödeme durumunu iade edildi olarak güncelleyecektir.",
+            "rejectDescription": "Bu işlem, talebi reddedildi olarak işaretleyecektir.",
+            "adminResponsePlaceholder": "Öğrenciye bir not ekleyin..."
+        }
     }
 }

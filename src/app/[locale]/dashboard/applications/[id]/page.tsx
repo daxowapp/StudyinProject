@@ -1,5 +1,6 @@
 import { createClient, createAdminClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -20,9 +21,11 @@ import {
 } from 'lucide-react';
 import { PaymentRequestCard } from '../components/PaymentRequestCard';
 import { DocumentRequestCard } from '../components/DocumentRequestCard';
+import { RefundRequestModal } from '../components/RefundRequestModal';
 
 export default async function ApplicationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const t = await getTranslations();
   const supabase = await createClient();
   const adminSupabase = await createAdminClient();
 
@@ -59,6 +62,13 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
     console.error('Error details:', appError);
     redirect('/dashboard/applications');
   }
+
+  // Fetch refund request
+  const { data: refundRequest } = await supabase
+    .from('refund_requests')
+    .select('*')
+    .eq('application_id', id)
+    .single();
 
   // Fetch ALL payment transactions for this application (temporarily remove status filter)
   const { data: paymentTransactions, error: paymentError } = await adminSupabase
@@ -365,6 +375,51 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
                 </div>
               ))}
             </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Refund Request Status */}
+      {(application.status === 'rejected' || refundRequest) && (
+        <Card className={refundRequest ? 'border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-900' : 'border-red-200 bg-red-50 dark:bg-red-950 dark:border-red-900'}>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CreditCard className="w-5 h-5" />
+              {t('Refunds.statusTitle')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {refundRequest ? (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium">{t('Refunds.submittedTitle')}</p>
+                    <p className="text-sm text-muted-foreground">{t('Refunds.submittedOn', { date: new Date(refundRequest.created_at).toLocaleDateString() })}</p>
+                  </div>
+                  <Badge variant={refundRequest.status === 'approved' ? 'default' : refundRequest.status === 'rejected' ? 'destructive' : 'secondary'}>
+                    {refundRequest.status.toUpperCase()}
+                  </Badge>
+                </div>
+                <div className="p-3 bg-white dark:bg-gray-900 rounded-md border text-sm">
+                  <span className="font-medium text-muted-foreground">{t('Refunds.reasonLabel')}: </span>
+                  {refundRequest.reason}
+                </div>
+                {refundRequest.admin_response && (
+                  <div className="p-3 bg-white dark:bg-gray-900 rounded-md border text-sm border-blue-200">
+                    <span className="font-medium text-blue-600">{t('Refunds.adminResponseLabel')}: </span>
+                    {refundRequest.admin_response}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium text-red-900 dark:text-red-100">{t('Refunds.rejectedTitle')}</p>
+                  <p className="text-sm text-red-700 dark:text-red-300">{t('Refunds.rejectedMessage')}</p>
+                </div>
+                <RefundRequestModal applicationId={id} studentId={user.id} />
+              </div>
+            )}
           </CardContent>
         </Card>
       )}

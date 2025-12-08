@@ -167,8 +167,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="font-semibold mb-1">Phone</p>
-                                        <a href="tel:+861234567890" className="text-sm text-muted-foreground hover:text-primary">
-                                            +86 123 456 7890
+                                        <a href="tel:+905492006060" className="text-sm text-muted-foreground hover:text-primary">
+                                            +90 549 200 6060
                                         </a>
                                     </div>
                                 </div>
@@ -180,8 +180,9 @@ export default function ContactPage() {
                                     <div>
                                         <p className="font-semibold mb-1">Office</p>
                                         <p className="text-sm text-muted-foreground">
-                                            Beijing, China<br />
-                                            100000
+                                            Ziya Gökalp Mah. Süleyman Demirel Bulvarı<br />
+                                            Mall Of İstanbul Floor:14 Office:116<br />
+                                            34490 Başakşehir/İstanbul
                                         </p>
                                     </div>
                                 </div>

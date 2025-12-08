@@ -8,7 +8,8 @@ export async function sendAdminReply(
     subject: string,
     message: string,
     messageType: string = 'general',
-    requiresAction: boolean = false
+    requiresAction: boolean = false,
+    parentMessageId: string | null = null
 ) {
     const supabase = await createClient();
 
@@ -36,7 +37,8 @@ export async function sendAdminReply(
             subject: subject,
             message: message,
             requires_action: requiresAction,
-            email_sent: false
+            email_sent: false,
+            parent_message_id: parentMessageId
         })
         .select()
         .single();
@@ -88,6 +90,7 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
     const message = formData.get('message') as string;
     const messageType = formData.get('messageType') as string;
     const requiresAction = formData.get('requiresAction') === 'true';
+    const parentMessageId = formData.get('parentMessageId') as string || null;
 
     // Get application details
     const { data: application, error: appError } = await supabase
@@ -109,7 +112,8 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
             subject: subject,
             message: message,
             requires_action: requiresAction,
-            email_sent: false
+            email_sent: false,
+            parent_message_id: parentMessageId
         })
         .select()
         .single();

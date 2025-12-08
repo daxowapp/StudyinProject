@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,7 +32,7 @@ import {
     File,
 } from "lucide-react";
 import { toast } from "sonner";
-import { uploadDocument, deleteDocument } from "./actions";
+import { uploadDocument, deleteDocument, markDocumentsAsRead } from "./actions";
 import { formatBytes, formatDate } from "@/lib/utils";
 
 interface Document {
@@ -72,6 +72,10 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
     const [uploading, setUploading] = useState(false);
     const [selectedType, setSelectedType] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+    useEffect(() => {
+        markDocumentsAsRead(userId);
+    }, [userId]);
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { Instagram, Linkedin, Twitter, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import { NewsletterForm } from "./NewsletterForm";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -78,18 +78,19 @@ export function Footer() {
                         </p>
                         <div className="flex gap-3">
                             {[
-                                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                                { icon: Instagram, href: "#", label: "Instagram" },
-                                { icon: Twitter, href: "#", label: "Twitter" }
+                                { icon: Linkedin, href: "https://www.linkedin.com/company/study-at-china", label: "LinkedIn" },
+                                { icon: Instagram, href: "https://instagram.com/studyatcn", label: "Instagram" }
                             ].map((social) => (
-                                <Link
+                                <a
                                     key={social.label}
                                     href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="h-10 w-10 rounded-xl bg-muted hover:bg-primary hover:text-white flex items-center justify-center transition-all hover:scale-110"
                                 >
                                     <social.icon className="h-5 w-5" />
                                     <span className="sr-only">{social.label}</span>
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     </div>

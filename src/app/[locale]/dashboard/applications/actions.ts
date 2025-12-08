@@ -225,3 +225,55 @@ export async function resetPaymentStatus(transactionId: string) {
         return { error: (error as Error).message };
     }
 }
+
+export async function createRefundRequest(applicationId: string, reason: string) {
+    const supabase = await createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { error: 'Not authenticated' };
+
+    try {
+        // Verify application ownership and status
+        const { data: application, error: appError } = await supabase
+            .from('applications')
+            .select('status, student_id')
+            .eq('id', applicationId)
+            .single();
+
+        if (appError || !application) throw new Error('Application not found');
+        if (application.student_id !== user.id) throw new Error('Unauthorized');
+
+        // Allow refund request if rejected
+        if (application.status !== 'rejected') return { error: 'Refunds can only be requested for rejected applications' };
+
+        // Check for existing request
+        const { data: existingRequest } = await supabase
+            .from('refund_requests')
+            .select('id')
+            .eq('application_id', applicationId)
+            .single();
+
+        if (existingRequest) return { error: 'A refund request already exists for this application' };
+
+        // Create request
+        const { error: insertError } = await supabase
+            .from('refund_requests')
+            .insert({
+                application_id: applicationId,
+                student_id: user.id,
+                reason: reason,
+                status: 'pending'
+            });
+
+        if (insertError) throw insertError;
+
+        revalidatePath('/dashboard/applications');
+        revalidatePath(`/dashboard/applications/${applicationId}`);
+        revalidatePath('/admin/refunds');
+
+        return { success: true };
+    } catch (error: unknown) {
+        console.error('Error creating refund request:', error);
+        return { error: 'Failed to create refund request' };
+    }
+}

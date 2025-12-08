@@ -23,7 +23,10 @@ import {
     Download,
     FileText,
     Image as ImageIcon,
-    File
+    File,
+    Reply,
+    Quote,
+    X
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { sendAdminReply } from './actions';
@@ -40,6 +43,7 @@ interface Message {
     requires_action: boolean;
     action_completed: boolean;
     application_id: string;
+    parent_message_id?: string;
     application?: {
         student_name: string;
         student_email: string;
@@ -79,6 +83,7 @@ export default function MessagesPage() {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [expandedThreads, setExpandedThreads] = useState<Set<string>>(new Set());
     const [replyingTo, setReplyingTo] = useState<string | null>(null);
+    const [replyingToMessage, setReplyingToMessage] = useState<Message | null>(null);
     const [replyText, setReplyText] = useState('');
     const [isSending, setIsSending] = useState(false);
     const supabase = createClient();
@@ -184,12 +189,15 @@ export default function MessagesPage() {
 
         setIsSending(true);
         try {
+            const parentMessageId = replyingToMessage?.application_id === applicationId ? replyingToMessage?.id : null;
+
             const result = await sendAdminReply(
                 applicationId,
                 `Re: Conversation with ${studentName}`,
                 replyText,
                 'general',
-                false
+                false,
+                parentMessageId
             );
 
             if (result.error) {
@@ -198,6 +206,7 @@ export default function MessagesPage() {
                 toast.success('Reply sent successfully!');
                 setReplyText('');
                 setReplyingTo(null);
+                setReplyingToMessage(null);
                 await fetchMessages(true);
             }
         } catch (error) {
@@ -391,9 +400,12 @@ export default function MessagesPage() {
                                     <CardContent className="border-t bg-muted/30 p-6 space-y-4">
                                         {thread.messages.map((message) => {
                                             const isAdmin = message.sender_type === 'admin';
+                                            const parentMessage = message.parent_message_id
+                                                ? thread.messages.find(m => m.id === message.parent_message_id)
+                                                : null;
 
                                             return (
-                                                <div key={message.id} className="space-y-2">
+                                                <div key={message.id} className="space-y-2 group">
                                                     <div className={`p-4 rounded-lg ${isAdmin ? 'bg-blue-50 border border-blue-200' : 'bg-white border border-gray-200'
                                                         }`}>
                                                         {/* Message Header */}
@@ -414,12 +426,41 @@ export default function MessagesPage() {
                                                                     {formatDistanceToNow(new Date(message.created_at), { addSuffix: true })}
                                                                 </div>
                                                             </div>
+
+                                                            {/* Reply Button */}
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="sm"
+                                                                className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                                onClick={() => {
+                                                                    setReplyingTo(thread.applicationId);
+                                                                    setReplyingToMessage(message);
+                                                                    // Scroll to bottom logic if needed
+                                                                }}
+                                                                title="Reply to this message"
+                                                            >
+                                                                <Reply className="w-4 h-4 text-muted-foreground" />
+                                                            </Button>
+
                                                             {message.requires_action && (
                                                                 <Badge className={message.action_completed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                                                                     {message.action_completed ? '✓ Completed' : 'Action Required'}
                                                                 </Badge>
                                                             )}
                                                         </div>
+
+                                                        {/* Parent Message Quote */}
+                                                        {parentMessage && (
+                                                            <div className="mb-3 pl-3 border-l-4 border-gray-300 bg-gray-50 p-2 rounded text-sm text-gray-600">
+                                                                <div className="flex items-center gap-1 font-medium mb-1 text-xs">
+                                                                    <Quote className="w-3 h-3" />
+                                                                    <span>Replying to {parentMessage.sender_type === 'admin' ? 'Admin' : thread.studentName}</span>
+                                                                </div>
+                                                                <p className="line-clamp-2 italic opacity-80">
+                                                                    {parentMessage.message}
+                                                                </p>
+                                                            </div>
+                                                        )}
 
                                                         {/* Subject */}
                                                         {message.subject && (
@@ -474,6 +515,23 @@ export default function MessagesPage() {
                                         <div className="pt-4 border-t">
                                             {replyingTo === thread.applicationId ? (
                                                 <div className="space-y-3">
+                                                    {replyingToMessage && replyingToMessage.application_id === thread.applicationId && (
+                                                        <div className="flex items-center justify-between bg-blue-50 p-2 rounded border border-blue-100 text-sm">
+                                                            <div className="flex items-center gap-2 overflow-hidden">
+                                                                <Reply className="w-4 h-4 text-blue-600 shrink-0" />
+                                                                <span className="font-medium text-blue-900 shrink-0">Replying to {replyingToMessage.sender_type === 'admin' ? 'Admin' : thread.studentName}:</span>
+                                                                <span className="text-blue-700 truncate">{replyingToMessage.message}</span>
+                                                            </div>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="sm"
+                                                                className="h-6 w-6 p-0 hover:bg-blue-100"
+                                                                onClick={() => setReplyingToMessage(null)}
+                                                            >
+                                                                <X className="w-4 h-4 text-blue-700" />
+                                                            </Button>
+                                                        </div>
+                                                    )}
                                                     <Textarea
                                                         placeholder="Type your reply..."
                                                         value={replyText}
@@ -493,6 +551,7 @@ export default function MessagesPage() {
                                                             variant="outline"
                                                             onClick={() => {
                                                                 setReplyingTo(null);
+                                                                setReplyingToMessage(null);
                                                                 setReplyText('');
                                                             }}
                                                         >
@@ -502,7 +561,10 @@ export default function MessagesPage() {
                                                 </div>
                                             ) : (
                                                 <Button
-                                                    onClick={() => setReplyingTo(thread.applicationId)}
+                                                    onClick={() => {
+                                                        setReplyingTo(thread.applicationId);
+                                                        setReplyingToMessage(null);
+                                                    }}
                                                     variant="outline"
                                                     className="w-full gap-2"
                                                 >

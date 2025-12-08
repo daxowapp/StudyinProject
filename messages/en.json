@@ -200,9 +200,13 @@
                 "title": "Upload Documents",
                 "description": "Submit certificates, transcripts, and required documents securely."
             },
+            "scholarship": {
+                "title": "Choose Scholarship Type",
+                "description": "Each university has scholarship types available. Choose one and apply."
+            },
             "pay": {
-                "title": "Pay Application Fee",
-                "description": "Make secure payments via Stripe with multiple currency options."
+                "title": "Choose Scholarship Type",
+                "description": "Each university has scholarship types available. Choose one and apply."
             },
             "track": {
                 "title": "Track Progress",
@@ -1095,5 +1099,62 @@
         "loginPrompt": "🔐 Log in to save your chat history and track applications",
         "login": "Log In",
         "register": "Register"
+    },
+    "PaymentDashboard": {
+        "title": "Payments",
+        "subtitle": "Manage your application payments",
+        "totalAmount": "Total Amount",
+        "totalPaid": "Total Paid",
+        "pending": "Pending",
+        "rest": "Rest Amount",
+        "totalTransactions": "Total Transactions",
+        "successfullyProcessed": "Successfully processed",
+        "paymentDue": "payment(s) due",
+        "allTime": "All time",
+        "amount": "Amount",
+        "status": "Status",
+        "created": "Created",
+        "method": "Method",
+        "payNow": "Pay Now",
+        "viewApplication": "View Application",
+        "paymentProof": "Payment Proof",
+        "noPayments": "No Payments",
+        "noPaymentsDesc": "You don't have any pending payments.",
+        "contactSupport": "Contact Support"
+    },
+    "Refunds": {
+        "title": "Refund Requests",
+        "statusTitle": "Refund Status",
+        "requestButton": "Request Refund",
+        "submittedTitle": "Refund Request Submitted",
+        "submittedOn": "Submitted on {date}",
+        "reasonLabel": "Reason",
+        "adminResponseLabel": "Admin Response",
+        "rejectedTitle": "Application Rejected",
+        "rejectedMessage": "You may be eligible for a refund. Click the button to submit a request.",
+        "modalTitle": "Request Refund",
+        "modalDescription": "Submit a request for a refund. Please explain why you are requesting this refund.",
+        "modalReasonLabel": "Reason for Refund",
+        "modalPlaceholder": "I was rejected because...",
+        "submitButton": "Submit Request",
+        "cancelButton": "Cancel",
+        "successMessage": "Refund request submitted successfully",
+        "errorMessage": "Failed to submit request",
+        "table": {
+            "student": "Student",
+            "program": "University / Program",
+            "reason": "Reason",
+            "status": "Status",
+            "date": "Date",
+            "actions": "Actions",
+            "approve": "Approve",
+            "reject": "Reject",
+            "noRequests": "No refund requests found",
+            "approveTitle": "Approve Refund Request",
+            "rejectTitle": "Reject Refund Request",
+            "approveDescription": "This will mark the request as approved and update the application payment status to refunded.",
+            "rejectDescription": "This will mark the request as rejected.",
+            "adminResponsePlaceholder": "Add a note to the student..."
+        }
     }
 }

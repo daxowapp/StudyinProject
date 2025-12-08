@@ -98,9 +98,29 @@ export async function deleteDocument(userId: string, documentId: string) {
 
         if (dbError) throw dbError;
 
+
         revalidatePath("/dashboard/documents");
         return { success: true };
     } catch (error: unknown) {
         return { error: (error as Error).message };
     }
+}
+
+export async function markDocumentsAsRead(userId: string) {
+    const supabase = await createClient();
+
+    const { error } = await supabase
+        .from("student_documents")
+        .update({ is_read: true })
+        .eq("student_id", userId)
+        .eq("is_read", false);
+
+    if (error) {
+        console.error("Error marking documents as read:", error);
+        return { error: error.message };
+    }
+
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/documents");
+    return { success: true };
 }

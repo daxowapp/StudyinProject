@@ -1,5 +1,6 @@
 
 import { createClient } from '@/lib/supabase/server';
+import { getTranslations } from 'next-intl/server';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,6 +19,7 @@ import {
 import { Price } from '@/components/currency/Price';
 
 export default async function PaymentsPage() {
+  const t = await getTranslations('PaymentDashboard');
   const supabase = await createClient();
 
   // Check authentication
@@ -117,52 +119,67 @@ export default async function PaymentsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Payments</h1>
-        <p className="text-muted-foreground">Manage your application payments</p>
+        <h1 className="text-3xl font-bold">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="border-none shadow-lg bg-gradient-to-br from-indigo-500/10 to-indigo-500/5">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{t('totalAmount')}</CardTitle>
+            <div className="h-10 w-10 rounded-full bg-indigo-500/20 flex items-center justify-center">
+              <CreditCard className="h-5 w-5 text-indigo-600" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              <Price amount={totalPaid + totalPending} currency="CNY" />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">{t('allTime')}</p>
+          </CardContent>
+        </Card>
+
         <Card className="border-none shadow-lg bg-gradient-to-br from-green-500/10 to-green-500/5">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Paid</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('totalPaid')}</CardTitle>
             <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-2xl font-bold">
               <Price amount={totalPaid} currency="CNY" />
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Successfully processed</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('successfullyProcessed')}</p>
           </CardContent>
         </Card>
 
         <Card className="border-none shadow-lg bg-gradient-to-br from-yellow-500/10 to-yellow-500/5">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Payments</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('rest')}</CardTitle>
             <div className="h-10 w-10 rounded-full bg-yellow-500/20 flex items-center justify-center">
               <Clock className="h-5 w-5 text-yellow-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-2xl font-bold">
               <Price amount={totalPending} currency="CNY" />
             </div>
-            <p className="text-xs text-muted-foreground mt-1">{pendingCount} payment(s) due</p>
+            <p className="text-xs text-muted-foreground mt-1">{pendingCount} {t('paymentDue')}</p>
           </CardContent>
         </Card>
 
-        <Card className="border-none shadow-lg bg-gradient-to-br from-blue-500/10 to-blue-500/5">
+        <Card className="border-none shadow-lg bg-gradient-to-br from-purple-500/10 to-purple-500/5">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Transactions</CardTitle>
-            <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-              <CreditCard className="h-5 w-5 text-blue-600" />
+            <CardTitle className="text-sm font-medium">{t('totalTransactions')}</CardTitle>
+            <div className="h-10 w-10 rounded-full bg-purple-500/20 flex items-center justify-center">
+              <CreditCard className="h-5 w-5 text-purple-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{payments?.length || 0}</div>
-            <p className="text-xs text-muted-foreground mt-1">All time</p>
+            <div className="text-2xl font-bold">{payments?.length || 0}</div>
+            <p className="text-xs text-muted-foreground mt-1">{t('allTime')}</p>
           </CardContent>
         </Card>
       </div>
@@ -192,17 +209,17 @@ export default async function PaymentsPage() {
 
                     <div className="grid md:grid-cols-2 gap-3 text-sm">
                       <div>
-                        <p className="text-muted-foreground">Amount</p>
+                        <p className="text-muted-foreground">{t('amount')}</p>
                         <p className="font-semibold text-lg">
                           <Price amount={parseFloat(payment.amount)} currency={payment.currency || 'CNY'} />
                         </p>
                       </div>
                       <div>
-                        <p className="text-muted-foreground">Status</p>
+                        <p className="text-muted-foreground">{t('status')}</p>
                         <div className="mt-1">{getStatusBadge(payment.status)}</div>
                       </div>
                       <div>
-                        <p className="text-muted-foreground">Created</p>
+                        <p className="text-muted-foreground">{t('created')}</p>
                         <p className="flex items-center gap-1">
                           <Calendar className="w-3 h-3" />
                           {new Date(payment.created_at).toLocaleDateString()}
@@ -225,7 +242,7 @@ export default async function PaymentsPage() {
                       )}
                       {payment.payment_method && (
                         <div>
-                          <p className="text-muted-foreground">Method</p>
+                          <p className="text-muted-foreground">{t('method')}</p>
                           <p className="capitalize">{payment.payment_method.replace('_', ' ')}</p>
                         </div>
                       )}
@@ -260,7 +277,7 @@ export default async function PaymentsPage() {
                           <Link href={payment.payment_link}>
                             <Button className="w-full lg:w-auto bg-amber-600 hover:bg-amber-700">
                               <CreditCard className="w-4 h-4 mr-2" />
-                              Pay Now
+                              {t('payNow')}
                             </Button>
                           </Link>
                         ) : (
@@ -284,15 +301,15 @@ export default async function PaymentsPage() {
                       >
                         <Button variant="outline" size="sm" className="w-full lg:w-auto gap-2">
                           <Download className="w-4 h-4" />
-                          Payment Proof
+                          {t('paymentProof')}
                         </Button>
                       </a>
                     )}
 
-                    <Link href={`/ dashboard / applications / ${payment.application_id} `}>
+                    <Link href={`/dashboard/applications/${payment.application_id}`}>
                       <Button variant="outline" size="sm" className="w-full lg:w-auto gap-2">
                         <ExternalLink className="w-4 h-4" />
-                        View Application
+                        {t('viewApplication')}
                       </Button>
                     </Link>
                   </div>
@@ -305,9 +322,9 @@ export default async function PaymentsPage() {
         <Card>
           <CardContent className="p-12 text-center">
             <CreditCard className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No Payments</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('noPayments')}</h3>
             <p className="text-gray-600">
-              You don&apos;t have any pending payments.
+              {t('noPaymentsDesc')}
             </p>
           </CardContent>
         </Card>
@@ -333,7 +350,7 @@ export default async function PaymentsPage() {
             </ul>
             <Link href="/contact">
               <Button variant="outline" className="border-yellow-600 text-yellow-900 hover:bg-yellow-100">
-                Contact Support
+                {t('contactSupport')}
               </Button>
             </Link>
           </CardContent>

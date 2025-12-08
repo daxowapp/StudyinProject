@@ -22,6 +22,7 @@ export default async function DashboardLayout({
     let unreadCount = 0;
     let pendingPayments = 0;
     let pendingDocuments = 0;
+    let hasUnreadDocuments = false;
 
     if (user) {
         // Get user's applications
@@ -51,13 +52,22 @@ export default async function DashboardLayout({
 
             pendingPayments = paymentCount || 0;
 
-            // Get student documents count
-            const { count: docCount } = await supabase
+
+            // Get student documents count (Total)
+            const { count: totalDocCount } = await supabase
                 .from("student_documents")
                 .select("*", { count: 'exact', head: true })
                 .eq("student_id", user.id);
 
-            pendingDocuments = docCount || 0;
+            // Get unread student documents count
+            const { count: unreadDocCount } = await supabase
+                .from("student_documents")
+                .select("*", { count: 'exact', head: true })
+                .eq("student_id", user.id)
+                .eq("is_read", false);
+
+            pendingDocuments = totalDocCount || 0;
+            hasUnreadDocuments = (unreadDocCount || 0) > 0;
         }
     }
     return (
@@ -119,7 +129,7 @@ export default async function DashboardLayout({
                                 {t('documents')}
                             </div>
                             {pendingDocuments > 0 && (
-                                <Badge className="bg-orange-600 hover:bg-orange-700 text-white">
+                                <Badge className={`${hasUnreadDocuments ? "bg-red-600 hover:bg-red-700" : "bg-gray-500 hover:bg-gray-600"} text-white`}>
                                     {pendingDocuments}
                                 </Badge>
                             )}

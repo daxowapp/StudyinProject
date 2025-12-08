@@ -303,7 +303,7 @@ export function Navbar() {
                         <div className="hidden lg:flex items-center gap-3">
                             <CurrencySelector
                                 variant="navbar"
-                                className={scrolled
+                                className={showSolid
                                     ? "text-foreground hover:bg-muted"
                                     : "text-white hover:bg-white/10"
                                 }
