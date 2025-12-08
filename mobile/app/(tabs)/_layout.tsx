@@ -2,6 +2,7 @@
 import { Tabs } from 'expo-router';
 import { View, StyleSheet, Platform, Text } from 'react-native';
 import { House, Search, Building2, MessageCircle, User } from 'lucide-react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -42,7 +43,7 @@ function TabBarIcon({ name, focused }: { name: keyof typeof ICONS; focused: bool
                 color={color}
                 strokeWidth={focused ? 2.5 : 2}
             />
-            <Text style={[styles.label, { color, fontWeight: focused ? '600' : '500', fontFamily }]}>
+            <Text numberOfLines={1} style={[styles.label, { color, fontWeight: focused ? '600' : '500', fontFamily }]}>
                 {labels[name]}
             </Text>
         </View>
@@ -50,6 +51,8 @@ function TabBarIcon({ name, focused }: { name: keyof typeof ICONS; focused: bool
 }
 
 export default function TabsLayout() {
+    const insets = useSafeAreaInsets();
+
     return (
         <Tabs
             screenOptions={{
@@ -59,9 +62,9 @@ export default function TabsLayout() {
                     backgroundColor: '#FFFFFF',
                     borderTopWidth: 1,
                     borderTopColor: '#F1F5F9',
-                    height: Platform.OS === 'ios' ? 85 : 65,
+                    height: 56 + insets.bottom, // Dynamic height based on device
                     paddingTop: 8,
-                    paddingBottom: Platform.OS === 'ios' ? 25 : 8,
+                    paddingBottom: insets.bottom > 0 ? insets.bottom : 8,
                     elevation: 0,
                 },
             }}
@@ -105,8 +108,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 2,
+        width: 65, // Fixed width to prevent overlap
     },
     label: {
         fontSize: 10,
+        textAlign: 'center',
     },
 });

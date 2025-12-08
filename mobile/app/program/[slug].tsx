@@ -1,25 +1,39 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Pressable, Image, Platform, FlatList, Dimensions, Text as RNText } from 'react-native';
+import { View, ScrollView, StyleSheet, Pressable, RefreshControl, Dimensions, Linking, Share, Text as RNText } from 'react-native';
+import { Image } from 'expo-image';
 import Loader from '../../components/Loader';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { MotiView } from 'moti';
-import { ArrowLeft, GraduationCap, Clock, Globe, MapPin, Calendar, DollarSign, BookOpen, FileText, ChevronRight, Star, CheckCircle, Building2, Heart, Award, Home, Check } from 'lucide-react-native';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { MotiView, MotiText } from 'moti';
+import { ChevronLeft, MapPin, Star, Users, BookOpen, Globe, Calendar, DollarSign, CheckCircle, Share2, Globe as GlobeIcon, Award, Clock, Heart, FileText, Building2, Home, Check, GraduationCap, ChevronRight } from 'lucide-react-native';
 import { Price } from '../../components/currency/Price';
-import { useProgram, useSavedPrograms } from '../../hooks/useData';
+import { useProgram, useUniversity } from '../../hooks/useData';
+import { useFavorites } from '../../hooks/useFavorites';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 import GlobalTabBar from '../../components/GlobalTabBar';
 import { ThemedText as Text } from '../../components/ThemedText';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
 export default function ProgramDetailScreen() {
-    const { t } = useTranslation();
-    const { slug } = useLocalSearchParams<{ slug: string }>();
+    const { t, i18n } = useTranslation();
     const router = useRouter();
-    const { program, scholarships, accommodation, loading, error } = useProgram(slug);
-    const { isSaved, toggleSave } = useSavedPrograms();
+    const { slug } = useLocalSearchParams<{ slug: string }>();
+    const { program, scholarships, accommodation, loading, error, refetch } = useProgram(slug || '');
+    const { isFavorited, toggleFavorite } = useFavorites();
+    const { top } = useSafeAreaInsets();
+
+    const handleShare = async () => {
+        try {
+            await Share.share({
+                message: `Check out ${program?.title} at ${program?.university_name} on Studyin!`,
+                url: `https://studyin.ai/program/${slug}`,
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const getIconForCategory = (cat: string) => {
         switch (cat) {
@@ -73,21 +87,31 @@ export default function ProgramDetailScreen() {
                 style={styles.headerGradient}
             >
                 <SafeAreaView edges={['top']}>
-                    <View style={styles.headerRow}>
-                        <Pressable style={styles.backButton} onPress={() => router.back()}>
-                            <ArrowLeft size={22} color="#374151" />
-                        </Pressable>
-                        <Text style={styles.headerLabel}>{t('program.details')}</Text>
+                    <View style={[styles.headerActions, { paddingTop: (top || 0) + 10 }]}>
                         <Pressable
-                            style={styles.backButton}
-                            onPress={() => program && toggleSave(program.id)}
+                            style={styles.iconButton}
+                            onPress={() => router.back()}
                         >
-                            <Heart
-                                size={22}
-                                color={program && isSaved(program.id) ? "#EF4444" : "#374151"}
-                                fill={program && isSaved(program.id) ? "#EF4444" : "transparent"}
-                            />
+                            <ChevronLeft size={24} color="#374151" />
                         </Pressable>
+                        <View style={styles.rightIcons}>
+                            <Pressable
+                                style={styles.iconButton}
+                                onPress={() => toggleFavorite('program', program?.id || '')}
+                            >
+                                <Heart
+                                    size={22}
+                                    color={isFavorited('program', program?.id || '') ? '#EF4444' : '#374151'}
+                                    fill={isFavorited('program', program?.id || '') ? '#EF4444' : 'transparent'}
+                                />
+                            </Pressable>
+                            <Pressable
+                                style={styles.iconButton}
+                                onPress={handleShare}
+                            >
+                                <Share2 size={22} color="#374151" />
+                            </Pressable>
+                        </View>
                     </View>
                 </SafeAreaView>
             </LinearGradient>
@@ -114,7 +138,8 @@ export default function ProgramDetailScreen() {
                                 <Image
                                     source={{ uri: program.university_logo }}
                                     style={styles.universityLogo}
-                                    resizeMode="contain"
+                                    contentFit="contain"
+                                    transition={500}
                                 />
                             ) : (
                                 <View style={styles.universityLogoPlaceholder}>
@@ -358,21 +383,22 @@ export default function ProgramDetailScreen() {
                         style={styles.universityCard}
                         onPress={() => router.push(`/university/${program.university_slug}`)}
                     >
-                        <View style={styles.universityCardLeft}>
+                        <View style={styles.universityCardTop}>
                             {program.university_logo ? (
                                 <Image
                                     source={{ uri: program.university_logo }}
                                     style={styles.universityCardLogo}
-                                    resizeMode="contain"
+                                    contentFit="contain"
+                                    transition={500}
                                 />
                             ) : (
                                 <View style={styles.universityCardLogoPlaceholder}>
                                     <Building2 size={24} color="#9CA3AF" />
                                 </View>
                             )}
-                            <View>
+                            <View style={styles.universityCardInfo}>
                                 <Text style={styles.universityCardLabel}>{t('program.offeredBy')}</Text>
-                                <Text style={styles.universityCardName}>{program.university_name}</Text>
+                                <Text style={styles.universityCardName} numberOfLines={2}>{program.university_name}</Text>
                             </View>
                         </View>
                         <View style={styles.viewButton}>
@@ -490,7 +516,28 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     headerGradient: {
-        paddingBottom: 8,
+        width: width,
+    },
+    headerActions: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingBottom: 16,
+    },
+    rightIcons: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    iconButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backdropFilter: 'blur(10px)',
     },
     headerRow: {
         flexDirection: 'row',
@@ -716,15 +763,21 @@ const styles = StyleSheet.create({
         color: '#6B7280',
     },
     universityCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
         backgroundColor: '#FFF',
         padding: 16,
         borderRadius: 20,
         marginTop: 16,
         borderWidth: 2,
         borderColor: '#F3F4F6',
+        gap: 12,
+    },
+    universityCardTop: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 14,
+    },
+    universityCardInfo: {
+        flex: 1,
     },
     universityCardLeft: {
         flexDirection: 'row',
@@ -762,10 +815,11 @@ const styles = StyleSheet.create({
     viewButton: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: 4,
         backgroundColor: '#FEE2E2',
         paddingHorizontal: 14,
-        paddingVertical: 8,
+        paddingVertical: 12,
         borderRadius: 12,
     },
     viewButtonText: {

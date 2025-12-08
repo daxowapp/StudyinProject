@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { View, TextInput, FlatList, StyleSheet, Pressable, Image, RefreshControl, Dimensions, Text as RNText, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Search, MapPin, Filter, Star, ChevronDown, Sparkles, Building2, GraduationCap, X, ChevronRight } from 'lucide-react-native';
+import { Search, MapPin, Filter, Star, ChevronDown, Sparkles, Building2, GraduationCap, X, ChevronRight, Heart } from 'lucide-react-native';
 import { useUniversities } from '../../hooks/useData';
+import { useFavorites } from '../../hooks/useFavorites';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Loader from '../../components/Loader';
 import { MotiView } from 'moti';
@@ -17,6 +18,7 @@ export default function UniversitiesScreen() {
     const { theme, isDark } = useTheme();
     const { city } = useLocalSearchParams<{ city: string }>();
     const { universities, loading, refetch } = useUniversities();
+    const { isFavorited, toggleFavorite } = useFavorites();
 
     // Filter universities if city param is present
     const displayedUniversities = city
@@ -112,6 +114,22 @@ export default function UniversitiesScreen() {
                                                 style={styles.coverImage}
                                             />
                                         )}
+
+                                        {/* Favorite Button */}
+                                        <Pressable
+                                            style={styles.favoriteButton}
+                                            onPress={(e) => {
+                                                e.stopPropagation();
+                                                toggleFavorite('university', uni.id);
+                                            }}
+                                        >
+                                            <Heart
+                                                size={20}
+                                                color={isFavorited('university', uni.id) ? '#C62828' : '#FFFFFF'}
+                                                fill={isFavorited('university', uni.id) ? '#C62828' : 'transparent'}
+                                            />
+                                        </Pressable>
+
                                         <View style={styles.logoOverlay}>
                                             {uni.logo_url ? (
                                                 <Image
@@ -284,6 +302,18 @@ const styles = StyleSheet.create({
     coverContainer: {
         height: 100,
         position: 'relative',
+    },
+    favoriteButton: {
+        position: 'absolute',
+        top: 12,
+        right: 12,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
     },
     coverImage: {
         width: '100%',

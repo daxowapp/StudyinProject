@@ -392,11 +392,21 @@ export function useProgram(slug: string) {
             setLoading(true);
             console.log('[useProgram] Fetching program:', slug);
 
-            const { data, error: progError } = await supabase
+            // Check if slug is actually a UUID (ID) or a slug
+            const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug);
+
+            let query = supabase
                 .from('v_university_programs_full')
-                .select('*')
-                .eq('slug', slug)
-                .single();
+                .select('*');
+
+            // Use ID or slug based on format
+            if (isUUID) {
+                query = query.eq('id', slug);
+            } else {
+                query = query.eq('slug', slug);
+            }
+
+            const { data, error: progError } = await query.single();
 
             if (progError) throw progError;
 

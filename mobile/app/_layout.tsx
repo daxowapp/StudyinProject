@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 import { useEffect, useRef, useState } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import * as Notifications from 'expo-notifications';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { I18nextProvider } from 'react-i18next';
 import { useAuth } from '../hooks/useData';
 import {
@@ -78,22 +79,24 @@ export default function RootLayout() {
     }, []);
 
     return (
-        <I18nextProvider i18n={i18n}>
-            <ThemeProvider>
-                <LanguageProvider>
-                    <FontProvider>
-                        <CurrencyProvider>
-                            <NetworkProvider>
-                                <AnimatedSplash isReady={isAppReady}>
-                                    <OfflineBanner />
-                                    <Slot />
-                                </AnimatedSplash>
-                            </NetworkProvider>
-                        </CurrencyProvider>
-                    </FontProvider>
-                </LanguageProvider>
-            </ThemeProvider>
-        </I18nextProvider>
+        <SafeAreaProvider>
+            <I18nextProvider i18n={i18n}>
+                <ThemeProvider>
+                    <LanguageProvider>
+                        <FontProvider>
+                            <CurrencyProvider>
+                                <NetworkProvider>
+                                    <AnimatedSplash isReady={isAppReady}>
+                                        <OfflineBanner />
+                                        <Slot />
+                                    </AnimatedSplash>
+                                </NetworkProvider>
+                            </CurrencyProvider>
+                        </FontProvider>
+                    </LanguageProvider>
+                </ThemeProvider>
+            </I18nextProvider>
+        </SafeAreaProvider>
     );
 }
 

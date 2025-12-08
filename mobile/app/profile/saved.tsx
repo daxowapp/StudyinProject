@@ -1,149 +1,335 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Pressable, Image, ActivityIndicator, RefreshControl } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import { ArrowLeft, MapPin, Star, Heart, FileText, Frown } from 'lucide-react-native';
-import { useSavedPrograms } from '../../hooks/useData';
-import { supabase } from '../../lib/supabase';
-import { MotiView } from 'moti';
+import React, { useState } from 'react';
+import { View, ScrollView, StyleSheet, Pressable, Image, Dimensions, RefreshControl } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { MotiView, MotiText } from 'moti';
+import { ArrowLeft, BookOpen, Users, Star, MapPin, Heart, Award, GraduationCap, Building2 } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useFavorites } from '../../hooks/useFavorites';
+import { useUniversities, useFeaturedPrograms } from '../../hooks/useData';
+import Loader from '../../components/Loader';
+import { ThemedText } from '../../components/ThemedText';
 
-export default function SavedProgramsScreen() {
+const { width } = Dimensions.get('window');
+
+type TabType = 'universities' | 'programs';
+
+export default function SavedScreen() {
     const router = useRouter();
-    const { savedIds, count, isSaved, toggleSave, loading: savedLoading } = useSavedPrograms();
-    const [programs, setPrograms] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { t, i18n } = useTranslation();
+    const { theme, isDark } = useTheme();
+    const { favorites, loading: favoritesLoading, toggleFavorite } = useFavorites();
+    const { universities, loading: universitiesLoading } = useUniversities();
+    const { programs, loading: programsLoading } = useFeaturedPrograms();
+    const [activeTab, setActiveTab] = useState<TabType>('universities');
     const [refreshing, setRefreshing] = useState(false);
 
-    const fetchSavedPrograms = async () => {
-        if (savedIds.length === 0) {
-            setPrograms([]);
-            setLoading(false);
-            return;
-        }
+    const isRTL = i18n.language === 'ar' || i18n.language === 'fa';
 
-        try {
-            const { data, error } = await supabase
-                .from('university_programs')
-                .select('*, university:universities(*)')
-                .in('id', savedIds);
+    // Filter favs
+    const displayedUniversities = universities.filter(u => favorites.some(f => f.item_type === 'university' && f.item_id === u.id));
+    const displayedPrograms = programs.filter(p => favorites.some(f => f.item_type === 'program' && f.item_id === p.id));
 
-            if (error) throw error;
-            setPrograms(data || []);
-        } catch (error) {
-            console.error('Error fetching saved programs:', error);
-        } finally {
-            setLoading(false);
-            setRefreshing(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchSavedPrograms();
-    }, [savedIds]);
-
-    const onRefresh = () => {
+    const onRefresh = async () => {
         setRefreshing(true);
-        fetchSavedPrograms();
+        // In a real app we might refetch favorites here
+        setTimeout(() => setRefreshing(false), 1000);
     };
 
-    const renderItem = ({ item, index }: { item: any, index: number }) => (
-        <MotiView
-            from={{ opacity: 0, translateY: 20 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            transition={{ delay: index * 100 }}
-        >
-            <Pressable
-                style={styles.card}
-                onPress={() => router.push(`/program/${item.slug}`)}
-            >
-                <Image
-                    source={{ uri: item.university?.logo_url || 'https://via.placeholder.com/100' }}
-                    style={styles.logo}
-                />
-                <View style={styles.cardContent}>
-                    <View style={styles.cardHeader}>
-                        <Text style={styles.programTitle} numberOfLines={2}>{item.title}</Text>
-                        <Pressable onPress={() => toggleSave(item.id)}>
-                            <Heart size={20} color="#EF4444" fill="#EF4444" />
-                        </Pressable>
-                    </View>
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: theme.background,
+        },
+        header: {
+            paddingTop: 60,
+            paddingHorizontal: 20,
+            paddingBottom: 20,
+            backgroundColor: theme.card,
+            borderBottomWidth: 1,
+            borderBottomColor: isDark ? '#333' : '#E5E7EB',
+        },
+        headerTitle: {
+            fontSize: 24,
+            fontWeight: '700',
+            color: theme.text,
+            marginBottom: 4,
+            textAlign: isRTL ? 'right' : 'left',
+        },
+        headerSubtitle: {
+            fontSize: 14,
+            color: theme.textSecondary,
+            textAlign: isRTL ? 'right' : 'left',
+        },
+        tabs: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            padding: 16,
+            gap: 12,
+        },
+        tab: {
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+            borderRadius: 20,
+            borderWidth: 1,
+            borderColor: theme.border,
+            backgroundColor: theme.card,
+        },
+        activeTab: {
+            backgroundColor: '#C62828',
+            borderColor: '#C62828',
+        },
+        tabText: {
+            fontSize: 14,
+            fontWeight: '600',
+            color: theme.textSecondary,
+        },
+        activeTabText: {
+            color: '#FFF',
+        },
+        scrollContent: {
+            padding: 16,
+            paddingBottom: 100,
+        },
+        emptyState: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingTop: 100,
+            gap: 16,
+        },
+        emptyText: {
+            fontSize: 16,
+            color: theme.textSecondary,
+            textAlign: 'center',
+        },
+        card: {
+            backgroundColor: theme.card,
+            borderRadius: 16,
+            marginBottom: 16,
+            overflow: 'hidden',
+            elevation: 2,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
+            borderWidth: 1,
+            borderColor: isDark ? '#333' : '#F3F4F6',
+        },
+        cardImage: {
+            width: '100%',
+            height: 150,
+            backgroundColor: '#EEE',
+        },
+        cardContent: {
+            padding: 16,
+        },
+        cardTitle: {
+            fontSize: 18,
+            fontWeight: '700',
+            color: theme.text,
+            marginBottom: 8,
+            textAlign: isRTL ? 'right' : 'left',
+        },
+        cardLocation: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            alignItems: 'center',
+            gap: 4,
+            marginBottom: 12,
+        },
+        cardLocationText: {
+            fontSize: 14,
+            color: theme.textSecondary,
+        },
+        cardFooter: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingTop: 12,
+            borderTopWidth: 1,
+            borderTopColor: isDark ? '#333' : '#F3F4F6',
+        },
+        ratingContainer: {
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+            alignItems: 'center',
+            gap: 4,
+        },
+        ratingText: {
+            fontSize: 14,
+            fontWeight: '600',
+            color: theme.text,
+        },
+        favoriteButton: {
+            position: 'absolute',
+            top: 12,
+            right: 12,
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            backgroundColor: 'rgba(255,255,255,0.9)',
+            alignItems: 'center',
+            justifyContent: 'center',
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
+            zIndex: 10,
+        },
+        programBadge: {
+            position: 'absolute',
+            top: 12,
+            left: 12,
+            paddingHorizontal: 8,
+            paddingVertical: 4,
+            borderRadius: 12,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            backdropFilter: 'blur(4px)',
+        },
+        programBadgeText: {
+            color: '#FFF',
+            fontSize: 10,
+            fontWeight: '600',
+        },
+        feeText: {
+            fontSize: 16,
+            fontWeight: '700',
+            color: '#C62828',
+        },
+    });
 
-                    <Text style={styles.universityName} numberOfLines={1}>
-                        {item.university?.name}
-                    </Text>
-
-                    <View style={styles.metaRow}>
-                        <View style={styles.metaItem}>
-                            <MapPin size={14} color="#6B7280" />
-                            <Text style={styles.metaText}>{item.university?.city}, China</Text>
-                        </View>
-                        <View style={styles.metaItem}>
-                            <FileText size={14} color="#6B7280" />
-                            <Text style={styles.metaText}>{item.degree_level}</Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.footer}>
-                        <Text style={styles.tuitionText}>
-                            {item.tuition_fee ? `¥${item.tuition_fee.toLocaleString()}/yr` : 'Scholarship'}
-                        </Text>
-                        <View style={styles.ratingBadge}>
-                            <Star size={12} color="#D97706" fill="#D97706" />
-                            <Text style={styles.ratingText}>4.8</Text>
-                        </View>
-                    </View>
-                </View>
-            </Pressable>
-        </MotiView>
-    );
+    if (favoritesLoading && !refreshing) return <Loader />;
 
     return (
         <View style={styles.container}>
-            <SafeAreaView edges={['top']}>
-                <View style={styles.header}>
-                    <Pressable onPress={() => router.back()} style={styles.backButton}>
-                        <ArrowLeft size={24} color="#1F2937" />
-                    </Pressable>
-                    <Text style={styles.headerTitle}>Saved Programs</Text>
-                    <View style={{ width: 40 }} />
-                </View>
-            </SafeAreaView>
+            <Stack.Screen options={{ headerShown: false }} />
 
-            {loading ? (
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#C62828" />
-                </View>
-            ) : programs.length === 0 ? (
-                <View style={styles.emptyState}>
-                    <MotiView
-                        from={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                    >
-                        <View style={styles.emptyIcon}>
-                            <Heart size={48} color="#9CA3AF" />
+            <View style={styles.header}>
+                <Pressable onPress={() => router.back()} style={{ marginBottom: 16, alignSelf: isRTL ? 'flex-end' : 'flex-start' }}>
+                    <ArrowLeft size={24} color={theme.text} />
+                </Pressable>
+                <ThemedText style={styles.headerTitle}>{t('profile.savedItems', 'Saved Items')}</ThemedText>
+                <ThemedText style={styles.headerSubtitle}>
+                    {favorites.length} {favorites.length === 1 ? t('common.item', 'item') : t('common.items', 'items')}
+                </ThemedText>
+            </View>
+
+            <View style={styles.tabs}>
+                <Pressable
+                    style={[styles.tab, activeTab === 'universities' && styles.activeTab]}
+                    onPress={() => setActiveTab('universities')}
+                >
+                    <ThemedText style={[styles.tabText, activeTab === 'universities' && styles.activeTabText]}>
+                        {t('common.universities', 'Universities')}
+                    </ThemedText>
+                </Pressable>
+                <Pressable
+                    style={[styles.tab, activeTab === 'programs' && styles.activeTab]}
+                    onPress={() => setActiveTab('programs')}
+                >
+                    <ThemedText style={[styles.tabText, activeTab === 'programs' && styles.activeTabText]}>
+                        {t('common.programs', 'Programs')}
+                    </ThemedText>
+                </Pressable>
+            </View>
+
+            <ScrollView
+                contentContainerStyle={styles.scrollContent}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            >
+                {activeTab === 'universities' ? (
+                    displayedUniversities.length > 0 ? (
+                        displayedUniversities.map((uni, index) => (
+                            <MotiView
+                                key={uni.id}
+                                from={{ opacity: 0, translateY: 20 }}
+                                animate={{ opacity: 1, translateY: 0 }}
+                                transition={{ delay: index * 100 }}
+                            >
+                                <Pressable
+                                    style={styles.card}
+                                    onPress={() => router.push(`/university/${uni.slug}`)}
+                                >
+                                    <Image source={{ uri: uni.cover_photo_url }} style={styles.cardImage} resizeMode="cover" />
+                                    <Pressable
+                                        style={styles.favoriteButton}
+                                        onPress={(e) => {
+                                            e.stopPropagation();
+                                            toggleFavorite('university', uni.id);
+                                        }}
+                                    >
+                                        <Heart size={20} color="#C62828" fill="#C62828" />
+                                    </Pressable>
+                                    <View style={styles.cardContent}>
+                                        <ThemedText style={styles.cardTitle}>{uni.name}</ThemedText>
+                                        <View style={styles.cardLocation}>
+                                            <MapPin size={14} color={theme.textSecondary} />
+                                            <ThemedText style={styles.cardLocationText}>{uni.city}, China</ThemedText>
+                                        </View>
+                                        <View style={styles.cardFooter}>
+                                            <View style={styles.ratingContainer}>
+                                                <Star size={16} color="#FBBF24" fill="#FBBF24" />
+                                                <ThemedText style={styles.ratingText}>{uni.ranking || 'N/A'}</ThemedText>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </Pressable>
+                            </MotiView>
+                        ))
+                    ) : (
+                        <View style={styles.emptyState}>
+                            <Building2 size={48} color={theme.border} />
+                            <ThemedText style={styles.emptyText}>{t('profile.noSavedUniversities', 'No saved universities yet')}</ThemedText>
                         </View>
-                        <Text style={styles.emptyTitle}>No Saved Programs</Text>
-                        <Text style={styles.emptyText}>Programs you save will appear here.</Text>
-                        <Pressable
-                            style={styles.exploreButton}
-                            onPress={() => router.push('/(tabs)/explore')}
-                        >
-                            <Text style={styles.exploreButtonText}>Explore Programs</Text>
-                        </Pressable>
-                    </MotiView>
-                </View>
-            ) : (
-                <FlatList
-                    data={programs}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={styles.listContent}
-                    showsVerticalScrollIndicator={false}
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#C62828" />
-                    }
-                />
-            )}
+                    )
+                ) : (
+                    displayedPrograms.length > 0 ? (
+                        displayedPrograms.map((program, index) => (
+                            <MotiView
+                                key={program.id}
+                                from={{ opacity: 0, translateY: 20 }}
+                                animate={{ opacity: 1, translateY: 0 }}
+                                transition={{ delay: index * 100 }}
+                            >
+                                <Pressable
+                                    style={styles.card}
+                                    onPress={() => router.push(`/program/${program.slug}`)}
+                                >
+                                    <View>
+                                        <Image source={{ uri: program.university_cover }} style={styles.cardImage} resizeMode="cover" />
+                                        <View style={styles.programBadge}>
+                                            <ThemedText style={styles.programBadgeText}>{program.level}</ThemedText>
+                                        </View>
+                                        <Pressable
+                                            style={styles.favoriteButton}
+                                            onPress={(e) => {
+                                                e.stopPropagation();
+                                                toggleFavorite('program', program.id);
+                                            }}
+                                        >
+                                            <Heart size={20} color="#C62828" fill="#C62828" />
+                                        </Pressable>
+                                    </View>
+                                    <View style={styles.cardContent}>
+                                        <ThemedText style={styles.cardTitle} numberOfLines={2}>{program.title}</ThemedText>
+                                        <View style={styles.cardLocation}>
+                                            <GraduationCap size={14} color={theme.textSecondary} />
+                                            <ThemedText style={styles.cardLocationText}>{program.university_name}</ThemedText>
+                                        </View>
+                                        <View style={styles.cardFooter}>
+                                            <ThemedText style={styles.feeText}>
+                                                {program.tuition_fee ? `¥${program.tuition_fee.toLocaleString()}/yr` : t('common.contactForPrice', 'Contact for Price')}
+                                            </ThemedText>
+                                        </View>
+                                    </View>
+                                </Pressable>
+                            </MotiView>
+                        ))
+                    ) : (
+                        <View style={styles.emptyState}>
+                            <BookOpen size={48} color={theme.border} />
+                            <ThemedText style={styles.emptyText}>{t('profile.noSavedPrograms', 'No saved programs yet')}</ThemedText>
+                        </View>
+                    )
+                )}
+            </ScrollView>
         </View>
     );
 }
@@ -151,150 +337,136 @@ export default function SavedProgramsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FAFAFA',
     },
     header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        paddingTop: 60,
         paddingHorizontal: 20,
-        paddingVertical: 12,
-        backgroundColor: '#FFF',
+        paddingBottom: 20,
         borderBottomWidth: 1,
-        borderBottomColor: '#F3F4F6',
     },
     headerTitle: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: '700',
-        color: '#1F2937',
+        marginBottom: 4,
     },
-    backButton: {
-        padding: 8,
-        marginLeft: -8,
+    headerSubtitle: {
+        fontSize: 14,
     },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
+    tabs: {
+        padding: 16,
+        gap: 12,
+    },
+    tab: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        borderWidth: 1,
+    },
+    activeTab: {
+        backgroundColor: '#C62828',
+        borderColor: '#C62828',
+    },
+    tabText: {
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    activeTabText: {
+        color: '#FFF',
+    },
+    scrollContent: {
+        padding: 16,
+        paddingBottom: 100,
+    },
+    emptyState: {
         alignItems: 'center',
-    },
-    listContent: {
-        padding: 20,
+        justifyContent: 'center',
+        paddingTop: 100,
         gap: 16,
     },
+    emptyText: {
+        fontSize: 16,
+        textAlign: 'center',
+    },
     card: {
-        flexDirection: 'row',
-        backgroundColor: '#FFF',
         borderRadius: 16,
-        padding: 12,
-        gap: 12,
+        marginBottom: 16,
+        overflow: 'hidden',
+        elevation: 2,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 8,
-        elevation: 2,
-        marginBottom: 16,
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        borderWidth: 1,
     },
-    logo: {
-        width: 80,
-        height: 80,
-        borderRadius: 12,
-        backgroundColor: '#F3F4F6',
+    cardImage: {
+        width: '100%',
+        height: 150,
+        backgroundColor: '#EEE',
     },
     cardContent: {
-        flex: 1,
-        gap: 4,
+        padding: 16,
     },
-    cardHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-    },
-    programTitle: {
-        flex: 1,
-        fontSize: 15,
+    cardTitle: {
+        fontSize: 18,
         fontWeight: '700',
-        color: '#1F2937',
-        marginRight: 8,
+        marginBottom: 8,
     },
-    universityName: {
-        fontSize: 13,
-        color: '#6B7280',
+    cardLocation: {
+        alignItems: 'center',
+        gap: 4,
+        marginBottom: 12,
     },
-    metaRow: {
-        flexDirection: 'row',
-        gap: 12,
-        marginTop: 4,
+    cardLocationText: {
+        fontSize: 14,
     },
-    metaItem: {
-        flexDirection: 'row',
+    cardFooter: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingTop: 12,
+        borderTopWidth: 1,
+    },
+    ratingContainer: {
         alignItems: 'center',
         gap: 4,
     },
-    metaText: {
-        fontSize: 12,
-        color: '#6B7280',
-    },
-    footer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 8,
-    },
-    tuitionText: {
+    ratingText: {
         fontSize: 14,
+        fontWeight: '600',
+    },
+    favoriteButton: {
+        position: 'absolute',
+        top: 12,
+        right: 12,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.9)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        zIndex: 10,
+    },
+    programBadge: {
+        position: 'absolute',
+        top: 12,
+        left: 12,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 12,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+    },
+    programBadgeText: {
+        color: '#FFF',
+        fontSize: 10,
+        fontWeight: '600',
+    },
+    feeText: {
+        fontSize: 16,
         fontWeight: '700',
         color: '#C62828',
     },
-    ratingBadge: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 2,
-        backgroundColor: '#FEF3C7',
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderRadius: 6,
-    },
-    ratingText: {
-        fontSize: 11,
-        fontWeight: '600',
-        color: '#D97706',
-    },
-    emptyState: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 40,
-    },
-    emptyIcon: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        backgroundColor: '#F3F4F6',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 20,
-    },
-    emptyTitle: {
-        fontSize: 20,
-        fontWeight: '700',
-        color: '#1F2937',
-        marginBottom: 8,
-    },
-    emptyText: {
-        fontSize: 15,
-        color: '#6B7280',
-        textAlign: 'center',
-        marginBottom: 32,
-    },
-    exploreButton: {
-        backgroundColor: '#C62828',
-        paddingHorizontal: 24,
-        paddingVertical: 14,
-        borderRadius: 12,
-    },
-    exploreButtonText: {
-        color: '#FFF',
-        fontWeight: '600',
-        fontSize: 16,
-    },
 });
+

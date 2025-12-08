@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-import { View, ScrollView, StyleSheet, Pressable, Dimensions, Image, ImageBackground } from 'react-native';
+import { View, ScrollView, StyleSheet, Pressable, Dimensions, ImageBackground } from 'react-native';
+import { Image } from 'expo-image';
 import Loader from '../../components/Loader';
 import PopularCities from '../../components/PopularCities';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { GraduationCap, Building2, Award, TrendingUp, Sparkles, MessageCircle, ChevronRight, MapPin, Search, FileText } from 'lucide-react-native';
+import { GraduationCap, Building2, Award, TrendingUp, Sparkles, MessageCircle, ChevronRight, MapPin, Search, FileText, Heart } from 'lucide-react-native';
 import { useFeaturedPrograms, useUniversities, useArticles } from '../../hooks/useData';
+import { useFavorites } from '../../hooks/useFavorites';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ThemedText as Text } from '../../components/ThemedText';
+import { MotiView } from 'moti';
 
 const { width } = Dimensions.get('window');
 
@@ -33,16 +36,17 @@ export default function HomeScreen() {
     const { theme, isDark } = useTheme();
     const { isRTL } = useLanguage();
     const { programs, loading: programsLoading } = useFeaturedPrograms();
-    const { universities, loading: unisLoading } = useUniversities();
+    const { universities, loading: universitiesLoading } = useUniversities();
     const { articles, loading: articlesLoading } = useArticles();
+    const { isFavorited, toggleFavorite } = useFavorites();
 
     // Debug: Log when data arrives
     useEffect(() => {
-        console.log('[HomeScreen] universities:', universities.length, 'unisLoading:', unisLoading);
+        console.log('[HomeScreen] universities:', universities.length, 'unisLoading:', universitiesLoading);
         if (universities.length > 0) {
             console.log('[HomeScreen] First uni:', universities[0].name, 'cover:', (universities[0] as any).cover_photo_url?.substring(0, 50));
         }
-    }, [universities, unisLoading]);
+    }, [universities, universitiesLoading]);
 
     useEffect(() => {
         console.log('[HomeScreen] programs:', programs.length, 'programsLoading:', programsLoading);
@@ -55,7 +59,7 @@ export default function HomeScreen() {
         <View style={[styles.container, { backgroundColor: theme.background, direction: isRTL ? 'rtl' : 'ltr' }]}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
 
-                {/* Premium Hero Section - matching website design */}
+                {/* Premium Hero Section - Smooth Animations */}
                 <View style={styles.headerContainer}>
                     <ImageBackground
                         source={require('../../assets/hero-bg.png')}
@@ -63,44 +67,88 @@ export default function HomeScreen() {
                         imageStyle={styles.heroImageStyle}
                     >
                         <LinearGradient
-                            colors={['rgba(127, 29, 29, 0.95)', 'rgba(153, 27, 27, 0.9)', 'rgba(30, 41, 59, 0.95)']}
+                            colors={['rgba(127, 29, 29, 0.75)', 'rgba(153, 27, 27, 0.7)', 'rgba(30, 41, 59, 0.8)']}
                             start={{ x: 0, y: 0 }}
                             end={{ x: 1, y: 1 }}
                             style={styles.heroOverlay}
                         >
                             <SafeAreaView edges={['top']}>
-                                <View style={styles.headerContent}>
-                                    {/* Logo */}
+                                {/* Logo - Smooth Fade In */}
+                                <MotiView
+                                    from={{ opacity: 0, translateY: -15 }}
+                                    animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ type: 'timing', duration: 600, delay: 200 }}
+                                    style={styles.heroLogoContainer}
+                                >
                                     <Image
                                         source={require('../../assets/logo-white.png')}
                                         style={styles.headerLogo}
-                                        resizeMode="contain"
+                                        contentFit="contain"
+                                        transition={1000}
                                     />
+                                </MotiView>
 
-                                    {/* Premium Badge */}
+                                {/* Premium Badge - Gentle Entrance */}
+                                <MotiView
+                                    from={{ opacity: 0, scale: 0.95, translateY: 10 }}
+                                    animate={{ opacity: 1, scale: 1, translateY: 0 }}
+                                    transition={{ type: 'spring', damping: 20, stiffness: 100, delay: 400 }}
+                                    style={styles.heroBadgeContainer}
+                                >
                                     <View style={styles.premiumBadge}>
                                         <Sparkles size={14} color="#FBBF24" />
                                         <Text style={styles.premiumBadgeText}>{t('home.admissionsOpen')}</Text>
-                                        <View style={styles.pulseDot} />
+                                        <MotiView
+                                            from={{ scale: 1 }}
+                                            animate={{ scale: [1, 1.2, 1] }}
+                                            transition={{
+                                                type: 'timing',
+                                                duration: 2000,
+                                                loop: true,
+                                                repeatReverse: false,
+                                            }}
+                                        >
+                                            <View style={styles.pulseDot} />
+                                        </MotiView>
                                     </View>
-                                </View>
-                                {/* Tagline */}
-                                <Text style={styles.heroTitle}>
-                                    {t('home.subtitle')}
-                                </Text>
+                                </MotiView>
 
-                                <Text style={styles.headerSubtitle}>
-                                    {t('home.tagline')}
-                                </Text>
-
-                                {/* Quick Search Bar */}
-                                <Pressable
-                                    style={styles.searchBar}
-                                    onPress={() => router.push('/explore')}
+                                {/* Title - Elegant Fade */}
+                                <MotiView
+                                    from={{ opacity: 0, translateY: 20 }}
+                                    animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ type: 'timing', duration: 700, delay: 600 }}
                                 >
-                                    <Search size={18} color="#9CA3AF" />
-                                    <Text style={styles.searchPlaceholder}>{t('home.searchPlaceholder')}</Text>
-                                </Pressable>
+                                    <Text style={styles.heroTitle}>
+                                        {t('home.subtitle')}
+                                    </Text>
+                                </MotiView>
+
+                                {/* Subtitle - Cascade Effect */}
+                                <MotiView
+                                    from={{ opacity: 0, translateY: 15 }}
+                                    animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ type: 'timing', duration: 700, delay: 800 }}
+                                >
+                                    <Text style={styles.headerSubtitle}>
+                                        {t('home.tagline')}
+                                    </Text>
+                                </MotiView>
+
+                                {/* Search Bar - Slide Up Smoothly */}
+                                <MotiView
+                                    from={{ opacity: 0, translateY: 25 }}
+                                    animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ type: 'spring', damping: 18, stiffness: 90, delay: 1000 }}
+                                >
+                                    <Pressable
+                                        style={styles.searchBar}
+                                        onPress={() => router.push('/explore')}
+                                    >
+                                        <Search size={18} color="#9CA3AF" />
+                                        <Text style={styles.searchPlaceholder}>{t('home.searchPlaceholder')}</Text>
+                                    </Pressable>
+                                </MotiView>
                             </SafeAreaView>
                         </LinearGradient>
                     </ImageBackground>
@@ -185,7 +233,7 @@ export default function HomeScreen() {
                         </Pressable>
                     </View>
 
-                    {unisLoading ? (
+                    {universitiesLoading ? (
                         <Loader size={40} style={{ padding: 20 }} />
                     ) : (
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.programsScroll}>
@@ -194,6 +242,8 @@ export default function HomeScreen() {
                                     <Image
                                         source={{ uri: uni.cover_photo_url || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=300' }}
                                         style={styles.programImage}
+                                        contentFit="cover"
+                                        transition={500}
                                     />
                                     <View style={styles.programInfo}>
                                         <Text style={[styles.programTitle, { color: theme.text }]} numberOfLines={1}>{uni.name}</Text>
@@ -226,7 +276,8 @@ export default function HomeScreen() {
                                     <Image
                                         source={{ uri: program.university_logo || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=300' }}
                                         style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: isDark ? theme.backgroundSecondary : '#FFF7ED' }}
-                                        resizeMode="cover"
+                                        contentFit="cover"
+                                        transition={500}
                                     />
                                     <View style={{ flex: 1 }}>
                                         <Text style={{ fontWeight: '600', color: theme.text, marginBottom: 2 }}>{program.title}</Text>
@@ -313,11 +364,11 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 32,
         borderBottomEndRadius: 32,
         overflow: 'hidden',
-        minHeight: 280, // Increased height
+        height: 340, // Fixed height for hero section
     },
     heroBackground: {
+        flex: 1,
         width: '100%',
-        height: '100%',
     },
     heroImageStyle: {
         resizeMode: 'cover',
@@ -334,6 +385,19 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 12,
     },
+    heroTopRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 12,
+        marginBottom: 8,
+    },
+    heroCenter: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 16,
+    },
     headerWelcome: {
         color: 'rgba(255,255,255,0.8)',
         fontSize: 14,
@@ -349,10 +413,26 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
     },
-    brandText: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        fontWeight: '700',
+    programBadgeText: {
+        color: '#FFF',
+        fontSize: 10,
+        fontWeight: '600',
+    },
+    favoriteButton: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
+    },
+    programContent: {
+        padding: 12,
+        gap: 8,
     },
     headerIcon: {
         width: 40,
@@ -370,6 +450,15 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     // New premium hero styles
+    heroLogoContainer: {
+        alignItems: 'center',
+        paddingTop: 16,
+        marginBottom: 20,
+    },
+    heroBadgeContainer: {
+        alignItems: 'center',
+        marginBottom: 24,
+    },
     headerLogo: {
         width: 180,
         height: 45,
@@ -377,14 +466,15 @@ const styles = StyleSheet.create({
     premiumBadge: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: 8,
         backgroundColor: 'rgba(255,255,255,0.1)',
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 24,
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
-        marginTop: 16,
+        width: '60%',
     },
     premiumBadgeText: {
         color: '#FFFFFF',

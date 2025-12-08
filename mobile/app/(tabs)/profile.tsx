@@ -2,8 +2,9 @@ import { View, ScrollView, StyleSheet, Pressable, Image, Switch, Text as RNText 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
-import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail, FileText, Moon, Sun, DollarSign } from 'lucide-react-native';
+import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail, FileText, Moon, Sun, DollarSign, Heart } from 'lucide-react-native';
 import { useAuth, useUserApplications, useUserProfile, useUnreadMessages } from '../../hooks/useData';
+import { useFavorites } from '../../hooks/useFavorites';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useCurrency } from '../../contexts/CurrencyContext';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -21,18 +22,21 @@ export default function ProfileScreen() {
     const { isDark, toggleTheme, theme } = useTheme();
     const { currencyInfo } = useCurrency();
     const { currentLanguage, languages, isRTL } = useLanguage();
+    const { favorites } = useFavorites();
 
     const currentLanguageInfo = languages.find(l => l.code === currentLanguage);
 
     const menuItems = useMemo(() => [
         { Icon: User, label: t('profile.menu.editProfile'), description: t('profile.menu.editProfileDesc'), color: '#C62828', action: 'edit_profile' },
+        { Icon: Heart, label: t('profile.savedItems', 'Saved Items'), description: t('profile.savedItemsDesc', 'Your favorite universities and programs'), color: '#E91E63', action: 'saved' },
         { Icon: Bell, label: t('profile.menu.notifications'), description: t('profile.menu.notificationsDesc'), color: '#FF9800', action: 'notifications' },
         { Icon: Moon, label: t('profile.menu.darkMode'), description: t('profile.menu.toggleDark'), color: '#6366F1', action: 'dark_mode', isToggle: true },
         { Icon: Globe, label: t('profile.menu.language'), description: currentLanguageInfo?.nativeName || 'English', color: '#2196F3', action: 'language' },
+        { Icon: DollarSign, label: t('profile.menu.currency'), description: `${currencyInfo.flag} ${currencyInfo.code}`, color: '#4CAF50', action: 'currency' },
         { Icon: Shield, label: t('profile.menu.privacy'), description: t('profile.menu.privacyDesc'), color: '#9C27B0', action: 'security' },
-        { Icon: CreditCard, label: t('profile.menu.payments'), description: t('profile.menu.paymentsDesc'), color: '#4CAF50', action: 'payment' },
+        { Icon: CreditCard, label: t('profile.menu.payments'), description: t('profile.menu.paymentsDesc'), color: '#10B981', action: 'payment' },
         { Icon: HelpCircle, label: t('profile.menu.help'), description: t('profile.menu.helpDesc'), color: '#FF5722', action: 'help' },
-    ], [t, currentLanguageInfo]);
+    ], [t, currentLanguageInfo, currencyInfo]);
 
     // Guest settings items (available before login)
     const guestSettingsItems = useMemo(() => [
@@ -45,6 +49,9 @@ export default function ProfileScreen() {
         switch (action) {
             case 'edit_profile':
                 router.push('/profile/edit');
+                break;
+            case 'saved':
+                router.push('/profile/saved');
                 break;
             case 'notifications':
                 router.push('/messages');
@@ -272,7 +279,7 @@ export default function ProfileScreen() {
                             <View style={styles.statsRow}>
                                 {[
                                     { value: applications.length.toString(), label: t('profile.stats.applications'), action: 'dashboard' },
-                                    { value: '0', label: t('profile.stats.saved'), action: 'saved' },
+                                    { value: favorites.length.toString(), label: t('profile.stats.saved'), action: 'saved' },
                                     { value: unreadCount.toString(), label: t('profile.stats.messages'), action: 'messages' },
                                 ].map((stat, index) => (
                                     <Pressable
@@ -361,7 +368,7 @@ export default function ProfileScreen() {
                         style={styles.signOutContainer}
                     >
                         <Pressable style={styles.signOutButton} onPress={signOut}>
-                            <LogOut size={20} color="#C62828" />
+                            <LogOut size={20} color="#FFFFFF" />
                             <Text style={styles.signOutText}>{t('profile.signOut')}</Text>
                         </Pressable>
                         <Text style={styles.versionText}>{t('profile.version', { version: '1.0.0' })}</Text>
@@ -649,14 +656,18 @@ const styles = StyleSheet.create({
         gap: 10,
         paddingVertical: 16,
         width: '100%',
-        borderWidth: 2,
-        borderColor: '#FFEBEE',
+        backgroundColor: '#C62828',
         borderRadius: 16,
+        shadowColor: '#C62828',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 4,
     },
     signOutText: {
         fontSize: 16,
         fontWeight: '700',
-        color: '#C62828',
+        color: '#FFFFFF',
     },
     versionText: {
         fontSize: 12,

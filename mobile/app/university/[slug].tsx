@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Pressable, Image, Dimensions, Linking } from 'react-native';
+import { View, ScrollView, StyleSheet, Pressable, Dimensions, Linking, Share } from 'react-native';
+import { Image } from 'expo-image';
 import Loader from '../../components/Loader';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useUniversity } from '../../hooks/useData';
-import { ArrowLeft, MapPin, Globe, Users, Calendar, GraduationCap, Building2, ChevronRight, BookOpen, Phone, Mail, Star, Trophy, Clock, Home, Award, DollarSign, Check } from 'lucide-react-native';
+import { useFavorites } from '../../hooks/useFavorites';
+import { ArrowLeft, MapPin, Globe, Users, Calendar, GraduationCap, Building2, ChevronRight, BookOpen, Phone, Mail, Star, Trophy, Clock, Home, Award, DollarSign, Check, ChevronLeft, Heart, Share2 } from 'lucide-react-native';
 import { Price } from '../../components/currency/Price';
 import { LinearGradient } from 'expo-linear-gradient';
 import GlobalTabBar from '../../components/GlobalTabBar';
@@ -15,12 +17,25 @@ import { ThemedText as Text } from '../../components/ThemedText';
 
 const { width } = Dimensions.get('window');
 
-export default function UniversityDetailScreen() {
-    const { slug } = useLocalSearchParams<{ slug: string }>();
+export default function UniversityScreen() {
     const router = useRouter();
-    const { t } = useTranslation();
+    const { top } = useSafeAreaInsets();
+    const { slug } = useLocalSearchParams<{ slug: string }>();
+    const { t, i18n } = useTranslation();
     const { theme } = useTheme();
-    const { university, programs, accommodation, scholarships, loading, error } = useUniversity(slug || '');
+    const { university, programs, accommodation, scholarships, loading, error, refetch } = useUniversity(slug || '');
+    const { isFavorited, toggleFavorite } = useFavorites();
+
+    const handleShare = async () => {
+        try {
+            await Share.share({
+                message: `Check out ${university?.name} on Studyin China!`,
+                url: university?.website || '',
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     if (loading || !university) {
         return (
@@ -52,401 +67,431 @@ export default function UniversityDetailScreen() {
 
     return (
         <View style={styles.container}>
-            {/* Hero Section with Cover Photo */}
-            <View style={styles.heroContainer}>
-                {university.cover_photo_url ? (
-                    <Image
-                        source={{ uri: university.cover_photo_url }}
-                        style={styles.coverImage}
-                        resizeMode="cover"
-                    />
-                ) : (
-                    <LinearGradient
-                        colors={['#1E3A5F', '#2E5077', '#4A6FA5']}
-                        style={styles.coverImage}
-                    />
-                )}
-                <LinearGradient
-                    colors={['transparent', 'rgba(0,0,0,0.7)']}
-                    style={styles.coverOverlay}
-                />
-
-                {/* Header Buttons */}
-                <SafeAreaView edges={['top']} style={styles.headerAbsolute}>
-                    <View style={styles.headerRow}>
-                        <Pressable style={styles.backBtn} onPress={() => router.back()}>
-                            <ArrowLeft size={22} color="#FFF" />
+            {/* Floating Header - always visible */}
+            <SafeAreaView edges={['top']} style={styles.floatingHeader}>
+                <View style={[styles.headerActions, { paddingTop: 10 }]}>
+                    <Pressable
+                        style={styles.iconButton}
+                        onPress={() => router.back()}
+                    >
+                        <ChevronLeft size={24} color="#FFF" />
+                    </Pressable>
+                    <View style={styles.rightIcons}>
+                        <Pressable
+                            style={styles.iconButton}
+                            onPress={() => {
+                                if (university?.website) {
+                                    Linking.openURL(university.website);
+                                }
+                            }}
+                        >
+                            <Globe size={22} color="#FFF" />
                         </Pressable>
-                        <View style={styles.headerActions}>
-                            <Pressable style={styles.actionBtn}>
-                                <Star size={20} color="#FFF" />
-                            </Pressable>
-                        </View>
-                    </View>
-                </SafeAreaView>
-
-                {/* University Info Overlay */}
-                <View style={styles.heroInfo}>
-                    <View style={styles.logoContainer}>
-                        {university.logo_url ? (
-                            <Image source={{ uri: university.logo_url }} style={styles.logo} resizeMode="contain" />
-                        ) : (
-                            <View style={styles.logoPlaceholder}>
-                                <Building2 size={32} color="#C62828" />
-                            </View>
-                        )}
-                    </View>
-                    <View style={styles.heroTextContainer}>
-                        <Text style={styles.universityName} numberOfLines={2}>{university.name}</Text>
-                        <View style={styles.locationBadge}>
-                            <MapPin size={14} color="#FFF" />
-                            <Text style={styles.locationText}>{university.city}, China</Text>
-                        </View>
+                        <Pressable
+                            style={styles.iconButton}
+                            onPress={() => toggleFavorite('university', university?.id || '')}
+                        >
+                            <Heart
+                                size={22}
+                                color={isFavorited('university', university?.id || '') ? '#EF4444' : '#FFF'}
+                                fill={isFavorited('university', university?.id || '') ? '#EF4444' : 'transparent'}
+                            />
+                        </Pressable>
+                        <Pressable
+                            style={styles.iconButton}
+                            onPress={handleShare}
+                        >
+                            <Share2 size={22} color="#FFF" />
+                        </Pressable>
                     </View>
                 </View>
-            </View>
+            </SafeAreaView>
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
                 bounces={true}
             >
-                {/* Stats Row */}
-                <MotiView
-                    from={{ opacity: 0, translateY: 20 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ type: 'spring', delay: 100 }}
-                    style={styles.statsCard}
-                >
-                    <View style={styles.statsRow}>
-                        <View style={styles.statItem}>
-                            <View style={[styles.statIcon, { backgroundColor: '#FEE2E2' }]}>
-                                <BookOpen size={18} color="#C62828" />
-                            </View>
-                            <Text style={styles.statNumber}>{programs.length}</Text>
-                            <Text style={styles.statLabel}>{t('university.programs')}</Text>
-                        </View>
-                        <View style={styles.statDivider} />
-                        <View style={styles.statItem}>
-                            <View style={[styles.statIcon, { backgroundColor: '#DBEAFE' }]}>
-                                <Users size={18} color="#2563EB" />
-                            </View>
-                            <Text style={styles.statNumber}>{university.total_students?.toLocaleString() || 'N/A'}</Text>
-                            <Text style={styles.statLabel}>{t('university.students')}</Text>
-                        </View>
-                        <View style={styles.statDivider} />
-                        <View style={styles.statItem}>
-                            <View style={[styles.statIcon, { backgroundColor: '#D1FAE5' }]}>
-                                <Globe size={18} color="#059669" />
-                            </View>
-                            <Text style={styles.statNumber}>{university.international_students?.toLocaleString() || 'N/A'}</Text>
-                            <Text style={styles.statLabel}>{t('university.intlStudents')}</Text>
-                        </View>
-                        <View style={styles.statDivider} />
-                        <View style={styles.statItem}>
-                            <View style={[styles.statIcon, { backgroundColor: '#FEF3C7' }]}>
-                                <Calendar size={18} color="#D97706" />
-                            </View>
-                            <Text style={styles.statNumber}>{university.founded || 'N/A'}</Text>
-                            <Text style={styles.statLabel}>{t('university.founded')}</Text>
-                        </View>
-                    </View>
-                </MotiView>
-
-                {/* Ranking Badge */}
-                {university.ranking && (
-                    <MotiView
-                        from={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ type: 'spring', delay: 150 }}
-                        style={styles.rankingCard}
-                    >
-                        <LinearGradient
-                            colors={['#F59E0B', '#D97706']}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 0 }}
-                            style={styles.rankingGradient}
-                        >
-                            <Trophy size={20} color="#FFF" />
-                            <Text style={styles.rankingText}>{t('university.rankedInChina', { rank: university.ranking })}</Text>
-                        </LinearGradient>
-                    </MotiView>
-                )}
-
-                {/* About Section */}
-                {university.description && (
-                    <MotiView
-                        from={{ opacity: 0, translateY: 20 }}
-                        animate={{ opacity: 1, translateY: 0 }}
-                        transition={{ type: 'spring', delay: 200 }}
-                        style={styles.sectionCard}
-                    >
-                        <View style={styles.sectionHeader}>
-                            <BookOpen size={18} color="#C62828" />
-                            <Text style={styles.sectionTitle}>{t('university.about')}</Text>
-                        </View>
-                        <Text style={styles.descriptionText}>{university.description}</Text>
-                    </MotiView>
-                )}
-
-                {/* Programs Section */}
-                <MotiView
-                    from={{ opacity: 0, translateY: 20 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ type: 'spring', delay: 300 }}
-                    style={styles.sectionCard}
-                >
-                    <View style={styles.sectionHeaderRow}>
-                        <View style={styles.sectionHeader}>
-                            <GraduationCap size={18} color="#C62828" />
-                            <Text style={styles.sectionTitle}>Programs</Text>
-                        </View>
-                        <Text style={styles.programCountBadge}>{programs.length} available</Text>
-                    </View>
-
-                    {programs.length === 0 ? (
-                        <View style={styles.emptyPrograms}>
-                            <Text style={styles.emptyIcon}>📋</Text>
-                            <Text style={styles.emptyText}>{t('university.noPrograms')}</Text>
-                        </View>
+                {/* Hero Section with Cover Photo - now scrollable */}
+                <View style={styles.heroContainer}>
+                    {university.cover_photo_url ? (
+                        <Image
+                            source={{ uri: university.cover_photo_url }}
+                            style={styles.coverImage}
+                            contentFit="cover"
+                            transition={800}
+                        />
                     ) : (
-                        <View style={styles.programsList}>
-                            {programs.slice(0, 6).map((program: any, index: number) => (
-                                <MotiView
-                                    key={program.id}
-                                    from={{ opacity: 0, translateX: -20 }}
-                                    animate={{ opacity: 1, translateX: 0 }}
-                                    transition={{ type: 'spring', delay: 350 + index * 50 }}
-                                >
-                                    <Pressable
-                                        style={styles.programCard}
-                                        onPress={() => router.push(`/program/${program.slug}`)}
-                                    >
-                                        <View style={styles.programCardLeft}>
-                                            <View style={[
-                                                styles.programBadge,
-                                                {
-                                                    backgroundColor: program.level === 'Bachelor' ? '#DBEAFE' :
-                                                        program.level === 'Master' ? '#EDE9FE' : '#D1FAE5'
-                                                }
-                                            ]}>
-                                                <Text style={[
-                                                    styles.programBadgeText,
-                                                    {
-                                                        color: program.level === 'Bachelor' ? '#2563EB' :
-                                                            program.level === 'Master' ? '#7C3AED' : '#059669'
-                                                    }
-                                                ]}>{program.level?.[0] || 'P'}</Text>
-                                            </View>
-                                            <View style={styles.programInfo}>
-                                                <Text style={styles.programTitle} numberOfLines={2}>{program.title}</Text>
-                                                <View style={styles.programMeta}>
-                                                    <View style={styles.metaItem}>
-                                                        <Clock size={12} color="#9CA3AF" />
-                                                        <Text style={styles.metaText}>{program.duration || '4 years'}</Text>
-                                                    </View>
-                                                    <View style={styles.metaItem}>
-                                                        <Globe size={12} color="#9CA3AF" />
-                                                        <Text style={styles.metaText}>{program.language_name || 'English'}</Text>
-                                                    </View>
-                                                </View>
-                                            </View>
-                                        </View>
-                                        <View style={styles.programCardRight}>
-                                            <Price amount={program.tuition_fee || 0} currency="CNY" style={styles.programFee} />
-                                            <ChevronRight size={18} color="#9CA3AF" />
-                                        </View>
-                                    </Pressable>
-                                </MotiView>
-                            ))}
+                        <LinearGradient
+                            colors={['#1E3A5F', '#2E5077', '#4A6FA5']}
+                            style={styles.coverImage}
+                        />
+                    )}
+                    <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.7)']}
+                        style={styles.coverOverlay}
+                    />
+
+                    {/* University Info Overlay - positioned at bottom */}
+                    <View style={styles.heroInfo}>
+                        <View style={styles.logoContainer}>
+                            {university.logo_url ? (
+                                <Image source={{ uri: university.logo_url }} style={styles.logo} contentFit="contain" transition={500} />
+                            ) : (
+                                <View style={styles.logoPlaceholder}>
+                                    <Building2 size={32} color="#C62828" />
+                                </View>
+                            )}
                         </View>
-                    )}
+                        <View style={styles.heroTextContainer}>
+                            <Text style={styles.universityName} numberOfLines={2}>{university.name}</Text>
+                            <View style={styles.locationBadge}>
+                                <MapPin size={14} color="#FFF" />
+                                <Text style={styles.locationText}>{university.city}, China</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
 
-                    {programs.length > 6 && (
-                        <Pressable style={styles.viewAllButton}>
-                            <Text style={styles.viewAllText}>{t('common.viewAll')} {programs.length} {t('university.programs')}</Text>
-                            <ChevronRight size={18} color="#C62828" />
-                        </Pressable>
-                    )}
-                </MotiView>
-
-                {/* Scholarships Section */}
-                {scholarships && scholarships.length > 0 && (
+                {/* Content Section */}
+                <View style={styles.contentSection}>
+                    {/* Stats Row */}
                     <MotiView
                         from={{ opacity: 0, translateY: 20 }}
                         animate={{ opacity: 1, translateY: 0 }}
-                        transition={{ type: 'spring', delay: 350 }}
+                        transition={{ type: 'spring', delay: 100 }}
+                        style={styles.statsCard}
+                    >
+                        <View style={styles.statsRow}>
+                            <View style={styles.statItem}>
+                                <View style={[styles.statIcon, { backgroundColor: '#FEE2E2' }]}>
+                                    <BookOpen size={18} color="#C62828" />
+                                </View>
+                                <Text style={styles.statNumber}>{programs.length}</Text>
+                                <Text style={styles.statLabel}>{t('university.programs')}</Text>
+                            </View>
+                            <View style={styles.statDivider} />
+                            <View style={styles.statItem}>
+                                <View style={[styles.statIcon, { backgroundColor: '#DBEAFE' }]}>
+                                    <Users size={18} color="#2563EB" />
+                                </View>
+                                <Text style={styles.statNumber}>{university.total_students?.toLocaleString() || 'N/A'}</Text>
+                                <Text style={styles.statLabel}>{t('university.students')}</Text>
+                            </View>
+                            <View style={styles.statDivider} />
+                            <View style={styles.statItem}>
+                                <View style={[styles.statIcon, { backgroundColor: '#D1FAE5' }]}>
+                                    <Globe size={18} color="#059669" />
+                                </View>
+                                <Text style={styles.statNumber}>{university.international_students?.toLocaleString() || 'N/A'}</Text>
+                                <Text style={styles.statLabel}>{t('university.intlStudents')}</Text>
+                            </View>
+                            <View style={styles.statDivider} />
+                            <View style={styles.statItem}>
+                                <View style={[styles.statIcon, { backgroundColor: '#FEF3C7' }]}>
+                                    <Calendar size={18} color="#D97706" />
+                                </View>
+                                <Text style={styles.statNumber}>{university.founded || 'N/A'}</Text>
+                                <Text style={styles.statLabel}>{t('university.founded')}</Text>
+                            </View>
+                        </View>
+                    </MotiView>
+
+                    {/* Ranking Badge */}
+                    {university.ranking && (
+                        <MotiView
+                            from={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ type: 'spring', delay: 150 }}
+                            style={styles.rankingCard}
+                        >
+                            <LinearGradient
+                                colors={['#F59E0B', '#D97706']}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 0 }}
+                                style={styles.rankingGradient}
+                            >
+                                <Trophy size={20} color="#FFF" />
+                                <Text style={styles.rankingText}>{t('university.rankedInChina', { rank: university.ranking })}</Text>
+                            </LinearGradient>
+                        </MotiView>
+                    )}
+
+                    {/* About Section */}
+                    {university.description && (
+                        <MotiView
+                            from={{ opacity: 0, translateY: 20 }}
+                            animate={{ opacity: 1, translateY: 0 }}
+                            transition={{ type: 'spring', delay: 200 }}
+                            style={styles.sectionCard}
+                        >
+                            <View style={styles.sectionHeader}>
+                                <BookOpen size={18} color="#C62828" />
+                                <Text style={styles.sectionTitle}>{t('university.about')}</Text>
+                            </View>
+                            <Text style={styles.descriptionText}>{university.description}</Text>
+                        </MotiView>
+                    )}
+
+                    {/* Programs Section */}
+                    <MotiView
+                        from={{ opacity: 0, translateY: 20 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ type: 'spring', delay: 300 }}
                         style={styles.sectionCard}
                     >
                         <View style={styles.sectionHeaderRow}>
                             <View style={styles.sectionHeader}>
-                                <Award size={18} color="#D97706" />
-                                <Text style={styles.sectionTitle}>{t('university.scholarships')}</Text>
+                                <GraduationCap size={18} color="#C62828" />
+                                <Text style={styles.sectionTitle}>Programs</Text>
                             </View>
-                            <Text style={styles.programCountBadge}>{t('university.programsAvailable', { count: scholarships.length })}</Text>
+                            <Text style={styles.programCountBadge}>{programs.length} available</Text>
                         </View>
 
-                        <View style={styles.scholarshipsList}>
-                            {scholarships.slice(0, 4).map((scholarship: any, index: number) => (
-                                <View key={scholarship.id || index} style={styles.scholarshipCard}>
-                                    <View style={styles.scholarshipIcon}>
-                                        <Award size={20} color="#D97706" />
-                                    </View>
-                                    <View style={styles.scholarshipInfo}>
-                                        <Text style={styles.scholarshipName} numberOfLines={1}>
-                                            {scholarship.display_name || scholarship.type_name || 'Scholarship'}
-                                        </Text>
-                                        <Text style={styles.scholarshipType}>
-                                            {scholarship.tuition_coverage_percentage ? `${scholarship.tuition_coverage_percentage}% Tuition Coverage` : 'Available'}
-                                        </Text>
-                                        {(scholarship.includes_accommodation || scholarship.includes_stipend) && (
-                                            <View style={styles.coverageRow}>
-                                                <DollarSign size={12} color="#059669" />
-                                                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-                                                    {scholarship.includes_accommodation && <Text style={styles.coverageText}>Accommodation</Text>}
-                                                    {scholarship.includes_accommodation && scholarship.includes_stipend && <Text style={styles.coverageText}> + </Text>}
-                                                    {scholarship.includes_stipend && (
-                                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                            <Price amount={scholarship.stipend_amount_monthly || 0} currency="CNY" style={styles.coverageText} suffix="/mo stipend" />
+                        {programs.length === 0 ? (
+                            <View style={styles.emptyPrograms}>
+                                <Text style={styles.emptyIcon}>📋</Text>
+                                <Text style={styles.emptyText}>{t('university.noPrograms')}</Text>
+                            </View>
+                        ) : (
+                            <View style={styles.programsList}>
+                                {programs.slice(0, 6).map((program: any, index: number) => (
+                                    <MotiView
+                                        key={program.id}
+                                        from={{ opacity: 0, translateX: -20 }}
+                                        animate={{ opacity: 1, translateX: 0 }}
+                                        transition={{ type: 'spring', delay: 350 + index * 50 }}
+                                    >
+                                        <Pressable
+                                            style={styles.programCard}
+                                            onPress={() => router.push(`/program/${program.slug}`)}
+                                        >
+                                            <View style={styles.programCardLeft}>
+                                                <View style={[
+                                                    styles.programBadge,
+                                                    {
+                                                        backgroundColor: program.level === 'Bachelor' ? '#DBEAFE' :
+                                                            program.level === 'Master' ? '#EDE9FE' : '#D1FAE5'
+                                                    }
+                                                ]}>
+                                                    <Text style={[
+                                                        styles.programBadgeText,
+                                                        {
+                                                            color: program.level === 'Bachelor' ? '#2563EB' :
+                                                                program.level === 'Master' ? '#7C3AED' : '#059669'
+                                                        }
+                                                    ]}>{program.level?.[0] || 'P'}</Text>
+                                                </View>
+                                                <View style={styles.programInfo}>
+                                                    <Text style={styles.programTitle} numberOfLines={2}>{program.title}</Text>
+                                                    <View style={styles.programMeta}>
+                                                        <View style={styles.metaItem}>
+                                                            <Clock size={12} color="#9CA3AF" />
+                                                            <Text style={styles.metaText}>{program.duration || '4 years'}</Text>
                                                         </View>
-                                                    )}
+                                                        <View style={styles.metaItem}>
+                                                            <Globe size={12} color="#9CA3AF" />
+                                                            <Text style={styles.metaText}>{program.language_name || 'English'}</Text>
+                                                        </View>
+                                                    </View>
                                                 </View>
                                             </View>
-                                        )}
-                                        {(scholarship.service_fee_usd || scholarship.service_fee_cny) && (
-                                            <View style={styles.serviceFeeRow}>
-                                                <Text style={styles.serviceFeeLabel}>Service Fee: </Text>
-                                                <Price
-                                                    amount={scholarship.service_fee_cny ? Number(scholarship.service_fee_cny) : Number(scholarship.service_fee_usd)}
-                                                    currency={scholarship.service_fee_cny ? "CNY" : "USD"}
-                                                    style={styles.serviceFeeValue}
-                                                />
+                                            <View style={styles.programCardRight}>
+                                                <Price amount={program.tuition_fee || 0} currency="CNY" style={styles.programFee} />
+                                                <ChevronRight size={18} color="#9CA3AF" />
                                             </View>
-                                        )}
-                                    </View>
-                                </View>
-                            ))}
-                        </View>
+                                        </Pressable>
+                                    </MotiView>
+                                ))}
+                            </View>
+                        )}
+
+                        {programs.length > 6 && (
+                            <Pressable style={styles.viewAllButton}>
+                                <Text style={styles.viewAllText}>{t('common.viewAll')} {programs.length} {t('university.programs')}</Text>
+                                <ChevronRight size={18} color="#C62828" />
+                            </Pressable>
+                        )}
                     </MotiView>
-                )}
 
-                {/* Accommodation Section */}
-                {accommodation && accommodation.length > 0 && (
-                    <MotiView
-                        from={{ opacity: 0, translateY: 20 }}
-                        animate={{ opacity: 1, translateY: 0 }}
-                        transition={{ type: 'spring', delay: 375 }}
-                        style={styles.sectionCard}
-                    >
-                        <View style={styles.sectionHeader}>
-                            <Home size={18} color="#2563EB" />
-                            <Text style={styles.sectionTitle}>{t('university.accommodation')}</Text>
-                        </View>
+                    {/* Scholarships Section */}
+                    {scholarships && scholarships.length > 0 && (
+                        <MotiView
+                            from={{ opacity: 0, translateY: 20 }}
+                            animate={{ opacity: 1, translateY: 0 }}
+                            transition={{ type: 'spring', delay: 350 }}
+                            style={styles.sectionCard}
+                        >
+                            <View style={styles.sectionHeaderRow}>
+                                <View style={styles.sectionHeader}>
+                                    <Award size={18} color="#D97706" />
+                                    <Text style={styles.sectionTitle}>{t('university.scholarships')}</Text>
+                                </View>
+                                <Text style={styles.programCountBadge}>{t('university.programsAvailable', { count: scholarships.length })}</Text>
+                            </View>
 
-                        <View style={styles.accommodationList}>
-                            {accommodation.map((acc: any, index: number) => (
-                                <View key={acc.id || index} style={styles.accommodationCard}>
-                                    <View style={styles.accommodationHeader}>
-                                        <Text style={styles.accommodationType}>{acc.type || acc.room_type || 'Room'}</Text>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            {acc.price_cny ? (
-                                                <Price amount={Number(acc.price_cny)} currency="CNY" style={styles.accommodationPrice} suffix="/mo" />
-                                            ) : acc.price_min && acc.price_max ? (
-                                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                    <Price amount={Number(acc.price_min)} currency="CNY" style={styles.accommodationPrice} />
-                                                    <Text style={styles.accommodationPrice}> - </Text>
-                                                    <Price amount={Number(acc.price_max)} currency="CNY" style={styles.accommodationPrice} suffix="/mo" />
+                            <View style={styles.scholarshipsList}>
+                                {scholarships.slice(0, 4).map((scholarship: any, index: number) => (
+                                    <View key={scholarship.id || index} style={styles.scholarshipCard}>
+                                        <View style={styles.scholarshipIcon}>
+                                            <Award size={20} color="#D97706" />
+                                        </View>
+                                        <View style={styles.scholarshipInfo}>
+                                            <Text style={styles.scholarshipName} numberOfLines={1}>
+                                                {scholarship.display_name || scholarship.type_name || 'Scholarship'}
+                                            </Text>
+                                            <Text style={styles.scholarshipType}>
+                                                {scholarship.tuition_coverage_percentage ? `${scholarship.tuition_coverage_percentage}% Tuition Coverage` : 'Available'}
+                                            </Text>
+                                            {(scholarship.includes_accommodation || scholarship.includes_stipend) && (
+                                                <View style={styles.coverageRow}>
+                                                    <DollarSign size={12} color="#059669" />
+                                                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+                                                        {scholarship.includes_accommodation && <Text style={styles.coverageText}>Accommodation</Text>}
+                                                        {scholarship.includes_accommodation && scholarship.includes_stipend && <Text style={styles.coverageText}> + </Text>}
+                                                        {scholarship.includes_stipend && (
+                                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                                <Price amount={scholarship.stipend_amount_monthly || 0} currency="CNY" style={styles.coverageText} suffix="/mo stipend" />
+                                                            </View>
+                                                        )}
+                                                    </View>
                                                 </View>
-                                            ) : (
-                                                <Text style={styles.accommodationPrice}>Contact for price</Text>
+                                            )}
+                                            {(scholarship.service_fee_usd || scholarship.service_fee_cny) && (
+                                                <View style={styles.serviceFeeRow}>
+                                                    <Text style={styles.serviceFeeLabel}>Service Fee: </Text>
+                                                    <Price
+                                                        amount={scholarship.service_fee_cny ? Number(scholarship.service_fee_cny) : Number(scholarship.service_fee_usd)}
+                                                        currency={scholarship.service_fee_cny ? "CNY" : "USD"}
+                                                        style={styles.serviceFeeValue}
+                                                    />
+                                                </View>
                                             )}
                                         </View>
                                     </View>
-                                    {acc.description && (
-                                        <Text style={styles.accommodationDesc} numberOfLines={2}>{acc.description}</Text>
-                                    )}
-                                    {acc.features && acc.features.length > 0 && (
-                                        <View style={styles.featuresList}>
-                                            {acc.features.slice(0, 3).map((feature: string, fIndex: number) => (
-                                                <View key={fIndex} style={styles.featureItem}>
-                                                    <Check size={12} color="#059669" />
-                                                    <Text style={styles.featureText}>{feature}</Text>
-                                                </View>
-                                            ))}
+                                ))}
+                            </View>
+                        </MotiView>
+                    )}
+
+                    {/* Accommodation Section */}
+                    {accommodation && accommodation.length > 0 && (
+                        <MotiView
+                            from={{ opacity: 0, translateY: 20 }}
+                            animate={{ opacity: 1, translateY: 0 }}
+                            transition={{ type: 'spring', delay: 375 }}
+                            style={styles.sectionCard}
+                        >
+                            <View style={styles.sectionHeader}>
+                                <Home size={18} color="#2563EB" />
+                                <Text style={styles.sectionTitle}>{t('university.accommodation')}</Text>
+                            </View>
+
+                            <View style={styles.accommodationList}>
+                                {accommodation.map((acc: any, index: number) => (
+                                    <View key={acc.id || index} style={styles.accommodationCard}>
+                                        <View style={styles.accommodationHeader}>
+                                            <Text style={styles.accommodationType}>{acc.type || acc.room_type || 'Room'}</Text>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                {acc.price_cny ? (
+                                                    <Price amount={Number(acc.price_cny)} currency="CNY" style={styles.accommodationPrice} suffix="/mo" />
+                                                ) : acc.price_min && acc.price_max ? (
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                        <Price amount={Number(acc.price_min)} currency="CNY" style={styles.accommodationPrice} />
+                                                        <Text style={styles.accommodationPrice}> - </Text>
+                                                        <Price amount={Number(acc.price_max)} currency="CNY" style={styles.accommodationPrice} suffix="/mo" />
+                                                    </View>
+                                                ) : (
+                                                    <Text style={styles.accommodationPrice}>Contact for price</Text>
+                                                )}
+                                            </View>
                                         </View>
-                                    )}
-                                </View>
-                            ))}
+                                        {acc.description && (
+                                            <Text style={styles.accommodationDesc} numberOfLines={2}>{acc.description}</Text>
+                                        )}
+                                        {acc.features && acc.features.length > 0 && (
+                                            <View style={styles.featuresList}>
+                                                {acc.features.slice(0, 3).map((feature: string, fIndex: number) => (
+                                                    <View key={fIndex} style={styles.featureItem}>
+                                                        <Check size={12} color="#059669" />
+                                                        <Text style={styles.featureText}>{feature}</Text>
+                                                    </View>
+                                                ))}
+                                            </View>
+                                        )}
+                                    </View>
+                                ))}
+                            </View>
+                        </MotiView>
+                    )}
+
+                    {/* Contact Section */}
+                    <MotiView
+                        from={{ opacity: 0, translateY: 20 }}
+                        animate={{ opacity: 1, translateY: 0 }}
+                        transition={{ type: 'spring', delay: 400 }}
+                        style={styles.sectionCard}
+                    >
+                        <View style={styles.sectionHeader}>
+                            <Phone size={18} color="#C62828" />
+                            <Text style={styles.sectionTitle}>{t('university.contact')}</Text>
                         </View>
-                    </MotiView>
-                )}
 
-                {/* Contact Section */}
-                <MotiView
-                    from={{ opacity: 0, translateY: 20 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ type: 'spring', delay: 400 }}
-                    style={styles.sectionCard}
-                >
-                    <View style={styles.sectionHeader}>
-                        <Phone size={18} color="#C62828" />
-                        <Text style={styles.sectionTitle}>{t('university.contact')}</Text>
-                    </View>
-
-                    <View style={styles.contactList}>
-                        {university.website && (
+                        <View style={styles.contactList}>
+                            {university.website && (
+                                <View style={styles.contactItem}>
+                                    <View style={[styles.contactIcon, { backgroundColor: '#DBEAFE' }]}>
+                                        <Globe size={18} color="#2563EB" />
+                                    </View>
+                                    <View style={styles.contactInfo}>
+                                        <Text style={styles.contactLabel}>Website</Text>
+                                        <Text style={styles.contactValue} numberOfLines={1}>{university.website}</Text>
+                                    </View>
+                                </View>
+                            )}
                             <View style={styles.contactItem}>
-                                <View style={[styles.contactIcon, { backgroundColor: '#DBEAFE' }]}>
-                                    <Globe size={18} color="#2563EB" />
+                                <View style={[styles.contactIcon, { backgroundColor: '#FEE2E2' }]}>
+                                    <Mail size={18} color="#C62828" />
                                 </View>
                                 <View style={styles.contactInfo}>
-                                    <Text style={styles.contactLabel}>Website</Text>
-                                    <Text style={styles.contactValue} numberOfLines={1}>{university.website}</Text>
+                                    <Text style={styles.contactLabel}>Email</Text>
+                                    <Text style={styles.contactValue}>admissions@university.edu.cn</Text>
                                 </View>
                             </View>
-                        )}
-                        <View style={styles.contactItem}>
-                            <View style={[styles.contactIcon, { backgroundColor: '#FEE2E2' }]}>
-                                <Mail size={18} color="#C62828" />
-                            </View>
-                            <View style={styles.contactInfo}>
-                                <Text style={styles.contactLabel}>Email</Text>
-                                <Text style={styles.contactValue}>admissions@university.edu.cn</Text>
-                            </View>
-                        </View>
-                        <View style={styles.contactItem}>
-                            <View style={[styles.contactIcon, { backgroundColor: '#D1FAE5' }]}>
-                                <MapPin size={18} color="#059669" />
-                            </View>
-                            <View style={styles.contactInfo}>
-                                <Text style={styles.contactLabel}>Location</Text>
-                                <Text style={styles.contactValue}>{university.city}, {university.province || 'China'}</Text>
+                            <View style={styles.contactItem}>
+                                <View style={[styles.contactIcon, { backgroundColor: '#D1FAE5' }]}>
+                                    <MapPin size={18} color="#059669" />
+                                </View>
+                                <View style={styles.contactInfo}>
+                                    <Text style={styles.contactLabel}>Location</Text>
+                                    <Text style={styles.contactValue}>{university.city}, {university.province || 'China'}</Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </MotiView>
+                    </MotiView>
 
-                {/* CTA Section */}
-                <MotiView
-                    from={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: 'spring', delay: 500 }}
-                    style={styles.ctaCard}
-                >
-                    <LinearGradient
-                        colors={['#7F1D1D', '#991B1B']}
-                        style={styles.ctaGradient}
+                    {/* CTA Section */}
+                    <MotiView
+                        from={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ type: 'spring', delay: 500 }}
+                        style={styles.ctaCard}
                     >
-                        <Text style={styles.ctaTitle}>{t('university.readyToApply')}</Text>
-                        <Text style={styles.ctaSubtext}>{t('university.startApplication', { name: university.name })}</Text>
-                        <Pressable style={styles.ctaButton}>
-                            <Text style={styles.ctaButtonText}>{t('university.browsePrograms')}</Text>
-                            <ChevronRight size={18} color="#C62828" />
-                        </Pressable>
-                    </LinearGradient>
-                </MotiView>
+                        <LinearGradient
+                            colors={['#7F1D1D', '#991B1B']}
+                            style={styles.ctaGradient}
+                        >
+                            <Text style={styles.ctaTitle}>{t('university.readyToApply')}</Text>
+                            <Text style={styles.ctaSubtext}>{t('university.startApplication', { name: university.name })}</Text>
+                            <Pressable style={styles.ctaButton}>
+                                <Text style={styles.ctaButtonText}>{t('university.browsePrograms')}</Text>
+                                <ChevronRight size={18} color="#C62828" />
+                            </Pressable>
+                        </LinearGradient>
+                    </MotiView>
 
-                <View style={{ height: 100 }} />
+                    <View style={{ height: 100 }} />
+                </View>
             </ScrollView>
             <GlobalTabBar />
         </View>
@@ -457,6 +502,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FAFAFA',
+    },
+    floatingHeader: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+    },
+    contentSection: {
+        backgroundColor: '#FAFAFA',
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        marginTop: -20,
+        paddingHorizontal: 20,
+        paddingTop: 24,
     },
     loadingContainer: {
         flex: 1,
@@ -527,7 +587,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     heroContainer: {
-        height: 260,
+        height: 300,
         position: 'relative',
     },
     coverImage: {
@@ -559,7 +619,22 @@ const styles = StyleSheet.create({
     },
     headerActions: {
         flexDirection: 'row',
-        gap: 10,
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+    },
+    iconButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backdropFilter: 'blur(4px)',
+    },
+    rightIcons: {
+        flexDirection: 'row',
+        gap: 12,
     },
     actionBtn: {
         width: 44,
@@ -570,8 +645,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     heroInfo: {
+        position: 'absolute',
+        bottom: 60,
+        left: 20,
+        right: 20,
+        flexDirection: 'row',
         alignItems: 'flex-end',
-        gap: 16,
+        gap: 14,
     },
     logoContainer: {
         shadowColor: '#000',
@@ -625,8 +705,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     scrollContent: {
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        flexGrow: 1,
     },
     statsCard: {
         backgroundColor: '#FFF',
@@ -749,24 +828,24 @@ const styles = StyleSheet.create({
         padding: 14,
     },
     programCardLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
         flex: 1,
+        flexDirection: 'row',
         gap: 12,
     },
     programBadge: {
-        width: 40,
-        height: 40,
-        borderRadius: 12,
+        width: 36,
+        height: 36,
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
     programBadgeText: {
-        fontSize: 16,
-        fontWeight: '800',
+        fontSize: 14,
+        fontWeight: '700',
     },
     programInfo: {
         flex: 1,
+        justifyContent: 'center',
     },
     programTitle: {
         fontSize: 14,
@@ -776,7 +855,8 @@ const styles = StyleSheet.create({
     },
     programMeta: {
         flexDirection: 'row',
-        gap: 12,
+        alignItems: 'center',
+        gap: 10,
     },
     metaItem: {
         flexDirection: 'row',
@@ -789,109 +869,41 @@ const styles = StyleSheet.create({
     },
     programCardRight: {
         alignItems: 'flex-end',
-        marginStart: 8,
+        gap: 6,
+        paddingLeft: 10,
     },
     programFee: {
-        fontSize: 14,
         fontWeight: '700',
         color: '#C62828',
-        marginBottom: 4,
+        fontSize: 14,
     },
     viewAllButton: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 8,
         marginTop: 16,
-        paddingVertical: 14,
-        borderRadius: 12,
-        backgroundColor: '#FEE2E2',
+        paddingVertical: 8,
+        gap: 4,
     },
     viewAllText: {
         fontSize: 14,
+        color: '#C62828',
         fontWeight: '600',
-        color: '#C62828',
     },
-    contactList: {
-        gap: 12,
-        marginTop: 12,
-    },
-    contactItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 14,
-    },
-    contactIcon: {
-        width: 44,
-        height: 44,
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    contactInfo: {
-        flex: 1,
-    },
-    contactLabel: {
-        fontSize: 12,
-        color: '#6B7280',
-    },
-    contactValue: {
-        fontSize: 14,
-        fontWeight: '500',
-        color: '#1F2937',
-        marginTop: 2,
-    },
-    ctaCard: {
-        marginTop: 16,
-        borderRadius: 24,
-        overflow: 'hidden',
-    },
-    ctaGradient: {
-        padding: 28,
-        alignItems: 'center',
-    },
-    ctaTitle: {
-        fontSize: 22,
-        fontWeight: '800',
-        color: '#FFF',
-        marginBottom: 8,
-    },
-    ctaSubtext: {
-        fontSize: 14,
-        color: 'rgba(255,255,255,0.8)',
-        textAlign: 'center',
-        marginBottom: 20,
-    },
-    ctaButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        backgroundColor: '#FFF',
-        paddingHorizontal: 28,
-        paddingVertical: 14,
-        borderRadius: 14,
-    },
-    ctaButtonText: {
-        fontSize: 15,
-        fontWeight: '700',
-        color: '#C62828',
-    },
-    // Scholarships styles
     scholarshipsList: {
-        gap: 10,
+        gap: 12,
     },
     scholarshipCard: {
+        backgroundColor: '#F9FAFB',
+        borderRadius: 14,
+        padding: 14,
         flexDirection: 'row',
-        alignItems: 'center',
         gap: 12,
-        padding: 12,
-        backgroundColor: '#FFFBEB',
-        borderRadius: 12,
     },
     scholarshipIcon: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+        width: 36,
+        height: 36,
+        borderRadius: 10,
         backgroundColor: '#FEF3C7',
         alignItems: 'center',
         justifyContent: 'center',
@@ -900,14 +912,16 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scholarshipName: {
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: '600',
-        color: '#92400E',
+        color: '#1F2937',
+        marginBottom: 2,
     },
     scholarshipType: {
-        fontSize: 12,
-        color: '#B45309',
-        marginTop: 2,
+        fontSize: 13,
+        color: '#D97706',
+        fontWeight: '500',
+        marginBottom: 6,
     },
     coverageRow: {
         flexDirection: 'row',
@@ -917,17 +931,32 @@ const styles = StyleSheet.create({
     },
     coverageText: {
         fontSize: 12,
-        fontWeight: '600',
         color: '#059669',
+        fontWeight: '500',
     },
-    // Accommodation styles
+    serviceFeeRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 8,
+        paddingTop: 8,
+        borderTopWidth: 1,
+        borderTopColor: '#E5E7EB',
+    },
+    serviceFeeLabel: {
+        fontSize: 12,
+        color: '#6B7280',
+    },
+    serviceFeeValue: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#4B5563',
+    },
     accommodationList: {
-        gap: 10,
-        marginTop: 12,
+        gap: 12,
     },
     accommodationCard: {
-        backgroundColor: '#EFF6FF',
-        borderRadius: 12,
+        backgroundColor: '#F9FAFB',
+        borderRadius: 14,
         padding: 14,
     },
     accommodationHeader: {
@@ -939,42 +968,103 @@ const styles = StyleSheet.create({
     accommodationType: {
         fontSize: 15,
         fontWeight: '600',
-        color: '#1E40AF',
+        color: '#1F2937',
     },
     accommodationPrice: {
         fontSize: 14,
         fontWeight: '700',
         color: '#2563EB',
     },
+    accommodationDesc: {
+        fontSize: 13,
+        color: '#6B7280',
+        lineHeight: 18,
+        marginBottom: 10,
+    },
     featuresList: {
-        gap: 6,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
     },
     featureItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6,
+        gap: 4,
+        backgroundColor: '#D1FAE5',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 8,
     },
     featureText: {
-        fontSize: 12,
-        color: '#1E3A8A',
+        fontSize: 11,
+        color: '#065F46',
+        fontWeight: '500',
     },
-    accommodationDesc: {
-        fontSize: 12,
-        color: '#6B7280',
-        marginBottom: 8,
+    contactList: {
+        gap: 16,
     },
-    serviceFeeRow: {
+    contactItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 4,
+        gap: 12,
     },
-    serviceFeeLabel: {
+    contactIcon: {
+        width: 36,
+        height: 36,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    contactInfo: {
+        flex: 1,
+    },
+    contactLabel: {
         fontSize: 11,
         color: '#6B7280',
     },
-    serviceFeeValue: {
-        fontSize: 11,
+    contactValue: {
+        fontSize: 14,
+        color: '#1F2937',
+        fontWeight: '500',
+    },
+    ctaCard: {
+        marginTop: 24,
+        borderRadius: 20,
+        overflow: 'hidden',
+        shadowColor: '#7F1D1D',
+        shadowOpacity: 0.2,
+        shadowRadius: 20,
+        elevation: 10,
+    },
+    ctaGradient: {
+        padding: 24,
+        alignItems: 'center',
+    },
+    ctaTitle: {
+        fontSize: 22,
+        fontWeight: '800',
+        color: '#FFF',
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    ctaSubtext: {
+        fontSize: 14,
+        color: 'rgba(255,255,255,0.9)',
+        textAlign: 'center',
+        marginBottom: 20,
+    },
+    ctaButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#FFF',
+        paddingHorizontal: 24,
+        paddingVertical: 12,
+        borderRadius: 14,
+        gap: 8,
+    },
+    ctaButtonText: {
+        color: '#C62828',
         fontWeight: '700',
-        color: '#2563EB',
+        fontSize: 15,
     },
 });
