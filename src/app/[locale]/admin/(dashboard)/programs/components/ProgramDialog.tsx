@@ -197,7 +197,11 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         }
     }, [open, program]);
 
-    async function handleSubmit(formData: FormData) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const formData = new FormData(e.currentTarget);
         setIsLoading(true);
         try {
             const result = program
@@ -285,7 +289,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                     </TabsList>
 
                     <TabsContent value="details">
-                        <form action={handleSubmit} className="grid gap-6 py-4">
+                        <form onSubmit={handleSubmit} className="grid gap-6 py-4">
                             {/* University Selection */}
                             <div className="grid gap-2">
                                 <Label htmlFor="university_id">University *</Label>
