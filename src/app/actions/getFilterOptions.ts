@@ -54,9 +54,9 @@ export async function getFilterOptions(filters: FilterState): Promise<FilterOpti
         buildQuery('language') // Get languages considering degree, field, city
     ]);
 
-    const extractUseableData = (res: any, key: string) => {
+    const extractUseableData = (res: { error: unknown; data: Record<string, string>[] | null }, key: string) => {
         if (res.error || !res.data) return [];
-        return Array.from(new Set(res.data.map((d: any) => d[key]).filter(Boolean))).sort() as string[];
+        return Array.from(new Set(res.data.map((d: Record<string, string>) => d[key]).filter(Boolean))).sort() as string[];
     };
 
     return {

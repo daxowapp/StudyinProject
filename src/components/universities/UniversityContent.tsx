@@ -22,7 +22,6 @@ import { RequestInformationDialog } from "./RequestInformationDialog";
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { GraduationCap as GraduationCapIcon, Home, Wallet, BookOpen } from "lucide-react";
 
 
 
@@ -86,7 +85,6 @@ interface UniversityContentProps {
 
 export function UniversityContent({ university }: UniversityContentProps) {
     const t = useTranslations('UniversityDetail');
-    const tAccommodation = useTranslations('Accommodation');
     const [programLevel, setProgramLevel] = useState<string>("all");
 
     // Get unique program levels

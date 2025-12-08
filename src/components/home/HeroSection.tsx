@@ -51,7 +51,7 @@ export function HeroSection() {
         durations: []
     });
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading] = useState(false);
 
     // Debounce filter updating
     const [debouncedFilters, setDebouncedFilters] = useState(filters);
