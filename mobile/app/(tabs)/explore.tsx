@@ -1,176 +1,229 @@
-import { View, Text, ScrollView, StyleSheet, Pressable, TextInput, ActivityIndicator, Image } from 'react-native';
+import React, { useState, useCallback, useMemo } from 'react';
+import { View, ScrollView, StyleSheet, Pressable, TextInput, Image, FlatList, Dimensions, Text as RNText } from 'react-native';
+import Loader from '../../components/Loader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MotiView } from 'moti';
-import { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { useUniversities } from '../../hooks/useData';
-
-const filters = ['All', 'Beijing', 'Shanghai', 'Hangzhou', 'Guangzhou', 'Wuhan'];
+import { Search, SlidersHorizontal, MapPin, GraduationCap, Clock, Globe, X } from 'lucide-react-native';
+import { Price } from '../../components/currency/Price';
+import { useSearchPrograms, ProgramFilters } from '../../hooks/useData';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FilterModal } from '../../components/programs/FilterModal';
+import { useTranslation } from 'react-i18next';
+import { ThemedText as Text } from '../../components/ThemedText';
 
 export default function ExploreScreen() {
     const router = useRouter();
-    const { universities, loading, error } = useUniversities();
-    const [activeFilter, setActiveFilter] = useState('All');
+    const { theme, isDark } = useTheme();
+    const { isRTL } = useLanguage();
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
+    const [filters, setFilters] = useState<ProgramFilters>({ degree: 'all', field: 'all', language: 'all', city: 'all' });
+    const [modalVisible, setModalVisible] = useState(false);
 
-    const filteredUniversities = universities.filter(u => {
-        const matchesFilter = activeFilter === 'All' || u.city?.toLowerCase().includes(activeFilter.toLowerCase());
-        const matchesSearch = !searchQuery || u.name?.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesFilter && matchesSearch;
+    const degreeFilters = useMemo(() => [
+        { label: t('explore.filters.all'), value: 'all' },
+        { label: t('explore.filters.bachelor'), value: 'bachelor' },
+        { label: t('explore.filters.master'), value: 'master' },
+        { label: t('explore.filters.phd'), value: 'phd' },
+    ], [t]);
+
+    // Use the search hook with filters
+    const { results, loading, totalCount } = useSearchPrograms({
+        query: searchQuery,
+        ...filters,
     });
 
-    return (
-        <View style={styles.container}>
-            <SafeAreaView edges={['top']} style={styles.safeArea}>
-                {/* Header */}
-                <MotiView
-                    from={{ opacity: 0, translateY: -20 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ type: 'timing', duration: 500 }}
-                >
-                    <View style={styles.header}>
-                        <View>
-                            <Text style={styles.headerTitle}>Explore</Text>
-                            <Text style={styles.headerSubtitle}>Find your dream university</Text>
-                        </View>
-                        <View style={styles.filterIcon}>
-                            <Text style={styles.filterIconText}>⚙️</Text>
-                        </View>
-                    </View>
-                </MotiView>
+    const handleDegreeFilter = (value: string) => {
+        setFilters(prev => ({ ...prev, degree: value }));
+    };
 
-                {/* Search */}
-                <MotiView
-                    from={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: 'spring', delay: 100 }}
-                    style={styles.searchContainer}
-                >
+    const handleApplyFilters = (newFilters: ProgramFilters) => {
+        setFilters(newFilters);
+    };
+
+    const handleResetFilters = () => {
+        setFilters({ degree: 'all', field: 'all', language: 'all', city: 'all' });
+        setSearchQuery('');
+    };
+
+    const renderProgramCard = useCallback(({ item: program }: { item: any }) => (
+        <Pressable
+            style={[styles.programCard, { backgroundColor: theme.card }]}
+            onPress={() => router.push(`/program/${program.slug}`)}
+        >
+            {/* University Logo */}
+            <View style={[styles.cardLogoContainer, { backgroundColor: isDark ? theme.backgroundSecondary : '#F9FAFB' }]}>
+                {program.university_logo ? (
+                    <Image
+                        source={{ uri: program.university_logo }}
+                        style={styles.cardLogo}
+                        resizeMode="contain"
+                    />
+                ) : (
+                    <View style={[styles.cardLogoPlaceholder, { backgroundColor: theme.backgroundSecondary }]}>
+                        <GraduationCap size={24} color={theme.textMuted} />
+                    </View>
+                )}
+            </View>
+
+            {/* Program Info */}
+            <View style={styles.cardContent}>
+                <Text style={[styles.programTitle, { color: theme.text }]} numberOfLines={2}>
+                    {program.title}
+                </Text>
+                <Text style={[styles.universityName, { color: theme.textSecondary }]} numberOfLines={1}>
+                    {program.university_name}
+                </Text>
+
+                {/* Tags Row */}
+                <View style={styles.tagsRow}>
+                    <View style={[styles.tag,
+                    {
+                        backgroundColor: isDark ? theme.backgroundSecondary :
+                            program.level?.toLowerCase().includes('bachelor') ? '#EFF6FF' :
+                                program.level?.toLowerCase().includes('master') ? '#FAF5FF' :
+                                    program.level?.toLowerCase().includes('phd') ? '#FEF2F2' : theme.backgroundSecondary
+                    }
+                    ]}>
+                        <GraduationCap size={10} color={
+                            program.level?.toLowerCase().includes('bachelor') ? '#2563EB' :
+                                program.level?.toLowerCase().includes('master') ? '#9333EA' :
+                                    program.level?.toLowerCase().includes('phd') ? '#DC2626' : theme.textSecondary
+                        } />
+                        <Text style={[styles.tagText, { color: theme.textSecondary }]}>{program.level || t('explore.degree')}</Text>
+                    </View>
+                    <View style={[styles.tag, { backgroundColor: isDark ? theme.backgroundSecondary : '#D1FAE5' }]}>
+                        <Clock size={10} color="#059669" />
+                        <Text style={[styles.tagText, { color: theme.textSecondary }]}>{program.duration || '4'} {t('common.years')}</Text>
+                    </View>
+                    <View style={[styles.tag, { backgroundColor: isDark ? theme.backgroundSecondary : '#DBEAFE' }]}>
+                        <Globe size={10} color="#2563EB" />
+                        <Text style={[styles.tagText, { color: theme.textSecondary }]}>{program.language_name || 'English'}</Text>
+                    </View>
+                </View>
+
+                {/* Bottom Row */}
+                <View style={styles.bottomRow}>
+                    <View style={styles.locationRow}>
+                        <MapPin size={12} color={theme.primary} />
+                        <Text style={[styles.locationText, { color: theme.textSecondary }]}>{program.city}</Text>
+                    </View>
+                    <View style={[styles.tuitionBadge, { backgroundColor: isDark ? theme.backgroundSecondary : '#FEE2E2' }]}>
+                        <Price
+                            amount={program.tuition_fee || 0}
+                            currency="CNY"
+                            style={[styles.tuitionText, { color: theme.primary }]}
+                            suffix="/yr"
+                        />
+                    </View>
+                </View>
+            </View>
+        </Pressable>
+    ), [router, theme, isDark, t]);
+
+    return (
+        <View style={[styles.container, { backgroundColor: theme.background, direction: isRTL ? 'rtl' : 'ltr' }]}>
+            {/* Filter Modal */}
+            <FilterModal
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+                filters={filters}
+                onApply={handleApplyFilters}
+                onReset={handleResetFilters}
+            />
+
+            {/* Header with Search */}
+            <LinearGradient
+                colors={isDark ? [theme.gradientStart, theme.gradientEnd] : ['#991B1B', '#B91C1C', '#DC2626']}
+                style={styles.header}
+            >
+                <SafeAreaView edges={['top']}>
+                    <View style={styles.headerContent}>
+                        <Text style={styles.headerTitle}>{t('explore.title')}</Text>
+                        <Pressable style={styles.filterButton} onPress={() => setModalVisible(true)}>
+                            <SlidersHorizontal size={20} color="#FFF" />
+                            {(filters.field !== 'all' || filters.language !== 'all' || filters.city !== 'all' || filters.scholarship) && (
+                                <View style={styles.activeFilterDot} />
+                            )}
+                        </Pressable>
+                    </View>
+
+                    {/* Search Bar */}
                     <View style={styles.searchBar}>
-                        <Text style={styles.searchIcon}>🔍</Text>
+                        <Search size={18} color="#9CA3AF" />
                         <TextInput
                             style={styles.searchInput}
-                            placeholder="Search universities..."
-                            placeholderTextColor="#94A3B8"
+                            placeholder={t('explore.searchPlaceholder')}
+                            placeholderTextColor="#9CA3AF"
                             value={searchQuery}
                             onChangeText={setSearchQuery}
                         />
                         {searchQuery.length > 0 && (
                             <Pressable onPress={() => setSearchQuery('')}>
-                                <Text style={styles.clearButton}>✕</Text>
+                                <X size={18} color="#9CA3AF" />
                             </Pressable>
                         )}
                     </View>
-                </MotiView>
+                </SafeAreaView>
+            </LinearGradient>
 
-                {/* Filters */}
+            {/* Degree Filter Pills */}
+            <View style={[styles.filtersWrapper, { backgroundColor: theme.background }]}>
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    style={styles.filtersScroll}
-                    contentContainerStyle={styles.filtersContainer}
+                    contentContainerStyle={styles.filtersScroll}
                 >
-                    {filters.map((filter, index) => (
-                        <MotiView
-                            key={filter}
-                            from={{ opacity: 0, translateX: -10 }}
-                            animate={{ opacity: 1, translateX: 0 }}
-                            transition={{ type: 'spring', delay: 200 + index * 50 }}
+                    {degreeFilters.map((filter) => (
+                        <Pressable
+                            key={filter.value}
+                            style={[
+                                styles.filterPill,
+                                { backgroundColor: (filters.degree || 'all') === filter.value ? theme.primary : (isDark ? theme.card : '#FFFFFF'), borderColor: (filters.degree || 'all') === filter.value ? theme.primary : theme.border }
+                            ]}
+                            onPress={() => handleDegreeFilter(filter.value)}
                         >
-                            <Pressable
-                                style={[
-                                    styles.filterChip,
-                                    activeFilter === filter && styles.filterChipActive
-                                ]}
-                                onPress={() => setActiveFilter(filter)}
-                            >
-                                <Text style={[
-                                    styles.filterText,
-                                    activeFilter === filter && styles.filterTextActive
-                                ]}>
-                                    {filter}
-                                </Text>
-                            </Pressable>
-                        </MotiView>
+                            <Text style={[
+                                styles.filterPillText,
+                                { color: (filters.degree || 'all') === filter.value ? '#FFFFFF' : theme.textSecondary }
+                            ]}>
+                                {filter.label}
+                            </Text>
+                        </Pressable>
                     ))}
                 </ScrollView>
+            </View>
 
-                {/* Results Info */}
-                <View style={styles.resultsInfo}>
-                    <Text style={styles.resultsText}>
-                        {loading ? 'Loading...' : `${filteredUniversities.length} universities found`}
-                    </Text>
+            {/* Results Count */}
+            <View style={styles.resultsHeader}>
+                <Text style={[styles.resultsCount, { color: theme.textSecondary }]}>
+                    {loading ? t('explore.searching') : t('explore.resultsFound', { count: totalCount })}
+                </Text>
+            </View>
+
+            {/* Programs List */}
+            {loading ? (
+                <View style={styles.loadingContainer}>
+                    <Loader size={50} />
+                    <Text style={[styles.loadingText, { color: theme.textSecondary }]}>{t('explore.findingPrograms')}</Text>
                 </View>
-            </SafeAreaView>
-
-            {/* University List */}
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.listContainer}
-            >
-                {loading ? (
-                    <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#DC2626" />
-                    </View>
-                ) : error ? (
-                    <View style={styles.errorContainer}>
-                        <Text style={styles.errorIcon}>😔</Text>
-                        <Text style={styles.errorText}>{error}</Text>
-                    </View>
-                ) : (
-                    filteredUniversities.map((uni, index) => (
-                        <MotiView
-                            key={uni.id}
-                            from={{ opacity: 0, translateY: 20 }}
-                            animate={{ opacity: 1, translateY: 0 }}
-                            transition={{ type: 'spring', delay: index * 60 }}
-                        >
-                            <Pressable
-                                style={styles.universityCard}
-                                onPress={() => router.push(`/university/${uni.slug}`)}
-                            >
-                                <View style={styles.cardImageContainer}>
-                                    {uni.logo_url ? (
-                                        <Image source={{ uri: uni.logo_url }} style={styles.cardImage} />
-                                    ) : (
-                                        <View style={styles.cardImagePlaceholder}>
-                                            <Text style={styles.cardPlaceholderText}>🏛️</Text>
-                                        </View>
-                                    )}
-                                </View>
-                                <View style={styles.cardContent}>
-                                    <View style={styles.cardHeader}>
-                                        <Text style={styles.cardTitle} numberOfLines={2}>{uni.name}</Text>
-                                        {uni.ranking && (
-                                            <View style={styles.cardRankBadge}>
-                                                <Text style={styles.cardRankText}>#{uni.ranking}</Text>
-                                            </View>
-                                        )}
-                                    </View>
-                                    <View style={styles.cardLocation}>
-                                        <Text style={styles.cardLocationIcon}>📍</Text>
-                                        <Text style={styles.cardLocationText}>{uni.city}</Text>
-                                    </View>
-                                    <View style={styles.cardFooter}>
-                                        <View style={styles.cardTags}>
-                                            <View style={styles.tag}>
-                                                <Text style={styles.tagText}>Programs</Text>
-                                            </View>
-                                            <View style={styles.tag}>
-                                                <Text style={styles.tagText}>International</Text>
-                                            </View>
-                                        </View>
-                                        <View style={styles.viewButton}>
-                                            <Text style={styles.viewButtonText}>View</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Pressable>
-                        </MotiView>
-                    ))
-                )}
-                <View style={{ height: 120 }} />
-            </ScrollView>
+            ) : results.length === 0 ? (
+                <View style={styles.emptyContainer}>
+                    <GraduationCap size={48} color={theme.textMuted} />
+                    <Text style={[styles.emptyTitle, { color: theme.text }]}>{t('explore.noResults')}</Text>
+                    <Text style={[styles.emptyText, { color: theme.textSecondary }]}>{t('explore.noResultsDesc')}</Text>
+                </View>
+            ) : (
+                <FlatList
+                    data={results}
+                    renderItem={renderProgramCard}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.listContainer}
+                    showsVerticalScrollIndicator={false}
+                />
+            )}
         </View>
     );
 }
@@ -178,234 +231,220 @@ export default function ExploreScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FCFCFC',
-    },
-    safeArea: {
-        backgroundColor: '#FCFCFC',
+        backgroundColor: '#F8F9FA',
     },
     header: {
+        paddingBottom: 20,
+        borderBottomStartRadius: 24,
+        borderBottomEndRadius: 24,
+    },
+    headerContent: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 24,
-        paddingTop: 10,
-        paddingBottom: 20,
+        paddingHorizontal: 20,
+        paddingTop: 12,
+        marginBottom: 16,
     },
     headerTitle: {
-        fontSize: 32,
-        fontWeight: '800',
-        color: '#1E293B',
+        fontSize: 24,
+        fontWeight: '700',
+        color: '#FFFFFF',
     },
-    headerSubtitle: {
-        fontSize: 14,
-        color: '#64748B',
-        marginTop: 4,
-    },
-    filterIcon: {
-        width: 48,
-        height: 48,
-        borderRadius: 14,
-        backgroundColor: '#FFFFFF',
+    filterButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.2)',
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.06,
-        shadowRadius: 8,
-        elevation: 2,
-    },
-    filterIconText: {
-        fontSize: 20,
-    },
-    searchContainer: {
-        paddingHorizontal: 24,
-        marginBottom: 16,
     },
     searchBar: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#FFFFFF',
-        borderRadius: 16,
+        marginHorizontal: 20,
+        borderRadius: 14,
         paddingHorizontal: 16,
-        paddingVertical: 14,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.06,
-        shadowRadius: 8,
-        elevation: 2,
-    },
-    searchIcon: {
-        fontSize: 18,
-        marginRight: 12,
+        paddingVertical: 12,
+        gap: 12,
     },
     searchInput: {
         flex: 1,
         fontSize: 15,
-        color: '#1E293B',
+        color: '#1F2937',
     },
-    clearButton: {
-        fontSize: 18,
-        color: '#94A3B8',
-        padding: 4,
+    filtersWrapper: {
+        paddingTop: 16,
+        paddingBottom: 8,
     },
     filtersScroll: {
-        marginBottom: 16,
-    },
-    filtersContainer: {
-        paddingHorizontal: 24,
-    },
-    filterChip: {
         paddingHorizontal: 20,
+        gap: 10,
+    },
+    filterPill: {
+        paddingHorizontal: 18,
         paddingVertical: 10,
-        borderRadius: 16,
+        borderRadius: 20,
         backgroundColor: '#FFFFFF',
-        marginRight: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.04,
-        shadowRadius: 4,
-        elevation: 1,
+        marginEnd: 10,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
     },
-    filterChipActive: {
-        backgroundColor: '#DC2626',
+    filterPillActive: {
+        backgroundColor: '#C62828',
+        borderColor: '#C62828',
     },
-    filterText: {
+    filterPillText: {
         fontSize: 14,
-        color: '#475569',
         fontWeight: '600',
+        color: '#4B5563',
     },
-    filterTextActive: {
+    filterPillTextActive: {
         color: '#FFFFFF',
     },
-    resultsInfo: {
-        paddingHorizontal: 24,
-        marginBottom: 16,
+    resultsHeader: {
+        paddingHorizontal: 20,
+        paddingVertical: 12,
     },
-    resultsText: {
+    resultsCount: {
         fontSize: 14,
-        color: '#64748B',
+        color: '#6B7280',
         fontWeight: '500',
     },
-    listContainer: {
-        paddingHorizontal: 24,
-    },
     loadingContainer: {
-        paddingVertical: 60,
-        alignItems: 'center',
-    },
-    errorContainer: {
-        paddingVertical: 60,
-        alignItems: 'center',
-    },
-    errorIcon: {
-        fontSize: 48,
-        marginBottom: 16,
-    },
-    errorText: {
-        fontSize: 14,
-        color: '#DC2626',
-        textAlign: 'center',
-    },
-    universityCard: {
-        flexDirection: 'row',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        marginBottom: 16,
-        overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.08,
-        shadowRadius: 12,
-        elevation: 3,
-    },
-    cardImageContainer: {
-        width: 110,
-        backgroundColor: '#F8FAFC',
-    },
-    cardImage: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-    cardImagePlaceholder: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingBottom: 100,
     },
-    cardPlaceholderText: {
-        fontSize: 36,
+    loadingText: {
+        marginTop: 12,
+        fontSize: 14,
+        color: '#6B7280',
+    },
+    emptyContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 40,
+        paddingBottom: 100,
+    },
+    emptyTitle: {
+        marginTop: 16,
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#374151',
+    },
+    emptyText: {
+        marginTop: 8,
+        fontSize: 14,
+        color: '#6B7280',
+        textAlign: 'center',
+    },
+    listContainer: {
+        paddingHorizontal: 20,
+        paddingBottom: 100,
+    },
+    programCard: {
+        flexDirection: 'row',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 16,
+        marginBottom: 12,
+        padding: 14,
+        shadowColor: '#000',
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 2,
+    },
+    cardLogoContainer: {
+        width: 56,
+        height: 56,
+        borderRadius: 12,
+        backgroundColor: '#F3F4F6',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginEnd: 14,
+    },
+    cardLogo: {
+        width: 40,
+        height: 40,
+        borderRadius: 8,
+    },
+    cardLogoPlaceholder: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     cardContent: {
         flex: 1,
-        padding: 16,
     },
-    cardHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        marginBottom: 8,
-    },
-    cardTitle: {
-        flex: 1,
-        fontSize: 16,
+    programTitle: {
+        fontSize: 15,
         fontWeight: '700',
-        color: '#1E293B',
-        lineHeight: 22,
-        marginRight: 8,
+        color: '#1F2937',
+        marginBottom: 4,
+        lineHeight: 20,
     },
-    cardRankBadge: {
-        backgroundColor: '#DC2626',
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 8,
-    },
-    cardRankText: {
-        fontSize: 11,
-        fontWeight: '700',
-        color: '#FFFFFF',
-    },
-    cardLocation: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 12,
-    },
-    cardLocationIcon: {
-        fontSize: 12,
-        marginRight: 6,
-    },
-    cardLocationText: {
+    universityName: {
         fontSize: 13,
-        color: '#64748B',
+        color: '#6B7280',
+        marginBottom: 10,
     },
-    cardFooter: {
+    tagsRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    cardTags: {
-        flexDirection: 'row',
-        gap: 6,
+        gap: 8,
+        marginBottom: 10,
     },
     tag: {
-        backgroundColor: '#F8FAFC',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+        backgroundColor: '#F9FAFB',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
+    },
+    tagText: {
+        fontSize: 11,
+        color: '#4B5563',
+        fontWeight: '500',
+    },
+    bottomRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    locationRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
+    locationText: {
+        fontSize: 12,
+        color: '#6B7280',
+    },
+    tuitionBadge: {
+        backgroundColor: '#FEF3C7',
         paddingHorizontal: 10,
         paddingVertical: 4,
         borderRadius: 8,
     },
-    tagText: {
-        fontSize: 11,
-        color: '#475569',
-        fontWeight: '500',
+    tuitionText: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#92400E',
     },
-    viewButton: {
-        backgroundColor: '#FEF3C7',
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 10,
-    },
-    viewButtonText: {
-        fontSize: 13,
-        color: '#78350F',
-        fontWeight: '700',
+    activeFilterDot: {
+        position: 'absolute',
+        top: 8,
+        right: undefined,
+        end: 8,
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: '#EF4444',
+        borderWidth: 1.5,
+        borderColor: '#B91C1C',
     },
 });

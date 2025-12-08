@@ -1,33 +1,51 @@
-import { Tabs } from 'expo-router';
-import { View, StyleSheet, Platform } from 'react-native';
-import { MotiView } from 'moti';
 
-function TabIcon({ name, focused }: { name: string; focused: boolean }) {
-    const icons: Record<string, string> = {
-        index: '🏠',
-        explore: '🔍',
-        scholarships: '🎓',
-        messages: '💬',
-        profile: '👤',
+import { Tabs } from 'expo-router';
+import { View, StyleSheet, Platform, Text } from 'react-native';
+import { House, Search, Building2, MessageCircle, User } from 'lucide-react-native';
+
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../contexts/LanguageContext';
+
+const ICONS = {
+    index: House,
+    explore: Search,
+    universities: Building2,
+    chat: MessageCircle,
+    profile: User,
+};
+
+// Labels will be translated inside component
+
+
+function TabBarIcon({ name, focused }: { name: keyof typeof ICONS; focused: boolean }) {
+    const { t } = useTranslation();
+    const { isRTL, currentLanguage } = useLanguage();
+    const Icon = ICONS[name];
+    const color = focused ? '#C62828' : '#64748B'; // Primary Red vs Slate 500
+
+    // Use Cairo font for Arabic and Farsi
+    const isRTLLanguage = currentLanguage === 'ar' || currentLanguage === 'fa';
+    const fontFamily = isRTLLanguage ? 'Cairo-Medium' : undefined;
+
+    const labels: Record<string, string> = {
+        index: t('navigation.home'),
+        explore: t('navigation.search'),
+        universities: t('navigation.unis'),
+        chat: t('navigation.chat'),
+        profile: t('navigation.profile'),
     };
 
     return (
-        <MotiView
-            animate={{
-                scale: focused ? 1.1 : 1,
-            }}
-            transition={{
-                type: 'spring',
-                stiffness: 300,
-                damping: 20,
-            }}
-        >
-            <View style={[styles.iconContainer, focused && styles.iconContainerActive]}>
-                <View style={styles.iconText}>
-                    <View style={{ fontSize: 24 }}>{icons[name]}</View>
-                </View>
-            </View>
-        </MotiView>
+        <View style={styles.iconContainer}>
+            <Icon
+                size={22}
+                color={color}
+                strokeWidth={focused ? 2.5 : 2}
+            />
+            <Text style={[styles.label, { color, fontWeight: focused ? '600' : '500', fontFamily }]}>
+                {labels[name]}
+            </Text>
+        </View>
     );
 }
 
@@ -35,61 +53,47 @@ export default function TabsLayout() {
     return (
         <Tabs
             screenOptions={{
-                tabBarActiveTintColor: '#DC2626',
-                tabBarInactiveTintColor: '#94A3B8',
+                headerShown: false,
+                tabBarShowLabel: false,
                 tabBarStyle: {
                     backgroundColor: '#FFFFFF',
-                    borderTopWidth: 0,
+                    borderTopWidth: 1,
+                    borderTopColor: '#F1F5F9',
                     height: Platform.OS === 'ios' ? 85 : 65,
-                    paddingBottom: Platform.OS === 'ios' ? 25 : 8,
                     paddingTop: 8,
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: -4 },
-                    shadowOpacity: 0.1,
-                    shadowRadius: 16,
-                    elevation: 12,
+                    paddingBottom: Platform.OS === 'ios' ? 25 : 8,
+                    elevation: 0,
                 },
-                tabBarLabelStyle: {
-                    fontSize: 10,
-                    fontWeight: '700',
-                    marginTop: 4,
-                },
-                headerShown: false,
             }}
         >
             <Tabs.Screen
                 name="index"
                 options={{
-                    title: 'Home',
-                    tabBarIcon: ({ focused }) => <TabIcon name="index" focused={focused} />,
+                    tabBarIcon: ({ focused }) => <TabBarIcon name="index" focused={focused} />,
                 }}
             />
             <Tabs.Screen
                 name="explore"
                 options={{
-                    title: 'Search',
-                    tabBarIcon: ({ focused }) => <TabIcon name="explore" focused={focused} />,
+                    tabBarIcon: ({ focused }) => <TabBarIcon name="explore" focused={focused} />,
                 }}
             />
             <Tabs.Screen
-                name="scholarships"
+                name="universities"
                 options={{
-                    title: 'Programs',
-                    tabBarIcon: ({ focused }) => <TabIcon name="scholarships" focused={focused} />,
+                    tabBarIcon: ({ focused }) => <TabBarIcon name="universities" focused={focused} />,
                 }}
             />
             <Tabs.Screen
-                name="messages"
+                name="chat"
                 options={{
-                    title: 'Saved',
-                    tabBarIcon: ({ focused }) => <TabIcon name="messages" focused={focused} />,
+                    tabBarIcon: ({ focused }) => <TabBarIcon name="chat" focused={focused} />,
                 }}
             />
             <Tabs.Screen
                 name="profile"
                 options={{
-                    title: 'Profile',
-                    tabBarIcon: ({ focused }) => <TabIcon name="profile" focused={focused} />,
+                    tabBarIcon: ({ focused }) => <TabBarIcon name="profile" focused={focused} />,
                 }}
             />
         </Tabs>
@@ -100,14 +104,9 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 48,
-        height: 32,
-        borderRadius: 12,
+        gap: 2,
     },
-    iconContainerActive: {
-        backgroundColor: '#FEE2E2',
-    },
-    iconText: {
-        fontSize: 24,
+    label: {
+        fontSize: 10,
     },
 });

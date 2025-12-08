@@ -1,28 +1,41 @@
 import 'react-native-url-polyfill/auto';
 import 'react-native-reanimated';
 import 'react-native-gesture-handler';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import * as Notifications from 'expo-notifications';
-import { useAuth } from '../stores/auth';
+import { I18nextProvider } from 'react-i18next';
+import { useAuth } from '../hooks/useData';
 import {
     registerForPushNotificationsAsync,
     savePushToken,
     addNotificationListeners
 } from '../lib/notifications';
+import AnimatedSplash from '../components/AnimatedSplash';
+import { ThemeProvider } from '../contexts/ThemeContext';
+import { LanguageProvider } from '../contexts/LanguageContext';
+import { FontProvider } from '../contexts/FontContext';
+import { NetworkProvider, OfflineBanner } from '../contexts/NetworkContext';
+import { CurrencyProvider } from '../contexts/CurrencyContext';
+import i18n from '../lib/i18n';
 
 export default function RootLayout() {
     const router = useRouter();
     const segments = useSegments();
-    const { initialize, initialized, user } = useAuth();
+    const { user, loading } = useAuth();
     const notificationListener = useRef<(() => void) | undefined>(undefined);
+    const [isAppReady, setIsAppReady] = useState(false);
 
-    // Initialize auth
+    // Mark app as ready when auth loading completes
     useEffect(() => {
-        if (!initialized) {
-            initialize();
+        if (!loading) {
+            // Small delay to ensure smooth transition
+            const timer = setTimeout(() => {
+                setIsAppReady(true);
+            }, 500);
+            return () => clearTimeout(timer);
         }
-    }, [initialized]);
+    }, [loading]);
 
     // Register for push notifications when user logs in
     useEffect(() => {
@@ -50,7 +63,7 @@ export default function RootLayout() {
                 if (data?.applicationId) {
                     router.push(`/university/${data.applicationId}`);
                 } else if (data?.type === 'new_message') {
-                    router.push('/(tabs)/messages');
+                    router.push('/(tabs)/chat');
                 } else if (data?.type === 'payment_request') {
                     router.push('/(tabs)/profile');
                 }
@@ -64,5 +77,25 @@ export default function RootLayout() {
         };
     }, []);
 
-    return <Slot />;
+    return (
+        <I18nextProvider i18n={i18n}>
+            <ThemeProvider>
+                <LanguageProvider>
+                    <FontProvider>
+                        <CurrencyProvider>
+                            <NetworkProvider>
+                                <AnimatedSplash isReady={isAppReady}>
+                                    <OfflineBanner />
+                                    <Slot />
+                                </AnimatedSplash>
+                            </NetworkProvider>
+                        </CurrencyProvider>
+                    </FontProvider>
+                </LanguageProvider>
+            </ThemeProvider>
+        </I18nextProvider>
+    );
 }
+
+
+

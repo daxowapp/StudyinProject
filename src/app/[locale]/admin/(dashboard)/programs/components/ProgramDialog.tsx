@@ -66,9 +66,10 @@ interface ProgramDialogProps {
     languages: Language[];
     trigger?: React.ReactNode;
     universityId?: string;
+    onSuccess?: () => void;
 }
 
-export function ProgramDialog({ program, universities, languages, trigger, universityId }: ProgramDialogProps) {
+export function ProgramDialog({ program, universities, languages, trigger, universityId, onSuccess }: ProgramDialogProps) {
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedCatalogProgram, setSelectedCatalogProgram] = useState<Record<string, unknown> | null>(null);
@@ -208,6 +209,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
             } else {
                 toast.success(program ? "Program updated" : "Program created");
                 setOpen(false);
+                if (onSuccess) onSuccess();
             }
         } catch (err) {
             console.error(err);
@@ -229,6 +231,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 } else {
                     toast.success("Program deleted");
                     setOpen(false);
+                    if (onSuccess) onSuccess();
                 }
             }
         } catch (err) {

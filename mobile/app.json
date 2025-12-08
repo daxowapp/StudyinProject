@@ -12,7 +12,7 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#DC2626"
+      "backgroundColor": "#C62828"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -43,8 +43,7 @@
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ],
-      "googleServicesFile": "./google-services.json"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -56,7 +55,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/notification-icon.png",
+          "icon": "./assets/icon.png",
           "color": "#DC2626"
         }
       ],
@@ -64,10 +63,17 @@
         "expo-splash-screen",
         {
           "image": "./assets/splash-icon.png",
-          "backgroundColor": "#DC2626",
-          "imageWidth": 200
+          "backgroundColor": "#C62828",
+          "imageWidth": 180
         }
-      ]
+      ],
+      [
+        "expo-localization",
+        {
+          "supportsRTL": true
+        }
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

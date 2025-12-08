@@ -66,6 +66,7 @@ export type University = {
     description?: string;
     website?: string;
     logo_url?: string;
+    cover_photo_url?: string;
     ranking?: number;
     founded?: number;
     total_students?: number;

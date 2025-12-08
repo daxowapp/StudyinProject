@@ -1,0 +1,216 @@
+{
+    "common": {
+        "welcome": "Hoş geldiniz",
+        "login": "Giriş Yap",
+        "register": "Kayıt Ol",
+        "logout": "Çıkış Yap",
+        "search": "Ara",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "continue": "Devam Et",
+        "back": "Geri",
+        "next": "İleri",
+        "submit": "Gönder",
+        "loading": "Yükleniyor...",
+        "error": "Hata",
+        "success": "Başarılı",
+        "seeAll": "Tümünü Gör",
+        "apply": "Şimdi Başvur",
+        "viewDetails": "Detayları Gör",
+        "viewAll": "Tümünü Gör",
+        "minRead": "dk okuma",
+        "views": "görüntülenme",
+        "degree": "Derece",
+        "filters": "Filtreler",
+        "reset": "Sıfırla",
+        "field": "Çalışma Alanı",
+        "language": "Dil",
+        "location": "Konum",
+        "scholarships": "Burslar",
+        "scholarshipOnly": "Sadece Burslu",
+        "tuitionRange": "Öğrenim Ücreti Aralığı",
+        "years": "yıl",
+        "city": "Şehir",
+        "enterCity": "Şehir girin örn. Pekin, Şanghay...",
+        "fullScholarship": "Tam Burs Mevcut",
+        "applyFilters": "Filtreleri Uygula",
+        "resetAll": "Tümünü Sıfırla",
+        "studyFields": {
+            "all": "Tümü",
+            "engineering": "Mühendislik",
+            "business": "İşletme",
+            "medicine": "Tıp",
+            "computer": "Bilgisayar Bil.",
+            "arts": "Sanat",
+            "science": "Fen Bilimleri",
+            "law": "Hukuk"
+        }
+    },
+    "home": {
+        "title": "Çin'de Eğitim",
+        "subtitle": "Dünya Standartlarında Eğitime Kapınız",
+        "tagline": "Çin'in en iyi üniversitelerinde okuyan 50.000'den fazla uluslararası öğrenciye katılın",
+        "searchPlaceholder": "Program, üniversite ara...",
+        "admissionsOpen": "2026 Kayıtları Açık",
+        "quickActions": {
+            "findPrograms": "Program Bul",
+            "universities": "Üniversiteler",
+            "scholarships": "Burslar"
+        },
+        "stats": {
+            "universities": "Üniversiteler",
+            "students": "Öğrenciler",
+            "success": "Başarı",
+            "scholarships": "Burslar"
+        },
+        "popularCities": "Popüler Şehirler",
+        "exploreCities": "Konuma göre üniversiteleri keşfedin",
+        "featuredPrograms": "Öne Çıkan Programlar",
+        "topUniversities": "En İyi Üniversiteler",
+        "aiTitle": "Yapay Zeka Eğitim Danışmanı",
+        "aiSubtitle": "Kişiselleştirilmiş program önerileri alın",
+        "latestArticles": "Son Makaleler",
+        "noArticles": "Henüz makale yok",
+        "checkBackSoon": "Yeni içerik için yakında tekrar kontrol edin!"
+    },
+    "explore": {
+        "title": "Programları Keşfet",
+        "subtitle": "Size uygun programı bulun",
+        "searchPlaceholder": "Program veya üniversite ara...",
+        "resultsFound": "{{count}} program bulundu",
+        "searching": "Aranıyor...",
+        "findingPrograms": "Programlar bulunuyor...",
+        "noResults": "Program bulunamadı",
+        "noResultsDesc": "Aramayı veya filtreleri değiştirmeyi deneyin",
+        "tryDifferent": "Farklı filtreler deneyin",
+        "filters": {
+            "all": "Tümü",
+            "bachelor": "Lisans",
+            "master": "Yüksek Lisans",
+            "phd": "Doktora",
+            "english": "İngilizce",
+            "chinese": "Çince"
+        }
+    },
+    "universities": {
+        "title": "Üniversiteler",
+        "subtitle": "Çin'in en iyi üniversitelerini keşfedin",
+        "programs": "Programlar",
+        "viewPrograms": "Programları Gör"
+    },
+    "cities": {
+        "title": "Tüm Şehirler",
+        "subtitle": "Çin'deki eğitim destinasyonlarını keşfedin",
+        "unis": "Üniversite"
+    },
+    "profile": {
+        "title": "Profil",
+        "guest": {
+            "welcome": "StudyIn'e Hoş Geldiniz!",
+            "subtitle": "Başvuruları takip etmek, favorileri kaydetmek ve üniversitelerle bağlantı kurmak için giriş yapın"
+        },
+        "welcome": "StudyIn'e Hoşgeldiniz!",
+        "signInDesc": "Başvuruları takip etmek, favorileri kaydetmek ve üniversitelerle iletişim kurmak için giriş yapın",
+        "signIn": "Giriş Yap",
+        "createAccount": "Hesap Oluştur",
+        "settings": "Ayarlar",
+        "menu": {
+            "editProfile": "Profili Düzenle",
+            "editProfileDesc": "Kişisel bilgilerinizi güncelleyin",
+            "notifications": "Bildirimler",
+            "notificationsDesc": "Bildirim tercihlerini yönetin",
+            "darkMode": "Karanlık Mod",
+            "darkModeDesc": "Karanlık tema geçişi",
+            "toggleDark": "Karanlık modu değiştir",
+            "darkActive": "Karanlık mod aktif",
+            "lightActive": "Aydınlık mod aktif",
+            "language": "Dil",
+            "languageDesc": "Türkçe",
+            "privacy": "Gizlilik ve Güvenlik",
+            "privacyDesc": "Hesap güvenliğinizi yönetin",
+            "payment": "Ödeme Yöntemleri",
+            "paymentDesc": "Ödeme seçeneklerini ekleyin veya yönetin",
+            "payments": "Ödeme Yöntemleri",
+            "paymentsDesc": "Ödeme seçeneklerini ekleyin veya yönetin",
+            "help": "Yardım ve Destek",
+            "helpDesc": "Yardım alın veya bizimle iletişime geçin",
+            "currency": "Para Birimi"
+        },
+        "features": {
+            "trackApps": "Başvuruları Takip Et",
+            "notifications": "Bildirimler",
+            "savedPrograms": "Kaydedilen Programlar"
+        },
+        "stats": {
+            "applications": "Başvurular",
+            "saved": "Kaydedilenler",
+            "messages": "Mesajlar"
+        },
+        "applications": "Başvurular",
+        "messages": "Mesajlar",
+        "profileComplete": "Profil Tamamlandı",
+        "signOut": "Çıkış Yap",
+        "version": "Sürüm {{version}}",
+        "complete": "%{{percent}} tamamlandı",
+        "unreadMessages": "{{count}} okunmamış mesaj",
+        "unreadMessages_plural": "{{count}} okunmamış mesaj"
+    },
+    "chat": {
+        "title": "AI Danışman",
+        "botName": "Chan Yag",
+        "welcome": "Merhaba! Ben Chan Yag, yapay zeka eğitim danışmanınız. Çin'de eğitim hakkında bana her şeyi sorabilirsiniz!",
+        "placeholder": "Bir mesaj yazın...",
+        "thinking": "Düşünüyor...",
+        "errorConnection": "Bağlantı hatası. Lütfen internetinizi kontrol edip tekrar deneyin.",
+        "errorGeneric": "Üzgünüm, işleminizi gerçekleştiremedim. Lütfen tekrar deneyin."
+    },
+    "application": {
+        "title": "Başvuru",
+        "status": {
+            "pending": "Beklemede",
+            "under_review": "İncelemede",
+            "documents_required": "Belge Gerekli",
+            "interview_scheduled": "Mülakat Planlandı",
+            "accepted": "Kabul Edildi",
+            "rejected": "Reddedildi"
+        },
+        "myApplications": "Başvurularım",
+        "noApplications": "Henüz başvuru yok",
+        "startJourney": "Yolculuğunuza başlayın"
+    },
+    "program": {
+        "details": "Program Detayları",
+        "highlights": "Program Özellikleri",
+        "tuitionYear": "Ücret/Yıl",
+        "duration": "Süre",
+        "language": "Dil",
+        "intake": "Başlangıç",
+        "about": "Program Hakkında",
+        "requirements": "Kabul Şartları",
+        "scholarships": "Mevcut Burslar",
+        "accommodation": "Konaklama",
+        "offeredBy": "Sunan",
+        "tuitionFee": "Eğitim Ücreti",
+        "notFound": "Program bulunamadı",
+        "notFoundDesc": "Aradığınız program mevcut değil",
+        "contactPrice": "Fiyat için iletişime geçin"
+    },
+    "articles": {
+        "title": "Makaleler ve Kaynaklar",
+        "subtitle": "Çin'deki öğrenciler için ipuçları ve rehberler",
+        "notFound": "Makale bulunamadı"
+    },
+    "auth": {
+        "loginTitle": "Tekrar Hoş Geldiniz",
+        "loginSubtitle": "Devam etmek için giriş yapın",
+        "registerTitle": "Hesap Oluştur",
+        "registerSubtitle": "Yolculuğunuza bugün başlayın",
+        "email": "E-posta",
+        "password": "Şifre",
+        "confirmPassword": "Şifre Onayı",
+        "fullName": "Tam Ad",
+        "forgotPassword": "Şifrenizi mi unuttunuz?",
+        "noAccount": "Hesabınız yok mu?",
+        "haveAccount": "Zaten hesabınız var mı?"
+    }
+}

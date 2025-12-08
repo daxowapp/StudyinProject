@@ -1,27 +1,79 @@
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native';
+import { View, ScrollView, StyleSheet, Pressable, Image, Switch, Text as RNText } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
-import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail } from 'lucide-react-native';
-import { useAuth } from '../../stores/auth';
-
-const menuItems = [
-    { Icon: User, label: 'Edit Profile', description: 'Update your personal information', color: '#C62828' },
-    { Icon: Bell, label: 'Notifications', description: 'Manage notification preferences', color: '#FF9800' },
-    { Icon: Globe, label: 'Language', description: 'English', color: '#2196F3' },
-    { Icon: Shield, label: 'Privacy & Security', description: 'Manage your account security', color: '#9C27B0' },
-    { Icon: CreditCard, label: 'Payment Methods', description: 'Add or manage payment options', color: '#4CAF50' },
-    { Icon: HelpCircle, label: 'Help & Support', description: 'Get help or contact us', color: '#FF5722' },
-];
+import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail, FileText, Moon, Sun, DollarSign } from 'lucide-react-native';
+import { useAuth, useUserApplications, useUserProfile, useUnreadMessages } from '../../hooks/useData';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useCurrency } from '../../contexts/CurrencyContext';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
+import { ThemedText as Text } from '../../components/ThemedText';
+import React, { useMemo } from 'react';
 
 export default function ProfileScreen() {
     const router = useRouter();
-    const { user, signOut } = useAuth();
+    const { t } = useTranslation();
+    const { user, signOut, loading: authLoading } = useAuth();
+    const { applications, loading: appsLoading } = useUserApplications();
+    const { profile, completionPercentage } = useUserProfile();
+    const { count: unreadCount } = useUnreadMessages();
+    const { isDark, toggleTheme, theme } = useTheme();
+    const { currencyInfo } = useCurrency();
+    const { currentLanguage, languages, isRTL } = useLanguage();
+
+    const currentLanguageInfo = languages.find(l => l.code === currentLanguage);
+
+    const menuItems = useMemo(() => [
+        { Icon: User, label: t('profile.menu.editProfile'), description: t('profile.menu.editProfileDesc'), color: '#C62828', action: 'edit_profile' },
+        { Icon: Bell, label: t('profile.menu.notifications'), description: t('profile.menu.notificationsDesc'), color: '#FF9800', action: 'notifications' },
+        { Icon: Moon, label: t('profile.menu.darkMode'), description: t('profile.menu.toggleDark'), color: '#6366F1', action: 'dark_mode', isToggle: true },
+        { Icon: Globe, label: t('profile.menu.language'), description: currentLanguageInfo?.nativeName || 'English', color: '#2196F3', action: 'language' },
+        { Icon: Shield, label: t('profile.menu.privacy'), description: t('profile.menu.privacyDesc'), color: '#9C27B0', action: 'security' },
+        { Icon: CreditCard, label: t('profile.menu.payments'), description: t('profile.menu.paymentsDesc'), color: '#4CAF50', action: 'payment' },
+        { Icon: HelpCircle, label: t('profile.menu.help'), description: t('profile.menu.helpDesc'), color: '#FF5722', action: 'help' },
+    ], [t, currentLanguageInfo]);
+
+    // Guest settings items (available before login)
+    const guestSettingsItems = useMemo(() => [
+        { Icon: isDark ? Moon : Sun, label: t('profile.menu.darkMode'), description: isDark ? t('profile.menu.darkActive') : t('profile.menu.lightActive'), color: '#6366F1', action: 'dark_mode', isToggle: true },
+        { Icon: Globe, label: t('profile.menu.language'), description: currentLanguageInfo?.nativeName || 'English', color: '#2196F3', action: 'language' },
+        { Icon: DollarSign, label: t('profile.menu.currency'), description: `${currencyInfo.flag} ${currencyInfo.code}`, color: '#4CAF50', action: 'currency' },
+    ], [t, isDark, currentLanguageInfo, currencyInfo]);
+
+    const handleMenuPress = (action: string) => {
+        switch (action) {
+            case 'edit_profile':
+                router.push('/profile/edit');
+                break;
+            case 'notifications':
+                router.push('/messages');
+                break;
+            case 'dark_mode':
+                toggleTheme();
+                break;
+            case 'language':
+                router.push('/profile/language');
+                break;
+            case 'currency':
+                router.push('/profile/currency');
+                break;
+            case 'security':
+                alert('Privacy & Security - Coming Soon!');
+                break;
+            case 'payment':
+                router.push('/profile/payments');
+                break;
+            case 'help':
+                router.push('/support');
+                break;
+        }
+    };
 
     if (!user) {
         return (
-            <View style={styles.container}>
-                <SafeAreaView edges={['top']} style={styles.safeArea}>
+            <View style={[styles.container, { backgroundColor: theme.background, direction: isRTL ? 'rtl' : 'ltr' }]}>
+                <SafeAreaView edges={['top']} style={[styles.safeArea, { backgroundColor: theme.primary }]}>
                     {/* Guest Header */}
                     <MotiView
                         from={{ opacity: 0, translateY: -20 }}
@@ -30,12 +82,12 @@ export default function ProfileScreen() {
                     >
                         <View style={styles.guestHeader}>
                             <MotiView
-                                animate={{ rotate: 360 }}
+                                animate={{ rotate: '360deg' }}
                                 transition={{ type: 'timing', duration: 20000, loop: true }}
                                 style={styles.headerBlob}
                             />
                             <View style={styles.headerContent}>
-                                <Text style={styles.guestHeaderTitle}>Profile</Text>
+                                <Text style={styles.guestHeaderTitle}>{t('profile.title')}</Text>
                                 <Pressable style={styles.settingsBtn}>
                                     <Settings size={20} color="#FFFFFF" />
                                 </Pressable>
@@ -44,95 +96,140 @@ export default function ProfileScreen() {
                     </MotiView>
 
                     {/* Guest Content */}
-                    <MotiView
-                        from={{ opacity: 0, translateY: 30, scale: 0.9 }}
-                        animate={{ opacity: 1, translateY: 0, scale: 1 }}
-                        transition={{ type: 'spring', delay: 200 }}
-                        style={styles.guestContainer}
-                    >
+                    <ScrollView contentContainerStyle={styles.guestScrollContent}>
                         <MotiView
-                            from={{ scale: 0, rotate: '-180deg' }}
-                            animate={{ scale: 1, rotate: '0deg' }}
-                            transition={{ type: 'spring', delay: 300 }}
+                            from={{ opacity: 0, translateY: 30, scale: 0.9 }}
+                            animate={{ opacity: 1, translateY: 0, scale: 1 }}
+                            transition={{ type: 'spring', delay: 200 }}
+                            style={[styles.guestContainer, { backgroundColor: theme.card }]}
                         >
-                            <View style={styles.guestIcon}>
-                                <User size={48} color="#FFFFFF" />
+                            <MotiView
+                                from={{ scale: 0, rotate: '-180deg' }}
+                                animate={{ scale: 1, rotate: '0deg' }}
+                                transition={{ type: 'spring', delay: 300 }}
+                            >
+                                <View style={styles.guestIcon}>
+                                    <User size={48} color="#FFFFFF" />
+                                </View>
+                            </MotiView>
+
+                            <Text style={[styles.guestTitle, { color: theme.text }]}>{t('profile.welcome')}</Text>
+                            <Text style={[styles.guestSubtitle, { color: theme.textSecondary }]}>
+                                {t('profile.signInDesc')}
+                            </Text>
+
+                            <MotiView
+                                from={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ type: 'spring', delay: 500 }}
+                                style={{ width: '100%' }}
+                            >
+                                <Pressable
+                                    style={styles.signInButton}
+                                    onPress={() => router.push('/(auth)/login')}
+                                >
+                                    <Text style={styles.signInButtonText}>{t('profile.signIn')}</Text>
+                                </Pressable>
+                            </MotiView>
+
+                            <MotiView
+                                from={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 600 }}
+                                style={{ width: '100%' }}
+                            >
+                                <Pressable
+                                    style={[styles.createAccountButton, { backgroundColor: theme.background, borderColor: theme.border }]}
+                                    onPress={() => router.push('/(auth)/register')}
+                                >
+                                    <Text style={[styles.createAccountText, { color: theme.text }]}>{t('profile.createAccount')}</Text>
+                                </Pressable>
+                            </MotiView>
+
+                            {/* Guest Features */}
+                            <View style={styles.features}>
+                                {[
+                                    { Icon: Mail, label: t('profile.features.trackApps') },
+                                    { Icon: Bell, label: t('profile.features.notifications') },
+                                    { Icon: User, label: t('profile.features.savedPrograms') },
+                                ].map((feature, index) => (
+                                    <MotiView
+                                        key={index}
+                                        from={{ opacity: 0, translateY: 10 }}
+                                        animate={{ opacity: 1, translateY: 0 }}
+                                        transition={{ type: 'spring', delay: 700 + index * 100 }}
+                                        style={styles.featureItem}
+                                    >
+                                        <View style={[styles.featureIcon, { backgroundColor: theme.background }]}>
+                                            <feature.Icon size={20} color={theme.textSecondary} />
+                                        </View>
+                                        <Text style={[styles.featureText, { color: theme.textSecondary }]}>{feature.label}</Text>
+                                    </MotiView>
+                                ))}
                             </View>
                         </MotiView>
 
-                        <Text style={styles.guestTitle}>Welcome to StudyIn!</Text>
-                        <Text style={styles.guestSubtitle}>
-                            Sign in to track applications, save favorites, and connect with universities
-                        </Text>
-
-                        <MotiView
-                            from={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ type: 'spring', delay: 500 }}
-                            style={{ width: '100%' }}
-                        >
-                            <Pressable
-                                style={styles.signInButton}
-                                onPress={() => router.push('/(auth)/login')}
-                            >
-                                <Text style={styles.signInButtonText}>Sign In</Text>
-                            </Pressable>
-                        </MotiView>
-
-                        <MotiView
-                            from={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 600 }}
-                            style={{ width: '100%' }}
-                        >
-                            <Pressable
-                                style={styles.createAccountButton}
-                                onPress={() => router.push('/(auth)/register')}
-                            >
-                                <Text style={styles.createAccountText}>Create Account</Text>
-                            </Pressable>
-                        </MotiView>
-
-                        {/* Guest Features */}
-                        <View style={styles.features}>
-                            {[
-                                { Icon: Mail, label: 'Track Applications' },
-                                { Icon: Bell, label: 'Notifications' },
-                                { Icon: User, label: 'Saved Programs' },
-                            ].map((feature, index) => (
+                        {/* Guest Settings Section */}
+                        <View style={[styles.guestSettingsSection, { backgroundColor: theme.card }]}>
+                            <Text style={[styles.guestSettingsTitle, { color: theme.textSecondary }]}>{t('profile.settings')}</Text>
+                            {guestSettingsItems.map((item, index) => (
                                 <MotiView
-                                    key={index}
-                                    from={{ opacity: 0, translateY: 10 }}
-                                    animate={{ opacity: 1, translateY: 0 }}
-                                    transition={{ type: 'spring', delay: 700 + index * 100 }}
-                                    style={styles.featureItem}
+                                    key={item.label}
+                                    from={{ opacity: 0, translateX: -20 }}
+                                    animate={{ opacity: 1, translateX: 0 }}
+                                    transition={{ type: 'spring', delay: 800 + index * 80 }}
                                 >
-                                    <View style={styles.featureIcon}>
-                                        <feature.Icon size={20} color="#737373" />
-                                    </View>
-                                    <Text style={styles.featureText}>{feature.label}</Text>
+                                    <Pressable
+                                        style={[
+                                            styles.guestMenuItem,
+                                            index < guestSettingsItems.length - 1 && { borderBottomWidth: 1, borderBottomColor: theme.border }
+                                        ]}
+                                        onPress={() => handleMenuPress(item.action)}
+                                    >
+                                        <View style={[styles.menuIconContainer, { backgroundColor: item.color + '15' }]}>
+                                            <item.Icon size={22} color={item.color} />
+                                        </View>
+                                        <View style={styles.menuContent}>
+                                            <Text style={[styles.menuTitle, { color: theme.text }]}>{item.label}</Text>
+                                            <Text style={[styles.menuSubtitle, { color: theme.textSecondary }]}>
+                                                {item.description}
+                                            </Text>
+                                        </View>
+                                        {item.isToggle ? (
+                                            <Switch
+                                                value={isDark}
+                                                onValueChange={toggleTheme}
+                                                trackColor={{ false: '#E5E7EB', true: '#6366F1' }}
+                                                thumbColor={isDark ? '#FFFFFF' : '#F3F4F6'}
+                                            />
+                                        ) : (
+                                            <ChevronRight size={20} color={theme.textMuted} />
+                                        )}
+                                    </Pressable>
                                 </MotiView>
                             ))}
                         </View>
-                    </MotiView>
+
+                        <View style={{ height: 100 }} />
+                    </ScrollView>
                 </SafeAreaView>
             </View>
         );
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: theme.background, direction: isRTL ? 'rtl' : 'ltr' }]}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <SafeAreaView edges={['top']}>
+                <SafeAreaView edges={['top']} style={{ backgroundColor: theme.primary }}>
                     {/* Header */}
                     <View style={styles.header}>
                         <MotiView
-                            animate={{ rotate: 360 }}
+                            animate={{ rotate: '360deg' }}
                             transition={{ type: 'timing', duration: 20000, loop: true }}
                             style={styles.headerBlob}
                         />
                         <View style={styles.headerContent}>
-                            <Text style={styles.headerTitle}>Profile</Text>
+                            <Text style={styles.headerTitle}>{t('profile.title')}</Text>
                             <Pressable style={styles.settingsBtn}>
                                 <Settings size={20} color="#FFFFFF" />
                             </Pressable>
@@ -147,38 +244,67 @@ export default function ProfileScreen() {
                         >
                             <View style={styles.profileRow}>
                                 <View style={styles.avatar}>
-                                    <User size={32} color="#C62828" />
+                                    {profile?.profile_photo_url ? (
+                                        <Image
+                                            source={{ uri: profile.profile_photo_url }}
+                                            style={{ width: 60, height: 60, borderRadius: 30 }}
+                                        />
+                                    ) : (
+                                        <User size={32} color="#C62828" />
+                                    )}
                                 </View>
                                 <View style={styles.profileInfo}>
-                                    <Text style={styles.userName}>{user.email?.split('@')[0] || 'Student'}</Text>
+                                    <Text style={styles.userName}>
+                                        {profile?.full_name || user.email?.split('@')[0] || 'Student'}
+                                    </Text>
                                     <Text style={styles.userEmail}>{user.email}</Text>
+                                    {completionPercentage < 100 && (
+                                        <View style={styles.completionBadge}>
+                                            <Text style={styles.completionText}>
+                                                {t('profile.complete', { percent: completionPercentage })}
+                                            </Text>
+                                        </View>
+                                    )}
                                 </View>
                             </View>
 
                             {/* Stats */}
                             <View style={styles.statsRow}>
                                 {[
-                                    { value: '3', label: 'Applications' },
-                                    { value: '5', label: 'Saved' },
-                                    { value: '12', label: 'Messages' },
+                                    { value: applications.length.toString(), label: t('profile.stats.applications'), action: 'dashboard' },
+                                    { value: '0', label: t('profile.stats.saved'), action: 'saved' },
+                                    { value: unreadCount.toString(), label: t('profile.stats.messages'), action: 'messages' },
                                 ].map((stat, index) => (
-                                    <MotiView
+                                    <Pressable
                                         key={index}
-                                        from={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ type: 'spring', delay: 300 + index * 100 }}
-                                        style={styles.statItem}
+                                        onPress={() => {
+                                            if (stat.action === 'dashboard') {
+                                                router.push('/dashboard');
+                                            } else if (stat.action === 'messages') {
+                                                router.push('/messages');
+                                            } else if (stat.action === 'saved') {
+                                                router.push('/profile/saved');
+                                            }
+                                        }}
+                                        style={styles.statWrapper}
                                     >
-                                        <Text style={styles.statNumber}>{stat.value}</Text>
-                                        <Text style={styles.statLabel}>{stat.label}</Text>
-                                    </MotiView>
+                                        <MotiView
+                                            from={{ opacity: 0, scale: 0.5 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ type: 'spring', delay: 300 + index * 100 }}
+                                            style={styles.statItem}
+                                        >
+                                            <Text style={styles.statNumber}>{stat.value}</Text>
+                                            <Text style={styles.statLabel}>{stat.label}</Text>
+                                        </MotiView>
+                                    </Pressable>
                                 ))}
                             </View>
                         </MotiView>
                     </View>
 
                     {/* Menu Items */}
-                    <View style={styles.menuSection}>
+                    <View style={[styles.menuSection, { backgroundColor: theme.card }]}>
                         {menuItems.map((item, index) => (
                             <MotiView
                                 key={item.label}
@@ -186,15 +312,42 @@ export default function ProfileScreen() {
                                 animate={{ opacity: 1, translateX: 0 }}
                                 transition={{ type: 'spring', delay: 400 + index * 80 }}
                             >
-                                <Pressable style={styles.menuItem}>
+                                <Pressable
+                                    style={[styles.menuItem, { borderBottomColor: theme.border }]}
+                                    onPress={() => handleMenuPress(item.action)}
+                                >
                                     <View style={[styles.menuIconContainer, { backgroundColor: item.color + '15' }]}>
-                                        <item.Icon size={22} color={item.color} />
+                                        {item.action === 'dark_mode' ? (
+                                            isDark ? <Moon size={22} color={item.color} /> : <Sun size={22} color={item.color} />
+                                        ) : (
+                                            <item.Icon size={22} color={item.color} />
+                                        )}
+                                        {item.action === 'notifications' && unreadCount > 0 && (
+                                            <View style={styles.notificationBadge}>
+                                                <Text style={styles.notificationBadgeText}>{unreadCount > 9 ? '9+' : unreadCount}</Text>
+                                            </View>
+                                        )}
                                     </View>
                                     <View style={styles.menuContent}>
-                                        <Text style={styles.menuTitle}>{item.label}</Text>
-                                        <Text style={styles.menuSubtitle}>{item.description}</Text>
+                                        <Text style={[styles.menuTitle, { color: theme.text }]}>{item.label}</Text>
+                                        <Text style={[styles.menuSubtitle, { color: theme.textSecondary }]}>
+                                            {item.action === 'dark_mode'
+                                                ? (isDark ? t('profile.menu.darkActive') : t('profile.menu.lightActive'))
+                                                : item.action === 'notifications' && unreadCount > 0
+                                                    ? t('profile.unreadMessages_plural', { count: unreadCount })
+                                                    : item.description}
+                                        </Text>
                                     </View>
-                                    <ChevronRight size={20} color="#CBD5E1" />
+                                    {item.action === 'dark_mode' ? (
+                                        <Switch
+                                            value={isDark}
+                                            onValueChange={toggleTheme}
+                                            trackColor={{ false: '#E5E7EB', true: '#6366F1' }}
+                                            thumbColor={isDark ? '#FFFFFF' : '#F3F4F6'}
+                                        />
+                                    ) : (
+                                        <ChevronRight size={20} color={theme.textMuted} />
+                                    )}
                                 </Pressable>
                             </MotiView>
                         ))}
@@ -209,9 +362,9 @@ export default function ProfileScreen() {
                     >
                         <Pressable style={styles.signOutButton} onPress={signOut}>
                             <LogOut size={20} color="#C62828" />
-                            <Text style={styles.signOutText}>Sign Out</Text>
+                            <Text style={styles.signOutText}>{t('profile.signOut')}</Text>
                         </Pressable>
-                        <Text style={styles.versionText}>Version 1.0.0</Text>
+                        <Text style={styles.versionText}>{t('profile.version', { version: '1.0.0' })}</Text>
                     </MotiView>
 
                     <View style={{ height: 100 }} />
@@ -408,7 +561,7 @@ const styles = StyleSheet.create({
     },
     profileInfo: {
         flex: 1,
-        marginLeft: 16,
+        marginStart: 16,
     },
     userName: {
         fontSize: 22,
@@ -427,8 +580,11 @@ const styles = StyleSheet.create({
         borderTopColor: '#F5F5F5',
         paddingTop: 16,
     },
-    statItem: {
+    statWrapper: {
         flex: 1,
+        alignItems: 'center',
+    },
+    statItem: {
         alignItems: 'center',
     },
     statNumber: {
@@ -468,7 +624,7 @@ const styles = StyleSheet.create({
     },
     menuContent: {
         flex: 1,
-        marginLeft: 14,
+        marginStart: 14,
     },
     menuTitle: {
         fontSize: 16,
@@ -507,5 +663,58 @@ const styles = StyleSheet.create({
         color: '#A0A0A0',
         marginTop: 20,
         fontWeight: '600',
+    },
+    completionBadge: {
+        marginTop: 6,
+        backgroundColor: '#FEF3C7',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 12,
+        alignSelf: 'flex-start',
+    },
+    completionText: {
+        fontSize: 11,
+        fontWeight: '600',
+        color: '#D97706',
+    },
+    notificationBadge: {
+        position: 'absolute',
+        top: -4,
+        right: -4,
+        backgroundColor: '#EF4444',
+        borderRadius: 10,
+        minWidth: 18,
+        height: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 4,
+    },
+    notificationBadgeText: {
+        fontSize: 10,
+        fontWeight: '700',
+        color: '#FFF',
+    },
+    guestScrollContent: {
+        flexGrow: 1,
+        padding: 20,
+    },
+    guestSettingsSection: {
+        marginTop: 20,
+        borderRadius: 18,
+        overflow: 'hidden',
+    },
+    guestSettingsTitle: {
+        fontSize: 13,
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        paddingBottom: 8,
+    },
+    guestMenuItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 14,
     },
 });

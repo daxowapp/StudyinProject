@@ -43,6 +43,8 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 12;
 
     const [filters, setFilters] = useState<FilterState>({
         search: '',
@@ -256,6 +258,34 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
         });
     }, [programs, filters]);
 
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filters]);
+
+    // Calculate pagination
+    const totalPages = Math.ceil(filteredPrograms.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedPrograms = filteredPrograms.slice(startIndex, endIndex);
+
+    // Generate page numbers to display
+    const getPageNumbers = () => {
+        const pages: (number | string)[] = [];
+        if (totalPages <= 7) {
+            for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+            if (currentPage <= 3) {
+                pages.push(1, 2, 3, 4, '...', totalPages);
+            } else if (currentPage >= totalPages - 2) {
+                pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+            } else {
+                pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+            }
+        }
+        return pages;
+    };
+
     // Count active filters
     const activeFilterCount = useMemo(() => {
         let count = 0;
@@ -436,7 +466,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
 
                     {/* Results Grid */}
                     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                        {filteredPrograms.map((program) => (
+                        {paginatedPrograms.map((program) => (
                             <ProgramCard key={program.id} program={program} />
                         ))}
                         {!filteredPrograms.length && (
@@ -457,29 +487,46 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                     </div>
 
                     {/* Pagination */}
-                    {filteredPrograms.length > 0 && (
+                    {totalPages > 1 && (
                         <div className="bg-card rounded-xl border shadow-sm p-4">
-                            <div className="flex justify-center items-center gap-2">
-                                <Button variant="outline" size="icon" disabled className="h-10 w-10">
+                            <div className="flex justify-center items-center gap-2 flex-wrap">
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    disabled={currentPage === 1}
+                                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                                    className="h-10 w-10"
+                                >
                                     <ChevronLeft className="h-4 w-4" />
                                 </Button>
-                                <Button size="sm" className="h-10 min-w-10">
-                                    1
-                                </Button>
-                                <Button variant="outline" size="sm" className="h-10 min-w-10">
-                                    2
-                                </Button>
-                                <Button variant="outline" size="sm" className="h-10 min-w-10">
-                                    3
-                                </Button>
-                                <span className="px-2 text-muted-foreground">...</span>
-                                <Button variant="outline" size="sm" className="h-10 min-w-10">
-                                    10
-                                </Button>
-                                <Button variant="outline" size="icon" className="h-10 w-10">
+                                {getPageNumbers().map((page, index) => (
+                                    typeof page === 'number' ? (
+                                        <Button
+                                            key={index}
+                                            variant={currentPage === page ? "default" : "outline"}
+                                            size="sm"
+                                            onClick={() => setCurrentPage(page)}
+                                            className="h-10 min-w-10"
+                                        >
+                                            {page}
+                                        </Button>
+                                    ) : (
+                                        <span key={index} className="px-2 text-muted-foreground">...</span>
+                                    )
+                                ))}
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    disabled={currentPage === totalPages}
+                                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                                    className="h-10 w-10"
+                                >
                                     <ChevronRight className="h-4 w-4" />
                                 </Button>
                             </div>
+                            <p className="text-center text-sm text-muted-foreground mt-3">
+                                {t('stats.showing')} {startIndex + 1}-{Math.min(endIndex, filteredPrograms.length)} of {filteredPrograms.length}
+                            </p>
                         </div>
                     )}
                 </div>

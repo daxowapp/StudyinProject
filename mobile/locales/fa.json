@@ -1,0 +1,216 @@
+{
+    "common": {
+        "welcome": "خوش آمدید",
+        "login": "ورود",
+        "register": "ثبت نام",
+        "logout": "خروج",
+        "search": "جستجو",
+        "cancel": "لغو",
+        "save": "ذخیره",
+        "continue": "ادامه",
+        "back": "بازگشت",
+        "next": "بعدی",
+        "submit": "ارسال",
+        "loading": "در حال بارگذاری...",
+        "error": "خطا",
+        "success": "موفقیت",
+        "seeAll": "مشاهده همه",
+        "apply": "اکنون درخواست دهید",
+        "viewDetails": "مشاهده جزئیات",
+        "viewAll": "مشاهده همه",
+        "minRead": "دقیقه مطالعه",
+        "views": "بازدید",
+        "degree": "مدرک تحصیلی",
+        "filters": "فیلترها",
+        "reset": "بازنشانی",
+        "field": "رشته تحصیلی",
+        "language": "زبان",
+        "location": "مکان",
+        "scholarships": "بورسیه‌ها",
+        "scholarshipOnly": "فقط بورسیه‌ها",
+        "tuitionRange": "محدوده شهریه",
+        "years": "سال",
+        "city": "شهر",
+        "enterCity": "نام شهر را وارد کنید مانند پکن، شانگهای...",
+        "fullScholarship": "بورسیه کامل موجود است",
+        "applyFilters": "اعمال فیلترها",
+        "resetAll": "بازنشانی همه",
+        "studyFields": {
+            "all": "همه",
+            "engineering": "مهندسی",
+            "business": "تجارت",
+            "medicine": "پزشکی",
+            "computer": "کامپیوتر",
+            "arts": "هنر",
+            "science": "علوم",
+            "law": "حقوق"
+        }
+    },
+    "home": {
+        "title": "تحصیل در چین",
+        "subtitle": "دروازه شما به آموزش جهانی",
+        "tagline": "به بیش از 50,000 دانشجوی بین‌المللی در بهترین دانشگاه‌های چین بپیوندید",
+        "searchPlaceholder": "جستجوی برنامه‌ها، دانشگاه‌ها...",
+        "admissionsOpen": "پذیرش 2026 باز است",
+        "quickActions": {
+            "findPrograms": "یافتن برنامه‌ها",
+            "universities": "دانشگاه‌ها",
+            "scholarships": "بورسیه‌ها"
+        },
+        "stats": {
+            "universities": "دانشگاه‌ها",
+            "students": "دانشجویان",
+            "success": "موفقیت",
+            "scholarships": "بورسیه‌ها"
+        },
+        "popularCities": "شهرهای محبوب",
+        "exploreCities": "دانشگاه‌ها را بر اساس موقعیت کشف کنید",
+        "featuredPrograms": "برنامه‌های ویژه",
+        "topUniversities": "برترین دانشگاه‌ها",
+        "aiTitle": "مشاور تحصیلی هوشمند",
+        "aiSubtitle": "توصیه‌های برنامه شخصی دریافت کنید",
+        "latestArticles": "آخرین مقالات",
+        "noArticles": "هنوز مقاله‌ای وجود ندارد",
+        "checkBackSoon": "برای محتوای جدید بعداً سر بزنید!"
+    },
+    "explore": {
+        "title": "کاوش برنامه‌ها",
+        "subtitle": "برنامه مناسب خود را پیدا کنید",
+        "searchPlaceholder": "جستجوی برنامه‌ها، دانشگاه‌ها...",
+        "resultsFound": "{{count}} برنامه پیدا شد",
+        "searching": "در حال جستجو...",
+        "findingPrograms": "در حال یافتن برنامه‌ها...",
+        "noResults": "برنامه‌ای یافت نشد",
+        "noResultsDesc": "جستجو یا فیلترهای خود را تغییر دهید",
+        "tryDifferent": "فیلترهای دیگر را امتحان کنید",
+        "filters": {
+            "all": "همه",
+            "bachelor": "کارشناسی",
+            "master": "کارشناسی ارشد",
+            "phd": "دکتری",
+            "english": "انگلیسی",
+            "chinese": "چینی"
+        }
+    },
+    "universities": {
+        "title": "دانشگاه‌ها",
+        "subtitle": "بهترین دانشگاه‌های چین را کشف کنید",
+        "programs": "برنامه‌ها",
+        "viewPrograms": "مشاهده برنامه‌ها"
+    },
+    "cities": {
+        "title": "همه شهرها",
+        "subtitle": "مقاصد تحصیلی در چین را کشف کنید",
+        "unis": "دانشگاه"
+    },
+    "profile": {
+        "title": "پروفایل",
+        "guest": {
+            "welcome": "به StudyIn خوش آمدید!",
+            "subtitle": "برای پیگیری درخواست‌ها، ذخیره علاقه‌مندی‌ها و ارتباط با دانشگاه‌ها وارد شوید"
+        },
+        "welcome": "به StudyIn خوش آمدید!",
+        "signInDesc": "برای پیگیری درخواست‌ها، ذخیره علاقه‌مندی‌ها و ارتباط با دانشگاه‌ها وارد شوید",
+        "signIn": "ورود",
+        "createAccount": "ایجاد حساب کاربری",
+        "settings": "تنظیمات",
+        "menu": {
+            "editProfile": "ویرایش پروفایل",
+            "editProfileDesc": "بروزرسانی اطلاعات شخصی",
+            "notifications": "اعلانات",
+            "notificationsDesc": "مدیریت تنظیمات اعلان",
+            "darkMode": "حالت تاریک",
+            "darkModeDesc": "تغییر تم تاریک",
+            "toggleDark": "تغییر حالت تاریک",
+            "darkActive": "حالت تاریک فعال است",
+            "lightActive": "حالت روشن فعال است",
+            "language": "زبان",
+            "languageDesc": "فارسی",
+            "privacy": "حریم خصوصی و امنیت",
+            "privacyDesc": "مدیریت امنیت حساب",
+            "payment": "روش‌های پرداخت",
+            "paymentDesc": "افزودن یا مدیریت گزینه‌های پرداخت",
+            "payments": "روش‌های پرداخت",
+            "paymentsDesc": "افزودن یا مدیریت گزینه‌های پرداخت",
+            "help": "راهنما و پشتیبانی",
+            "helpDesc": "دریافت کمک یا تماس با ما",
+            "currency": "ارز"
+        },
+        "features": {
+            "trackApps": "پیگیری درخواست‌ها",
+            "notifications": "اعلانات",
+            "savedPrograms": "برنامه‌های ذخیره شده"
+        },
+        "stats": {
+            "applications": "درخواست‌ها",
+            "saved": "ذخیره شده",
+            "messages": "پیام‌ها"
+        },
+        "applications": "درخواست‌ها",
+        "messages": "پیام‌ها",
+        "profileComplete": "تکمیل پروفایل",
+        "signOut": "خروج",
+        "version": "نسخه {{version}}",
+        "complete": "{{percent}}% کامل شده",
+        "unreadMessages": "{{count}} پیام خوانده نشده",
+        "unreadMessages_plural": "{{count}} پیام خوانده نشده"
+    },
+    "chat": {
+        "title": "مشاور هوشمند",
+        "botName": "چان یاگ",
+        "welcome": "سلام! من چان یاگ هستم، مشاور تحصیلی هوشمند شما. هر سوالی درباره تحصیل در چین دارید بپرسید!",
+        "placeholder": "پیامی بنویسید...",
+        "thinking": "در حال فکر کردن...",
+        "errorConnection": "خطای اتصال. لطفاً اینترنت خود را بررسی کرده و دوباره تلاش کنید.",
+        "errorGeneric": "متاسفم، نتوانستم درخواست شما را پردازش کنم. لطفاً دوباره تلاش کنید."
+    },
+    "application": {
+        "title": "درخواست",
+        "status": {
+            "pending": "در انتظار",
+            "under_review": "در حال بررسی",
+            "documents_required": "مدارک مورد نیاز",
+            "interview_scheduled": "مصاحبه برنامه‌ریزی شده",
+            "accepted": "پذیرفته شده",
+            "rejected": "رد شده"
+        },
+        "myApplications": "درخواست‌های من",
+        "noApplications": "هنوز درخواستی ندارید",
+        "startJourney": "سفر خود را شروع کنید"
+    },
+    "program": {
+        "details": "جزئیات برنامه",
+        "highlights": "نکات برجسته برنامه",
+        "tuitionYear": "شهریه/سال",
+        "duration": "مدت دوره",
+        "language": "زبان",
+        "intake": "شروع دوره",
+        "about": "درباره برنامه",
+        "requirements": "شرایط پذیرش",
+        "scholarships": "بورسیه‌های موجود",
+        "accommodation": "خوابگاه",
+        "offeredBy": "ارائه شده توسط",
+        "tuitionFee": "شهریه تحصیلی",
+        "notFound": "برنامه یافت نشد",
+        "notFoundDesc": "برنامه‌ای که به دنبال آن هستید وجود ندارد",
+        "contactPrice": "تماس برای قیمت"
+    },
+    "articles": {
+        "title": "مقالات و منابع",
+        "subtitle": "نکات و راهنما برای دانشجویان در چین",
+        "notFound": "مقاله یافت نشد"
+    },
+    "auth": {
+        "loginTitle": "خوش آمدید",
+        "loginSubtitle": "برای ادامه وارد شوید",
+        "registerTitle": "ایجاد حساب",
+        "registerSubtitle": "سفر خود را امروز شروع کنید",
+        "email": "ایمیل",
+        "password": "رمز عبور",
+        "confirmPassword": "تأیید رمز عبور",
+        "fullName": "نام کامل",
+        "forgotPassword": "رمز عبور را فراموش کردید؟",
+        "noAccount": "حساب ندارید؟",
+        "haveAccount": "قبلاً حساب دارید؟"
+    }
+}

@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState, useEffect, use } from "react";
+import { use, useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import {
@@ -121,86 +121,89 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         advisor_chat_url: "",
     });
 
+    const fetchUniversity = useCallback(async () => {
+        setLoading(true);
+        const supabase = createClient();
+
+        // Fetch university
+        const { data, error } = await supabase
+            .from("universities")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+        // Fetch programs from the new university_programs table via view
+        const { data: programsData } = await supabase
+            .from("v_university_programs_full")
+            .select("*")
+            .eq("university_id", id);
+
+        // Fetch scholarships
+        const { data: scholarshipsData } = await supabase
+            .from("university_scholarships")
+            .select("*")
+            .eq("university_id", id)
+            .order("display_order", { ascending: true });
+
+        // Fetch languages for ProgramDialog
+        const { data: languagesData } = await supabase
+            .from("languages")
+            .select("*")
+            .order("name");
+
+        // Fetch translations
+        const { data: translationsData } = await supabase
+            .from("university_translations")
+            .select("*")
+            .eq("university_id", id);
+
+        if (error) {
+            toast.error("Error fetching university: " + error.message);
+            router.push("/admin/universities"); // Keep original behavior
+        } else {
+            setFormData({
+                name: data.name,
+                name_local: data.name_local || "",
+                slug: data.slug || "", // Retain original slug handling
+                city: data.city,
+                province: data.province,
+                // country: data.country,
+                description: data.description || "",
+                website: data.website || "",
+                logo_url: data.logo_url || "",
+                cover_photo_url: data.cover_photo_url || "",
+                video_url: data.video_url || "", // Retain original video_url handling
+                gallery_images: data.gallery_images || [],
+                latitude: data.latitude || "",
+                longitude: data.longitude || "",
+                founded: data.founded || "",
+                total_students: data.total_students || "",
+                international_students: data.international_students || "",
+                ranking: data.ranking || "",
+                features: data.features || [],
+                has_fast_track: data.has_fast_track || false,
+                university_type: data.university_type || "", // Retain original university_type handling
+                institution_category: data.institution_category || "", // Retain original institution_category handling
+                brochure_url: data.brochure_url || "",
+                virtual_tour_url: data.virtual_tour_url || "",
+                schedule_call_url: data.schedule_call_url || "",
+                advisor_chat_url: data.advisor_chat_url || "",
+            });
+            setLogoPreview(data.logo_url || "");
+            setCoverPhotoPreview(data.cover_photo_url || "");
+            setGalleryPreviews(data.gallery_images || []);
+            // Set programs from the view data
+            setPrograms(programsData || []);
+            setLanguages(languagesData || []);
+            setScholarships(scholarshipsData || []);
+            setTranslations(translationsData || []);
+        }
+        setLoading(false);
+    }, [id, router]); // Added router to dependencies as it's used in the callback
+
     useEffect(() => {
-        const fetchUniversity = async () => {
-            const supabase = createClient();
-
-            // Fetch university
-            const { data, error } = await supabase
-                .from("universities")
-                .select("*")
-                .eq("id", id)
-                .single();
-
-            // Fetch programs from the new university_programs table via view
-            const { data: programsData } = await supabase
-                .from("v_university_programs_full")
-                .select("*")
-                .eq("university_id", id);
-
-            // Fetch scholarships
-            const { data: scholarshipsData } = await supabase
-                .from("university_scholarships")
-                .select("*")
-                .eq("university_id", id)
-                .order("display_order", { ascending: true });
-
-            // Fetch languages for ProgramDialog
-            const { data: languagesData } = await supabase
-                .from("languages")
-                .select("*")
-                .order("name");
-
-            // Fetch translations
-            const { data: translationsData } = await supabase
-                .from("university_translations")
-                .select("*")
-                .eq("university_id", id);
-
-            if (error) {
-                toast.error("Error fetching university");
-                router.push("/admin/universities");
-            } else {
-                setFormData({
-                    name: data.name || "",
-                    name_local: data.name_local || "",
-                    slug: data.slug || "",
-                    city: data.city || "",
-                    province: data.province || "",
-                    description: data.description || "",
-                    website: data.website || "",
-                    logo_url: data.logo_url || "",
-                    cover_photo_url: data.cover_photo_url || "",
-                    video_url: data.video_url || "",
-                    gallery_images: data.gallery_images || [],
-                    latitude: data.latitude || "",
-                    longitude: data.longitude || "",
-                    founded: data.founded || "",
-                    total_students: data.total_students || "",
-                    international_students: data.international_students || "",
-                    ranking: data.ranking || "",
-                    features: data.features || [],
-                    has_fast_track: data.has_fast_track || false,
-                    university_type: data.university_type || "",
-                    institution_category: data.institution_category || "",
-                    brochure_url: data.brochure_url || "",
-                    virtual_tour_url: data.virtual_tour_url || "",
-                    schedule_call_url: data.schedule_call_url || "",
-                    advisor_chat_url: data.advisor_chat_url || "",
-                });
-                setLogoPreview(data.logo_url || "");
-                setCoverPhotoPreview(data.cover_photo_url || "");
-                setGalleryPreviews(data.gallery_images || []);
-                // Set programs from the view data
-                setPrograms(programsData || []);
-                setLanguages(languagesData || []);
-                setScholarships(scholarshipsData || []);
-                setTranslations(translationsData || []);
-            }
-            setLoading(false);
-        };
         fetchUniversity();
-    }, [id, router]);
+    }, [fetchUniversity]);
 
     const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -1052,6 +1055,8 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                             program={p}
                                                             universities={[{ id: id, name: formData.name }]}
                                                             languages={languages}
+                                                            universityId={id}
+                                                            onSuccess={fetchUniversity}
                                                             trigger={
                                                                 <Button variant="ghost" size="sm">
                                                                     <Edit className="h-4 w-4 mr-1" />
