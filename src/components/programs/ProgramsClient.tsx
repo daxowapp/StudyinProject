@@ -22,6 +22,7 @@ interface Program {
     slug?: string;
     name: string;
     university: string;
+    university_slug?: string;
     city: string;
     level: string;
     duration: string;
@@ -141,23 +142,9 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
             newFilters.duration = duration;
         }
 
-        // Handle university filter from URL
+        // Handle university filter from URL - filter by slug directly
         if (universitySlug) {
-            // First try to look up in the map
-            const mappedName = universityMap[universitySlug];
-
-            if (mappedName) {
-                newFilters.university = mappedName;
-            } else if (programs.length > 0) {
-                // Fallback to existing logic
-                const universityFromSlug = programs.find(p =>
-                    p.university.toLowerCase().replace(/\s+/g, '-') === universitySlug
-                )?.university;
-
-                if (universityFromSlug) {
-                    newFilters.university = universityFromSlug;
-                }
-            }
+            newFilters.university = universitySlug; // Store slug as filter value
         }
 
         // Apply all filters at once
@@ -239,9 +226,13 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                 if (!hasMatchingCity) return false;
             }
 
-            // University filter
-            if (filters.university !== 'all' && program.university !== filters.university) {
-                return false;
+            // University filter - match by slug if available, otherwise by name
+            if (filters.university !== 'all') {
+                const matchesBySlug = program.university_slug === filters.university;
+                const matchesByName = program.university === filters.university;
+                if (!matchesBySlug && !matchesByName) {
+                    return false;
+                }
             }
 
             // Duration filter

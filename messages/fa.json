@@ -51,6 +51,14 @@
                 "title": "بدون مدرک",
                 "description": "دوره‌های زبان و برنامه‌های کوتاه‌مدت."
             },
+            "diploma": {
+                "title": "دیپلم",
+                "description": "برنامه‌های فنی و حرفه‌ای."
+            },
+            "language": {
+                "title": "دوره زبان",
+                "description": "یادگیری زبان چینی."
+            },
             "viewAll": "مشاهده همه برنامه‌ها"
         },
         "viewAllUniversities": "مشاهده همه دانشگاه‌ها",
@@ -482,7 +490,9 @@
             "levels": {
                 "bachelor": "کارشناسی",
                 "master": "کارشناسی ارشد",
-                "phd": "دکترا"
+                "phd": "دکترا",
+                "diploma": "دیپلم",
+                "language": "دوره زبان"
             },
             "fields": {
                 "business": "تجارت و مدیریت",
@@ -490,7 +500,9 @@
                 "medicine": "پزشکی و علوم بهداشتی",
                 "arts": "هنر و علوم انسانی",
                 "science": "علوم طبیعی",
-                "education": "آموزش"
+                "education": "آموزش",
+                "cs": "علوم کامپیوتر",
+                "law": "حقوق"
             },
             "languages": {
                 "english": "انگلیسی",
@@ -596,6 +608,9 @@
                 "facilities": "امکانات و منابع مدرن",
                 "career": "پشتیبانی توسعه شغلی"
             }
+        },
+        "accommodation": {
+            "title": "گزینه‌های اسکان"
         }
     },
     "UniversityDetail": {
@@ -872,6 +887,7 @@
     "Status": {
         "pending_documents": "در انتظار مدارک",
         "pending_payment": "در انتظار پرداخت",
+        "payment_verification": "تایید پرداخت",
         "submitted": "ارسال شده",
         "under_review": "در حال بررسی",
         "accepted": "پذیرفته شده",
@@ -1008,5 +1024,23 @@
             "rejectDescription": "این کار درخواست را به عنوان رد شده علامت‌گذاری می‌کند.",
             "adminResponsePlaceholder": "یک یادداشت برای دانشجو اضافه کنید..."
         }
+    },
+    "Messages": {
+        "title": "پیام‌ها",
+        "actionRequired": "اقدام مورد نیاز",
+        "actionCompleted": "تکمیل شده",
+        "reply": "پاسخ",
+        "replyingTo": "پاسخ به {name}",
+        "typeReply": "پاسخ خود را بنویسید...",
+        "sendReply": "ارسال پاسخ",
+        "sending": "در حال ارسال...",
+        "cancel": "لغو",
+        "you": "شما",
+        "admin": "تیم پذیرش",
+        "replyTooltip": "پاسخ به این پیام",
+        "actionRequiredMessage": "لطفاً به این پیام پاسخ دهید یا اقدام خواسته شده را تکمیل کنید.",
+        "takeAction": "اقدام کنید",
+        "attachment": "پیوست",
+        "attachments": "پیوست‌ها"
     }
 }

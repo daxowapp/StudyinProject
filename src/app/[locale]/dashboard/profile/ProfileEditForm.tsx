@@ -24,9 +24,9 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
     const t = useTranslations('Profile');
 
     // Helper to get initial value with fallbacks
-    const getInitialValue = (key: string, fallback: string = "") => {
-        if (profile && profile[key]) return profile[key];
-        if (user?.user_metadata && user.user_metadata[key]) return user.user_metadata[key];
+    const getInitialValue = (key: string, fallback: string = ""): string => {
+        if (profile && profile[key]) return profile[key] as string;
+        if (user?.user_metadata && user.user_metadata[key]) return user.user_metadata[key] as string;
         return fallback;
     };
 
@@ -168,9 +168,9 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <User className="h-5 w-5" />
-                        {t('photo')}
+                        {t('photo.title')}
                     </CardTitle>
-                    <CardDescription>{t('uploadPhoto')}</CardDescription>
+                    <CardDescription>{t('photo.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center gap-6">
@@ -188,7 +188,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                                     ) : (
                                         <Upload className="h-4 w-4" />
                                     )}
-                                    {uploadingPhoto ? t('uploading') : t('uploadPhoto')}
+                                    {uploadingPhoto ? t('photo.uploading') : t('photo.upload')}
                                 </div>
                             </Label>
                             <Input
@@ -200,7 +200,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                                 disabled={uploadingPhoto}
                             />
                             <p className="text-xs text-muted-foreground">
-                                {t('photoRequirements')}
+                                {t('photo.hint')}
                             </p>
                         </div>
                     </div>
@@ -212,9 +212,9 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <User className="h-5 w-5" />
-                        {t('personalInfo')}
+                        {t('personalInfo.title')}
                     </CardTitle>
-                    <CardDescription>{t('personalInfoDesc')}</CardDescription>
+                    <CardDescription>{t('personalInfo.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -230,7 +230,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="date_of_birth">{t('dateOfBirth')}</Label>
+                            <Label htmlFor="date_of_birth">{t('dob')}</Label>
                             <Input
                                 id="date_of_birth"
                                 name="date_of_birth"
@@ -277,7 +277,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                                 onValueChange={(value) => handleSelectChange("nationality", value)}
                             >
                                 <SelectTrigger>
-                                    <SelectValue placeholder={t('selectCountry')} />
+                                    <SelectValue placeholder={t('nationality')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {COUNTRIES.map((country) => (
@@ -308,13 +308,13 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <MapPin className="h-5 w-5" />
-                        {t('address')}
+                        {t('address.title')}
                     </CardTitle>
-                    <CardDescription>{t('addressDesc')}</CardDescription>
+                    <CardDescription>{t('address.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="address">{t('streetAddress')}</Label>
+                        <Label htmlFor="address">{t('address.street')}</Label>
                         <Input
                             id="address"
                             name="address"
@@ -325,7 +325,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="city">{t('city')}</Label>
+                            <Label htmlFor="city">{t('address.city')}</Label>
                             <Input
                                 id="city"
                                 name="city"
@@ -335,7 +335,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="postal_code">{t('postalCode')}</Label>
+                            <Label htmlFor="postal_code">{t('address.postalCode')}</Label>
                             <Input
                                 id="postal_code"
                                 name="postal_code"
@@ -353,14 +353,14 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Users className="h-5 w-5" />
-                        {t('emergencyContact')}
+                        {t('emergency.title')}
                     </CardTitle>
-                    <CardDescription>{t('emergencyContactDesc')}</CardDescription>
+                    <CardDescription>{t('emergency.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_name">{t('name')}</Label>
+                            <Label htmlFor="emergency_contact_name">{t('emergency.name')}</Label>
                             <Input
                                 id="emergency_contact_name"
                                 name="emergency_contact_name"
@@ -371,7 +371,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_phone">{t('phone')}</Label>
+                            <Label htmlFor="emergency_contact_phone">{t('emergency.phone')}</Label>
                             <div className="flex gap-2">
                                 <Select
                                     value={emergencyPhoneCountryId}
@@ -401,7 +401,7 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="emergency_contact_relationship">{t('relationship')}</Label>
+                            <Label htmlFor="emergency_contact_relationship">{t('emergency.relationship')}</Label>
                             <Input
                                 id="emergency_contact_relationship"
                                 name="emergency_contact_relationship"

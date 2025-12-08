@@ -22,6 +22,7 @@ import { RequestInformationDialog } from "./RequestInformationDialog";
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { GraduationCap as GraduationCapIcon, Home, Wallet, BookOpen } from "lucide-react";
 
 
 
@@ -85,6 +86,7 @@ interface UniversityContentProps {
 
 export function UniversityContent({ university }: UniversityContentProps) {
     const t = useTranslations('UniversityDetail');
+    const tAccommodation = useTranslations('Accommodation');
     const [programLevel, setProgramLevel] = useState<string>("all");
 
     // Get unique program levels
@@ -115,6 +117,33 @@ export function UniversityContent({ university }: UniversityContentProps) {
 
     return (
         <div className="container mx-auto px-4 -mt-8 pb-20">
+            {/* Quick Jump Navigation */}
+            <div className="sticky top-16 z-40 -mx-4 px-4 py-3 mb-6 bg-gradient-to-r from-white/95 via-white/98 to-white/95 backdrop-blur-md border-b shadow-lg">
+                <div className="flex items-center justify-center gap-3 overflow-x-auto scrollbar-hide">
+                    <button
+                        onClick={() => document.getElementById('programs-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                    >
+                        <span className="text-lg">📚</span>
+                        Explore Courses
+                    </button>
+                    <button
+                        onClick={() => document.getElementById('scholarships-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                    >
+                        <span className="text-lg">💰</span>
+                        Get Funded
+                    </button>
+                    <button
+                        onClick={() => document.getElementById('accommodation-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                    >
+                        <span className="text-lg">🏠</span>
+                        Find Housing
+                    </button>
+                </div>
+            </div>
+
             <div className="grid lg:grid-cols-12 gap-8">
                 {/* Main Content - 8 columns */}
                 <div className="lg:col-span-8 space-y-8">
@@ -185,6 +214,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
+                            className="scroll-mt-32"
                         >
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
@@ -251,7 +281,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                         <div className="text-sm text-gray-500 mb-1">{t('programs.tuitionFee')}</div>
                                                         <div className="text-3xl font-black bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
                                                             {program.tuition_fee && typeof program.tuition_fee === 'number' ? (
-                                                                <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} showCurrency={false} />
+                                                                <Price amount={program.tuition_fee} currency={program.currency || 'CNY'} showCurrency={true} />
                                                             ) : (
                                                                 program.tuition || 'Contact'
                                                             )}
@@ -280,10 +310,11 @@ export function UniversityContent({ university }: UniversityContentProps) {
 
                     {/* Scholarship Types Section */}
                     <motion.div
+                        id="scholarships-section"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.25 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
                     >
                         <UniversityScholarshipsSection
                             universityId={university.id}
@@ -296,10 +327,11 @@ export function UniversityContent({ university }: UniversityContentProps) {
 
                     {/* Accommodation Section */}
                     <motion.div
+                        id="accommodation-section"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
                     >
                         <AccommodationSection
                             accommodationAvailable={university.accommodation_available ?? true}

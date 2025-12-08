@@ -117,63 +117,68 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                 <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white flex flex-col w-full">
                                     <CardContent className="p-0 flex flex-col flex-1">
                                         {/* Image Banner */}
-                                        <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
-                                            {uni.cover_photo_url ? (
-                                                <Image
-                                                    src={uni.cover_photo_url}
-                                                    alt={uni.name}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    unoptimized={uni.cover_photo_url.startsWith('data:')}
-                                                />
-                                            ) : (
-                                                <Image
-                                                    src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
-                                                    alt={uni.name}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    unoptimized
-                                                />
-                                            )}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                        <Link href={`/universities/${uni.slug}`}>
+                                            <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
+                                                {uni.cover_photo_url ? (
+                                                    <Image
+                                                        src={uni.cover_photo_url}
+                                                        alt={uni.name}
+                                                        fill
+                                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                        unoptimized={uni.cover_photo_url.startsWith('data:')}
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
+                                                        alt={uni.name}
+                                                        fill
+                                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                        unoptimized
+                                                    />
+                                                )}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-                                            {/* Ranking Badge */}
-                                            {uni.has_fast_track && (
-                                                <div className="absolute top-3 left-3">
-                                                    <div className="px-2 py-1 rounded-full bg-yellow-400 text-yellow-950 text-xs font-bold shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center gap-1 border border-yellow-300">
-                                                        <Zap className="w-3 h-3 animate-pulse fill-yellow-950" />
-                                                        {t('fastTrack')}
+                                                {/* Ranking Badge */}
+                                                {uni.has_fast_track && (
+                                                    <div className="absolute top-3 left-3">
+                                                        <div className="px-2 py-1 rounded-full bg-yellow-400 text-yellow-950 text-xs font-bold shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center gap-1 border border-yellow-300">
+                                                            <Zap className="w-3 h-3 animate-pulse fill-yellow-950" />
+                                                            {t('fastTrack')}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            )}
-                                            {uni.ranking && (
-                                                <div className="absolute top-3 right-3 max-w-[45%]">
-                                                    <div className="px-2.5 py-1.5 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-amber-300">
-                                                        <Award className="w-3.5 h-3.5 shrink-0" />
-                                                        <span className="truncate">{uni.ranking}</span>
+                                                )}
+                                                {uni.ranking && (
+                                                    <div className="absolute top-3 right-3 max-w-[45%]">
+                                                        <div className="px-2.5 py-1.5 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-amber-300">
+                                                            <Award className="w-3.5 h-3.5 shrink-0" />
+                                                            <span className="truncate">{uni.ranking}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            )}
-                                        </div>
+                                                )}
+                                            </div>
+                                        </Link>
 
                                         {/* Content */}
                                         <div className="p-5 flex flex-col flex-1">
-                                            {/* University Name with Logo */}
                                             <div className="flex items-start gap-3 mb-2">
                                                 {uni.logo_url && (
-                                                    <div className="relative w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0">
-                                                        <Image
-                                                            src={uni.logo_url}
-                                                            alt={uni.name}
-                                                            fill
-                                                            className="object-contain p-1"
-                                                            unoptimized={uni.logo_url.startsWith('data:')}
-                                                        />
-                                                    </div>
+                                                    <Link href={`/universities/${uni.slug}`}>
+                                                        <div className="relative w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0 hover:border-red-300 transition-colors">
+                                                            <Image
+                                                                src={uni.logo_url}
+                                                                alt={uni.name}
+                                                                fill
+                                                                className="object-contain p-1"
+                                                                unoptimized={uni.logo_url.startsWith('data:')}
+                                                            />
+                                                        </div>
+                                                    </Link>
                                                 )}
-                                                <h3 className="font-bold text-lg line-clamp-1 min-h-[1.75rem] group-hover:text-red-600 transition-colors flex-1">
-                                                    {uni.name}
-                                                </h3>
+                                                <Link href={`/universities/${uni.slug}`} className="flex-1">
+                                                    <h3 className="font-bold text-lg line-clamp-1 min-h-[1.75rem] group-hover:text-red-600 transition-colors">
+                                                        {uni.name}
+                                                    </h3>
+                                                </Link>
                                             </div>
 
                                             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">

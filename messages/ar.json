@@ -51,6 +51,14 @@
                 "title": "غير درجة",
                 "description": "دورات اللغة والبرامج قصيرة المدى."
             },
+            "diploma": {
+                "title": "دبلوم",
+                "description": "البرامج المهنية والتقنية."
+            },
+            "language": {
+                "title": "دورة لغة",
+                "description": "تعلم اللغة الصينية."
+            },
             "viewAll": "عرض جميع البرامج"
         },
         "viewAllUniversities": "عرض جميع الجامعات",
@@ -482,7 +490,9 @@
             "levels": {
                 "bachelor": "البكالوريوس",
                 "master": "الماجستير",
-                "phd": "الدكتوراه"
+                "phd": "الدكتوراه",
+                "diploma": "دبلوم",
+                "language": "دورة لغة"
             },
             "fields": {
                 "business": "الأعمال والإدارة",
@@ -490,7 +500,9 @@
                 "medicine": "الطب والعلوم الصحية",
                 "arts": "الفنون والعلوم الإنسانية",
                 "science": "العلوم الطبيعية",
-                "education": "التعليم"
+                "education": "التعليم",
+                "cs": "علوم الكمبيوتر",
+                "law": "القانون"
             },
             "languages": {
                 "english": "الإنجليزية",
@@ -662,6 +674,9 @@
                 "facilities": "مرافق وموارد حديثة",
                 "career": "دعم التطوير الوظيفي"
             }
+        },
+        "accommodation": {
+            "title": "خيارات السكن"
         }
     },
     "UniversityDetail": {
@@ -938,6 +953,7 @@
     "Status": {
         "pending_documents": "بانتظار المستندات",
         "pending_payment": "بانتظار الدفع",
+        "payment_verification": "التحقق من الدفع",
         "submitted": "تم الإرسال",
         "under_review": "قيد المراجعة",
         "accepted": "مقبول",
@@ -1154,5 +1170,23 @@
             "rejectDescription": "سيؤدي هذا إلى تحديد الطلب على أنه مرفوض.",
             "adminResponsePlaceholder": "أضف ملاحظة للطالب..."
         }
+    },
+    "Messages": {
+        "title": "الرسائل",
+        "actionRequired": "إجراء مطلوب",
+        "actionCompleted": "مكتمل",
+        "reply": "رد",
+        "replyingTo": "الرد على {name}",
+        "typeReply": "اكتب ردك...",
+        "sendReply": "إرسال الرد",
+        "sending": "جاري الإرسال...",
+        "cancel": "إلغاء",
+        "you": "أنت",
+        "admin": "فريق القبول",
+        "replyTooltip": "الرد على هذه الرسالة",
+        "actionRequiredMessage": "يرجى الرد على هذه الرسالة أو إكمال الإجراء المطلوب.",
+        "takeAction": "اتخاذ إجراء",
+        "attachment": "مرفق",
+        "attachments": "مرفقات"
     }
 }

@@ -1,8 +1,9 @@
 import { ProgramRequirements } from "@/components/programs/ProgramRequirements";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
+import { AccommodationSection } from "@/components/universities/AccommodationSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp, Zap } from "lucide-react";
+import { BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp, Zap, Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -101,12 +102,19 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         .eq("locale", locale)
         .single();
 
-    // Fetch university fast track status
+    // Fetch university fast track status, brochure, and accommodation info
     const { data: university } = await supabase
         .from("universities")
-        .select("has_fast_track")
+        .select("has_fast_track, brochure_url, accommodation_available, accommodation_description, accommodation_fee_range, accommodation_features")
         .eq("id", program.university_id)
         .single();
+
+    // Fetch accommodation types for this university
+    const { data: accommodationTypes } = await supabase
+        .from("university_accommodation")
+        .select("*")
+        .eq("university_id", program.university_id)
+        .order("display_order", { ascending: true });
 
     // Fetch admission requirements for this university and program level
     const { data: requirements } = await supabase
@@ -142,6 +150,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         name: programTitle,
         university: program.university_name || "Unknown University",
         universityId: program.university_id,
+        universitySlug: program.university_slug,
         city: program.city || "N/A",
         level: program.level,
         duration: program.duration,
@@ -199,6 +208,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                 items={[
                     { name: 'Home', url: baseUrl },
                     { name: 'Programs', url: `${baseUrl}/en/programs` },
+                    { name: programData.university, url: `${baseUrl}/en/universities/${programData.universitySlug}` },
                     { name: programData.name, url: `${baseUrl}/en/programs/${programData.slug}` },
                 ]}
             />
@@ -214,12 +224,16 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                 <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative">
                     <div className="max-w-4xl">
                         {/* Breadcrumb */}
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-                            <Link href="/" className="hover:text-primary">{t('breadcrumb.home')}</Link>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
+                            <Link href="/" className="hover:text-primary transition-colors">{t('breadcrumb.home')}</Link>
                             <span>/</span>
-                            <Link href="/programs" className="hover:text-primary">{t('breadcrumb.programs')}</Link>
+                            <Link href="/programs" className="hover:text-primary transition-colors">{t('breadcrumb.programs')}</Link>
                             <span>/</span>
-                            <span className="text-foreground">{programData.name}</span>
+                            <Link href={`/${locale}/universities/${program.university_slug}`} className="hover:text-primary transition-colors">
+                                {programData.university}
+                            </Link>
+                            <span>/</span>
+                            <span className="text-foreground font-medium">{programData.name}</span>
                         </div>
 
                         {/* Program Title */}
@@ -228,7 +242,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                         </h1>
 
                         {/* University Info */}
-                        <Link href={`/universities/${program.university_id}`} className="group inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
+                        <Link href={`/${locale}/universities/${program.university_slug}`} className="group inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
                             <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                 <Building2 className="h-6 w-6 text-primary" />
                             </div>
@@ -275,14 +289,18 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                     <ArrowRight className="ml-2 h-5 w-5" />
                                 </Button>
                             </Link>
-                            <Link href={`/universities/${program.university_id}`}>
+                            <Link href={`/${locale}/universities/${program.university_slug}`}>
                                 <Button size="lg" variant="outline" className="border-2">
                                     {t('buttons.viewUniversity')}
                                 </Button>
                             </Link>
-                            <Button size="lg" variant="outline" className="border-2">
-                                {t('buttons.downloadBrochure')}
-                            </Button>
+                            {university?.brochure_url && (
+                                <a href={university.brochure_url} target="_blank" rel="noopener noreferrer">
+                                    <Button size="lg" variant="outline" className="border-2">
+                                        {t('buttons.downloadBrochure')}
+                                    </Button>
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -397,6 +415,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                             <CardContent className="p-8">
                                 <UniversityScholarshipsSection
                                     universityId={programData.universityId}
+                                    programSlug={programData.slug}
                                     title={t('scholarships.title')}
                                     description={t('scholarships.description')}
                                 />
@@ -421,6 +440,25 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                         </AccordionItem>
                                     ))}
                                 </Accordion>
+                            </CardContent>
+                        </Card>
+
+                        {/* Accommodation */}
+                        <Card className="border-none shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-2xl flex items-center gap-2">
+                                    <Home className="h-6 w-6 text-primary" />
+                                    {t('accommodation.title')}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <AccommodationSection
+                                    accommodationAvailable={university?.accommodation_available ?? true}
+                                    accommodationDescription={university?.accommodation_description}
+                                    accommodationFeeRange={university?.accommodation_fee_range}
+                                    accommodationFeatures={university?.accommodation_features}
+                                    accommodationTypes={accommodationTypes || []}
+                                />
                             </CardContent>
                         </Card>
                     </div>

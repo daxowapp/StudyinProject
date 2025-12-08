@@ -11,15 +11,20 @@ import {
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
 export function HeroSection() {
     const t = useTranslations('Hero');
+    const tNavbar = useTranslations('Navbar');
+    const tPrograms = useTranslations('Programs');
+
     const router = useRouter();
     const locale = useLocale();
     const isRTL = locale === 'ar' || locale === 'fa';
+
+    // Initial State
     const [filters, setFilters] = useState({
         degree: "",
         field: "",
@@ -29,6 +34,104 @@ export function HeroSection() {
         scholarship: "",
         duration: ""
     });
+
+    interface FilterOptions {
+        degrees: string[];
+        fields: string[];
+        cities: string[];
+        languages: string[];
+        durations: string[];
+    }
+
+    const [availableOptions, setAvailableOptions] = useState<FilterOptions>({
+        degrees: [],
+        fields: [],
+        cities: [],
+        languages: [],
+        durations: []
+    });
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Debounce filter updating
+    const [debouncedFilters, setDebouncedFilters] = useState(filters);
+
+    // Helper to map DB values to translation keys
+    const getLevelKey = (level: string): string | null => {
+        const l = level.toLowerCase();
+        if (l.includes('bachelor')) return 'bachelor';
+        if (l.includes('master')) return 'master';
+        if (l.includes('phd') || l.includes('doctor')) return 'phd';
+        if (l.includes('diploma')) return 'diploma';
+        if (l.includes('language') || l.includes('non-degree')) return 'language';
+        return null;
+    };
+
+    const getFieldKey = (field: string): string | null => {
+        const l = field.toLowerCase();
+        if (l.includes('business') || l.includes('economic') || l.includes('management')) return 'business';
+        if (l.includes('engineering') || l.includes('technology')) return 'engineering';
+        if (l.includes('medicine') || l.includes('health') || l.includes('clinical') || l.includes('mbbs')) return 'medicine';
+        if (l.includes('arts') || l.includes('humanities') || l.includes('design')) return 'arts';
+        if (l.includes('science') && !l.includes('computer')) return 'science';
+        if (l.includes('computer') || l.includes('it') || l.includes('software')) return 'cs';
+        if (l.includes('education')) return 'education';
+        if (l.includes('law')) return 'law';
+        return null;
+    };
+
+    // Deduplicate options by their translation key
+    const getUniqueDegrees = () => {
+        const seen = new Set<string>();
+        return availableOptions.degrees.filter((degree) => {
+            const key = getLevelKey(degree) || degree;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+    };
+
+    const getUniqueFields = () => {
+        const seen = new Set<string>();
+        return availableOptions.fields.filter((field) => {
+            const key = getFieldKey(field) || field;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+    };
+
+    // Function to fetch options - defined outside useEffect to be callable
+    const fetchOptions = async (currentFilters: Partial<typeof filters>) => {
+        // Don't set loading true for debounced fetches to avoid flicker, only on initial or manual
+        // Actually, just keep it silent or minimal
+        try {
+            // Dynamic import to avoid server components in client bundle issues if any
+            const { getFilterOptions } = await import('@/app/actions/getFilterOptions');
+            const options = await getFilterOptions(currentFilters);
+            setAvailableOptions(options);
+        } catch (error) {
+            console.error("Failed to fetch filter options", error);
+        }
+    };
+
+    // Initial load
+    useEffect(() => {
+        fetchOptions({});
+    }, []);
+
+    // Update options when filters change (debounced)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedFilters(filters);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [filters, debouncedFilters]);
+
+    useEffect(() => {
+        fetchOptions(debouncedFilters);
+    }, [debouncedFilters]);
+
 
     const handleSearch = () => {
         const params = new URLSearchParams();
@@ -141,80 +244,96 @@ export function HeroSection() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                                 {/* Degree Level */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, degree: v })}>
+                                    <Select
+                                        value={filters.degree}
+                                        onValueChange={(v) => setFilters({ ...filters, degree: v })}
+                                    >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.degree')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="bachelor">Bachelor&apos;s</SelectItem>
-                                            <SelectItem value="master">Master&apos;s</SelectItem>
-                                            <SelectItem value="phd">PhD</SelectItem>
-                                            <SelectItem value="diploma">Diploma</SelectItem>
-                                            <SelectItem value="language">Language Course</SelectItem>
+                                            <SelectItem value="any">{t('options.any')}</SelectItem>
+                                            {getUniqueDegrees().map((degree: string) => {
+                                                const key = getLevelKey(degree);
+                                                return (
+                                                    <SelectItem key={degree} value={degree}>
+                                                        {key ? tNavbar(`levels.${key}.title`) : degree}
+                                                    </SelectItem>
+                                                );
+                                            })}
                                         </SelectContent>
                                     </Select>
                                 </div>
 
                                 {/* Field of Study */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, field: v })}>
+                                    <Select
+                                        value={filters.field}
+                                        onValueChange={(v) => setFilters({ ...filters, field: v })}
+                                    >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.field')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="business">Business & Economics</SelectItem>
-                                            <SelectItem value="engineering">Engineering</SelectItem>
-                                            <SelectItem value="medicine">Medicine</SelectItem>
-                                            <SelectItem value="cs">Computer Science</SelectItem>
-                                            <SelectItem value="arts">Arts & Humanities</SelectItem>
-                                            <SelectItem value="science">Natural Sciences</SelectItem>
-                                            <SelectItem value="law">Law</SelectItem>
-                                            <SelectItem value="education">Education</SelectItem>
+                                            <SelectItem value="any">{t('options.any')}</SelectItem>
+                                            {getUniqueFields().map((field: string) => {
+                                                const key = getFieldKey(field);
+                                                return (
+                                                    <SelectItem key={field} value={field}>
+                                                        {key ? tPrograms(`filters.fields.${key}`) : field}
+                                                    </SelectItem>
+                                                );
+                                            })}
                                         </SelectContent>
                                     </Select>
                                 </div>
 
                                 {/* City/Location */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, city: v })}>
+                                    <Select
+                                        value={filters.city}
+                                        onValueChange={(v) => setFilters({ ...filters, city: v })}
+                                        disabled={isLoading}
+                                    >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.city')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">{t('options.any')} City</SelectItem>
-                                            <SelectItem value="beijing">Beijing</SelectItem>
-                                            <SelectItem value="shanghai">Shanghai</SelectItem>
-                                            <SelectItem value="guangzhou">Guangzhou</SelectItem>
-                                            <SelectItem value="shenzhen">Shenzhen</SelectItem>
-                                            <SelectItem value="hangzhou">Hangzhou</SelectItem>
-                                            <SelectItem value="nanjing">Nanjing</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} {t('placeholders.city')}</SelectItem>
+                                            {availableOptions.cities.map((city: string) => (
+                                                <SelectItem key={city} value={city}>{city}</SelectItem>
+                                            ))}
                                         </SelectContent>
                                     </Select>
                                 </div>
 
                                 {/* Language */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, language: v })}>
+                                    <Select
+                                        value={filters.language}
+                                        onValueChange={(v) => setFilters({ ...filters, language: v })}
+                                        disabled={isLoading}
+                                    >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.language')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">{t('options.any')} Language</SelectItem>
-                                            <SelectItem value="english">English</SelectItem>
-                                            <SelectItem value="chinese">Chinese</SelectItem>
-                                            <SelectItem value="both">Both</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} {t('placeholders.language')}</SelectItem>
+                                            {availableOptions.languages.map((lang: string) => (
+                                                <SelectItem key={lang} value={lang}>{lang}</SelectItem>
+                                            ))}
                                         </SelectContent>
                                     </Select>
                                 </div>
 
                                 {/* Budget */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, budget: v })}>
+                                    <Select onValueChange={(v) => setFilters({ ...filters, budget: v })} disabled={isLoading}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.budget')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">{t('options.any')} Budget</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} {t('placeholders.budget')}</SelectItem>
                                             <SelectItem value="0-3000">Under $3,000</SelectItem>
                                             <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
                                             <SelectItem value="5000-8000">$5,000 - $8,000</SelectItem>
@@ -225,7 +344,7 @@ export function HeroSection() {
 
                                 {/* Scholarship */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, scholarship: v })}>
+                                    <Select onValueChange={(v) => setFilters({ ...filters, scholarship: v })} disabled={isLoading}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.scholarship')} />
                                         </SelectTrigger>
@@ -240,12 +359,12 @@ export function HeroSection() {
 
                                 {/* Duration */}
                                 <div className="w-full">
-                                    <Select onValueChange={(v) => setFilters({ ...filters, duration: v })}>
+                                    <Select onValueChange={(v) => setFilters({ ...filters, duration: v })} disabled={isLoading}>
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.duration')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="any">{t('options.any')} Duration</SelectItem>
+                                            <SelectItem value="any">{t('options.any')} {t('placeholders.duration')}</SelectItem>
                                             <SelectItem value="1">1 Year</SelectItem>
                                             <SelectItem value="2">2 Years</SelectItem>
                                             <SelectItem value="3">3 Years</SelectItem>
@@ -260,6 +379,7 @@ export function HeroSection() {
                             <Button
                                 onClick={handleSearch}
                                 className="w-full h-14 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
+                                disabled={isLoading}
                             >
                                 <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                                 {t.rich('searchButton', {

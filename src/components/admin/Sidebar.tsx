@@ -28,7 +28,8 @@ import {
     ChevronRight,
     ChevronDown,
     User,
-    Sparkles
+    Sparkles,
+    CreditCard
 } from "lucide-react";
 import Image from "next/image";
 
@@ -87,6 +88,7 @@ export function Sidebar({ className }: SidebarProps) {
             icon: Users,
             items: [
                 { icon: FileText, label: "Applications", href: "/admin/applications" },
+                { icon: CreditCard, label: "Refund Requests", href: "/admin/refunds" },
                 { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined },
                 { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined },
                 { icon: Users, label: "Users", href: "/admin/users" },

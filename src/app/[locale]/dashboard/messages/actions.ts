@@ -70,7 +70,7 @@ export async function sendReply(formData: FormData) {
             application_id: applicationId,
             sender_id: user.id,
             sender_type: 'student',
-            message_type: 'reply',
+            message_type: 'general',
             subject: 'Re: Student Reply',
             message: message,
             requires_action: false,

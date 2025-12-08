@@ -1,24 +1,29 @@
-'use client';
-
 import { useState } from 'react';
+import { sendAdminReply } from '../actions';
+import { useTranslations } from 'next-intl';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
     ChevronDown,
     ChevronRight,
-    FileText,
     AlertCircle,
+    Shield,
+    User,
+    Reply,
+    X,
+    Send,
+    Quote,
     Download,
     Image as ImageIcon,
-    File,
-    User,
-    Shield,
-    Paperclip,
-    Mail
+    FileText,
+    File
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import { StudentQuickReply } from './StudentQuickReply';
 
+// Interfaces
 interface Message {
     id: string;
     sender_type: 'admin' | 'student';
@@ -38,6 +43,7 @@ interface Message {
         file_type: string;
         mime_type: string;
     }>;
+    parent_message_id?: string;
 }
 
 interface MessageThread {
@@ -55,16 +61,21 @@ interface StudentMessageThreadsProps {
 }
 
 export function StudentMessageThreads({ messages, applicationId }: StudentMessageThreadsProps) {
+    const t = useTranslations('Messages');
     const [expandedThreads, setExpandedThreads] = useState<Set<string>>(new Set());
+    const [replyingToMessage, setReplyingToMessage] = useState<Message | null>(null);
+    const [replyText, setReplyText] = useState('');
+    const [isSending, setIsSending] = useState(false);
 
-    // Group messages by subject (or treat all as one thread if preferred, but grouping by subject is cleaner)
+    // ... (grouping logic remains same)
+
+    // ... (toggleThread, getFileIcon, getMessageTypeBadge remain same)
+
+    // Group messages by subject
     const threads: MessageThread[] = [];
     const threadMap = new Map<string, Message[]>();
 
-    // For student view, we might want to group by subject or just show one big thread
-    // Let's group by subject for now to keep it organized
     messages.forEach(message => {
-        // Simple grouping by subject - in a real app might want a thread_id
         const key = message.subject;
         if (!threadMap.has(key)) {
             threadMap.set(key, []);
@@ -73,11 +84,10 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
     });
 
     threadMap.forEach((msgs, key) => {
-        // Sort messages by date
         msgs.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
-
         const latestMessage = msgs[msgs.length - 1];
-        const unreadCount = msgs.filter(m => !m.is_read && m.sender_type === 'admin').length;
+        // For admin, unread messages are from student
+        const unreadCount = msgs.filter(m => !m.is_read && m.sender_type === 'student').length;
         const hasActionRequired = msgs.some(m => m.requires_action && !m.action_completed);
 
         threads.push({
@@ -90,7 +100,6 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
         });
     });
 
-    // Sort threads by latest message date
     threads.sort((a, b) =>
         new Date(b.latestMessage.created_at).getTime() - new Date(a.latestMessage.created_at).getTime()
     );
@@ -122,17 +131,101 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
         return badges[type] || badges.general;
     };
 
-    if (threads.length === 0) {
-        return (
-            <Card>
-                <CardContent className="p-12 text-center">
-                    <Mail className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No Messages</h3>
-                    <p className="text-gray-600">No message threads yet.</p>
-                </CardContent>
-            </Card>
-        );
-    }
+    const handleSendReply = async (applicationId: string) => {
+        if (!replyText.trim()) {
+            toast.error(t('typeReply'));
+            return;
+        }
+
+        setIsSending(true);
+        try {
+            const formData = new FormData();
+            formData.append('applicationId', applicationId);
+            formData.append('message', replyText);
+            formData.append('subject', `Re: ${replyingToMessage?.subject || 'Message'}`);
+            formData.append('messageType', 'general');
+            if (replyingToMessage) {
+                formData.append('parentMessageId', replyingToMessage.id);
+            }
+
+            // Calls sendAdminReplyWithAttachments if we support attachments here, 
+            // or just simple sendAdminReply. For now let's use the simple one via wrapper or direct call.
+            // But sendAdminReply accepts separate args, not formData.
+            // Let's call sendAdminReply directly.
+
+            const result = await sendAdminReply(
+                applicationId,
+                `Re: ${replyingToMessage?.subject || 'Message'}`,
+                replyText,
+                'general',
+                false, // requiresAction
+                replyingToMessage?.id || null
+            );
+
+            if (result.error) {
+                toast.error(result.error);
+            } else {
+                toast.success(t('sending')); // Actually "Sent" but reusing key or just generic success
+                setReplyText('');
+                setReplyingToMessage(null);
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("Failed to send reply");
+        } finally {
+            setIsSending(false);
+        }
+    };
+
+    const renderReplyForm = (appId: string, isInline: boolean = false) => (
+        <div className={`space-y-3 ${isInline ? 'mt-4 pl-8 border-l-2 border-blue-100' : 'pt-4 border-t'}`}>
+            {!isInline && replyingToMessage && replyingToMessage.application_id === appId && (
+                <div className="flex items-center justify-between bg-blue-50 p-2 rounded border border-blue-100 text-sm">
+                    <div className="flex items-center gap-2 overflow-hidden">
+                        <Reply className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span className="font-medium text-blue-900 shrink-0">{t('replyingTo', { name: replyingToMessage.sender_type === 'admin' ? t('admin') : t('you') })}:</span>
+                        <span className="text-blue-700 truncate">{replyingToMessage.message}</span>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 hover:bg-blue-100"
+                        onClick={() => setReplyingToMessage(null)}
+                    >
+                        <X className="w-4 h-4 text-blue-700" />
+                    </Button>
+                </div>
+            )}
+            <Textarea
+                placeholder={t('typeReply')}
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                rows={isInline ? 3 : 4}
+                autoFocus={isInline}
+            />
+            <div className="flex gap-2">
+                <Button
+                    onClick={() => handleSendReply(appId)}
+                    disabled={isSending || !replyText.trim()}
+                    className="gap-2"
+                >
+                    <Send className="w-4 h-4" />
+                    {isSending ? t('sending') : t('sendReply')}
+                </Button>
+                <Button
+                    variant="outline"
+                    onClick={() => {
+                        setReplyingToMessage(null);
+                        setReplyText('');
+                    }}
+                >
+                    {t('cancel')}
+                </Button>
+            </div>
+        </div>
+    );
+
+    // ... (render logic)
 
     return (
         <div className="space-y-3">
@@ -142,41 +235,28 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
 
                 return (
                     <Card key={thread.subject} className="overflow-hidden">
-                        {/* Thread Header - Always Visible */}
+                        {/* Header same as before but use translations if needed */}
                         <CardHeader
                             className="cursor-pointer hover:bg-gray-50 transition-colors"
                             onClick={() => toggleThread(thread.subject)}
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex items-start gap-3 flex-1">
-                                    {/* Expand/Collapse Icon */}
                                     <div className="mt-1">
-                                        {isExpanded ? (
-                                            <ChevronDown className="w-5 h-5 text-gray-500" />
-                                        ) : (
-                                            <ChevronRight className="w-5 h-5 text-gray-500" />
-                                        )}
+                                        {isExpanded ? <ChevronDown className="w-5 h-5 text-gray-500" /> : <ChevronRight className="w-5 h-5 text-gray-500" />}
                                     </div>
-
-                                    {/* Thread Info */}
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <h3 className="font-semibold text-gray-900 truncate">
-                                                {thread.subject}
-                                            </h3>
-                                            {thread.unreadCount > 0 && (
-                                                <Badge className="bg-red-500 text-white">
-                                                    {thread.unreadCount} new
-                                                </Badge>
-                                            )}
+                                            <h3 className="font-semibold text-gray-900 truncate">{thread.subject}</h3>
+                                            {thread.unreadCount > 0 && <Badge className="bg-red-500 text-white">{thread.unreadCount} new</Badge>}
                                             {thread.hasActionRequired && (
                                                 <Badge className="bg-orange-100 text-orange-800">
                                                     <AlertCircle className="w-3 h-3 mr-1" />
-                                                    Action Required
+                                                    {t('actionRequired')}
                                                 </Badge>
                                             )}
                                         </div>
-
+                                        {/* ... other header info ... */}
                                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                                             <Shield className="w-4 h-4" />
                                             <span className="font-medium">Admin</span>
@@ -185,89 +265,81 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
                                             <span>•</span>
                                             <span>{formatDistanceToNow(new Date(thread.latestMessage.created_at), { addSuffix: true })}</span>
                                         </div>
-
-                                        <p className="text-sm text-gray-600 line-clamp-2">
-                                            {thread.latestMessage.message}
-                                        </p>
+                                        <p className="text-sm text-gray-600 line-clamp-2">{thread.latestMessage.message}</p>
                                     </div>
-
-                                    {/* Message Type Badge */}
-                                    <Badge className={badge.className}>
-                                        {badge.label}
-                                    </Badge>
+                                    <Badge className={badge.className}>{badge.label}</Badge>
                                 </div>
                             </div>
                         </CardHeader>
 
-                        {/* Thread Messages - Shown when expanded */}
                         {isExpanded && (
                             <CardContent className="border-t bg-gray-50 p-6 space-y-4">
-                                {/* All Messages in Thread */}
                                 {thread.messages.map((message) => {
                                     const isAdmin = message.sender_type === 'admin';
+                                    // Find parent message (assuming threaded lookup if we had thread.messages access here which we do)
+                                    const parentMessage = message.parent_message_id // Need to find in `thread.messages`
+                                        ? thread.messages.find(m => m.id === message.parent_message_id)
+                                        : null;
 
                                     return (
-                                        <div key={message.id} className="space-y-2">
-                                            {/* Message */}
-                                            <div className={`p-4 rounded-lg ${isAdmin ? 'bg-blue-50 border border-blue-200' : 'bg-white border border-gray-200'
-                                                }`}>
-                                                {/* Sender Info */}
+                                        <div key={message.id} className="space-y-2 group">
+                                            <div className={`p-4 rounded-lg ${isAdmin ? 'bg-blue-50 border border-blue-200' : 'bg-white border border-gray-200'}`}>
                                                 <div className="flex items-center gap-2 mb-3">
-                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isAdmin ? 'bg-blue-100' : 'bg-green-100'
-                                                        }`}>
-                                                        {isAdmin ? (
-                                                            <Shield className="w-4 h-4 text-blue-600" />
-                                                        ) : (
-                                                            <User className="w-4 h-4 text-green-600" />
-                                                        )}
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isAdmin ? 'bg-blue-100' : 'bg-green-100'}`}>
+                                                        {isAdmin ? <Shield className="w-4 h-4 text-blue-600" /> : <User className="w-4 h-4 text-green-600" />}
                                                     </div>
-                                                    <div>
-                                                        <div className="font-semibold text-sm">
-                                                            {isAdmin ? 'Admin' : 'You'}
-                                                        </div>
-                                                        <div className="text-xs text-gray-500">
-                                                            {formatDistanceToNow(new Date(message.created_at), { addSuffix: true })}
-                                                        </div>
+                                                    <div className="flex-1">
+                                                        <div className="font-semibold text-sm">{isAdmin ? 'Admin' : 'Student'}</div>
+                                                        <div className="text-xs text-gray-500">{formatDistanceToNow(new Date(message.created_at), { addSuffix: true })}</div>
                                                     </div>
+
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setReplyingToMessage(message);
+                                                            setReplyText('');
+                                                        }}
+                                                        title={t('replyTooltip')}
+                                                    >
+                                                        <Reply className="w-4 h-4 text-muted-foreground" />
+                                                    </Button>
+
                                                     {message.requires_action && (
                                                         <Badge className={message.action_completed ? 'bg-green-100 text-green-800 ml-auto' : 'bg-red-100 text-red-800 ml-auto'}>
-                                                            {message.action_completed ? '✓ Completed' : 'Action Required'}
+                                                            {message.action_completed ? `✓ ${t('actionCompleted')}` : t('actionRequired')}
                                                         </Badge>
                                                     )}
                                                 </div>
 
-                                                {/* Message Content */}
-                                                <p className="text-gray-700 whitespace-pre-wrap mb-3">
-                                                    {message.message}
-                                                </p>
+                                                {/* Parent Quote */}
+                                                {parentMessage && (
+                                                    <div className="mb-3 pl-3 border-l-4 border-gray-300 bg-gray-50 p-2 rounded text-sm text-gray-600">
+                                                        <div className="flex items-center gap-1 font-medium mb-1 text-xs">
+                                                            <Quote className="w-3 h-3" />
+                                                            <span>{t('replyingTo', { name: parentMessage.sender_type === 'admin' ? t('admin') : 'Student' })}</span>
+                                                        </div>
+                                                        <p className="line-clamp-2 italic opacity-80">{parentMessage.message}</p>
+                                                    </div>
+                                                )}
 
-                                                {/* Attachments */}
+                                                <p className="text-gray-700 whitespace-pre-wrap mb-3">{message.message}</p>
+
+                                                {/* Attachments rendering (keep existing logic) */}
                                                 {message.message_attachments && message.message_attachments.length > 0 && (
                                                     <div className="mt-3 pt-3 border-t">
-                                                        <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                                                            <Paperclip className="w-4 h-4" />
-                                                            {message.message_attachments.length} attachment{message.message_attachments.length > 1 ? 's' : ''}
-                                                        </div>
+                                                        {/* ... keep attachment map ... */}
                                                         <div className="space-y-2">
                                                             {message.message_attachments.map((attachment) => (
-                                                                <a
-                                                                    key={attachment.id}
-                                                                    href={attachment.file_url}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    download
-                                                                    className="flex items-center gap-3 p-2 bg-white rounded border hover:border-blue-400 hover:shadow-sm transition-all group"
-                                                                >
+                                                                <a key={attachment.id} href={attachment.file_url} target="_blank" rel="noopener noreferrer" download className="flex items-center gap-3 p-2 bg-white rounded border hover:border-blue-400 hover:shadow-sm transition-all group">
                                                                     <div className="h-8 w-8 rounded bg-blue-100 flex items-center justify-center shrink-0">
                                                                         {getFileIcon(attachment.file_type, attachment.mime_type)}
                                                                     </div>
                                                                     <div className="flex-1 min-w-0">
-                                                                        <p className="text-sm font-medium text-gray-900 truncate group-hover:text-blue-600">
-                                                                            {attachment.file_name}
-                                                                        </p>
-                                                                        <p className="text-xs text-gray-500">
-                                                                            {attachment.file_type?.toUpperCase()} • {(attachment.file_size / 1024).toFixed(1)} KB
-                                                                        </p>
+                                                                        <p className="text-sm font-medium text-gray-900 truncate group-hover:text-blue-600">{attachment.file_name}</p>
+                                                                        <p className="text-xs text-gray-500">{attachment.file_type?.toUpperCase()} • {(attachment.file_size / 1024).toFixed(1)} KB</p>
                                                                     </div>
                                                                     <Download className="w-4 h-4 text-blue-600 shrink-0" />
                                                                 </a>
@@ -276,17 +348,14 @@ export function StudentMessageThreads({ messages, applicationId }: StudentMessag
                                                     </div>
                                                 )}
                                             </div>
+                                            {/* INLINE REPLY FORM */}
+                                            {replyingToMessage?.id === message.id && renderReplyForm(applicationId, true)}
                                         </div>
                                     );
                                 })}
 
-                                {/* Quick Reply Form */}
-                                <div className="pt-4 border-t">
-                                    <StudentQuickReply
-                                        applicationId={applicationId}
-                                        originalSubject={thread.subject}
-                                    />
-                                </div>
+                                {/* Bottom Reply (General) */}
+                                {!replyingToMessage && renderReplyForm(applicationId, false)}
                             </CardContent>
                         )}
                     </Card>

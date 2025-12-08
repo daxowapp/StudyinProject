@@ -45,16 +45,31 @@ export async function generateMetadata({
         },
     };
 }
-export default async function ProgramsPage() {
+export default async function ProgramsPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ university?: string }>;
+}) {
     const supabase = await createClient();
     const t = await getTranslations('Programs');
+    const params = await searchParams;
+    const universitySlug = params.university;
 
-    // OPTIMIZED: Limit initial load, client-side component handles filtering
-    const { data: programs, error } = await supabase
+    // Build query - if university filter is provided, fetch only that university's programs
+    let query = supabase
         .from("v_university_programs_full")
         .select("*")
-        .eq("is_active", true)
-        .limit(200); // Load first 200 programs for better performance
+        .eq("is_active", true);
+
+    if (universitySlug) {
+        // Filter by university slug on server side
+        query = query.eq("university_slug", universitySlug);
+    } else {
+        // Only limit if no specific university is requested
+        query = query.limit(200);
+    }
+
+    const { data: programs, error } = await query;
 
     if (error) {
         console.error("Error fetching programs:", error);
@@ -71,11 +86,12 @@ export default async function ProgramsPage() {
     }, {}) || {};
 
     // Transform data to match ProgramCard props
-    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; language_name: string; category: string; scholarship_chance: string }) => ({
+    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; language_name: string; category: string; scholarship_chance: string }) => ({
         id: p.id,
         slug: p.slug,
         name: p.display_title || p.program_title,
         university: p.university_name,
+        university_slug: p.university_slug, // Add slug for filtering
         city: p.city,
         level: p.level,
         duration: p.duration,

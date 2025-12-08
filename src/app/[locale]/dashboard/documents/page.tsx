@@ -1,8 +1,10 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import DocumentsManager from "./DocumentsManager";
 
 export default async function DocumentsPage() {
+    const t = await getTranslations('Documents');
     const supabase = await createClient();
 
     const { data: { user } } = await supabase.auth.getUser();
@@ -21,9 +23,9 @@ export default async function DocumentsPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-3xl font-bold">My Documents</h1>
+                <h1 className="text-3xl font-bold">{t('title')}</h1>
                 <p className="text-muted-foreground">
-                    Manage your documents for university applications
+                    {t('subtitle')}
                 </p>
             </div>
 

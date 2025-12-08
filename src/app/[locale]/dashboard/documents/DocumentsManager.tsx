@@ -34,6 +34,7 @@ import {
 import { toast } from "sonner";
 import { uploadDocument, deleteDocument, markDocumentsAsRead } from "./actions";
 import { formatBytes, formatDate } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface Document {
     id: string;
@@ -51,27 +52,28 @@ interface DocumentsManagerProps {
     initialDocuments: Document[];
 }
 
-const DOCUMENT_TYPES = [
-    { value: "passport", label: "Passport" },
-    { value: "transcript", label: "Academic Transcript" },
-    { value: "diploma", label: "Diploma/Certificate" },
-    { value: "recommendation_letter", label: "Recommendation Letter" },
-    { value: "personal_statement", label: "Personal Statement" },
-    { value: "cv", label: "CV/Resume" },
-    { value: "language_certificate", label: "Language Certificate (IELTS/TOEFL)" },
-    { value: "photo", label: "Passport Photo" },
-    { value: "bank_statement", label: "Bank Statement" },
-    { value: "health_certificate", label: "Health Certificate" },
-    { value: "police_clearance", label: "Police Clearance" },
-    { value: "other", label: "Other Document" },
-];
-
 export default function DocumentsManager({ userId, initialDocuments }: DocumentsManagerProps) {
+    const t = useTranslations('Documents');
     const [documents, setDocuments] = useState<Document[]>(initialDocuments);
     const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [selectedType, setSelectedType] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+    const documentTypes = [
+        { value: "passport", label: t('types.passport') },
+        { value: "transcript", label: t('types.transcript') },
+        { value: "diploma", label: t('types.diploma') },
+        { value: "recommendation_letter", label: t('types.recommendation_letter') },
+        { value: "personal_statement", label: t('types.personal_statement') },
+        { value: "cv", label: t('types.cv') },
+        { value: "language_certificate", label: t('types.language_certificate') },
+        { value: "photo", label: t('types.photo') },
+        { value: "bank_statement", label: t('types.bank_statement') },
+        { value: "health_certificate", label: t('types.health_certificate') },
+        { value: "police_clearance", label: t('types.police_clearance') },
+        { value: "other", label: t('types.other') },
+    ];
 
     useEffect(() => {
         markDocumentsAsRead(userId);
@@ -82,7 +84,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
         if (file) {
             // Validate file size (max 10MB)
             if (file.size > 10 * 1024 * 1024) {
-                toast.error("File must be less than 10MB");
+                toast.error(t('error.fileSize'));
                 return;
             }
             setSelectedFile(file);
@@ -91,7 +93,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
 
     const handleUpload = async () => {
         if (!selectedFile || !selectedType) {
-            toast.error("Please select a document type and file");
+            toast.error(t('error.selectFile'));
             return;
         }
 
@@ -101,7 +103,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
         if (result.error) {
             toast.error(result.error);
         } else {
-            toast.success("Document uploaded successfully!");
+            toast.success(t('success.uploaded'));
             setUploadDialogOpen(false);
             setSelectedFile(null);
             setSelectedType("");
@@ -112,14 +114,14 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
     };
 
     const handleDelete = async (documentId: string, documentName: string) => {
-        if (!confirm(`Are you sure you want to delete "${documentName}"?`)) return;
+        if (!confirm(t('deleteConfirm', { name: documentName }))) return;
 
         const result = await deleteDocument(userId, documentId);
 
         if (result.error) {
             toast.error(result.error);
         } else {
-            toast.success("Document deleted");
+            toast.success(t('success.deleted'));
             setDocuments(documents.filter(d => d.id !== documentId));
         }
     };
@@ -142,7 +144,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
     };
 
     const getDocumentTypeLabel = (type: string) => {
-        const docType = DOCUMENT_TYPES.find(t => t.value === type);
+        const docType = documentTypes.find(t => t.value === type);
         return docType?.label || type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     };
 
@@ -155,32 +157,32 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
             <div className="grid gap-4 md:grid-cols-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Documents</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.total')}</CardTitle>
                         <FileText className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{documents.length}</div>
-                        <p className="text-xs text-muted-foreground">Uploaded files</p>
+                        <p className="text-xs text-muted-foreground">{t('stats.uploaded')}</p>
                     </CardContent>
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Verified</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.verified')}</CardTitle>
                         <CheckCircle className="h-4 w-4 text-green-600" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold text-green-600">{verifiedCount}</div>
-                        <p className="text-xs text-muted-foreground">Approved by admin</p>
+                        <p className="text-xs text-muted-foreground">{t('stats.approved')}</p>
                     </CardContent>
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Pending Review</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('stats.pending')}</CardTitle>
                         <Clock className="h-4 w-4 text-orange-600" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold text-orange-600">{pendingCount}</div>
-                        <p className="text-xs text-muted-foreground">Awaiting verification</p>
+                        <p className="text-xs text-muted-foreground">{t('stats.awaiting')}</p>
                     </CardContent>
                 </Card>
             </div>
@@ -188,14 +190,14 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
             {/* Upload Button */}
             <div className="flex justify-between items-center">
                 <div>
-                    <h2 className="text-xl font-semibold">Your Documents</h2>
+                    <h2 className="text-xl font-semibold">{t('yourDocuments')}</h2>
                     <p className="text-sm text-muted-foreground">
-                        Upload and manage your application documents
+                        {t('manageDocuments')}
                     </p>
                 </div>
                 <Button onClick={() => setUploadDialogOpen(true)}>
                     <Upload className="mr-2 h-4 w-4" />
-                    Upload Document
+                    {t('uploadDocument')}
                 </Button>
             </div>
 
@@ -204,13 +206,13 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                 <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
                         <FileText className="h-12 w-12 text-muted-foreground mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">No documents yet</h3>
+                        <h3 className="text-lg font-semibold mb-2">{t('noDocuments')}</h3>
                         <p className="text-sm text-muted-foreground mb-4">
-                            Upload your first document to get started
+                            {t('uploadFirst')}
                         </p>
                         <Button onClick={() => setUploadDialogOpen(true)}>
                             <Upload className="mr-2 h-4 w-4" />
-                            Upload Document
+                            {t('uploadDocument')}
                         </Button>
                     </CardContent>
                 </Card>
@@ -234,20 +236,20 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                                     {doc.is_verified ? (
                                         <Badge className="bg-green-100 text-green-800 border-green-200">
                                             <CheckCircle className="h-3 w-3 mr-1" />
-                                            Verified
+                                            {t('stats.verified')}
                                         </Badge>
                                     ) : (
                                         <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200" title="Awaiting admin verification">
                                             <Clock className="h-3 w-3 mr-1" />
-                                            Pending Verification
+                                            {t('stats.pending')}
                                         </Badge>
                                     )}
                                 </div>
                             </CardHeader>
                             <CardContent className="space-y-3">
                                 <div className="text-xs text-muted-foreground space-y-1">
-                                    <div>Size: {formatBytes(doc.file_size)}</div>
-                                    <div>Uploaded: {formatDate(doc.uploaded_at)}</div>
+                                    <div>{t('size')}: {formatBytes(doc.file_size)}</div>
+                                    <div>{t('uploaded')}: {formatDate(doc.uploaded_at)}</div>
                                 </div>
                                 <div className="flex gap-2">
                                     <Button
@@ -257,7 +259,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                                         onClick={() => handleDownload(doc.file_url, doc.document_name)}
                                     >
                                         <Download className="h-3 w-3 mr-1" />
-                                        Download
+                                        {t('download')}
                                     </Button>
                                     <Button
                                         variant="outline"
@@ -278,20 +280,20 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
             <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Upload Document</DialogTitle>
+                        <DialogTitle>{t('uploadDialog.title')}</DialogTitle>
                         <DialogDescription>
-                            Select the document type and upload your file
+                            {t('uploadDialog.description')}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 py-4">
                         <div className="space-y-2">
-                            <Label htmlFor="document-type">Document Type *</Label>
+                            <Label htmlFor="document-type">{t('uploadDialog.type')}</Label>
                             <Select value={selectedType} onValueChange={setSelectedType}>
                                 <SelectTrigger id="document-type">
-                                    <SelectValue placeholder="Select document type" />
+                                    <SelectValue placeholder={t('uploadDialog.selectType')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {DOCUMENT_TYPES.map((type) => {
+                                    {documentTypes.map((type) => {
                                         const isUploaded = documents.some(d => d.document_type === type.value);
                                         return (
                                             <SelectItem
@@ -299,7 +301,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                                                 value={type.value}
                                                 disabled={isUploaded}
                                             >
-                                                {type.label} {isUploaded ? "(Already Uploaded)" : ""}
+                                                {type.label} {isUploaded ? t('uploadDialog.alreadyUploaded') : ""}
                                             </SelectItem>
                                         );
                                     })}
@@ -307,7 +309,7 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                             </Select>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="file">File *</Label>
+                            <Label htmlFor="file">{t('uploadDialog.file')}</Label>
                             <Input
                                 id="file"
                                 type="file"
@@ -316,11 +318,11 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                             />
                             {selectedFile && (
                                 <p className="text-sm text-muted-foreground">
-                                    Selected: {selectedFile.name} ({formatBytes(selectedFile.size)})
+                                    {t('uploadDialog.selected')}: {selectedFile.name} ({formatBytes(selectedFile.size)})
                                 </p>
                             )}
                             <p className="text-xs text-muted-foreground">
-                                Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max 10MB.
+                                {t('uploadDialog.formats')}
                             </p>
                         </div>
                     </div>
@@ -330,18 +332,18 @@ export default function DocumentsManager({ userId, initialDocuments }: Documents
                             onClick={() => setUploadDialogOpen(false)}
                             disabled={uploading}
                         >
-                            Cancel
+                            {t('uploadDialog.cancel')}
                         </Button>
                         <Button onClick={handleUpload} disabled={uploading || !selectedFile || !selectedType}>
                             {uploading ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Uploading...
+                                    {t('uploadDialog.uploading')}
                                 </>
                             ) : (
                                 <>
                                     <Upload className="mr-2 h-4 w-4" />
-                                    Upload
+                                    {t('uploadDialog.upload')}
                                 </>
                             )}
                         </Button>

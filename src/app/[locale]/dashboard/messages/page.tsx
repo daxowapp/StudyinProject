@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, AlertCircle, MessageSquare } from 'lucide-react';
 import { StudentMessageThreads } from './components/StudentMessageThreads';
@@ -35,6 +36,7 @@ interface Message {
 }
 
 export default async function MessagesPage() {
+  const t = await getTranslations('Messages');
   const supabase = await createClient();
 
   const {
@@ -119,9 +121,9 @@ export default async function MessagesPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
           <p className="text-muted-foreground mt-1">
-            Communication with admissions team
+            {t('subtitle')}
           </p>
         </div>
       </div>
@@ -130,7 +132,7 @@ export default async function MessagesPage() {
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Conversations</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('conversations')}</CardTitle>
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -140,7 +142,7 @@ export default async function MessagesPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Unread Messages</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('unreadMessages')}</CardTitle>
             <Mail className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
@@ -150,7 +152,7 @@ export default async function MessagesPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Action Required</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('actionRequired')}</CardTitle>
             <AlertCircle className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
@@ -167,9 +169,9 @@ export default async function MessagesPage() {
           <CardContent className="flex flex-col items-center justify-center h-64 gap-4">
             <MessageSquare className="w-16 h-16 text-muted-foreground" />
             <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">No messages yet</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('noMessages')}</h3>
               <p className="text-muted-foreground">
-                Messages from the admissions team will appear here
+                {t('noMessagesDesc')}
               </p>
             </div>
           </CardContent>

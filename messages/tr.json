@@ -51,6 +51,14 @@
                 "title": "Derecesiz",
                 "description": "Dil kursları ve kısa dönem programlar."
             },
+            "diploma": {
+                "title": "Diploma",
+                "description": "Mesleki ve teknik programlar."
+            },
+            "language": {
+                "title": "Dil Kursu",
+                "description": "Çince öğrenin."
+            },
             "viewAll": "Tüm Programları Gör"
         },
         "viewAllUniversities": "Tüm Üniversiteleri Gör",
@@ -459,9 +467,69 @@
         "save": "Profili Kaydet",
         "saving": "Kaydediliyor..."
     },
+    "Documents": {
+        "title": "Belgelerim",
+        "subtitle": "Üniversite başvuruları için belgelerinizi yönetin",
+        "stats": {
+            "total": "Toplam Belge",
+            "uploaded": "Yüklenen dosyalar",
+            "verified": "Doğrulanmış",
+            "approved": "Yönetici tarafından onaylandı",
+            "pending": "İnceleme Bekliyor",
+            "awaiting": "Doğrulama bekleniyor"
+        },
+        "yourDocuments": "Belgeleriniz",
+        "manageDocuments": "Başvuru belgelerinizi yükleyin ve yönetin",
+        "uploadDocument": "Belge Yükle",
+        "noDocuments": "Henüz belge yok",
+        "uploadFirst": "Başlamak için ilk belgenizi yükleyin",
+        "size": "Boyut",
+        "uploaded": "Yüklendi",
+        "download": "İndir",
+        "delete": "Sil",
+        "deleteConfirm": "\"{name}\" belgesini silmek istediğinizden emin misiniz?",
+        "uploadDialog": {
+            "title": "Belge Yükle",
+            "description": "Belge türünü seçin ve dosyanızı yükleyin",
+            "type": "Belge Türü *",
+            "selectType": "Belge türü seçin",
+            "alreadyUploaded": "(Zaten Yüklendi)",
+            "file": "Dosya *",
+            "selected": "Seçildi",
+            "formats": "Kabul edilen formatlar: PDF, JPG, PNG, DOC, DOCX. Maks 10MB.",
+            "cancel": "İptal",
+            "uploading": "Yükleniyor...",
+            "upload": "Yükle"
+        },
+        "error": {
+            "fileSize": "Dosya 10MB'den küçük olmalıdır",
+            "selectFile": "Lütfen bir belge türü ve dosya seçin",
+            "fileType": "Lütfen bir resim dosyası yükleyin",
+            "imageSize": "Resim 5MB'den küçük olmalıdır"
+        },
+        "success": {
+            "uploaded": "Belge başarıyla yüklendi!",
+            "deleted": "Belge silindi"
+        },
+        "types": {
+            "passport": "Pasaport",
+            "transcript": "Akademik Transkript",
+            "diploma": "Diploma/Sertifika",
+            "recommendation_letter": "Referans Mektubu",
+            "personal_statement": "Niyet Mektubu",
+            "cv": "Özgeçmiş (CV)",
+            "language_certificate": "Dil Sertifikası (IELTS/TOEFL)",
+            "photo": "Vesikalık Fotoğraf",
+            "bank_statement": "Banka Hesap Dökümü",
+            "health_certificate": "Sağlık Raporu",
+            "police_clearance": "Adli Sicil Kaydı",
+            "other": "Diğer Belge"
+        }
+    },
     "Status": {
         "pending_documents": "Belge Bekliyor",
-        "pending_payment": "Ödeme Bekliyor",
+        "pending_payment": "Ödeme Bekleniyor",
+        "payment_verification": "Ödeme Doğrulama",
         "submitted": "Gönderildi",
         "under_review": "İnceleniyor",
         "accepted": "Kabul Edildi",
@@ -609,7 +677,9 @@
             "levels": {
                 "bachelor": "Lisans",
                 "master": "Yüksek Lisans",
-                "phd": "Doktora"
+                "phd": "Doktora",
+                "diploma": "Diploma",
+                "language": "Dil Kursu"
             },
             "fields": {
                 "business": "İşletme ve Yönetim",
@@ -617,7 +687,9 @@
                 "medicine": "Tıp ve Sağlık Bilimleri",
                 "arts": "Sanat ve Beşeri Bilimler",
                 "science": "Doğa Bilimleri",
-                "education": "Eğitim"
+                "education": "Eğitim",
+                "cs": "Bilgisayar Bilimleri",
+                "law": "Hukuk"
             },
             "languages": {
                 "english": "İngilizce",
@@ -723,6 +795,9 @@
                 "facilities": "Modern tesisler ve kaynaklar",
                 "career": "Kariyer geliştirme desteği"
             }
+        },
+        "accommodation": {
+            "title": "Konaklama Seçenekleri"
         }
     },
     "UniversityDetail": {
@@ -864,65 +939,6 @@
         "students": "Öğrenciler",
         "ranking": "Sıralama",
         "international": "Uluslararası"
-    },
-    "Documents": {
-        "title": "Belgelerim",
-        "subtitle": "Üniversite başvuruları için belgelerinizi yönetin",
-        "stats": {
-            "total": "Toplam Belge",
-            "uploaded": "Yüklenen dosyalar",
-            "verified": "Doğrulanmış",
-            "approved": "Yönetici onaylı",
-            "pending": "İnceleme Bekliyor",
-            "awaiting": "Doğrulama bekleniyor"
-        },
-        "yourDocuments": "Belgeleriniz",
-        "manageDocuments": "Başvuru belgelerinizi yükleyin ve yönetin",
-        "uploadDocument": "Belge Yükle",
-        "noDocuments": "Henüz belge yok",
-        "uploadFirst": "Başlamak için ilk belgenizi yükleyin",
-        "size": "Boyut",
-        "uploaded": "Yüklendi",
-        "download": "İndir",
-        "delete": "Sil",
-        "deleteConfirm": "\"{name}\" belgesini silmek istediğinizden emin misiniz?",
-        "uploadDialog": {
-            "title": "Belge Yükle",
-            "description": "Belge türünü seçin ve dosyanızı yükleyin",
-            "type": "Belge Türü *",
-            "selectType": "Belge türü seçin",
-            "alreadyUploaded": "(Zaten Yüklendi)",
-            "file": "Dosya *",
-            "selected": "Seçildi",
-            "formats": "Kabul edilen formatlar: PDF, JPG, PNG, DOC, DOCX. Maks 10MB.",
-            "cancel": "İptal",
-            "uploading": "Yükleniyor...",
-            "upload": "Yükle"
-        },
-        "error": {
-            "fileSize": "Dosya 10MB'dan küçük olmalıdır",
-            "selectFile": "Lütfen belge türü ve dosya seçin",
-            "fileType": "Lütfen bir resim dosyası yükleyin",
-            "imageSize": "Resim 5MB'dan küçük olmalıdır"
-        },
-        "success": {
-            "uploaded": "Belge başarıyla yüklendi!",
-            "deleted": "Belge silindi"
-        },
-        "types": {
-            "passport": "Pasaport",
-            "transcript": "Akademik Transkript",
-            "diploma": "Diploma/Sertifika",
-            "recommendation_letter": "Tavsiye Mektubu",
-            "personal_statement": "Kişisel Beyan",
-            "cv": "CV/Özgeçmiş",
-            "language_certificate": "Dil Sertifikası (IELTS/TOEFL)",
-            "photo": "Pasaport Fotoğrafı",
-            "bank_statement": "Banka Ekstresi",
-            "health_certificate": "Sağlık Raporu",
-            "police_clearance": "Sabıka Kaydı",
-            "other": "Diğer Belge"
-        }
     },
     "Apply": {
         "title": "Programa Başvur",
@@ -1086,5 +1102,28 @@
             "rejectDescription": "Bu işlem, talebi reddedildi olarak işaretleyecektir.",
             "adminResponsePlaceholder": "Öğrenciye bir not ekleyin..."
         }
+    },
+    "Messages": {
+        "title": "Mesajlar",
+        "subtitle": "Kabul ekibi ile iletişim",
+        "conversations": "Konuşmalar",
+        "unreadMessages": "Okunmamış Mesajlar",
+        "actionRequired": "Eylem Gerekiyor",
+        "actionCompleted": "Tamamlandı",
+        "noMessages": "Henüz mesaj yok",
+        "noMessagesDesc": "Kabul ekibinden gelen mesajlar burada görünecek",
+        "reply": "Yanıtla",
+        "replyingTo": "{name}'e yanıt veriliyor",
+        "typeReply": "Yanıtınızı yazın...",
+        "sendReply": "Yanıt Gönder",
+        "sending": "Gönderiliyor...",
+        "cancel": "İptal",
+        "you": "Siz",
+        "admin": "Kabul Ekibi",
+        "replyTooltip": "Bu mesajı yanıtla",
+        "actionRequiredMessage": "Lütfen bu mesajı yanıtlayın veya istenen eylemi tamamlayın.",
+        "takeAction": "Harekete Geç",
+        "attachment": "ek",
+        "attachments": "ekler"
     }
 }

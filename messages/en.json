@@ -51,6 +51,14 @@
                 "title": "Non-Degree",
                 "description": "Language courses and short-term programs."
             },
+            "diploma": {
+                "title": "Diploma",
+                "description": "Vocational and technical programs."
+            },
+            "language": {
+                "title": "Language Course",
+                "description": "Learn Chinese language."
+            },
             "viewAll": "View All Programs"
         },
         "viewAllUniversities": "View All Universities",
@@ -482,7 +490,9 @@
             "levels": {
                 "bachelor": "Bachelor",
                 "master": "Master",
-                "phd": "PhD"
+                "phd": "PhD",
+                "diploma": "Diploma",
+                "language": "Language Course"
             },
             "fields": {
                 "business": "Business & Management",
@@ -490,7 +500,9 @@
                 "medicine": "Medicine & Health Sciences",
                 "arts": "Arts & Humanities",
                 "science": "Natural Sciences",
-                "education": "Education"
+                "education": "Education",
+                "cs": "Computer Science",
+                "law": "Law"
             },
             "languages": {
                 "english": "English",
@@ -664,6 +676,9 @@
                 "facilities": "Modern facilities & resources",
                 "career": "Career development support"
             }
+        },
+        "accommodation": {
+            "title": "Accommodation Options"
         }
     },
     "UniversityDetail": {
@@ -940,6 +955,7 @@
     "Status": {
         "pending_documents": "Pending Documents",
         "pending_payment": "Pending Payment",
+        "payment_verification": "Payment Verification",
         "submitted": "Submitted",
         "under_review": "Under Review",
         "accepted": "Accepted",
@@ -1156,5 +1172,28 @@
             "rejectDescription": "This will mark the request as rejected.",
             "adminResponsePlaceholder": "Add a note to the student..."
         }
+    },
+    "Messages": {
+        "title": "Messages",
+        "subtitle": "Communication with admissions team",
+        "conversations": "Conversations",
+        "unreadMessages": "Unread Messages",
+        "actionRequired": "Action Required",
+        "actionCompleted": "Completed",
+        "noMessages": "No messages yet",
+        "noMessagesDesc": "Messages from the admissions team will appear here",
+        "reply": "Reply",
+        "replyingTo": "Replying to {name}",
+        "typeReply": "Type your reply...",
+        "sendReply": "Send Reply",
+        "sending": "Sending...",
+        "cancel": "Cancel",
+        "you": "You",
+        "admin": "Admissions Team",
+        "replyTooltip": "Reply to this message",
+        "actionRequiredMessage": "Please respond to this message or complete the requested action.",
+        "takeAction": "Take Action",
+        "attachment": "attachment",
+        "attachments": "attachments"
     }
 }

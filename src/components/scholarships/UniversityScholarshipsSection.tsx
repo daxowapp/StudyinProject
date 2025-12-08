@@ -33,6 +33,7 @@ interface UniversityScholarship {
 interface UniversityScholarshipsSectionProps {
     universityId: string;
     universitySlug?: string;
+    programSlug?: string; // When provided, Apply Now links directly to apply page
     title?: string;
     description?: string;
     showHeader?: boolean;
@@ -41,6 +42,7 @@ interface UniversityScholarshipsSectionProps {
 export function UniversityScholarshipsSection({
     universityId,
     universitySlug,
+    programSlug,
     title = "Available Scholarship Types",
     description = "Choose the scholarship type that fits your budget",
     showHeader = true
@@ -54,14 +56,19 @@ export function UniversityScholarshipsSection({
 
     const handleApply = async () => {
         const { data: { user } } = await supabase.auth.getUser();
-        const targetUrl = universitySlug
-            ? `/programs?university=${universitySlug}`
-            : `/programs`;
+
+        // If programSlug is provided, go directly to apply page
+        // Otherwise, go to programs list filtered by university
+        const targetUrl = programSlug
+            ? `/${locale}/apply/${programSlug}`
+            : universitySlug
+                ? `/${locale}/programs?university=${universitySlug}`
+                : `/${locale}/programs`;
 
         if (user) {
             router.push(targetUrl);
         } else {
-            router.push(`/register?next=${encodeURIComponent(targetUrl)}`);
+            router.push(`/${locale}/auth/register?next=${encodeURIComponent(targetUrl)}`);
         }
     };
 
@@ -242,23 +249,46 @@ export function UniversityScholarshipsSection({
                     const theme = themes[index % themes.length];
                     const isPopular = index === 0 && scholarship.tuition_coverage_percentage >= 100;
 
-                    let benefits: string[] = [];
-                    // Prefer additional_benefits from DB (or translation)
+                    // Build benefits dynamically from DB fields
+                    const benefits: string[] = [];
+
+                    // Tuition coverage
+                    if (scholarship.tuition_coverage_percentage > 0) {
+                        benefits.push(`${scholarship.tuition_coverage_percentage}% tuition fee coverage`);
+                    }
+
+                    // Accommodation
+                    if (scholarship.includes_accommodation) {
+                        const accText = scholarship.accommodation_type
+                            ? `Free ${scholarship.accommodation_type}`
+                            : 'Free accommodation';
+                        benefits.push(accText);
+                    }
+
+                    // Stipend/Salary
+                    if (scholarship.includes_stipend && scholarship.stipend_amount_monthly) {
+                        const stipendText = `${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month stipend`;
+                        benefits.push(stipendText);
+                    }
+
+                    // Medical Insurance
+                    if (scholarship.includes_medical_insurance) {
+                        benefits.push('Medical insurance included');
+                    }
+
+                    // One-time allowance
+                    if (scholarship.one_time_allowance && scholarship.one_time_allowance > 0) {
+                        benefits.push(`${scholarship.one_time_allowance} ${scholarship.one_time_allowance_currency} settlement allowance`);
+                    }
+
+                    // Additional benefits from DB array (if any)
                     if (scholarship.additional_benefits && scholarship.additional_benefits.length > 0) {
-                        benefits = scholarship.additional_benefits;
-                    } else {
-                        // Fallback to defaults
-                        if (scholarship.tuition_coverage_percentage > 0) {
-                            benefits.push(t('benefits.tuitionCoverage', { percentage: scholarship.tuition_coverage_percentage }));
-                        } else {
-                            benefits.push(t('benefits.noScholarship'));
-                        }
-                        benefits.push(t('benefits.support'));
-                        benefits.push(t('benefits.visa'));
-                        benefits.push(t('benefits.orientation'));
-                        if (scholarship.includes_accommodation) {
-                            benefits.push(t('benefits.accommodation'));
-                        }
+                        benefits.push(...scholarship.additional_benefits);
+                    }
+
+                    // If no benefits at all, show a default message
+                    if (benefits.length === 0) {
+                        benefits.push('Self-funded (no scholarship coverage)');
                     }
 
                     return (
@@ -282,9 +312,6 @@ export function UniversityScholarshipsSection({
                                 </div>
                                 <div className="font-semibold text-xl mb-2 line-clamp-2 min-h-[3.5rem]">
                                     {scholarship.display_name || scholarship.type_name}
-                                </div>
-                                <div className="text-muted-foreground text-sm line-clamp-2 min-h-[2.5rem]">
-                                    {scholarship.description || t('defaultDescription')}
                                 </div>
                             </div>
 

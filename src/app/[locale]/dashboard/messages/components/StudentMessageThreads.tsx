@@ -63,12 +63,11 @@ interface StudentMessageThreadsProps {
 }
 
 import { markAllMessagesAsRead, sendReply } from '../actions';
-
-// ... (imports remain the same)
+import { useTranslations } from 'next-intl';
 
 export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
+    const t = useTranslations('Messages');
     const [expandedThreads, setExpandedThreads] = useState<Set<string>>(new Set());
-    const [replyingTo, setReplyingTo] = useState<string | null>(null);
     const [replyingToMessage, setReplyingToMessage] = useState<Message | null>(null);
     const [replyText, setReplyText] = useState('');
     const [isSending, setIsSending] = useState(false);
@@ -112,7 +111,6 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
             } else {
                 toast.success('Reply sent successfully!');
                 setReplyText('');
-                setReplyingTo(null);
                 setReplyingToMessage(null);
                 // No need to reload, revalidatePath in action handles it
             }
@@ -123,6 +121,54 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
             setIsSending(false);
         }
     };
+
+    const renderReplyForm = (applicationId: string, isInline: boolean = false) => (
+        <div className={`space-y-3 ${isInline ? 'mt-4 pl-8 border-l-2 border-blue-100' : 'pt-4 border-t'}`}>
+            {!isInline && replyingToMessage && replyingToMessage.application_id === applicationId && (
+                <div className="flex items-center justify-between bg-blue-50 p-2 rounded border border-blue-100 text-sm">
+                    <div className="flex items-center gap-2 overflow-hidden">
+                        <Reply className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span className="font-medium text-blue-900 shrink-0">{t('replyingTo', { name: replyingToMessage.sender_type === 'admin' ? t('admin') : t('you') })}:</span>
+                        <span className="text-blue-700 truncate">{replyingToMessage.message}</span>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 hover:bg-blue-100"
+                        onClick={() => setReplyingToMessage(null)}
+                    >
+                        <X className="w-4 h-4 text-blue-700" />
+                    </Button>
+                </div>
+            )}
+            <Textarea
+                placeholder={t('typeReply')}
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                rows={isInline ? 3 : 4}
+                autoFocus={isInline}
+            />
+            <div className="flex gap-2">
+                <Button
+                    onClick={() => handleSendReply(applicationId)}
+                    disabled={isSending || !replyText.trim()}
+                    className="gap-2"
+                >
+                    <Send className="w-4 h-4" />
+                    {isSending ? t('sending') : t('sendReply')}
+                </Button>
+                <Button
+                    variant="outline"
+                    onClick={() => {
+                        setReplyingToMessage(null);
+                        setReplyText('');
+                    }}
+                >
+                    {t('cancel')}
+                </Button>
+            </div>
+        </div>
+    );
 
     const getFileIcon = (fileType: string, mimeType: string) => {
         if (mimeType?.startsWith('image/')) return <ImageIcon className="w-4 h-4 text-blue-600" />;
@@ -163,7 +209,7 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                             {thread.hasActionRequired && (
                                                 <Badge className="bg-orange-100 text-orange-800">
                                                     <AlertCircle className="w-3 h-3 mr-1" />
-                                                    Action Required
+                                                    {t('actionRequired')}
                                                 </Badge>
                                             )}
                                         </div>
@@ -211,7 +257,7 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                     </div>
                                                     <div className="flex-1">
                                                         <div className="font-semibold text-sm">
-                                                            {isAdmin ? 'Admissions Team' : 'You'}
+                                                            {isAdmin ? t('admin') : t('you')}
                                                         </div>
                                                         <div className="text-xs text-muted-foreground">
                                                             {formatDistanceToNow(new Date(message.created_at), { addSuffix: true })}
@@ -223,19 +269,19 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                         variant="ghost"
                                                         size="sm"
                                                         className="h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                                                        onClick={() => {
-                                                            setReplyingTo(thread.applicationId);
+                                                        onClick={(e) => {
+                                                            e.stopPropagation(); // Prevent card click
                                                             setReplyingToMessage(message);
-                                                            // Optional: scroll to bottom/reply area
+                                                            setReplyText('');
                                                         }}
-                                                        title="Reply to this message"
+                                                        title={t('replyTooltip')}
                                                     >
                                                         <Reply className="w-4 h-4 text-muted-foreground" />
                                                     </Button>
 
                                                     {message.requires_action && (
                                                         <Badge className={message.action_completed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
-                                                            {message.action_completed ? '✓ Completed' : 'Action Required'}
+                                                            {message.action_completed ? `✓ ${t('actionCompleted')}` : t('actionRequired')}
                                                         </Badge>
                                                     )}
                                                 </div>
@@ -245,7 +291,7 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                     <div className="mb-3 pl-3 border-l-4 border-gray-300 bg-gray-50 p-2 rounded text-sm text-gray-600">
                                                         <div className="flex items-center gap-1 font-medium mb-1 text-xs">
                                                             <Quote className="w-3 h-3" />
-                                                            <span>Replying to {parentMessage.sender_type === 'admin' ? 'Admissions Team' : 'You'}</span>
+                                                            <span>{t('replyingTo', { name: parentMessage.sender_type === 'admin' ? t('admin') : t('you') })}</span>
                                                         </div>
                                                         <p className="line-clamp-2 italic opacity-80">
                                                             {parentMessage.message}
@@ -269,15 +315,15 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                         <div className="flex items-start gap-2">
                                                             <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5" />
                                                             <div className="flex-1">
-                                                                <p className="font-semibold text-orange-900 text-sm">Action Required</p>
+                                                                <p className="font-semibold text-orange-900 text-sm">{t('actionRequired')}</p>
                                                                 <p className="text-sm text-orange-800">
-                                                                    Please respond to this message or complete the requested action.
+                                                                    {t('actionRequiredMessage')}
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <Link href={`/dashboard/applications/${message.application_id}`}>
                                                             <Button className="w-full mt-3 bg-orange-600 hover:bg-orange-700">
-                                                                Take Action
+                                                                {t('takeAction')}
                                                             </Button>
                                                         </Link>
                                                     </div>
@@ -288,7 +334,7 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                     <div className="mt-3 pt-3 border-t">
                                                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                                                             <Paperclip className="w-4 h-4" />
-                                                            {message.message_attachments.length} attachment{message.message_attachments.length > 1 ? 's' : ''}
+                                                            {message.message_attachments.length} {message.message_attachments.length > 1 ? t('attachments') : t('attachment')}
                                                         </div>
                                                         <div className="space-y-2">
                                                             {message.message_attachments?.map((attachment: Attachment) => (
@@ -318,75 +364,18 @@ export function StudentMessageThreads({ threads }: StudentMessageThreadsProps) {
                                                     </div>
                                                 )}
                                             </div>
+
+                                            {/* INLINE REPLY FORM */}
+                                            {replyingToMessage?.id === message.id && renderReplyForm(thread.applicationId, true)}
                                         </div>
                                     );
                                 })}
 
-                                {/* Quick Reply */}
-                                <div className="pt-4 border-t">
-                                    {replyingTo === thread.applicationId ? (
-                                        <div className="space-y-3">
-                                            {replyingToMessage && replyingToMessage.application_id === thread.applicationId && (
-                                                <div className="flex items-center justify-between bg-blue-50 p-2 rounded border border-blue-100 text-sm">
-                                                    <div className="flex items-center gap-2 overflow-hidden">
-                                                        <Reply className="w-4 h-4 text-blue-600 shrink-0" />
-                                                        <span className="font-medium text-blue-900 shrink-0">Replying to {replyingToMessage.sender_type === 'admin' ? 'Admissions Team' : 'You'}:</span>
-                                                        <span className="text-blue-700 truncate">{replyingToMessage.message}</span>
-                                                    </div>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        className="h-6 w-6 p-0 hover:bg-blue-100"
-                                                        onClick={() => setReplyingToMessage(null)}
-                                                    >
-                                                        <X className="w-4 h-4 text-blue-700" />
-                                                    </Button>
-                                                </div>
-                                            )}
-                                            <Textarea
-                                                placeholder="Type your reply..."
-                                                value={replyText}
-                                                onChange={(e) => setReplyText(e.target.value)}
-                                                rows={4}
-                                            />
-                                            <div className="flex gap-2">
-                                                <Button
-                                                    onClick={() => handleSendReply(thread.applicationId)}
-                                                    disabled={isSending || !replyText.trim()}
-                                                    className="gap-2"
-                                                >
-                                                    <Send className="w-4 h-4" />
-                                                    {isSending ? 'Sending...' : 'Send Reply'}
-                                                </Button>
-                                                <Button
-                                                    variant="outline"
-                                                    onClick={() => {
-                                                        setReplyingTo(null);
-                                                        setReplyingToMessage(null);
-                                                        setReplyText('');
-                                                    }}
-                                                >
-                                                    Cancel
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <Button
-                                            onClick={() => {
-                                                setReplyingTo(thread.applicationId);
-                                                setReplyingToMessage(null);
-                                            }}
-                                            variant="outline"
-                                            className="w-full gap-2"
-                                        >
-                                            <Send className="w-4 h-4" />
-                                            Reply to Admissions Team
-                                        </Button>
-                                    )}
-                                </div>
+                                {/* Bottom Quick Reply (General or if not inline active) */}
+                                {!replyingToMessage && renderReplyForm(thread.applicationId, false)}
+
                             </CardContent>
-                        )
-                        }
+                        )}
                     </Card>
                 );
             })}
