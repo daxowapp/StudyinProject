@@ -68,7 +68,7 @@ export function UniversityScholarshipsSection({
         if (user) {
             router.push(targetUrl);
         } else {
-            router.push(`/${locale}/auth/register?next=${encodeURIComponent(targetUrl)}`);
+            router.push(`/${locale}/register?next=${encodeURIComponent(targetUrl)}`);
         }
     };
 
