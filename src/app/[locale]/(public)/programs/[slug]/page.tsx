@@ -16,6 +16,9 @@ import { CourseJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/Json
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
+// Enable ISR with 10 minute revalidation for performance
+export const revalidate = 600;
+
 export async function generateMetadata({
     params
 }: {
@@ -79,53 +82,45 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         .eq("slug", slug)
         .single();
 
-    // Log for debugging
-    console.log("Fetching program with slug:", slug);
-    console.log("Error:", error);
-    console.log("Program data:", program);
-
-    if (error) {
-        console.error("Supabase error:", error.message, error.details, error.hint);
+    if (error || !program) {
         notFound();
     }
 
-    if (!program) {
-        console.log("No program found for slug:", slug);
-        notFound();
-    }
+    // Fetch all related data in parallel for better performance
+    const [translationResult, universityResult, accommodationResult, requirementsResult] = await Promise.all([
+        // Program translation
+        supabase
+            .from("program_translations")
+            .select("*")
+            .eq("program_id", program.id)
+            .eq("locale", locale)
+            .single(),
+        // University info
+        supabase
+            .from("universities")
+            .select("has_fast_track, brochure_url, accommodation_available, accommodation_description, accommodation_fee_range, accommodation_features")
+            .eq("id", program.university_id)
+            .single(),
+        // Accommodation types
+        supabase
+            .from("university_accommodation")
+            .select("*")
+            .eq("university_id", program.university_id)
+            .order("display_order", { ascending: true }),
+        // Admission requirements
+        supabase
+            .from("v_university_admission_requirements")
+            .select("*")
+            .eq("university_id", program.university_id)
+            .in("requirement_type", [program.level.toLowerCase(), "all"])
+            .order("category")
+            .order("display_order")
+    ]);
 
-    // Fetch program translation based on locale
-    const { data: translation } = await supabase
-        .from("program_translations")
-        .select("*")
-        .eq("program_id", program.id)
-        .eq("locale", locale)
-        .single();
-
-    // Fetch university fast track status, brochure, and accommodation info
-    const { data: university } = await supabase
-        .from("universities")
-        .select("has_fast_track, brochure_url, accommodation_available, accommodation_description, accommodation_fee_range, accommodation_features")
-        .eq("id", program.university_id)
-        .single();
-
-    // Fetch accommodation types for this university
-    const { data: accommodationTypes } = await supabase
-        .from("university_accommodation")
-        .select("*")
-        .eq("university_id", program.university_id)
-        .order("display_order", { ascending: true });
-
-    // Fetch admission requirements for this university and program level
-    const { data: requirements } = await supabase
-        .from("v_university_admission_requirements")
-        .select("*")
-        .eq("university_id", program.university_id)
-        .in("requirement_type", [program.level.toLowerCase(), "all"])
-        .order("category")
-        .order("display_order");
-
-    console.log("Requirements fetched:", requirements);
+    const translation = translationResult.data;
+    const university = universityResult.data;
+    const accommodationTypes = accommodationResult.data;
+    const requirements = requirementsResult.data;
 
     // Group requirements by category
     const groupedRequirements = requirements?.reduce((acc: Record<string, { name: string; required: boolean; note: string }[]>, req: { category: string; title: string; is_required: boolean; custom_note: string; description: string }) => {

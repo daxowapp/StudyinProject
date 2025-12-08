@@ -7,6 +7,9 @@ import { UniversityJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
+// Enable ISR with 10 minute revalidation for performance
+export const revalidate = 600;
+
 export async function generateMetadata({
     params
 }: {
@@ -80,15 +83,11 @@ export default async function UniversityDetailPage({ params }: { params: Promise
     }
 
     // Fetch programs using the new view
-    const { data: programs, error: programsError } = await supabase
+    const { data: programs } = await supabase
         .from("v_university_programs_full")
         .select("*")
         .eq("university_id", university.id)
         .eq("is_active", true);
-
-    console.log("University ID:", university.id);
-    console.log("Programs fetched:", programs);
-    console.log("Programs error:", programsError);
 
     const formattedPrograms = programs?.map((p: unknown) => {
         const prog = p as {
@@ -117,22 +116,25 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         };
     }) || [];
 
-    // Fetch translation for current locale
+    // Fetch translations in parallel for better performance
     const { locale } = await params;
-    const { data: translation } = await supabase
-        .from("university_translations")
-        .select("*")
-        .eq("university_id", university.id)
-        .eq("locale", locale)
-        .single();
+    const [translationResult, accommodationResult] = await Promise.all([
+        supabase
+            .from("university_translations")
+            .select("*")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .single(),
+        supabase
+            .from("accommodation_translations")
+            .select("*")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .single()
+    ]);
 
-    // Fetch accommodation translation
-    const { data: accommodationTranslation } = await supabase
-        .from("accommodation_translations")
-        .select("*")
-        .eq("university_id", university.id)
-        .eq("locale", locale)
-        .single();
+    const translation = translationResult.data;
+    const accommodationTranslation = accommodationResult.data;
 
     const universityData = {
         id: university.id,
