@@ -2,23 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { GraduationCap, Globe, TrendingUp, ShieldCheck, Sparkles, Users, BookOpen, Trophy } from "lucide-react";
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-};
 
 export function WhyStudySection() {
     const t = useTranslations('WhyStudy');
@@ -92,20 +76,14 @@ export function WhyStudySection() {
 
     return (
         <section className="py-16 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
-            {/* Decorative Elements */}
+            {/* Decorative Elements - Static, no animation */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-20"
-                >
+                <div className="text-center mb-20 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6">
                         <Sparkles className="h-4 w-4" />
                         <span>{t('badge')}</span>
@@ -125,21 +103,14 @@ export function WhyStudySection() {
                     <p className="mt-6 text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto"
-                >
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
                     {features.map((feature, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={item}
-                            whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                            className="group relative"
+                            className="group relative animate-fade-in-up hover:-translate-y-2 transition-transform duration-300"
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <div className="relative h-full rounded-3xl bg-card border border-border p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                                 {/* Gradient Overlay on Hover */}
@@ -161,18 +132,12 @@ export function WhyStudySection() {
                                 {/* Decorative Corner */}
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
 
                 {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="mt-20 text-center"
-                >
+                <div className="mt-20 text-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
                     <div className="inline-flex flex-col sm:flex-row gap-4">
                         <Link href="/programs">
                             <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
@@ -185,7 +150,7 @@ export function WhyStudySection() {
                             </button>
                         </Link>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

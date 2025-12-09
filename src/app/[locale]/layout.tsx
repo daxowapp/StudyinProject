@@ -136,10 +136,11 @@ export default async function LocaleLayout({
                 {/* Preconnect to critical origins */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                {/* Preconnect to Supabase for faster API calls */}
+                <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
                 {/* Preload hero image for LCP */}
                 <link rel="preload" as="image" href="/hero-bg.png" fetchPriority="high" />
-                {/* DNS prefetch */}
-                <link rel="dns-prefetch" href="https://jhxujkhfzsahwjxuaydl.supabase.co" />
             </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
                 <NextIntlClientProvider messages={messages}>
