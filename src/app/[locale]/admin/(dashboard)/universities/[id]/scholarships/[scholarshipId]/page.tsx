@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { ScholarshipFormContent, ScholarshipFormData } from "../../../components/ScholarshipFormContent";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const LOCALES = [
     { code: "ar", name: "Arabic", dir: "rtl" },
@@ -235,7 +236,7 @@ export default function EditUniversityScholarshipPage() {
             let currentScholarshipId = scholarshipId;
 
             if (scholarshipId === "new") {
-                const { data, error } = await supabase.from("university_scholarships").insert([mainData]).select().single();
+                const { data, error } = await supabase.from("university_scholarships").insert([{ ...mainData, portal_key: PORTAL_KEY }]).select().single();
                 if (error) throw error;
                 currentScholarshipId = data.id;
             } else {

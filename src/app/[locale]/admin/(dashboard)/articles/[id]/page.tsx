@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { ArrowLeft, Loader2, Upload, X, Eye, Save } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export default function ArticleEditorPage() {
     const router = useRouter();
@@ -204,7 +205,7 @@ export default function ArticleEditorPage() {
             if (isNew) {
                 const { error } = await supabase
                     .from("articles")
-                    .insert([articleData]);
+                    .insert([{ ...articleData, portal_key: PORTAL_KEY }]);
 
                 if (error) throw error;
                 toast.success("Article created successfully");

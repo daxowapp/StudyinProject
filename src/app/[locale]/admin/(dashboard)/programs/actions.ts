@@ -2,12 +2,14 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export async function getPrograms() {
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("v_university_programs_full")
         .select("*")
+        .eq("portal_key", PORTAL_KEY)
         .order("created_at", { ascending: false });
 
     if (error) throw new Error(error.message);
@@ -19,6 +21,7 @@ export async function getUniversities() {
     const { data, error } = await supabase
         .from("universities")
         .select("id, name")
+        .eq("portal_key", PORTAL_KEY)
         .order("name");
 
     if (error) throw new Error(error.message);
@@ -69,6 +72,7 @@ export async function createProgram(formData: FormData) {
         application_fee,
         service_fee,
         force_payment,
+        portal_key: PORTAL_KEY,
     });
 
     if (error) return { error: error.message };

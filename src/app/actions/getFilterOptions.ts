@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export type FilterState = {
     degree?: string;
@@ -27,6 +28,7 @@ export async function getFilterOptions(filters: FilterState): Promise<FilterOpti
         let query = supabase
             .from("v_university_programs_full")
             .select("level, category, city, language_name, duration")
+            .eq("portal_key", PORTAL_KEY)
             .eq("is_active", true);
 
         if (excludeKey !== 'degree' && filters.degree && filters.degree !== "any" && filters.degree !== "all") {

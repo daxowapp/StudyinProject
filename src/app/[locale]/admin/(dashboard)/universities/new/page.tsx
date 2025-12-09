@@ -11,6 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export default function NewUniversityPage() {
     const router = useRouter();
@@ -30,7 +31,7 @@ export default function NewUniversityPage() {
         setLoading(true);
 
         const supabase = createClient();
-        const { error } = await supabase.from("universities").insert([formData]);
+        const { error } = await supabase.from("universities").insert([{ ...formData, portal_key: PORTAL_KEY }]);
 
         if (error) {
             alert("Error creating university: " + error.message);

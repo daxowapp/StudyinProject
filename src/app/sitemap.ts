@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { PORTAL_KEY } from '@/lib/constants/portal';
 
 const locales = ['en', 'tr', 'ar', 'fa'];
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
@@ -38,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const { data: universities } = await supabase
         .from('universities')
         .select('slug, updated_at')
+        .eq('portal_key', PORTAL_KEY)
         .order('name');
 
     const universityEntries: MetadataRoute.Sitemap = (universities || []).flatMap(
@@ -62,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const { data: programs } = await supabase
         .from('v_university_programs_full')
         .select('slug, updated_at')
+        .eq('portal_key', PORTAL_KEY)
         .eq('is_active', true);
 
     const programEntries: MetadataRoute.Sitemap = (programs || []).flatMap(
@@ -85,7 +88,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Fetch published articles
     const { data: articles } = await supabase
         .from('v_published_articles')
-        .select('slug, published_at');
+        .select('slug, published_at')
+        .eq('portal_key', PORTAL_KEY);
 
     const articleEntries: MetadataRoute.Sitemap = (articles || []).flatMap(
         (article) =>

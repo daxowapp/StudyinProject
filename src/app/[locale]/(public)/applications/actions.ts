@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export async function submitApplication(formData: FormData) {
     const supabase = await createClient();
@@ -25,6 +26,7 @@ export async function submitApplication(formData: FormData) {
         program_id: programId,
         status: "submitted",
         payment_status: "pending", // In real flow, this would be 'pending' until Stripe callback
+        portal_key: PORTAL_KEY,
         personal_info: {
             first_name: firstName,
             last_name: lastName,

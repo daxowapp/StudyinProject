@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Plus, X } from "lucide-react";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 interface Accommodation {
     id: string;
@@ -102,7 +103,7 @@ export function AccommodationDialog({
             } else {
                 const { error } = await supabase
                     .from("university_accommodation")
-                    .insert([payload]);
+                    .insert([{ ...payload, portal_key: PORTAL_KEY }]);
 
                 if (error) throw error;
                 toast.success("Accommodation added successfully");
