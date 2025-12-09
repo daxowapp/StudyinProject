@@ -4,6 +4,7 @@ import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 // Lazy load below-fold sections for faster initial page load
 const FeaturedProgramsSection = dynamic(
@@ -87,6 +88,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     const programsPromise = supabase
       .from("v_university_programs_full")
       .select("*")
+      .eq("portal_key", PORTAL_KEY)
       .limit(20); // Fetch 20 to ensure diversity
 
     const { data: programs, error: programsError } = await Promise.race([
@@ -162,6 +164,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         ranking,
         has_fast_track
       `)
+      .eq("portal_key", PORTAL_KEY)
       .order("created_at", { ascending: false })
       .limit(8);
 

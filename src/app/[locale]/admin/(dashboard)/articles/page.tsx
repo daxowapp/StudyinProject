@@ -25,6 +25,7 @@ import { Plus, Search, Eye, Edit, Trash2, FileText, TrendingUp } from "lucide-re
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export default function ArticlesAdminPage() {
     const [articles, setArticles] = useState<{ id: string; title: string; slug: string; status: string; views: number; published_at: string; featured_image: string; category: string; is_featured: boolean }[]>([]);
@@ -42,6 +43,7 @@ export default function ArticlesAdminPage() {
         const { data, error } = await supabase
             .from("articles")
             .select("*")
+            .eq("portal_key", PORTAL_KEY)
             .order("created_at", { ascending: false });
 
         if (error) {

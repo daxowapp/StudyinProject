@@ -14,6 +14,7 @@ import Link from "next/link";
 import { UniversityFilters } from "./filters";
 import { UniversityActions } from "./components/UniversityActions";
 import { Pagination } from "@/components/ui/pagination";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -38,7 +39,8 @@ export default async function AdminUniversitiesPage({
     // Build query - only select needed columns for performance
     let query = supabase
         .from("universities")
-        .select("id, name, city, created_at, university_programs(count)", { count: 'exact' });
+        .select("id, name, city, created_at, university_programs(count)", { count: 'exact' })
+        .eq("portal_key", PORTAL_KEY);
 
     if (search) {
         query = query.ilike('name', `%${search}%`);
@@ -62,11 +64,13 @@ export default async function AdminUniversitiesPage({
         supabase
             .from("universities")
             .select("city")
+            .eq("portal_key", PORTAL_KEY)
             .not("city", "is", null)
             .limit(50),
         supabase
             .from("universities")
             .select("province")
+            .eq("portal_key", PORTAL_KEY)
             .not("province", "is", null)
             .limit(50)
     ]);

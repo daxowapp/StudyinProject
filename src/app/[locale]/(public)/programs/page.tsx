@@ -4,6 +4,7 @@ import { AISearchBar } from "@/components/ai/AISearchBar";
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -59,6 +60,7 @@ export default async function ProgramsPage({
     let query = supabase
         .from("v_university_programs_full")
         .select("*")
+        .eq("portal_key", PORTAL_KEY)
         .eq("is_active", true);
 
     if (universitySlug) {
@@ -78,7 +80,8 @@ export default async function ProgramsPage({
     // Fetch universities for slug mapping
     const { data: universities } = await supabase
         .from("universities")
-        .select("name, slug");
+        .select("name, slug")
+        .eq("portal_key", PORTAL_KEY);
 
     const universityMap = universities?.reduce((acc: Record<string, string>, uni: { slug: string; name: string }) => {
         acc[uni.slug] = uni.name;
