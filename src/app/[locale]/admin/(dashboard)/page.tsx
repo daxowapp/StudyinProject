@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 interface DashboardApplication {
     id: string;
@@ -38,8 +39,8 @@ export default async function AdminDashboardPage() {
             recentAppsResult,
             pendingReviewsResult
         ] = await Promise.allSettled([
-            supabase.from("universities").select("*", { count: "exact", head: true }),
-            supabase.from("applications").select("*", { count: "exact", head: true }),
+            supabase.from("universities").select("*", { count: "exact", head: true }).eq("portal_key", PORTAL_KEY),
+            supabase.from("applications").select("*", { count: "exact", head: true }).eq("portal_key", PORTAL_KEY),
             supabase.from("profiles").select("*", { count: "exact", head: true }),
             supabase.from("applications").select(`
                 *,
