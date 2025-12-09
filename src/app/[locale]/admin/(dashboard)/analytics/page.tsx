@@ -15,6 +15,7 @@ import {
     Calendar
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 async function getAnalyticsData() {
     const supabase = await createClient();
@@ -26,18 +27,21 @@ async function getAnalyticsData() {
     // Total applications
     const { count: totalApplications } = await supabase
         .from("applications")
-        .select("*", { count: "exact", head: true });
+        .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY);
 
     // This month applications
     const { count: thisMonthApps } = await supabase
         .from("applications")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .gte("created_at", thisMonth.toISOString());
 
     // Last month applications
     const { count: lastMonthApps } = await supabase
         .from("applications")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .gte("created_at", lastMonth.toISOString())
         .lt("created_at", lastMonthEnd.toISOString());
 
@@ -63,18 +67,21 @@ async function getAnalyticsData() {
     const { count: totalUniversities } = await supabase
         .from("universities")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .eq("is_active", true);
 
     // Total programs
     const { count: totalPrograms } = await supabase
         .from("university_programs")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .eq("is_active", true);
 
     // Applications by status
     const { data: statusData } = await supabase
         .from("applications")
-        .select("status");
+        .select("status")
+        .eq("portal_key", PORTAL_KEY);
 
     const statusCounts: Record<string, number> = {};
     statusData?.forEach(app => {
@@ -91,7 +98,8 @@ async function getAnalyticsData() {
                     name
                 )
             )
-        `);
+        `)
+        .eq("portal_key", PORTAL_KEY);
 
     const uniCounts: Record<string, { name: string; count: number }> = {};
     topUnis?.forEach(app => {
@@ -121,7 +129,8 @@ async function getAnalyticsData() {
                     name
                 )
             )
-        `);
+        `)
+        .eq("portal_key", PORTAL_KEY);
 
     const progCounts: Record<string, { name: string; university: string; count: number }> = {};
     topProgs?.forEach(app => {
@@ -149,7 +158,8 @@ async function getAnalyticsData() {
     // Applications by country
     const { data: countryData } = await supabase
         .from("applications")
-        .select("student_country");
+        .select("student_country")
+        .eq("portal_key", PORTAL_KEY);
 
     const countryCounts: Record<string, number> = {};
     countryData?.forEach(app => {
@@ -172,6 +182,7 @@ async function getAnalyticsData() {
         const { count } = await supabase
             .from("applications")
             .select("*", { count: "exact", head: true })
+            .eq("portal_key", PORTAL_KEY)
             .gte("created_at", monthStart.toISOString())
             .lte("created_at", monthEnd.toISOString());
 

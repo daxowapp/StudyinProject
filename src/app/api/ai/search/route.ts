@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { createClient } from '@/lib/supabase/server';
 import { SEARCH_SYSTEM_PROMPT, SEARCH_RESULT_PROMPT } from '@/lib/ai/prompts';
+import { PORTAL_KEY } from '@/lib/constants/portal';
 
 interface SearchFilters {
     level?: string;
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
         let dbQuery = supabase
             .from('v_university_programs_full')
             .select('*')
+            .eq('portal_key', PORTAL_KEY)
             .eq('is_active', true);
 
         // Apply filters
@@ -105,6 +107,7 @@ export async function POST(request: NextRequest) {
             let relaxedQuery = supabase
                 .from('v_university_programs_full')
                 .select('*')
+                .eq('portal_key', PORTAL_KEY)
                 .eq('is_active', true);
 
             // Keep only the most important filters (Field & Level)
