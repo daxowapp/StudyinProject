@@ -102,30 +102,39 @@ export function HeroSection() {
     };
 
     // Function to fetch options - defined outside useEffect to be callable
+    const [hasFetchedOptions, setHasFetchedOptions] = useState(false);
+
     const fetchOptions = useCallback(async (currentFilters: Partial<typeof filters>) => {
-        // Don't set loading true for debounced fetches to avoid flicker, only on initial or manual
-        // Actually, just keep it silent or minimal
         try {
-            // Dynamic import to avoid server components in client bundle issues if any
             const { getFilterOptions } = await import('@/app/actions/getFilterOptions');
             const options = await getFilterOptions(currentFilters);
             setAvailableOptions(options);
+            setHasFetchedOptions(true);
         } catch (error) {
             console.error("Failed to fetch filter options", error);
         }
-    }, [filters]); // added filters although it's passed as arg, Partial<typeof filters> is just type. actually implementation doesn't use 'filters' state.
+    }, []);
 
-    // Update options when filters change (debounced)
+    // Lazy fetch - only when user interacts with filters
+    const handleDropdownOpen = useCallback(() => {
+        if (!hasFetchedOptions) {
+            fetchOptions({});
+        }
+    }, [hasFetchedOptions, fetchOptions]);
+
+    // Update options when filters change (debounced) - only if already fetched
     useEffect(() => {
+        if (!hasFetchedOptions) return;
         const timer = setTimeout(() => {
             setDebouncedFilters(filters);
         }, 500);
         return () => clearTimeout(timer);
-    }, [filters]);
+    }, [filters, hasFetchedOptions]);
 
     useEffect(() => {
+        if (!hasFetchedOptions) return;
         fetchOptions(debouncedFilters);
-    }, [debouncedFilters, fetchOptions]);
+    }, [debouncedFilters, fetchOptions, hasFetchedOptions]);
 
 
     const handleSearch = () => {
@@ -242,6 +251,7 @@ export function HeroSection() {
                                     <Select
                                         value={filters.degree}
                                         onValueChange={(v) => setFilters({ ...filters, degree: v })}
+                                        onOpenChange={handleDropdownOpen}
                                     >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.degree')} />
@@ -265,6 +275,7 @@ export function HeroSection() {
                                     <Select
                                         value={filters.field}
                                         onValueChange={(v) => setFilters({ ...filters, field: v })}
+                                        onOpenChange={handleDropdownOpen}
                                     >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
                                             <SelectValue placeholder={t('placeholders.field')} />
@@ -288,6 +299,7 @@ export function HeroSection() {
                                     <Select
                                         value={filters.city}
                                         onValueChange={(v) => setFilters({ ...filters, city: v })}
+                                        onOpenChange={handleDropdownOpen}
                                         disabled={isLoading}
                                     >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">
@@ -307,6 +319,7 @@ export function HeroSection() {
                                     <Select
                                         value={filters.language}
                                         onValueChange={(v) => setFilters({ ...filters, language: v })}
+                                        onOpenChange={handleDropdownOpen}
                                         disabled={isLoading}
                                     >
                                         <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 text-foreground font-medium text-sm rounded-xl hover:border-red-500 transition-colors">

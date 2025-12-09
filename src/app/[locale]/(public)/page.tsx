@@ -1,15 +1,39 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhyStudySection } from "@/components/home/WhyStudySection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
-import { FeaturedProgramsSection } from "@/components/home/FeaturedProgramsSection";
-import { FeaturedUniversitiesSection } from "@/components/home/FeaturedUniversitiesSection";
-import { StatsSection } from "@/components/home/StatsSection";
-import { ScholarshipsSection } from "@/components/home/ScholarshipsSection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-import { PartnersSection } from "@/components/home/PartnersSection";
-import { FAQPreviewSection } from "@/components/home/FAQPreviewSection";
+import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+
+// Lazy load below-fold sections for faster initial page load
+const FeaturedProgramsSection = dynamic(
+  () => import("@/components/home/FeaturedProgramsSection").then(mod => ({ default: mod.FeaturedProgramsSection })),
+  { ssr: true }
+);
+const FeaturedUniversitiesSection = dynamic(
+  () => import("@/components/home/FeaturedUniversitiesSection").then(mod => ({ default: mod.FeaturedUniversitiesSection })),
+  { ssr: true }
+);
+const StatsSection = dynamic(
+  () => import("@/components/home/StatsSection").then(mod => ({ default: mod.StatsSection })),
+  { ssr: true }
+);
+const ScholarshipsSection = dynamic(
+  () => import("@/components/home/ScholarshipsSection").then(mod => ({ default: mod.ScholarshipsSection })),
+  { ssr: true }
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/home/TestimonialsSection").then(mod => ({ default: mod.TestimonialsSection })),
+  { ssr: true }
+);
+const PartnersSection = dynamic(
+  () => import("@/components/home/PartnersSection").then(mod => ({ default: mod.PartnersSection })),
+  { ssr: true }
+);
+const FAQPreviewSection = dynamic(
+  () => import("@/components/home/FAQPreviewSection").then(mod => ({ default: mod.FAQPreviewSection })),
+  { ssr: true }
+);
 
 // Enable ISR with 5 minute revalidation
 export const revalidate = 300;
