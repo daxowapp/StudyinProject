@@ -3,6 +3,7 @@ import { supabase, University, Program } from '../lib/supabase';
 import { appCache } from '../lib/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
+import { PORTAL_KEY } from '../lib/portal';
 
 // Hook to fetch universities with offline support
 export function useUniversities() {
@@ -25,6 +26,7 @@ export function useUniversities() {
             const { data, error } = await supabase
                 .from('universities')
                 .select('id, name, slug, city, ranking, logo_url, cover_photo_url, programs:university_programs(count)')
+                .eq('portal_key', PORTAL_KEY)
                 .order('ranking', { ascending: true, nullsFirst: false });
             // .limit(50);
 
@@ -163,6 +165,7 @@ export function useCities() {
             const { data, error } = await supabase
                 .from('universities')
                 .select('city')
+                .eq('portal_key', PORTAL_KEY)
                 .not('city', 'is', null);
 
             if (error) throw error;
@@ -209,6 +212,7 @@ export function useFeaturedPrograms() {
             const { data: programsData, error: programsError } = await supabase
                 .from('v_university_programs_full')
                 .select('*')
+                .eq('portal_key', PORTAL_KEY)
                 .eq('is_active', true)
                 .order('created_at', { ascending: false });
             // .limit(50); // Fetch all for variety
@@ -312,6 +316,7 @@ export function useSearchPrograms(filters: ProgramFilters) {
             let query = supabase
                 .from('v_university_programs_full')
                 .select('*', { count: 'exact' })
+                .eq('portal_key', PORTAL_KEY)
                 .eq('is_active', true);
 
             // Apply filters
