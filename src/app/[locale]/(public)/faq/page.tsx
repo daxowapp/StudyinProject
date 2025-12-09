@@ -8,6 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { FAQJsonLd } from "@/components/seo/JsonLd";
+import { Metadata } from "next";
+
+// SEO Metadata for the FAQ page
+export const metadata: Metadata = {
+    title: 'FAQ - Frequently Asked Questions About Studying in China',
+    description: 'Find answers to common questions about studying in China: applications, scholarships, tuition fees, visa requirements, accommodation, and student life.',
+    keywords: ['study in China FAQ', 'Chinese university questions', 'scholarship requirements', 'student visa China', 'China tuition fees'],
+};
 
 const faqs = [
     {
@@ -160,56 +169,69 @@ const faqs = [
 ];
 
 export default function FAQPage() {
-    return (
-        <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b py-20">
-                <div className="container mx-auto px-4 md:px-6 text-center">
-                    <h1 className="text-4xl font-bold font-heading mb-4">Frequently Asked Questions</h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                        Find answers to common questions about studying in China.
-                    </p>
+    // Flatten all FAQs for structured data
+    const allQuestions = faqs.flatMap(section =>
+        section.items.map(item => ({
+            question: item.q,
+            answer: item.a
+        }))
+    );
 
-                    <div className="max-w-md mx-auto relative">
-                        <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                        <Input className="pl-10 h-12 text-lg" placeholder="Search for answers..." />
+    return (
+        <>
+            {/* Structured Data for AEO - AI Search Engines */}
+            <FAQJsonLd questions={allQuestions} />
+
+            <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+                <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b py-20">
+                    <div className="container mx-auto px-4 md:px-6 text-center">
+                        <h1 className="text-4xl font-bold font-heading mb-4">Frequently Asked Questions</h1>
+                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                            Find answers to common questions about studying in China.
+                        </p>
+
+                        <div className="max-w-md mx-auto relative">
+                            <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                            <Input className="pl-10 h-12 text-lg" placeholder="Search for answers..." />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container mx-auto px-4 md:px-6 py-16 max-w-4xl">
+                    <div className="space-y-12">
+                        {faqs.map((section, index) => (
+                            <div key={index}>
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="h-10 w-1 bg-primary rounded-full" />
+                                    <h2 className="text-3xl font-bold">{section.category}</h2>
+                                </div>
+                                <Accordion type="single" collapsible className="w-full space-y-4">
+                                    {section.items.map((item, i) => (
+                                        <AccordionItem key={i} value={`item-${index}-${i}`} className="border-none shadow-lg rounded-lg px-6 bg-card">
+                                            <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary py-6">
+                                                {item.q}
+                                            </AccordionTrigger>
+                                            <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
+                                                {item.a}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    ))}
+                                </Accordion>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-20 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-none shadow-xl rounded-2xl p-12 text-center">
+                        <h3 className="text-2xl font-bold mb-3">Still have questions?</h3>
+                        <p className="text-muted-foreground mb-8 text-lg">
+                            Our support team is here to help you with any other inquiries.
+                        </p>
+                        <Button size="lg" asChild>
+                            <Link href="/contact">Contact Support</Link>
+                        </Button>
                     </div>
                 </div>
             </div>
-
-            <div className="container mx-auto px-4 md:px-6 py-16 max-w-4xl">
-                <div className="space-y-12">
-                    {faqs.map((section, index) => (
-                        <div key={index}>
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="h-10 w-1 bg-primary rounded-full" />
-                                <h2 className="text-3xl font-bold">{section.category}</h2>
-                            </div>
-                            <Accordion type="single" collapsible className="w-full space-y-4">
-                                {section.items.map((item, i) => (
-                                    <AccordionItem key={i} value={`item-${index}-${i}`} className="border-none shadow-lg rounded-lg px-6 bg-card">
-                                        <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary py-6">
-                                            {item.q}
-                                        </AccordionTrigger>
-                                        <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
-                                            {item.a}
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
-                            </Accordion>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-20 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-none shadow-xl rounded-2xl p-12 text-center">
-                    <h3 className="text-2xl font-bold mb-3">Still have questions?</h3>
-                    <p className="text-muted-foreground mb-8 text-lg">
-                        Our support team is here to help you with any other inquiries.
-                    </p>
-                    <Button size="lg" asChild>
-                        <Link href="/contact">Contact Support</Link>
-                    </Button>
-                </div>
-            </div>
-        </div>
+        </>
     );
 }
