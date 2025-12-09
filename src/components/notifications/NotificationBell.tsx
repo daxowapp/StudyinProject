@@ -59,6 +59,7 @@ interface NotificationBellProps {
 
 export function NotificationBell({ userId, className }: NotificationBellProps) {
     const t = useTranslations('Notifications');
+    const tStatus = useTranslations('Status');
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [unreadCount, setUnreadCount] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -135,6 +136,34 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
         return Icon;
     };
 
+    const getTranslatedContent = (notification: Notification) => {
+        let title = notification.title;
+        let message = notification.message;
+
+        // Translate Title
+        if (title === 'Application Status Updated') {
+            title = t('types.statusChange');
+        }
+
+        // Translate Message
+        const statusPrefix = 'Your application status has changed to ';
+        if (message && message.startsWith(statusPrefix)) {
+            const status = message.replace(statusPrefix, '').trim();
+            // Try to translate status, fallback to original if not found (though existing logic implies keys match)
+            // The status in DB is likely the key (e.g. pending_payment), but sometimes might be raw text.
+            // Assuming it matches keys in Status namespace.
+            const translatedStatus = tStatus(status as any); // Type assertion as keys are dynamic
+
+            // If the key doesn't exist, tStatus usually returns the key.
+            // Check if returned value is same as key (and key contains no spaces).
+            // But 'Status' namespace has keys like 'pending_payment'.
+
+            message = t('messages.statusChange', { status: translatedStatus });
+        }
+
+        return { title, message };
+    };
+
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
@@ -186,6 +215,8 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                     ) : (
                         notifications.map((notification) => {
                             const Icon = getIcon(notification.type);
+                            const { title, message } = getTranslatedContent(notification);
+
                             const content = (
                                 <div
                                     className={cn(
@@ -212,14 +243,14 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                                                     !notification.read && 'font-semibold'
                                                 )}
                                             >
-                                                {notification.title}
+                                                {title}
                                             </p>
                                             {!notification.read && (
                                                 <div className="h-2 w-2 rounded-full bg-primary shrink-0 mt-1.5" />
                                             )}
                                         </div>
                                         <p className="text-xs text-muted-foreground line-clamp-2">
-                                            {notification.message}
+                                            {message}
                                         </p>
                                         <p className="text-xs text-muted-foreground mt-1">
                                             {formatDistanceToNow(new Date(notification.created_at), {

@@ -588,6 +588,9 @@
             "newLead": "Yeni Potansiyel Müşteri",
             "documentUploaded": "Belge Yüklendi",
             "acceptanceLetter": "Kabul Mektubu"
+        },
+        "messages": {
+            "statusChange": "Başvuru durumunuz {status} olarak değişti"
         }
     },
     "Universities": {

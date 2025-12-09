@@ -1014,6 +1014,9 @@
             "newLead": "New Lead",
             "documentUploaded": "Document Uploaded",
             "acceptanceLetter": "Acceptance Letter"
+        },
+        "messages": {
+            "statusChange": "Your application status has changed to {status}"
         }
     },
     "Apply": {
@@ -1146,7 +1149,6 @@
             "description": "make this payment",
             "note": "Please complete the payment to proceed with your application."
         },
-        "payNow": "Pay Now",
         "paymentStatuses": {
             "completed": "Completed",
             "pending": "Pending",

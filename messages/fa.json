@@ -946,6 +946,9 @@
             "newLead": "سرنخ جدید",
             "documentUploaded": "مدرک بارگذاری شد",
             "acceptanceLetter": "نامه پذیرش"
+        },
+        "messages": {
+            "statusChange": "وضعیت درخواست شما به {status} تغییر یافت"
         }
     },
     "AISearch": {
@@ -998,7 +1001,6 @@
             "description": "این پرداخت را انجام دهید",
             "note": "لطفاً برای ادامه درخواست خود، پرداخت را تکمیل کنید."
         },
-        "payNow": "اکنون پرداخت کنید",
         "paymentStatuses": {
             "completed": "تکمیل شده",
             "pending": "در انتظار",

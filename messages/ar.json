@@ -1012,6 +1012,9 @@
             "newLead": "عميل محتمل جديد",
             "documentUploaded": "تم رفع المستند",
             "acceptanceLetter": "خطاب القبول"
+        },
+        "messages": {
+            "statusChange": "تغيرت حالة طلبك إلى {status}"
         }
     },
     "Apply": {
@@ -1144,7 +1147,6 @@
             "description": "إجراء هذا الدفع",
             "note": "يرجى إتمام الدفع للمتابعة في طلبك."
         },
-        "payNow": "ادفع الآن",
         "paymentStatuses": {
             "completed": "مكتمل",
             "pending": "قيد الانتظار",
