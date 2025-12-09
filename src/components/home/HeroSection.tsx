@@ -50,7 +50,7 @@ export function HeroSection() {
         durations: []
     });
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading] = useState(false);
     const [isLoadingOptions, setIsLoadingOptions] = useState(false);
 
     // Debounce filter updating
