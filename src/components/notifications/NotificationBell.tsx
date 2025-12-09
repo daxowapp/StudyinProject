@@ -152,6 +152,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
             // Try to translate status, fallback to original if not found (though existing logic implies keys match)
             // The status in DB is likely the key (e.g. pending_payment), but sometimes might be raw text.
             // Assuming it matches keys in Status namespace.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const translatedStatus = tStatus(status as any); // Type assertion as keys are dynamic
 
             // If the key doesn't exist, tStatus usually returns the key.

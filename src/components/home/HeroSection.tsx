@@ -11,7 +11,7 @@ import {
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "@/i18n/routing";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
@@ -102,7 +102,7 @@ export function HeroSection() {
     };
 
     // Function to fetch options - defined outside useEffect to be callable
-    const fetchOptions = async (currentFilters: Partial<typeof filters>) => {
+    const fetchOptions = useCallback(async (currentFilters: Partial<typeof filters>) => {
         // Don't set loading true for debounced fetches to avoid flicker, only on initial or manual
         // Actually, just keep it silent or minimal
         try {
@@ -113,12 +113,7 @@ export function HeroSection() {
         } catch (error) {
             console.error("Failed to fetch filter options", error);
         }
-    };
-
-    // Initial load
-    useEffect(() => {
-        fetchOptions({});
-    }, []);
+    }, [filters]); // added filters although it's passed as arg, Partial<typeof filters> is just type. actually implementation doesn't use 'filters' state.
 
     // Update options when filters change (debounced)
     useEffect(() => {
@@ -126,11 +121,11 @@ export function HeroSection() {
             setDebouncedFilters(filters);
         }, 500);
         return () => clearTimeout(timer);
-    }, [filters, debouncedFilters]);
+    }, [filters]);
 
     useEffect(() => {
         fetchOptions(debouncedFilters);
-    }, [debouncedFilters]);
+    }, [debouncedFilters, fetchOptions]);
 
 
     const handleSearch = () => {
