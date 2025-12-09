@@ -117,6 +117,8 @@
         "title": "Your Future Starts Here",
         "subtitle": "Join <bold>50,000+ students</bold> at China's top universities",
         "searchButton": "Search <bold>500+</bold> Programs",
+        "searchWord": "Search",
+        "programsWord": "Programs",
         "browseByCategory": "Browse by Category",
         "scrollToExplore": "Scroll to explore",
         "stats": {

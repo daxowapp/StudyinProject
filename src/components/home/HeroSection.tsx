@@ -40,6 +40,7 @@ export function HeroSection() {
         cities: string[];
         languages: string[];
         durations: string[];
+        programCount: number;
     }
 
     const [availableOptions, setAvailableOptions] = useState<FilterOptions>({
@@ -47,7 +48,8 @@ export function HeroSection() {
         fields: [],
         cities: [],
         languages: [],
-        durations: []
+        durations: [],
+        programCount: 0
     });
 
     const [isLoading] = useState(false);
@@ -381,9 +383,7 @@ export function HeroSection() {
                                 disabled={isLoading}
                             >
                                 <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                                {t.rich('searchButton', {
-                                    bold: (chunks) => <span className="font-black mx-1">{chunks}</span>
-                                })}
+                                {t('searchWord')} <span className="font-black mx-1">{availableOptions.programCount > 0 ? `${availableOptions.programCount}` : '500+'}</span> {t('programsWord')}
                             </Button>
 
                             {/* Quick Search Tags */}
