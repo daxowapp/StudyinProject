@@ -230,6 +230,16 @@ export default function ProfileEditForm({ user, profile }: ProfileEditFormProps)
                         </div>
 
                         <div className="space-y-2">
+                            <Label htmlFor="email">{t('email')}</Label>
+                            <Input
+                                id="email"
+                                value={user.email || ''}
+                                disabled
+                                className="bg-muted text-muted-foreground"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
                             <Label htmlFor="date_of_birth">{t('dob')}</Label>
                             <Input
                                 id="date_of_birth"

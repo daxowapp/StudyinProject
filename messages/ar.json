@@ -868,6 +868,7 @@
             "description": "تفاصيلك الأساسية للطلبات"
         },
         "fullName": "الاسم الكامل *",
+        "email": "البريد الإلكتروني",
         "dob": "تاريخ الميلاد",
         "phone": "رقم الهاتف",
         "nationality": "الجنسية",
@@ -947,7 +948,12 @@
             "bank_statement": "كشف حساب بنكي",
             "health_certificate": "شهادة صحية",
             "police_clearance": "صحيفة الحالة الجنائية",
-            "other": "مستند آخر"
+            "other": "وثيقة أخرى"
+        },
+        "documentRequest": {
+            "title": "طلب مستندات",
+            "description": "يرجى تحميل المستندات التالية:\n1. نسخة من جواز السفر\n2. شهادة الدرجة العلمية\n3. البيان الشخصي",
+            "note": "تأكد من ترجمة كل شيء إلى جميع اللغات"
         }
     },
     "Status": {
@@ -1132,6 +1138,42 @@
         "payNow": "ادفع الآن",
         "viewApplication": "عرض الطلب",
         "paymentProof": "إثبات الدفع",
+        "paymentRequest": {
+            "title": "طلب الدفع",
+            "amount": "USD 200",
+            "description": "إجراء هذا الدفع",
+            "note": "يرجى إتمام الدفع للمتابعة في طلبك."
+        },
+        "payNow": "ادفع الآن",
+        "paymentStatuses": {
+            "completed": "مكتمل",
+            "pending": "قيد الانتظار",
+            "processing": "قيد المعالجة",
+            "failed": "فشل",
+            "refunded": "تم الاسترداد"
+        },
+        "types": {
+            "application_fee": "رسوم الطلب",
+            "service_fee": "رسوم الخدمة",
+            "tuition_deposit": "إيداع الرسوم الدراسية",
+            "full_tuition": "الرسوم الدراسية الكاملة",
+            "accommodation": "إقامة",
+            "other": "آخر"
+        },
+        "assistance": {
+            "title": "مساعدة الدفع",
+            "description": "لديك {count} مدفوعات معلقة. إذا كنت بحاجة إلى مساعدة في المدفوعات أو لديك أسئلة:",
+            "point1": "تواصل مع فريق الدعم للحصول على مساعدة في الدفع",
+            "point2": "تحقق مما إذا كنت مؤهلاً لخطط الدفع",
+            "point3": "تحقق من أن طريقة الدفع الخاصة بك مدعومة"
+        },
+        "paidOn": "دفع في",
+        "reference": "مرجع",
+        "verifiedByAdmin": "تم التحقق من قبل المسؤول",
+        "expires": "ينتهي:",
+        "adminNote": "ملاحظة المسؤول:",
+        "paymentLinkExpired": "انتهاء صلاحية رابط الدفع",
+        "document": "وثيقة:",
         "noPayments": "لا توجد مدفوعات",
         "noPaymentsDesc": "ليس لديك أي مدفوعات معلقة.",
         "contactSupport": "اتصل بالدعم"

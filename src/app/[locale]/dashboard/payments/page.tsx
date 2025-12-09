@@ -57,35 +57,35 @@ export default async function PaymentsPage() {
         return (
           <Badge className="bg-green-100 text-green-800">
             <CheckCircle2 className="w-3 h-3 mr-1" />
-            Completed
+            {t('paymentStatuses.completed')}
           </Badge>
         );
       case 'pending':
         return (
           <Badge className="bg-yellow-100 text-yellow-800">
             <Clock className="w-3 h-3 mr-1" />
-            Pending
+            {t('paymentStatuses.pending')}
           </Badge>
         );
       case 'processing':
         return (
           <Badge className="bg-blue-100 text-blue-800">
             <Clock className="w-3 h-3 mr-1" />
-            Processing
+            {t('paymentStatuses.processing')}
           </Badge>
         );
       case 'failed':
         return (
           <Badge className="bg-red-100 text-red-800">
             <XCircle className="w-3 h-3 mr-1" />
-            Failed
+            {t('paymentStatuses.failed')}
           </Badge>
         );
       case 'refunded':
         return (
           <Badge className="bg-gray-100 text-gray-800">
             <CheckCircle2 className="w-3 h-3 mr-1" />
-            Refunded
+            {t('paymentStatuses.refunded')}
           </Badge>
         );
       default:
@@ -95,12 +95,12 @@ export default async function PaymentsPage() {
 
   const getPaymentTypeLabel = (type: string) => {
     const labels: Record<string, string> = {
-      application_fee: 'Application Fee',
-      service_fee: 'Service Fee',
-      tuition_deposit: 'Tuition Deposit',
-      full_tuition: 'Full Tuition',
-      accommodation: 'Accommodation',
-      other: 'Other',
+      application_fee: t('types.application_fee'),
+      service_fee: t('types.service_fee'),
+      tuition_deposit: t('types.tuition_deposit'),
+      full_tuition: t('types.full_tuition'),
+      accommodation: t('types.accommodation'),
+      other: t('types.other'),
     };
     return labels[type] || type;
   };
@@ -122,6 +122,25 @@ export default async function PaymentsPage() {
         <h1 className="text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
+
+      {/* Payment Request Card */}
+      <Card className="border-l-4 border-l-primary shadow-md bg-card">
+        <CardHeader>
+          <CardTitle>{t('paymentRequest.title')}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h3 className="text-xl font-bold">{t('paymentRequest.amount')}</h3>
+              <p className="text-muted-foreground">{t('paymentRequest.description')}</p>
+            </div>
+            <Button>{t('payNow')}</Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            {t('paymentRequest.note')}
+          </p>
+        </CardContent>
+      </Card>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -227,7 +246,7 @@ export default async function PaymentsPage() {
                       </div>
                       {payment.paid_at && (
                         <div>
-                          <p className="text-muted-foreground">Paid On</p>
+                          <p className="text-muted-foreground">{t('paidOn')}</p>
                           <p className="flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3 text-green-600" />
                             {new Date(payment.paid_at).toLocaleDateString()}
@@ -236,7 +255,7 @@ export default async function PaymentsPage() {
                       )}
                       {payment.metadata && (payment.metadata as Record<string, unknown>)?.document_name && payment.payment_reference && (
                         <div>
-                          <p className="text-muted-foreground">Reference</p>
+                          <p className="text-muted-foreground">{t('reference')}</p>
                           <p className="font-mono text-xs">{payment.payment_reference}</p>
                         </div>
                       )}
@@ -251,10 +270,10 @@ export default async function PaymentsPage() {
                     {payment.admin_verified && (
                       <div className="mt-3 flex items-center gap-2 text-sm text-green-600">
                         <CheckCircle2 className="w-4 h-4" />
-                        <span>Verified by admin</span>
+                        <span>{t('verifiedByAdmin')}</span>
                         {payment.verified_at && (
                           <span className="text-muted-foreground">
-                            Expires: {new Date((payment.metadata as Record<string, string>).payment_link_expires_at).toLocaleDateString()}
+                            {t('expires')} {new Date((payment.metadata as Record<string, string>).payment_link_expires_at).toLocaleDateString()}
                           </span>
                         )}
                       </div>
@@ -262,7 +281,7 @@ export default async function PaymentsPage() {
 
                     {payment.verification_notes && (
                       <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm">
-                        <p className="font-semibold text-blue-900">Admin Note:</p>
+                        <p className="font-semibold text-blue-900">{t('adminNote')}</p>
                         <p className="text-blue-800">{payment.verification_notes}</p>
                       </div>
                     )}
@@ -282,12 +301,12 @@ export default async function PaymentsPage() {
                           </Link>
                         ) : (
                           <Button disabled className="w-full lg:w-auto">
-                            Payment Link Expired
+                            {t('paymentLinkExpired')}
                           </Button>
                         )}
                         {(payment.metadata as Record<string, unknown>)?.document_name && (
                           <div className="text-sm text-muted-foreground mt-1">
-                            Document: {(payment.metadata as Record<string, string>).document_name}
+                            {t('document')} {(payment.metadata as Record<string, string>).document_name}
                           </div>
                         )}
                       </>
@@ -336,17 +355,17 @@ export default async function PaymentsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-yellow-900">
               <AlertCircle className="w-5 h-5" />
-              Payment Assistance
+              {t('assistance.title')}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-yellow-900">
             <p className="mb-4">
-              You have {pendingCount} pending payment(s). If you need help with payments or have questions:
+              {t('assistance.description', { count: pendingCount })}
             </p>
             <ul className="list-disc list-inside space-y-1 mb-4">
-              <li>Contact our support team for payment assistance</li>
-              <li>Check if you&apos;re eligible for payment plans</li>
-              <li>Verify your payment method is supported</li>
+              <li>{t('assistance.point1')}</li>
+              <li>{t('assistance.point2')}</li>
+              <li>{t('assistance.point3')}</li>
             </ul>
             <Link href="/contact">
               <Button variant="outline" className="border-yellow-600 text-yellow-900 hover:bg-yellow-100">

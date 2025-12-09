@@ -446,6 +446,7 @@
             "description": "Başvurular için temel bilgileriniz"
         },
         "fullName": "Ad Soyad *",
+        "email": "E-posta",
         "dob": "Doğum Tarihi",
         "phone": "Telefon Numarası",
         "nationality": "Uyruk",
@@ -524,6 +525,11 @@
             "health_certificate": "Sağlık Raporu",
             "police_clearance": "Adli Sicil Kaydı",
             "other": "Diğer Belge"
+        },
+        "documentRequest": {
+            "title": "Belge Talebi",
+            "description": "Lütfen aşağıdaki belgeleri yükleyin:\n1. Pasaport Kopyası\n2. Diploma Belgesi\n3. Niyet Mektubu",
+            "note": "her şeyin tüm dillere çevrildiğinden emin olun"
         }
     },
     "Status": {
@@ -1064,6 +1070,41 @@
         "payNow": "Şimdi Öde",
         "viewApplication": "Başvuruyu Görüntüle",
         "paymentProof": "Ödeme Kanıtı",
+        "paymentRequest": {
+            "title": "Ödeme Talebi",
+            "amount": "USD 200",
+            "description": "bu ödemeyi yapın",
+            "note": "Başvurunuza devam etmek için lütfen ödemeyi tamamlayın."
+        },
+        "paymentStatuses": {
+            "completed": "Tamamlandı",
+            "pending": "Bekliyor",
+            "processing": "İşleniyor",
+            "failed": "Başarısız",
+            "refunded": "İade Edildi"
+        },
+        "types": {
+            "application_fee": "Başvuru Ücreti",
+            "service_fee": "Hizmet Ücreti",
+            "tuition_deposit": "Eğitim Depozitosu",
+            "full_tuition": "Tam Eğitim Ücreti",
+            "accommodation": "Konaklama",
+            "other": "Diğer"
+        },
+        "assistance": {
+            "title": "Ödeme Yardımı",
+            "description": "{count} bekleyen ödemeniz var. Ödemelerle ilgili yardıma ihtiyacınız varsa veya sorularınız varsa:",
+            "point1": "Ödeme yardımı için destek ekibimizle iletişime geçin",
+            "point2": "Ödeme planlarına uygun olup olmadığınızı kontrol edin",
+            "point3": "Ödeme yönteminizin desteklendiğini doğrulayın"
+        },
+        "paidOn": "Ödeme Tarihi",
+        "reference": "Referans",
+        "verifiedByAdmin": "Yönetici tarafından doğrulandı",
+        "expires": "Bitiş:",
+        "adminNote": "Yönetici Notu:",
+        "paymentLinkExpired": "Ödeme Bağlantısı Süresi Doldu",
+        "document": "Belge:",
         "noPayments": "Ödeme Yok",
         "noPaymentsDesc": "Bekleyen ödemeniz bulunmamaktadır.",
         "contactSupport": "Destek İle İletişime Geçin"

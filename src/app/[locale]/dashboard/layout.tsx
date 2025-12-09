@@ -7,6 +7,7 @@ import { LogoutButton } from "@/components/dashboard/LogoutButton";
 import { getTranslations } from "next-intl/server";
 import { NotificationBell } from "@/components/notifications/NotificationBell";
 import { ChatWidget } from "@/components/ai/ChatWidget";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export default async function DashboardLayout({
     children,
@@ -74,14 +75,13 @@ export default async function DashboardLayout({
         <div className="flex min-h-screen bg-muted/20">
             {/* Sidebar */}
             <aside className="hidden w-64 flex-col border-r bg-background md:flex">
-                <div className="flex h-16 items-center justify-between border-b px-6">
+                <div className="flex h-16 items-center border-b px-6">
                     <Link href="/" className="flex items-center gap-2 font-bold text-lg">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                             S
                         </div>
                         StudyAtChina
                     </Link>
-                    {user && <NotificationBell userId={user.id} />}
                 </div>
                 <nav className="flex-1 space-y-1 p-4">
                     <Link href="/dashboard">
@@ -149,6 +149,10 @@ export default async function DashboardLayout({
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col">
+                <header className="flex h-16 items-center justify-end gap-4 border-b bg-background px-6">
+                    <LanguageSwitcher />
+                    {user && <NotificationBell userId={user.id} />}
+                </header>
                 <div className="flex-1 p-4 md:p-8">
                     {children}
                 </div>

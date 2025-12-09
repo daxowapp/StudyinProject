@@ -29,6 +29,16 @@ export default async function DocumentsPage() {
                 </p>
             </div>
 
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-blue-900 mb-2">{t('documentRequest.title')}</h3>
+                <div className="text-blue-800 text-sm whitespace-pre-line">
+                    {t('documentRequest.description')}
+                </div>
+                <p className="text-blue-600 text-xs mt-2 font-medium">
+                    {t('documentRequest.note')}
+                </p>
+            </div>
+
             <DocumentsManager userId={user.id} initialDocuments={documents || []} />
         </div>
     );

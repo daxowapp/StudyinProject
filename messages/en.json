@@ -870,6 +870,7 @@
             "description": "Your basic details for applications"
         },
         "fullName": "Full Name *",
+        "email": "Email",
         "dob": "Date of Birth",
         "phone": "Phone Number",
         "nationality": "Nationality",
@@ -950,6 +951,11 @@
             "health_certificate": "Health Certificate",
             "police_clearance": "Police Clearance",
             "other": "Other Document"
+        },
+        "documentRequest": {
+            "title": "Document Request",
+            "description": "Please upload the following documents:\n1. Passport Copy\n2. Degree Certificate\n3. Personal Statement",
+            "note": "make sure everything is translated to all languages"
         }
     },
     "Status": {
@@ -1134,6 +1140,42 @@
         "payNow": "Pay Now",
         "viewApplication": "View Application",
         "paymentProof": "Payment Proof",
+        "paymentRequest": {
+            "title": "Payment Request",
+            "amount": "USD 200",
+            "description": "make this payment",
+            "note": "Please complete the payment to proceed with your application."
+        },
+        "payNow": "Pay Now",
+        "paymentStatuses": {
+            "completed": "Completed",
+            "pending": "Pending",
+            "processing": "Processing",
+            "failed": "Failed",
+            "refunded": "Refunded"
+        },
+        "types": {
+            "application_fee": "Application Fee",
+            "service_fee": "Service Fee",
+            "tuition_deposit": "Tuition Deposit",
+            "full_tuition": "Full Tuition",
+            "accommodation": "Accommodation",
+            "other": "Other"
+        },
+        "assistance": {
+            "title": "Payment Assistance",
+            "description": "You have {count} pending payment(s). If you need help with payments or have questions:",
+            "point1": "Contact our support team for payment assistance",
+            "point2": "Check if you're eligible for payment plans",
+            "point3": "Verify your payment method is supported"
+        },
+        "paidOn": "Paid On",
+        "reference": "Reference",
+        "verifiedByAdmin": "Verified by admin",
+        "expires": "Expires:",
+        "adminNote": "Admin Note:",
+        "paymentLinkExpired": "Payment Link Expired",
+        "document": "Document:",
         "noPayments": "No Payments",
         "noPaymentsDesc": "You don't have any pending payments.",
         "contactSupport": "Contact Support"
