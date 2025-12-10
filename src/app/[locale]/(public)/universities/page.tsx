@@ -48,13 +48,19 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Fetch universities from base table (view doesn't have portal_key column)
+    // Fetch universities with only needed columns
     const { data: universities, error } = await supabase
         .from("universities")
-        .select("*")
+        .select(`
+            id, slug, name, city, province, 
+            logo_url, cover_photo_url, banner_url, ranking,
+            university_type, institution_category, has_fast_track,
+            features,
+            university_programs(count)
+        `)
         .eq("portal_key", PORTAL_KEY)
-        .eq("is_active", true)
-        .order("name");
+        .order("name")
+        .limit(100);
 
     if (error) {
         console.error("Error fetching universities:", {
@@ -82,17 +88,20 @@ export default async function UniversitiesPage() {
     }
 
     // Transform data for client component
-    const formattedUniversities = (universities || []).map((uni) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const formattedUniversities = (universities || []).map((uni: any) => {
+        // Get program count from joined data
+        const programCount = uni.university_programs?.[0]?.count || 0;
         return {
             id: uni.id,
             slug: uni.slug || uni.id,
             name: uni.name || "Unknown University",
             city: uni.city || "N/A",
             province: uni.province || "N/A",
-            programs: uni.program_count || 0,
-            minTuition: uni.min_tuition_fee ? `${uni.currency === "USD" ? "$" : "¥"}${uni.min_tuition_fee.toLocaleString()} ` : "Contact for pricing",
-            minTuitionFee: uni.min_tuition_fee, // Raw number for Price component
-            currency: uni.currency || 'CNY', // Currency code
+            programs: programCount,
+            minTuition: "Contact for pricing",
+            minTuitionFee: 0,
+            currency: uni.currency || 'CNY',
             badges: uni.features || [],
             logo: uni.logo_url,
             photo: uni.cover_photo_url || uni.banner_url,
