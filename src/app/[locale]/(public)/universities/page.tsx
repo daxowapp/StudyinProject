@@ -48,11 +48,12 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Fetch universities from optimized view
+    // Fetch universities from base table (view doesn't have portal_key column)
     const { data: universities, error } = await supabase
-        .from("v_universities_search")
+        .from("universities")
         .select("*")
         .eq("portal_key", PORTAL_KEY)
+        .eq("is_active", true)
         .order("name");
 
     if (error) {
