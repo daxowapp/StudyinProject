@@ -13,6 +13,7 @@ import { Price } from "@/components/currency/Price";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { CourseJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -31,6 +32,7 @@ export async function generateMetadata({
         .from("v_university_programs_full")
         .select("display_title, program_title, program_description, university_name, level, tuition_fee, currency")
         .eq("slug", slug)
+        .eq("portal_key", PORTAL_KEY)
         .single();
 
     if (!program) {
@@ -80,6 +82,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         .from("v_university_programs_full")
         .select("*")
         .eq("slug", slug)
+        .eq("portal_key", PORTAL_KEY)
         .single();
 
     if (error || !program) {

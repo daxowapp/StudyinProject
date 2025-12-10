@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { UniversityHeroSearch } from "@/components/universities/UniversityHeroSearch";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -23,7 +24,7 @@ export async function generateMetadata({
         openGraph: {
             title,
             description,
-            url: `${baseUrl}/${locale}/universities`,
+            url: `${baseUrl} /${locale}/universities`,
             type: 'website',
         },
         twitter: {
@@ -32,12 +33,12 @@ export async function generateMetadata({
             description,
         },
         alternates: {
-            canonical: `${baseUrl}/${locale}/universities`,
+            canonical: `${baseUrl} /${locale}/universities`,
             languages: {
-                'en': `${baseUrl}/en/universities`,
-                'ar': `${baseUrl}/ar/universities`,
-                'fa': `${baseUrl}/fa/universities`,
-                'tr': `${baseUrl}/tr/universities`,
+                'en': `${baseUrl} /en/universities`,
+                'ar': `${baseUrl} /ar/universities`,
+                'fa': `${baseUrl} /fa/universities`,
+                'tr': `${baseUrl} /tr/universities`,
             },
         },
     };
@@ -51,6 +52,7 @@ export default async function UniversitiesPage() {
     const { data: universities, error } = await supabase
         .from("v_universities_search")
         .select("*")
+        .eq("portal_key", PORTAL_KEY)
         .order("name");
 
     if (error) {
@@ -87,7 +89,7 @@ export default async function UniversitiesPage() {
             city: uni.city || "N/A",
             province: uni.province || "N/A",
             programs: uni.program_count || 0,
-            minTuition: uni.min_tuition_fee ? `${uni.currency === "USD" ? "$" : "¥"}${uni.min_tuition_fee.toLocaleString()}` : "Contact for pricing",
+            minTuition: uni.min_tuition_fee ? `${uni.currency === "USD" ? "$" : "¥"}${uni.min_tuition_fee.toLocaleString()} ` : "Contact for pricing",
             minTuitionFee: uni.min_tuition_fee, // Raw number for Price component
             currency: uni.currency || 'CNY', // Currency code
             badges: uni.features || [],

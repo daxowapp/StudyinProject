@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         .from("v_published_articles")
         .select("*")
         .eq("slug", slug)
+        .eq("portal_key", PORTAL_KEY)
         .single();
 
     if (error || !article) {
@@ -32,6 +34,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         .from("v_published_articles")
         .select("*")
         .eq("category", article.category)
+        .eq("portal_key", PORTAL_KEY)
         .neq("id", article.id)
         .limit(3);
 

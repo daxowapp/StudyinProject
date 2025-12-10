@@ -2,12 +2,14 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export async function getLeads() {
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("leads")
         .select("*")
+        .eq("portal_key", PORTAL_KEY)
         .order("created_at", { ascending: false });
 
     if (error) throw new Error(error.message);

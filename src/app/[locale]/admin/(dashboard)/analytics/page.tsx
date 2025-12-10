@@ -48,18 +48,21 @@ async function getAnalyticsData() {
     // Total leads
     const { count: totalLeads } = await supabase
         .from("leads")
-        .select("*", { count: "exact", head: true });
+        .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY);
 
     // This month leads
     const { count: thisMonthLeads } = await supabase
         .from("leads")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .gte("created_at", thisMonth.toISOString());
 
     // Last month leads
     const { count: lastMonthLeadsCount } = await supabase
         .from("leads")
         .select("*", { count: "exact", head: true })
+        .eq("portal_key", PORTAL_KEY)
         .gte("created_at", lastMonth.toISOString())
         .lt("created_at", lastMonthEnd.toISOString());
 

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Calendar, Clock, Eye, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export default async function ArticlesPage() {
     const supabase = await createClient();
@@ -13,6 +14,7 @@ export default async function ArticlesPage() {
     const { data: articles } = await supabase
         .from("v_published_articles")
         .select("*")
+        .eq("portal_key", PORTAL_KEY)
         .order("published_at", { ascending: false });
 
     // Fetch categories

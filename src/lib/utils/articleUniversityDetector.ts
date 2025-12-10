@@ -4,6 +4,7 @@
  */
 
 import { createClient } from "@/lib/supabase/server";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 interface University {
     id: string;
@@ -22,6 +23,7 @@ export async function detectUniversitiesInArticle(content: string, title: string
     const { data: universities } = await supabase
         .from("universities")
         .select("id, name, name_local, slug, city, province, logo_url")
+        .eq("portal_key", PORTAL_KEY)
         .eq("is_active", true);
 
     if (!universities) return [];

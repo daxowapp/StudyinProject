@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { UniversityJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -22,6 +23,7 @@ export async function generateMetadata({
         .from("universities")
         .select("name, description, city, province, cover_photo_url")
         .eq("slug", slug)
+        .eq("portal_key", PORTAL_KEY)
         .single();
 
     if (!university) {
@@ -76,6 +78,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         .from("universities")
         .select("*")
         .eq("slug", slug)
+        .eq("portal_key", PORTAL_KEY)
         .single();
 
     if (!university) {

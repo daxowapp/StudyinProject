@@ -48,7 +48,7 @@ export default async function AdminDashboardPage() {
                     program_catalog:program_catalog_id(title),
                     university:university_id(name)
                 )
-            `).order("updated_at", { ascending: false }).limit(10),
+            `).eq("portal_key", PORTAL_KEY).order("updated_at", { ascending: false }).limit(10),
             supabase.from("applications").select(`
                 *,
                 university_program:university_program_id(
@@ -56,6 +56,7 @@ export default async function AdminDashboardPage() {
                     university:university_id(name)
                 )
             `)
+                .eq("portal_key", PORTAL_KEY)
                 .in('status', ['payment_verification', 'document_verification', 'submitted'])
                 .order("updated_at", { ascending: false })
                 .limit(10)
