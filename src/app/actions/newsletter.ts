@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export async function subscribeToNewsletter(formData: FormData) {
     const email = formData.get("email") as string;
@@ -18,6 +19,7 @@ export async function subscribeToNewsletter(formData: FormData) {
             source: "newsletter",
             status: "new",
             name: "Newsletter Subscriber",
+            portal_key: PORTAL_KEY,
             created_at: new Date().toISOString()
         });
 
