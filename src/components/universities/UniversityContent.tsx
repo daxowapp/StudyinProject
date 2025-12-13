@@ -116,28 +116,28 @@ export function UniversityContent({ university }: UniversityContentProps) {
     return (
         <div className="container mx-auto px-4 -mt-8 pb-20">
             {/* Quick Jump Navigation */}
-            <div className="sticky top-16 z-40 -mx-4 px-4 py-3 mb-6 bg-gradient-to-r from-white/95 via-white/98 to-white/95 backdrop-blur-md border-b shadow-lg">
-                <div className="flex items-center justify-center gap-3 overflow-x-auto scrollbar-hide">
+            <div className="sticky top-16 z-40 -mx-4 px-4 py-3 mb-6 bg-white/80 backdrop-blur-md border-b shadow-sm">
+                <div className="container mx-auto max-w-7xl flex items-center justify-center gap-2 overflow-x-auto scrollbar-hide py-1">
                     <button
                         onClick={() => document.getElementById('programs-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
                     >
-                        <span className="text-lg">📚</span>
-                        Explore Courses
+                        <span className="text-lg group-hover:scale-110 transition-transform">📚</span>
+                        {t('quickLinks.exploreCourses')}
                     </button>
                     <button
                         onClick={() => document.getElementById('scholarships-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
                     >
-                        <span className="text-lg">💰</span>
-                        Get Funded
+                        <span className="text-lg group-hover:scale-110 transition-transform">💰</span>
+                        {t('quickLinks.getFunded')}
                     </button>
                     <button
                         onClick={() => document.getElementById('accommodation-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                        className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold text-sm whitespace-nowrap transition-all shadow-md hover:shadow-lg hover:scale-105"
+                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
                     >
-                        <span className="text-lg">🏠</span>
-                        Find Housing
+                        <span className="text-lg group-hover:scale-110 transition-transform">🏠</span>
+                        {t('quickLinks.findHousing')}
                     </button>
                 </div>
             </div>
@@ -149,13 +149,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                        className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100"
                     >
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                            <h2 className="text-4xl font-black">{t('about')}</h2>
+                            <div className="h-12 w-1.5 bg-primary rounded-full" />
+                            <h2 className="text-4xl font-bold tracking-tight">{t('about')}</h2>
                         </div>
-                        <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
                             <ExpandableText text={university.overview} maxLength={500} />
                         </div>
                     </motion.div>
@@ -166,15 +166,15 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-gradient-to-br from-red-600 via-red-700 to-yellow-600 rounded-3xl shadow-2xl p-8 md:p-12 text-white relative overflow-hidden"
+                            className="bg-gradient-to-br from-primary to-primary/90 rounded-3xl shadow-xl p-8 md:p-12 text-white relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32" />
-                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24" />
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32 blur-3xl" />
+                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24 blur-3xl" />
 
                             <div className="relative z-10">
                                 <div className="flex items-center gap-3 mb-8">
-                                    <Sparkles className="h-8 w-8" />
-                                    <h2 className="text-4xl font-black">{t('whyChooseUs')}</h2>
+                                    <Sparkles className="h-8 w-8 text-yellow-300" />
+                                    <h2 className="text-3xl font-bold">{t('whyChooseUs')}</h2>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {university.highlights.map((highlight: string, index: number) => (
@@ -183,12 +183,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: 0.2 + index * 0.1 }}
-                                            className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all group"
+                                            className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all group"
                                         >
-                                            <div className="h-12 w-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                                                <CheckCircle2 className="h-6 w-6" />
+                                            <div className="h-10 w-10 rounded-lg bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                                <CheckCircle2 className="h-5 w-5 text-white" />
                                             </div>
-                                            <p className="font-semibold text-lg">{highlight}</p>
+                                            <p className="font-medium">{highlight}</p>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -214,26 +214,26 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             transition={{ delay: 0.2 }}
                             className="scroll-mt-32"
                         >
-                            <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-3">
-                                    <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
-                                    <h2 className="text-4xl font-black">{t('programs.title')}</h2>
+                                    <div className="h-12 w-1.5 bg-primary rounded-full" />
+                                    <h2 className="text-3xl font-bold">{t('programs.title')}</h2>
                                 </div>
-                                <Badge className="bg-red-600 text-white px-4 py-2 text-lg">
+                                <Badge variant="secondary" className="text-primary font-bold px-4 py-1.5 text-base rounded-full">
                                     {filteredPrograms?.length || 0} {t('programs.title')}
                                 </Badge>
                             </div>
 
                             {/* Program Level Tabs */}
-                            <div className="flex flex-wrap gap-2 mb-6">
+                            <div className="flex flex-wrap gap-2 mb-8 bg-muted/30 p-1.5 rounded-2xl w-fit">
                                 {programLevels.map((level) => (
                                     <button
                                         key={level}
                                         onClick={() => setProgramLevel(level)}
-                                        className={`px - 6 py - 3 rounded - xl font - semibold transition - all ${programLevel === level
-                                            ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg scale-105'
-                                            : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-red-200'
-                                            } `}
+                                        className={`px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 ${programLevel === level
+                                            ? 'bg-primary text-primary-foreground shadow-md scale-100 ring-1 ring-primary/20'
+                                            : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                                            }`}
                                     >
                                         {level === "all" ? t('programs.allPrograms') : level}
                                     </button>

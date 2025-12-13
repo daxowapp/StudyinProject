@@ -15,26 +15,12 @@ const FeaturedUniversitiesSection = dynamic(
   () => import("@/components/home/FeaturedUniversitiesSection").then(mod => ({ default: mod.FeaturedUniversitiesSection })),
   { ssr: true }
 );
-const StatsSection = dynamic(
-  () => import("@/components/home/StatsSection").then(mod => ({ default: mod.StatsSection })),
+const CscaCtaSection = dynamic(
+  () => import("@/components/home/CscaCtaSection").then(mod => ({ default: mod.CscaCtaSection })),
   { ssr: true }
 );
-const ScholarshipsSection = dynamic(
-  () => import("@/components/home/ScholarshipsSection").then(mod => ({ default: mod.ScholarshipsSection })),
-  { ssr: true }
-);
-const TestimonialsSection = dynamic(
-  () => import("@/components/home/TestimonialsSection").then(mod => ({ default: mod.TestimonialsSection })),
-  { ssr: true }
-);
-const PartnersSection = dynamic(
-  () => import("@/components/home/PartnersSection").then(mod => ({ default: mod.PartnersSection })),
-  { ssr: true }
-);
-const FAQPreviewSection = dynamic(
-  () => import("@/components/home/FAQPreviewSection").then(mod => ({ default: mod.FAQPreviewSection })),
-  { ssr: true }
-);
+
+import { LazyHomeSections } from '@/components/home/LazyHomeSections';
 
 // Enable ISR with 5 minute revalidation
 export const revalidate = 300;
@@ -54,6 +40,7 @@ interface PageProgram {
     city: string;
     cover_photo_url?: string;
     logo_url?: string;
+    has_fast_track?: boolean;
   };
 }
 
@@ -84,70 +71,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   try {
     const supabase = await createClient();
 
-    // Fetch Featured Programs - get more for variety
-    const programsPromise = supabase
-      .from("v_university_programs_full")
-      .select("*")
+    // 1. Start Fast Track Fetch
+    const fastTrackPromise = supabase
+      .from("universities")
+      .select("id")
       .eq("portal_key", PORTAL_KEY)
-      .limit(20); // Fetch 20 to ensure diversity
+      .eq("has_fast_track", true);
 
-    const { data: programs, error: programsError } = await Promise.race([
-      programsPromise,
-      new Promise<{ data: unknown[]; error: unknown }>((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout')), 3000)
-      )
-    ]).catch(() => ({ data: null, error: null }));
-
-    if (programsError) {
-      console.error("Error fetching programs:", programsError);
-    }
-
-    // OPTIMIZED: Fetch all universities in ONE query instead of N+1
-    if (programs && programs.length > 0) {
-      const universityIds = [...new Set((programs as { university_id: string }[]).map((p) => p.university_id))];
-
-      const { data: universities } = await supabase
-        .from("universities")
-        .select("id, name, city, cover_photo_url, logo_url")
-        .in("id", universityIds);
-
-      // Helper to filter out base64 data URLs (they bloat SSR response)
-      const sanitizeImageUrl = (url: string | undefined | null): string | undefined => {
-        if (!url) return undefined;
-        // Skip base64 images - they cause 20MB+ page sizes
-        if (url.startsWith('data:')) return undefined;
-        return url;
-      };
-
-      // Create a Map for O(1) lookup
-      const universityMap = new Map(
-        universities?.map((uni) => [uni.id, uni]) || []
-      );
-
-      // Transform data to match component props
-      formattedPrograms = (programs as { id: string; slug: string; display_title: string; program_title: string; level: string; duration: string; tuition_fee: number; currency: string; language_name: string; intake: string; university_id: string; university_name: string; city: string }[]).map((p) => {
-        const university = universityMap.get(p.university_id);
-        return {
-          id: p.id,
-          slug: p.slug,
-          title: p.display_title || p.program_title,
-          level: p.level,
-          duration: p.duration,
-          tuition_fee: String(p.tuition_fee), // Convert to string
-          currency: p.currency || "CNY",
-          language: p.language_name,
-          intake: p.intake,
-          university: {
-            name: university?.name || p.university_name,
-            city: university?.city || p.city,
-            cover_photo_url: sanitizeImageUrl(university?.cover_photo_url),
-            logo_url: university?.logo_url // Allow base64 for logos
-          }
-        };
-      });
-    }
-
-    // Fetch Featured Universities with timeout
+    // 2. Start Featured Universities Fetch
     const universitiesPromise = supabase
       .from("universities")
       .select(`
@@ -168,45 +99,120 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       .order("created_at", { ascending: false })
       .limit(8);
 
-    const { data: universitiesData, error: universitiesError } = await Promise.race([
+    // 3. Start User Session Fetch
+    const userPromise = supabase.auth.getUser();
+
+    // Await 1 & 2 & 3 in parallel
+    const [fastTrackResult, universitiesResult, userResult] = await Promise.all([
+      fastTrackPromise,
       universitiesPromise,
-      new Promise<{ data: unknown[]; error: unknown }>((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout')), 3000)
-      )
-    ]).catch(() => ({ data: null, error: null }));
+      userPromise
+    ]);
 
-    // Fetch stats for these universities
-    if (universitiesData) {
-      const { data: stats } = await supabase
-        .from("v_university_stats")
-        .select("*")
-        .in("university_id", (universitiesData as { id: string }[]).map((u) => u.id));
+    const fastTrackUnis = fastTrackResult.data;
+    const universitiesData = universitiesResult.data;
+    const universitiesError = universitiesResult.error;
+    user = userResult.data.user;
 
-      // Fetch translations for universities based on locale
-      const { data: translations } = await supabase
-        .from("university_translations")
-        .select("*")
-        .in("university_id", (universitiesData as { id: string }[]).map((u) => u.id));
+    // 4. Process Fast Track Programs if IDs exist
+    const fastTrackIds = fastTrackUnis?.map(u => u.id) || [];
+    let programs: any[] | null = null;
+    let programsError = null;
 
-      const statsMap = new Map((stats as { university_id: string; program_count: number; min_tuition_fee: number; currency: string }[] | null)?.map((s) => [s.university_id, s]) || []);
-      const translationsMap = new Map((translations as { university_id: string; locale: string; name: string; description: string }[] | null)?.map((t) => [`${t.university_id}_${t.locale}`, t]) || []);
+    if (fastTrackIds.length > 0) {
+      const { data, error } = await supabase
+        .from("v_university_programs_full")
+        .select("id, slug, display_title, program_title, level, duration, tuition_fee, currency, language_name, intake, university_id, university_name, city")
+        .eq("portal_key", PORTAL_KEY)
+        .in('university_id', fastTrackIds)
+        .limit(80);
+      programs = data;
+      programsError = error;
+    }
 
-      // Helper to filter out base64 data URLs (they bloat SSR response)
-      const sanitizeImageUrl = (url: string | undefined | null): string | undefined => {
+    if (programsError) {
+      console.error("Error fetching programs:", programsError);
+    }
+
+    // Process Programs
+    let randomPrograms = programs ? [...programs] : [];
+    if (randomPrograms.length > 0) {
+      // Shuffle
+      for (let i = randomPrograms.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [randomPrograms[i], randomPrograms[j]] = [randomPrograms[j], randomPrograms[i]];
+      }
+      randomPrograms = randomPrograms.slice(0, 40);
+
+      // Fetch Universities for Programs (Optimized: Single Query)
+      const universityIds = [...new Set((randomPrograms as { university_id: string }[]).map((p) => p.university_id))];
+      const { data: programUniversities } = await supabase
+        .from("universities")
+        .select("id, name, city, cover_photo_url, logo_url, has_fast_track")
+        .in("id", universityIds);
+
+      // Helper to filter out base64
+      const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
         if (!url) return undefined;
-        if (url.startsWith('data:')) return undefined;
+        if (url.startsWith('data:')) return id ? `/api/university-cover/${id}` : undefined;
         return url;
       };
 
-      universitiesWithStats = (universitiesData as { id: string; name: string; slug: string; city: string; province: string; description: string; logo_url: string; cover_photo_url: string; founded: number; total_students: number; ranking: number; has_fast_track: boolean }[]).map((uni) => {
+      const universityMap = new Map(programUniversities?.map((uni) => [uni.id, uni]) || []);
+
+      formattedPrograms = (randomPrograms as any[]).map((p) => {
+        const university = universityMap.get(p.university_id);
+        return {
+          id: p.id,
+          slug: p.slug,
+          title: p.display_title || p.program_title,
+          level: p.level,
+          duration: p.duration,
+          tuition_fee: String(p.tuition_fee),
+          currency: p.currency || "CNY",
+          language: p.language_name,
+          intake: p.intake,
+          university: {
+            name: university?.name || p.university_name,
+            city: university?.city || p.city,
+            cover_photo_url: sanitizeImageUrl(university?.cover_photo_url, university?.id),
+            logo_url: university?.logo_url,
+            has_fast_track: university?.has_fast_track
+          }
+        };
+      });
+    }
+
+    // Process Universities (with Stats & Translations)
+    if (universitiesData) {
+      // Fetch stats and translations in parallel
+      const uniIds = universitiesData.map(u => u.id);
+      const [statsResult, translationsResult] = await Promise.all([
+        supabase.from("v_university_stats").select("*").in("university_id", uniIds),
+        supabase.from("university_translations").select("*").in("university_id", uniIds)
+      ]);
+
+      const stats = statsResult.data;
+      const translations = translationsResult.data;
+
+      const statsMap = new Map((stats as any[] || []).map((s) => [s.university_id, s]));
+      const translationsMap = new Map((translations as any[] || []).map((t) => [`${t.university_id}_${locale}`, t]));
+
+      const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
+        if (!url) return undefined;
+        if (url.startsWith('data:')) return id ? `/api/university-cover/${id}` : undefined;
+        return url;
+      };
+
+      universitiesWithStats = universitiesData.map((uni) => {
         const stat = statsMap.get(uni.id);
         const translation = translationsMap.get(`${uni.id}_${locale}`);
         return {
           ...uni,
           name: translation?.name || uni.name,
           description: translation?.description || uni.description,
-          logo_url: uni.logo_url, // Allow base64 for logos
-          cover_photo_url: sanitizeImageUrl(uni.cover_photo_url),
+          logo_url: uni.logo_url,
+          cover_photo_url: sanitizeImageUrl(uni.cover_photo_url, uni.id),
           founded: String(uni.founded),
           total_students: String(uni.total_students),
           ranking: String(uni.ranking),
@@ -220,13 +226,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     if (universitiesError) {
       console.error("Error fetching universities:", universitiesError);
     }
-    // Fetch user session for conditional rendering
-    const { data: { user: fetchedUser } } = await supabase.auth.getUser();
-    user = fetchedUser;
 
   } catch (error) {
     console.error("Error in Home page:", error);
-    // Continue rendering with empty data
   }
 
   return (
@@ -237,11 +239,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <HowItWorksSection isLoggedIn={!!user} />
       <FeaturedProgramsSection programs={formattedPrograms} />
       <FeaturedUniversitiesSection universities={universitiesWithStats} />
-      <StatsSection />
-      <ScholarshipsSection />
-      <TestimonialsSection />
-      <PartnersSection universities={universitiesWithStats} />
-      <FAQPreviewSection />
+      <CscaCtaSection />
+      <LazyHomeSections universities={universitiesWithStats} />
     </main>
   );
 }

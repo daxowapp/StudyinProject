@@ -32,6 +32,7 @@ interface Program {
     category?: string;
     tuition_fee?: number;
     scholarship_chance?: string;
+    has_fast_track?: boolean;
 }
 
 interface ProgramsClientProps {

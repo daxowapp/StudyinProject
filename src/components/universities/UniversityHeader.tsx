@@ -267,36 +267,36 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
                     {/* Quick Stats */}
                     <div className="flex-1 w-full">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                            <div className="text-center md:text-left">
+                            <div className="text-center md:text-start">
                                 <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 text-xs font-medium mb-2">
-                                    <Calendar className="h-4 w-4" />
+                                    <Calendar className="h-4 w-4 rtl:ml-2 ltr:mr-2" />
                                     <span>{t('founded')}</span>
                                 </div>
                                 <div className="text-3xl font-black text-gray-900">
                                     {university.stats.founded || "N/A"}
                                 </div>
                             </div>
-                            <div className="text-center md:text-left">
+                            <div className="text-center md:text-start">
                                 <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 text-xs font-medium mb-2">
-                                    <Users className="h-4 w-4" />
+                                    <Users className="h-4 w-4 rtl:ml-2 ltr:mr-2" />
                                     <span>{t('students')}</span>
                                 </div>
                                 <div className="text-3xl font-black text-gray-900">
                                     {university.stats.students || "N/A"}
                                 </div>
                             </div>
-                            <div className="text-center md:text-left">
+                            <div className="text-center md:text-start">
                                 <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 text-xs font-medium mb-2">
-                                    <Award className="h-4 w-4" />
+                                    <Award className="h-4 w-4 rtl:ml-2 ltr:mr-2" />
                                     <span>{t('ranking')}</span>
                                 </div>
                                 <div className="text-3xl font-black text-gray-900">
                                     {university.stats.ranking || "N/A"}
                                 </div>
                             </div>
-                            <div className="text-center md:text-left">
+                            <div className="text-center md:text-start">
                                 <div className="flex items-center justify-center md:justify-start gap-2 text-gray-500 text-xs font-medium mb-2">
-                                    <TrendingUp className="h-4 w-4" />
+                                    <TrendingUp className="h-4 w-4 rtl:ml-2 ltr:mr-2" />
                                     <span>{t('international')}</span>
                                 </div>
                                 <div className="text-3xl font-black text-gray-900">

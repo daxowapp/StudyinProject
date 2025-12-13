@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { CscaCtaSection } from "@/components/home/CscaCtaSection";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -80,11 +81,16 @@ export default async function ProgramsPage({
     // Fetch universities for slug mapping
     const { data: universities } = await supabase
         .from("universities")
-        .select("name, slug")
+        .select("name, slug, has_fast_track")
         .eq("portal_key", PORTAL_KEY);
 
     const universityMap = universities?.reduce((acc: Record<string, string>, uni: { slug: string; name: string }) => {
         acc[uni.slug] = uni.name;
+        return acc;
+    }, {}) || {};
+
+    const fastTrackMap = universities?.reduce((acc: Record<string, boolean>, uni: { slug: string; has_fast_track: boolean }) => {
+        acc[uni.slug] = uni.has_fast_track;
         return acc;
     }, {}) || {};
 
@@ -105,6 +111,7 @@ export default async function ProgramsPage({
         badges: [p.language_name, p.level].filter(Boolean),
         category: p.category,
         scholarship_chance: p.scholarship_chance,
+        has_fast_track: fastTrackMap[p.university_slug] || false,
     })) || [];
 
     return (
@@ -137,6 +144,8 @@ export default async function ProgramsPage({
             <ProgramsWrapper>
                 <ProgramsClient programs={formattedPrograms} universityMap={universityMap} />
             </ProgramsWrapper>
+
+            <CscaCtaSection />
         </div>
     );
 }

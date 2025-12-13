@@ -14,6 +14,7 @@ import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { CourseJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { CscaCtaSection } from "@/components/home/CscaCtaSection";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -572,6 +573,8 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                     </div>
                 </div>
             </div>
+
+            <CscaCtaSection />
         </div>
     );
 }

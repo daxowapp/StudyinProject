@@ -191,7 +191,7 @@ export function Navbar() {
                             <NavigationMenuList className={cn("gap-2", isRTL && "flex-row-reverse")}>
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild>
-                                        <Link href="/" className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                        <Link href="/" className={cn(navigationMenuTriggerStyle(), "font-bold", showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
                                             <Home className="me-2 h-4 w-4" />
                                             {t('home')}
                                         </Link>
@@ -199,7 +199,7 @@ export function Navbar() {
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
-                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
                                         <Building2 className="me-2 h-4 w-4" />
                                         {t('universities')}
                                     </NavigationMenuTrigger>
@@ -226,7 +226,7 @@ export function Navbar() {
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
-                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
                                         <GraduationCap className="me-2 h-4 w-4" />
                                         {t('programs')}
                                     </NavigationMenuTrigger>
@@ -255,7 +255,7 @@ export function Navbar() {
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
-                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                    <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
                                         <Award className="me-2 h-4 w-4" />
                                         {t('resources.title')}
                                     </NavigationMenuTrigger>
@@ -282,13 +282,20 @@ export function Navbar() {
                                             >
                                                 {t('resources.articles')}
                                             </ListItem>
+                                            <ListItem
+                                                title="CSCA Exam Guide"
+                                                href="/articles/csca-guide"
+                                                icon={BookOpen}
+                                            >
+                                                Comprehensive guide to the new entrance exam
+                                            </ListItem>
                                         </ul>
                                     </NavigationMenuContent>
                                 </NavigationMenuItem>
 
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild>
-                                        <Link href="/contact" className={cn(navigationMenuTriggerStyle(), showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
+                                        <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "font-bold", showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
                                             <Mail className="me-2 h-4 w-4" />
                                             {t('contact')}
                                         </Link>
@@ -490,6 +497,14 @@ export function Navbar() {
                                                     >
                                                         <Newspaper className="h-4 w-4 text-primary" />
                                                         <span className="text-sm font-medium">{t('resources.articles')}</span>
+                                                    </Link>
+                                                    <Link
+                                                        href="/articles/csca-guide"
+                                                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        <BookOpen className="h-4 w-4 text-primary" />
+                                                        <span className="text-sm font-medium">CSCA Exam Guide</span>
                                                     </Link>
                                                     <Link
                                                         href="/contact"

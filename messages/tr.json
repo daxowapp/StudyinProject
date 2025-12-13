@@ -112,6 +112,188 @@
         "privacyPolicy": "Gizlilik Politikası",
         "cookiePolicy": "Çerez Politikası"
     },
+    "ScholarshipCTA": {
+        "badge": "Daha Fazla Fırsat Keşfedin",
+        "title": "Tüm Burs Seçeneklerini İnceleyin",
+        "description": "Hangi bursun sizin için uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk şartlarını anlamak ve akademik yolculuğunuz için en uygun olanı bulmak için kapsamlı burs rehberimize göz atın.",
+        "viewAll": "Tüm Bursları Görüntüle",
+        "getAdvice": "Kişiselleştirilmiş Tavsiye Alın"
+    },
+    "CscaCta": {
+        "badge": "2026'dan İtibaren Zorunlu",
+        "title": "<span class=\"text-primary\">CSCA Sınavına</span> Mı Hazırlanıyorsunuz?",
+        "titlePlain": "CSCA Sınavına Mı Hazırlanıyorsunuz?",
+        "description": "Çin Akademik Yeterlilik Değerlendirmesi (CSCA) artık üst düzey burslar için bir gerekliliktir. Yeni kapsamlı kılavuzumuzda konuların, puanlamanın ve hazırlık stratejilerinin tam dökümünü edinin.",
+        "readGuide": "Kılavuzu Oku",
+        "findPrograms": "Programları Bul",
+        "proTip1": {
+            "title": "İpucu #1",
+            "text": "Uzmanlaşmış Çince sadece HSK değil, akademik kelime dağarcığı gerektirir."
+        },
+        "proTip2": {
+            "title": "İpucu #2",
+            "text": "Matematik bölümleri geometri ağırlıklıdır. Konik kesitleri gözden geçirin."
+        }
+    },
+    "CSCAGuide": {
+        "meta": {
+            "title": "Çin'deki CSCA Sınavı İçin Kapsamlı Kılavuz",
+            "description": "Çin Akademik Yeterlilik Değerlendirmesi (CSCA) - uluslararası öğrenciler için standart giriş sınavı - hakkında bilmeniz gereken her şey."
+        },
+        "backHome": "Ana Sayfaya Dön",
+        "newRequirement": "2026 İçin Yeni Gereklilik",
+        "title": "Çin'deki <span class=\"text-primary\">CSCA Sınavı</span> İçin Kapsamlı Kılavuz",
+        "subtitle": "Çin Akademik Yeterlilik Değerlendirmesi uluslararası öğrenciler için zorunlu hale geliyor. Hazırlanmak ve başarılı olmak için bilmeniz gereken her şey burada.",
+        "sections": {
+            "overview": {
+                "title": "Genel Bakış",
+                "content": "CSCA (Çin Akademik Yeterlilik Değerlendirmesi), Çin üniversitelerindeki lisans programlarına başvuran uluslararası öğrenciler için tasarlanmış standart bir akademik giriş sınavıdır. Çin Burs Konseyi (CSC) tarafından 2025 yılında resmi olarak başlatılan sınav, Çin Hükümeti Bursu almak isteyen tüm uluslararası lisans başvuruları için 2026'dan itibaren zorunlu hale gelecektir.",
+                "keyDates": {
+                    "title": "Önemli Tarihler",
+                    "launch": "2025: Resmi Başlangıç",
+                    "mandatory": "2026: Burs Başvuruları İçin Zorunlu",
+                    "full": "2028: Tüm Üniversitelerde Tam Uygulama"
+                }
+            },
+            "structure": {
+                "title": "Sınav Yapısı",
+                "description": "CSCA zorunlu artı seçmeli bir model kullanır. Tüm sorular çoktan seçmelidir.",
+                "table": {
+                    "subject": "Konu",
+                    "duration": "Süre",
+                    "questions": "Soru Sayısı",
+                    "requirement": "Gereklilik",
+                    "chinese": {
+                        "name": "Uzmanlaşmış Çince",
+                        "req": "Gerekli (Çince eğitimli)"
+                    },
+                    "math": {
+                        "name": "Matematik",
+                        "req": "Zorunlu"
+                    },
+                    "physics": {
+                        "name": "Fizik",
+                        "req": "Bilim ve Mühendislik/Tıp için Gerekli"
+                    },
+                    "chemistry": {
+                        "name": "Kimya",
+                        "req": "Tıp/Ziraat için Gerekli"
+                    }
+                }
+            },
+            "subjects": {
+                "title": "Konu Detayları",
+                "chinese": {
+                    "title": "Uzmanlaşmış Çince",
+                    "description": "HSK'dan farklıdır. Akademik okuma ve kavamayı değerlendirir. <strong>İngilizce versiyonu mevcut değildir.</strong>",
+                    "char": {
+                        "title": "Karakter Tanıma",
+                        "desc": "Çok sesli karakterler, eş sesliler (HSK 4-5 seviyesi)"
+                    },
+                    "reading": {
+                        "title": "Okuduğunu Anlama",
+                        "desc": "En yüksek ağırlık. Bilim/Teknoloji/Sosyal makaleler."
+                    },
+                    "words": {
+                        "title": "Kelime Ayrımı",
+                        "desc": "Eş anlamlılar, akademik kelimeler."
+                    },
+                    "sentences": {
+                        "title": "Cümle/Paragraf",
+                        "desc": "Cümle sıralama, mantık tamamlama."
+                    }
+                },
+                "math": {
+                    "title": "Matematik",
+                    "description": "Herkes için zorunlu. Temel akademik ve mantıksal akıl yürütmeyi test eder.",
+                    "note": "Hem Çince hem de İngilizce versiyonları mevcuttur.",
+                    "topics": "<strong>Konular:</strong> Diziler, Fonksiyonlar, Konik kesitler (elips, hiperbol), Kalkülüs, Vektörler.",
+                    "style": "<strong>Tarz:</strong> Hızlı tempolu, geometri ağırlıklı, kavramsal anlama."
+                },
+                "chem": {
+                    "title": "Kimya",
+                    "desc": "Tıp, Ziraat, Eczacılık için.",
+                    "items": "İyon bir arada bulunma (temel soru), organik kimya ve reaksiyonlar, stokiyometri"
+                },
+                "phys": {
+                    "title": "Fizik",
+                    "desc": "Bilim, Mühendislik, Tıp için.",
+                    "items": "Mekanik ve Hareket, Elektromanyetizma (Lenz Yasası), Formüllerden çok kavramsal anlama"
+                }
+            },
+            "formats": {
+                "title": "Test Modları",
+                "online": {
+                    "title": "Online Gözetimli",
+                    "desc": "Yapay Zeka + İnsan gözetimi ile evden. Dünya çapında geçerli."
+                },
+                "computer": {
+                    "title": "Bilgisayar Tabanlı",
+                    "desc": "Resmi test merkezlerinde. Daha iyi istikrar."
+                },
+                "paper": {
+                    "title": "Kağıt Tabanlı",
+                    "desc": "Geleneksel format. Sınırlı bölgeler."
+                }
+            },
+            "faq": {
+                "title": "Sıkça Sorulan Sorular",
+                "q1": {
+                    "q": "CSCA tüm üniversiteler için zorunlu mu?",
+                    "a": "Şu anda, Çin Hükümeti Bursu (CSC) tip A ve B başvuruları için zorunludur. Birçok üst düzey üniversite (Çift Birinci Sınıf) de 2026'dan itibaren kendi imkanlarıyla okuyacak öğrenciler için ana giriş sınavı olarak bunu kabul etmektedir."
+                },
+                "q2": {
+                    "q": "Sınava kendi ülkemde girebilir miyim?",
+                    "a": "Evet! CSCA, istikrarlı bir internet bağlantınız olması ve teknik gereksinimleri karşılamanız koşuluyla dünyanın her yerinden sınava girmenizi sağlayan bir <strong>Online Gözetimli</strong> mod sunar. Ayrıca seçili ülkelerde kağıt ve bilgisayar tabanlı test merkezleri de bulunmaktadır."
+                },
+                "q3": {
+                    "q": "Puan ne kadar süre geçerlidir?",
+                    "a": "CSCA puanları yalnızca <strong>mevcut başvuru yılı</strong> için geçerlidir. Örneğin, 2025'te sınava girerseniz, bunu 2025-2026 akademik yılı başvuruları için kullanabilirsiniz."
+                },
+                "q4": {
+                    "q": "İyi bir puan nedir?",
+                    "a": "Puanlama üniversiteye göre değişir, ancak genel olarak:<br/>- <strong>Üst Düzey (C9 Ligi):</strong> Matematik > 85, Fizik/Kimya > 80<br/>- <strong>Birinci Sınıf Üniversiteler:</strong> Matematik > 75, Fizik/Kimya > 70<br/>- <strong>Genel Üniversiteler:</strong> Matematik > 60"
+                },
+                "comparison": {
+                    "title": "CSCA ve HSK Karşılaştırması",
+                    "feature": "Özellik",
+                    "hsk": "HSK",
+                    "csca": "CSCA",
+                    "focus": "Odak",
+                    "focusHsk": "Günlük İletişim",
+                    "focusCsca": "Akademik Okumalar",
+                    "vocab": "Kelime Dağarcığı",
+                    "vocabHsk": "Hayat/Günlük",
+                    "vocabCsca": "Teknik/Akademik",
+                    "req": "Gereklilik",
+                    "reqHsk": "Dil Sertifikası",
+                    "reqCsca": "Akademik Giriş"
+                }
+            },
+            "sidebar": {
+                "title": "Önemli Detaylar",
+                "dates": {
+                    "title": "Tarihler",
+                    "desc": "Yılda 5 kez (Ocak, Mart, Nisan, Haziran, Aralık)"
+                },
+                "prep": {
+                    "title": "Hazırlık",
+                    "desc": "3+ ay önerilir"
+                },
+                "passing": {
+                    "title": "Geçme Puanları",
+                    "desc": "Matematik: ~75, Çince: ~80 (En İyi Üniversiteler)"
+                },
+                "warning": "Puanlar sadece başvuru yılı için geçerlidir.",
+                "register": "Resmi Kayıt Sitesi",
+                "tutor": {
+                    "title": "Hazırlık Konusunda Yardıma Mı İhtiyacınız Var?",
+                    "desc": "Ortaklarımız CSCA Matematik ve Uzmanlaşmış Çince bölümleri için özel koçluk sunmaktadır.",
+                    "button": "Bize Ulaşın"
+                }
+            }
+        }
+    },
     "Hero": {
         "admissionsOpen": "2026 Kayıtları Başladı",
         "title": "Geleceğiniz Burada Başlıyor",
@@ -274,7 +456,8 @@
         "duration": "Süre",
         "tuition": "Yıllık Ücret",
         "explore": "Programı İncele",
-        "viewAll": "Tüm Programları Gör"
+        "viewAll": "Tüm Programları Görüntüle",
+        "fastTrack": "Hızlı Geçiş"
     },
     "FeaturedUniversities": {
         "badge": "En İyi Üniversiteler",
@@ -812,7 +995,12 @@
         }
     },
     "UniversityDetail": {
-        "about": "Hakkında",
+        "quickLinks": {
+            "exploreCourses": "Kursları Keşfet",
+            "getFunded": "Finansman Alın",
+            "findHousing": "Konaklama Bul"
+        },
+        "about": "Üniversite Hakkında",
         "whyChooseUs": "Neden Bizi Seçmelisiniz",
         "programs": {
             "title": "Programlar",

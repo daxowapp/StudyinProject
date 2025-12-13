@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { UniversityJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { CscaCtaSection } from "@/components/home/CscaCtaSection";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -197,6 +198,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             />
             <UniversityHeader university={universityData} />
             <UniversityContent university={universityData} />
+            <CscaCtaSection />
         </div>
     );
 }

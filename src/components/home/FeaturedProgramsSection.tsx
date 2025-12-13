@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Clock, MapPin, ArrowRight, Star, GraduationCap, Globe } from "lucide-react";
+import { Clock, MapPin, ArrowRight, Star, GraduationCap, Globe, Zap } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -26,11 +26,7 @@ interface Program {
         city: string;
         cover_photo_url?: string;
         logo_url?: string;
-    } | {
-        name: string;
-        city: string;
-        cover_photo_url?: string;
-        logo_url?: string;
+        has_fast_track?: boolean;
         [key: string]: unknown;
     };
 }
@@ -136,78 +132,86 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                             className="group"
                         >
                             <Link href={`/programs/${program.slug || program.id}`}>
-                                <Card className="h-full overflow-hidden border hover:border-primary/50 hover:shadow-lg transition-all duration-300 bg-white">
-                                    {/* Top accent */}
-                                    <div className="h-1 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
-
-                                    <CardContent className="p-5">
+                                <Card className="h-full overflow-hidden border-border/50 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group rounded-2xl">
+                                    <CardContent className="p-6">
                                         {/* University Header */}
-                                        <div className="flex items-start gap-3 mb-4">
+                                        <div className="flex items-start gap-4 mb-5">
                                             {program.university?.logo_url ? (
-                                                <div className="relative w-12 h-12 rounded-lg border bg-white shadow-sm shrink-0 overflow-hidden">
+                                                <div className="relative w-14 h-14 rounded-xl border border-gray-100 bg-white shadow-sm shrink-0 overflow-hidden group-hover:shadow-md transition-shadow">
                                                     <Image
                                                         src={program.university.logo_url}
                                                         alt={program.university.name}
                                                         fill
-                                                        className="object-contain p-1"
+                                                        className="object-contain p-1.5"
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shrink-0">
-                                                    <GraduationCap className="h-6 w-6 text-white" />
+                                                <div className="w-14 h-14 rounded-xl bg-primary/5 text-primary flex items-center justify-center shrink-0">
+                                                    <GraduationCap className="h-7 w-7" />
                                                 </div>
                                             )}
-                                            <div className="min-w-0 flex-1">
-                                                <p className="font-medium text-sm text-foreground truncate">
+                                            <div className="min-w-0 flex-1 pt-1">
+                                                <p className="font-bold text-sm text-foreground truncate leading-tight mb-1">
                                                     {program.university?.name}
                                                 </p>
-                                                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                                    <MapPin className="h-3 w-3" />
+                                                <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                                                    <MapPin className="h-3.5 w-3.5 text-primary/70" />
                                                     {program.university?.city}
                                                 </p>
                                             </div>
                                         </div>
 
                                         {/* Program Title */}
-                                        <h3 className="font-semibold text-base leading-tight mb-3 line-clamp-2 min-h-[2.75rem] group-hover:text-primary transition-colors">
+                                        <h3 className="font-bold text-lg leading-snug mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-primary transition-colors text-slate-800">
                                             {program.title}
                                         </h3>
 
                                         {/* Badges Row */}
-                                        <div className="flex flex-wrap gap-1.5 mb-4">
-                                            <Badge variant="secondary" className="text-[10px] font-medium px-2 py-0.5">
+                                        <div className="flex flex-wrap gap-2 mb-6">
+                                            {program.university?.has_fast_track && (
+                                                <Badge className="text-[10px] font-bold px-2 py-0.5 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 border shadow-sm">
+                                                    <Zap className="h-3 w-3 mr-1 fill-amber-500 text-amber-600" />
+                                                    {t('fastTrack')}
+                                                </Badge>
+                                            )}
+                                            <Badge variant="secondary" className="text-[10px] font-medium px-2.5 py-0.5 bg-slate-100 text-slate-600 hover:bg-slate-200">
                                                 {program.level}
                                             </Badge>
                                             {program.language && (
-                                                <Badge variant="outline" className="text-[10px] font-medium px-2 py-0.5">
-                                                    <Globe className="h-2.5 w-2.5 mr-0.5" />
+                                                <Badge variant="outline" className="text-[10px] font-medium px-2.5 py-0.5 text-slate-500">
+                                                    <Globe className="h-3 w-3 mr-1" />
                                                     {program.language}
                                                 </Badge>
                                             )}
                                         </div>
 
                                         {/* Details */}
-                                        <div className="space-y-2 pt-3 border-t">
+                                        <div className="space-y-3 pt-4 border-t border-slate-100">
                                             <div className="flex items-center justify-between text-sm">
-                                                <span className="text-muted-foreground flex items-center gap-1.5">
-                                                    <Clock className="h-3.5 w-3.5" />
+                                                <span className="text-slate-500 flex items-center gap-2">
+                                                    <Clock className="h-4 w-4 text-slate-400" />
                                                     {t('duration')}
                                                 </span>
-                                                <span className="font-medium">{program.duration}</span>
+                                                <span className="font-semibold text-slate-700">{program.duration}</span>
                                             </div>
                                             <div className="flex items-center justify-between text-sm">
-                                                <span className="text-muted-foreground">{t('tuition')}</span>
-                                                <span className="font-semibold text-primary">
+                                                <span className="text-slate-500 flex items-center gap-2">
+                                                    <div className="flex items-center justify-center w-4 h-4 rounded-full bg-primary/10">
+                                                        <span className="text-[10px] font-bold text-primary">¥</span>
+                                                    </div>
+                                                    {t('tuition')}
+                                                </span>
+                                                <span className="font-bold text-primary text-base">
                                                     <Price amount={parseFloat(program.tuition_fee)} currency={program.currency || 'CNY'} />
                                                 </span>
                                             </div>
                                         </div>
 
                                         {/* CTA */}
-                                        <div className="mt-4 pt-3 border-t">
-                                            <div className="flex items-center justify-between text-sm text-primary font-medium group-hover:font-semibold transition-all">
+                                        <div className="mt-5 pt-4 border-t border-dashed border-slate-200">
+                                            <div className="flex items-center justify-between text-sm text-primary font-semibold group-hover:translate-x-1 transition-transform cursor-pointer">
                                                 <span>{t('explore')}</span>
-                                                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                                <ArrowRight className="h-4 w-4" />
                                             </div>
                                         </div>
                                     </CardContent>

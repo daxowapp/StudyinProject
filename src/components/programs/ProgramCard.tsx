@@ -17,7 +17,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles } from "lucide-react";
+import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
 import { Price } from "@/components/currency/Price";
 import { useTranslations } from "next-intl";
@@ -38,6 +38,7 @@ interface Program {
     deadline: string;
     badges: string[];
     scholarship_chance?: string;
+    has_fast_track?: boolean;
 }
 
 interface ProgramCardProps {
@@ -168,6 +169,12 @@ export function ProgramCard({ program }: ProgramCardProps) {
 
                 {/* Badges */}
                 <div className="flex flex-wrap gap-2 mt-auto">
+                    {program.has_fast_track && (
+                        <Badge className="bg-yellow-100 text-yellow-800 text-xs hover:bg-yellow-200 border-yellow-200">
+                            <Zap className="h-3 w-3 mr-1 fill-yellow-600 text-yellow-600 animate-pulse" />
+                            {t("fastTrack") || 'Fast Track'}
+                        </Badge>
+                    )}
                     {program.badges.slice(0, 3).map((badge, index) => (
                         <Badge key={index} variant="outline" className="text-xs font-normal">
                             {badge}

@@ -112,6 +112,188 @@
         "privacyPolicy": "Privacy Policy",
         "cookiePolicy": "Cookie Policy"
     },
+    "ScholarshipCTA": {
+        "badge": "Discover More Opportunities",
+        "title": "Explore All Scholarship Options",
+        "description": "Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.",
+        "viewAll": "View All Scholarships",
+        "getAdvice": "Get Personalized Advice"
+    },
+    "CscaCta": {
+        "badge": "Mandatory from 2026",
+        "title": "Preparing for the <span class=\"text-primary\">CSCA Exam?</span>",
+        "titlePlain": "Preparing for the CSCA Exam?",
+        "description": "The China Scholastic Competency Assessment is now a requirement for top scholarships. Get the complete breakdown of subjects, scoring, and preparation strategies in our new comprehensive guide.",
+        "readGuide": "Read the Guide",
+        "findPrograms": "Find Programs",
+        "proTip1": {
+            "title": "Pro-Tip #1",
+            "text": "Specialized Chinese requires academic vocab, not just HSK."
+        },
+        "proTip2": {
+            "title": "Pro-Tip #2",
+            "text": "Math sections are geometry-heavy. Review conic sections."
+        }
+    },
+    "CSCAGuide": {
+        "meta": {
+            "title": "Comprehensive Guide to CSCA Exam in China",
+            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students."
+        },
+        "backHome": "Back to Home",
+        "newRequirement": "New Requirement for 2026",
+        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. Here's everything you need to know to prepare and succeed.",
+        "sections": {
+            "overview": {
+                "title": "Overview",
+                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic entrance examination designed for international students applying to undergraduate programs in Chinese universities. Launched officially in 2025 by the China Scholarship Council (CSC), it becomes <strong>mandatory starting 2026</strong> for all international undergraduate applicants seeking the Chinese Government Scholarship.",
+                "keyDates": {
+                    "title": "Key Dates",
+                    "launch": "2025: Official Launch",
+                    "mandatory": "2026: Mandatory for Scholarship Applicants",
+                    "full": "2028: Full Implementation across all Universities"
+                }
+            },
+            "structure": {
+                "title": "Exam Structure",
+                "description": "The CSCA employs a compulsory plus optional model. All questions are multiple-choice.",
+                "table": {
+                    "subject": "Subject",
+                    "duration": "Duration",
+                    "questions": "Questions",
+                    "requirement": "Requirement",
+                    "chinese": {
+                        "name": "Specialized Chinese",
+                        "req": "Required (Chinese-taught)"
+                    },
+                    "math": {
+                        "name": "Mathematics",
+                        "req": "Mandatory"
+                    },
+                    "physics": {
+                        "name": "Physics",
+                        "req": "Required for STEM/Medical"
+                    },
+                    "chemistry": {
+                        "name": "Chemistry",
+                        "req": "Required for Med/Agri"
+                    }
+                }
+            },
+            "subjects": {
+                "title": "Subject Details",
+                "chinese": {
+                    "title": "Specialized Chinese",
+                    "description": "Distinct from HSK. Assesses academic reading and comprehension. <strong>No English version available.</strong>",
+                    "char": {
+                        "title": "Character Recognition",
+                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+                    },
+                    "reading": {
+                        "title": "Reading Comprehension",
+                        "desc": "Highest weight. Sci/Tech/Social essays."
+                    },
+                    "words": {
+                        "title": "Word Distinction",
+                        "desc": "Synonyms, academic vocabulary."
+                    },
+                    "sentences": {
+                        "title": "Sentence/Paragraph",
+                        "desc": "Ordering sentences, completing logic."
+                    }
+                },
+                "math": {
+                    "title": "Mathematics",
+                    "description": "Compulsory for all. Tests fundamental academic and logical reasoning.",
+                    "note": "Both Chinese and English versions available.",
+                    "topics": "<strong>Topics:</strong> Sequences, Functions, Conic sections (ellipses, hyperbolas), Calculus, Vectors.",
+                    "style": "<strong>Style:</strong> Fast-paced, geometry-heavy, conceptual understanding."
+                },
+                "chem": {
+                    "title": "Chemistry",
+                    "desc": "For Medical, Agriculture, Pharmacy.",
+                    "items": "Ion coexistence (staple), organic chemistry & reactions, stoichiometry"
+                },
+                "phys": {
+                    "title": "Physics",
+                    "desc": "For Science, Engineering, Medical.",
+                    "items": "Mechanics & Motion, Electromagnetism (Lenz's Law), Conceptual understanding"
+                }
+            },
+            "formats": {
+                "title": "Test Modes",
+                "online": {
+                    "title": "Online Proctored",
+                    "desc": "Home-based with AI + Human proctoring. Valid worldwide."
+                },
+                "computer": {
+                    "title": "Computer-Based",
+                    "desc": "At official test centers. Better stability."
+                },
+                "paper": {
+                    "title": "Paper-Based",
+                    "desc": "Traditional format. Limited regions."
+                }
+            },
+            "faq": {
+                "title": "Frequently Asked Questions",
+                "q1": {
+                    "q": "Is the CSCA mandatory for all universities?",
+                    "a": "Currently, it is mandatory for applying to the Chinese Government Scholarship (CSC) type A and B. Many top-tier universities (Double First-Class) are also adopting it as their primary entrance exam for self-funded students starting 2026."
+                },
+                "q2": {
+                    "q": "Can I take the exam in my home country?",
+                    "a": "Yes! The CSCA offers an <strong>Online Proctored</strong> mode which allows you to take the exam from anywhere in the world, provided you have a stable internet connection and meet the technical requirements. There are also paper-based and computer-based test centers in select countries."
+                },
+                "q3": {
+                    "q": "How long is the score valid?",
+                    "a": "CSCA scores are valid for the <strong>current application year only</strong>. For example, if you take the exam in 2025, you can use it for 2025-2026 academic year applications."
+                },
+                "q4": {
+                    "q": "What is a good score?",
+                    "a": "Scoring varies by university, but generally:<br/>- <strong>Top Tier (C9 League):</strong> Math &gt; 85, Physics/Chem &gt; 80<br/>- <strong>First Class Unis:</strong> Math &gt; 75, Physics/Chem &gt; 70<br/>- <strong>General Unis:</strong> Math &gt; 60"
+                },
+                "comparison": {
+                    "title": "CSCA vs. HSK",
+                    "feature": "Feature",
+                    "hsk": "HSK",
+                    "csca": "CSCA",
+                    "focus": "Focus",
+                    "focusHsk": "Daily Communication",
+                    "focusCsca": "Academic Readings",
+                    "vocab": "Vocabulary",
+                    "vocabHsk": "Life/Everyday",
+                    "vocabCsca": "Technical/Academic",
+                    "req": "Requirement",
+                    "reqHsk": "Language Cert",
+                    "reqCsca": "Academic Entrance"
+                }
+            },
+            "sidebar": {
+                "title": "Important Details",
+                "dates": {
+                    "title": "Dates",
+                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+                },
+                "prep": {
+                    "title": "Preparation",
+                    "desc": "3+ months recommended"
+                },
+                "passing": {
+                    "title": "Passing Scores",
+                    "desc": "Math: ~75, Chinese: ~80 (Top Unis)"
+                },
+                "warning": "Scores valid for application year only.",
+                "register": "Official Registration Site",
+                "tutor": {
+                    "title": "Need Preparation Help?",
+                    "desc": "Our partners offer specialized coaching for the CSCA Mathematics and Specialized Chinese sections.",
+                    "button": "Contact Us"
+                }
+            }
+        }
+    },
     "Hero": {
         "admissionsOpen": "Admissions Open for 2026",
         "title": "Your Future Starts Here",
@@ -269,12 +451,13 @@
     },
     "FeaturedPrograms": {
         "badge": "Featured Programs",
-        "title": "Popular Programs",
+        "title": "Fast Track Programs",
         "description": "Explore our most sought-after programs at China's top universities",
         "duration": "Duration",
         "tuition": "Tuition/Year",
         "explore": "Explore Program",
-        "viewAll": "View All Programs"
+        "viewAll": "View All Programs",
+        "fastTrack": "Fast Track"
     },
     "FeaturedUniversities": {
         "badge": "Top Universities",
@@ -683,7 +866,15 @@
             "title": "Accommodation Options"
         }
     },
+    "FeaturedPrograms": {
+        "fastTrack": "Fast Track Acceptance"
+    },
     "UniversityDetail": {
+        "quickLinks": {
+            "exploreCourses": "Explore Courses",
+            "getFunded": "Get Funded",
+            "findHousing": "Find Housing"
+        },
         "about": "About",
         "whyChooseUs": "Why Choose Us",
         "programs": {

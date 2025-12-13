@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MapPin, BookOpen, DollarSign, Building2, Award } from "lucide-react";
-import Link from "next/link";
+import { Link } from '@/i18n/routing';
 import Image from "next/image";
 import { Price } from "@/components/currency/Price";
 import { useTranslations } from "next-intl";
@@ -39,7 +39,10 @@ export function UniversityCard({ university }: UniversityCardProps) {
     return (
         <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-none shadow-sm bg-card group flex flex-col h-full">
             {/* University Photo/Banner */}
-            <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 relative overflow-hidden shrink-0">
+            <Link
+                href={`/universities/${university.slug}`}
+                className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 relative overflow-hidden shrink-0 block"
+            >
                 {university.photo ? (
                     <Image
                         src={university.photo}
@@ -59,7 +62,7 @@ export function UniversityCard({ university }: UniversityCardProps) {
                         #{university.ranking}
                     </div>
                 )}
-            </div>
+            </Link>
 
             <CardContent className="p-6 pt-14 relative flex-1 flex flex-col">
                 {/* Logo */}
@@ -78,9 +81,11 @@ export function UniversityCard({ university }: UniversityCardProps) {
 
                 {/* Content with proper spacing from logo */}
                 <div className="pl-0 pt-0 mb-3">
-                    <h3 className="font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
-                        {university.name}
-                    </h3>
+                    <Link href={`/universities/${university.slug}`} className="hover:text-primary transition-colors block">
+                        <h3 className="font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
+                            {university.name}
+                        </h3>
+                    </Link>
                     <div className="flex items-center text-sm text-muted-foreground mb-2">
                         <MapPin className="h-3.5 w-3.5 mr-1 shrink-0" />
                         <span className="truncate">{university.city}, {university.province}</span>
