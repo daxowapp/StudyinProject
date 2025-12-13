@@ -71,6 +71,7 @@ export function Footer() {
                                 width={150}
                                 height={48}
                                 className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+                                style={{ width: 'auto' }}
                             />
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-sm">
