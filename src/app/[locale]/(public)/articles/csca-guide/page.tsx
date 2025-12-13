@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/routing';
-import { ArrowLeft, BookOpen, Calculator, Calendar, CheckCircle2, FlaskConical, GraduationCap, Languages, Microscope, Trophy, HelpCircle, AlertTriangle, ArrowRight } from 'lucide-react';
+import { ArrowLeft, BookOpen, Calculator, Calendar, CheckCircle2, FlaskConical, Languages, Microscope, Trophy, HelpCircle, AlertTriangle, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import {

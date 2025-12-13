@@ -16,7 +16,7 @@ interface University {
     // other props if needed by PartnersSection, but it only strictly needs id, name, slug, logo_url
     // We can use any to bypass strict type check for the wrapper if we want to avoid importing types,
     // or we can reproduce the interface. Since it's passed down, 'any' or a loose interface is often fine for a wrapper.
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export function LazyHomeSections({ universities }: { universities: University[] }) {

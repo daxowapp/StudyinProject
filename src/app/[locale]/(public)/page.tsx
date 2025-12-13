@@ -60,6 +60,7 @@ interface PageUniversity {
   programCount?: number;
   minTuitionFee?: number;
   currency?: string;
+  [key: string]: unknown;
 }
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
@@ -115,8 +116,23 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     user = userResult.data.user;
 
     // 4. Process Fast Track Programs if IDs exist
+    interface Program {
+      id: string;
+      slug: string;
+      display_title: string;
+      program_title: string;
+      level: string;
+      duration: string;
+      tuition_fee: number;
+      currency: string;
+      language_name: string;
+      intake: string;
+      university_id: string;
+      university_name: string;
+      city: string;
+    }
     const fastTrackIds = fastTrackUnis?.map(u => u.id) || [];
-    let programs: any[] | null = null;
+    let programs: Program[] | null = null;
     let programsError = null;
 
     if (fastTrackIds.length > 0) {
@@ -126,7 +142,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         .eq("portal_key", PORTAL_KEY)
         .in('university_id', fastTrackIds)
         .limit(80);
-      programs = data;
+
+      programs = data as unknown as Program[];
       programsError = error;
     }
 
@@ -142,10 +159,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         const j = Math.floor(Math.random() * (i + 1));
         [randomPrograms[i], randomPrograms[j]] = [randomPrograms[j], randomPrograms[i]];
       }
+      // Take top 40 after shuffle
       randomPrograms = randomPrograms.slice(0, 40);
 
       // Fetch Universities for Programs (Optimized: Single Query)
-      const universityIds = [...new Set((randomPrograms as { university_id: string }[]).map((p) => p.university_id))];
+      const universityIds = [...new Set(randomPrograms.map((p) => p.university_id))];
       const { data: programUniversities } = await supabase
         .from("universities")
         .select("id, name, city, cover_photo_url, logo_url, has_fast_track")
@@ -160,7 +178,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
       const universityMap = new Map(programUniversities?.map((uni) => [uni.id, uni]) || []);
 
-      formattedPrograms = (randomPrograms as any[]).map((p) => {
+      formattedPrograms = randomPrograms.map((p) => {
         const university = universityMap.get(p.university_id);
         return {
           id: p.id,
@@ -195,8 +213,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       const stats = statsResult.data;
       const translations = translationsResult.data;
 
-      const statsMap = new Map((stats as any[] || []).map((s) => [s.university_id, s]));
-      const translationsMap = new Map((translations as any[] || []).map((t) => [`${t.university_id}_${locale}`, t]));
+      // Define interfaces for stats and translations to avoid 'any'
+      interface UniStat { university_id: string; program_count: number; min_tuition_fee: number; currency: string; }
+      interface UniTranslation { university_id: string; locale: string; name: string; description: string; }
+
+      const statsMap = new Map((stats as unknown as UniStat[] || []).map((s) => [s.university_id, s]));
+      const translationsMap = new Map((translations as unknown as UniTranslation[] || []).map((t) => [`${t.university_id}_${locale}`, t]));
 
       const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
         if (!url) return undefined;
