@@ -112,9 +112,7 @@ export function FAQPreviewSection() {
                             </Button>
                         </Link>
                     </div>
-                    <p className="mt-6 text-sm text-muted-foreground">
-                        {t('footer')}
-                    </p>
+                    {/* Footer text removed to avoid confusion with site footer */}
                 </motion.div>
             </div>
         </section>

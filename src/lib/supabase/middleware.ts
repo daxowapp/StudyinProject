@@ -1,14 +1,12 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-// Polyfill for Edge Runtime to avoid Supabase Realtime crash
-if (typeof process === 'undefined') {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (globalThis as any).process = { versions: { node: '18.0.0' } };
-} else if (!process.versions) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (process as any).versions = { node: '18.0.0' };
-}
+// Polyfill commented out for Next.js 16 build compatibility
+// if (typeof process === 'undefined') {
+//     (globalThis as any).process = { versions: { node: '18.0.0' } };
+// } else if (!process.versions) {
+//     (process as any).versions = { node: '18.0.0' };
+// }
 
 export async function updateSession(request: NextRequest) {
     let response = NextResponse.next({

@@ -31,22 +31,8 @@ function RegisterContent() {
             if (result?.error) {
                 toast.error(result.error);
             } else if (result?.success) {
-                if (result.checkEmail) {
-                    toast.success("Account created! Please check your email to confirm your registration.", {
-                        duration: 6000,
-                    });
-                    // Redirect to login with returnUrl after email confirmation message
-                    setTimeout(() => {
-                        const loginUrl = returnUrl ? `/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/login";
-                        router.push(loginUrl);
-                    }, 4000);
-                } else {
-                    toast.success("Account created successfully! Redirecting to login...");
-                    setTimeout(() => {
-                        const loginUrl = returnUrl ? `/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/login";
-                        router.push(loginUrl);
-                    }, 2000);
-                }
+                toast.success("Account created successfully!");
+                router.push(returnUrl ? `/login?returnUrl=${encodeURIComponent(returnUrl)}` : "/login");
             }
         } catch {
             toast.error("Something went wrong");
@@ -110,34 +96,8 @@ function RegisterContent() {
                 </form>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-                <div className="relative w-full">
-                    <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t" />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">
-                            Or continue with
-                        </span>
-                    </div>
-                </div>
-                <Button
-                    variant="outline"
-                    className="w-full"
-                    type="button"
-                    onClick={handleGoogleSignup}
-                    disabled={isGoogleLoading || isLoading}
-                >
-                    {isGoogleLoading ? (
-                        <>
-                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                            Connecting...
-                        </>
-                    ) : (
-                        <>
-                            <Chrome className="mr-2 h-4 w-4" />
-                            Continue with Google
-                        </>
-                    )}
+                <Button variant="outline" className="w-full" type="button" onClick={handleGoogleSignup} disabled={isGoogleLoading || isLoading}>
+                    {isGoogleLoading ? "Connecting..." : "Continue with Google"}
                 </Button>
                 <div className="text-center text-sm text-muted-foreground w-full">
                     Already have an account?{" "}

@@ -192,7 +192,7 @@ export function Navbar() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild>
                                         <Link href="/" className={cn(navigationMenuTriggerStyle(), "font-bold", showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                            <Home className="me-2 h-4 w-4" />
+                                            <Home className="me-3 h-4 w-4" />
                                             {t('home')}
                                         </Link>
                                     </NavigationMenuLink>
@@ -200,7 +200,7 @@ export function Navbar() {
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
-                                        <Building2 className="me-2 h-4 w-4" />
+                                        <Building2 className="me-3 h-4 w-4" />
                                         {t('universities')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
@@ -227,7 +227,7 @@ export function Navbar() {
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
-                                        <GraduationCap className="me-2 h-4 w-4" />
+                                        <GraduationCap className="me-3 h-4 w-4" />
                                         {t('programs')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
@@ -256,7 +256,7 @@ export function Navbar() {
 
                                 <NavigationMenuItem>
                                     <NavigationMenuTrigger className={cn(showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10", "font-bold")}>
-                                        <Award className="me-2 h-4 w-4" />
+                                        <Award className="me-3 h-4 w-4" />
                                         {t('resources.title')}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
@@ -296,7 +296,7 @@ export function Navbar() {
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild>
                                         <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "font-bold", showSolid ? "text-foreground" : "text-white hover:text-white hover:bg-white/10")}>
-                                            <Mail className="me-2 h-4 w-4" />
+                                            <Mail className="me-3 h-4 w-4" />
                                             {t('contact')}
                                         </Link>
                                     </NavigationMenuLink>

@@ -20,8 +20,8 @@ export function CscaCtaSection() {
                     {/* Content */}
                     <div className="flex-1 space-y-6 text-center lg:text-start">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20"
                         >
@@ -33,8 +33,8 @@ export function CscaCtaSection() {
                         </motion.div>
 
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                             className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground"
@@ -43,8 +43,8 @@ export function CscaCtaSection() {
                         </motion.h2>
 
                         <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                             className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
@@ -53,8 +53,8 @@ export function CscaCtaSection() {
                         </motion.p>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
                             className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
@@ -79,8 +79,8 @@ export function CscaCtaSection() {
 
                     {/* Feature Card / Visual */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ scale: 0.95 }}
+                        whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                         className="flex-1 w-full max-w-md lg:max-w-full"

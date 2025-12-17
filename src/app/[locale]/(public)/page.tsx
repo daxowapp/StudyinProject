@@ -7,6 +7,8 @@ import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 
 // Lazy load below-fold sections for faster initial page load
+import { CscaCtaSection } from "@/components/home/CscaCtaSection";
+// Lazy load ONLY truly below-fold heavy sections if needed
 const FeaturedProgramsSection = dynamic(
   () => import("@/components/home/FeaturedProgramsSection").then(mod => ({ default: mod.FeaturedProgramsSection })),
   { ssr: true }
@@ -15,10 +17,7 @@ const FeaturedUniversitiesSection = dynamic(
   () => import("@/components/home/FeaturedUniversitiesSection").then(mod => ({ default: mod.FeaturedUniversitiesSection })),
   { ssr: true }
 );
-const CscaCtaSection = dynamic(
-  () => import("@/components/home/CscaCtaSection").then(mod => ({ default: mod.CscaCtaSection })),
-  { ssr: true }
-);
+// Removed dynamic import for CscaCtaSection to ensure visibility
 
 import { LazyHomeSections } from '@/components/home/LazyHomeSections';
 
