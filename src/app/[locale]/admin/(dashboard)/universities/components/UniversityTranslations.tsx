@@ -35,6 +35,11 @@ const LOCALES = [
     { code: "fa", name: "Farsi" },
     { code: "tr", name: "Turkish" },
     { code: "en", name: "English" },
+    { code: "zh", name: "Chinese" },
+    { code: "tk", name: "Turkmen" },
+    { code: "fr", name: "French" },
+    { code: "es", name: "Spanish" },
+    { code: "ru", name: "Russian" },
 ];
 
 export function UniversityTranslations({ universityId, initialTranslations, baseData }: UniversityTranslationsProps) {
@@ -155,7 +160,7 @@ export function UniversityTranslations({ universityId, initialTranslations, base
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="ar" className="w-full">
-                    <TabsList className="grid w-full grid-cols-4">
+                    <TabsList className="flex flex-wrap gap-1 h-auto">
                         {LOCALES.map(locale => (
                             <TabsTrigger key={locale.code} value={locale.code}>
                                 {locale.name}

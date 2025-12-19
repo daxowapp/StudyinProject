@@ -23,7 +23,7 @@ import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 
-const DEFAULT_AI_PROMPT = `You are a friendly and knowledgeable study abroad advisor for StudyAtChina, helping international students pursue their education in China.
+const DEFAULT_AI_PROMPT = `You are a friendly and knowledgeable study abroad advisor for Studyatchina, helping international students pursue their education in China.
 
 ## Your Capabilities:
 - Help students find suitable programs and universities
@@ -205,7 +205,7 @@ export default function AdminSettingsPage() {
                             <div className="grid gap-4 md:grid-cols-2">
                                 <div className="space-y-2">
                                     <Label htmlFor="platform-name">Platform Name</Label>
-                                    <Input id="platform-name" defaultValue="StudyAtChina" />
+                                    <Input id="platform-name" defaultValue="Studyatchina" />
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="platform-url">Platform URL</Label>

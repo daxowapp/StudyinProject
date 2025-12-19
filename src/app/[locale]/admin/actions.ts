@@ -20,6 +20,7 @@ export async function adminLogin(formData: FormData) {
         return redirect(`/admin/login?error=${encodeURIComponent(error.message)}`);
     }
 
+    revalidatePath("/", "layout");
     return redirect("/admin");
 }
 

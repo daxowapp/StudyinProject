@@ -77,10 +77,13 @@ export function ChatWidget({ className }: ChatWidgetProps) {
         }
     }, []);
 
-    // Auto-open chat on first visit
+    // Auto-open chat on first visit (desktop only)
     useEffect(() => {
         const hasSeenChat = localStorage.getItem('chenwei_chat_seen');
-        if (!hasSeenChat && !hasAutoOpened) {
+        // Check if device is mobile (screen width <= 768px)
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!hasSeenChat && !hasAutoOpened && !isMobile) {
             // Delay auto-open for better UX
             const timer = setTimeout(() => {
                 setIsOpen(true);

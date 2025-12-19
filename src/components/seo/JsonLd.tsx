@@ -15,7 +15,7 @@ export function JsonLd({ data }: JsonLdProps) {
 
 // Organization schema for the website
 export function OrganizationJsonLd({
-    name = 'StudyAtChina',
+    name = 'Studyatchina',
     url = 'https://studyatchina.com',
     logo = '/logo.png',
     description = 'Your gateway to studying in China. Browse top Chinese universities and scholarship opportunities.',
@@ -210,7 +210,7 @@ export function ArticleJsonLd({
         dateModified: dateModified || datePublished,
         publisher: {
             '@type': 'Organization',
-            name: 'StudyAtChina',
+            name: 'Studyatchina',
             logo: {
                 '@type': 'ImageObject',
                 url: 'https://studyatchina.com/logo.png',

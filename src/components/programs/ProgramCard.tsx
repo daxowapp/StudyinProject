@@ -122,9 +122,9 @@ export function ProgramCard({ program }: ProgramCardProps) {
 
                 {/* Program Info */}
                 <div className="mb-4 flex-1">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
-                        <Building2 className="h-4 w-4" />
-                        <span className="truncate">{program.university}</span>
+                    <div className="flex items-start gap-2 text-sm font-semibold text-primary mb-2 min-h-[2.5rem]">
+                        <Building2 className="h-4 w-4 shrink-0 mt-0.5" />
+                        <span className="line-clamp-2">{program.university}</span>
                     </div>
                     <h3 className="font-bold text-lg leading-tight mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-primary transition-colors">
                         {program.name}

@@ -29,7 +29,8 @@ import {
     Stethoscope,
     Cpu,
     Briefcase,
-    Palette
+    Palette,
+    Filter
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
@@ -177,7 +178,7 @@ export function Navbar() {
                         <div className="relative h-12 w-40">
                             <Image
                                 src={showSolid ? "/logo-red.png" : "/logo-white.png"}
-                                alt="StudyAtChina Logo"
+                                alt="Studyatchina Logo"
                                 fill
                                 className="object-contain group-hover:scale-105 transition-all duration-500"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -281,6 +282,13 @@ export function Navbar() {
                                                 icon={Newspaper}
                                             >
                                                 {t('resources.articles')}
+                                            </ListItem>
+                                            <ListItem
+                                                title={t('resources.scholarshipFilter')}
+                                                href="/scholarships/filter"
+                                                icon={Filter}
+                                            >
+                                                {t('resources.scholarshipFilterDesc')}
                                             </ListItem>
                                             <ListItem
                                                 title="CSCA Exam Guide"
@@ -409,7 +417,7 @@ export function Navbar() {
                                                 <div className="relative h-8 w-24">
                                                     <Image
                                                         src="/logo-red.png"
-                                                        alt="StudyAtChina Logo"
+                                                        alt="Studyatchina Logo"
                                                         fill
                                                         className="object-contain"
                                                         sizes="100px"
@@ -497,6 +505,14 @@ export function Navbar() {
                                                     >
                                                         <Newspaper className="h-4 w-4 text-primary" />
                                                         <span className="text-sm font-medium">{t('resources.articles')}</span>
+                                                    </Link>
+                                                    <Link
+                                                        href="/scholarships/filter"
+                                                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        <Filter className="h-4 w-4 text-primary" />
+                                                        <span className="text-sm font-medium">{t('resources.scholarshipFilter')}</span>
                                                     </Link>
                                                     <Link
                                                         href="/articles/csca-guide"

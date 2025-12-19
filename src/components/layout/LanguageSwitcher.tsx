@@ -19,6 +19,9 @@ const languages = [
     { code: "fa", name: "فارسی", dir: "rtl" },
     { code: "tk", name: "Türkmençe", dir: "ltr" },
     { code: "zh", name: "中文", dir: "ltr" },
+    { code: "fr", name: "Français", dir: "ltr" },
+    { code: "es", name: "Español", dir: "ltr" },
+    { code: "ru", name: "Русский", dir: "ltr" },
 ];
 
 export function LanguageSwitcher() {

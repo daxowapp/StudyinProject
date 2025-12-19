@@ -7,37 +7,55 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { login, loginWithGoogle } from "@/app/[locale]/(auth)/actions";
+import { useSearchParams } from "next/navigation";
+import { loginWithGoogle } from "@/app/[locale]/(auth)/actions";
 import { SubmitButton } from "@/components/ui/submit-button";
+import { createClient } from "@/lib/supabase/client";
 
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { Suspense } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 function LoginContent() {
     const t = useTranslations('Auth.login');
+    const locale = useLocale();
     const [isLoading, setIsLoading] = useState(false);
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-    const router = useRouter();
     const searchParams = useSearchParams();
     const returnUrl = searchParams.get('returnUrl') || '/dashboard';
+    
+    // Ensure returnUrl has locale prefix
+    const getLocalizedUrl = (url: string) => {
+        if (url.startsWith(`/${locale}/`) || url.startsWith(`/${locale}`)) {
+            return url;
+        }
+        return `/${locale}${url.startsWith('/') ? url : '/' + url}`;
+    };
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+
         try {
-            const result = await login(formData);
-            if (result?.error) {
-                toast.error(result.error);
-            } else if (result?.success) {
-                toast.success(t('success'));
-                router.push(returnUrl);
+            const supabase = createClient();
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+            if (error) {
+                toast.error(error.message);
+                setIsLoading(false);
+                return;
             }
+
+            toast.success(t('success'));
+            window.location.href = getLocalizedUrl(returnUrl);
         } catch {
             toast.error(t('error'));
-        } finally {
             setIsLoading(false);
         }
     }
@@ -75,7 +93,7 @@ function LoginContent() {
                         </div>
                         <Input id="password" name="password" type="password" required />
                     </div>
-                    <SubmitButton>{t('submit')}</SubmitButton>
+                    <SubmitButton disabled={isLoading}>{t('submit')}</SubmitButton>
                 </form>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">

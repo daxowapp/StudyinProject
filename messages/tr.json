@@ -66,8 +66,10 @@
             "title": "Kaynaklar",
             "scholarships": "Burslar",
             "howToApply": "Nasıl Başvurulur",
-            "articles": "Makaleler & Rehberler",
-            "contact": "Bize Ulaşın"
+            "articles": "Bilgi & Kaynaklar",
+            "contact": "Bize Ulaşın",
+            "scholarshipFilter": "Burs Filtresi",
+            "scholarshipFilterDesc": "Üniversiteleri burs avantajlarına göre filtrele"
         },
         "user": {
             "myApplications": "Başvurularım",
@@ -91,7 +93,7 @@
     },
     "Footer": {
         "stayUpdated": "Güncel Kalın",
-        "getLatestUpdates": "En Son Güncellemeleri Alın",
+        "getLatestUpdates": "Son Güncellemeler İçin Abone Olun",
         "subscribeText": "Programlar, burslar ve başvuru tarihleri hakkında haber almak için abone olun.",
         "description": "Çin'in en iyi üniversitelerini keşfetmek ve başvurmak için güvenilir ortağınız.",
         "explore": "Keşfet",
@@ -296,7 +298,7 @@
     },
     "Hero": {
         "admissionsOpen": "2026 Kayıtları Başladı",
-        "title": "Geleceğiniz Burada Başlıyor",
+        "title": "Çin'deki Geleceğiniz Burada Başlıyor",
         "subtitle": "Çin'in en iyi üniversitelerinde <bold>50.000+ öğrenciye</bold> katılın",
         "searchButton": "<bold>500+</bold> Programı Ara",
         "searchWord": "Ara",
@@ -513,7 +515,7 @@
                 "country": "ABD"
             },
             "ahmed": {
-                "quote": "StudyAtChina sayesinde başvuru süreci sorunsuz geçti. Şimdi İnşaat Mühendisliği yüksek lisansımı yapıyorum ve her anını seviyorum.",
+                "quote": "Studyatchina sayesinde başvuru süreci sorunsuz geçti. Şimdi İnşaat Mühendisliği yüksek lisansımı yapıyorum ve her anını seviyorum.",
                 "program": "İnşaat Mühendisliği",
                 "university": "Zhejiang Üniversitesi",
                 "country": "Mısır"
@@ -746,7 +748,7 @@
             "googleError": "Google ile giriş yapılamadı"
         },
         "layout": {
-            "branding": "StudyAtChina",
+            "branding": "Studyatchina",
             "heroTitle": "Çin Üniversitelerine Açılan Kapınız",
             "heroDescription": "Hayallerini Çin'in en iyi üniversitelerinde sürdüren binlerce uluslararası öğrenciye katılın.",
             "programsTitle": "500+ Program",
@@ -755,7 +757,7 @@
             "guidanceDescription": "Başvuru yolculuğunuz boyunca destek alın",
             "scholarshipsTitle": "Burs Fırsatları",
             "scholarshipsDescription": "Mevcut çeşitli burs seçeneklerini keşfedin",
-            "copyright": "© 2024 StudyAtChina. Tüm hakları saklıdır."
+            "copyright": "© 2024 Studyatchina. Tüm hakları saklıdır."
         }
     },
     "Notifications": {

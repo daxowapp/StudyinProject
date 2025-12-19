@@ -67,7 +67,7 @@ export function Footer() {
                         <Link href="/" className="flex items-center gap-3 mb-6 group">
                             <Image
                                 src="/logo-red.png"
-                                alt="StudyAtChina Logo"
+                                alt="Studyatchina Logo"
                                 width={150}
                                 height={48}
                                 className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
@@ -180,7 +180,7 @@ export function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <div className="flex flex-col items-center md:items-start gap-2">
                             <p className="text-sm text-muted-foreground">
-                                &copy; {new Date().getFullYear()} StudyAtChina.com. {t('rightsReserved')}
+                                &copy; {new Date().getFullYear()} Studyatchina.com. {t('rightsReserved')}
                             </p>
                             <p className="text-xs text-muted-foreground">
                                 {t('designedBy')}{" "}

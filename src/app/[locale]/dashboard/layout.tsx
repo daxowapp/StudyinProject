@@ -80,7 +80,7 @@ export default async function DashboardLayout({
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                             S
                         </div>
-                        StudyAtChina
+                        Studyatchina
                     </Link>
                 </div>
                 <nav className="flex-1 space-y-1 p-4">

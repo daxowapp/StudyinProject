@@ -37,6 +37,11 @@ const LOCALES = [
     { code: "fa", name: "Farsi", dir: "rtl" },
     { code: "tr", name: "Turkish", dir: "ltr" },
     { code: "en", name: "English", dir: "ltr" },
+    { code: "zh", name: "Chinese", dir: "ltr" },
+    { code: "tk", name: "Turkmen", dir: "ltr" },
+    { code: "fr", name: "French", dir: "ltr" },
+    { code: "es", name: "Spanish", dir: "ltr" },
+    { code: "ru", name: "Russian", dir: "ltr" },
 ];
 
 export function ProgramTranslations({ programId, initialTranslations, baseData }: ProgramTranslationsProps) {
@@ -162,7 +167,7 @@ export function ProgramTranslations({ programId, initialTranslations, baseData }
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="ar" className="w-full">
-                    <TabsList className="grid w-full grid-cols-4">
+                    <TabsList className="flex flex-wrap gap-1 h-auto">
                         {LOCALES.map(locale => (
                             <TabsTrigger key={locale.code} value={locale.code}>
                                 {locale.name}

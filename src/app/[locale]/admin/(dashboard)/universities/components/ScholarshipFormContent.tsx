@@ -195,12 +195,12 @@ export function ScholarshipFormContent({ locale, isDefault, data, onChange }: Sc
                 {/* Stipend */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Monthly Stipend</CardTitle>
+                        <CardTitle>Monthly Salary</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="flex items-center justify-between p-4 rounded-lg bg-muted">
                             <div>
-                                <Label htmlFor={`includes_stipend_${locale}`}>Includes Stipend</Label>
+                                <Label htmlFor={`includes_stipend_${locale}`}>Includes Salary</Label>
                                 <p className="text-xs text-muted-foreground">Monthly living allowance</p>
                             </div>
                             <Switch

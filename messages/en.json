@@ -66,8 +66,10 @@
             "title": "Resources",
             "scholarships": "Scholarships",
             "howToApply": "How to Apply",
-            "articles": "Articles & Guides",
-            "contact": "Contact Us"
+            "articles": "Information & Resources",
+            "contact": "Contact Us",
+            "scholarshipFilter": "Scholarship Filter",
+            "scholarshipFilterDesc": "Filter universities by scholarship benefits"
         },
         "user": {
             "myApplications": "My Applications",
@@ -91,7 +93,7 @@
     },
     "Footer": {
         "stayUpdated": "Stay Updated",
-        "getLatestUpdates": "Get the Latest Updates",
+        "getLatestUpdates": "Subscribe for the Latest Updates",
         "subscribeText": "Subscribe to receive news about programs, scholarships, and application deadlines.",
         "description": "Your trusted partner in discovering and applying to China's top universities. Join thousands of students who have successfully started their academic journey with us.",
         "explore": "Explore",
@@ -120,19 +122,19 @@
         "getAdvice": "Get Personalized Advice"
     },
     "CscaCta": {
-        "badge": "Mandatory from 2026",
+        "badge": "⚠️ MANDATORY from 2026",
         "title": "Preparing for the <span class=\"text-primary\">CSCA Exam?</span>",
         "titlePlain": "Preparing for the CSCA Exam?",
-        "description": "The China Scholastic Competency Assessment is now a requirement for top scholarships. Get the complete breakdown of subjects, scoring, and preparation strategies in our new comprehensive guide.",
+        "description": "⚠️ IMPORTANT: The CSCA exam is now MANDATORY for ALL international students applying for Chinese Government Scholarships. No exceptions! Get prepared with our comprehensive guide covering subjects, scoring, and proven strategies.",
         "readGuide": "Read the Guide",
         "findPrograms": "Find Programs",
         "proTip1": {
-            "title": "Pro-Tip #1",
-            "text": "Specialized Chinese requires academic vocab, not just HSK."
+            "title": "📅 Exam Dates",
+            "text": "Tests held in March & September each year"
         },
         "proTip2": {
-            "title": "Pro-Tip #2",
-            "text": "Math sections are geometry-heavy. Review conic sections."
+            "title": "⏱️ Preparation Time",
+            "text": "Start preparing at least 3 months before"
         }
     },
     "CSCAGuide": {
@@ -296,8 +298,8 @@
     },
     "Hero": {
         "admissionsOpen": "Admissions Open for 2026",
-        "title": "Your Future Starts Here",
-        "subtitle": "Join <bold>50,000+ students</bold> at China's top universities",
+        "title": "Your Future in China Starts Here",
+        "subtitle": "Join the current <bold>50,000+ students</bold> in China's top universities",
         "searchButton": "Search <bold>500+</bold> Programs",
         "searchWord": "Search",
         "programsWord": "Programs",
@@ -331,7 +333,7 @@
     "WhyStudy": {
         "badge": "Why Choose China",
         "title": "Your Gateway to <gradient>Global Success</gradient>",
-        "description": "China combines ancient wisdom with cutting-edge innovation, offering international students an unparalleled educational experience in the heart of Asia's economic powerhouse.",
+        "description": "China combines its long-standing educational traditions with modern technology, offering international students a unique learning environment as a leading global economic hub.",
         "cta": {
             "explore": "Explore Programs",
             "download": "Download Guide"
@@ -381,11 +383,11 @@
         },
         "steps": {
             "discover": {
-                "title": "Discover Programs",
+                "title": "Explore the Programs",
                 "description": "Browse 500+ programs from top Chinese universities tailored to your goals."
             },
             "profile": {
-                "title": "Create Profile",
+                "title": "Create Application Profile",
                 "description": "Set up your account and complete your academic profile in minutes."
             },
             "upload": {
@@ -393,11 +395,7 @@
                 "description": "Submit certificates, transcripts, and required documents securely."
             },
             "scholarship": {
-                "title": "Choose Scholarship Type",
-                "description": "Each university has scholarship types available. Choose one and apply."
-            },
-            "pay": {
-                "title": "Choose Scholarship Type",
+                "title": "Choose Program & Scholarship",
                 "description": "Each university has scholarship types available. Choose one and apply."
             },
             "track": {
@@ -405,7 +403,7 @@
                 "description": "Monitor your application status with real-time updates and notifications."
             },
             "admission": {
-                "title": "Get Admission",
+                "title": "Receive Admission",
                 "description": "Receive your offer letter, visa documents, and start your journey!"
             }
         }
@@ -477,7 +475,7 @@
         "items": {
             "csc": {
                 "title": "Chinese Government Scholarship (CSC)",
-                "description": "Full or partial scholarship for international students. Covers tuition, accommodation, and stipend.",
+                "description": "Full or partial scholarship for international students. Covers tuition, accommodation, and salary.",
                 "amount": "Up to $10,000/year"
             },
             "university": {
@@ -513,7 +511,7 @@
                 "country": "USA"
             },
             "ahmed": {
-                "quote": "The application process was smooth thanks to StudyAtChina. I'm now pursuing my Master's in Civil Engineering and loving every moment of it.",
+                "quote": "The application process was smooth thanks to Studyatchina. I'm now pursuing my Master's in Civil Engineering and loving every moment of it.",
                 "program": "Civil Engineering",
                 "university": "Zhejiang University",
                 "country": "Egypt"
@@ -731,7 +729,8 @@
             "level": "Level",
             "features": "Features",
             "viewFullDetails": "View Full Details",
-            "applyNow": "Apply Now"
+            "applyNow": "Apply Now",
+            "fastTrack": "Fast Track"
         },
         "compare": {
             "title": "Compare Programs",
@@ -1177,7 +1176,7 @@
             "googleError": "Failed to login with Google"
         },
         "layout": {
-            "branding": "StudyAtChina",
+            "branding": "Studyatchina",
             "heroTitle": "Your Gateway to Chinese Universities",
             "heroDescription": "Join thousands of international students pursuing their dreams in China's top universities.",
             "programsTitle": "500+ Programs",
@@ -1186,7 +1185,7 @@
             "guidanceDescription": "Get support throughout your application journey",
             "scholarshipsTitle": "Scholarship Opportunities",
             "scholarshipsDescription": "Explore various scholarship options available",
-            "copyright": "© 2024 StudyAtChina. All rights reserved."
+            "copyright": "© 2024 Studyatchina. All rights reserved."
         }
     },
     "Notifications": {

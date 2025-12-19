@@ -3,6 +3,7 @@ export const CURRENCIES = [
     // Major currencies
     { code: 'CNY', symbol: '¥', name: 'Chinese Yuan', flag: '🇨🇳' },
     { code: 'USD', symbol: '$', name: 'US Dollar', flag: '🇺🇸' },
+    { code: 'EUR', symbol: '€', name: 'Euro', flag: '🇪🇺' },
 
     // MENA Countries
     { code: 'AED', symbol: 'د.إ', name: 'UAE Dirham', flag: '🇦🇪' },

@@ -1,0 +1,701 @@
+{
+    "Navbar": {
+        "home": "Accueil",
+        "programs": "Programmes",
+        "universities": "Universités",
+        "about": "À propos",
+        "contact": "Contact",
+        "login": "Connexion",
+        "dashboard": "Tableau de bord",
+        "admin": "Admin",
+        "categories": {
+            "topRanked": {
+                "title": "Meilleures Universités",
+                "description": "Explorez les universités les mieux classées en Chine."
+            },
+            "medical": {
+                "title": "Écoles de Médecine",
+                "description": "Institutions de premier plan pour la médecine et la santé."
+            },
+            "engineering": {
+                "title": "Ingénierie",
+                "description": "Meilleures universités techniques pour l'ingénierie."
+            },
+            "business": {
+                "title": "Commerce & Économie",
+                "description": "Écoles de commerce et instituts économiques de premier plan."
+            },
+            "arts": {
+                "title": "Arts & Lettres",
+                "description": "Centres pour les arts, la culture et les sciences humaines."
+            },
+            "all": {
+                "title": "Toutes les Universités",
+                "description": "Parcourez notre liste complète d'universités partenaires."
+            }
+        },
+        "levels": {
+            "bachelor": {
+                "title": "Licence",
+                "description": "Programmes de premier cycle pour les diplômés du lycée."
+            },
+            "master": {
+                "title": "Master",
+                "description": "Programmes de deuxième cycle pour les titulaires de licence."
+            },
+            "phd": {
+                "title": "Doctorat",
+                "description": "Programmes de recherche doctorale."
+            },
+            "nonDegree": {
+                "title": "Non-Diplômant",
+                "description": "Cours de langue et programmes courts."
+            },
+            "diploma": {
+                "title": "Diplôme",
+                "description": "Programmes professionnels et techniques."
+            },
+            "language": {
+                "title": "Cours de Langue",
+                "description": "Apprenez la langue chinoise."
+            },
+            "viewAll": "Voir Tous les Programmes"
+        },
+        "viewAllUniversities": "Voir Toutes les Universités",
+        "resources": {
+            "title": "Ressources",
+            "scholarships": "Bourses",
+            "howToApply": "Comment Postuler",
+            "articles": "Informations & Ressources",
+            "contact": "Nous Contacter",
+            "scholarshipFilter": "Filtre de Bourses",
+            "scholarshipFilterDesc": "Filtrer les universités par avantages de bourses"
+        },
+        "user": {
+            "myApplications": "Mes Candidatures",
+            "logout": "Déconnexion",
+            "signIn": "Se Connecter",
+            "getStarted": "Commencer",
+            "myAccount": "Mon Compte",
+            "account": "Compte"
+        }
+    },
+    "Common": {
+        "loading": "Chargement...",
+        "error": "Une erreur s'est produite",
+        "submit": "Soumettre",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "view": "Voir",
+        "back": "Retour"
+    },
+    "Footer": {
+        "stayUpdated": "Restez Informé",
+        "getLatestUpdates": "Abonnez-vous pour les Dernières Actualités",
+        "subscribeText": "Abonnez-vous pour recevoir des nouvelles sur les programmes, les bourses et les dates limites de candidature.",
+        "description": "Votre partenaire de confiance pour découvrir et postuler aux meilleures universités de Chine. Rejoignez des milliers d'étudiants qui ont réussi à commencer leur parcours académique avec nous.",
+        "explore": "Explorer",
+        "programs": "Programmes",
+        "universities": "Universités",
+        "scholarships": "Bourses",
+        "howToApply": "Comment Postuler",
+        "faq": "FAQ",
+        "forStudents": "Pour les Étudiants",
+        "createAccount": "Créer un Compte",
+        "trackApplication": "Suivre ma Candidature",
+        "documentChecklist": "Liste des Documents",
+        "studentPortal": "Portail Étudiant",
+        "contact": "Contact",
+        "rightsReserved": "Tous droits réservés.",
+        "designedBy": "Conçu et Propulsé par",
+        "termsOfService": "Conditions d'Utilisation",
+        "privacyPolicy": "Politique de Confidentialité",
+        "cookiePolicy": "Politique des Cookies"
+    },
+    "ScholarshipCTA": {
+        "badge": "Découvrez Plus d'Opportunités",
+        "title": "Explorez Toutes les Options de Bourses",
+        "description": "Vous ne savez pas quelle bourse vous convient? Parcourez notre guide complet des bourses pour comparer toutes les options, comprendre les critères d'éligibilité et trouver la bourse parfaite pour votre parcours académique.",
+        "viewAll": "Voir Toutes les Bourses",
+        "getAdvice": "Obtenir des Conseils Personnalisés"
+    },
+    "CscaCta": {
+        "badge": "⚠️ OBLIGATOIRE dès 2026",
+        "title": "Vous Préparez l'Examen <span class=\"text-primary\">CSCA</span>?",
+        "titlePlain": "Vous Préparez l'Examen CSCA?",
+        "description": "⚠️ IMPORTANT: L'examen CSCA est maintenant OBLIGATOIRE pour TOUS les étudiants internationaux demandant des Bourses du Gouvernement Chinois. Sans exception! Préparez-vous avec notre guide complet.",
+        "readGuide": "Lire le Guide",
+        "findPrograms": "Trouver des Programmes",
+        "proTip1": {
+            "title": "📅 Dates d'Examen",
+            "text": "Tests en mars et septembre chaque année"
+        },
+        "proTip2": {
+            "title": "⏱️ Temps de Préparation",
+            "text": "Commencez au moins 3 mois avant"
+        }
+    },
+    "Hero": {
+        "admissionsOpen": "Admissions Ouvertes pour 2026",
+        "title": "Votre Avenir en Chine Commence Ici",
+        "subtitle": "Rejoignez <bold>plus de 50 000 étudiants</bold> dans les meilleures universités de Chine",
+        "searchButton": "Rechercher <bold>500+</bold> Programmes",
+        "searchWord": "Rechercher",
+        "programsWord": "Programmes",
+        "browseByCategory": "Parcourir par Catégorie",
+        "scrollToExplore": "Faites défiler pour explorer",
+        "stats": {
+            "universities": "Universités",
+            "students": "Étudiants",
+            "success": "Réussite",
+            "scholarships": "Bourses"
+        },
+        "tabs": {
+            "programs": "Programmes",
+            "universities": "Universités",
+            "scholarships": "Bourses"
+        },
+        "placeholders": {
+            "degree": "Niveau de Diplôme",
+            "field": "Domaine d'Études",
+            "city": "Ville",
+            "language": "Langue",
+            "budget": "Budget (USD/An)",
+            "scholarship": "Bourse",
+            "duration": "Durée"
+        },
+        "options": {
+            "any": "Tous",
+            "all": "Tous"
+        }
+    },
+    "WhyStudy": {
+        "badge": "Pourquoi Choisir la Chine",
+        "title": "Votre Porte vers la <gradient>Réussite Mondiale</gradient>",
+        "description": "La Chine combine la sagesse ancienne avec l'innovation de pointe, offrant aux étudiants internationaux une expérience éducative sans pareille au cœur de la puissance économique de l'Asie.",
+        "cta": {
+            "explore": "Explorer les Programmes",
+            "download": "Télécharger le Guide"
+        },
+        "features": {
+            "worldClass": {
+                "title": "Universités de Classe Mondiale",
+                "description": "Étudiez dans des institutions classées mondialement avec des installations de recherche de pointe et un corps professoral renommé."
+            },
+            "affordable": {
+                "title": "Excellence Abordable",
+                "description": "Une éducation de qualité à des coûts compétitifs avec des opportunités de bourses généreuses jusqu'à 100%."
+            },
+            "career": {
+                "title": "Tremplin de Carrière",
+                "description": "Accès à la plus grande économie d'Asie avec des opportunités de stage et d'emploi inégalées."
+            },
+            "safe": {
+                "title": "Sûr & Dynamique",
+                "description": "Découvrez l'un des pays les plus sûrs au monde avec une communauté internationale florissante."
+            },
+            "culture": {
+                "title": "Immersion Culturelle",
+                "description": "Découvrez 5 000 ans d'histoire tout en vivant dans des villes ultramodernes et dynamiques."
+            },
+            "network": {
+                "title": "Réseau Mondial",
+                "description": "Rejoignez une communauté de plus de 500 000 étudiants internationaux de plus de 200 pays."
+            },
+            "english": {
+                "title": "Programmes en Anglais",
+                "description": "Choisissez parmi plus de 1 000 programmes enseignés entièrement en anglais dans toutes les disciplines."
+            },
+            "recognition": {
+                "title": "Reconnaissance Mondiale",
+                "description": "Obtenez des diplômes reconnus par l'UNESCO, l'OMS et des organismes professionnels dans le monde entier."
+            }
+        }
+    },
+    "HowItWorks": {
+        "badge": "Processus Ultra Rapide",
+        "title": "De la Candidature à l'<gradient>Admission</gradient>",
+        "description": "Un parcours simplifié en 6 étapes conçu pour vous faire passer de la navigation des programmes à la réception de votre lettre d'admission en un temps record.",
+        "cta": {
+            "button": "Commencer Votre Candidature Maintenant",
+            "time": "Temps de complétion moyen: <bold>15 minutes</bold>"
+        },
+        "steps": {
+            "discover": {
+                "title": "Découvrir les Programmes",
+                "description": "Parcourez plus de 500 programmes des meilleures universités chinoises adaptés à vos objectifs."
+            },
+            "profile": {
+                "title": "Créer un Profil",
+                "description": "Configurez votre compte et complétez votre profil académique en quelques minutes."
+            },
+            "upload": {
+                "title": "Télécharger les Documents",
+                "description": "Soumettez vos certificats, relevés de notes et documents requis en toute sécurité."
+            },
+            "scholarship": {
+                "title": "Choisir le Type de Bourse",
+                "description": "Chaque université propose des types de bourses. Choisissez-en une et postulez."
+            },
+            "pay": {
+                "title": "Payer les Frais",
+                "description": "Effectuez le paiement sécurisé des frais de candidature."
+            },
+            "track": {
+                "title": "Suivre la Progression",
+                "description": "Surveillez l'état de votre candidature avec des mises à jour et notifications en temps réel."
+            },
+            "admission": {
+                "title": "Obtenir l'Admission",
+                "description": "Recevez votre lettre d'offre, vos documents de visa et commencez votre voyage!"
+            }
+        }
+    },
+    "Stats": {
+        "badge": "Notre Impact",
+        "title": "Approuvé par des Milliers dans le Monde",
+        "description": "Rejoignez une communauté mondiale d'étudiants qui ont réalisé leurs rêves grâce à notre plateforme",
+        "items": {
+            "universities": {
+                "label": "Universités Partenaires",
+                "description": "Institutions de premier rang"
+            },
+            "students": {
+                "label": "Étudiants Internationaux",
+                "description": "De plus de 200 pays"
+            },
+            "programs": {
+                "label": "Programmes Disponibles",
+                "description": "Tous domaines d'études"
+            },
+            "success": {
+                "label": "Taux de Réussite",
+                "description": "Approbation des admissions"
+            },
+            "countries": {
+                "label": "Pays Représentés",
+                "description": "Communauté mondiale"
+            },
+            "scholarships": {
+                "label": "Bourses Attribuées",
+                "description": "Soutien financier"
+            },
+            "time": {
+                "label": "Temps de Candidature",
+                "description": "Processus rapide et facile"
+            },
+            "employment": {
+                "label": "Emploi des Diplômés",
+                "description": "Dans les 6 mois"
+            }
+        }
+    },
+    "FeaturedPrograms": {
+        "badge": "Programmes en Vedette",
+        "title": "Programmes Accélérés",
+        "description": "Explorez nos programmes les plus recherchés dans les meilleures universités de Chine",
+        "duration": "Durée",
+        "tuition": "Frais/An",
+        "explore": "Explorer le Programme",
+        "viewAll": "Voir Tous les Programmes",
+        "fastTrack": "Accéléré"
+    },
+    "FeaturedUniversities": {
+        "badge": "Meilleures Universités",
+        "title": "Universités d'Élite",
+        "description": "Étudiez dans les institutions les plus prestigieuses de Chine",
+        "fastTrack": "Accéléré",
+        "programs": "Programmes",
+        "tuitionFrom": "Frais à partir de",
+        "students": "Étudiants",
+        "viewDetails": "Voir les Détails",
+        "viewAll": "Voir Toutes les Universités"
+    },
+    "Scholarships": {
+        "badge": "Aide Financière",
+        "title": "Bourses & Aide Financière",
+        "description": "Étudier en Chine est abordable. Explorez les différentes opportunités de bourses disponibles pour les étudiants internationaux.",
+        "items": {
+            "csc": {
+                "title": "Bourse du Gouvernement Chinois (CSC)",
+                "description": "Bourse complète ou partielle pour les étudiants internationaux. Couvre les frais de scolarité, le logement et le salaire.",
+                "amount": "Jusqu'à 10 000$/an"
+            },
+            "university": {
+                "title": "Bourses Universitaires",
+                "description": "Bourses au mérite offertes directement par les universités aux candidats exceptionnels.",
+                "amount": "Jusqu'à 8 000$/an"
+            },
+            "provincial": {
+                "title": "Bourses Provinciales",
+                "description": "Bourses financées par les gouvernements locaux pour attirer les talents internationaux dans des régions spécifiques.",
+                "amount": "Jusqu'à 6 000$/an"
+            }
+        },
+        "awardAmount": "Montant de la Bourse",
+        "learnMore": "En Savoir Plus",
+        "stats": {
+            "awarded": "Attribuées Annuellement",
+            "funding": "Reçoivent un Financement",
+            "full": "Bourses Complètes",
+            "eligible": "Programmes Éligibles"
+        },
+        "viewAll": "Voir Toutes les Bourses"
+    },
+    "Testimonials": {
+        "badge": "Témoignages",
+        "title": "Ce que Disent Nos Étudiants",
+        "description": "Écoutez les étudiants qui ont réussi leur candidature via notre plateforme et qui s'épanouissent maintenant en Chine.",
+        "testimonials": {
+            "sarah": {
+                "quote": "Étudier à Tsinghua a été une expérience qui a changé ma vie. Le campus est magnifique et les professeurs sont de classe mondiale. J'ai grandi tant sur le plan académique que personnel.",
+                "program": "Informatique",
+                "university": "Université Tsinghua",
+                "country": "États-Unis"
+            },
+            "ahmed": {
+                "quote": "Le processus de candidature a été fluide grâce à Studyatchina. Je poursuis maintenant mon Master en Génie Civil et j'adore chaque instant.",
+                "program": "Génie Civil",
+                "university": "Université du Zhejiang",
+                "country": "Égypte"
+            },
+            "maria": {
+                "quote": "Shanghai est une ville incroyable! J'adore la culture, la nourriture et les amis que je me suis faits ici. La bourse que j'ai reçue a rendu tout cela possible.",
+                "program": "Commerce International",
+                "university": "Université Fudan",
+                "country": "Espagne"
+            }
+        },
+        "averageRating": "Note Moyenne",
+        "reviews": "Avis",
+        "satisfaction": "Satisfaction"
+    },
+    "Partners": {
+        "badge": "Partenaires de Confiance",
+        "title": "Universités Partenaires",
+        "description": "Nous collaborons avec les institutions les plus prestigieuses de Chine pour vous offrir les meilleures opportunités éducatives",
+        "recognitions": {
+            "unesco": {
+                "title": "Reconnu par l'UNESCO",
+                "description": "Toutes les universités partenaires sont reconnues par l'UNESCO"
+            },
+            "government": {
+                "title": "Approuvé par le Gouvernement",
+                "description": "Officiellement approuvé par le Ministère Chinois de l'Éducation"
+            },
+            "accredited": {
+                "title": "Accrédité Mondialement",
+                "description": "Diplômes reconnus dans plus de 180 pays"
+            }
+        }
+    },
+    "FAQ": {
+        "badge": "Questions?",
+        "title": "Questions Fréquemment Posées",
+        "description": "Trouvez des réponses aux questions courantes sur les études en Chine",
+        "items": {
+            "deadline": {
+                "question": "Quelle est la date limite de candidature?",
+                "answer": "Les dates limites varient selon l'université et le programme. Généralement, pour l'admission de septembre, les candidatures ferment entre mars et juin. Consultez les pages des programmes spécifiques pour les dates exactes."
+            },
+            "language": {
+                "question": "Dois-je connaître le chinois pour étudier en Chine?",
+                "answer": "Pas nécessairement! Il existe des milliers de programmes enseignés en anglais pour les licences, masters et doctorats. Cependant, apprendre les bases du chinois est recommandé pour la vie quotidienne."
+            },
+            "work": {
+                "question": "Puis-je travailler tout en étudiant?",
+                "answer": "Les étudiants internationaux peuvent travailler à temps partiel ou effectuer des stages avec l'autorisation de leur université et du bureau de l'immigration. Les politiques sont devenues plus flexibles ces dernières années."
+            },
+            "scholarships": {
+                "question": "Comment postuler aux bourses?",
+                "answer": "Vous pouvez postuler aux bourses directement via notre plateforme lors de la soumission de votre candidature. Nous vous guiderons sur les documents requis pour les bourses CSC et universitaires."
+            },
+            "visa": {
+                "question": "Quelles sont les exigences de visa?",
+                "answer": "Vous aurez besoin d'un passeport valide, d'une lettre d'admission et du formulaire JW202 de votre université. Nous fournissons un accompagnement complet pour le visa tout au long du processus."
+            },
+            "process": {
+                "question": "Combien de temps dure le processus de candidature?",
+                "answer": "Le processus de candidature typique prend 2 à 4 semaines. Une fois soumise, les universités répondent généralement dans les 4 à 8 semaines. Nous vous tenons informé à chaque étape."
+            }
+        },
+        "seeAll": "Voir Toutes les FAQ",
+        "contactSupport": "Contacter le Support",
+        "footer": "Vous avez encore des questions? Notre équipe de support est disponible 24h/24 et 7j/7 pour vous aider."
+    },
+    "Universities": {
+        "title": "Explorez les Meilleures Universités Chinoises",
+        "subtitle": "Découvrez {count}+ institutions prestigieuses à travers la Chine. Du Projet 985 aux universités de la Ligue C9.",
+        "error": {
+            "title": "Impossible de charger les universités",
+            "hint": "Conseil: {hint}"
+        },
+        "search": {
+            "placeholder": "Rechercher par nom d'université, ville ou classement...",
+            "label": "Rechercher",
+            "universityPlaceholder": "Nom de l'université..."
+        },
+        "filters": {
+            "title": "Filtres",
+            "description": "Affinez votre recherche d'universités",
+            "clear": "Effacer les Filtres",
+            "clearAll": "Effacer Tous les Filtres",
+            "city": "Ville",
+            "allCities": "Toutes les Villes",
+            "institutionType": "Type d'Institution",
+            "allTypes": "Tous les Types",
+            "universityCategory": "Catégorie d'Université",
+            "allCategories": "Toutes les Catégories",
+            "rankingRecognition": "Classement & Reconnaissance",
+            "specialFeatures": "Caractéristiques Spéciales",
+            "institutionTypes": {
+                "university": "Université",
+                "college": "Collège",
+                "languageInstitute": "Institut de Langues",
+                "vocationalSchool": "École Professionnelle",
+                "technicalInstitute": "Institut Technique"
+            },
+            "categories": {
+                "public": "Publique",
+                "private": "Privée",
+                "research": "Recherche",
+                "comprehensive": "Polyvalente",
+                "specialized": "Spécialisée",
+                "vocational": "Professionnelle"
+            },
+            "rankings": {
+                "project985": "Projet 985",
+                "project211": "Projet 211",
+                "doubleFirstClass": "Double Premier Rang"
+            },
+            "features": {
+                "fastTrack": "Admission Accélérée",
+                "scholarships": "Bourses Disponibles",
+                "englishPrograms": "Programmes en Anglais"
+            }
+        },
+        "stats": {
+            "title": "Statistiques Rapides",
+            "total": "Total des Universités",
+            "showing": "Affichage",
+            "cities": "Villes"
+        },
+        "sort": {
+            "label": "Trier par",
+            "name": "Nom: A-Z",
+            "programs": "Plus de Programmes",
+            "city": "Ville"
+        },
+        "noResults": {
+            "title": "Aucune université trouvée",
+            "description": "Essayez d'ajuster vos filtres ou critères de recherche"
+        }
+    },
+    "Programs": {
+        "title": "Découvrez Votre Programme Idéal",
+        "subtitle": "Parcourez plus de {count}+ programmes des meilleures universités chinoises. Trouvez le match parfait pour votre parcours académique.",
+        "filters": {
+            "title": "Filtres",
+            "active": "Filtres Actifs:",
+            "clear": "Effacer les Filtres",
+            "clearAll": "Effacer Tous les Filtres",
+            "search": "Rechercher",
+            "searchPlaceholder": "Programme ou spécialité...",
+            "studyLevel": "Niveau d'Études",
+            "fieldOfStudy": "Domaine d'Études",
+            "allFields": "Tous les Domaines",
+            "maxTuition": "Frais Maximum",
+            "language": "Langue",
+            "city": "Ville",
+            "allCities": "Toutes les Villes",
+            "university": "Université",
+            "allUniversities": "Toutes les Universités",
+            "duration": "Durée",
+            "allDurations": "Toutes les Durées",
+            "scholarshipAvailable": "Bourse Disponible",
+            "levels": {
+                "bachelor": "Licence",
+                "master": "Master",
+                "phd": "Doctorat",
+                "diploma": "Diplôme",
+                "language": "Cours de Langue"
+            },
+            "fields": {
+                "business": "Commerce & Gestion",
+                "engineering": "Ingénierie & Technologie",
+                "medicine": "Médecine & Sciences de la Santé",
+                "arts": "Arts & Lettres",
+                "science": "Sciences Naturelles",
+                "education": "Éducation",
+                "cs": "Informatique",
+                "law": "Droit"
+            },
+            "languages": {
+                "english": "Anglais",
+                "chinese": "Chinois"
+            },
+            "durations": {
+                "2years": "2 Ans",
+                "3years": "3 Ans",
+                "4years": "4 Ans",
+                "5years": "5 Ans",
+                "6years": "6 Ans"
+            },
+            "matchingPrograms": "programmes correspondent",
+            "applyFilters": "Appliquer les Filtres"
+        },
+        "stats": {
+            "total": "Total des Programmes",
+            "showing": "Affichage"
+        },
+        "sort": {
+            "label": "Trier par",
+            "relevance": "Plus Pertinent",
+            "tuitionLow": "Frais: Croissant",
+            "tuitionHigh": "Frais: Décroissant",
+            "deadline": "Date Limite: Proche",
+            "popular": "Plus Populaire"
+        },
+        "noResults": {
+            "title": "Aucun programme trouvé",
+            "description": "Essayez d'ajuster vos filtres ou critères de recherche"
+        },
+        "card": {
+            "duration": "Durée",
+            "intake": "Rentrée",
+            "tuitionFee": "Frais de Scolarité",
+            "viewProgram": "Voir le Programme",
+            "contact": "Contact",
+            "scholarship": "Bourse",
+            "addToCompare": "Ajouter à comparer",
+            "removeFromCompare": "Retirer de la comparaison",
+            "level": "Niveau",
+            "features": "Caractéristiques",
+            "viewFullDetails": "Voir Tous les Détails",
+            "applyNow": "Postuler Maintenant"
+        },
+        "compare": {
+            "title": "Comparer les Programmes",
+            "comparing": "Comparaison",
+            "more": "de plus",
+            "clear": "Effacer",
+            "compareNow": "Comparer Maintenant",
+            "university": "Université",
+            "location": "Emplacement",
+            "level": "Niveau",
+            "duration": "Durée",
+            "tuition": "Frais",
+            "intake": "Rentrée",
+            "language": "Langue",
+            "viewDetails": "Voir les Détails",
+            "apply": "Postuler"
+        },
+        "emptyState": {
+            "title": "Aucun Programme Trouvé",
+            "description": "Nous n'avons trouvé aucun programme. Essayez de parcourir notre catalogue complet.",
+            "filteredDescription": "Aucun programme ne correspond à vos filtres actuels. Essayez d'ajuster vos critères de recherche.",
+            "currentFilters": "Vos filtres actuels:",
+            "scholarship": "Bourse",
+            "clearFilters": "Effacer Tous les Filtres",
+            "tryInstead": "Recherches populaires à essayer:",
+            "browseAll": "Parcourir Tous les Programmes",
+            "exploreUniversities": "Explorer les Universités"
+        },
+        "recentlyViewed": {
+            "title": "Vus Récemment",
+            "clear": "Effacer",
+            "viewAgain": "Revoir",
+            "justNow": "À l'instant",
+            "minutesAgo": "il y a {count}m",
+            "hoursAgo": "il y a {count}h",
+            "daysAgo": "il y a {count}j"
+        }
+    },
+    "Login": {
+        "title": "Bon Retour",
+        "description": "Connectez-vous à votre compte",
+        "email": "Email",
+        "password": "Mot de Passe",
+        "rememberMe": "Se Souvenir de Moi",
+        "forgotPassword": "Mot de Passe Oublié?",
+        "signIn": "Se Connecter",
+        "noAccount": "Pas de compte?",
+        "signUp": "S'inscrire",
+        "orContinueWith": "Ou continuer avec",
+        "google": "Continuer avec Google",
+        "success": "Connexion réussie!",
+        "error": "Une erreur s'est produite lors de la connexion"
+    },
+    "Register": {
+        "title": "Créer un Compte",
+        "description": "Commencez votre voyage vers l'éducation en Chine",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "password": "Mot de Passe",
+        "confirmPassword": "Confirmer le Mot de Passe",
+        "agreeToTerms": "J'accepte les Conditions d'Utilisation et la Politique de Confidentialité",
+        "signUp": "S'inscrire",
+        "haveAccount": "Vous avez déjà un compte?",
+        "signIn": "Se Connecter",
+        "orContinueWith": "Ou continuer avec",
+        "google": "Continuer avec Google"
+    },
+    "Dashboard": {
+        "welcome": "Bienvenue",
+        "overview": "Aperçu",
+        "applications": "Candidatures",
+        "documents": "Documents",
+        "messages": "Messages",
+        "settings": "Paramètres",
+        "recentActivity": "Activité Récente",
+        "notifications": "Notifications",
+        "profile": "Profil"
+    },
+    "Application": {
+        "status": {
+            "draft": "Brouillon",
+            "submitted": "Soumis",
+            "underReview": "En Cours d'Examen",
+            "accepted": "Accepté",
+            "rejected": "Rejeté",
+            "waitlisted": "Liste d'Attente"
+        },
+        "actions": {
+            "continue": "Continuer",
+            "view": "Voir",
+            "withdraw": "Retirer",
+            "submit": "Soumettre"
+        }
+    },
+    "UniversitiesCard": {
+        "programs": "Programmes",
+        "tuitionFrom": "Frais à partir de",
+        "viewUniversity": "Voir l'Université",
+        "viewPrograms": "Voir les Programmes"
+    },
+    "DestinationsSection": {
+        "badge": "Destinations Populaires",
+        "title": "Découvrez les Meilleures <gradient>Villes Universitaires</gradient>",
+        "description": "Explorez les métropoles dynamiques de Chine, chacune offrant des opportunités académiques uniques et des expériences culturelles riches.",
+        "universityIn": "universités à",
+        "exploreCity": "Explorer",
+        "viewAllCities": "Voir Toutes les Villes"
+    },
+    "AdminPanel": {
+        "branding": "Studyatchina",
+        "navigation": {
+            "overview": "Aperçu",
+            "universities": "Universités",
+            "programs": "Programmes",
+            "applications": "Candidatures",
+            "users": "Utilisateurs",
+            "scholarships": "Bourses",
+            "intakes": "Rentrées",
+            "settings": "Paramètres"
+        },
+        "copyright": "© 2024 Studyatchina. Tous droits réservés."
+    }
+}

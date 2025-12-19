@@ -119,7 +119,7 @@ export function Sidebar({ className }: SidebarProps) {
                 <Link href="/admin" className="flex items-center gap-3 font-bold text-xl tracking-tight group relative z-10">
                     <Image
                         src="/logo-red.png"
-                        alt="StudyAtChina Admin"
+                        alt="Studyatchina Admin"
                         width={150}
                         height={44}
                         className="h-11 w-auto object-contain group-hover:scale-110 transition-all duration-300"

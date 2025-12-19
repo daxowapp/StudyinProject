@@ -14,8 +14,8 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
     title: {
-        default: 'StudyAtChina - Study in China | Top Universities & Programs',
-        template: '%s | StudyAtChina',
+        default: 'Studyatchina - Study in China | Top Universities & Programs',
+        template: '%s | Studyatchina',
     },
     description: 'Your gateway to studying in China. Browse top Chinese universities, find scholarship opportunities, and apply to degree programs taught in English and Chinese.',
     keywords: [
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
         'master in China',
         'PhD in China',
     ],
-    authors: [{ name: 'StudyAtChina' }],
-    creator: 'StudyAtChina',
-    publisher: 'StudyAtChina',
+    authors: [{ name: 'Studyatchina' }],
+    creator: 'Studyatchina',
+    publisher: 'Studyatchina',
     formatDetection: {
         email: false,
         address: false,
@@ -43,21 +43,21 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'en_US',
         url: baseUrl,
-        siteName: 'StudyAtChina',
-        title: 'StudyAtChina - Study in China | Top Universities & Programs',
+        siteName: 'Studyatchina',
+        title: 'Studyatchina - Study in China | Top Universities & Programs',
         description: 'Your gateway to studying in China. Browse top Chinese universities, find scholarship opportunities, and apply to degree programs.',
         images: [
             {
                 url: '/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'StudyAtChina - Study in China',
+                alt: 'Studyatchina - Study in China',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'StudyAtChina - Study in China',
+        title: 'Studyatchina - Study in China',
         description: 'Your gateway to studying in China. Browse top universities and scholarship opportunities.',
         images: ['/og-image.png'],
     },

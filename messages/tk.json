@@ -66,8 +66,10 @@
             "title": "Resurslar",
             "scholarships": "Talyp Haklary",
             "howToApply": "Nädip Ýüz Tutmaly",
-            "articles": "Makalalar we Gollanmalar",
-            "contact": "Biz Bilen Habarlaşyň"
+            "articles": "Maglumat we Çeşmeler",
+            "contact": "Biz Bilen Habarlaşyň",
+            "scholarshipFilter": "Talyp Haky Süzgüji",
+            "scholarshipFilterDesc": "Uniwersitetleri talyp haky artykmaçlyklaryna görä süzüň"
         },
         "user": {
             "myApplications": "Meniň Ýüz Tutmalarym",
@@ -91,7 +93,7 @@
     },
     "Footer": {
         "stayUpdated": "Habardar Boluň",
-        "getLatestUpdates": "Iň soňky täzelikleri alyň",
+        "getLatestUpdates": "Iň soňky täzeliklere ýazylyň",
         "subscribeText": "Maksatnamalar, talyp haklary we ýüz tutmak möhletleri barada habarlary almak üçin abuna ýazylyň.",
         "description": "Hytaýyň iň gowy uniwersitetlerini tapmakda we ýüz tutmakda siziň ynamdar hyzmatdaşyňyz. Biz bilen akademiki syýahatyna şowly başlan müňlerçe talyba goşulyň.",
         "explore": "Öwren",
@@ -296,7 +298,7 @@
     },
     "Hero": {
         "admissionsOpen": "2026 Üçin Kabul Edişlik Açyk",
-        "title": "Gelejegiňiz Şu Ýerden Başlanýar",
+        "title": "Hytaýdaky Gelejegiňiz Şu Ýerden Başlanýar",
         "subtitle": "Hytaýyň iň gowy uniwersitetlerinde <bold>50,000+ talyba</bold> goşulyň",
         "searchButton": "<bold>500+</bold> Maksatnamany Gözläň",
         "searchWord": "Gözleg",
@@ -513,7 +515,7 @@
                 "country": "ABŞ"
             },
             "ahmed": {
-                "quote": "StudyAtChina saýasynda ýüz tutma prosesi örän aňsat boldy. Men häzir gurluşyk inženerçiligi boýunça magistraturada okaýaryn we her pursatdan lezzet alýaryn.",
+                "quote": "Studyatchina saýasynda ýüz tutma prosesi örän aňsat boldy. Men häzir gurluşyk inženerçiligi boýunça magistraturada okaýaryn we her pursatdan lezzet alýaryn.",
                 "program": "Gurluşyk Inženerçiligi",
                 "university": "Çžeýsziýan Uniwersiteti",
                 "country": "Müsür"
@@ -1176,7 +1178,7 @@
             "googleError": "Google bilen girip bolmady"
         },
         "layout": {
-            "branding": "StudyAtChina",
+            "branding": "Studyatchina",
             "heroTitle": "Hytaý Uniwersitetlerine Derwezäňiz",
             "heroDescription": "Hytaýyň iň gowy uniwersitetlerinde arzuwlaryny amala aşyrýan müňlerçe halkara talyba goşulyň.",
             "programsTitle": "500+ Maksatnama",
@@ -1185,7 +1187,7 @@
             "guidanceDescription": "Ýüz tutma syýahatyňyzda goldaw alyň",
             "scholarshipsTitle": "Talyp Haky Mümkinçilikleri",
             "scholarshipsDescription": "Elýeterli dürli talyp haky opsiýalaryny öwreniň",
-            "copyright": "© 2024 StudyAtChina. Ähli hukuklar goralan."
+            "copyright": "© 2024 Studyatchina. Ähli hukuklar goralan."
         }
     },
     "Notifications": {

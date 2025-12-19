@@ -9,7 +9,7 @@ const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 // Helper to get admin email
 const getAdminEmail = () => process.env.ADMIN_EMAIL || 'admin@studyatchina.com';
-const getSenderEmail = () => process.env.EMAIL_FROM || 'StudyAtChina <noreply@studyatchina.com>';
+const getSenderEmail = () => process.env.EMAIL_FROM || 'Studyatchina <noreply@studyatchina.com>';
 
 export interface SendEmailParams {
   to: string;

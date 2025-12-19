@@ -67,7 +67,7 @@ const EmailLayout = ({ title, subtitle, content, previewText }: EmailLayoutProps
       ${content}
     </div>
     <div class="footer" style="${STYLES.footer}">
-      <p style="margin: 0 0 12px 0;">© ${new Date().getFullYear()} StudyAtChina. All rights reserved.</p>
+      <p style="margin: 0 0 12px 0;">© ${new Date().getFullYear()} Studyatchina. All rights reserved.</p>
       <p style="margin: 0;">You are receiving this email because you signed up on our platform.</p>
     </div>
   </div>

@@ -323,7 +323,7 @@ export default function EditScholarshipTypePage() {
 
                             <div className="flex items-center justify-between p-4 rounded-lg bg-muted">
                                 <div>
-                                    <Label htmlFor="includes_stipend">Includes Stipend</Label>
+                                    <Label htmlFor="includes_stipend">Includes Salary</Label>
                                     <p className="text-sm text-muted-foreground">No universities have been assigned this scholarship type yet. Click &apos;Assign University&apos; to get started.</p>
                                 </div>
                                 <Switch
@@ -335,7 +335,7 @@ export default function EditScholarshipTypePage() {
 
                             {formData.includes_stipend && (
                                 <div className="space-y-2">
-                                    <Label htmlFor="stipend_amount">Monthly Stipend Amount</Label>
+                                    <Label htmlFor="stipend_amount">Monthly Salary Amount</Label>
                                     <Input
                                         id="stipend_amount"
                                         type="number"

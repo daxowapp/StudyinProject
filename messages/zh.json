@@ -66,8 +66,10 @@
             "title": "资源",
             "scholarships": "奖学金",
             "howToApply": "如何申请",
-            "articles": "文章与指南",
-            "contact": "联系我们"
+            "articles": "信息与资源",
+            "contact": "联系我们",
+            "scholarshipFilter": "奖学金筛选",
+            "scholarshipFilterDesc": "按奖学金福利筛选大学"
         },
         "user": {
             "myApplications": "我的申请",
@@ -91,7 +93,7 @@
     },
     "Footer": {
         "stayUpdated": "保持更新",
-        "getLatestUpdates": "获取最新动态",
+        "getLatestUpdates": "订阅获取最新动态",
         "subscribeText": "订阅以接收有关课程、奖学金和申请截止日期的消息。",
         "description": "您探索和申请中国顶尖大学的值得信赖的伙伴。加入成千上万通过我们成功开启学术之旅的学生。",
         "explore": "探索",
@@ -296,7 +298,7 @@
     },
     "Hero": {
         "admissionsOpen": "2026 年招生开启",
-        "title": "你的未来从这里开始",
+        "title": "你在中国的未来从这里开始",
         "subtitle": "加入 <bold>50,000+</bold> 名学生，在中国顶尖大学学习",
         "searchButton": "搜索 <bold>500+</bold> 个课程",
         "searchWord": "搜索",
@@ -513,7 +515,7 @@
                 "country": "美国"
             },
             "ahmed": {
-                "quote": "多亏了 StudyAtChina，申请过程非常顺利。我现在正在攻读土木工程硕士学位，非常享受这里的每一刻。",
+                "quote": "多亏了 Studyatchina，申请过程非常顺利。我现在正在攻读土木工程硕士学位，非常享受这里的每一刻。",
                 "program": "土木工程",
                 "university": "浙江大学",
                 "country": "埃及"
@@ -1177,7 +1179,7 @@
             "googleError": "Google 登录失败"
         },
         "layout": {
-            "branding": "StudyAtChina",
+            "branding": "Studyatchina",
             "heroTitle": "通往中国大学的门户",
             "heroDescription": "加入成千上万在顶尖中国大学追逐梦想的国际学生。",
             "programsTitle": "500+ 课程",
@@ -1186,7 +1188,7 @@
             "guidanceDescription": "在您的申请旅程中获得支持",
             "scholarshipsTitle": "奖学金机会",
             "scholarshipsDescription": "探索各种可用的奖学金选项",
-            "copyright": "© 2024 StudyAtChina. 保留所有权利。"
+            "copyright": "© 2024 Studyatchina. 保留所有权利。"
         }
     },
     "Notifications": {

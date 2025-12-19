@@ -183,11 +183,11 @@ export function HeroSection() {
             <div className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
                 <div className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto">
 
-                    {/* Premium Badge - CSS Animation */}
-                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xl px-6 py-2.5 text-sm font-semibold text-white shadow-2xl border border-white/20 animate-fade-in">
-                        <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
+                    {/* Premium Badge - Blinking Animation */}
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-xl px-6 py-2.5 text-sm font-semibold text-white shadow-2xl border border-white/20 animate-fade-in animate-pulse">
+                        <Sparkles className="h-4 w-4 text-yellow-400" />
                         <span className="tracking-wide">{t('admissionsOpen')}</span>
-                        <div className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
+                        <div className="h-2 w-2 rounded-full bg-yellow-400 animate-ping" />
                     </div>
 
                     {/* Hero Heading - CSS Animation */}

@@ -305,13 +305,10 @@ export function UniversityScholarshipsSection({
                             )}
 
                             <div className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 border-b pb-6 border-border/50">
-                                <div className="mb-4">
-                                    <span className={`inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.badge}`}>
+                                <div className="mb-2">
+                                    <span className={`inline-flex items-center justify-center rounded-full border px-3 py-1 text-sm font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.badge}`}>
                                         {scholarship.type_name}
                                     </span>
-                                </div>
-                                <div className="font-semibold text-xl mb-2 line-clamp-2 min-h-[3.5rem]">
-                                    {scholarship.display_name || scholarship.type_name}
                                 </div>
                             </div>
 
