@@ -58,7 +58,7 @@ export default function AdminLoginPage() {
                             <Label htmlFor="password">Password</Label>
                             <Input id="password" name="password" type="password" required />
                         </div>
-                        <SubmitButton disabled={isLoading}>Sign In</SubmitButton>
+                        <SubmitButton>Sign In</SubmitButton>
                     </form>
                 </CardContent>
             </Card>
