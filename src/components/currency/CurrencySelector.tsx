@@ -23,7 +23,7 @@ export function CurrencySelector({ variant = "navbar", className }: CurrencySele
     const currentCurrency = getCurrencyInfo(currency);
 
     const groupedCurrencies = {
-        major: CURRENCIES.filter(c => ['CNY', 'USD'].includes(c.code)),
+        major: CURRENCIES.filter(c => ['CNY', 'USD', 'EUR'].includes(c.code)),
         mena: CURRENCIES.filter(c =>
             ['AED', 'SAR', 'EGP', 'KWD', 'QAR', 'OMR', 'BHD', 'JOD', 'LBP', 'IQD', 'SYP', 'YER', 'TRY', 'MAD', 'TND', 'DZD', 'LYD', 'SDG', 'MRU', 'SOS', 'DJF', 'KMF'].includes(c.code)
         ),

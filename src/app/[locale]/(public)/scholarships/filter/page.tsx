@@ -44,21 +44,26 @@ export default async function ScholarshipFilterPage() {
     }
 
     // Transform data to include university info at top level
-    const formattedScholarships = scholarships?.map((s) => ({
-        id: s.id,
-        university_id: s.university_id,
-        university_name: (s.universities as { name: string })?.name || "Unknown University",
-        university_slug: (s.universities as { slug: string })?.slug || "",
-        university_city: (s.universities as { city: string })?.city || "",
-        university_logo: (s.universities as { logo_url: string })?.logo_url || null,
-        type_name: s.type_name,
-        tuition_coverage_percentage: s.tuition_coverage_percentage || 0,
-        service_fee_usd: s.service_fee_usd || 0,
-        includes_accommodation: s.includes_accommodation || false,
-        includes_stipend: s.includes_stipend || false,
-        stipend_amount_monthly: s.stipend_amount_monthly,
-        includes_medical_insurance: s.includes_medical_insurance || false,
-    })) || [];
+    const formattedScholarships = scholarships?.map((s) => {
+        const rawUni = s.universities;
+        const uni = Array.isArray(rawUni) ? rawUni[0] : (rawUni as any);
+
+        return {
+            id: s.id,
+            university_id: s.university_id,
+            university_name: uni?.name || "Unknown University",
+            university_slug: uni?.slug || "",
+            university_city: uni?.city || "",
+            university_logo: uni?.logo_url || null,
+            type_name: s.type_name,
+            tuition_coverage_percentage: s.tuition_coverage_percentage || 0,
+            service_fee_usd: s.service_fee_usd || 0,
+            includes_accommodation: s.includes_accommodation || false,
+            includes_stipend: s.includes_stipend || false,
+            stipend_amount_monthly: s.stipend_amount_monthly,
+            includes_medical_insurance: s.includes_medical_insurance || false,
+        };
+    }) || [];
 
     // Calculate stats
     const uniqueUniversities = new Set(formattedScholarships.map(s => s.university_id)).size;
