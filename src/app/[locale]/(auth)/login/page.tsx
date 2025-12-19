@@ -93,7 +93,7 @@ function LoginContent() {
                         </div>
                         <Input id="password" name="password" type="password" required />
                     </div>
-                    <SubmitButton disabled={isLoading}>{t('submit')}</SubmitButton>
+                    <SubmitButton>{t('submit')}</SubmitButton>
                 </form>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
