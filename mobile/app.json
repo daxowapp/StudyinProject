@@ -1,8 +1,7 @@
 {
   "expo": {
-    "name": "StudyIn",
-    "slug": "studyin-mobile",
-    "owner": "studyin",
+    "name": "Study at China",
+    "slug": "study-at-china",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,14 +18,17 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.studyin.mobile",
-      "buildNumber": "1",
+      "bundleIdentifier": "com.daxowapp.studyatchina",
+      "buildNumber": "2",
       "infoPlist": {
         "UIBackgroundModes": [
+          "remote-notification",
           "remote-notification"
         ],
         "NSCameraUsageDescription": "Used to upload documents and profile photos",
-        "NSPhotoLibraryUsageDescription": "Used to upload documents from your photo library"
+        "NSPhotoLibraryUsageDescription": "Used to upload documents from your photo library",
+        "ExpoLocalization_supportsRTL": true,
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -35,8 +37,8 @@
         "backgroundColor": "#DC2626"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.studyin.mobile",
-      "versionCode": 1,
+      "package": "com.daxowapp.studyatchina",
+      "versionCode": 7,
       "permissions": [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
@@ -78,15 +80,13 @@
     "experiments": {
       "typedRoutes": true
     },
-    "updates": {
-      "url": "https://u.expo.dev/your-project-id"
-    },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "extra": {
+      "router": {},
       "eas": {
-        "projectId": "your-expo-project-id"
+        "projectId": "b60516a4-28c5-4f92-a953-76c1df4fc31b"
       }
     }
   }

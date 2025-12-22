@@ -7,6 +7,11 @@ import en from '../locales/en.json';
 import ar from '../locales/ar.json';
 import fa from '../locales/fa.json';
 import tr from '../locales/tr.json';
+import zh from '../locales/zh.json';
+import tk from '../locales/tk.json';
+import es from '../locales/es.json';
+import fr from '../locales/fr.json';
+import ru from '../locales/ru.json';
 
 const LANGUAGE_STORAGE_KEY = '@app_language';
 
@@ -15,6 +20,11 @@ export const languages = [
     { code: 'ar', name: 'Arabic', nativeName: 'العربية', isRTL: true },
     { code: 'fa', name: 'Farsi', nativeName: 'فارسی', isRTL: true },
     { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', isRTL: false },
+    { code: 'zh', name: 'Chinese', nativeName: '中文', isRTL: false },
+    { code: 'tk', name: 'Turkmen', nativeName: 'Türkmençe', isRTL: false },
+    { code: 'es', name: 'Spanish', nativeName: 'Español', isRTL: false },
+    { code: 'fr', name: 'French', nativeName: 'Français', isRTL: false },
+    { code: 'ru', name: 'Russian', nativeName: 'Русский', isRTL: false },
 ];
 
 const resources = {
@@ -22,6 +32,11 @@ const resources = {
     ar: { translation: ar },
     fa: { translation: fa },
     tr: { translation: tr },
+    zh: { translation: zh },
+    tk: { translation: tk },
+    es: { translation: es },
+    fr: { translation: fr },
+    ru: { translation: ru },
 };
 
 // Get saved language or detect from device
