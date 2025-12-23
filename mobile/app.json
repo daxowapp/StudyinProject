@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.daxowapp.studyatchina",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification",
@@ -38,7 +38,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.daxowapp.studyatchina",
-      "versionCode": 7,
+      "versionCode": 10,
       "permissions": [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",

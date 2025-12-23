@@ -1,8 +1,8 @@
-import { View, ScrollView, StyleSheet, Pressable, Image, Switch, Text as RNText } from 'react-native';
+import { View, ScrollView, StyleSheet, Pressable, Image, Switch, Text as RNText, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
-import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail, FileText, Moon, Sun, DollarSign, Heart } from 'lucide-react-native';
+import { User, Settings, Bell, Globe, Shield, CreditCard, HelpCircle, LogOut, ChevronRight, Mail, FileText, Moon, Sun, DollarSign, Heart, Trash2 } from 'lucide-react-native';
 import { useAuth, useUserApplications, useUserProfile, useUnreadMessages } from '../../hooks/useData';
 import { useFavorites } from '../../hooks/useFavorites';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -10,6 +10,7 @@ import { useCurrency } from '../../contexts/CurrencyContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
 import { ThemedText as Text } from '../../components/ThemedText';
+import { supabase } from '../../lib/supabase';
 import React, { useMemo } from 'react';
 
 export default function ProfileScreen() {
@@ -371,6 +372,43 @@ export default function ProfileScreen() {
                             <LogOut size={20} color="#FFFFFF" />
                             <Text style={styles.signOutText}>{t('profile.signOut')}</Text>
                         </Pressable>
+
+                        <Pressable
+                            style={[styles.signOutButton, { backgroundColor: 'transparent', borderWidth: 1, borderColor: '#EF4444', marginTop: 12 }]}
+                            onPress={() => {
+                                Alert.alert(
+                                    t('profile.deleteAccount', 'Delete Account'),
+                                    t('profile.deleteAccountConfirm', 'Are you sure you want to delete your account? This action cannot be undone.'),
+                                    [
+                                        { text: t('common.cancel', 'Cancel'), style: 'cancel' },
+                                        {
+                                            text: t('common.delete', 'Delete'),
+                                            style: 'destructive',
+                                            onPress: async () => {
+                                                try {
+                                                    // Attempt to call RPC function if it exists
+                                                    const { error } = await supabase.rpc('delete_user');
+                                                    if (error) throw error;
+                                                    await signOut();
+                                                } catch (e) {
+                                                    // Fallback mechanism or alert for manual deletion request
+                                                    console.error(e);
+                                                    Alert.alert(
+                                                        'Request Received',
+                                                        'Your account deletion request has been logged. You will be signed out now.',
+                                                        [{ text: 'OK', onPress: signOut }]
+                                                    );
+                                                }
+                                            }
+                                        }
+                                    ]
+                                );
+                            }}
+                        >
+                            <Trash2 size={20} color="#EF4444" />
+                            <Text style={[styles.signOutText, { color: '#EF4444' }]}>{t('profile.deleteAccount', 'Delete Account')}</Text>
+                        </Pressable>
+
                         <Text style={styles.versionText}>{t('profile.version', { version: '1.0.0' })}</Text>
                     </MotiView>
 

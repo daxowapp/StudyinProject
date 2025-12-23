@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import { supabase } from '../../lib/supabase';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, AlertCircle, GraduationCap } from 'lucide-react-native';
+import * as AppleAuthentication from 'expo-apple-authentication';
 
 export default function LoginScreen() {
     const router = useRouter();
@@ -183,8 +184,39 @@ export default function LoginScreen() {
                                 <Text style={styles.socialIcon}>G</Text>
                                 <Text style={styles.socialText}>Google</Text>
                             </Pressable>
-                            <Pressable style={styles.socialBtn}>
-                                <Text style={styles.socialIcon}></Text>
+                            <Pressable style={styles.socialBtn} onPress={async () => {
+                                try {
+                                    setLoading(true);
+                                    const credential = await AppleAuthentication.signInAsync({
+                                        requestedScopes: [
+                                            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                                            AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                                        ],
+                                    });
+
+                                    if (credential.identityToken) {
+                                        const { error } = await supabase.auth.signInWithIdToken({
+                                            provider: 'apple',
+                                            token: credential.identityToken,
+                                        });
+                                        if (error) throw error;
+                                        router.replace('/(tabs)/profile');
+                                    }
+                                } catch (e: any) {
+                                    if (e.code === 'ERR_REQUEST_CANCELED') {
+                                        // handle that the user canceled the sign-in flow
+                                    } else {
+                                        setError(e.message || 'Apple Sign In failed');
+                                    }
+                                } finally {
+                                    setLoading(false);
+                                }
+                            }}>
+                                <Image
+                                    source={require('../../assets/apple-logo.png')}
+                                    style={{ width: 20, height: 20, tintColor: '#000' }}
+                                    resizeMode="contain"
+                                />
                                 <Text style={styles.socialText}>Apple</Text>
                             </Pressable>
                         </View>
