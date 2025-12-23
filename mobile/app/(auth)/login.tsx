@@ -184,41 +184,42 @@ export default function LoginScreen() {
                                 <Text style={styles.socialIcon}>G</Text>
                                 <Text style={styles.socialText}>Google</Text>
                             </Pressable>
-                            <Pressable style={styles.socialBtn} onPress={async () => {
-                                try {
-                                    setLoading(true);
-                                    const credential = await AppleAuthentication.signInAsync({
-                                        requestedScopes: [
-                                            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                                            AppleAuthentication.AppleAuthenticationScope.EMAIL,
-                                        ],
-                                    });
+                            <View style={{ flex: 1, borderRadius: 14, overflow: 'hidden', height: 50 }}>
+                                <AppleAuthentication.AppleAuthenticationButton
+                                    buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                                    buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                                    cornerRadius={14}
+                                    style={{ width: '100%', height: '100%' }}
+                                    onPress={async () => {
+                                        try {
+                                            setLoading(true);
+                                            const credential = await AppleAuthentication.signInAsync({
+                                                requestedScopes: [
+                                                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                                                    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                                                ],
+                                            });
 
-                                    if (credential.identityToken) {
-                                        const { error } = await supabase.auth.signInWithIdToken({
-                                            provider: 'apple',
-                                            token: credential.identityToken,
-                                        });
-                                        if (error) throw error;
-                                        router.replace('/(tabs)/profile');
-                                    }
-                                } catch (e: any) {
-                                    if (e.code === 'ERR_REQUEST_CANCELED') {
-                                        // handle that the user canceled the sign-in flow
-                                    } else {
-                                        setError(e.message || 'Apple Sign In failed');
-                                    }
-                                } finally {
-                                    setLoading(false);
-                                }
-                            }}>
-                                <Image
-                                    source={require('../../assets/apple-logo.png')}
-                                    style={{ width: 20, height: 20, tintColor: '#000' }}
-                                    resizeMode="contain"
+                                            if (credential.identityToken) {
+                                                const { error } = await supabase.auth.signInWithIdToken({
+                                                    provider: 'apple',
+                                                    token: credential.identityToken,
+                                                });
+                                                if (error) throw error;
+                                                router.replace('/(tabs)/profile');
+                                            }
+                                        } catch (e: any) {
+                                            if (e.code === 'ERR_REQUEST_CANCELED') {
+                                                // canceled
+                                            } else {
+                                                setError(e.message || 'Apple Sign In failed');
+                                            }
+                                        } finally {
+                                            setLoading(false);
+                                        }
+                                    }}
                                 />
-                                <Text style={styles.socialText}>Apple</Text>
-                            </Pressable>
+                            </View>
                         </View>
 
                         {/* Register Link */}
