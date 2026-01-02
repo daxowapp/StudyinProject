@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
 import { getSidebarStats } from "@/app/[locale]/admin/actions";
+import { getUserProfile } from "@/app/[locale]/admin/profile-actions";
 import {
     LayoutDashboard,
     Building2,
@@ -38,6 +39,8 @@ type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 export function Sidebar({ className }: SidebarProps) {
     const pathname = usePathname();
     const [collapsedGroups, setCollapsedGroups] = useState<Set<number>>(new Set());
+    const [userRole, setUserRole] = useState<string | null>(null);
+    const [userProfile, setUserProfile] = useState<any>(null);
 
     const toggleGroup = (index: number) => {
         const newCollapsed = new Set(collapsedGroups);
@@ -53,63 +56,108 @@ export function Sidebar({ className }: SidebarProps) {
     const [pendingDocumentsCount, setPendingDocumentsCount] = useState(0);
 
     useEffect(() => {
-        const fetchStats = async () => {
+        const fetchData = async () => {
+            // Fetch stats
             const { newLeadsCount, pendingDocumentsCount } = await getSidebarStats();
             setNewLeadsCount(newLeadsCount);
             setPendingDocumentsCount(pendingDocumentsCount || 0);
+
+            // Fetch user profile for role
+            const profile = await getUserProfile();
+            if (profile) {
+                setUserRole(profile.role);
+                setUserProfile(profile);
+            }
         };
-        fetchStats();
+        fetchData();
     }, [pathname]); // Refetch on navigation
 
-    const sidebarGroups = [
+    const allSidebarGroups = [
         {
             label: "Overview",
             icon: Sparkles,
+            roles: ["admin", "marketing", "data_entry"],
             items: [
-                { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
-                { icon: BarChart3, label: "Analytics", href: "/admin/analytics" },
+                { icon: LayoutDashboard, label: "Dashboard", href: "/admin", roles: ["admin", "marketing", "data_entry"] },
+                { icon: BarChart3, label: "Analytics", href: "/admin/analytics", roles: ["admin", "marketing"] },
             ]
         },
         {
             label: "Academic Management",
             icon: GraduationCap,
+            roles: ["admin", "data_entry"],
             items: [
-                { icon: Building2, label: "Universities", href: "/admin/universities" },
-                { icon: GraduationCap, label: "University Programs", href: "/admin/programs" },
-                { icon: BookOpen, label: "Program Catalog", href: "/admin/program-catalog" },
-                { icon: Award, label: "Scholarships", href: "/admin/scholarships" },
-                { icon: ClipboardCheck, label: "Admission Requirements", href: "/admin/admission-requirements" },
-                { icon: Calendar, label: "Academic Years", href: "/admin/academic-years" },
-                { icon: Languages, label: "Languages", href: "/admin/languages" },
+                { icon: Building2, label: "Universities", href: "/admin/universities", roles: ["admin", "data_entry"] },
+                { icon: GraduationCap, label: "University Programs", href: "/admin/programs", roles: ["admin", "data_entry"] },
+                { icon: BookOpen, label: "Program Catalog", href: "/admin/program-catalog", roles: ["admin", "data_entry"] },
+                { icon: Award, label: "Scholarships", href: "/admin/scholarships", roles: ["admin", "data_entry"] },
+                { icon: ClipboardCheck, label: "Admission Requirements", href: "/admin/admission-requirements", roles: ["admin", "data_entry"] },
+                { icon: Calendar, label: "Academic Years", href: "/admin/academic-years", roles: ["admin", "data_entry"] },
+                { icon: Languages, label: "Languages", href: "/admin/languages", roles: ["admin", "data_entry"] },
             ]
         },
         {
             label: "Applications & Users",
             icon: Users,
+            roles: ["admin", "marketing"],
             items: [
-                { icon: FileText, label: "Applications", href: "/admin/applications" },
-                { icon: CreditCard, label: "Refund Requests", href: "/admin/refunds" },
-                { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined },
-                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined },
-                { icon: Users, label: "Users", href: "/admin/users" },
+                { icon: FileText, label: "Applications", href: "/admin/applications", roles: ["admin", "marketing"] },
+                { icon: CreditCard, label: "Refund Requests", href: "/admin/refunds", roles: ["admin"] },
+                { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined, roles: ["admin", "marketing"] },
+                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined, roles: ["admin", "marketing"] },
+                { icon: Users, label: "Users", href: "/admin/users", roles: ["admin"] },
             ]
         },
         {
             label: "Content & Media",
             icon: Newspaper,
+            roles: ["admin", "marketing"],
             items: [
-                { icon: Newspaper, label: "Articles", href: "/admin/articles" },
-                { icon: Mail, label: "Messages", href: "/admin/messages" },
+                { icon: Newspaper, label: "Articles", href: "/admin/articles", roles: ["admin", "marketing"] },
+                { icon: Mail, label: "Messages", href: "/admin/messages", roles: ["admin", "marketing"] },
             ]
         },
         {
             label: "System",
             icon: Settings,
+            roles: ["admin"],
             items: [
-                { icon: Settings, label: "Settings", href: "/admin/settings" },
+                { icon: Settings, label: "Settings", href: "/admin/settings", roles: ["admin"] },
             ]
         }
     ];
+
+    // Filter groups and items based on role
+    const sidebarGroups = allSidebarGroups.map(group => {
+        // If role is not loaded yet, hide everything or show minimal? 
+        // Showing nothing is safer until we know the role.
+        if (!userRole) return null;
+
+        if (!group.roles.includes(userRole)) return null;
+
+        const filteredItems = group.items.filter(item => item.roles.includes(userRole));
+        if (filteredItems.length === 0) return null;
+
+        return { ...group, items: filteredItems };
+    }).filter(Boolean) as typeof allSidebarGroups;
+
+    if (!userRole) {
+        return (
+            <aside className={cn("hidden w-72 flex-col border-r bg-gradient-to-b from-card/80 to-card/50 backdrop-blur-xl md:flex shadow-xl", className)}>
+                <div className="flex h-20 items-center border-b px-6 bg-gradient-to-r from-primary/10 via-orange-500/5 to-transparent relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
+                    {/* Skeleton for logo */}
+                    <div className="h-8 w-32 bg-muted/50 rounded animate-pulse" />
+                </div>
+                <div className="flex-1 py-6 px-3 space-y-4">
+                    {/* Skeletons for menu items */}
+                    {[1, 2, 3].map(i => (
+                        <div key={i} className="h-10 w-full bg-muted/30 rounded-xl animate-pulse" />
+                    ))}
+                </div>
+            </aside>
+        )
+    }
 
     return (
         <aside className={cn("hidden w-72 flex-col border-r bg-gradient-to-b from-card/80 to-card/50 backdrop-blur-xl md:flex shadow-xl", className)}>
@@ -205,10 +253,12 @@ export function Sidebar({ className }: SidebarProps) {
                     <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-primary/20 to-orange-500/20 flex items-center justify-center border border-primary/20">
                         <User className="h-5 w-5 text-primary" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-foreground truncate">Admin User</p>
-                        <p className="text-xs text-muted-foreground truncate">admin@studyatchina.com</p>
-                    </div>
+                    {userProfile && (
+                        <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-foreground truncate">{userProfile.first_name} {userProfile.last_name}</p>
+                            <p className="text-xs text-muted-foreground truncate">{userProfile.email} ({userProfile.role})</p>
+                        </div>
+                    )}
                 </div>
 
                 <LogoutButton />

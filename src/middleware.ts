@@ -83,7 +83,7 @@ export async function middleware(request: NextRequest) {
             .eq('id', user.id)
             .single()
 
-        if (profile?.role !== 'admin') {
+        if (profile?.role !== 'admin' && profile?.role !== 'data_entry' && profile?.role !== 'marketing') {
             const locale = hasLocalePrefix ? pathname.split('/')[1] : routing.defaultLocale;
             return NextResponse.redirect(new URL(`/${locale}`, request.url));
         }

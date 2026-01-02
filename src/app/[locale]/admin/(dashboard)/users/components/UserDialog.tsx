@@ -24,6 +24,7 @@ import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Pencil, Plus, Trash2, Loader2, Shield, UserCog, Users } from "lucide-react";
+import { createUser, deleteUser, updateUser } from "../actions";
 
 export interface User {
     id: string;
@@ -81,25 +82,49 @@ export function UserDialog({ user }: UserDialogProps) {
         e.preventDefault();
         setIsLoading(true);
 
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            first_name: formData.get("first_name") as string,
+            last_name: formData.get("last_name") as string,
+            email: formData.get("email") as string,
+            phone: formData.get("phone") as string,
+            password: formData.get("password") as string,
+            role: selectedRole,
+        };
 
+        let result;
 
+        if (user) {
+            result = await updateUser(user.id, data);
+        } else {
+            result = await createUser(data);
+        }
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        if (result.success) {
+            toast.success(user ? "User updated successfully" : "User created successfully");
+            setOpen(false);
+        } else {
+            toast.error(result.error || "Operation failed");
+        }
 
-        toast.success(user ? "User updated successfully" : "User created successfully");
         setIsLoading(false);
-        setOpen(false);
     }
 
     async function handleDelete() {
+        if (!user) return;
         if (!confirm("Are you sure you want to delete this user?")) return;
 
         setIsLoading(true);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        toast.success("User deleted successfully");
+        const result = await deleteUser(user.id);
+
+        if (result.success) {
+            toast.success("User deleted successfully");
+            setOpen(false);
+        } else {
+            toast.error(result.error || "Failed to delete user");
+        }
+
         setIsLoading(false);
-        setOpen(false);
     }
 
     const selectedRoleInfo = USER_ROLES.find(r => r.value === selectedRole);
@@ -189,6 +214,17 @@ export function UserDialog({ user }: UserDialogProps) {
                                 <p className="text-xs text-muted-foreground">
                                     Minimum 8 characters
                                 </p>
+                            </div>
+                        )}
+                        {user && (
+                            <div className="grid gap-2">
+                                <Label htmlFor="password">Password</Label>
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Leave blank to keep current"
+                                />
                             </div>
                         )}
                     </div>
