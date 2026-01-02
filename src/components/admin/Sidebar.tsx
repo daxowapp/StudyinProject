@@ -14,7 +14,6 @@ import {
     FileText,
     Users,
     Settings,
-    LogOut,
     GraduationCap,
     MessageSquare,
     Calendar,
@@ -32,6 +31,7 @@ import {
     CreditCard
 } from "lucide-react";
 import Image from "next/image";
+import { LogoutButton } from "@/components/dashboard/LogoutButton";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -211,13 +211,7 @@ export function Sidebar({ className }: SidebarProps) {
                     </div>
                 </div>
 
-                <Button
-                    variant="ghost"
-                    className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive hover:bg-destructive/10 px-4 py-5 rounded-xl transition-all duration-200 hover:scale-[1.02] group"
-                >
-                    <LogOut className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                    <span className="font-medium text-left">Sign Out</span>
-                </Button>
+                <LogoutButton />
             </div>
         </aside>
     );

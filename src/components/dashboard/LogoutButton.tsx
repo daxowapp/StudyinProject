@@ -24,12 +24,12 @@ export function LogoutButton() {
     return (
         <Button
             variant="ghost"
-            className="w-full justify-start gap-2 text-destructive hover:text-destructive hover:bg-destructive/10"
+            className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive hover:bg-destructive/10 px-4 py-5 rounded-xl transition-all duration-200 hover:scale-[1.02] group"
             onClick={handleLogout}
             disabled={isLoading}
         >
-            <LogOut className="h-4 w-4" />
-            {isLoading ? t('logout') + "..." : t('logout')}
+            <LogOut className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="font-medium text-left">{isLoading ? "Signing out..." : "Sign Out"}</span>
         </Button>
     );
 }
