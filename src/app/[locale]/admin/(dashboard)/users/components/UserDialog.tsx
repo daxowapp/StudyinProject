@@ -21,10 +21,11 @@ import {
 } from "@/components/ui/select";
 
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Pencil, Plus, Trash2, Loader2, Shield, UserCog, Users } from "lucide-react";
 import { createUser, deleteUser, updateUser } from "../actions";
+import { getRoles, type Role } from "../../roles/actions";
 
 export interface User {
     id: string;
@@ -32,6 +33,7 @@ export interface User {
     first_name: string;
     last_name: string;
     role: string;
+    role_id?: string;
     phone: string;
     nationality: string;
     created_at: string;
@@ -41,55 +43,76 @@ interface UserDialogProps {
     user?: User;
 }
 
-// User roles with permissions
-const USER_ROLES = [
-    {
-        value: "admin",
-        label: "Admin",
-        description: "Full access to all features",
-        icon: Shield,
-        color: "bg-red-100 text-red-800"
-    },
-    {
-        value: "data_entry",
-        label: "Data Entry",
-        description: "Can add/edit universities and programs",
-        icon: UserCog,
-        color: "bg-blue-100 text-blue-800"
-    },
-    {
-        value: "marketing",
-        label: "Marketing & Leads",
-        description: "Can manage students, leads, and applications",
-        icon: Users,
-        color: "bg-green-100 text-green-800"
-    },
-    {
-        value: "student",
-        label: "Student",
-        description: "Regular student account",
-        icon: Users,
-        color: "bg-gray-100 text-gray-800"
-    }
-];
+// Icon mapping for built-in roles
+const ROLE_ICONS: Record<string, any> = {
+    admin: Shield,
+    data_entry: UserCog,
+    marketing: Users,
+    student: Users,
+};
+
+// Color mapping for built-in roles
+const ROLE_COLORS: Record<string, string> = {
+    admin: "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-200",
+    data_entry: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200",
+    marketing: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-200",
+    student: "bg-gray-100 text-gray-800 dark:bg-gray-900/50 dark:text-gray-200",
+};
 
 export function UserDialog({ user }: UserDialogProps) {
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedRole, setSelectedRole] = useState(user?.role || "student");
+    const [isLoadingRoles, setIsLoadingRoles] = useState(false);
+    const [roles, setRoles] = useState<Role[]>([]);
+    const [selectedRoleId, setSelectedRoleId] = useState(user?.role_id || "");
+
+    // Fetch roles when dialog opens
+    useEffect(() => {
+        if (open) {
+            loadRoles();
+        }
+    }, [open]);
+
+    async function loadRoles() {
+        setIsLoadingRoles(true);
+        const result = await getRoles();
+        if (result.success && result.data) {
+            setRoles(result.data);
+            // Set initial role if user has one
+            if (user?.role_id) {
+                setSelectedRoleId(user.role_id);
+            } else if (user?.role) {
+                // Fallback: find role by name for backward compatibility
+                const matchingRole = result.data.find(r => r.name === user.role);
+                if (matchingRole) {
+                    setSelectedRoleId(matchingRole.id);
+                }
+            } else if (!user) {
+                // For new users, default to student
+                const studentRole = result.data.find(r => r.name === "student");
+                if (studentRole) {
+                    setSelectedRoleId(studentRole.id);
+                }
+            }
+        }
+        setIsLoadingRoles(false);
+    }
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setIsLoading(true);
 
         const formData = new FormData(e.currentTarget);
+        const selectedRole = roles.find(r => r.id === selectedRoleId);
+
         const data = {
             first_name: formData.get("first_name") as string,
             last_name: formData.get("last_name") as string,
             email: formData.get("email") as string,
             phone: formData.get("phone") as string,
             password: formData.get("password") as string,
-            role: selectedRole,
+            role: selectedRole?.name || "student",
+            role_id: selectedRoleId,
         };
 
         let result;
@@ -127,7 +150,9 @@ export function UserDialog({ user }: UserDialogProps) {
         setIsLoading(false);
     }
 
-    const selectedRoleInfo = USER_ROLES.find(r => r.value === selectedRole);
+    const selectedRole = roles.find(r => r.id === selectedRoleId);
+    const RoleIcon = selectedRole ? (ROLE_ICONS[selectedRole.name] || Shield) : Shield;
+    const roleColor = selectedRole ? (ROLE_COLORS[selectedRole.name] || "bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-200") : "";
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -240,77 +265,51 @@ export function UserDialog({ user }: UserDialogProps) {
 
                         <div className="grid gap-2">
                             <Label htmlFor="role">User Role *</Label>
-                            <Select
-                                name="role"
-                                defaultValue={user?.role || "student"}
-                                onValueChange={setSelectedRole}
-                                required
-                            >
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select role" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {USER_ROLES.map((role) => (
-                                        <SelectItem key={role.value} value={role.value}>
-                                            {role.label}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            {isLoadingRoles ? (
+                                <div className="flex items-center gap-2 h-10 px-3 border rounded-md bg-muted/50">
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    <span className="text-sm text-muted-foreground">Loading roles...</span>
+                                </div>
+                            ) : (
+                                <Select
+                                    name="role"
+                                    value={selectedRoleId}
+                                    onValueChange={setSelectedRoleId}
+                                    required
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select role" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {roles.map((role) => (
+                                            <SelectItem key={role.id} value={role.id}>
+                                                {role.display_name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            )}
                         </div>
 
                         {/* Role Info Display */}
-                        {selectedRoleInfo && (
-                            <div className={`p-4 rounded-lg border-2 ${selectedRoleInfo.color}`}>
+                        {selectedRole && (
+                            <div className={`p-4 rounded-lg border-2 ${roleColor}`}>
                                 <div className="flex items-start gap-3">
-                                    <selectedRoleInfo.icon className="h-5 w-5 mt-0.5" />
+                                    <RoleIcon className="h-5 w-5 mt-0.5" />
                                     <div className="flex-1">
                                         <div className="font-semibold mb-1">
-                                            {selectedRoleInfo.label}
+                                            {selectedRole.display_name}
                                         </div>
                                         <p className="text-sm opacity-90">
-                                            {selectedRoleInfo.description}
+                                            {selectedRole.description || "No description available"}
                                         </p>
-
-                                        {/* Permissions List */}
-                                        <div className="mt-3 space-y-1">
-                                            <p className="text-xs font-semibold">Permissions:</p>
-                                            <ul className="text-xs space-y-1 ml-4">
-                                                {selectedRoleInfo.value === "admin" && (
-                                                    <>
-                                                        <li>✓ Full system access</li>
-                                                        <li>✓ Manage all users and roles</li>
-                                                        <li>✓ Access all features</li>
-                                                        <li>✓ System settings</li>
-                                                    </>
-                                                )}
-                                                {selectedRoleInfo.value === "data_entry" && (
-                                                    <>
-                                                        <li>✓ Add/Edit universities</li>
-                                                        <li>✓ Add/Edit programs</li>
-                                                        <li>✓ Manage program catalog</li>
-                                                        <li>✓ Update university details</li>
-                                                        <li>✗ Cannot access leads/applications</li>
-                                                    </>
-                                                )}
-                                                {selectedRoleInfo.value === "marketing" && (
-                                                    <>
-                                                        <li>✓ View/Manage leads</li>
-                                                        <li>✓ View/Manage applications</li>
-                                                        <li>✓ Contact students</li>
-                                                        <li>✓ View analytics</li>
-                                                        <li>✗ Cannot edit universities/programs</li>
-                                                    </>
-                                                )}
-                                                {selectedRoleInfo.value === "student" && (
-                                                    <>
-                                                        <li>✓ Browse programs</li>
-                                                        <li>✓ Submit applications</li>
-                                                        <li>✓ Track application status</li>
-                                                        <li>✗ No admin access</li>
-                                                    </>
-                                                )}
-                                            </ul>
+                                        <div className="mt-3">
+                                            <p className="text-xs font-semibold">
+                                                Permissions: {selectedRole.permission_count || 0}
+                                            </p>
+                                            <p className="text-xs opacity-80 mt-1">
+                                                {selectedRole.is_system ? "System role (cannot be deleted)" : "Custom role"}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +339,7 @@ export function UserDialog({ user }: UserDialogProps) {
                             >
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={isLoading}>
+                            <Button type="submit" disabled={isLoading || isLoadingRoles}>
                                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 {user ? "Update User" : "Create User"}
                             </Button>

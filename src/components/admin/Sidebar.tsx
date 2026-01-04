@@ -29,7 +29,8 @@ import {
     ChevronDown,
     User,
     Sparkles,
-    CreditCard
+    CreditCard,
+    Shield
 } from "lucide-react";
 import Image from "next/image";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
@@ -39,8 +40,9 @@ type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 export function Sidebar({ className }: SidebarProps) {
     const pathname = usePathname();
     const [collapsedGroups, setCollapsedGroups] = useState<Set<number>>(new Set());
-    const [userRole, setUserRole] = useState<string | null>(null);
+    const [userPermissions, setUserPermissions] = useState<string[]>([]);
     const [userProfile, setUserProfile] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const toggleGroup = (index: number) => {
         const newCollapsed = new Set(collapsedGroups);
@@ -62,86 +64,97 @@ export function Sidebar({ className }: SidebarProps) {
             setNewLeadsCount(newLeadsCount);
             setPendingDocumentsCount(pendingDocumentsCount || 0);
 
-            // Fetch user profile for role
+            // Fetch user profile with permissions
             const profile = await getUserProfile();
             if (profile) {
-                setUserRole(profile.role);
                 setUserProfile(profile);
+                setUserPermissions(profile.permissions || []);
             }
+            setIsLoading(false);
         };
         fetchData();
     }, [pathname]); // Refetch on navigation
 
+    // Helper to check if user has any of the required permissions
+    const hasPermission = (requiredPermissions: string[]) => {
+        if (requiredPermissions.length === 0) return true;
+        return requiredPermissions.some(p => userPermissions.includes(p));
+    };
+
+    // Navigation items with permission requirements
+    // Each item requires at least one of the listed permissions to be visible
     const allSidebarGroups = [
         {
             label: "Overview",
             icon: Sparkles,
-            roles: ["admin", "marketing", "data_entry"],
+            permissions: ["dashboard.view"],
             items: [
-                { icon: LayoutDashboard, label: "Dashboard", href: "/admin", roles: ["admin", "marketing", "data_entry"] },
-                { icon: BarChart3, label: "Analytics", href: "/admin/analytics", roles: ["admin", "marketing"] },
+                { icon: LayoutDashboard, label: "Dashboard", href: "/admin", permissions: ["dashboard.view"] },
+                { icon: BarChart3, label: "Analytics", href: "/admin/analytics", permissions: ["analytics.view"] },
             ]
         },
         {
             label: "Academic Management",
             icon: GraduationCap,
-            roles: ["admin", "data_entry"],
+            permissions: ["universities.view", "programs.view", "scholarships.view"],
             items: [
-                { icon: Building2, label: "Universities", href: "/admin/universities", roles: ["admin", "data_entry"] },
-                { icon: GraduationCap, label: "University Programs", href: "/admin/programs", roles: ["admin", "data_entry"] },
-                { icon: BookOpen, label: "Program Catalog", href: "/admin/program-catalog", roles: ["admin", "data_entry"] },
-                { icon: Award, label: "Scholarships", href: "/admin/scholarships", roles: ["admin", "data_entry"] },
-                { icon: ClipboardCheck, label: "Admission Requirements", href: "/admin/admission-requirements", roles: ["admin", "data_entry"] },
-                { icon: Calendar, label: "Academic Years", href: "/admin/academic-years", roles: ["admin", "data_entry"] },
-                { icon: Languages, label: "Languages", href: "/admin/languages", roles: ["admin", "data_entry"] },
+                { icon: Building2, label: "Universities", href: "/admin/universities", permissions: ["universities.view"] },
+                { icon: GraduationCap, label: "University Programs", href: "/admin/programs", permissions: ["programs.view"] },
+                { icon: BookOpen, label: "Program Catalog", href: "/admin/program-catalog", permissions: ["program_catalog.view"] },
+                { icon: Award, label: "Scholarships", href: "/admin/scholarships", permissions: ["scholarships.view"] },
+                { icon: ClipboardCheck, label: "Admission Requirements", href: "/admin/admission-requirements", permissions: ["admission_requirements.view"] },
+                { icon: Calendar, label: "Academic Years", href: "/admin/academic-years", permissions: ["academic_years.view"] },
+                { icon: Languages, label: "Languages", href: "/admin/languages", permissions: ["languages.view"] },
             ]
         },
         {
             label: "Applications & Users",
             icon: Users,
-            roles: ["admin", "marketing"],
+            permissions: ["applications.view", "leads.view", "users.view"],
             items: [
-                { icon: FileText, label: "Applications", href: "/admin/applications", roles: ["admin", "marketing"] },
-                { icon: CreditCard, label: "Refund Requests", href: "/admin/refunds", roles: ["admin"] },
-                { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined, roles: ["admin", "marketing"] },
-                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined, roles: ["admin", "marketing"] },
-                { icon: Users, label: "Users", href: "/admin/users", roles: ["admin"] },
+                { icon: FileText, label: "Applications", href: "/admin/applications", permissions: ["applications.view"] },
+                { icon: CreditCard, label: "Refund Requests", href: "/admin/refunds", permissions: ["refunds.view"] },
+                { icon: ClipboardCheck, label: "Documents", href: "/admin/documents", badge: pendingDocumentsCount > 0 ? pendingDocumentsCount : undefined, permissions: ["documents.view"] },
+                { icon: MessageSquare, label: "Leads", href: "/admin/leads", badge: newLeadsCount > 0 ? newLeadsCount : undefined, permissions: ["leads.view"] },
+                { icon: Users, label: "Users", href: "/admin/users", permissions: ["users.view"] },
+                { icon: Shield, label: "Roles", href: "/admin/roles", permissions: ["roles.view"] },
             ]
         },
         {
             label: "Content & Media",
             icon: Newspaper,
-            roles: ["admin", "marketing"],
+            permissions: ["articles.view", "messages.view"],
             items: [
-                { icon: Newspaper, label: "Articles", href: "/admin/articles", roles: ["admin", "marketing"] },
-                { icon: Mail, label: "Messages", href: "/admin/messages", roles: ["admin", "marketing"] },
+                { icon: Newspaper, label: "Articles", href: "/admin/articles", permissions: ["articles.view"] },
+                { icon: Mail, label: "Messages", href: "/admin/messages", permissions: ["messages.view"] },
             ]
         },
         {
             label: "System",
             icon: Settings,
-            roles: ["admin"],
+            permissions: ["settings.view"],
             items: [
-                { icon: Settings, label: "Settings", href: "/admin/settings", roles: ["admin"] },
+                { icon: Settings, label: "Settings", href: "/admin/settings", permissions: ["settings.view"] },
             ]
         }
     ];
 
-    // Filter groups and items based on role
+    // Filter groups and items based on user permissions
     const sidebarGroups = allSidebarGroups.map(group => {
-        // If role is not loaded yet, hide everything or show minimal? 
-        // Showing nothing is safer until we know the role.
-        if (!userRole) return null;
+        // If permissions not loaded yet, hide everything
+        if (isLoading) return null;
 
-        if (!group.roles.includes(userRole)) return null;
+        // Check if user has any of the group's required permissions
+        if (!hasPermission(group.permissions)) return null;
 
-        const filteredItems = group.items.filter(item => item.roles.includes(userRole));
+        // Filter items based on permissions
+        const filteredItems = group.items.filter(item => hasPermission(item.permissions));
         if (filteredItems.length === 0) return null;
 
         return { ...group, items: filteredItems };
     }).filter(Boolean) as typeof allSidebarGroups;
 
-    if (!userRole) {
+    if (isLoading) {
         return (
             <aside className={cn("hidden w-72 flex-col border-r bg-gradient-to-b from-card/80 to-card/50 backdrop-blur-xl md:flex shadow-xl", className)}>
                 <div className="flex h-20 items-center border-b px-6 bg-gradient-to-r from-primary/10 via-orange-500/5 to-transparent relative overflow-hidden">

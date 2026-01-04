@@ -15,11 +15,12 @@ export async function createUser(data: {
     first_name: string;
     last_name: string;
     role: string;
+    role_id?: string;
     phone?: string;
 }): Promise<ActionResponse> {
     try {
         const supabase = await createAdminClient();
-        const { email, password, first_name, last_name, role, phone } = data;
+        const { email, password, first_name, last_name, role, role_id, phone } = data;
 
         // 1. Create user in Supabase Auth
         // We use admin.createUser to skip email verification if needed, or just standard signup
@@ -64,6 +65,7 @@ export async function createUser(data: {
                     first_name,
                     last_name,
                     role,
+                    role_id: role_id || null,
                     email, // Keep email in sync
                     phone,
                     updated_at: new Date().toISOString()
@@ -85,6 +87,7 @@ export async function createUser(data: {
                     first_name,
                     last_name,
                     role,
+                    role_id: role_id || null,
                     email,
                     phone: phone || null,
                     updated_at: new Date().toISOString()
@@ -109,13 +112,14 @@ export async function updateUser(userId: string, data: {
     first_name: string;
     last_name: string;
     role: string;
+    role_id?: string;
     phone?: string;
     email?: string;
     password?: string;
 }): Promise<ActionResponse> {
     try {
         const supabase = await createAdminClient();
-        const { first_name, last_name, role, phone, email, password } = data;
+        const { first_name, last_name, role, role_id, phone, email, password } = data;
 
         // 1. Update Auth User (email/password) if provided
         const authUpdates: any = {
@@ -147,6 +151,7 @@ export async function updateUser(userId: string, data: {
                 first_name,
                 last_name,
                 role,
+                role_id: role_id || null,
                 phone: phone || null,
                 ...(email ? { email } : {}), // Update email in specific column if exists
                 updated_at: new Date().toISOString()
