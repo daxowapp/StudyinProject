@@ -134,8 +134,11 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} dir={dir} suppressHydrationWarning>
             <head>
-                {/* Zoho PageSense - Synchronous Load for A/B Testing Verification */}
-                <script src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"></script>
+                <Script
+                    id="zoho-pagesense-script"
+                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
+                    strategy="beforeInteractive"
+                />
                 {/* Preconnect to critical origins */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
