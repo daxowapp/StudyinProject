@@ -6,7 +6,7 @@ import { MapPin, Award, ArrowRight, Trophy, ChevronLeft, ChevronRight, Zap } fro
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -119,23 +119,38 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                         {/* Image Banner */}
                                         <Link href={`/universities/${uni.slug}`}>
                                             <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
-                                                {uni.cover_photo_url ? (
-                                                    <Image
-                                                        src={uni.cover_photo_url}
-                                                        alt={uni.name}
-                                                        fill
-                                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                        unoptimized={uni.cover_photo_url.startsWith('data:')}
-                                                    />
-                                                ) : (
-                                                    <Image
-                                                        src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop"
-                                                        alt={uni.name}
-                                                        fill
-                                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                        unoptimized
-                                                    />
-                                                )}
+                                                {(() => {
+                                                    const PLACEHOLDER_IMAGES = [
+                                                        "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop", // Existing
+                                                        "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=600&auto=format&fit=crop", // Library
+                                                        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop", // Campus
+                                                        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop", // Students
+                                                        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=600&auto=format&fit=crop", // Architecture
+                                                        "https://images.unsplash.com/photo-1590012314607-6da59983c8b6?q=80&w=600&auto=format&fit=crop"  // Modern building
+                                                    ];
+
+                                                    const getPlaceholder = (id: string, name: string) => {
+                                                        const str = id + name;
+                                                        let hash = 0;
+                                                        for (let i = 0; i < str.length; i++) {
+                                                            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                                                        }
+                                                        const index = Math.abs(hash) % PLACEHOLDER_IMAGES.length;
+                                                        return PLACEHOLDER_IMAGES[index];
+                                                    };
+
+                                                    const imgSrc = uni.cover_photo_url || getPlaceholder(uni.id, uni.name);
+
+                                                    return (
+                                                        <Image
+                                                            src={imgSrc}
+                                                            alt={uni.name}
+                                                            fill
+                                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                            unoptimized={imgSrc.startsWith('http') || imgSrc.startsWith('data:')}
+                                                        />
+                                                    );
+                                                })()}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
                                                 {/* Ranking Badge */}

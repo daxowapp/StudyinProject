@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 import { useCompare } from "./CompareContext";
 import { useState } from "react";

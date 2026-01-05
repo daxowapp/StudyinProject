@@ -4,7 +4,7 @@ import { useCompare } from "./CompareContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X, GitCompareArrows, Trash2, ArrowRight, ArrowLeft } from "lucide-react";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";

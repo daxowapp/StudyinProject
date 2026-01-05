@@ -35,10 +35,16 @@ export function Price({ amount, currency = 'CNY', className = '', showCurrency =
     const currencyInfo = getCurrencyInfo(selectedCurrency);
 
     // Format number with commas
-    const formattedAmount = convertedAmount.toLocaleString('en-US', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-    });
+    const formattedAmount = (typeof convertedAmount === 'number' && !isNaN(convertedAmount))
+        ? convertedAmount.toLocaleString('en-US', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2,
+        })
+        : 'N/A';
+
+    if (convertedAmount === null || convertedAmount === undefined || isNaN(convertedAmount)) {
+        return <span className={className}>N/A</span>;
+    }
 
     return (
         <span className={className}>

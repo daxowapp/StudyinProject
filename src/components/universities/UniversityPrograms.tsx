@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar } from "lucide-react";
 import Link from "next/link";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 
 interface Program {
     level: string;

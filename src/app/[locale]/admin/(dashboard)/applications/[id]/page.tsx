@@ -8,7 +8,7 @@ import { ArrowLeft, Download, FileText, CreditCard, Paperclip } from 'lucide-rea
 import Link from 'next/link';
 import { ApplicationManagementForm } from '../components/ApplicationManagementForm';
 import { VerifyPaymentButton, ApproveDocumentButton, RejectPaymentButton, RejectDocumentButton } from '../components/AdminActionButtons';
-import { Price } from '@/components/currency/Price';
+import { Price } from '@/components/currency/PriceDisplay';
 
 export default async function ApplicationDetailPage({
     params,

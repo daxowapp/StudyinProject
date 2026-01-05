@@ -7,7 +7,7 @@ import { Clock, MapPin, ArrowRight, Star, GraduationCap, Globe, Zap } from "luci
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 

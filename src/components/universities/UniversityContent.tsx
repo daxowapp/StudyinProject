@@ -14,7 +14,7 @@ import {
     Download, ChevronRight,
     Sparkles, Video, Phone, MessageCircle
 } from "lucide-react";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";

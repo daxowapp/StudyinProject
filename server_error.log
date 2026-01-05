@@ -1,0 +1,26 @@
+
+> study-at-china@0.1.0 dev
+> next dev
+
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.1.162:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+ ✓ Ready in 940ms
+ GET /en 200 in 3.2s (compile: 2.4s, proxy.ts: 99ms, render: 706ms)
+ GET /en 200 in 458ms (compile: 31ms, proxy.ts: 15ms, render: 412ms)
+ GET /en 200 in 317ms (compile: 16ms, proxy.ts: 12ms, render: 290ms)
+ GET /en 200 in 192ms (compile: 20ms, proxy.ts: 14ms, render: 158ms)
+ GET /en 200 in 161ms (compile: 11ms, proxy.ts: 3ms, render: 147ms)
+ GET /en 200 in 3.8s (compile: 13ms, proxy.ts: 3ms, render: 3.8s)
+ GET /en 200 in 3.7s (compile: 13ms, proxy.ts: 11ms, render: 3.7s)
+ GET /en 200 in 4.0s (compile: 15ms, proxy.ts: 3ms, render: 4.0s)
+ GET /en 200 in 4.9s (compile: 883ms, proxy.ts: 12ms, render: 4.0s)
+ GET /en 200 in 3.8s (compile: 12ms, proxy.ts: 8ms, render: 3.8s)
+ GET /en 200 in 3.9s (compile: 8ms, proxy.ts: 5ms, render: 3.9s)
+[?25h

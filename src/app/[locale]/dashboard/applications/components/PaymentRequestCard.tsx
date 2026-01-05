@@ -23,7 +23,7 @@ import Image from 'next/image';
 import { uploadPaymentReceipt, resetPaymentStatus } from '../actions';
 import { toast } from 'sonner';
 import { formatDistanceToNow } from 'date-fns';
-import { Price } from '@/components/currency/Price';
+import { Price } from '@/components/currency/PriceDisplay';
 
 interface PaymentRequestCardProps {
     transaction: {

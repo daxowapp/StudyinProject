@@ -22,6 +22,7 @@ const FeaturedUniversitiesSection = dynamic(
 import { LazyHomeSections } from '@/components/home/LazyHomeSections';
 
 // Enable ISR with 5 minute revalidation
+// Enable ISR with 5 minute revalidation
 export const revalidate = 300;
 
 interface PageProgram {
@@ -101,6 +102,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
     // 3. Start User Session Fetch
     const userPromise = supabase.auth.getUser();
+
 
     // Await 1 & 2 & 3 in parallel
     const [fastTrackResult, universitiesResult, userResult] = await Promise.all([
@@ -234,9 +236,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           description: translation?.description || uni.description,
           logo_url: uni.logo_url,
           cover_photo_url: sanitizeImageUrl(uni.cover_photo_url, uni.id),
-          founded: String(uni.founded),
-          total_students: String(uni.total_students),
-          ranking: String(uni.ranking),
+          founded: uni.founded ? String(uni.founded) : "",
+          total_students: uni.total_students ? String(uni.total_students) : "",
+          ranking: uni.ranking ? String(uni.ranking) : "",
           programCount: stat?.program_count || 0,
           minTuitionFee: stat?.min_tuition_fee,
           currency: stat?.currency || "CNY"
@@ -246,6 +248,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
     if (universitiesError) {
       console.error("Error fetching universities:", universitiesError);
+    } else {
+      console.log("Universities Debug:", universitiesWithStats.map(u => ({ name: u.name, cover: u.cover_photo_url })));
     }
 
   } catch (error) {

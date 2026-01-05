@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MapPin, BookOpen, DollarSign, Building2, Award } from "lucide-react";
 import { Link } from '@/i18n/routing';
 import Image from "next/image";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 
 interface University {

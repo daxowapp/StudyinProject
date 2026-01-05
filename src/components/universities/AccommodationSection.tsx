@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Home, Check, DollarSign, Wifi, Wind, Droplet, Shield, Utensils } from "lucide-react";
-import { Price } from "@/components/currency/Price";
+import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 
 interface AccommodationType {

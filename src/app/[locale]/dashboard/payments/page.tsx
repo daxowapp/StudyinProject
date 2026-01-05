@@ -16,7 +16,7 @@ import {
   ExternalLink,
   AlertCircle,
 } from 'lucide-react';
-import { Price } from '@/components/currency/Price';
+import { Price } from '@/components/currency/PriceDisplay';
 
 export default async function PaymentsPage() {
   const t = await getTranslations('PaymentDashboard');
