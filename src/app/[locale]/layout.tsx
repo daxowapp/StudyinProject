@@ -142,6 +142,8 @@ export default async function LocaleLayout({
                 <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
                 {/* Preload hero image for LCP */}
                 <link rel="preload" as="image" href="/hero-bg.png" fetchPriority="high" />
+                {/* Zoho PageSense - Synchronous Load for A/B Testing Verification */}
+                <script src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"></script>
             </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
                 <NextIntlClientProvider messages={messages}>
@@ -191,11 +193,7 @@ export default async function LocaleLayout({
                     strategy="afterInteractive"
                     defer
                 />
-                <Script
-                    id="zoho-pagesense-script"
-                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
-                    strategy="beforeInteractive"
-                />
+
             </body>
         </html>
     );
