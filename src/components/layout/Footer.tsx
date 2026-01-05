@@ -157,12 +157,12 @@ export function Footer() {
                             <li className="flex items-start gap-3">
                                 <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                                 <a
-                                    href="https://wa.me/905492006060"
+                                    href="https://wa.me/905543081000"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                                 >
-                                    +90 549 200 60 60
+                                    +90 554 308 10 00
                                 </a>
                             </li>
                             <li className="flex items-start gap-3">

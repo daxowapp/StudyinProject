@@ -44,7 +44,7 @@ export function UniversityHeader({ university }: UniversityHeaderProps) {
 
     // Default URLs if not provided by university
     const scheduleCallUrl = university.schedule_call_url || "https://booking.studyinturkiye.com/";
-    const advisorChatUrl = university.advisor_chat_url || "https://wa.me/905492006060";
+    const advisorChatUrl = university.advisor_chat_url || "https://wa.me/905543081000";
 
     return (
         <div className="relative overflow-hidden">

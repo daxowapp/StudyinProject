@@ -690,7 +690,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                     type="url"
                                                     value={formData.advisor_chat_url}
                                                     onChange={(e) => setFormData({ ...formData, advisor_chat_url: e.target.value })}
-                                                    placeholder="https://wa.me/905492006060"
+                                                    placeholder="https://wa.me/905543081000"
                                                 />
                                                 <p className="text-xs text-muted-foreground">Direct chat link (WhatsApp/Telegram)</p>
                                             </div>
