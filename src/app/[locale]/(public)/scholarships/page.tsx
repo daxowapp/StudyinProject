@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Award, CheckCircle2, DollarSign, Sparkles, Check, Info, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
-const scholarshipTypes = [
+import { getScholarshipStats, ScholarshipStats } from "@/lib/scholarship-stats";
+
+const baseScholarshipTypes = [
     {
         name: "Type A",
         displayName: "Full Scholarship",
         coverage: 100,
-        serviceFeeUSD: 3500,
-        serviceFeeCNY: 25000,
         description: "Best option for students seeking complete tuition coverage",
         benefits: [
             "100% tuition fee coverage",
@@ -28,8 +28,6 @@ const scholarshipTypes = [
         name: "Type B",
         displayName: "Partial Scholarship (75%)",
         coverage: 75,
-        serviceFeeUSD: 2800,
-        serviceFeeCNY: 20000,
         description: "Great balance between scholarship coverage and service fees",
         benefits: [
             "75% tuition fee coverage",
@@ -46,8 +44,6 @@ const scholarshipTypes = [
         name: "Type C",
         displayName: "Half Scholarship (50%)",
         coverage: 50,
-        serviceFeeUSD: 2200,
-        serviceFeeCNY: 16000,
         description: "Affordable option with significant tuition reduction",
         benefits: [
             "50% tuition fee coverage",
@@ -64,8 +60,6 @@ const scholarshipTypes = [
         name: "Self-Funded",
         displayName: "Self-Funded (No Scholarship)",
         coverage: 0,
-        serviceFeeUSD: 1500,
-        serviceFeeCNY: 11000,
         description: "Pay full tuition with minimal service fees",
         benefits: [
             "No scholarship (0% coverage)",
@@ -90,7 +84,48 @@ const requiredDocuments = [
     "Portfolio (for Art/Design programs)"
 ];
 
-export default function ScholarshipsPage() {
+function formatPrice(min: number, max: number) {
+    if (!min && !max) return "Contact";
+    if (min === max) return min.toLocaleString();
+    return `${min.toLocaleString()} - ${max.toLocaleString()}`;
+}
+
+export default async function ScholarshipsPage() {
+    const stats = await getScholarshipStats();
+
+    // Map base types to dynamic data, with fallbacks
+    const scholarshipTypes = baseScholarshipTypes.map(type => {
+        // Special mapping or key matching
+        // The stats keys are "Type A", "Type B", "Type C". 
+        // "Self-Funded" might not be in DB or might be distinct.
+
+        // For Self-Funded, we use manual fallback or check if DB has it.
+        // Assuming Self-Funded is static for now as per previous code ($1500), 
+        // OR we can look for it if it exists. 
+        // Previous static value: 1500 USD.
+
+        const typeStats = stats[type.name];
+
+        let serviceFeeUSD = "1,500"; // Fallback for Self-Funded
+        let serviceFeeCNY = "11,000";
+
+        if (typeStats) {
+            serviceFeeUSD = formatPrice(typeStats.minUSD, typeStats.maxUSD);
+            serviceFeeCNY = formatPrice(typeStats.minCNY, typeStats.maxCNY);
+        } else if (type.name === "Self-Funded") {
+            // Keep static if not found
+            serviceFeeUSD = "1,500";
+            serviceFeeCNY = "11,000";
+        }
+
+        return {
+            ...type,
+            serviceFeeUSD,
+            serviceFeeCNY
+        };
+    });
+
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
             {/* Hero */}
@@ -194,11 +229,11 @@ export default function ScholarshipsPage() {
                                         <div className="space-y-2">
                                             <div className="flex items-center justify-between">
                                                 <span className="text-sm text-muted-foreground">USD:</span>
-                                                <span className="font-bold text-lg">${type.serviceFeeUSD.toLocaleString()}</span>
+                                                <span className="font-bold text-lg">${type.serviceFeeUSD}</span>
                                             </div>
                                             <div className="flex items-center justify-between">
                                                 <span className="text-sm text-muted-foreground">CNY:</span>
-                                                <span className="font-semibold">¥{type.serviceFeeCNY.toLocaleString()}</span>
+                                                <span className="font-semibold">¥{type.serviceFeeCNY}</span>
                                             </div>
                                         </div>
                                     </div>
