@@ -134,11 +134,6 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} dir={dir} suppressHydrationWarning>
             <head>
-                <Script
-                    id="zoho-pagesense-script"
-                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
-                    strategy="beforeInteractive"
-                />
                 {/* Preconnect to critical origins */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -149,6 +144,11 @@ export default async function LocaleLayout({
                 <link rel="preload" as="image" href="/hero-bg.png" fetchPriority="high" />
             </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
+                <Script
+                    id="zoho-pagesense-script"
+                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
+                    strategy="beforeInteractive"
+                />
                 <NextIntlClientProvider messages={messages}>
                     <CurrencyProvider>
                         <LoadingBar />
