@@ -80,7 +80,26 @@ export function Footer() {
                         <div className="flex gap-3">
                             {[
                                 { icon: Linkedin, href: "https://www.linkedin.com/company/study-at-china", label: "LinkedIn" },
-                                { icon: Instagram, href: "https://instagram.com/studyatcn", label: "Instagram" }
+                                { icon: Instagram, href: "https://instagram.com/studyatcn", label: "Instagram" },
+                                {
+                                    icon: ({ className }: { className?: string }) => (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className={className}
+                                        >
+                                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                                            <path d="M9 10a.5.5 0 0 0 1 1h4a.5.5 0 0 0 1-1v-1a.5.5 0 0 0-1-1H9z" />
+                                        </svg>
+                                    ),
+                                    href: "https://wa.me/905453081000",
+                                    label: "WhatsApp"
+                                }
                             ].map((social) => (
                                 <a
                                     key={social.label}
@@ -156,14 +175,24 @@ export function Footer() {
                             </li>
                             <li className="flex items-start gap-3">
                                 <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                                <a
-                                    href="https://wa.me/905543081000"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                >
-                                    +90 554 308 10 00
-                                </a>
+                                <div className="flex flex-col">
+                                    <a
+                                        href="https://wa.me/905453081000"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                    >
+                                        +90 545 308 10 00
+                                    </a>
+                                    <a
+                                        href="https://wa.me/905453081000"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-primary hover:text-primary/80 transition-colors mt-0.5 font-medium"
+                                    >
+                                        Chat on WhatsApp
+                                    </a>
+                                </div>
                             </li>
                             <li className="flex items-start gap-3">
                                 <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />

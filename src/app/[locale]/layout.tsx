@@ -191,6 +191,11 @@ export default async function LocaleLayout({
                     strategy="afterInteractive"
                     defer
                 />
+                <Script
+                    id="zoho-pagesense-script"
+                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
+                    strategy="afterInteractive"
+                />
             </body>
         </html>
     );
