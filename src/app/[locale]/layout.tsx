@@ -178,6 +178,19 @@ export default async function LocaleLayout({
                         alt=""
                     />
                 </noscript>
+                <Script
+                    id="zoho-salesiq-init"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`
+                    }}
+                />
+                <Script
+                    id="zsiqscript"
+                    src="https://salesiq.zohopublic.com/widget?wc=siqc671c2f53632c30a591a902bec55f9bdcfc7670e7f9cbdd86f64bdc1d326a19a"
+                    strategy="afterInteractive"
+                    defer
+                />
             </body>
         </html>
     );

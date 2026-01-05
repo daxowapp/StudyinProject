@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
 import { getTranslations } from "next-intl/server";
 import { NotificationBell } from "@/components/notifications/NotificationBell";
-import { ChatWidget } from "@/components/ai/ChatWidget";
+
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export default async function DashboardLayout({
@@ -158,8 +158,7 @@ export default async function DashboardLayout({
                 </div>
             </main>
 
-            {/* Chen Wei Chat Widget */}
-            <ChatWidget />
+
         </div>
     );
 }
