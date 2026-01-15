@@ -207,6 +207,9 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
         ],
         gpa_requirement: program.gpa_requirement,
+        score_ielts: program.score_ielts,
+        score_toefl: program.score_toefl,
+        score_duolingo: program.score_duolingo,
     };
 
     return (
@@ -394,6 +397,34 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                             <div>
                                                 <p className="text-sm text-muted-foreground">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
                                                 <p className="text-xl font-bold">{programData.gpa_requirement}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {/* Language Scores */}
+                                    {(programData.score_ielts || programData.score_toefl || programData.score_duolingo) && (
+                                        <div className="flex items-start gap-4">
+                                            <div className="h-12 w-12 rounded-lg bg-pink-500/10 flex items-center justify-center shrink-0">
+                                                <BookOpen className="h-6 w-6 text-pink-600" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-muted-foreground">{t('highlights.languageRequirements') || 'Language Score'}</p>
+                                                <div className="flex flex-wrap gap-2 mt-1">
+                                                    {programData.score_ielts && (
+                                                        <Badge variant="outline" className="bg-background text-xs">
+                                                            IELTS: {programData.score_ielts}
+                                                        </Badge>
+                                                    )}
+                                                    {programData.score_toefl && (
+                                                        <Badge variant="outline" className="bg-background text-xs">
+                                                            TOEFL: {programData.score_toefl}
+                                                        </Badge>
+                                                    )}
+                                                    {programData.score_duolingo && (
+                                                        <Badge variant="outline" className="bg-background text-xs">
+                                                            Duolingo: {programData.score_duolingo}
+                                                        </Badge>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -614,6 +645,6 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <CscaCtaSection />
-        </div>
+        </div >
     );
 }

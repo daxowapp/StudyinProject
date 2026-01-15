@@ -34,6 +34,9 @@ interface Program {
     intake: string;
     language_id: string;
     gpa_requirement?: string; // Added field
+    score_ielts?: number;
+    score_toefl?: number;
+    score_duolingo?: number;
 }
 
 export default async function ProgramsPage() {

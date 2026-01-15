@@ -15,6 +15,9 @@
 - Apply Now button now scrolls to programs section on university page (no redirect)
 - Direct apply only when viewing a specific program
 
+## [2026-01-15] - Language Scores & Scholarship Display - Added IELTS, TOEFL, Duolingo score fields to programs; Fixed scholarship benefits display truncation.
+[2026-01-15] - Program Deployment Fix - Resolved build error by adding `application_deadline` to Program type.
+
 ## [2026-01-15] - Minimum GPA Requirement Field
 - Added customizable GPA requirement field to admin program dialog
 - Admins can now enter any minimum GPA value (e.g., 2.0, 2.5, 3.0) per program

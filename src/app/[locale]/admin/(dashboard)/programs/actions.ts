@@ -59,6 +59,9 @@ export async function createProgram(formData: FormData) {
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
     const gpa_requirement = formData.get("gpa_requirement") as string;
+    const score_ielts = formData.get("score_ielts") ? parseFloat(formData.get("score_ielts") as string) : null;
+    const score_toefl = formData.get("score_toefl") ? parseInt(formData.get("score_toefl") as string) : null;
+    const score_duolingo = formData.get("score_duolingo") ? parseInt(formData.get("score_duolingo") as string) : null;
 
     const { error } = await supabase.from("university_programs").insert({
         university_id,
@@ -76,6 +79,9 @@ export async function createProgram(formData: FormData) {
         force_payment,
         application_deadline: deadline || null,
         gpa_requirement: gpa_requirement || null,
+        score_ielts,
+        score_toefl,
+        score_duolingo,
         portal_key: PORTAL_KEY,
     });
 
@@ -104,6 +110,9 @@ export async function updateProgram(id: string, formData: FormData) {
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
     const gpa_requirement = formData.get("gpa_requirement") as string;
+    const score_ielts = formData.get("score_ielts") ? parseFloat(formData.get("score_ielts") as string) : null;
+    const score_toefl = formData.get("score_toefl") ? parseInt(formData.get("score_toefl") as string) : null;
+    const score_duolingo = formData.get("score_duolingo") ? parseInt(formData.get("score_duolingo") as string) : null;
 
     const { error } = await supabase
         .from("university_programs")
@@ -123,6 +132,9 @@ export async function updateProgram(id: string, formData: FormData) {
             force_payment,
             application_deadline: deadline || null,
             gpa_requirement: gpa_requirement || null,
+            score_ielts,
+            score_toefl,
+            score_duolingo,
         })
         .eq("id", id);
 

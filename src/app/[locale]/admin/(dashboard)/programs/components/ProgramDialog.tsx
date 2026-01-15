@@ -50,6 +50,9 @@ interface Program {
     has_force_payment: boolean;
     has_custom_requirements?: boolean;
     gpa_requirement?: string;
+    score_ielts?: number;
+    score_toefl?: number;
+    score_duolingo?: number;
 }
 
 interface University {
@@ -96,6 +99,9 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         is_active: program?.is_active ?? true,
         has_force_payment: program?.has_force_payment ?? false,
         gpa_requirement: program?.gpa_requirement || "",
+        score_ielts: program?.score_ielts || "",
+        score_toefl: program?.score_toefl || "",
+        score_duolingo: program?.score_duolingo || "",
     });
 
     useEffect(() => {
@@ -116,6 +122,9 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 is_active: program.is_active ?? true,
                 has_force_payment: program.has_force_payment ?? false,
                 gpa_requirement: program.gpa_requirement || "",
+                score_ielts: program.score_ielts || "",
+                score_toefl: program.score_toefl || "",
+                score_duolingo: program.score_duolingo || "",
             });
         }
     }, [program]);
@@ -588,6 +597,42 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                             value={formState.gpa_requirement}
                                             onChange={(e) => setFormState({ ...formState, gpa_requirement: e.target.value })}
                                             placeholder="e.g. 2.5"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="score_ielts">Min. IELTS Score</Label>
+                                        <Input
+                                            id="score_ielts"
+                                            name="score_ielts"
+                                            type="number"
+                                            step="0.1"
+                                            value={formState.score_ielts}
+                                            onChange={(e) => setFormState({ ...formState, score_ielts: e.target.value })}
+                                            placeholder="e.g. 6.0"
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="score_toefl">Min. TOEFL Score</Label>
+                                        <Input
+                                            id="score_toefl"
+                                            name="score_toefl"
+                                            type="number"
+                                            value={formState.score_toefl}
+                                            onChange={(e) => setFormState({ ...formState, score_toefl: e.target.value })}
+                                            placeholder="e.g. 80"
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="score_duolingo">Min. Duolingo Score</Label>
+                                        <Input
+                                            id="score_duolingo"
+                                            name="score_duolingo"
+                                            type="number"
+                                            value={formState.score_duolingo}
+                                            onChange={(e) => setFormState({ ...formState, score_duolingo: e.target.value })}
+                                            placeholder="e.g. 100"
                                         />
                                     </div>
                                 </div>

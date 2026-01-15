@@ -833,7 +833,8 @@
             "duration": "Duration",
             "language": "Language",
             "level": "Degree Level",
-            "gpaRequirement": "Minimum GPA"
+            "gpaRequirement": "Minimum GPA",
+            "languageRequirements": "Language Score"
         },
         "overview": {
             "title": "Program Overview",

@@ -252,10 +252,13 @@ export function UniversityScholarshipsSection({
                     }
 
                     // Stipend
-                    if (scholarship.includes_stipend && scholarship.stipend_amount_monthly) {
+                    if (scholarship.includes_stipend) {
+                        const stipendText = scholarship.stipend_amount_monthly
+                            ? `${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month Stipend`
+                            : "Monthly Stipend Included";
                         allBenefits.push({
                             icon: "💰",
-                            text: `${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month Stipend`
+                            text: stipendText
                         });
                     }
 
@@ -344,7 +347,7 @@ export function UniversityScholarshipsSection({
                                                 title={benefit.text}
                                             >
                                                 <span>{benefit.icon}</span>
-                                                <span className="max-w-[120px] truncate">{benefit.text}</span>
+                                                <span className="">{benefit.text}</span>
                                             </span>
                                         ))}
                                     </div>
