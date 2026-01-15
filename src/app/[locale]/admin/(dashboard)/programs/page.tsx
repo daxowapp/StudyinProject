@@ -18,7 +18,7 @@ interface Program {
     tuition_fee: number;
     currency: string;
     scholarship_chance: string;
-    deadline: string;
+    application_deadline: string; // Updated from deadline to match DB/Dialog
     application_fee: number;
     service_fee: number;
     university: {
@@ -33,6 +33,7 @@ interface Program {
     duration: string;
     intake: string;
     language_id: string;
+    gpa_requirement?: string; // Added field
 }
 
 export default async function ProgramsPage() {
@@ -112,7 +113,7 @@ export default async function ProgramsPage() {
                                 <div>
                                     <span className="text-muted-foreground block">Deadline</span>
                                     <span className="font-medium">
-                                        {program.deadline ? format(new Date(program.deadline), "MMM d, yyyy") : "N/A"}
+                                        {program.application_deadline ? format(new Date(program.application_deadline), "MMM d, yyyy") : "N/A"}
                                     </span>
                                 </div>
                             </div>
