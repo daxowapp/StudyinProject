@@ -48,8 +48,8 @@
                 "description": "برنامه‌های تحقیقاتی دکترا."
             },
             "nonDegree": {
-                "title": "بدون مدرک",
-                "description": "دوره‌های زبان و برنامه‌های کوتاه‌مدت."
+                "title": "دوره‌های زبان چینی",
+                "description": "یادگیری زبان و فرهنگ چینی."
             },
             "diploma": {
                 "title": "دیپلم",
@@ -730,6 +730,7 @@
     "UniversitiesCard": {
         "programs": "برنامه‌ها",
         "tuitionFrom": "شهریه از",
+        "tuition": "شهریه",
         "viewUniversity": "مشاهده دانشگاه",
         "viewPrograms": "مشاهده برنامه‌ها"
     },
@@ -741,7 +742,13 @@
         "badges": {
             "intake": "دوره پذیرش: {intake}",
             "contactUniversity": "تماس با دانشگاه",
-            "fastTrack": "پذیرش سریع"
+            "specialRequirements": "الزامات ویژه"
+        },
+        "deadline": {
+            "daysRemaining": "{days} روز باقی مانده",
+            "endingToday": "برنامه امروز بسته می‌شود!",
+            "closed": "برنامه بسته شده است",
+            "deadline": "مهلت"
         },
         "buttons": {
             "apply": "همین حالا درخواست دهید",
@@ -755,7 +762,8 @@
             "tuition": "شهریه",
             "duration": "مدت زمان",
             "language": "زبان",
-            "level": "مقطع تحصیلی"
+            "level": "مقطع تحصیلی",
+            "gpaRequirement": "حداقل معدل"
         },
         "overview": {
             "title": "نمای کلی برنامه",

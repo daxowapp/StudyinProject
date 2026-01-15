@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { signout } from "@/app/[locale]/(auth)/actions";
+import { signout } from "@/app/[locale]/(auth)/actions/index";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Award, Heart, DollarSign } from "lucide-react";
+import { Check, Award, Heart, DollarSign, Zap } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -57,18 +57,21 @@ export function UniversityScholarshipsSection({
     const handleApply = async () => {
         const { data: { user } } = await supabase.auth.getUser();
 
+        // Determine the target URL
         // If programSlug is provided, go directly to apply page
-        // Otherwise, go to programs list filtered by university
-        const targetUrl = programSlug
+        // Otherwise, go to programs list filtered by university where user can select and apply
+        const applyUrl = programSlug
             ? `/${locale}/apply/${programSlug}`
             : universitySlug
                 ? `/${locale}/programs?university=${universitySlug}`
                 : `/${locale}/programs`;
 
         if (user) {
-            router.push(targetUrl);
+            // User is logged in - go directly to target
+            router.push(applyUrl);
         } else {
-            router.push(`/${locale}/register?next=${encodeURIComponent(targetUrl)}`);
+            // User is NOT logged in - redirect to register with return URL
+            router.push(`/${locale}/register?next=${encodeURIComponent(applyUrl)}`);
         }
     };
 
@@ -211,154 +214,205 @@ export function UniversityScholarshipsSection({
                 </>
             )}
 
-            {/* Scholarship Cards */}
-            <div id="scholarship-cards" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {scholarships.map((scholarship, index) => {
-                    // Determine theme based on index or type
-                    const themes = [
-                        {
-                            color: "emerald",
-                            border: "border-emerald-500/20",
-                            bg: "bg-gradient-to-br from-emerald-500/10 to-emerald-500/5",
-                            badge: "bg-emerald-500/10 text-emerald-700",
-                            popularBadge: "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white"
-                        },
-                        {
-                            color: "blue",
-                            border: "border-blue-500/20",
-                            bg: "bg-gradient-to-br from-blue-500/10 to-blue-500/5",
-                            badge: "bg-blue-500/10 text-blue-700",
-                            popularBadge: "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
-                        },
-                        {
-                            color: "purple",
-                            border: "border-purple-500/20",
-                            bg: "bg-gradient-to-br from-purple-500/10 to-purple-500/5",
-                            badge: "bg-purple-500/10 text-purple-700",
-                            popularBadge: "bg-gradient-to-r from-purple-500 to-purple-600 text-white"
-                        },
-                        {
-                            color: "slate",
-                            border: "border-slate-500/20",
-                            bg: "bg-gradient-to-br from-slate-500/10 to-slate-500/5",
-                            badge: "bg-slate-500/10 text-slate-700",
-                            popularBadge: "bg-gradient-to-r from-slate-500 to-slate-600 text-white"
-                        }
-                    ];
+            {/* Scholarship Table/Rows */}
+            <div id="scholarship-cards" className="space-y-4">
+                {/* Header Row - Desktop Only */}
+                <div className="hidden lg:grid lg:grid-cols-12 gap-4 px-6 py-3 bg-muted/50 rounded-xl text-sm font-medium text-muted-foreground">
+                    <div className="col-span-2">{t('scholarshipType') || 'Scholarship Type'}</div>
+                    <div className="col-span-2 text-center">{t('tuitionCoverage')}</div>
+                    <div className="col-span-2 text-center">{t('serviceFee')}</div>
+                    <div className="col-span-4">{t('whatsIncluded')}</div>
+                    <div className="col-span-2 text-center">{t('action') || 'Action'}</div>
+                </div>
 
+                {scholarships.map((scholarship, index) => {
+                    const themes = [
+                        { accent: "emerald", bg: "bg-emerald-50 dark:bg-emerald-950/20", border: "border-emerald-200 dark:border-emerald-800", badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200" },
+                        { accent: "blue", bg: "bg-blue-50 dark:bg-blue-950/20", border: "border-blue-200 dark:border-blue-800", badge: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" },
+                        { accent: "purple", bg: "bg-purple-50 dark:bg-purple-950/20", border: "border-purple-200 dark:border-purple-800", badge: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200" },
+                        { accent: "amber", bg: "bg-amber-50 dark:bg-amber-950/20", border: "border-amber-200 dark:border-amber-800", badge: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200" },
+                        { accent: "rose", bg: "bg-rose-50 dark:bg-rose-950/20", border: "border-rose-200 dark:border-rose-800", badge: "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200" },
+                        { accent: "cyan", bg: "bg-cyan-50 dark:bg-cyan-950/20", border: "border-cyan-200 dark:border-cyan-800", badge: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200" },
+                    ];
                     const theme = themes[index % themes.length];
                     const isPopular = index === 0 && scholarship.tuition_coverage_percentage >= 100;
 
-                    // Build benefits dynamically from DB fields
-                    const benefits: string[] = [];
+                    // Build comprehensive benefits list
+                    const allBenefits: { icon: string; text: string }[] = [];
 
-                    // Tuition coverage
-                    if (scholarship.tuition_coverage_percentage > 0) {
-                        benefits.push(`${scholarship.tuition_coverage_percentage}% tuition fee coverage`);
-                    }
+                    // Tuition
+                    allBenefits.push({ icon: "📚", text: `${scholarship.tuition_coverage_percentage}% Tuition Covered` });
 
                     // Accommodation
                     if (scholarship.includes_accommodation) {
-                        const accText = scholarship.accommodation_type
-                            ? `Free ${scholarship.accommodation_type}`
-                            : 'Free accommodation';
-                        benefits.push(accText);
+                        allBenefits.push({
+                            icon: "🏠",
+                            text: scholarship.accommodation_type ? `Free ${scholarship.accommodation_type}` : 'Free Accommodation'
+                        });
                     }
 
-                    // Stipend/Salary
+                    // Stipend
                     if (scholarship.includes_stipend && scholarship.stipend_amount_monthly) {
-                        const stipendText = `${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month stipend`;
-                        benefits.push(stipendText);
+                        allBenefits.push({
+                            icon: "💰",
+                            text: `${scholarship.stipend_amount_monthly} ${scholarship.stipend_currency}/month Stipend`
+                        });
                     }
 
                     // Medical Insurance
                     if (scholarship.includes_medical_insurance) {
-                        benefits.push('Medical insurance included');
+                        allBenefits.push({ icon: "🏥", text: 'Medical Insurance' });
                     }
 
-                    // One-time allowance
+                    // One-time Allowance
                     if (scholarship.one_time_allowance && scholarship.one_time_allowance > 0) {
-                        benefits.push(`${scholarship.one_time_allowance} ${scholarship.one_time_allowance_currency} settlement allowance`);
+                        allBenefits.push({
+                            icon: "🎁",
+                            text: `${scholarship.one_time_allowance} ${scholarship.one_time_allowance_currency} Settlement Allowance`
+                        });
                     }
 
-                    // Additional benefits from DB array (if any)
-                    if (scholarship.additional_benefits && scholarship.additional_benefits.length > 0) {
-                        benefits.push(...scholarship.additional_benefits);
-                    }
-
-                    // If no benefits at all, show a default message
-                    if (benefits.length === 0) {
-                        benefits.push('Self-funded (no scholarship coverage)');
+                    // Additional Benefits
+                    if (scholarship.additional_benefits) {
+                        scholarship.additional_benefits.forEach(b => allBenefits.push({ icon: "✓", text: b }));
                     }
 
                     return (
                         <div
                             key={scholarship.id}
-                            className={`text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-2 ${theme.border} shadow-lg hover:shadow-xl transition-all duration-300 ${theme.bg} relative overflow-hidden`}
+                            className={`relative rounded-xl border-2 ${theme.border} ${theme.bg} p-4 lg:p-6 transition-all hover:shadow-lg ${isPopular ? 'ring-2 ring-primary ring-offset-2' : ''}`}
                         >
+                            {/* Popular Badge */}
                             {isPopular && (
-                                <div className="absolute top-4 right-4">
-                                    <span className={`inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.popularBadge}`}>
+                                <div className="absolute -top-3 left-4 flex gap-2">
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-primary/80 px-3 py-1 text-xs font-semibold text-white shadow-md">
+                                        <Award className="h-3 w-3" />
                                         {t('mostPopular')}
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-red-500/90 px-3 py-1 text-xs font-semibold text-white shadow-md animate-pulse">
+                                        <Zap className="h-3 w-3" />
+                                        Urgent - Apply Now
+                                    </span>
+                                </div>
+                            )}
+                            {!isPopular && (
+                                <div className="absolute -top-3 left-4">
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-red-500/90 px-3 py-1 text-xs font-semibold text-white shadow-md animate-pulse">
+                                        <Zap className="h-3 w-3" />
+                                        Urgent - Apply Now
                                     </span>
                                 </div>
                             )}
 
-                            <div className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 border-b pb-6 border-border/50">
-                                <div className="mb-2">
-                                    <span className={`inline-flex items-center justify-center rounded-full border px-3 py-1 text-sm font-medium w-fit whitespace-nowrap shrink-0 border-transparent ${theme.badge}`}>
+                            {/* Desktop Layout */}
+                            <div className="hidden lg:grid lg:grid-cols-12 gap-4 items-center">
+                                {/* Type Name */}
+                                <div className="col-span-2">
+                                    <span className={`inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-semibold ${theme.badge}`}>
                                         {scholarship.type_name}
                                     </span>
+                                    {scholarship.display_name && (
+                                        <p className="mt-1 text-xs text-muted-foreground">{scholarship.display_name}</p>
+                                    )}
+                                </div>
+
+                                {/* Tuition Coverage */}
+                                <div className="col-span-2 text-center">
+                                    <div className="inline-flex flex-col items-center justify-center bg-white dark:bg-slate-900 rounded-xl px-4 py-2 shadow-sm">
+                                        <span className="text-3xl font-bold text-primary">{scholarship.tuition_coverage_percentage}%</span>
+                                        <span className="text-xs text-muted-foreground">{t('tuitionCoverage')}</span>
+                                    </div>
+                                </div>
+
+                                {/* Service Fee */}
+                                <div className="col-span-2 text-center space-y-1">
+                                    <div className="font-bold text-lg text-foreground">
+                                        ${Number(scholarship.service_fee_usd).toLocaleString()}
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">
+                                        ¥{Number(scholarship.service_fee_cny).toLocaleString()}
+                                    </div>
+                                </div>
+
+                                {/* Benefits */}
+                                <div className="col-span-4">
+                                    <div className="flex flex-wrap gap-2">
+                                        {allBenefits.map((benefit, i) => (
+                                            <span
+                                                key={i}
+                                                className="inline-flex items-center gap-1 rounded-full bg-white dark:bg-slate-800 px-2.5 py-1 text-xs font-medium shadow-sm border"
+                                                title={benefit.text}
+                                            >
+                                                <span>{benefit.icon}</span>
+                                                <span className="max-w-[120px] truncate">{benefit.text}</span>
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Action */}
+                                <div className="col-span-2 text-center">
+                                    <Button
+                                        onClick={handleApply}
+                                        className="w-full bg-primary hover:bg-primary/90"
+                                        size="lg"
+                                    >
+                                        {t('applyNow')}
+                                    </Button>
                                 </div>
                             </div>
 
-                            <div className="px-6 space-y-6 flex-1 flex flex-col">
-                                {/* Coverage Box */}
-                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 text-center shadow-sm">
-                                    <div className="text-4xl font-bold text-primary mb-1">
-                                        {scholarship.tuition_coverage_percentage}%
+                            {/* Mobile Layout */}
+                            <div className="lg:hidden space-y-4">
+                                {/* Header: Type + Coverage */}
+                                <div className="flex items-start justify-between gap-4">
+                                    <div>
+                                        <span className={`inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-semibold ${theme.badge}`}>
+                                            {scholarship.type_name}
+                                        </span>
+                                        {scholarship.display_name && (
+                                            <p className="mt-1 text-xs text-muted-foreground">{scholarship.display_name}</p>
+                                        )}
                                     </div>
-                                    <p className="text-xs text-muted-foreground">{t('tuitionCoverage')}</p>
-                                </div>
-
-                                {/* Service Fee Box */}
-                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm">
-                                    <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
-                                        <DollarSign className="h-4 w-4 text-primary" />
-                                        {t('serviceFee')}
-                                    </h4>
-                                    <div className="space-y-2">
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-sm text-muted-foreground">USD:</span>
-                                            <span className="font-bold text-lg">${Number(scholarship.service_fee_usd).toLocaleString()}</span>
-                                        </div>
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-sm text-muted-foreground">CNY:</span>
-                                            <span className="font-semibold">¥{Number(scholarship.service_fee_cny).toLocaleString()}</span>
-                                        </div>
+                                    <div className="text-right">
+                                        <div className="text-3xl font-bold text-primary">{scholarship.tuition_coverage_percentage}%</div>
+                                        <div className="text-xs text-muted-foreground">{t('tuitionCoverage')}</div>
                                     </div>
                                 </div>
 
-                                {/* What's Included Box */}
-                                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm flex-1">
-                                    <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
+                                {/* Service Fee */}
+                                <div className="flex items-center justify-between bg-white dark:bg-slate-900 rounded-lg p-3 shadow-sm">
+                                    <div className="flex items-center gap-2">
+                                        <DollarSign className="h-5 w-5 text-primary" />
+                                        <span className="font-medium">{t('serviceFee')}</span>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="font-bold text-lg">${Number(scholarship.service_fee_usd).toLocaleString()}</div>
+                                        <div className="text-sm text-muted-foreground">¥{Number(scholarship.service_fee_cny).toLocaleString()}</div>
+                                    </div>
+                                </div>
+
+                                {/* Benefits */}
+                                <div>
+                                    <h4 className="flex items-center gap-2 text-sm font-semibold mb-2">
                                         <Check className="h-4 w-4 text-primary" />
                                         {t('whatsIncluded')}
                                     </h4>
-                                    <ul className="space-y-2">
-                                        {benefits.map((benefit, i) => (
-                                            <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                                                <Check className="h-3 w-3 text-primary mt-0.5 shrink-0" />
-                                                <span>{benefit}</span>
-                                            </li>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {allBenefits.map((benefit, i) => (
+                                            <div key={i} className="flex items-center gap-2 text-sm bg-white dark:bg-slate-900 rounded-lg px-3 py-2 shadow-sm">
+                                                <span>{benefit.icon}</span>
+                                                <span>{benefit.text}</span>
+                                            </div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
 
-                                {/* Apply Button */}
+                                {/* Action */}
                                 <Button
                                     onClick={handleApply}
-                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm mt-auto"
+                                    className="w-full bg-primary hover:bg-primary/90"
+                                    size="lg"
                                 >
                                     {t('applyNow')}
                                 </Button>

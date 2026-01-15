@@ -58,6 +58,7 @@ interface Program {
     custom_title: string;
     intake: string;
     language_id: string;
+    application_deadline: string;
     scholarship_chance: string;
     application_fee: number;
     service_fee: number;
@@ -205,49 +206,88 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         fetchUniversity();
     }, [fetchUniversity]);
 
-    const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadImage = async (file: File, bucket: string, path: string) => {
+        const supabase = createClient();
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${path}/${Date.now()}.${fileExt}`;
+
+        const { error: uploadError } = await supabase.storage
+            .from(bucket)
+            .upload(fileName, file);
+
+        if (uploadError) {
+            throw uploadError;
+        }
+
+        const { data } = supabase.storage
+            .from(bucket)
+            .getPublicUrl(fileName);
+
+        return data.publicUrl;
+    };
+
+    const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 toast.error('Please upload an image file');
                 return;
             }
-            // Validate file size (max 5MB)
             if (file.size > 5 * 1024 * 1024) {
                 toast.error('Image size should be less than 5MB');
                 return;
             }
-            // Create preview
+
+            // Show local preview immediately
             const reader = new FileReader();
             reader.onloadend = () => {
                 setLogoPreview(reader.result as string);
             };
             reader.readAsDataURL(file);
-            toast.success('Logo uploaded successfully');
+
+            try {
+                toast.loading('Uploading logo...');
+                const url = await uploadImage(file, 'universities', `logos/${id}`);
+                setFormData(prev => ({ ...prev, logo_url: url }));
+                toast.dismiss();
+                toast.success('Logo uploaded');
+            } catch (error) {
+                toast.dismiss();
+                toast.error('Failed to upload logo');
+                console.error(error);
+            }
         }
     };
 
-    const handleCoverPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCoverPhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 toast.error('Please upload an image file');
                 return;
             }
-            // Validate file size (max 5MB)
             if (file.size > 5 * 1024 * 1024) {
                 toast.error('Image size should be less than 5MB');
                 return;
             }
-            // Create preview
+
             const reader = new FileReader();
             reader.onloadend = () => {
                 setCoverPhotoPreview(reader.result as string);
             };
             reader.readAsDataURL(file);
-            toast.success('Cover photo uploaded successfully');
+
+            try {
+                toast.loading('Uploading cover...');
+                const url = await uploadImage(file, 'universities', `covers/${id}`);
+                setFormData(prev => ({ ...prev, cover_photo_url: url }));
+                toast.dismiss();
+                toast.success('Cover uploaded');
+            } catch (error) {
+                toast.dismiss();
+                toast.error('Failed to upload cover');
+                console.error(error);
+            }
         }
     };
 

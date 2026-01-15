@@ -45,9 +45,11 @@ interface Program {
     scholarship_chance: string;
     application_fee: number;
     service_fee: number;
-    deadline: string;
+    application_deadline: string;
     is_active: boolean;
     has_force_payment: boolean;
+    has_custom_requirements?: boolean;
+    gpa_requirement?: string;
 }
 
 interface University {
@@ -76,6 +78,8 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
     const [programCatalog, setProgramCatalog] = useState<Record<string, unknown>[]>([]);
     const [admissionRequirements, setAdmissionRequirements] = useState<Record<string, unknown>[]>([]);
     const [selectedRequirements, setSelectedRequirements] = useState<string[]>([]);
+    const [hasCustomRequirements, setHasCustomRequirements] = useState(program?.has_custom_requirements ?? false);
+    const [programRequirements, setProgramRequirements] = useState<Record<string, unknown>[]>([]);
     const [formState, setFormState] = useState({
         university_id: program?.university_id || universityId || "",
         program_catalog_id: program?.program_catalog_id || "",
@@ -88,9 +92,10 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         scholarship_chance: program?.scholarship_chance || "",
         application_fee: program?.application_fee || "",
         service_fee: program?.service_fee || "",
-        deadline: program?.deadline || "",
+        deadline: program?.application_deadline || "",
         is_active: program?.is_active ?? true,
         has_force_payment: program?.has_force_payment ?? false,
+        gpa_requirement: program?.gpa_requirement || "",
     });
 
     useEffect(() => {
@@ -107,9 +112,10 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 scholarship_chance: program.scholarship_chance || "",
                 application_fee: program.application_fee || "",
                 service_fee: program.service_fee || "",
-                deadline: program.deadline || "",
+                deadline: program.application_deadline || "",
                 is_active: program.is_active ?? true,
                 has_force_payment: program.has_force_payment ?? false,
+                gpa_requirement: program.gpa_requirement || "",
             });
         }
     }, [program]);
@@ -152,6 +158,11 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         const fetchData = async () => {
             const supabase = createClient();
 
+            // IMPORTANT: Reset ALL related state at the very beginning
+            setSelectedRequirements([]);
+            setProgramRequirements([]);
+            setHasCustomRequirements(false);
+
             // Fetch program catalog
             const { data: catalogData, error: catalogError } = await supabase
                 .from("program_catalog")
@@ -179,15 +190,77 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 setAdmissionRequirements(requirementsData.map((req: Record<string, unknown>) => ({ ...req, category: req.category || 'other' })));
             }
 
-            // If editing, fetch selected requirements
+            // If editing an existing program, fetch its requirements
             if (program?.id) {
-                const { data: selectedReqs } = await supabase
-                    .from("university_admission_requirements")
-                    .select("requirement_id")
-                    .eq("university_id", program.university_id);
+                console.log("[ProgramDialog] Fetching requirements for program:", program.id);
 
-                if (selectedReqs) {
-                    setSelectedRequirements(selectedReqs.map((r: { requirement_id: string }) => r.requirement_id));
+                // Fetch has_custom_requirements flag first
+                const { data: programData, error: programError } = await supabase
+                    .from("university_programs")
+                    .select("has_custom_requirements")
+                    .eq("id", program.id)
+                    .single();
+
+                if (programError) {
+                    console.error("[ProgramDialog] Error fetching program data:", programError);
+                }
+
+                const hasCustom = programData?.has_custom_requirements ?? false;
+                console.log("[ProgramDialog] has_custom_requirements:", hasCustom);
+                setHasCustomRequirements(hasCustom);
+
+                if (hasCustom) {
+                    console.log("[ProgramDialog] Loading PROGRAM-SPECIFIC requirements");
+
+                    // Fetch program-specific requirements
+                    const { data: progReqs, error: progReqsError } = await supabase
+                        .from("v_program_admission_requirements")
+                        .select("*")
+                        .eq("program_id", program.id)
+                        .order("category")
+                        .order("display_order");
+
+                    if (progReqsError) {
+                        console.error("[ProgramDialog] Error fetching program requirements:", progReqsError);
+                    }
+
+                    console.log("[ProgramDialog] Program requirements fetched:", progReqs?.length || 0, "items");
+
+                    if (progReqs && progReqs.length > 0) {
+                        setProgramRequirements(progReqs);
+
+                        // Extract ONLY the requirement_ids that exist (not null)
+                        // These are catalog-based requirements
+                        const catalogBasedIds = progReqs
+                            .filter((r: Record<string, unknown>) => r.requirement_id !== null && r.requirement_id !== undefined)
+                            .map((r: Record<string, unknown>) => r.requirement_id as string);
+
+                        console.log("[ProgramDialog] Catalog-based requirement IDs:", catalogBasedIds);
+                        setSelectedRequirements(catalogBasedIds);
+                    } else {
+                        console.log("[ProgramDialog] No program requirements found, keeping checkboxes empty");
+                        setSelectedRequirements([]);
+                    }
+                } else {
+                    console.log("[ProgramDialog] Loading UNIVERSITY-LEVEL requirements");
+
+                    // Fetch university requirements (for checkbox selection)
+                    const { data: selectedReqs, error: uniReqsError } = await supabase
+                        .from("university_admission_requirements")
+                        .select("requirement_id")
+                        .eq("university_id", program.university_id);
+
+                    if (uniReqsError) {
+                        console.error("[ProgramDialog] Error fetching university requirements:", uniReqsError);
+                    }
+
+                    console.log("[ProgramDialog] University requirements fetched:", selectedReqs?.length || 0, "items");
+
+                    if (selectedReqs && selectedReqs.length > 0) {
+                        const uniReqIds = selectedReqs.map((r: { requirement_id: string }) => r.requirement_id);
+                        console.log("[ProgramDialog] University requirement IDs:", uniReqIds);
+                        setSelectedRequirements(uniReqIds);
+                    }
                 }
             }
         };
@@ -491,15 +564,32 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                     </div>
                                 </div>
 
-                                <div className="grid gap-2">
-                                    <Label htmlFor="deadline">Application Deadline</Label>
-                                    <Input
-                                        id="deadline"
-                                        name="deadline"
-                                        type="date"
-                                        value={formState.deadline}
-                                        onChange={(e) => setFormState({ ...formState, deadline: e.target.value })}
-                                    />
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="deadline">Application Deadline</Label>
+                                        <Input
+                                            id="deadline"
+                                            name="deadline"
+                                            type="date"
+                                            value={formState.deadline}
+                                            onChange={(e) => setFormState({ ...formState, deadline: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="gpa_requirement">
+                                            Minimum GPA Requirement
+                                            <span className="text-muted-foreground text-xs ml-2">
+                                                (e.g., 2.0, 2.5, 3.0)
+                                            </span>
+                                        </Label>
+                                        <Input
+                                            id="gpa_requirement"
+                                            name="gpa_requirement"
+                                            value={formState.gpa_requirement}
+                                            onChange={(e) => setFormState({ ...formState, gpa_requirement: e.target.value })}
+                                            placeholder="e.g. 2.5"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -545,8 +635,110 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                     </TabsContent>
 
                     <TabsContent value="requirements" className="space-y-4">
-                        <div className="text-sm text-muted-foreground mb-4">
-                            Select admission requirements for this program. These will be displayed on the program page.
+                        {/* Custom Requirements Toggle */}
+                        <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/50">
+                            <div className="space-y-1">
+                                <Label htmlFor="custom-requirements-toggle" className="font-medium">
+                                    Use custom requirements for this program
+                                </Label>
+                                <p className="text-xs text-muted-foreground">
+                                    When enabled, this program will use its own requirements instead of university defaults.
+                                </p>
+                            </div>
+                            <Switch
+                                id="custom-requirements-toggle"
+                                checked={hasCustomRequirements}
+                                onCheckedChange={async (checked) => {
+                                    if (!program?.id) {
+                                        toast.error("Please save the program first");
+                                        return;
+                                    }
+                                    setIsLoading(true);
+                                    try {
+                                        const supabase = createClient();
+
+                                        // Update the database
+                                        const { error } = await supabase
+                                            .from("university_programs")
+                                            .update({ has_custom_requirements: checked })
+                                            .eq("id", program.id);
+
+                                        if (error) throw error;
+
+                                        // Update local state
+                                        setHasCustomRequirements(checked);
+
+                                        // IMPORTANT: Reload requirements based on new state
+                                        if (checked) {
+                                            // Now using custom requirements - load from program_admission_requirements
+                                            const { data: progReqs } = await supabase
+                                                .from("v_program_admission_requirements")
+                                                .select("*")
+                                                .eq("program_id", program.id)
+                                                .order("category")
+                                                .order("display_order");
+
+                                            if (progReqs && progReqs.length > 0) {
+                                                setProgramRequirements(progReqs);
+                                                const catalogBasedIds = progReqs
+                                                    .filter((r: Record<string, unknown>) => r.requirement_id !== null)
+                                                    .map((r: Record<string, unknown>) => r.requirement_id as string);
+                                                setSelectedRequirements(catalogBasedIds);
+                                            } else {
+                                                // No program requirements yet, clear selections
+                                                setProgramRequirements([]);
+                                                setSelectedRequirements([]);
+                                            }
+                                        } else {
+                                            // Switched back to university defaults - load from university_admission_requirements
+                                            setProgramRequirements([]);
+                                            const { data: uniReqs } = await supabase
+                                                .from("university_admission_requirements")
+                                                .select("requirement_id")
+                                                .eq("university_id", program.university_id);
+
+                                            if (uniReqs && uniReqs.length > 0) {
+                                                setSelectedRequirements(uniReqs.map((r: { requirement_id: string }) => r.requirement_id));
+                                            } else {
+                                                setSelectedRequirements([]);
+                                            }
+                                        }
+
+                                        toast.success(checked ? "Custom requirements enabled" : "Custom requirements disabled");
+                                    } catch (err) {
+                                        console.error(err);
+                                        toast.error("Failed to update");
+                                    } finally {
+                                        setIsLoading(false);
+                                    }
+                                }}
+                                disabled={!program?.id || isLoading}
+                            />
+                        </div>
+
+                        {/* Show current program requirements if custom is enabled */}
+                        {hasCustomRequirements && programRequirements.length > 0 && (
+                            <div className="p-4 border rounded-lg bg-purple-50 dark:bg-purple-900/20">
+                                <h4 className="font-medium text-purple-700 dark:text-purple-300 mb-2">
+                                    Current Custom Requirements ({programRequirements.length})
+                                </h4>
+                                <div className="space-y-2">
+                                    {programRequirements.map((req) => (
+                                        <div key={req.id as string} className="flex items-center gap-2 text-sm">
+                                            <CheckCircle className="h-4 w-4 text-purple-600" />
+                                            <span>{req.title as string}</span>
+                                            <Badge variant="outline" className="text-xs">{req.category as string}</Badge>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="text-sm text-muted-foreground">
+                            {hasCustomRequirements
+                                ? "Select requirements from the catalog below to add to this program's custom requirements."
+                                : "Select admission requirements for this program. These will be displayed on the program page."
+                            }
                         </div>
 
                         {/* Group requirements by category */}
@@ -603,7 +795,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                         <div className="flex justify-end pt-4">
                             <Button
                                 onClick={async () => {
-                                    if (!program?.university_id) {
+                                    if (!program?.id) {
                                         toast.error("Please save the program first before adding requirements");
                                         return;
                                     }
@@ -612,42 +804,74 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                     try {
                                         const supabase = createClient();
 
-                                        // Delete existing requirements
-                                        await supabase
-                                            .from("university_admission_requirements")
-                                            .delete()
-                                            .eq("university_id", program.university_id);
+                                        if (hasCustomRequirements) {
+                                            // Save to program_admission_requirements
+                                            // Delete existing program requirements
+                                            await supabase
+                                                .from("program_admission_requirements")
+                                                .delete()
+                                                .eq("program_id", program.id);
 
-                                        // Insert new requirements
-                                        if (selectedRequirements.length > 0) {
-                                            const { error: insertError } = await supabase
-                                                .from("university_admission_requirements")
-                                                .insert(
-                                                    selectedRequirements.map((reqId, index) => ({
-                                                        university_id: program.university_id,
+                                            // Insert new program requirements
+                                            if (selectedRequirements.length > 0) {
+                                                const insertData = selectedRequirements.map((reqId, index) => {
+                                                    const req = admissionRequirements.find(r => r.id === reqId);
+                                                    return {
+                                                        program_id: program.id,
                                                         requirement_id: reqId,
+                                                        category: (req?.category as string) || 'other',
                                                         is_required: true,
                                                         display_order: index
-                                                    }))
-                                                );
-                                            if (insertError) throw insertError;
+                                                    };
+                                                });
+                                                const { error: insertError } = await supabase
+                                                    .from("program_admission_requirements")
+                                                    .insert(insertData);
+                                                if (insertError) throw insertError;
+                                            }
+
+                                            // Refresh program requirements
+                                            const { data: newReqs } = await supabase
+                                                .from("v_program_admission_requirements")
+                                                .select("*")
+                                                .eq("program_id", program.id)
+                                                .order("category")
+                                                .order("display_order");
+                                            if (newReqs) setProgramRequirements(newReqs);
+                                        } else {
+                                            // Save to university_admission_requirements (original behavior)
+                                            await supabase
+                                                .from("university_admission_requirements")
+                                                .delete()
+                                                .eq("university_id", program.university_id);
+
+                                            if (selectedRequirements.length > 0) {
+                                                const { error: insertError } = await supabase
+                                                    .from("university_admission_requirements")
+                                                    .insert(
+                                                        selectedRequirements.map((reqId, index) => ({
+                                                            university_id: program.university_id,
+                                                            requirement_id: reqId,
+                                                            is_required: true,
+                                                            display_order: index
+                                                        }))
+                                                    );
+                                                if (insertError) throw insertError;
+                                            }
                                         }
 
                                         toast.success("Admission requirements updated");
                                     } catch (err) {
                                         console.error(err);
-                                        toast.error("Failed to save program");
                                         toast.error("Failed to update requirements");
                                     } finally {
                                         setIsLoading(false);
                                     }
-                                }
-                                }
-                                disabled={isLoading || !program?.university_id
-                                }
+                                }}
+                                disabled={isLoading || !program?.id}
                             >
                                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                Save Requirements
+                                {hasCustomRequirements ? "Save Program Requirements" : "Save Requirements"}
                             </Button>
                         </div>
                     </TabsContent>

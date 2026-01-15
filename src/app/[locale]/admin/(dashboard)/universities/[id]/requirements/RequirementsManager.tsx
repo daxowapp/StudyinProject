@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-
+import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
@@ -24,8 +24,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { CheckCircle2, Plus, Trash2, Edit2, Loader2, BookOpen, FileText, DollarSign, Info } from "lucide-react";
+import { CheckCircle2, Plus, Trash2, Edit2, Loader2, BookOpen, FileText, DollarSign, Info, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { createClient } from "@/lib/supabase/client";
 import {
     getUniversityRequirements,
     getRequirementsCatalog,
@@ -59,6 +60,14 @@ interface UniversityRequirement {
     display_order: number;
 }
 
+interface UniversityProgram {
+    id: string;
+    display_title: string;
+    program_title: string;
+    level: string;
+    has_custom_requirements: boolean;
+}
+
 export function RequirementsManager({ universityId }: RequirementsManagerProps) {
     const [loading, setLoading] = useState(true);
     const [universityRequirements, setUniversityRequirements] = useState<UniversityRequirement[]>([]);
@@ -69,6 +78,8 @@ export function RequirementsManager({ universityId }: RequirementsManagerProps) 
     const [customNote, setCustomNote] = useState("");
     const [isRequired, setIsRequired] = useState(true);
     const [selectedForBulk, setSelectedForBulk] = useState<Set<string>>(new Set());
+    const [programs, setPrograms] = useState<UniversityProgram[]>([]);
+    const [updatingProgram, setUpdatingProgram] = useState<string | null>(null);
 
     useEffect(() => {
         loadData();
@@ -77,16 +88,50 @@ export function RequirementsManager({ universityId }: RequirementsManagerProps) 
 
     const loadData = async () => {
         try {
+            const supabase = createClient();
+
             const [requirements, catalogData] = await Promise.all([
                 getUniversityRequirements(universityId),
                 getRequirementsCatalog()
             ]);
             setUniversityRequirements(requirements || []);
             setCatalog(catalogData || []);
+
+            // Fetch university programs
+            const { data: programsData } = await supabase
+                .from("v_university_programs_full")
+                .select("id, display_title, program_title, level, has_custom_requirements")
+                .eq("university_id", universityId)
+                .eq("is_active", true)
+                .order("display_title");
+
+            setPrograms(programsData || []);
         } catch (error: unknown) {
             toast.error("Error loading requirements: " + (error as Error).message);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleToggleProgramCustomRequirements = async (programId: string, enabled: boolean) => {
+        setUpdatingProgram(programId);
+        try {
+            const supabase = createClient();
+            const { error } = await supabase
+                .from("university_programs")
+                .update({ has_custom_requirements: enabled })
+                .eq("id", programId);
+
+            if (error) throw error;
+
+            setPrograms(prev => prev.map(p =>
+                p.id === programId ? { ...p, has_custom_requirements: enabled } : p
+            ));
+            toast.success(enabled ? "Custom requirements enabled" : "Custom requirements disabled");
+        } catch (error) {
+            toast.error("Failed to update: " + (error as Error).message);
+        } finally {
+            setUpdatingProgram(null);
         }
     };
 
@@ -300,6 +345,74 @@ export function RequirementsManager({ universityId }: RequirementsManagerProps) 
                     )}
                 </CardContent>
             </Card>
+
+            {/* Program-Specific Requirements */}
+            {programs.length > 0 && (
+                <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-2">
+                            <Sparkles className="h-5 w-5 text-purple-600" />
+                            <CardTitle>Program-Specific Requirements</CardTitle>
+                        </div>
+                        <CardDescription>
+                            Enable custom requirements for individual programs to override university defaults.
+                            Programs with custom requirements will display a &quot;Special Requirements&quot; badge.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="space-y-3">
+                            {programs.map((program) => (
+                                <div
+                                    key={program.id}
+                                    className={`flex items-center justify-between p-4 rounded-lg border ${program.has_custom_requirements
+                                            ? 'bg-purple-50 border-purple-200 dark:bg-purple-900/20 dark:border-purple-700'
+                                            : 'bg-card'
+                                        }`}
+                                >
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2">
+                                            <p className="font-medium truncate">
+                                                {program.display_title || program.program_title}
+                                            </p>
+                                            <Badge variant="outline" className="text-xs">
+                                                {program.level}
+                                            </Badge>
+                                            {program.has_custom_requirements && (
+                                                <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+                                                    Custom Requirements
+                                                </Badge>
+                                            )}
+                                        </div>
+                                        <p className="text-sm text-muted-foreground mt-1">
+                                            {program.has_custom_requirements
+                                                ? "This program uses its own custom requirements"
+                                                : "Using university default requirements"
+                                            }
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center gap-3 ml-4">
+                                        <Label htmlFor={`toggle-${program.id}`} className="text-sm">
+                                            Custom
+                                        </Label>
+                                        <Switch
+                                            id={`toggle-${program.id}`}
+                                            checked={program.has_custom_requirements}
+                                            onCheckedChange={(checked) =>
+                                                handleToggleProgramCustomRequirements(program.id, checked)
+                                            }
+                                            disabled={updatingProgram === program.id}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-4 p-3 rounded-lg bg-muted text-sm text-muted-foreground">
+                            <strong>Tip:</strong> After enabling custom requirements, go to the program&apos;s
+                            edit modal → Admission Requirements tab to select specific requirements for that program.
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
 
             {/* Add Requirements from Catalog */}
             <Card>

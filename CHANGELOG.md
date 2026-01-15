@@ -1,5 +1,41 @@
 # Changelog
 
+## [2026-01-15] - Program Menu Filtering & Translations Fix
+- Fixed program level filtering from navbar menu (clicking Bachelor/Master/PhD now correctly filters programs)
+- Changed "Non-Degree" menu item to "Chinese Courses" across all 9 languages
+- Added handling for both `level` (navbar) and `degree` (hero search) URL parameters
+
+## [2026-01-15] - CSCA Exam 2026 Update
+- Added new FAQ about 2026 intake exception: certificate of participation can be sufficient for some universities
+- Students can apply with proof of exam participation even without high scores during the transition period
+
+## [2026-01-15] - Scholarship Section Redesign & Apply Button Fix
+- Redesigned scholarship section with premium table-like row layout
+- Shows all information: type, coverage %, service fees (USD + CNY), benefits with icons
+- Apply Now button now scrolls to programs section on university page (no redirect)
+- Direct apply only when viewing a specific program
+
+## [2026-01-15] - Minimum GPA Requirement Field
+- Added customizable GPA requirement field to admin program dialog
+- Admins can now enter any minimum GPA value (e.g., 2.0, 2.5, 3.0) per program
+- GPA displayed in Key Facts card on program detail page when set
+- Added translations for "Minimum GPA" label in all 9 languages (EN, AR, TR, FA, ZH, TK, ES, FR, RU)
+
+## [2026-01-15] - Tuition Display Bug Fix
+- Fixed "Contact for pricing" always showing on universities page
+- Updated query to fetch actual tuition fees from programs
+- Universities now display real minimum tuition prices (e.g., ¥22,000 CNY)
+
+[2026-01-14] - Fixed Program Deadline - Fixed issue where program application deadline was not saving by adding missing column to database view. Also added countdown feature with translations and animation.
+[2026-01-14] - Performance Optimization - Fixed website slowness/crashes by migrating large university images from database Base64 strings to Supabase Storage.
+[2026-01-14] - Program Requirements Toggle - Added ability to toggle and manage program-specific admission requirements in Program Dialog.
+
+[2026-01-14] - Google Login Fix - Fixed Google OAuth login not working due to incorrect import paths. Auth pages were importing from a stub file (actions.ts) instead of the actual implementation (actions/index.ts). Fixed imports in login, register, forgot-password pages, LogoutButton, and Navbar components.
+
+[2026-01-14] - Chen Wei AI Chat Removal & Zoho SalesIQ Fix - Completely removed Chen Wei AI chat widget (deleted components/ai, lib/ai, api/ai folders). Fixed Zoho SalesIQ close button by adding proper z-index and pointer-events CSS rules.
+
+[2026-01-14] - Chat Widget Close Button Fix - Fixed issue where the chat widget could be opened but not closed. Added event.stopPropagation() and event.preventDefault() to prevent event bubbling issues.
+
 [2026-01-06] - Program Application Deadline Fix - Fixed bug where application deadline was not being saved when editing or adding programs in admin university panel.
 
 [2026-01-05] - Zoho PageSense & WhatsApp Footer Link - Added Zoho PageSense tracking script to layout and WhatsApp link to footer.

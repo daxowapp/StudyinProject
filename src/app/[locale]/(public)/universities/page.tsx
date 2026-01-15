@@ -49,15 +49,15 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Fetch universities with only needed columns
+    // Fetch universities with program tuition fees
     const { data: universities, error } = await supabase
         .from("universities")
         .select(`
-            id, slug, name, city, province, 
+            id, slug, name, city, province,
             logo_url, cover_photo_url, banner_url, ranking,
             university_type, institution_category, has_fast_track,
             features,
-            university_programs(count)
+            university_programs(tuition_fee, currency)
         `)
         .eq("portal_key", PORTAL_KEY)
         .order("name")
@@ -91,8 +91,21 @@ export default async function UniversitiesPage() {
     // Transform data for client component
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const formattedUniversities = (universities || []).map((uni: any) => {
-        // Get program count from joined data
-        const programCount = uni.university_programs?.[0]?.count || 0;
+        // Get programs array
+        const programs = uni.university_programs || [];
+        const programCount = programs.length;
+
+        // Calculate minimum tuition fee from programs
+        const programsWithFees = programs
+            .filter((p: any) => typeof p.tuition_fee === 'number' && p.tuition_fee > 0);
+
+        const minProgram = programsWithFees.length > 0
+            ? programsWithFees.reduce((min: any, p: any) => p.tuition_fee < min.tuition_fee ? p : min)
+            : null;
+
+        const minTuitionFee = minProgram?.tuition_fee || 0;
+        const programCurrency = minProgram?.currency || programs[0]?.currency || 'CNY';
+
         return {
             id: uni.id,
             slug: uni.slug || uni.id,
@@ -100,9 +113,9 @@ export default async function UniversitiesPage() {
             city: uni.city || "N/A",
             province: uni.province || "N/A",
             programs: programCount,
-            minTuition: "Contact for pricing",
-            minTuitionFee: 0,
-            currency: uni.currency || 'CNY',
+            minTuition: minTuitionFee > 0 ? `¥${minTuitionFee.toLocaleString()}/year` : "Contact for pricing",
+            minTuitionFee: minTuitionFee,
+            currency: programCurrency,
             badges: uni.features || [],
             logo: uni.logo_url,
             photo: uni.cover_photo_url || uni.banner_url,

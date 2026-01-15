@@ -384,6 +384,32 @@ html {
 }
 
 /* Zoho Chat Widget Customization */
-.zsiq_float, #zsiq_float {
-  bottom: 100px !important;
+.zsiq_float,
+#zsiq_float {
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure Zoho chat window is properly interactive */
+.zsiq_floatmain,
+#siqiframe,
+.siqembed,
+.zsiq_cnt {
+  z-index: 9999 !important;
+}
+
+/* Fix Zoho close button */
+.zsiq_flt_rel,
+.minimaze,
+.siq_bR {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure Zoho widget is above other elements */
+[class*="zsiq"],
+[id*="zsiq"],
+[class*="siq"] {
+  z-index: 9999 !important;
 }

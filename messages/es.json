@@ -48,8 +48,8 @@
                 "description": "Programas de investigación doctoral."
             },
             "nonDegree": {
-                "title": "Sin Título",
-                "description": "Cursos de idiomas y programas cortos."
+                "title": "Cursos de Chino",
+                "description": "Aprende el idioma y la cultura china."
             },
             "diploma": {
                 "title": "Diploma",
@@ -728,5 +728,21 @@
             "settings": "Configuración"
         },
         "copyright": "© 2024 Studyatchina. Todos los derechos reservados."
+    },
+    "ProgramDetail": {
+        "highlights": {
+            "title": "Aspectos Destacados del Programa",
+            "tuition": "Matrícula",
+            "duration": "Duración",
+            "language": "Idioma",
+            "level": "Nivel de Grado",
+            "gpaRequirement": "GPA Mínimo"
+        },
+        "deadline": {
+            "daysRemaining": "Quedan {days} días",
+            "endingToday": "¡La solicitud termina hoy!",
+            "closed": "Solicitud Cerrada",
+            "deadline": "Fecha Límite"
+        }
     }
 }

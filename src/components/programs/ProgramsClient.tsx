@@ -72,6 +72,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
     // Initialize filters from URL parameters
     useEffect(() => {
         const degree = searchParams.get('degree');
+        const level = searchParams.get('level'); // From navbar menu
         const field = searchParams.get('field');
         const city = searchParams.get('city');
         const language = searchParams.get('language');
@@ -81,16 +82,18 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
 
         const newFilters: Partial<FilterState> = {};
 
-        // Map degree level from hero search
-        if (degree) {
+        // Map degree level from hero search or navbar level
+        const levelParam = level || degree;
+        if (levelParam) {
             const levelMap: Record<string, string[]> = {
                 'bachelor': ['Bachelor', "Bachelor's", 'Bachelors', 'Undergraduate'],
                 'master': ['Master', "Master's", 'Masters', 'Postgraduate'],
                 'phd': ['PhD', 'Ph.D', 'Doctorate', 'Doctoral'],
                 'diploma': ['Diploma', 'Certificate'],
-                'language': ['Language Course', 'Language', 'Non-Degree']
+                'language': ['Language Course', 'Language', 'Non-Degree', 'Chinese'],
+                'non-degree': ['Language Course', 'Language', 'Non-Degree', 'Chinese']
             };
-            const possibleLevels = levelMap[degree];
+            const possibleLevels = levelMap[levelParam.toLowerCase()];
             if (possibleLevels) {
                 newFilters.levels = possibleLevels;
             }

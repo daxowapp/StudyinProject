@@ -48,8 +48,8 @@
                 "description": "博士研究课程。"
             },
             "nonDegree": {
-                "title": "非学历",
-                "description": "语言课程和短期项目。"
+                "title": "汉语课程",
+                "description": "学习汉语语言和文化。"
             },
             "diploma": {
                 "title": "文凭课程",
@@ -798,6 +798,7 @@
     "UniversitiesCard": {
         "programs": "课程",
         "tuitionFrom": "学费起",
+        "tuition": "学费",
         "viewUniversity": "查看大学",
         "viewPrograms": "查看课程"
     },
@@ -809,7 +810,14 @@
         "badges": {
             "intake": "入学: {intake}",
             "contactUniversity": "联系大学",
-            "fastTrack": "快速录取通道"
+            "fastTrack": "快速录取通道",
+            "specialRequirements": "特殊要求"
+        },
+        "deadline": {
+            "daysRemaining": "剩余 {days} 天",
+            "endingToday": "申请今日截止！",
+            "closed": "申请已截止",
+            "deadline": "截止日期"
         },
         "buttons": {
             "apply": "立即申请",
@@ -823,7 +831,8 @@
             "tuition": "学费",
             "duration": "学制",
             "language": "语言",
-            "level": "学位等级"
+            "level": "学位等级",
+            "gpaRequirement": "最低GPA要求"
         },
         "overview": {
             "title": "课程概览",

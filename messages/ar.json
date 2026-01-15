@@ -48,8 +48,8 @@
                 "description": "برامج البحث الدكتوراه."
             },
             "nonDegree": {
-                "title": "غير درجة",
-                "description": "دورات اللغة والبرامج قصيرة المدى."
+                "title": "دورات اللغة الصينية",
+                "description": "تعلم اللغة والثقافة الصينية."
             },
             "diploma": {
                 "title": "دبلوم",
@@ -796,6 +796,7 @@
     "UniversitiesCard": {
         "programs": "البرامج",
         "tuitionFrom": "الرسوم من",
+        "tuition": "الرسوم الدراسية",
         "viewUniversity": "عرض الجامعة",
         "viewPrograms": "عرض البرامج"
     },
@@ -807,7 +808,14 @@
         "badges": {
             "intake": "الدفعة: {intake}",
             "contactUniversity": "تواصل مع الجامعة",
-            "fastTrack": "قبول سريع"
+            "fastTrack": "قبول سريع",
+            "specialRequirements": "متطلبات خاصة"
+        },
+        "deadline": {
+            "daysRemaining": "متبقي {days} يوم",
+            "endingToday": "يغلق التقديم اليوم!",
+            "closed": "التقديم مغلق",
+            "deadline": "الموعد النهائي"
         },
         "buttons": {
             "apply": "قدم الآن",
@@ -821,7 +829,8 @@
             "tuition": "الرسوم الدراسية",
             "duration": "المدة",
             "language": "اللغة",
-            "level": "المستوى الدراسي"
+            "level": "المستوى الدراسي",
+            "gpaRequirement": "الحد الأدنى للمعدل"
         },
         "overview": {
             "title": "نظرة عامة على البرنامج",

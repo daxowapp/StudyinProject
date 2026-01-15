@@ -1,6 +1,5 @@
 import { ProgramsClient } from "@/components/programs/ProgramsClient";
 import { ProgramsWrapper } from "@/components/programs/ProgramsWrapper";
-import { AISearchBar } from "@/components/ai/AISearchBar";
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
@@ -127,16 +126,7 @@ export default async function ProgramsPage({
                             {t('subtitle', { count: formattedPrograms.length })}
                         </p>
 
-                        {/* AI-Powered Search Bar */}
-                        <div className="max-w-2xl mx-auto">
-                            <AISearchBar
-                                placeholder="Try: 'Master's in Computer Science under 30,000 RMB'"
-                                className="shadow-lg"
-                            />
-                            <p className="text-xs text-muted-foreground mt-3">
-                                ✨ AI-powered search - describe what you&apos;re looking for in your own words
-                            </p>
-                        </div>
+
                     </div>
                 </div>
             </div>

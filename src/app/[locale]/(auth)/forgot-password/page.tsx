@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { resetPassword } from "@/app/[locale]/(auth)/actions";
+import { resetPassword } from "@/app/[locale]/(auth)/actions/index";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { useState } from "react";
 import { toast } from "sonner";

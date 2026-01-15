@@ -48,8 +48,8 @@
                 "description": "Doktora araştırma programları."
             },
             "nonDegree": {
-                "title": "Derecesiz",
-                "description": "Dil kursları ve kısa dönem programlar."
+                "title": "Çince Kursları",
+                "description": "Çince dili ve kültürünü öğrenin."
             },
             "diploma": {
                 "title": "Diploma",
@@ -926,6 +926,7 @@
     "UniversitiesCard": {
         "programs": "Programlar",
         "tuitionFrom": "Ücret Başlangıcı",
+        "tuition": "Öğrenim Ücreti",
         "viewUniversity": "Üniversiteyi Gör",
         "viewPrograms": "Programları Gör"
     },
@@ -951,7 +952,8 @@
             "tuition": "Öğrenim Ücreti",
             "duration": "Süre",
             "language": "Dil",
-            "level": "Derece Seviyesi"
+            "level": "Derece Seviyesi",
+            "gpaRequirement": "Minimum Not Ortalaması"
         },
         "overview": {
             "title": "Program Genel Bakış",

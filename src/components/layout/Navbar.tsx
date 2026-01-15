@@ -35,7 +35,7 @@ import {
 import { useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
-import { signout } from "@/app/[locale]/(auth)/actions"; // Corrected path based on assumption, will verify
+import { signout } from "@/app/[locale]/(auth)/actions/index";
 import { CurrencySelector } from "@/components/currency/CurrencySelector";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";

@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { loginWithGoogle } from "@/app/[locale]/(auth)/actions";
+import { loginWithGoogle } from "@/app/[locale]/(auth)/actions/index";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { createClient } from "@/lib/supabase/client";
 
@@ -25,7 +25,7 @@ function LoginContent() {
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
     const searchParams = useSearchParams();
     const returnUrl = searchParams.get('returnUrl') || '/dashboard';
-    
+
     // Ensure returnUrl has locale prefix
     const getLocalizedUrl = (url: string) => {
         if (url.startsWith(`/${locale}/`) || url.startsWith(`/${locale}`)) {

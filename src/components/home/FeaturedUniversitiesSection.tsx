@@ -211,9 +211,11 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 )}
                                                 {uni.minTuitionFee !== undefined && (
                                                     <div className="flex items-center justify-between text-sm">
-                                                        <span className="text-muted-foreground">{t('tuitionFrom')}</span>
+                                                        <span className="text-muted-foreground">
+                                                            {Number(uni.minTuitionFee) > 0 ? t('tuitionFrom') : t('tuition')}
+                                                        </span>
                                                         <span className="font-semibold">
-                                                            <Price amount={uni.minTuitionFee} currency={uni.currency || 'CNY'} />
+                                                            <Price amount={Number(uni.minTuitionFee)} currency={uni.currency || 'CNY'} />
                                                         </span>
                                                     </div>
                                                 )}

@@ -48,8 +48,8 @@
                 "description": "Doktorlyk barlag maksatnamalary."
             },
             "nonDegree": {
-                "title": "Derejesiz",
-                "description": "Dil kurslary we gysga möhletli maksatnamalar."
+                "title": "Hytaý dili kurslary",
+                "description": "Hytaý dilini we medeniýetini öwreniň."
             },
             "diploma": {
                 "title": "Diplom",
@@ -798,6 +798,7 @@
     "UniversitiesCard": {
         "programs": "Maksatnamalar",
         "tuitionFrom": "Okuw Tölegi -dan",
+        "tuition": "Okuw Tölegi",
         "viewUniversity": "Uniwersiteti Gör",
         "viewPrograms": "Maksatnamalary Gör"
     },
@@ -809,7 +810,14 @@
         "badges": {
             "intake": "Kabul Ediş: {intake}",
             "contactUniversity": "Uniwersitet Bilen Habarlaş",
-            "fastTrack": "Tizleşdirilen Kabul Ediş"
+            "fastTrack": "Tizleşdirilen Kabul Ediş",
+            "specialRequirements": "Ýörite Talaplar"
+        },
+        "deadline": {
+            "daysRemaining": "{days} gün galdy",
+            "endingToday": "Kabul ediş şu gün ýapylýar!",
+            "closed": "Kabul Ediş Ýapyk",
+            "deadline": "Möhlet"
         },
         "buttons": {
             "apply": "Häzir Ýüz Tut",
@@ -823,7 +831,8 @@
             "tuition": "Okuw Tölegi",
             "duration": "Möhlet",
             "language": "Dil",
-            "level": "Dereje"
+            "level": "Dereje",
+            "gpaRequirement": "Minimum GPA"
         },
         "overview": {
             "title": "Maksatnama Umumy Syn",

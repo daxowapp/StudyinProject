@@ -58,6 +58,7 @@ export async function createProgram(formData: FormData) {
     const service_fee = parseInt(formData.get("service_fee") as string) || 0;
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
+    const gpa_requirement = formData.get("gpa_requirement") as string;
 
     const { error } = await supabase.from("university_programs").insert({
         university_id,
@@ -74,6 +75,7 @@ export async function createProgram(formData: FormData) {
         service_fee,
         force_payment,
         application_deadline: deadline || null,
+        gpa_requirement: gpa_requirement || null,
         portal_key: PORTAL_KEY,
     });
 
@@ -101,6 +103,7 @@ export async function updateProgram(id: string, formData: FormData) {
     const service_fee = parseInt(formData.get("service_fee") as string) || 0;
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
+    const gpa_requirement = formData.get("gpa_requirement") as string;
 
     const { error } = await supabase
         .from("university_programs")
@@ -119,6 +122,7 @@ export async function updateProgram(id: string, formData: FormData) {
             service_fee,
             force_payment,
             application_deadline: deadline || null,
+            gpa_requirement: gpa_requirement || null,
         })
         .eq("id", id);
 

@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signup, loginWithGoogle } from "@/app/[locale]/(auth)/actions";
+import { signup, loginWithGoogle } from "@/app/[locale]/(auth)/actions/index";
 import { SubmitButton } from "@/components/ui/submit-button";
 
 import { useState } from "react";

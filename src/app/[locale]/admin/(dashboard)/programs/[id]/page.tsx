@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, ClipboardList, Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -185,6 +185,7 @@ export default function EditProgramPage({ params }: { params: Promise<{ id: stri
             <Tabs defaultValue="details" className="space-y-6">
                 <TabsList>
                     <TabsTrigger value="details">Details</TabsTrigger>
+                    <TabsTrigger value="requirements">Admission Requirements</TabsTrigger>
                     <TabsTrigger value="translations">Translations</TabsTrigger>
                 </TabsList>
 
@@ -281,6 +282,40 @@ export default function EditProgramPage({ params }: { params: Promise<{ id: stri
                             <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem("career_prospects")}>
                                 Add Career Prospect
                             </Button>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Requirements Tab */}
+                <TabsContent value="requirements">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <ClipboardList className="h-5 w-5" />
+                                Admission Requirements
+                            </CardTitle>
+                            <CardDescription>
+                                Manage custom admission requirements for this program.
+                                By default, programs inherit requirements from their university.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="p-4 bg-muted/50 rounded-lg">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Star className="h-4 w-4 text-purple-500" />
+                                    <span className="font-medium">Program-Specific Requirements</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground mb-4">
+                                    Some programs have special requirements that differ from the university&apos;s standard requirements.
+                                    You can enable custom requirements for this program and manage them separately.
+                                </p>
+                                <Link href={`/admin/programs/${id}/requirements`}>
+                                    <Button>
+                                        <ClipboardList className="h-4 w-4 mr-2" />
+                                        Manage Requirements
+                                    </Button>
+                                </Link>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>

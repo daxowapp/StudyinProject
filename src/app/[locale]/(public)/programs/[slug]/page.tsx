@@ -1,4 +1,7 @@
+import { DeadlineCountdown } from "@/components/programs/DeadlineCountdown";
 import { ProgramRequirements } from "@/components/programs/ProgramRequirements";
+
+
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { AccommodationSection } from "@/components/universities/AccommodationSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -91,7 +94,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
     }
 
     // Fetch all related data in parallel for better performance
-    const [translationResult, universityResult, accommodationResult, requirementsResult] = await Promise.all([
+    const [translationResult, universityResult, accommodationResult] = await Promise.all([
         // Program translation
         supabase
             .from("program_translations")
@@ -111,23 +114,37 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             .select("*")
             .eq("university_id", program.university_id)
             .order("display_order", { ascending: true }),
-        // Admission requirements
-        supabase
-            .from("v_university_admission_requirements")
-            .select("*")
-            .eq("university_id", program.university_id)
-            .in("requirement_type", [program.level.toLowerCase(), "all"])
-            .order("category")
-            .order("display_order")
     ]);
 
     const translation = translationResult.data;
     const university = universityResult.data;
     const accommodationTypes = accommodationResult.data;
-    const requirements = requirementsResult.data;
+
+    // Fetch requirements - check if program has custom requirements
+    let requirements;
+    if (program.has_custom_requirements) {
+        // Fetch program-specific requirements (overrides university defaults)
+        const { data } = await supabase
+            .from("v_program_admission_requirements")
+            .select("*")
+            .eq("program_id", program.id)
+            .order("category")
+            .order("display_order");
+        requirements = data;
+    } else {
+        // Fetch university-level requirements (default behavior)
+        const { data } = await supabase
+            .from("v_university_admission_requirements")
+            .select("*")
+            .eq("university_id", program.university_id)
+            .in("requirement_type", [program.level.toLowerCase(), "all"])
+            .order("category")
+            .order("display_order");
+        requirements = data;
+    }
 
     // Group requirements by category
-    const groupedRequirements = requirements?.reduce((acc: Record<string, { name: string; required: boolean; note: string }[]>, req: { category: string; title: string; is_required: boolean; custom_note: string; description: string }) => {
+    const groupedRequirements = requirements?.reduce((acc: Record<string, { name: string; required: boolean; note: string }[]>, req: { category: string; title: string; is_required: boolean; custom_note?: string; description: string }) => {
         if (!acc[req.category]) {
             acc[req.category] = [];
         }
@@ -156,6 +173,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         language: program.language_name || "Not specified",
         intake: program.intake,
         deadline: program.intake,
+        application_deadline: program.application_deadline,
         tuition: `${program.tuition_fee} ${program.currency}/Year`,
         tuition_fee: program.tuition_fee, // Raw number for Price component
         currency: program.currency || 'CNY', // Currency code
@@ -188,6 +206,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             { q: t('faq.workQ'), a: t('faq.workA') },
             { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
         ],
+        gpa_requirement: program.gpa_requirement,
     };
 
     return (
@@ -278,6 +297,12 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                     {t('badges.fastTrack')}
                                 </Badge>
                             )}
+                            {program.has_custom_requirements && (
+                                <Badge className="px-4 py-2 text-sm bg-purple-500/10 text-purple-600 border-purple-500/20">
+                                    <Star className="h-4 w-4 mr-2" />
+                                    {t('badges.specialRequirements') || 'Special Requirements'}
+                                </Badge>
+                            )}
                         </div>
 
                         {/* CTA Buttons */}
@@ -361,6 +386,17 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                             <p className="text-xl font-bold">{programData.level}</p>
                                         </div>
                                     </div>
+                                    {programData.gpa_requirement && (
+                                        <div className="flex items-start gap-4">
+                                            <div className="h-12 w-12 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
+                                                <GraduationCap className="h-6 w-6 text-purple-600" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-muted-foreground">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
+                                                <p className="text-xl font-bold">{programData.gpa_requirement}</p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </CardContent>
                         </Card>
@@ -465,6 +501,9 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                     {/* Sidebar */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 space-y-6">
+                            {/* Deadline Countdown */}
+                            <DeadlineCountdown deadline={programData.application_deadline} />
+
                             {/* Quick Apply Card */}
                             <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/5 to-primary/10">
                                 <CardHeader>

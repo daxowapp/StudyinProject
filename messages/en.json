@@ -48,8 +48,8 @@
                 "description": "Doctoral research programs."
             },
             "nonDegree": {
-                "title": "Non-Degree",
-                "description": "Language courses and short-term programs."
+                "title": "Chinese Courses",
+                "description": "Learn Chinese language and culture."
             },
             "diploma": {
                 "title": "Diploma",
@@ -255,6 +255,10 @@
                 "q4": {
                     "q": "What is a good score?",
                     "a": "Scoring varies by university, but generally:<br/>- <strong>Top Tier (C9 League):</strong> Math &gt; 85, Physics/Chem &gt; 80<br/>- <strong>First Class Unis:</strong> Math &gt; 75, Physics/Chem &gt; 70<br/>- <strong>General Unis:</strong> Math &gt; 60"
+                },
+                "q5": {
+                    "q": "Is a high score mandatory for 2026 intake?",
+                    "a": "<strong>Important for 2026 Applicants:</strong> For the 2026 intake specifically, many universities are accepting just the <strong>certificate of participation</strong> in the CSCA exam, even without a high score. This transitional policy allows students to apply with proof of exam participation while the system is being fully implemented. However, achieving a good score still improves your chances, especially at competitive universities. Contact us or check with your target university for their specific 2026 requirements."
                 },
                 "comparison": {
                     "title": "CSCA vs. HSK",
@@ -795,6 +799,7 @@
     "UniversitiesCard": {
         "programs": "Programs",
         "tuitionFrom": "Tuition From",
+        "tuition": "Tuition",
         "viewUniversity": "View University",
         "viewPrograms": "View Programs"
     },
@@ -806,7 +811,14 @@
         "badges": {
             "intake": "Intake: {intake}",
             "contactUniversity": "Contact University",
-            "fastTrack": "Fast Track Acceptance"
+            "fastTrack": "Fast Track Acceptance",
+            "specialRequirements": "Special Requirements"
+        },
+        "deadline": {
+            "daysRemaining": "{days} days remaining",
+            "endingToday": "Application closes today!",
+            "closed": "Application Closed",
+            "deadline": "Deadline"
         },
         "buttons": {
             "apply": "Apply Now",
@@ -820,7 +832,8 @@
             "tuition": "Tuition Fee",
             "duration": "Duration",
             "language": "Language",
-            "level": "Degree Level"
+            "level": "Degree Level",
+            "gpaRequirement": "Minimum GPA"
         },
         "overview": {
             "title": "Program Overview",

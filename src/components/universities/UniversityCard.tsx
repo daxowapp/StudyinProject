@@ -124,7 +124,8 @@ export function UniversityCard({ university }: UniversityCardProps) {
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <DollarSign className="h-3 w-3" /> {t('tuitionFrom')}
+                            <DollarSign className="h-3 w-3" />
+                            {university.minTuitionFee && university.minTuitionFee > 0 ? t('tuitionFrom') : t('tuition')}
                         </span>
                         <span className="font-semibold text-primary">
                             {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (

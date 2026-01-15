@@ -48,8 +48,8 @@
                 "description": "Programmes de recherche doctorale."
             },
             "nonDegree": {
-                "title": "Non-Diplômant",
-                "description": "Cours de langue et programmes courts."
+                "title": "Cours de Chinois",
+                "description": "Apprenez la langue et la culture chinoises."
             },
             "diploma": {
                 "title": "Diplôme",
@@ -697,5 +697,21 @@
             "settings": "Paramètres"
         },
         "copyright": "© 2024 Studyatchina. Tous droits réservés."
+    },
+    "ProgramDetail": {
+        "highlights": {
+            "title": "Points Forts du Programme",
+            "tuition": "Frais de Scolarité",
+            "duration": "Durée",
+            "language": "Langue",
+            "level": "Niveau de Diplôme",
+            "gpaRequirement": "GPA Minimum"
+        },
+        "deadline": {
+            "daysRemaining": "{days} jours restants",
+            "endingToday": "La candidature se termine aujourd'hui !",
+            "closed": "Candidature Fermée",
+            "deadline": "Date Limite"
+        }
     }
 }

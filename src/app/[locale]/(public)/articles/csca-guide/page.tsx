@@ -270,6 +270,12 @@ export default function CSCAGuidePage() {
                                         <div dangerouslySetInnerHTML={{ __html: t.raw('sections.faq.q4.a') }} />
                                     </AccordionContent>
                                 </AccordionItem>
+                                <AccordionItem value="item-5">
+                                    <AccordionTrigger className="text-start">{t('sections.faq.q5.q')}</AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground leading-relaxed">
+                                        <div dangerouslySetInnerHTML={{ __html: t.raw('sections.faq.q5.a') }} />
+                                    </AccordionContent>
+                                </AccordionItem>
                             </Accordion>
                         </section>
 
