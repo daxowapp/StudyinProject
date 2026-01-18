@@ -38,9 +38,10 @@ interface Program {
 interface ProgramsClientProps {
     programs: Program[];
     universityMap?: Record<string, string>;
+    initialFilters?: Partial<FilterState>;
 }
 
-export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientProps) {
+export function ProgramsClient({ programs, universityMap = {}, initialFilters = {} }: ProgramsClientProps) {
     const t = useTranslations('Programs');
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
@@ -58,6 +59,7 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
         duration: 'all',
         scholarship: false,
         university: 'all',
+        ...initialFilters
     });
 
     // Extract unique cities and universities
@@ -71,6 +73,9 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
 
     // Initialize filters from URL parameters
     useEffect(() => {
+        // If initialFilters are provided and we shouldn't sync, we can skip. 
+        // But usually we want URL sync.
+
         const degree = searchParams.get('degree');
         const level = searchParams.get('level'); // From navbar menu
         const field = searchParams.get('field');
@@ -169,10 +174,10 @@ export function ProgramsClient({ programs, universityMap = {} }: ProgramsClientP
                 if (!matchesSearch) return false;
             }
 
-            // Level filter - case insensitive matching
+            // Level filter - case insensitive matching and partial match
             if (filters.levels.length > 0) {
                 const hasMatchingLevel = filters.levels.some(filterLevel =>
-                    program.level.toLowerCase() === filterLevel.toLowerCase()
+                    program.level?.toLowerCase().includes(filterLevel.toLowerCase())
                 );
                 if (!hasMatchingLevel) return false;
             }

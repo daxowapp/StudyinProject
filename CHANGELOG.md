@@ -1,5 +1,8 @@
 # Changelog
 
+## [2026-01-18] - Translation Fixes
+- Added missing `UniversityScholarships` translations (`scholarshipType`, `action`) for English, Turkish, and Arabic.
+
 ## [2026-01-15] - Program Menu Filtering & Translations Fix
 - Fixed program level filtering from navbar menu (clicking Bachelor/Master/PhD now correctly filters programs)
 - Changed "Non-Degree" menu item to "Chinese Courses" across all 9 languages

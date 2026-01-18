@@ -22,7 +22,7 @@ async function listColumns(table: string) {
 
     if (data && data.length > 0) {
         console.log(`\nColumns for '${table}':`);
-        console.log(Object.keys(data[0]).filter(k => k.includes('url') || k.includes('image') || k.includes('photo') || k.includes('avatar')).join(', '));
+        console.log(Object.keys(data[0]).join(', '));
     } else {
         console.log(`\n'${table}' is empty or no access.`);
     }
@@ -30,6 +30,8 @@ async function listColumns(table: string) {
 
 async function main() {
     await listColumns('university_scholarships');
+    await listColumns('university_programs'); // check for gpa_requirement
+    await listColumns('v_university_programs_full'); // check if view has score columns
     await listColumns('articles');
     await listColumns('profiles'); // check if it exists
     await listColumns('users'); // not exposed strictly via postgrest usually

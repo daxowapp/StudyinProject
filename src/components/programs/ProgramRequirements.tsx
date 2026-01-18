@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, FileText, DollarSign, Info } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
+
 interface RequirementItem {
     name: string;
     note?: string;
@@ -22,9 +24,14 @@ interface ProgramRequirementsData {
 
 interface ProgramRequirementsProps {
     requirements: ProgramRequirementsData;
+    scores?: {
+        ielts?: number | null;
+        toefl?: number | null;
+        duolingo?: number | null;
+    };
 }
 
-export function ProgramRequirements({ requirements }: ProgramRequirementsProps) {
+export function ProgramRequirements({ requirements, scores }: ProgramRequirementsProps) {
     const renderRequirement = (req: RequirementItem | string) => {
         if (typeof req === 'string') return req;
         return (
@@ -71,6 +78,32 @@ export function ProgramRequirements({ requirements }: ProgramRequirementsProps) 
                                             {renderRequirement(req)}
                                         </li>
                                     ))}
+                                    {/* Language Scores if provided */}
+                                    {(scores?.ielts || scores?.toefl || scores?.duolingo) && (
+                                        <li className="flex items-start gap-2 mt-3 pt-3 border-t border-dashed">
+                                            <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                            <div>
+                                                <span className="font-medium">Language Proficiency Score</span>
+                                                <div className="flex flex-wrap gap-2 mt-1.5">
+                                                    {scores.ielts && (
+                                                        <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 text-xs py-0 h-5">
+                                                            IELTS: {scores.ielts}
+                                                        </Badge>
+                                                    )}
+                                                    {scores.toefl && (
+                                                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs py-0 h-5">
+                                                            TOEFL: {scores.toefl}
+                                                        </Badge>
+                                                    )}
+                                                    {scores.duolingo && (
+                                                        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs py-0 h-5">
+                                                            Duolingo: {scores.duolingo}
+                                                        </Badge>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                         )}

@@ -389,39 +389,40 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                             <p className="text-xl font-bold">{programData.level}</p>
                                         </div>
                                     </div>
-                                    {programData.gpa_requirement && (
+                                    {(program as any).gpa_requirement && (
                                         <div className="flex items-start gap-4">
                                             <div className="h-12 w-12 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
                                                 <GraduationCap className="h-6 w-6 text-purple-600" />
                                             </div>
                                             <div>
                                                 <p className="text-sm text-muted-foreground">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
-                                                <p className="text-xl font-bold">{programData.gpa_requirement}</p>
+                                                <p className="text-xl font-bold">{(program as any).gpa_requirement}</p>
                                             </div>
                                         </div>
                                     )}
                                     {/* Language Scores */}
-                                    {(programData.score_ielts || programData.score_toefl || programData.score_duolingo) && (
+                                    {/* Language Scores - Cast to any to avoid TS errors until types are updated */}
+                                    {((program as any).score_ielts || (program as any).score_toefl || (program as any).score_duolingo) && (
                                         <div className="flex items-start gap-4">
                                             <div className="h-12 w-12 rounded-lg bg-pink-500/10 flex items-center justify-center shrink-0">
                                                 <BookOpen className="h-6 w-6 text-pink-600" />
                                             </div>
                                             <div>
-                                                <p className="text-sm text-muted-foreground">{t('highlights.languageRequirements') || 'Language Score'}</p>
+                                                <p className="text-sm text-muted-foreground">{t('highlights.languageRequirements') || 'Language Requirements'}</p>
                                                 <div className="flex flex-wrap gap-2 mt-1">
-                                                    {programData.score_ielts && (
-                                                        <Badge variant="outline" className="bg-background text-xs">
-                                                            IELTS: {programData.score_ielts}
+                                                    {(program as any).score_ielts && (
+                                                        <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 text-xs">
+                                                            IELTS: {(program as any).score_ielts}
                                                         </Badge>
                                                     )}
-                                                    {programData.score_toefl && (
-                                                        <Badge variant="outline" className="bg-background text-xs">
-                                                            TOEFL: {programData.score_toefl}
+                                                    {(program as any).score_toefl && (
+                                                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
+                                                            TOEFL: {(program as any).score_toefl}
                                                         </Badge>
                                                     )}
-                                                    {programData.score_duolingo && (
-                                                        <Badge variant="outline" className="bg-background text-xs">
-                                                            Duolingo: {programData.score_duolingo}
+                                                    {(program as any).score_duolingo && (
+                                                        <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs">
+                                                            Duolingo: {(program as any).score_duolingo}
                                                         </Badge>
                                                     )}
                                                 </div>
@@ -472,7 +473,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <ProgramRequirements requirements={programData.requirements} />
+                                <ProgramRequirements
+                                    requirements={programData.requirements}
+                                    scores={{
+                                        ielts: (program as any).score_ielts,
+                                        toefl: (program as any).score_toefl,
+                                        duolingo: (program as any).score_duolingo
+                                    }}
+                                />
                             </CardContent>
                         </Card>
 

@@ -1090,6 +1090,8 @@
         "tuitionCoverage": "Öğrenim Karşılama",
         "serviceFee": "Hizmet Ücreti",
         "whatsIncluded": "Neler Dahil",
+        "scholarshipType": "Burs Türü",
+        "action": "İşlem",
         "applyNow": "Şimdi Başvur",
         "howItWorks": {
             "title": "Burslar Nasıl Çalışır",

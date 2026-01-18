@@ -49,7 +49,15 @@ export async function generateMetadata({
 export default async function ProgramsPage({
     searchParams,
 }: {
-    searchParams: Promise<{ university?: string }>;
+    searchParams: Promise<{
+        university?: string;
+        level?: string;
+        degree?: string;
+        field?: string;
+        city?: string;
+        language?: string;
+        scholarship?: string;
+    }>;
 }) {
     const supabase = await createClient();
     const t = await getTranslations('Programs');
@@ -132,7 +140,36 @@ export default async function ProgramsPage({
             </div>
 
             <ProgramsWrapper>
-                <ProgramsClient programs={formattedPrograms} universityMap={universityMap} />
+                <ProgramsClient
+                    programs={formattedPrograms}
+                    universityMap={universityMap}
+                    initialFilters={{
+                        levels: (() => {
+                            const levelParam = params.level || params.degree;
+                            if (!levelParam) return [];
+                            const levelMap: Record<string, string[]> = {
+                                'bachelor': ['Bachelor', "Bachelor's", 'Bachelors', 'Undergraduate'],
+                                'master': ['Master', "Master's", 'Masters', 'Postgraduate'],
+                                'phd': ['PhD', 'Ph.D', 'Doctorate', 'Doctoral'],
+                                'diploma': ['Diploma', 'Certificate'],
+                                'language': ['Language Course', 'Language', 'Non-Degree', 'Chinese'],
+                                'non-degree': ['Language Course', 'Language', 'Non-Degree', 'Chinese']
+                            };
+                            return levelMap[levelParam.toLowerCase()] || [];
+                        })(),
+                        field: params.field !== 'any' ? params.field : undefined,
+                        cities: params.city && params.city !== 'any' ? [params.city.charAt(0).toUpperCase() + params.city.slice(1)] : [],
+                        languages: (() => {
+                            if (!params.language || params.language === 'any') return [];
+                            if (params.language === 'english') return ['English'];
+                            if (params.language === 'chinese') return ['Chinese'];
+                            if (params.language === 'both') return ['English', 'Chinese'];
+                            return [];
+                        })(),
+                        university: params.university || 'all',
+                        scholarship: params.scholarship === 'available' || params.scholarship === 'full' || params.scholarship === 'partial'
+                    }}
+                />
             </ProgramsWrapper>
 
             <CscaCtaSection />

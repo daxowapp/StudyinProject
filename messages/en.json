@@ -1442,5 +1442,27 @@
         "takeAction": "Take Action",
         "attachment": "attachment",
         "attachments": "attachments"
+    },
+    "UniversityScholarships": {
+        "options": "Available Options",
+        "discover": "Discover",
+        "explore": "Explore Scholarships",
+        "description": "Find the financial aid option that best suits your needs.",
+        "viewAll": "View All",
+        "advice": "Get Advice",
+        "scholarshipType": "Scholarship Type",
+        "tuitionCoverage": "Tuition Coverage",
+        "serviceFee": "Service Fee",
+        "whatsIncluded": "What's Included",
+        "action": "Action",
+        "applyNow": "Apply Now",
+        "mostPopular": "Most Popular",
+        "loading": "Loading scholarships...",
+        "noScholarships": "No scholarships available for this university.",
+        "howItWorks": {
+            "title": "How it Works",
+            "description": "Select a scholarship type and proceed to apply. Our team will guide you through the process.",
+            "learnMore": "Learn More"
+        }
     }
 }

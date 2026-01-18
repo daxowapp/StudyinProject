@@ -1433,5 +1433,27 @@
         "takeAction": "اتخاذ إجراء",
         "attachment": "مرفق",
         "attachments": "مرفقات"
+    },
+    "UniversityScholarships": {
+        "options": "الخيارات المتاحة",
+        "discover": "اكتشف",
+        "explore": "استكشف المنح الدراسية",
+        "description": "اعثر على خيار المساعدة المالية الذي يناسب احتياجاتك.",
+        "viewAll": "عرض الكل",
+        "advice": "احصل على استشارة",
+        "scholarshipType": "نوع المنحة",
+        "tuitionCoverage": "تغطية الرسوم الدراسية",
+        "serviceFee": "رسوم الخدمة",
+        "whatsIncluded": "ماذا تشمل",
+        "action": "إجراء",
+        "applyNow": "قدم الآن",
+        "mostPopular": "الأكثر شيوعاً",
+        "loading": "جاري تحميل المنح...",
+        "noScholarships": "لا توجد منح دراسية متاحة لهذه الجامعة.",
+        "howItWorks": {
+            "title": "كيف تعمل",
+            "description": "اختر نوع المنحة وتابع التقديم. سيقوم فريقنا بإرشادك خلال العملية.",
+            "learnMore": "اعرف المزيد"
+        }
     }
 }
