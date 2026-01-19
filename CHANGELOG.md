@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-01-19] - Active Filters Display Fix
+- Fixed bug where clicking a degree level (e.g., Bachelor) showed multiple duplicate filter badges
+- Active filters now display a single, removable badge per degree type
+- Added proper labels and graduation cap emoji to degree filter badges
+- Users can now remove individual degree filters by clicking the X button
+
+## [2026-01-19] - Program Search Fixes
+- Fixed "Missing Programs" issue where only a subset of Bachelor programs were shown
+- Removed internal query limit (200) that was truncating search results
+- Now fetching all active programs (800+) to ensure accurate client-side filtering
+- Fixed search input focus issue where input lost focus after every character (removed inline component definition)
+- Fixed active filter deletion (X button) not working by enabling pointer events on the icon
+
 ## [2026-01-18] - Translation Fixes
 - Added missing `UniversityScholarships` translations (`scholarshipType`, `action`) for English, Turkish, and Arabic.
 

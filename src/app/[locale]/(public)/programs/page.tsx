@@ -74,10 +74,8 @@ export default async function ProgramsPage({
     if (universitySlug) {
         // Filter by university slug on server side
         query = query.eq("university_slug", universitySlug);
-    } else {
-        // Only limit if no specific university is requested
-        query = query.limit(200);
     }
+    // Note: No limit - fetch all programs for proper filtering on client side
 
     const { data: programs, error } = await query;
 
@@ -147,15 +145,9 @@ export default async function ProgramsPage({
                         levels: (() => {
                             const levelParam = params.level || params.degree;
                             if (!levelParam) return [];
-                            const levelMap: Record<string, string[]> = {
-                                'bachelor': ['Bachelor', "Bachelor's", 'Bachelors', 'Undergraduate'],
-                                'master': ['Master', "Master's", 'Masters', 'Postgraduate'],
-                                'phd': ['PhD', 'Ph.D', 'Doctorate', 'Doctoral'],
-                                'diploma': ['Diploma', 'Certificate'],
-                                'language': ['Language Course', 'Language', 'Non-Degree', 'Chinese'],
-                                'non-degree': ['Language Course', 'Language', 'Non-Degree', 'Chinese']
-                            };
-                            return levelMap[levelParam.toLowerCase()] || [];
+                            const validLevels = ['bachelor', 'master', 'phd', 'diploma', 'language', 'non-degree'];
+                            const normalizedLevel = levelParam.toLowerCase();
+                            return validLevels.includes(normalizedLevel) ? [normalizedLevel] : [];
                         })(),
                         field: params.field !== 'any' ? params.field : undefined,
                         cities: params.city && params.city !== 'any' ? [params.city.charAt(0).toUpperCase() + params.city.slice(1)] : [],

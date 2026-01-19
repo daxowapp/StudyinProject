@@ -90,17 +90,11 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         // Map degree level from hero search or navbar level
         const levelParam = level || degree;
         if (levelParam) {
-            const levelMap: Record<string, string[]> = {
-                'bachelor': ['Bachelor', "Bachelor's", 'Bachelors', 'Undergraduate'],
-                'master': ['Master', "Master's", 'Masters', 'Postgraduate'],
-                'phd': ['PhD', 'Ph.D', 'Doctorate', 'Doctoral'],
-                'diploma': ['Diploma', 'Certificate'],
-                'language': ['Language Course', 'Language', 'Non-Degree', 'Chinese'],
-                'non-degree': ['Language Course', 'Language', 'Non-Degree', 'Chinese']
-            };
-            const possibleLevels = levelMap[levelParam.toLowerCase()];
-            if (possibleLevels) {
-                newFilters.levels = possibleLevels;
+            const validLevels = ['bachelor', 'master', 'phd', 'diploma', 'language', 'non-degree'];
+            const normalizedLevel = levelParam.toLowerCase();
+            if (validLevels.includes(normalizedLevel)) {
+                // Store only the canonical level key, not all variations
+                newFilters.levels = [normalizedLevel];
             }
         }
 
@@ -174,11 +168,22 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                 if (!matchesSearch) return false;
             }
 
-            // Level filter - case insensitive matching and partial match
+            // Level filter - use level map for matching variations
             if (filters.levels.length > 0) {
-                const hasMatchingLevel = filters.levels.some(filterLevel =>
-                    program.level?.toLowerCase().includes(filterLevel.toLowerCase())
-                );
+                const levelMap: Record<string, string[]> = {
+                    'bachelor': ['bachelor', "bachelor's", 'bachelors', 'undergraduate'],
+                    'master': ['master', "master's", 'masters', 'postgraduate'],
+                    'phd': ['phd', 'ph.d', 'doctorate', 'doctoral'],
+                    'diploma': ['diploma', 'certificate'],
+                    'language': ['language course', 'language', 'non-degree', 'chinese'],
+                    'non-degree': ['language course', 'language', 'non-degree', 'chinese']
+                };
+                const hasMatchingLevel = filters.levels.some(filterLevel => {
+                    const variations = levelMap[filterLevel.toLowerCase()] || [filterLevel.toLowerCase()];
+                    return variations.some(variation =>
+                        program.level?.toLowerCase().includes(variation)
+                    );
+                });
                 if (!hasMatchingLevel) return false;
             }
 
@@ -298,15 +303,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         return count;
     }, [filters]);
 
-    // Filter content component for reuse
-    const FilterContent = () => (
-        <ProgramFilters
-            onFilterChange={setFilters}
-            availableCities={availableCities}
-            availableUniversities={availableUniversities}
-            currentFilters={filters}
-        />
-    );
+
 
     return (
         <div className="container mx-auto px-4 md:px-6 py-8">
@@ -333,7 +330,12 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 </SheetTitle>
                             </SheetHeader>
                             <div className="mt-6">
-                                <FilterContent />
+                                <ProgramFilters
+                                    onFilterChange={setFilters}
+                                    availableCities={availableCities}
+                                    availableUniversities={availableUniversities}
+                                    currentFilters={filters}
+                                />
                             </div>
                         </SheetContent>
                     </Sheet>
@@ -347,7 +349,12 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 <Search className="h-5 w-5 text-primary" />
                                 {t('filters.title')}
                             </h2>
-                            <FilterContent />
+                            <ProgramFilters
+                                onFilterChange={setFilters}
+                                availableCities={availableCities}
+                                availableUniversities={availableUniversities}
+                                currentFilters={filters}
+                            />
                         </div>
                     </div>
                 </aside>
@@ -360,50 +367,91 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                             <div className="flex items-center justify-between flex-wrap gap-3">
                                 <div className="flex items-center gap-2 flex-wrap">
                                     <span className="text-sm font-semibold text-muted-foreground">{t('filters.active')}</span>
-                                    {filters.levels.map(level => (
-                                        <Badge key={level} variant="secondary" className="gap-1">
-                                            {level}
-                                            <X
-                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
-                                                onClick={() => setFilters(prev => ({ ...prev, levels: prev.levels.filter(l => l !== level) }))}
-                                            />
-                                        </Badge>
-                                    ))}
+                                    {filters.levels.map(level => {
+                                        const levelLabels: Record<string, string> = {
+                                            'bachelor': 'Bachelor',
+                                            'master': 'Master',
+                                            'phd': 'PhD',
+                                            'diploma': 'Diploma',
+                                            'language': 'Language Course',
+                                            'non-degree': 'Non-Degree'
+                                        };
+                                        const displayLabel = levelLabels[level.toLowerCase()] || level;
+                                        return (
+                                            <Badge key={level} variant="secondary" className="gap-1 pr-1">
+                                                🎓 {displayLabel}
+                                                <div
+                                                    role="button"
+                                                    className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setFilters(prev => ({ ...prev, levels: prev.levels.filter(l => l !== level) }));
+                                                    }}
+                                                >
+                                                    <X className="h-3 w-3 hover:text-destructive" />
+                                                </div>
+                                            </Badge>
+                                        );
+                                    })}
                                     {filters.cities.map(city => (
-                                        <Badge key={city} variant="secondary" className="gap-1">
+                                        <Badge key={city} variant="secondary" className="gap-1 pr-1">
                                             📍 {city}
-                                            <X
-                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
-                                                onClick={() => setFilters(prev => ({ ...prev, cities: prev.cities.filter(c => c !== city) }))}
-                                            />
+                                            <div
+                                                role="button"
+                                                className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFilters(prev => ({ ...prev, cities: prev.cities.filter(c => c !== city) }));
+                                                }}
+                                            >
+                                                <X className="h-3 w-3 hover:text-destructive" />
+                                            </div>
                                         </Badge>
                                     ))}
                                     {filters.languages.map(lang => (
-                                        <Badge key={lang} variant="secondary" className="gap-1">
+                                        <Badge key={lang} variant="secondary" className="gap-1 pr-1">
                                             🗣️ {lang}
-                                            <X
-                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
-                                                onClick={() => setFilters(prev => ({ ...prev, languages: prev.languages.filter(l => l !== lang) }))}
-                                            />
+                                            <div
+                                                role="button"
+                                                className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFilters(prev => ({ ...prev, languages: prev.languages.filter(l => l !== lang) }));
+                                                }}
+                                            >
+                                                <X className="h-3 w-3 hover:text-destructive" />
+                                            </div>
                                         </Badge>
                                     ))}
                                     {filters.field !== 'all' && (
-                                        <Badge variant="secondary" className="gap-1">
+                                        <Badge variant="secondary" className="gap-1 pr-1">
                                             📚 {filters.field === 'cs' ? 'Computer Science' :
                                                 filters.field.charAt(0).toUpperCase() + filters.field.slice(1)}
-                                            <X
-                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
-                                                onClick={() => setFilters(prev => ({ ...prev, field: 'all' }))}
-                                            />
+                                            <div
+                                                role="button"
+                                                className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFilters(prev => ({ ...prev, field: 'all' }));
+                                                }}
+                                            >
+                                                <X className="h-3 w-3 hover:text-destructive" />
+                                            </div>
                                         </Badge>
                                     )}
                                     {filters.scholarship && (
-                                        <Badge variant="secondary" className="gap-1">
+                                        <Badge variant="secondary" className="gap-1 pr-1">
                                             🎓 Scholarship
-                                            <X
-                                                className="h-3 w-3 cursor-pointer hover:text-destructive"
-                                                onClick={() => setFilters(prev => ({ ...prev, scholarship: false }))}
-                                            />
+                                            <div
+                                                role="button"
+                                                className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFilters(prev => ({ ...prev, scholarship: false }));
+                                                }}
+                                            >
+                                                <X className="h-3 w-3 hover:text-destructive" />
+                                            </div>
                                         </Badge>
                                     )}
                                 </div>
