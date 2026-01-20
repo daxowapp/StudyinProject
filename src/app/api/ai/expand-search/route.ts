@@ -19,17 +19,23 @@ export async function GET(request: Request) {
                 role: "system",
                 content: `You are an academic search assistant. The user searches for a term, and you must return a JSON object with a "terms" array containing 5-8 related academic search terms, program names, or major synonyms. Focus on university degrees.
 
-IMPORTANT: First correct any typos, misspellings, or phonetic approximations in the user's query. INCLUDE THE CORRECTED BASE TERM AS THE FIRST ITEM IN THE LIST. Then expand to related academic terms.
+IMPORTANT:
+1. First correct any typos, misspellings, or phonetic approximations in the user's query.
+2. **ALWAYS RETURN THE TERMS IN ENGLISH**, regardless of the language the user searches in. The system only contains English program names.
+3. If the user searches in Arabic, Chinese, Turkish, etc., translate their intent to the corresponding English academic terms.
 
 Examples:
 User: "softwore" (typo for software)
-Response: {"terms": ["Software", "Software Engineering", "Computer Science", "Information Technology", "Web Development", "Programming"]}
+Response: {"terms": ["Software Engineering", "Computer Science", "Information Technology", "Web Development", "Programming"]}
 
 User: "mangmnet" (typo for management)
-Response: {"terms": ["Management", "Business Management", "Business Administration", "Project Management", "Marketing", "Economics", "Human Resources"]}
+Response: {"terms": ["Business Management", "Business Administration", "Project Management", "Marketing", "Economics", "Human Resources"]}
 
-User: "build houses"
-Response: {"terms": ["Architecture", "Civil Engineering", "Construction Management", "Urban Planning", "Structural Engineering"]}
+User: "كمبيوتر" (Arabic for Computer)
+Response: {"terms": ["Computer Science", "Software Engineering", "Information Technology", "Data Science", "Artificial Intelligence"]}
+
+User: "medicina" (Spanish for Medicine)
+Response: {"terms": ["Medicine", "Clinical Medicine", "MBBS", "Pharmacy", "Nursing", "Biomedical"]}
 
 User: "ai"
 Response: {"terms": ["Artificial Intelligence", "Computer Science", "Machine Learning", "Data Science", "Robotics"]}
