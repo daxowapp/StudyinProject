@@ -298,6 +298,7 @@
     },
     "Hero": {
         "admissionsOpen": "2026 Üçin Kabul Edişlik Açyk",
+        "searchPlaceholder": "Näme öwrenmek isleýärsiňiz? (meselem, Kompýuter Ylymlary, Lukmançylyk)",
         "title": "Hytaýdaky Gelejegiňiz Şu Ýerden Başlanýar",
         "subtitle": "Hytaýyň iň gowy uniwersitetlerinde <bold>50,000+ talyba</bold> goşulyň",
         "searchButton": "<bold>500+</bold> Maksatnamany Gözläň",

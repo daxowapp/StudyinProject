@@ -139,6 +139,7 @@
     },
     "Hero": {
         "admissionsOpen": "Admissions Ouvertes pour 2026",
+        "searchPlaceholder": "Que voulez-vous étudier ? (ex. Informatique, Médecine)",
         "title": "Votre Avenir en Chine Commence Ici",
         "subtitle": "Rejoignez <bold>plus de 50 000 étudiants</bold> dans les meilleures universités de Chine",
         "searchButton": "Rechercher <bold>500+</bold> Programmes",

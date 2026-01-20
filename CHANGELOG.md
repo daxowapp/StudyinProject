@@ -2,7 +2,8 @@
 
 ## [2026-01-20] - Home Page Search & Typo Handling
 - **Typo Tolerance**: Integrated AI-powered search expansion to handle misspellings (e.g., "mangmnet" → "Management").
-- **UX Improvement**: Added "AI is working on it" loading screen to prevent "0 Results" flash during search expansion.
+- [2026-01-20] - Translations - Added missing `Hero.searchPlaceholder` translation to ar, tr, zh, es, fr, ru, fa, tk.
+- [2026-01-20] - UX - Implemented AI Search Loading State to prevent '0 results' flash. during search expansion.
 - **Home Page Integration**: Added functional search bar to Hero section.
 - **Bug Fix**: Resolved critical issue where search updates were cached/stale by refactoring program list component structure.
 

@@ -298,6 +298,7 @@
     },
     "Hero": {
         "admissionsOpen": "2026 年招生开启",
+        "searchPlaceholder": "你想学什么？（例如：计算机科学，医学）",
         "title": "你在中国的未来从这里开始",
         "subtitle": "加入 <bold>50,000+</bold> 名学生，在中国顶尖大学学习",
         "searchButton": "搜索 <bold>500+</bold> 个课程",
