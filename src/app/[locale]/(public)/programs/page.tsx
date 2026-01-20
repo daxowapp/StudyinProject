@@ -1,4 +1,4 @@
-import { ProgramsClient } from "@/components/programs/ProgramsClient";
+import { ProgramsClient } from "@/components/programs/ProgramsClientContent";
 import { ProgramsWrapper } from "@/components/programs/ProgramsWrapper";
 import { createClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
@@ -57,6 +57,7 @@ export default async function ProgramsPage({
         city?: string;
         language?: string;
         scholarship?: string;
+        search?: string;
     }>;
 }) {
     const supabase = await createClient();
@@ -142,6 +143,7 @@ export default async function ProgramsPage({
                     programs={formattedPrograms}
                     universityMap={universityMap}
                     initialFilters={{
+                        search: params.search,
                         levels: (() => {
                             const levelParam = params.level || params.degree;
                             if (!levelParam) return [];

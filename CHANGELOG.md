@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-01-20] - Home Page Search & Typo Handling
+- **Typo Tolerance**: Integrated AI-powered search expansion to handle misspellings (e.g., "mangmnet" → "Management").
+- **UX Improvement**: Added "AI is working on it" loading screen to prevent "0 Results" flash during search expansion.
+- **Home Page Integration**: Added functional search bar to Hero section.
+- **Bug Fix**: Resolved critical issue where search updates were cached/stale by refactoring program list component structure.
+
+## [2026-01-19] - AI Search Typo Correction
+- AI search now handles typos and misspellings (e.g., "softwore" → "Software Engineering", "medcine" → "Medicine")
+- Improved prompt engineering for better academic term recognition
+
 ## [2026-01-19] - Active Filters Display Fix
 - Fixed bug where clicking a degree level (e.g., Bachelor) showed multiple duplicate filter badges
 - Active filters now display a single, removable badge per degree type
@@ -12,6 +22,24 @@
 - Now fetching all active programs (800+) to ensure accurate client-side filtering
 - Fixed search input focus issue where input lost focus after every character (removed inline component definition)
 - Fixed active filter deletion (X button) not working by enabling pointer events on the icon
+
+- Fixed active filter deletion (X button) not working by enabling pointer events on the icon
+
+## [2026-01-19] - Quick Access Search
+- Added "Quick Access" chip filters above program list for instant search
+- Users can now one-click filter for popular majors: 💻 Computer Science, 💼 Business, 🏗️ Engineering, 🏥 Medicine, 🎨 Arts, 📊 Economics
+
+## [2026-01-19] - AI-Powered Smart Search
+- Implemented **AI-Powered Search Expansion** using OpenAI (gpt-4o-mini)
+- Added **Home Page Search Bar** for direct access to programs
+- Searching for vague terms (e.g., "Build houses") now automatically finds related academic fields (Civil Engineering, Architecture, etc.)
+- Added "AI Thinking" visual indicator during search
+- Implemented debouncing to optimize API usage
+- Fixed bug where filtered terms like "computer" matched unrelated programs
+- Fixed URL search parameter initialization logic
+- **Search Logic Refined**: Search now strictly matches program names, preventing university names (e.g., "Medical University") from poluting results for queries like "Medicine".
+- **Home Page Search**: Added search bar to Hero section for direct program discovery.
+
 
 ## [2026-01-18] - Translation Fixes
 - Added missing `UniversityScholarships` translations (`scholarshipType`, `action`) for English, Turkish, and Arabic.

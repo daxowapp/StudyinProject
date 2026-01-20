@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
@@ -25,6 +26,7 @@ export function HeroSection() {
 
     // Initial State
     const [filters, setFilters] = useState({
+        search: "",
         degree: "",
         field: "",
         city: "",
@@ -203,9 +205,6 @@ export function HeroSection() {
                         })}
                     </p>
 
-
-
-
                     {/* Enhanced Search Widget - CSS Animation */}
                     <div className="w-full max-w-5xl mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                         <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -219,6 +218,18 @@ export function HeroSection() {
                                         {tab}
                                     </button>
                                 ))}
+                            </div>
+
+                            {/* Main Search Input */}
+                            <div className="mb-4 relative">
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
+                                <Input
+                                    placeholder={t('searchPlaceholder') || "What do you want to study? (e.g. Computer Science, Medicine)"}
+                                    className="pl-12 h-14 text-base md:text-lg bg-white border-2 border-slate-200 rounded-xl hover:border-red-500 focus:border-red-500 transition-colors shadow-sm"
+                                    value={filters.search}
+                                    onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                                />
                             </div>
 
                             {/* Search Fields Grid - All Equal Width */}

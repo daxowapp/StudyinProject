@@ -307,6 +307,7 @@
         "searchButton": "Search <bold>500+</bold> Programs",
         "searchWord": "Search",
         "programsWord": "Programs",
+        "searchPlaceholder": "What do you want to study? (e.g. Computer Science, Medicine)",
         "browseByCategory": "Browse by Category",
         "scrollToExplore": "Scroll to explore",
         "stats": {
