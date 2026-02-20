@@ -186,10 +186,19 @@ export default async function ScholarshipsPage() {
 
                 {/* Scholarship Types Grid */}
                 <div className="mb-16">
-                    <div className="flex items-center gap-3 mb-8">
+                    <div className="flex items-center gap-3 mb-6">
                         <div className="h-10 w-1 bg-primary rounded-full" />
                         <h2 className="text-3xl font-bold font-heading">Scholarship Types</h2>
                     </div>
+
+                    {/* Scholarship Disclaimer */}
+                    <div className="bg-muted/50 border border-muted-foreground/20 rounded-lg p-4 text-sm text-muted-foreground flex items-start gap-3 mb-8">
+                        <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                        <p>
+                            <strong>Note:</strong> While a scholarship may cover the full duration of the program, its continuation depends on the student&apos;s academic performance.
+                        </p>
+                    </div>
+
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {scholarshipTypes.map((type, index) => (
                             <Card key={index} className={`border-2 ${type.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${type.color} relative overflow-hidden`}>

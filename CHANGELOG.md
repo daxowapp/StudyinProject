@@ -2,6 +2,7 @@
 
 ## [2026-02-20] - Consolidated Service Fee & Standardized Applications
 
+- **Scholarship Disclaimer**: Injected a visual disclaimer across all scholarship components (`/scholarships`, individual program pages, and university pages) clarifying that continuation depends on academic performance.
 - **Database Standardization**: Automatically updated all existing `university_programs` to have a flat $300 Application Fee.
 - **Search Filters**: Enabled 'My Age' and 'Min GPA' academic filters in the Program Search view, utilizing native `university_programs` columns (`min_age`, `max_age`, `gpa_requirement`) to drop mutually exclusive programs.
 - **Frontend Override**: Fixed a bug where application fees would improperly convert through exchange rates by explicitly setting their currency code to `USD` across the checkout and program pages.

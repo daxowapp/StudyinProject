@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Award, Heart, DollarSign, Zap } from "lucide-react";
+import { Check, Award, Heart, DollarSign, Zap, Info } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -213,6 +213,14 @@ export function UniversityScholarshipsSection({
                     </Card>
                 </>
             )}
+
+            {/* Scholarship Disclaimer */}
+            <div className="bg-muted/50 border border-muted-foreground/20 rounded-lg p-4 text-sm text-muted-foreground flex items-start gap-3 mb-6">
+                <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                <p>
+                    <strong>Note:</strong> While a scholarship may cover the full duration of the program, its continuation depends on the student&apos;s academic performance.
+                </p>
+            </div>
 
             {/* Scholarship Table/Rows */}
             <div id="scholarship-cards" className="space-y-4">
