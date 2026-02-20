@@ -25,6 +25,8 @@ export interface FilterState {
     duration: string;
     scholarship: boolean;
     university: string;
+    age?: number;
+    gpa?: number;
 }
 
 interface ProgramFiltersProps {
@@ -61,6 +63,8 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             duration: 'all',
             scholarship: false,
             university: 'all',
+            age: undefined,
+            gpa: undefined,
         };
         onFilterChange(defaultFilters);
     };
@@ -107,6 +111,46 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                             </Label>
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* Academic Requirements (Age & GPA) */}
+            <div className="space-y-3 pt-4 border-t mt-4">
+                <Label className="text-sm font-medium">Academic Requirements</Label>
+                <div className="flex gap-4">
+                    <div className="space-y-2 flex-1">
+                        <Label htmlFor="age-filter" className="text-xs text-muted-foreground">My Age</Label>
+                        <Input
+                            id="age-filter"
+                            type="number"
+                            min={10}
+                            max={100}
+                            placeholder="e.g. 21"
+                            value={currentFilters?.age || ''}
+                            onChange={(e) => {
+                                const val = e.target.value ? parseInt(e.target.value) : undefined;
+                                updateFilters({ age: val });
+                            }}
+                            className="h-9"
+                        />
+                    </div>
+                    <div className="space-y-2 flex-1">
+                        <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">Min GPA</Label>
+                        <Input
+                            id="gpa-filter"
+                            type="number"
+                            min={0.0}
+                            max={100.0}
+                            step={0.1}
+                            placeholder="e.g. 3.0"
+                            value={currentFilters?.gpa || ''}
+                            onChange={(e) => {
+                                const val = e.target.value ? parseFloat(e.target.value) : undefined;
+                                updateFilters({ gpa: val });
+                            }}
+                            className="h-9"
+                        />
+                    </div>
                 </div>
             </div>
 

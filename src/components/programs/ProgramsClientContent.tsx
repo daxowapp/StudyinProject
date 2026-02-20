@@ -34,6 +34,9 @@ interface Program {
     tuition_fee?: number;
     scholarship_chance?: string;
     has_fast_track?: boolean;
+    min_age?: number;
+    max_age?: number;
+    gpa_requirement?: number;
 }
 
 interface ProgramsClientProps {
@@ -60,6 +63,8 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         duration: 'all',
         scholarship: false,
         university: 'all',
+        age: undefined,
+        gpa: undefined,
         ...initialFilters
     });
 
@@ -304,6 +309,23 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
             // Scholarship filter
             if (filters.scholarship && !program.scholarship_chance) {
                 return false;
+            }
+
+            // Age filter
+            if (filters.age !== undefined && filters.age !== null) {
+                if (program.min_age !== null && program.min_age !== undefined && filters.age < program.min_age) {
+                    return false; // Applicant is too young
+                }
+                if (program.max_age !== null && program.max_age !== undefined && filters.age > program.max_age) {
+                    return false; // Applicant is too old
+                }
+            }
+
+            // GPA filter
+            if (filters.gpa !== undefined && filters.gpa !== null) {
+                if (program.gpa_requirement !== null && program.gpa_requirement !== undefined && program.gpa_requirement > filters.gpa) {
+                    return false; // Applicant's GPA is lower than the program's minimum requirement
+                }
             }
 
             return true;

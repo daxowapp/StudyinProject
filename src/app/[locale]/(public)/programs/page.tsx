@@ -101,7 +101,7 @@ export default async function ProgramsPage({
     }, {}) || {};
 
     // Transform data to match ProgramCard props
-    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; language_name: string; category: string; scholarship_chance: string }) => ({
+    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; language_name: string; category: string; scholarship_chance: string; min_age: number; max_age: number; gpa_requirement: number }) => ({
         id: p.id,
         slug: p.slug,
         name: p.display_title || p.program_title,
@@ -118,6 +118,9 @@ export default async function ProgramsPage({
         category: p.category,
         scholarship_chance: p.scholarship_chance,
         has_fast_track: fastTrackMap[p.university_slug] || false,
+        min_age: p.min_age,
+        max_age: p.max_age,
+        gpa_requirement: p.gpa_requirement,
     })) || [];
 
     return (

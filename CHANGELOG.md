@@ -3,6 +3,7 @@
 ## [2026-02-20] - Consolidated Service Fee & Standardized Applications
 
 - **Database Standardization**: Automatically updated all existing `university_programs` to have a flat $300 Application Fee.
+- **Search Filters**: Enabled 'My Age' and 'Min GPA' academic filters in the Program Search view, utilizing native `university_programs` columns (`min_age`, `max_age`, `gpa_requirement`) to drop mutually exclusive programs.
 - **Frontend Override**: Fixed a bug where application fees would improperly convert through exchange rates by explicitly setting their currency code to `USD` across the checkout and program pages.
 - **Fee Structure**: Removed general program `service_fee` and merged its value into `application_fee` to simplify payment structures.
 - **UI Updates**: Removed "Service Fee" items from all program detail pages, checkout forms, and application summary cards.
