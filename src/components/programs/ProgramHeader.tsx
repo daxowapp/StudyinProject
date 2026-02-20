@@ -15,7 +15,6 @@ interface Program {
     intake: string;
     tuition: string;
     applicationFee: string;
-    serviceFee: string;
     totalInitial: string;
     deadline: string;
 }
@@ -110,10 +109,6 @@ export function ProgramHeader({ program }: ProgramHeaderProps) {
                                     <div className="flex justify-between">
                                         <span className="text-muted-foreground">Application Fee</span>
                                         <span className="font-semibold">{program.applicationFee}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-muted-foreground">Service Fee</span>
-                                        <span className="font-semibold">{program.serviceFee}</span>
                                     </div>
                                     <div className="border-t pt-3 flex justify-between font-bold text-lg">
                                         <span>Total Initial</span>

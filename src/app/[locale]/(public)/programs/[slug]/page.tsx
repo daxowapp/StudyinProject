@@ -177,12 +177,9 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         tuition: `${program.tuition_fee} ${program.currency}/Year`,
         tuition_fee: program.tuition_fee, // Raw number for Price component
         currency: program.currency || 'CNY', // Currency code
-        applicationFee: program.application_fee ? `${program.application_fee} ${program.currency}` : "800 RMB",
-        application_fee_amount: program.application_fee || 800, // Raw number for Price component
-        application_fee_currency: program.currency || 'CNY',
-        serviceFee: program.service_fee ? `${program.service_fee} USD` : "150 USD",
-        service_fee_amount: program.service_fee || 150, // Raw number for Price component
-        service_fee_currency: 'USD',
+        applicationFee: program.application_fee ? `${program.application_fee} USD` : "300 USD",
+        application_fee_amount: program.application_fee || 300, // Raw number for Price component
+        application_fee_currency: 'USD',
         totalInitial: "~260 USD",
         badges: [program.language_name, program.level].filter(Boolean),
         overview: programDescription,
@@ -601,16 +598,6 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                                 <Price amount={programData.application_fee_amount} currency={programData.application_fee_currency} />
                                             ) : (
                                                 programData.applicationFee
-                                            )}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center pb-2 border-b">
-                                        <span className="text-sm text-muted-foreground">{t('sidebar.serviceFee')}</span>
-                                        <span className="font-semibold">
-                                            {typeof programData.service_fee_amount === 'number' ? (
-                                                <Price amount={programData.service_fee_amount} currency={programData.service_fee_currency} />
-                                            ) : (
-                                                programData.serviceFee
                                             )}
                                         </span>
                                     </div>

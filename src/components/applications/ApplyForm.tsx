@@ -29,7 +29,6 @@ interface ApplyFormProps {
     id: string;
     intake: string;
     application_fee: number;
-    service_fee?: number;
     force_payment?: boolean;
     currency?: string;
     university: {
@@ -183,7 +182,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
 
-  const totalFee = (program.application_fee || 0) + (program.service_fee || 0);
+  const totalFee = program.application_fee || 0;
   const requiresPayment = program.force_payment && totalFee > 0;
 
   // Handle form input changes
@@ -894,19 +893,13 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 <div className="flex justify-between">
                   <span className="text-gray-600">Application Fee:</span>
                   <span className="font-semibold">
-                    {program.application_fee} {program.currency}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Service Fee:</span>
-                  <span className="font-semibold">
-                    {program.service_fee} {program.currency}
+                    ${program.application_fee} USD
                   </span>
                 </div>
                 <div className="border-t pt-3 flex justify-between text-lg">
                   <span className="font-bold">Total:</span>
                   <span className="font-bold text-blue-600">
-                    {totalFee} {program.currency}
+                    ${totalFee} USD
                   </span>
                 </div>
               </div>

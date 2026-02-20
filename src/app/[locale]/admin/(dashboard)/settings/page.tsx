@@ -374,11 +374,7 @@ export default function AdminSettingsPage() {
                             <div className="grid gap-4 md:grid-cols-2">
                                 <div className="space-y-2">
                                     <Label htmlFor="default-app-fee">Default Application Fee</Label>
-                                    <Input id="default-app-fee" type="number" defaultValue="50" />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="default-service-fee">Default Service Fee</Label>
-                                    <Input id="default-service-fee" type="number" defaultValue="100" />
+                                    <Input id="default-app-fee" type="number" defaultValue="150" />
                                 </div>
                             </div>
                         </CardContent>

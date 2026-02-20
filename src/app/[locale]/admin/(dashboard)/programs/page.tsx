@@ -20,7 +20,6 @@ interface Program {
     scholarship_chance: string;
     application_deadline: string; // Updated from deadline to match DB/Dialog
     application_fee: number;
-    service_fee: number;
     university: {
         name: string;
     };
@@ -124,10 +123,6 @@ export default async function ProgramsPage() {
                                 <div>
                                     <span className="text-muted-foreground block">Application Fee</span>
                                     <span className="font-medium">${program.application_fee}</span>
-                                </div>
-                                <div>
-                                    <span className="text-muted-foreground block">Service Fee</span>
-                                    <span className="font-medium">${program.service_fee}</span>
                                 </div>
                             </div>
                         </CardContent>

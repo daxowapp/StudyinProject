@@ -1,6 +1,16 @@
 # Changelog
 
+## [2026-02-20] - Consolidated Service Fee & Standardized Applications
+
+- **Database Standardization**: Automatically updated all existing `university_programs` to have a flat $300 Application Fee.
+- **Frontend Override**: Fixed a bug where application fees would improperly convert through exchange rates by explicitly setting their currency code to `USD` across the checkout and program pages.
+- **Fee Structure**: Removed general program `service_fee` and merged its value into `application_fee` to simplify payment structures.
+- **UI Updates**: Removed "Service Fee" items from all program detail pages, checkout forms, and application summary cards.
+- **Admin**: Removed the separate service fee from Program management.
+- **Note**: Scholarship-specific service fees remain unaffected.
+
 ## [2026-01-20] - Home Page Search & Typo Handling
+
 - **Typo Tolerance**: Integrated AI-powered search expansion to handle misspellings (e.g., "mangmnet" → "Management").
 - [2026-01-20] - AI Search - Fixed cross-language search by enforcing English output (e.g., Arabic "كمبيوتر" -> English "Computer Science") to match database records.
 - [2026-01-20] - Translations - Added missing `Hero.searchPlaceholder` translation to ar, tr, zh, es, fr, ru, fa, tk.
@@ -9,16 +19,19 @@
 - **Bug Fix**: Resolved critical issue where search updates were cached/stale by refactoring program list component structure.
 
 ## [2026-01-19] - AI Search Typo Correction
+
 - AI search now handles typos and misspellings (e.g., "softwore" → "Software Engineering", "medcine" → "Medicine")
 - Improved prompt engineering for better academic term recognition
 
 ## [2026-01-19] - Active Filters Display Fix
+
 - Fixed bug where clicking a degree level (e.g., Bachelor) showed multiple duplicate filter badges
 - Active filters now display a single, removable badge per degree type
 - Added proper labels and graduation cap emoji to degree filter badges
 - Users can now remove individual degree filters by clicking the X button
 
 ## [2026-01-19] - Program Search Fixes
+
 - Fixed "Missing Programs" issue where only a subset of Bachelor programs were shown
 - Removed internal query limit (200) that was truncating search results
 - Now fetching all active programs (800+) to ensure accurate client-side filtering
@@ -28,10 +41,12 @@
 - Fixed active filter deletion (X button) not working by enabling pointer events on the icon
 
 ## [2026-01-19] - Quick Access Search
+
 - Added "Quick Access" chip filters above program list for instant search
 - Users can now one-click filter for popular majors: 💻 Computer Science, 💼 Business, 🏗️ Engineering, 🏥 Medicine, 🎨 Arts, 📊 Economics
 
 ## [2026-01-19] - AI-Powered Smart Search
+
 - Implemented **AI-Powered Search Expansion** using OpenAI (gpt-4o-mini)
 - Added **Home Page Search Bar** for direct access to programs
 - Searching for vague terms (e.g., "Build houses") now automatically finds related academic fields (Civil Engineering, Architecture, etc.)
@@ -42,35 +57,41 @@
 - **Search Logic Refined**: Search now strictly matches program names, preventing university names (e.g., "Medical University") from poluting results for queries like "Medicine".
 - **Home Page Search**: Added search bar to Hero section for direct program discovery.
 
-
 ## [2026-01-18] - Translation Fixes
+
 - Added missing `UniversityScholarships` translations (`scholarshipType`, `action`) for English, Turkish, and Arabic.
 
 ## [2026-01-15] - Program Menu Filtering & Translations Fix
+
 - Fixed program level filtering from navbar menu (clicking Bachelor/Master/PhD now correctly filters programs)
 - Changed "Non-Degree" menu item to "Chinese Courses" across all 9 languages
 - Added handling for both `level` (navbar) and `degree` (hero search) URL parameters
 
 ## [2026-01-15] - CSCA Exam 2026 Update
+
 - Added new FAQ about 2026 intake exception: certificate of participation can be sufficient for some universities
 - Students can apply with proof of exam participation even without high scores during the transition period
 
 ## [2026-01-15] - Scholarship Section Redesign & Apply Button Fix
+
 - Redesigned scholarship section with premium table-like row layout
 - Shows all information: type, coverage %, service fees (USD + CNY), benefits with icons
 - Apply Now button now scrolls to programs section on university page (no redirect)
 - Direct apply only when viewing a specific program
 
 ## [2026-01-15] - Language Scores & Scholarship Display - Added IELTS, TOEFL, Duolingo score fields to programs; Fixed scholarship benefits display truncation.
+
 [2026-01-15] - Program Deployment Fix - Resolved build error by adding `application_deadline` to Program type.
 
 ## [2026-01-15] - Minimum GPA Requirement Field
+
 - Added customizable GPA requirement field to admin program dialog
 - Admins can now enter any minimum GPA value (e.g., 2.0, 2.5, 3.0) per program
 - GPA displayed in Key Facts card on program detail page when set
 - Added translations for "Minimum GPA" label in all 9 languages (EN, AR, TR, FA, ZH, TK, ES, FR, RU)
 
 ## [2026-01-15] - Tuition Display Bug Fix
+
 - Fixed "Contact for pricing" always showing on universities page
 - Updated query to fetch actual tuition fees from programs
 - Universities now display real minimum tuition prices (e.g., ¥22,000 CNY)
@@ -88,4 +109,5 @@
 [2026-01-06] - Program Application Deadline Fix - Fixed bug where application deadline was not being saved when editing or adding programs in admin university panel.
 
 [2026-01-05] - Zoho PageSense & WhatsApp Footer Link - Added Zoho PageSense tracking script to layout and WhatsApp link to footer.
+
 - Fixed Zoho PageSense script placement (moved to `<body>` to allow correct `beforeInteractive` hoisting by Next.js).

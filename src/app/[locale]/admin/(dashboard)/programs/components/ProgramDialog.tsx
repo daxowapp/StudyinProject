@@ -44,7 +44,6 @@ interface Program {
     language_id: string;
     scholarship_chance: string;
     application_fee: number;
-    service_fee: number;
     application_deadline: string;
     is_active: boolean;
     has_force_payment: boolean;
@@ -94,7 +93,6 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         language_id: program?.language_id || "",
         scholarship_chance: program?.scholarship_chance || "",
         application_fee: program?.application_fee || "",
-        service_fee: program?.service_fee || "",
         deadline: program?.application_deadline || "",
         is_active: program?.is_active ?? true,
         has_force_payment: program?.has_force_payment ?? false,
@@ -117,7 +115,6 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 language_id: program.language_id || "",
                 scholarship_chance: program.scholarship_chance || "",
                 application_fee: program.application_fee || "",
-                service_fee: program.service_fee || "",
                 deadline: program.application_deadline || "",
                 is_active: program.is_active ?? true,
                 has_force_payment: program.has_force_payment ?? false,
@@ -148,7 +145,6 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
             currency: (data.currency as string) || prev.currency,
             scholarship_chance: (data.scholarship_chance as string) || prev.scholarship_chance,
             application_fee: (data.application_fee as number) || prev.application_fee,
-            service_fee: (data.service_fee as number) || prev.service_fee,
             deadline: (data.deadline as string) || prev.deadline,
         }));
 
@@ -538,7 +534,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 gap-4">
+                                <div className="grid grid-cols-2 gap-4">
                                     <div className="grid gap-2">
                                         <Label htmlFor="scholarship_chance">Scholarship Chance</Label>
                                         <Input
@@ -557,17 +553,6 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                             type="number"
                                             value={formState.application_fee}
                                             onChange={(e) => setFormState({ ...formState, application_fee: e.target.value })}
-                                            placeholder="0"
-                                        />
-                                    </div>
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="service_fee">Service Fee ($)</Label>
-                                        <Input
-                                            id="service_fee"
-                                            name="service_fee"
-                                            type="number"
-                                            value={formState.service_fee}
-                                            onChange={(e) => setFormState({ ...formState, service_fee: e.target.value })}
                                             placeholder="0"
                                         />
                                     </div>

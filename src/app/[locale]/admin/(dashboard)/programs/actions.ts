@@ -55,7 +55,6 @@ export async function createProgram(formData: FormData) {
     const is_active = formData.get("is_active") === "on" || true;
     const scholarship_chance = formData.get("scholarship_chance") as string;
     const application_fee = parseInt(formData.get("application_fee") as string) || 0;
-    const service_fee = parseInt(formData.get("service_fee") as string) || 0;
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
     const gpa_requirement = formData.get("gpa_requirement") as string;
@@ -75,7 +74,6 @@ export async function createProgram(formData: FormData) {
         is_active,
         scholarship_chance: scholarship_chance || null,
         application_fee,
-        service_fee,
         force_payment,
         application_deadline: deadline || null,
         gpa_requirement: gpa_requirement || null,
@@ -106,7 +104,6 @@ export async function updateProgram(id: string, formData: FormData) {
     const is_active = formData.get("is_active") === "on" || true;
     const scholarship_chance = formData.get("scholarship_chance") as string;
     const application_fee = parseInt(formData.get("application_fee") as string) || 0;
-    const service_fee = parseInt(formData.get("service_fee") as string) || 0;
     const force_payment = formData.get("has_force_payment") === "on";
     const deadline = formData.get("deadline") as string;
     const gpa_requirement = formData.get("gpa_requirement") as string;
@@ -128,7 +125,6 @@ export async function updateProgram(id: string, formData: FormData) {
             is_active,
             scholarship_chance: scholarship_chance || null,
             application_fee,
-            service_fee,
             force_payment,
             application_deadline: deadline || null,
             gpa_requirement: gpa_requirement || null,

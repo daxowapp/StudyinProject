@@ -27,7 +27,6 @@ interface Program {
     language_id: string;
     scholarship_chance: string;
     application_fee: number;
-    service_fee: number;
     deadline: string;
     is_active: boolean;
     description: string;
