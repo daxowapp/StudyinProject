@@ -2,7 +2,12 @@
 
 Consolidated on Unknown Date
 
+## Third-Party Integrations & Tracking
 
+- **Google Analytics**: Integrated globally via `src/app/[locale]/layout.tsx` (Measurement ID: `G-47QZWWTPZ1`). Tracks page views and user events across all locales.
+- **Zoho PageSense**: Integrated via `src/app/[locale]/layout.tsx` for heatmaps and user behavior analytics.
+- **Zoho SalesIQ**: Live chat widget integrated in the root layout.
+- **Facebook Pixel**: Facebook ad tracking setup globally.
 
 ==================================================
 FILE: ./docs/ADMIN_PANEL_COMPLETE.md
@@ -11,13 +16,16 @@ FILE: ./docs/ADMIN_PANEL_COMPLETE.md
 # Admin Panel - Complete Feature List
 
 ## 🎯 Overview
+
 The StudyAtChina admin panel is a comprehensive dashboard for managing the entire platform, including universities, programs, applications, users, and more.
 
 ## 📊 Dashboard Sections
 
 ### 1. **Dashboard** (Main Overview)
+
 **Route:** `/admin`
 **Features:**
+
 - ✅ Real-time statistics cards:
   - Total Revenue
   - Applications Count
@@ -29,8 +37,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Visual status indicators (pending, submitted, accepted)
 
 ### 2. **Analytics & Reports** ⭐ NEW
+
 **Route:** `/admin/analytics`
 **Features:**
+
 - ✅ Key Performance Metrics:
   - Total Applications with trend
   - Total Revenue with trend
@@ -50,8 +60,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Tabbed interface (Overview, Programs, Universities)
 
 ### 3. **Universities**
+
 **Route:** `/admin/universities`
 **Features:**
+
 - ✅ Complete university listing
 - ✅ Search functionality
 - ✅ Add new university
@@ -62,8 +74,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Table view with sorting
 
 ### 4. **Programs**
+
 **Route:** `/admin/programs`
 **Features:**
+
 - ✅ Comprehensive program management
 - ✅ Add/Edit programs with dialog
 - ✅ Program details:
@@ -80,8 +94,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Card-based layout with full details
 
 ### 5. **Scholarships** ⭐ NEW
+
 **Route:** `/admin/scholarships`
 **Features:**
+
 - ✅ Scholarship program management
 - ✅ Statistics overview:
   - Total Scholarships
@@ -100,8 +116,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Status management (Active/Inactive)
 
 ### 6. **Applications**
+
 **Route:** `/admin/applications`
 **Features:**
+
 - ✅ Application pipeline management
 - ✅ Student information display
 - ✅ Program and university details
@@ -118,8 +136,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Edit application dialog
 
 ### 7. **Leads**
+
 **Route:** `/admin/leads`
 **Features:**
+
 - ✅ Lead management system
 - ✅ Contact information (Name, Email, Phone)
 - ✅ Message/Inquiry display
@@ -135,8 +155,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Color-coded status badges
 
 ### 8. **Users**
+
 **Route:** `/admin/users`
 **Features:**
+
 - ✅ User management
 - ✅ User details:
   - Full Name
@@ -150,8 +172,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ User profile access
 
 ### 9. **Academic Years**
+
 **Route:** `/admin/academic-years`
 **Features:**
+
 - ✅ Academic year management
 - ✅ Year details:
   - Name
@@ -168,8 +192,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Status badges
 
 ### 10. **Languages**
+
 **Route:** `/admin/languages`
 **Features:**
+
 - ✅ Language management
 - ✅ Language details:
   - Name
@@ -180,10 +206,12 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Used for program language selection
 
 ### 11. **Settings** ✨ ENHANCED
+
 **Route:** `/admin/settings`
 **Features:**
 
 #### General Settings Tab
+
 - ✅ Platform Information:
   - Platform Name
   - Platform URL
@@ -194,6 +222,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Default Currency
 
 #### Email Settings Tab
+
 - ✅ SMTP Configuration:
   - SMTP Host & Port
   - Username & Password
@@ -205,6 +234,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Template editing
 
 #### Payment Settings Tab
+
 - ✅ Stripe Configuration:
   - Publishable Key
   - Secret Key
@@ -215,6 +245,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Default Service Fee
 
 #### Notifications Tab
+
 - ✅ Notification Preferences:
   - New Application Alerts
   - Payment Notifications
@@ -223,6 +254,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Toggle switches for each notification type
 
 #### Advanced Settings Tab
+
 - ✅ Database & Backup:
   - Automatic Backups
   - Backup Retention
@@ -238,6 +270,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 ## 🎨 Design Features
 
 ### UI/UX
+
 - ✅ Modern, clean interface
 - ✅ Consistent color scheme
 - ✅ Gradient stat cards
@@ -249,6 +282,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Toast notifications
 
 ### Navigation
+
 - ✅ Fixed sidebar navigation
 - ✅ Logo and branding
 - ✅ 11 main navigation items
@@ -257,6 +291,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Icon + text labels
 
 ### Data Display
+
 - ✅ Tables with sorting
 - ✅ Card layouts
 - ✅ Progress bars
@@ -269,6 +304,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 ## 🔧 Technical Implementation
 
 ### Technologies Used
+
 - Next.js 15 (App Router)
 - React Server Components
 - Supabase (Database)
@@ -279,6 +315,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - Framer Motion (Animations)
 
 ### Database Integration
+
 - ✅ Real-time data fetching
 - ✅ Server-side rendering
 - ✅ Error handling
@@ -286,6 +323,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Optimistic updates
 
 ### Security
+
 - ✅ Protected routes
 - ✅ Role-based access
 - ✅ Secure data handling
@@ -322,6 +360,7 @@ Admin Panel
 **Enhanced Pages:** 1 (Settings)
 
 ### All Features Include:
+
 - ✅ CRUD Operations (Create, Read, Update, Delete)
 - ✅ Search & Filter
 - ✅ Sorting & Pagination
@@ -336,6 +375,7 @@ Admin Panel
 ## 🚀 Ready for Production
 
 The admin panel is **fully functional** and ready for use with:
+
 - Complete data management
 - Comprehensive analytics
 - User-friendly interface
@@ -350,8 +390,6 @@ The admin panel is **fully functional** and ready for use with:
 - UI components are reusable and consistent
 - The system is designed for scalability
 - All features follow Next.js 15 best practices
-
-
 
 ==================================================
 FILE: ./docs/ADMIN_PASSWORD_RESET_GUIDE.md
@@ -388,19 +426,22 @@ I've created a script for you at `/scripts/reset-admin-password.js`
 ### Steps:
 
 1. **Ensure you have the Service Role Key:**
+
    ```bash
    # Add to .env.local
    SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
    ```
-   
+
    Get this from: Supabase Dashboard → Settings → API → service_role key
 
 2. **Install dependencies (if not already installed):**
+
    ```bash
    npm install @supabase/supabase-js dotenv
    ```
 
 3. **Run the script:**
+
    ```bash
    node scripts/reset-admin-password.js
    ```
@@ -421,9 +462,10 @@ I've created a script for you at `/scripts/reset-admin-password.js`
 
 1. Go to Supabase Dashboard → **SQL Editor**
 2. Run this query to find the admin user:
+
    ```sql
-   SELECT id, email, raw_user_meta_data 
-   FROM auth.users 
+   SELECT id, email, raw_user_meta_data
+   FROM auth.users
    WHERE email = 'admin@studyatchina.com';
    ```
 
@@ -453,7 +495,7 @@ If you can't access the existing admin account, create a new one:
 7. Then update user metadata via SQL Editor:
    ```sql
    UPDATE auth.users
-   SET 
+   SET
        raw_user_meta_data = jsonb_set(
            COALESCE(raw_user_meta_data, '{}'::jsonb),
            '{role}',
@@ -465,6 +507,7 @@ If you can't access the existing admin account, create a new one:
 ### Via Node.js Script:
 
 Run the script and choose to create a new admin when prompted:
+
 ```bash
 node scripts/reset-admin-password.js
 ```
@@ -484,21 +527,25 @@ After resetting the password, verify it works:
 ## 🚨 Troubleshooting
 
 ### "User not found"
+
 - Check the email is correct
 - Verify user exists in Supabase Dashboard → Authentication → Users
 - Create a new admin user using Method 4
 
 ### "Invalid credentials"
+
 - Password was not updated correctly
 - Try Method 1 (password reset email)
 - Ensure email is confirmed (check `email_confirmed_at` in database)
 
 ### "Missing Service Role Key"
+
 - Get it from Supabase Dashboard → Settings → API
 - Add to `.env.local` as `SUPABASE_SERVICE_ROLE_KEY`
 - **Important:** This is different from the `anon` key!
 
 ### "Password too weak"
+
 - Supabase requires minimum 6 characters
 - Use a strong password with letters, numbers, and symbols
 
@@ -539,6 +586,7 @@ If you don't remember, use one of the reset methods above.
 ## 🎯 Quick Reset (TL;DR)
 
 **Fastest method:**
+
 ```bash
 # 1. Add Service Role Key to .env.local
 # 2. Run script
@@ -549,6 +597,7 @@ node scripts/reset-admin-password.js
 ```
 
 **Alternative (no coding):**
+
 1. Supabase Dashboard → Authentication → Users
 2. Find admin → Send password reset email
 3. Check email → Reset password
@@ -559,6 +608,7 @@ node scripts/reset-admin-password.js
 ## 📞 Need Help?
 
 If you're still having issues:
+
 1. Check Supabase logs for errors
 2. Verify environment variables are set
 3. Ensure Supabase project is active
@@ -568,8 +618,6 @@ If you're still having issues:
 
 **Last Updated:** November 29, 2025
 
-
-
 ==================================================
 FILE: ./docs/ADMIN_UNIVERSITY_UPDATE.md
 ==================================================
@@ -577,17 +625,20 @@ FILE: ./docs/ADMIN_UNIVERSITY_UPDATE.md
 # Admin University Detail Page - Complete Update
 
 ## 🎯 Overview
+
 The admin university detail page has been completely redesigned to include all dynamic information that appears on the public university page, making it a comprehensive management interface.
 
 ## ✨ New Features Added
 
 ### 1. **Header Section**
+
 - ✅ University name and location display
 - ✅ "View Public Page" button (opens in new tab)
 - ✅ Delete button
 - ✅ Back to universities list button
 
 ### 2. **Statistics Cards** (4 Cards)
+
 - ✅ **Programs**: Total number of programs offered
 - ✅ **Total Students**: Total enrolled students
 - ✅ **International Students**: Number of international students
@@ -596,9 +647,11 @@ The admin university detail page has been completely redesigned to include all d
 ### 3. **Tabbed Interface**
 
 #### **Details Tab**
+
 Comprehensive form with all university fields organized into sections:
 
 **Basic Information:**
+
 - ✅ University Name (required)
 - ✅ Local Name (Chinese)
 - ✅ Slug (URL friendly, required)
@@ -606,19 +659,23 @@ Comprehensive form with all university fields organized into sections:
 - ✅ Logo URL
 
 **Location:**
+
 - ✅ City (required)
 - ✅ Province
 
 **Statistics:**
+
 - ✅ Founded Year
 - ✅ Ranking
 - ✅ Total Students
 - ✅ International Students
 
 **Description:**
+
 - ✅ University Description (large textarea)
 
 #### **Programs Tab**
+
 - ✅ List of all programs offered by the university
 - ✅ Program details displayed:
   - Title
@@ -634,6 +691,7 @@ Comprehensive form with all university fields organized into sections:
 ## 📊 Database Fields Now Managed
 
 ### Previously Available:
+
 - name
 - slug
 - city
@@ -641,6 +699,7 @@ Comprehensive form with all university fields organized into sections:
 - website
 
 ### Newly Added:
+
 - ✅ name_local (Chinese name)
 - ✅ province
 - ✅ logo_url
@@ -653,12 +712,14 @@ Comprehensive form with all university fields organized into sections:
 ## 🔄 Dynamic Data Loading
 
 ### University Data:
+
 - Fetches all university fields from database
 - Loads associated programs with full details
 - Displays real-time program count
 - Shows actual statistics
 
 ### Programs Integration:
+
 - Automatically loads all programs for the university
 - Displays program status (Active/Inactive)
 - Shows key program information
@@ -667,6 +728,7 @@ Comprehensive form with all university fields organized into sections:
 ## 🎨 UI/UX Improvements
 
 ### Visual Design:
+
 - ✅ Gradient stat cards with icons
 - ✅ Organized form sections with separators
 - ✅ Tabbed interface for better organization
@@ -675,9 +737,10 @@ Comprehensive form with all university fields organized into sections:
 - ✅ Badge indicators for status
 
 ### User Experience:
+
 - ✅ Clear section headings
 - ✅ Helpful placeholders
-- ✅ Required field indicators (*)
+- ✅ Required field indicators (\*)
 - ✅ Loading states
 - ✅ Toast notifications for actions
 - ✅ Confirmation dialogs for delete
@@ -688,6 +751,7 @@ Comprehensive form with all university fields organized into sections:
 The admin page now manages ALL fields that appear on the public university page:
 
 ### Public Page Elements Managed:
+
 - ✅ University header (name, location, logo)
 - ✅ Statistics display (founded, students, ranking)
 - ✅ Overview/description
@@ -698,7 +762,7 @@ The admin page now manages ALL fields that appear on the public university page:
 
 ## 📝 Form Validation
 
-- ✅ Required fields marked with *
+- ✅ Required fields marked with \*
 - ✅ URL validation for website and logo
 - ✅ Form submission handling
 - ✅ Error messages via toast
@@ -707,12 +771,14 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 🚀 Actions Available
 
 ### CRUD Operations:
+
 - ✅ **View**: See all university details and programs
 - ✅ **Edit**: Update any university field
 - ✅ **Delete**: Remove university (with confirmation)
 - ✅ **Navigate**: Quick links to related pages
 
 ### Additional Actions:
+
 - ✅ View public page
 - ✅ Manage programs
 - ✅ Add new programs
@@ -721,6 +787,7 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 💾 Data Persistence
 
 ### Save Functionality:
+
 - ✅ Updates all fields in database
 - ✅ Shows loading state during save
 - ✅ Success/error notifications
@@ -730,6 +797,7 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 🎯 Comparison: Before vs After
 
 ### Before:
+
 - Simple form with 5 fields
 - No statistics display
 - No programs integration
@@ -737,6 +805,7 @@ The admin page now manages ALL fields that appear on the public university page:
 - Limited information
 
 ### After:
+
 - Comprehensive form with 13+ fields
 - 4 statistics cards
 - Full programs integration
@@ -765,30 +834,35 @@ The admin page now manages ALL fields that appear on the public university page:
 ## ✅ Complete Feature List
 
 **Header:**
+
 - University name and location
 - View public page button
 - Delete button
 - Back navigation
 
 **Stats Cards:**
+
 - Programs count
 - Total students
 - International students
 - Founded year
 
 **Details Tab:**
+
 - Basic information (4 fields)
 - Location (2 fields)
 - Statistics (4 fields)
 - Description (1 field)
 
 **Programs Tab:**
+
 - Programs list with details
 - Active/Inactive badges
 - Program management link
 - Empty state handling
 
 **Actions:**
+
 - Save changes
 - Cancel
 - Delete university
@@ -799,8 +873,6 @@ The admin page now manages ALL fields that appear on the public university page:
 
 The admin university detail page is now a **complete, professional management interface** that provides full control over all university data and seamlessly integrates with the public-facing university page!
 
-
-
 ==================================================
 FILE: ./docs/ADMISSION_REQUIREMENTS_INTEGRATION.md
 ==================================================
@@ -808,11 +880,13 @@ FILE: ./docs/ADMISSION_REQUIREMENTS_INTEGRATION.md
 # Admission Requirements Integration
 
 ## Overview
+
 Successfully integrated the admission requirements system from the backend database into the program detail pages.
 
 ## Changes Made
 
 ### 1. Program Page Updates (`/programs/[slug]/page.tsx`)
+
 - **Fetches requirements from database** using `v_university_admission_requirements` view
 - Filters requirements by:
   - University ID
@@ -821,9 +895,10 @@ Successfully integrated the admission requirements system from the backend datab
 - Passes structured data to ProgramRequirements component
 
 ### 2. ProgramRequirements Component Updates
+
 - **Enhanced to handle 5 categories:**
   - ✅ Academic Requirements
-  - ✅ Language Requirements  
+  - ✅ Language Requirements
   - ✅ Document Requirements
   - ✅ Financial Requirements (NEW)
   - ✅ Additional Information/Other (NEW)
@@ -841,11 +916,13 @@ Successfully integrated the admission requirements system from the backend datab
 ## Database Structure
 
 ### Tables Used:
+
 1. **`admission_requirements_catalog`** - Master list of all requirements
 2. **`university_admission_requirements`** - Junction table linking universities to requirements
 3. **`v_university_admission_requirements`** - View for easy querying
 
 ### Requirement Categories:
+
 - `academic` - Diplomas, GPA, transcripts
 - `language` - IELTS, TOEFL, HSK scores
 - `document` - Passport, photos, certificates
@@ -853,6 +930,7 @@ Successfully integrated the admission requirements system from the backend datab
 - `other` - Age limits, health, interviews
 
 ### Requirement Types:
+
 - `bachelor` - For undergraduate programs
 - `master` - For graduate programs
 - `phd` - For doctoral programs
@@ -892,14 +970,16 @@ Successfully integrated the admission requirements system from the backend datab
 To populate requirements for your universities:
 
 1. **Run the migration** (if not already done):
+
    ```sql
    -- Execute DATABASE_MIGRATION_ADMISSION_REQUIREMENTS.sql
    ```
 
 2. **Link requirements to universities** via admin panel or SQL:
+
    ```sql
    INSERT INTO university_admission_requirements (university_id, requirement_id, is_required, display_order)
-   SELECT 
+   SELECT
        (SELECT id FROM universities WHERE slug = 'your-university-slug'),
        id,
        true,
@@ -920,30 +1000,34 @@ To populate requirements for your universities:
 When viewing a Bachelor program at Tsinghua University, students will see:
 
 ### Entry Requirements
+
 **Academic:**
+
 - High School Diploma
 - Minimum GPA 3.0
 - Academic Transcripts
 
 **Language:**
+
 - IELTS 6.0 or TOEFL 80 (for English programs)
 - HSK 4 (for Chinese programs)
 
 ### Required Documents
+
 - Valid Passport ✓ Required
 - Physical Examination Form ✓ Required
 - Personal Statement ✓ Required
 - etc.
 
 ### Financial Requirements
+
 - Bank Statement
 - Financial Guarantee
 
 ### Additional Information
+
 - Age Requirement 18-25
 - Good Health
-
-
 
 ==================================================
 FILE: ./docs/ADMISSION_REQUIREMENTS_SYSTEM.md
@@ -992,6 +1076,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ## 📋 Requirement Categories
 
 ### 1. **Academic** (7 requirements)
+
 - High School Diploma
 - Bachelor Degree
 - Master Degree
@@ -1001,6 +1086,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Graduation Certificate
 
 ### 2. **Language** (8 requirements)
+
 - IELTS 6.0
 - IELTS 6.5
 - TOEFL 80
@@ -1011,6 +1097,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - English Proficiency Waiver
 
 ### 3. **Document** (9 requirements)
+
 - Valid Passport
 - Passport Photos
 - Physical Examination Form
@@ -1022,11 +1109,13 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Portfolio
 
 ### 4. **Financial** (3 requirements)
+
 - Bank Statement
 - Financial Guarantee
 - Scholarship Certificate
 
 ### 5. **Other** (6 requirements)
+
 - Age Requirement 18-25
 - Age Requirement 18-35
 - Age Requirement 18-40
@@ -1039,6 +1128,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ## 🎓 Requirement Types
 
 ### Bachelor Programs:
+
 - High School Diploma
 - Minimum GPA 3.0
 - IELTS 6.0 / TOEFL 80
@@ -1047,6 +1137,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Basic documents
 
 ### Master Programs:
+
 - Bachelor Degree
 - Minimum GPA 3.2
 - IELTS 6.5 / TOEFL 90
@@ -1056,6 +1147,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Study plan
 
 ### PhD Programs:
+
 - Master Degree
 - HSK 6 (for Chinese-taught)
 - Age 18-40
@@ -1063,6 +1155,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Interview
 
 ### All Programs:
+
 - Valid Passport
 - Physical Examination
 - Non-Criminal Record
@@ -1101,6 +1194,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ```
 
 ### Features:
+
 - ✅ View all requirements
 - ✅ Filter by category
 - ✅ Filter by type
@@ -1116,16 +1210,19 @@ Created a **centralized admission requirements catalog** system - similar to the
 ### For Data Entry Staff:
 
 #### Step 1: Go to University Edit Page
+
 ```
 /admin/universities/[id]
 ```
 
 #### Step 2: Select Requirements Tab
+
 ```
 Tabs: Details | Programs | Requirements
 ```
 
 #### Step 3: Select from Catalog
+
 ```
 ┌─────────────────────────────────────┐
 │ Select Admission Requirements       │
@@ -1147,17 +1244,20 @@ Tabs: Details | Programs | Requirements
 ```
 
 #### Step 4: Add Custom Notes (Optional)
+
 ```
 Requirement: IELTS 6.0
 Custom Note: "6.5 required for Business programs"
 ```
 
 #### Step 5: Set Display Order
+
 ```
 Drag to reorder requirements
 ```
 
 #### Step 6: Save
+
 ```
 Requirements linked to university ✅
 ```
@@ -1169,15 +1269,18 @@ Requirements linked to university ✅
 ### Selected Requirements:
 
 **Academic:**
+
 - ✅ High School Diploma
 - ✅ Minimum GPA 3.0
 - ✅ Academic Transcripts
 
 **Language:**
+
 - ✅ IELTS 6.5 (Custom: "6.5 for all programs")
 - ✅ HSK 5 (Custom: "Required for Chinese-taught")
 
 **Document:**
+
 - ✅ Valid Passport
 - ✅ Physical Examination Form
 - ✅ Non-Criminal Record
@@ -1185,9 +1288,11 @@ Requirements linked to university ✅
 - ✅ Personal Statement
 
 **Financial:**
+
 - ✅ Bank Statement
 
 **Other:**
+
 - ✅ Age Requirement 18-25
 - ✅ Good Health
 
@@ -1232,26 +1337,31 @@ Requirements linked to university ✅
 ## ✅ Benefits
 
 ### 1. **Consistency**
+
 - Same requirements across universities
 - Standardized language
 - No typos or variations
 
 ### 2. **Efficiency**
+
 - Select instead of type
 - Reuse common requirements
 - Save time
 
 ### 3. **Flexibility**
+
 - Add custom notes per university
 - Override descriptions
 - Custom display order
 
 ### 4. **Maintainability**
+
 - Update once, applies everywhere
 - Easy to add new requirements
 - Centralized management
 
 ### 5. **Better UX**
+
 - Clear categorization
 - Organized display
 - Easy to understand
@@ -1261,6 +1371,7 @@ Requirements linked to university ✅
 ## 🔄 Workflow Comparison
 
 ### Before (Manual):
+
 ```
 1. Open university edit page
 2. Type "High School Diploma"
@@ -1276,6 +1387,7 @@ Requirements linked to university ✅
 ```
 
 ### After (Catalog):
+
 ```
 1. Open university edit page
 2. Click "Select Requirements"
@@ -1292,6 +1404,7 @@ Requirements linked to university ✅
 ## 📊 Database Schema
 
 ### admission_requirements_catalog:
+
 ```sql
 CREATE TABLE admission_requirements_catalog (
     id UUID PRIMARY KEY,
@@ -1306,6 +1419,7 @@ CREATE TABLE admission_requirements_catalog (
 ```
 
 ### university_admission_requirements:
+
 ```sql
 CREATE TABLE university_admission_requirements (
     id UUID PRIMARY KEY,
@@ -1326,6 +1440,7 @@ CREATE TABLE university_admission_requirements (
 A **complete admission requirements system** featuring:
 
 ### Admin:
+
 - ✅ Centralized catalog (33 requirements)
 - ✅ 5 categories
 - ✅ 4 program types
@@ -1334,6 +1449,7 @@ A **complete admission requirements system** featuring:
 - ✅ Display order control
 
 ### Frontend:
+
 - ✅ Dynamic display
 - ✅ Organized by category
 - ✅ Clear descriptions
@@ -1341,8 +1457,6 @@ A **complete admission requirements system** featuring:
 - ✅ Professional appearance
 
 **Data entry staff can now select requirements from a catalog instead of typing them every time!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
@@ -1355,10 +1469,12 @@ FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
 ### 1. Database Structure (`DATABASE_MIGRATION_ARTICLES.sql`)
 
 **Tables:**
+
 - `articles` - Main articles table with full content management
 - `article_categories` - Predefined categories with colors and icons
 
 **Features:**
+
 - ✅ Auto-generated slugs (SEO-friendly URLs)
 - ✅ Draft/Published/Archived workflow
 - ✅ View counter for analytics
@@ -1370,6 +1486,7 @@ FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
 - ✅ Row Level Security (RLS)
 
 **Default Categories:**
+
 1. Study Tips
 2. University Life
 3. Scholarships
@@ -1382,6 +1499,7 @@ FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
 ### 2. Public Pages
 
 #### Articles Listing Page (`/articles`)
+
 - **Hero section** with search bar
 - **Category filters** with color-coded badges
 - **Featured articles** section (highlighted)
@@ -1395,6 +1513,7 @@ FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
   - Published date
 
 #### Article Detail Page (`/articles/[slug]`)
+
 - **Hero section** with featured image overlay
 - **Full article content** with rich formatting
 - **Author card** in sidebar
@@ -1407,6 +1526,7 @@ FILE: ./docs/ARTICLES_SYSTEM_COMPLETE.md
 ### 3. Admin Panel
 
 #### Articles Management (`/admin/articles`)
+
 - **Dashboard with stats:**
   - Total articles
   - Published count
@@ -1427,6 +1547,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 🎨 Features
 
 ### Content Management
+
 - ✅ Rich text content support
 - ✅ Featured images
 - ✅ Excerpts for previews
@@ -1435,6 +1556,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 - ✅ SEO optimization (meta titles, descriptions)
 
 ### User Experience
+
 - ✅ Clean, modern design
 - ✅ Responsive layout
 - ✅ Fast loading with optimized images
@@ -1443,11 +1565,13 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 - ✅ Related articles suggestions
 
 ### Analytics
+
 - ✅ View tracking
 - ✅ Reading time calculation
 - ✅ Popular articles tracking
 
 ### Admin Features
+
 - ✅ Easy article management
 - ✅ Status filtering
 - ✅ Search functionality
@@ -1457,12 +1581,14 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 📝 How to Use
 
 ### Step 1: Run Database Migration
+
 ```sql
 -- Execute in Supabase SQL Editor
 -- Copy and run: DATABASE_MIGRATION_ARTICLES.sql
 ```
 
 ### Step 2: Access Admin Panel
+
 1. Go to `/admin/articles`
 2. Click "New Article"
 3. Fill in article details
@@ -1470,6 +1596,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 5. Save
 
 ### Step 3: View Public Pages
+
 - **All articles:** `http://localhost:3000/articles`
 - **Single article:** `http://localhost:3000/articles/[slug]`
 
@@ -1498,6 +1625,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 🎨 Category Colors
 
 Each category has a unique color for visual distinction:
+
 - Study Tips: Blue (#3B82F6)
 - University Life: Green (#10B981)
 - Scholarships: Amber (#F59E0B)
@@ -1528,6 +1656,7 @@ Each category has a unique color for visual distinction:
 ## 📱 Responsive Design
 
 All pages are fully responsive:
+
 - ✅ Mobile-friendly layouts
 - ✅ Touch-optimized interactions
 - ✅ Adaptive images
@@ -1536,6 +1665,7 @@ All pages are fully responsive:
 ## 🎉 Summary
 
 You now have a complete, production-ready articles/blog system with:
+
 - Beautiful public pages
 - Powerful admin interface
 - SEO optimization
@@ -1545,8 +1675,6 @@ You now have a complete, production-ready articles/blog system with:
 - Related content suggestions
 
 The system is ready to use! Just run the migration and start creating content! 🚀
-
-
 
 ==================================================
 FILE: ./docs/ARTICLE_EDITOR_COMPLETE.md
@@ -1626,7 +1754,9 @@ Since we're using a textarea for content, you can use HTML tags:
 
 ```html
 <h2>Section Heading</h2>
-<p>This is a paragraph with <strong>bold text</strong> and <em>italic text</em>.</p>
+<p>
+  This is a paragraph with <strong>bold text</strong> and <em>italic text</em>.
+</p>
 
 <h3>Subsection</h3>
 <p>Another paragraph with a <a href="https://example.com">link</a>.</p>
@@ -1641,9 +1771,7 @@ Since we're using a textarea for content, you can use HTML tags:
   <li>Numbered item 2</li>
 </ol>
 
-<blockquote>
-  This is a quote or callout box.
-</blockquote>
+<blockquote>This is a quote or callout box.</blockquote>
 
 <img src="image-url.jpg" alt="Description" />
 ```
@@ -1651,6 +1779,7 @@ Since we're using a textarea for content, you can use HTML tags:
 ## 🎨 Styling
 
 Custom CSS has been added (`article.css`) to style the article content beautifully:
+
 - Proper heading sizes
 - Readable line heights
 - Styled links, lists, blockquotes
@@ -1660,6 +1789,7 @@ Custom CSS has been added (`article.css`) to style the article content beautiful
 ## 📸 Image Upload
 
 Images are uploaded to Supabase Storage in the `public/articles/` folder:
+
 - **Max size:** 5MB
 - **Formats:** All image types (jpg, png, gif, webp, etc.)
 - **Auto-naming:** Random filename to avoid conflicts
@@ -1709,13 +1839,14 @@ If you want to upgrade the editor later:
 ## 📋 Current Limitations
 
 - Content editor is plain HTML (not WYSIWYG)
-  - *This is intentional to avoid React 19 compatibility issues*
-  - *Works perfectly for users comfortable with HTML*
-  - *Can be upgraded later when libraries support React 19*
+  - _This is intentional to avoid React 19 compatibility issues_
+  - _Works perfectly for users comfortable with HTML_
+  - _Can be upgraded later when libraries support React 19_
 
 ## ✨ Summary
 
 You now have a fully functional article editor that:
+
 - Creates and edits articles
 - Uploads and manages images (required for each article)
 - Supports HTML formatting
@@ -1724,8 +1855,6 @@ You now have a fully functional article editor that:
 - Has a beautiful, intuitive interface
 
 The editor is production-ready and can be used immediately! 🎉
-
-
 
 ==================================================
 FILE: ./docs/AUTOMATIC_UNIVERSITY_DETECTION.md
@@ -1759,16 +1888,23 @@ The system now **automatically detects** when universities are mentioned in arti
 
 ```html
 <h2>Top Universities in Beijing</h2>
-<p>Beijing is home to many prestigious universities. Tsinghua University and Peking University are among the best in China...</p>
+<p>
+  Beijing is home to many prestigious universities. Tsinghua University and
+  Peking University are among the best in China...
+</p>
 
-<p>Another great option is Beijing Normal University, which specializes in education programs...</p>
+<p>
+  Another great option is Beijing Normal University, which specializes in
+  education programs...
+</p>
 ```
 
 ### Result:
 
 The system will automatically detect and display cards for:
+
 - Tsinghua University
-- Peking University  
+- Peking University
 - Beijing Normal University
 
 ## 🎨 Display Features
@@ -1868,6 +2004,7 @@ Possible improvements:
 ## ✅ Summary
 
 This feature provides:
+
 - ✅ **Automatic** university detection
 - ✅ **Beautiful** display cards
 - ✅ **Smart** matching algorithm
@@ -1876,8 +2013,6 @@ This feature provides:
 - ✅ **Improved** SEO
 
 Just write your articles naturally, and the system will automatically show relevant universities at the bottom! 🎉
-
-
 
 ==================================================
 FILE: ./docs/COMMUNICATION_PAYMENT_SYSTEM.md
@@ -1894,9 +2029,11 @@ A comprehensive communication and payment management system that enables seamles
 ## 📊 Database Schema
 
 ### 1. **application_messages**
+
 **Purpose:** Two-way communication between admin and students
 
 **Fields:**
+
 - `id` - UUID primary key
 - `application_id` - References application
 - `sender_id` - User who sent the message
@@ -1914,6 +2051,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Message Types:**
+
 - `general` - General communication
 - `document_request` - Request for documents
 - `payment_request` - Payment required
@@ -1924,9 +2062,11 @@ A comprehensive communication and payment management system that enables seamles
 - `additional_info_request` - More info needed
 
 ### 2. **payment_transactions**
+
 **Purpose:** Track all payment transactions
 
 **Fields:**
+
 - `id` - UUID primary key
 - `application_id` - References application
 - `student_id` - Student making payment
@@ -1949,6 +2089,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Payment Types:**
+
 - `application_fee` - Application processing fee
 - `service_fee` - Service fee
 - `tuition_deposit` - Deposit for tuition
@@ -1957,6 +2098,7 @@ A comprehensive communication and payment management system that enables seamles
 - `other` - Other payments
 
 **Payment Status:**
+
 - `pending` - Awaiting payment
 - `processing` - Being processed
 - `completed` - Successfully paid
@@ -1965,9 +2107,11 @@ A comprehensive communication and payment management system that enables seamles
 - `cancelled` - Payment cancelled
 
 ### 3. **email_notifications**
+
 **Purpose:** Track all emails sent to users
 
 **Fields:**
+
 - `id` - UUID primary key
 - `recipient_id` - User receiving email
 - `recipient_email` - Email address
@@ -1988,6 +2132,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Email Types:**
+
 - `application_submitted`
 - `application_received`
 - `status_changed`
@@ -2001,9 +2146,11 @@ A comprehensive communication and payment management system that enables seamles
 - `deadline_reminder`
 
 ### 4. **notification_preferences**
+
 **Purpose:** User notification settings
 
 **Fields:**
+
 - `user_id` - User ID (unique)
 - `email_application_updates` - Boolean
 - `email_messages` - Boolean
@@ -2016,9 +2163,11 @@ A comprehensive communication and payment management system that enables seamles
 - `sms_number` - Phone number for SMS
 
 ### 5. **document_requests**
+
 **Purpose:** Track specific document requests from admin
 
 **Fields:**
+
 - `application_id` - Related application
 - `message_id` - Related message
 - `document_name` - Name of document
@@ -2032,9 +2181,11 @@ A comprehensive communication and payment management system that enables seamles
 - `requested_by` - Admin who requested
 
 ### 6. **acceptance_letters**
+
 **Purpose:** Store acceptance letter information
 
 **Fields:**
+
 - `application_id` - Related application (unique)
 - `letter_number` - Official letter number
 - `issue_date` - When issued
@@ -2049,9 +2200,11 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 ### 7. **interview_schedules**
+
 **Purpose:** Manage interview appointments
 
 **Fields:**
+
 - `application_id` - Related application
 - `interview_type` - online/in_person/phone
 - `scheduled_date` - Date and time
@@ -2072,16 +2225,19 @@ A comprehensive communication and payment management system that enables seamles
 ## 🔔 Automated Email Triggers
 
 ### 1. **New Message Trigger**
+
 **When:** Admin sends message to student
 **Action:** Automatically creates email notification
 **Template:** Message received email with subject and content
 
 ### 2. **Payment Request Trigger**
+
 **When:** New payment transaction created with status 'pending'
 **Action:** Sends payment request email with payment link
 **Template:** Payment requested email with amount and link
 
 ### 3. **Status Change Trigger**
+
 **When:** Application status changes
 **Action:** Sends status update email
 **Template:** Status changed email with new status
@@ -2129,6 +2285,7 @@ A comprehensive communication and payment management system that enables seamles
    - Link to view full message
 
 All templates include:
+
 - Professional HTML design
 - Responsive layout
 - Brand colors and styling
@@ -2246,18 +2403,21 @@ All templates include:
 ### 1. Document Request Workflow
 
 **Admin Side:**
+
 1. Admin creates document request
 2. Selects document type and description
 3. Sets deadline
 4. Sends message
 
 **System:**
+
 1. Creates `document_requests` record
 2. Creates `application_messages` record
 3. Triggers email notification
 4. Sends email to student
 
 **Student Side:**
+
 1. Receives email notification
 2. Sees message in dashboard
 3. Views "Action Required" badge
@@ -2267,18 +2427,21 @@ All templates include:
 ### 2. Payment Request Workflow
 
 **Admin Side:**
+
 1. Admin creates payment transaction
 2. Sets amount, type, and deadline
 3. Generates unique payment link
 4. System sends automatically
 
 **System:**
+
 1. Creates `payment_transactions` record
 2. Generates secure payment link
 3. Triggers email notification
 4. Sends payment request email
 
 **Student Side:**
+
 1. Receives email with payment link
 2. Sees payment in dashboard
 3. Clicks "Pay Now" button
@@ -2289,16 +2452,19 @@ All templates include:
 ### 3. Status Change Workflow
 
 **Admin Side:**
+
 1. Admin updates application status
 2. Optionally adds notes
 
 **System:**
+
 1. Updates application status
 2. Creates status history record
 3. Triggers email notification
 4. Sends status update email
 
 **Student Side:**
+
 1. Receives email notification
 2. Sees updated status in dashboard
 3. Views status timeline
@@ -2307,17 +2473,20 @@ All templates include:
 ### 4. Acceptance Letter Workflow
 
 **Admin Side:**
+
 1. Admin issues acceptance letter
 2. Uploads letter PDF
 3. Adds JW202 and visa letter
 4. Sets letter number and dates
 
 **System:**
+
 1. Creates `acceptance_letters` record
 2. Triggers email notification
 3. Sends congratulations email
 
 **Student Side:**
+
 1. Receives congratulations email
 2. Downloads acceptance letter
 3. Downloads JW202 form
@@ -2329,6 +2498,7 @@ All templates include:
 ## 🎨 UI/UX Features
 
 ### Color Coding:
+
 - 🟢 **Green** - Completed, Accepted, Verified
 - 🔵 **Blue** - Processing, Under Review
 - 🟡 **Yellow** - Pending, Action Required
@@ -2336,6 +2506,7 @@ All templates include:
 - ⚪ **Gray** - Cancelled, Inactive
 
 ### Badges:
+
 - Status badges with icons
 - Unread count badges
 - Action required badges
@@ -2343,12 +2514,14 @@ All templates include:
 - New message badges
 
 ### Notifications:
+
 - Toast notifications for actions
 - Email notifications
 - In-app message center
 - Unread count in sidebar
 
 ### Responsive Design:
+
 - Mobile-friendly layouts
 - Touch-friendly buttons
 - Collapsible sections
@@ -2359,18 +2532,21 @@ All templates include:
 ## 🔒 Security & Privacy
 
 ### RLS Policies:
+
 - Students can only see their own data
 - Admins can see all data
 - Secure document access
 - Payment link validation
 
 ### Data Protection:
+
 - Encrypted payment links
 - Secure file storage
 - Email encryption
 - GDPR compliant
 
 ### Access Control:
+
 - Role-based permissions
 - Action logging
 - Audit trails
@@ -2395,12 +2571,14 @@ All templates include:
 ## 🛠️ Integration Points
 
 ### Email Service:
+
 - Ready for Resend API
 - Ready for SendGrid
 - Ready for AWS SES
 - Currently logs to database
 
 ### Payment Gateways:
+
 - Stripe integration ready
 - PayPal integration ready
 - Alipay support
@@ -2408,6 +2586,7 @@ All templates include:
 - Bank transfer tracking
 
 ### File Storage:
+
 - Supabase Storage
 - Document versioning
 - Secure URLs
@@ -2418,6 +2597,7 @@ All templates include:
 ## 📊 Analytics & Reporting
 
 ### Available Metrics:
+
 - Email delivery rates
 - Email open rates
 - Payment completion rates
@@ -2426,6 +2606,7 @@ All templates include:
 - Document upload rates
 
 ### Views Created:
+
 - `v_unread_messages_count` - Unread messages per application
 - `v_pending_payments` - Pending payments per student
 - `v_pending_actions` - All pending actions per student
@@ -2435,6 +2616,7 @@ All templates include:
 ## 🚀 Next Steps
 
 ### To Enable Email Sending:
+
 1. Sign up for Resend (recommended) or SendGrid
 2. Get API key
 3. Add to `.env.local`:
@@ -2444,6 +2626,7 @@ All templates include:
 4. Uncomment email sending code in `/src/lib/email/service.ts`
 
 ### To Enable Payments:
+
 1. Choose payment gateway (Stripe recommended)
 2. Set up account
 3. Add credentials to `.env.local`
@@ -2451,6 +2634,7 @@ All templates include:
 5. Test in sandbox mode
 
 ### To Customize:
+
 1. Edit email templates in `/src/lib/email/templates.ts`
 2. Modify message types in database schema
 3. Add custom payment types
@@ -2461,6 +2645,7 @@ All templates include:
 ## 📝 Summary
 
 This system provides:
+
 - ✅ Complete two-way communication
 - ✅ Automated email notifications
 - ✅ Payment management and tracking
@@ -2473,8 +2658,6 @@ This system provides:
 - ✅ Secure and scalable architecture
 
 **Everything is connected and ready for production!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/CONSOLE_ERRORS_FIXED.md
@@ -2500,12 +2683,14 @@ From the console logs:
 ### 1. **Pattern.svg Missing (404)**
 
 **Problem:**
+
 ```javascript
 // Footer.tsx was trying to load non-existent file
 <div className="bg-[url('/pattern.svg')]" />
 ```
 
 **Solution:**
+
 ```javascript
 // Replaced with gradient overlay
 <div className="bg-gradient-to-br from-white/5 to-transparent opacity-20" />
@@ -2518,24 +2703,29 @@ From the console logs:
 ### 2. **Google Maps API Key (403)**
 
 **Problem:**
+
 ```javascript
 // Using placeholder API key
 src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=...`}
 ```
 
 **Solution:**
+
 ```javascript
 // Replaced with placeholder until real API key is added
 <div className="h-48 bg-muted flex items-center justify-center">
-    <MapPin icon />
-    <p>Map View</p>
-    <p>{latitude}, {longitude}</p>
+  <MapPin icon />
+  <p>Map View</p>
+  <p>
+    {latitude}, {longitude}
+  </p>
 </div>
 ```
 
 **Result:** ✅ No more 403 error
 
 **To Add Real Map Later:**
+
 1. Get Google Maps API key from Google Cloud Console
 2. Add to `.env.local`: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_key`
 3. Replace placeholder with iframe using the key
@@ -2545,6 +2735,7 @@ src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=
 ### 3. **Logo URL Empty**
 
 **Problem:**
+
 ```
 Logo URL: "" (empty string)
 ```
@@ -2552,16 +2743,18 @@ Logo URL: "" (empty string)
 **Cause:** Images uploaded but not saved to database
 
 **Solution:** Fixed in previous update
+
 ```javascript
 // Now saves logo and gallery to database
 const updateData = {
-    ...formData,
-    logo_url: logoPreview,
-    gallery_images: galleryPreviews,
+  ...formData,
+  logo_url: logoPreview,
+  gallery_images: galleryPreviews,
 };
 ```
 
 **Action Needed:**
+
 1. Go to admin panel
 2. Edit university
 3. Upload logo again
@@ -2573,6 +2766,7 @@ const updateData = {
 ### 4. **Gallery Images Empty**
 
 **Problem:**
+
 ```
 Gallery Images: [] (empty array)
 ```
@@ -2582,6 +2776,7 @@ Gallery Images: [] (empty array)
 **Solution:** Fixed in previous update
 
 **Action Needed:**
+
 1. Go to admin panel
 2. Edit university
 3. Upload gallery images
@@ -2593,6 +2788,7 @@ Gallery Images: [] (empty array)
 ## 📊 Console Output Explained
 
 ### Current State:
+
 ```javascript
 Fetching university with slug: ningbo-university
 Error: null  // ✅ No database error
@@ -2602,6 +2798,7 @@ Gallery Images: []  // ⚠️ Not uploaded yet
 ```
 
 ### After Uploading Images:
+
 ```javascript
 Fetching university with slug: ningbo-university
 Error: null  // ✅ No database error
@@ -2615,15 +2812,18 @@ Gallery Images: ["data:image/png;base64,..."]  // ✅ Gallery saved
 ## 🎯 Summary
 
 ### Fixed Immediately:
+
 - ✅ Pattern.svg 404 error
 - ✅ Google Maps 403 error
 
 ### Requires Action:
+
 - ⚠️ Upload logo in admin
 - ⚠️ Upload gallery images in admin
 - ⚠️ Click Save
 
 ### Optional (Future):
+
 - 📝 Add Google Maps API key for real maps
 - 📝 Use Supabase Storage instead of base64
 - 📝 Optimize image sizes
@@ -2638,8 +2838,6 @@ Gallery Images: ["data:image/png;base64,..."]  // ✅ Gallery saved
 4. **Refresh public page** - Images will appear!
 
 **All console errors are now fixed!** ✅
-
-
 
 ==================================================
 FILE: ./docs/CURRENCY_CONVERTER_GUIDE.md
@@ -2665,52 +2863,58 @@ The currency converter system allows users to view all prices on the website in 
 Replace hardcoded prices with the `<Price>` component:
 
 ### Before:
+
 ```tsx
 <div>¥{program.tuition_fee} CNY</div>
 ```
 
 ### After:
+
 ```tsx
 import { Price } from "@/components/currency/Price";
 
-<Price amount={program.tuition_fee} currency="CNY" />
+<Price amount={program.tuition_fee} currency="CNY" />;
 ```
 
 ## Price Component Props
 
 ```tsx
 interface PriceProps {
-  amount: number;           // The price amount
-  currency?: string;        // Source currency (default: 'CNY')
-  className?: string;       // Optional CSS classes
-  showCurrency?: boolean;   // Show currency code (default: true)
+  amount: number; // The price amount
+  currency?: string; // Source currency (default: 'CNY')
+  className?: string; // Optional CSS classes
+  showCurrency?: boolean; // Show currency code (default: true)
 }
 ```
 
 ## Examples
 
 ### Basic Usage
+
 ```tsx
 <Price amount={50000} currency="CNY" />
 // Output: ¥ 50,000 CNY (or converted to user's selected currency)
 ```
 
 ### Without Currency Code
+
 ```tsx
 <Price amount={50000} currency="CNY" showCurrency={false} />
 // Output: ¥ 50,000
 ```
 
 ### With Custom Styling
+
 ```tsx
-<Price 
-  amount={50000} 
-  currency="CNY" 
+<Price
+  amount={50000}
+  currency="CNY"
   className="text-2xl font-bold text-primary"
 />
 ```
 
 ### Different Source Currencies
+
 ```tsx
 <Price amount={1000} currency="USD" />
 <Price amount={5000} currency="SAR" />
@@ -2722,7 +2926,9 @@ interface PriceProps {
 To add currency conversion to existing pages, update these files:
 
 ### 1. Program Cards
+
 **File:** `src/components/programs/ProgramCard.tsx`
+
 ```tsx
 import { Price } from "@/components/currency/Price";
 
@@ -2734,28 +2940,36 @@ import { Price } from "@/components/currency/Price";
 ```
 
 ### 2. University Cards
+
 **File:** `src/components/universities/UniversityCard.tsx`
+
 ```tsx
 // Replace tuition fee display with:
 <Price amount={minTuitionFee} currency="CNY" />
 ```
 
 ### 3. Featured Programs
+
 **File:** `src/components/home/FeaturedProgramsSection.tsx`
+
 ```tsx
 // Replace price displays with:
 <Price amount={program.tuition_fee} currency={program.currency} />
 ```
 
 ### 4. Application Forms
+
 **File:** `src/components/applications/ApplyForm.tsx`
+
 ```tsx
 // Replace payment amounts with:
 <Price amount={totalFee} currency="CNY" />
 ```
 
 ### 5. Payment Pages
+
 **File:** `src/app/dashboard/payments/page.tsx`
+
 ```tsx
 // Replace all payment amounts with Price component
 ```
@@ -2763,10 +2977,12 @@ import { Price } from "@/components/currency/Price";
 ## Supported Currencies
 
 ### Major Currencies (2)
+
 - CNY - Chinese Yuan
 - USD - US Dollar
 
 ### MENA Region (22)
+
 - AED - UAE Dirham
 - SAR - Saudi Riyal
 - EGP - Egyptian Pound
@@ -2779,6 +2995,7 @@ import { Price } from "@/components/currency/Price";
 - And 13 more...
 
 ### CIS Countries (12)
+
 - RUB - Russian Ruble
 - KZT - Kazakhstani Tenge
 - UZS - Uzbekistani Som
@@ -2788,6 +3005,7 @@ import { Price } from "@/components/currency/Price";
 ## Exchange Rate API
 
 The system uses [exchangerate-api.com](https://www.exchangerate-api.com/) for live rates:
+
 - Free tier: 1500 requests/month
 - Updates: Every hour
 - Fallback: Hardcoded rates if API fails
@@ -2795,33 +3013,33 @@ The system uses [exchangerate-api.com](https://www.exchangerate-api.com/) for li
 ## Advanced Usage
 
 ### Using the Currency Hook
+
 ```tsx
 import { useCurrency } from "@/contexts/CurrencyContext";
 
 function MyComponent() {
   const { currency, setCurrency, exchangeRates } = useCurrency();
-  
+
   return (
     <div>
       Current currency: {currency}
-      <button onClick={() => setCurrency('USD')}>
-        Switch to USD
-      </button>
+      <button onClick={() => setCurrency("USD")}>Switch to USD</button>
     </div>
   );
 }
 ```
 
 ### Using the Convert Price Hook
+
 ```tsx
 import { useConvertPrice } from "@/contexts/CurrencyContext";
 
 function MyComponent() {
   const convertPrice = useConvertPrice();
-  
+
   const priceInCNY = 50000;
-  const convertedPrice = convertPrice(priceInCNY, 'CNY');
-  
+  const convertedPrice = convertPrice(priceInCNY, "CNY");
+
   return <div>{convertedPrice}</div>;
 }
 ```
@@ -2850,21 +3068,22 @@ To complete the integration:
 ## Troubleshooting
 
 ### Prices not converting?
+
 - Check if component is wrapped in `<CurrencyProvider>`
 - Verify the Price component is imported correctly
 - Check browser console for errors
 
 ### Exchange rates not loading?
+
 - Check network tab for API calls
 - Fallback rates will be used if API fails
 - Rates update every hour
 
 ### Currency not persisting?
+
 - Check localStorage in browser DevTools
 - Key: `preferred-currency`
 - Clear localStorage and try again
-
-
 
 ==================================================
 FILE: ./docs/DATABASE_SETUP_COMPLETE.md
@@ -2881,9 +3100,11 @@ This guide contains **all database migrations** needed to run the Study At China
 ## 📋 Migration Files
 
 ### 1. **Universities Table Migration**
+
 **File:** `DATABASE_MIGRATION_UNIVERSITIES.sql`
 
 Adds all new columns to universities table:
+
 - ✅ `name_local` - Chinese name
 - ✅ `slug` - SEO-friendly URL (UNIQUE)
 - ✅ `province` - Province name
@@ -2898,9 +3119,11 @@ Adds all new columns to universities table:
 - ✅ `longitude` - Map longitude
 
 ### 2. **Program Catalog Migration**
+
 **File:** `DATABASE_MIGRATION_PROGRAMS.sql`
 
 Creates new program catalog system:
+
 - ✅ `program_catalog` table - Master program list
 - ✅ `university_programs` table - University-specific programs
 - ✅ `v_university_programs_full` view - Combined view
@@ -2911,16 +3134,19 @@ Creates new program catalog system:
 ## 🚀 How to Run Migrations
 
 ### Step 1: Open Supabase Dashboard
+
 1. Go to your Supabase project
 2. Click on "SQL Editor" in the sidebar
 
 ### Step 2: Run Universities Migration
+
 1. Copy content from `DATABASE_MIGRATION_UNIVERSITIES.sql`
 2. Paste into SQL Editor
 3. Click "Run" button
 4. Verify success ✅
 
 ### Step 3: Run Programs Migration
+
 1. Copy content from `DATABASE_MIGRATION_PROGRAMS.sql`
 2. Paste into SQL Editor
 3. Click "Run" button
@@ -2943,7 +3169,7 @@ CREATE TABLE universities (
     logo_url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    
+
     -- New columns
     name_local VARCHAR(255),              -- Chinese name
     slug VARCHAR(255) UNIQUE,             -- SEO-friendly URL
@@ -3008,10 +3234,10 @@ CREATE TABLE university_programs (
 
 ```sql
 -- Verify all columns exist
-SELECT 
-    column_name, 
-    data_type 
-FROM information_schema.columns 
+SELECT
+    column_name,
+    data_type
+FROM information_schema.columns
 WHERE table_name = 'universities'
 ORDER BY ordinal_position;
 ```
@@ -3023,9 +3249,9 @@ ORDER BY ordinal_position;
 SELECT COUNT(*) as total_programs FROM program_catalog;
 
 -- View programs by category
-SELECT category, COUNT(*) as count 
-FROM program_catalog 
-GROUP BY category 
+SELECT category, COUNT(*) as count
+FROM program_catalog
+GROUP BY category
 ORDER BY count DESC;
 ```
 
@@ -3033,10 +3259,10 @@ ORDER BY count DESC;
 
 ```sql
 -- Verify indexes exist
-SELECT 
-    indexname, 
-    tablename 
-FROM pg_indexes 
+SELECT
+    indexname,
+    tablename
+FROM pg_indexes
 WHERE tablename IN ('universities', 'program_catalog', 'university_programs');
 ```
 
@@ -3045,12 +3271,14 @@ WHERE tablename IN ('universities', 'program_catalog', 'university_programs');
 ## 🔧 Troubleshooting
 
 ### Error: "column already exists"
+
 ```sql
 -- This is OK! It means the column was already added
 -- The migration uses IF NOT EXISTS to prevent errors
 ```
 
 ### Error: "relation does not exist"
+
 ```sql
 -- Make sure you're running the migration in the correct database
 -- Check that the universities table exists first
@@ -3058,12 +3286,13 @@ SELECT * FROM universities LIMIT 1;
 ```
 
 ### Error: "duplicate key value violates unique constraint"
+
 ```sql
 -- This means you have duplicate slugs
 -- Run this to find duplicates:
-SELECT slug, COUNT(*) 
-FROM universities 
-GROUP BY slug 
+SELECT slug, COUNT(*)
+FROM universities
+GROUP BY slug
 HAVING COUNT(*) > 1;
 
 -- Fix by updating duplicates manually
@@ -3077,10 +3306,10 @@ HAVING COUNT(*) > 1;
 
 ```sql
 INSERT INTO universities (
-    name, 
-    name_local, 
-    slug, 
-    city, 
+    name,
+    name_local,
+    slug,
+    city,
     province,
     founded,
     total_students,
@@ -3109,12 +3338,12 @@ INSERT INTO universities (
 
 ```sql
 INSERT INTO program_catalog (
-    title, 
-    category, 
-    field, 
-    level, 
+    title,
+    category,
+    field,
+    level,
     typical_duration
-) VALUES 
+) VALUES
 ('Business Administration', 'Business & Management', 'General Business', 'Bachelor', '4 years'),
 ('Computer Science', 'Engineering & Technology', 'Computer Science', 'Bachelor', '4 years'),
 ('MBBS', 'Medicine & Health Sciences', 'Medicine', 'Bachelor', '6 years');
@@ -3222,8 +3451,6 @@ After running all migrations, you'll have:
 
 **Your database is now ready for production!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/DEPLOYMENT.md
 ==================================================
@@ -3273,12 +3500,12 @@ This guide covers the steps to deploy the StudyAtChina application to production
     - **Root Directory**: `./` (default)
 3.  **Environment Variables**:
     - Add the following variables:
-        - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase Project URL
-        - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase Anon Key
-        - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase Service Role Key
-        - `STRIPE_SECRET_KEY`: Your Stripe Secret Key
-        - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Your Stripe Publishable Key
-        - `NEXT_PUBLIC_SITE_URL`: Your production domain (e.g., `https://studyatchina.com`)
+      - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase Project URL
+      - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase Anon Key
+      - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase Service Role Key
+      - `STRIPE_SECRET_KEY`: Your Stripe Secret Key
+      - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Your Stripe Publishable Key
+      - `NEXT_PUBLIC_SITE_URL`: Your production domain (e.g., `https://studyatchina.com`)
 4.  **Deploy**:
     - Click **Deploy**. Vercel will build and deploy your application.
 
@@ -3295,8 +3522,6 @@ This guide covers the steps to deploy the StudyAtChina application to production
 - **Database Connection**: Verify your environment variables are correct.
 - **CORS Issues**: Ensure your Supabase project allows requests from your production domain.
 
-
-
 ==================================================
 FILE: ./docs/DESIGN_HIGHLIGHTS.md
 ==================================================
@@ -3306,7 +3531,9 @@ FILE: ./docs/DESIGN_HIGHLIGHTS.md
 ## Visual Transformation
 
 ### 🌟 Hero Section
+
 **The WOW Factor**
+
 - **Massive Typography**: Text scales up to 9xl (144px+) on large screens
 - **Animated Gradient Background**: Shifting colors create depth and movement
 - **Floating Orbs**: Three animated blur orbs create atmospheric depth
@@ -3316,7 +3543,9 @@ FILE: ./docs/DESIGN_HIGHLIGHTS.md
 - **Scroll Indicator**: Bouncing arrow guides users to explore
 
 ### 💎 Why Study Section
+
 **8 Reasons, 8 Colors**
+
 1. **World-Class Universities** - Primary Red gradient
 2. **Affordable Excellence** - Gold gradient
 3. **Career Launchpad** - Jade Green gradient
@@ -3327,13 +3556,16 @@ FILE: ./docs/DESIGN_HIGHLIGHTS.md
 8. **Recognition Worldwide** - Amber-Yellow gradient
 
 Each card features:
+
 - Unique gradient on hover
 - Scaling icon (16x16 → 18x18)
 - Decorative corner element
 - Smooth shadow transitions
 
 ### 🎓 Featured Programs
+
 **Premium Card Design**
+
 - **2px Borders**: Subtle to primary on hover
 - **Image Overlays**: Gradient from black to transparent
 - **Glassmorphic Badges**: Frosted glass with white text
@@ -3343,7 +3575,9 @@ Each card features:
 - **CTA Button**: Gradient from primary to red-600
 
 ### 🚀 How It Works
+
 **6-Step Journey**
+
 - **Numbered Badges**: Gradient circles with white numbers
 - **Gradient Icons**: Each step has unique color gradient (20x20)
 - **Connecting Line**: Subtle gradient line connects all steps
@@ -3352,7 +3586,9 @@ Each card features:
 - **Step Descriptions**: More detailed and helpful
 
 ### 🧭 Navigation
+
 **Smart Navbar**
+
 - **Scroll Detection**: Changes from transparent to solid at 50px
 - **Logo Glow**: Animated blur effect on logo background
 - **Dual-Line Logo**: Brand name + tagline
@@ -3361,7 +3597,9 @@ Each card features:
 - **Get Started Button**: Gradient with Sparkles icon
 
 ### 📧 Footer
+
 **Newsletter First**
+
 - **Gradient Banner**: Full-width primary to red-600 gradient
 - **Pattern Overlay**: Subtle texture (10% opacity)
 - **Email Input**: Glassmorphic with white/20 background
@@ -3374,16 +3612,19 @@ Each card features:
 ## 🎨 Color Psychology
 
 ### Primary Red (#DC2626 area)
+
 - **Meaning**: Energy, passion, determination
 - **Usage**: CTAs, important elements, brand identity
 - **Effect**: Draws attention, encourages action
 
 ### Secondary Gold (#F59E0B area)
+
 - **Meaning**: Prestige, excellence, achievement
 - **Usage**: Accents, badges, highlights
 - **Effect**: Conveys premium quality
 
 ### Accent Jade (#10B981 area)
+
 - **Meaning**: Growth, harmony, prosperity
 - **Usage**: Success indicators, positive actions
 - **Effect**: Reassuring and forward-looking
@@ -3393,6 +3634,7 @@ Each card features:
 ## ✨ Animation Choreography
 
 ### Page Load Sequence
+
 1. **Navbar**: Slides down from top (0.6s)
 2. **Hero Badge**: Scales in with spring (0.6s)
 3. **Hero Title**: Fades up (0.8s delay)
@@ -3402,11 +3644,13 @@ Each card features:
 7. **Scroll Indicator**: Fades in (1.5s delay)
 
 ### Scroll Animations
+
 - **Sections**: Fade up when 50% visible
 - **Cards**: Stagger children (0.1-0.15s delay)
 - **Once**: true (animations play only once)
 
 ### Hover Interactions
+
 - **Cards**: Lift -8px, shadow increases
 - **Buttons**: Scale 105%, shadow enhances
 - **Icons**: Rotate or scale
@@ -3417,15 +3661,18 @@ Each card features:
 ## 📐 Spacing System
 
 ### Section Padding
+
 - **Mobile**: py-20 (80px)
 - **Desktop**: py-32 (128px)
 
 ### Card Spacing
+
 - **Gap**: 6-8 (24-32px)
 - **Padding**: p-6 to p-8 (24-32px)
 - **Margin**: mb-16 to mb-20 (64-80px)
 
 ### Border Radius
+
 - **Small**: rounded-xl (12px)
 - **Medium**: rounded-2xl (16px)
 - **Large**: rounded-3xl (24px)
@@ -3435,17 +3682,20 @@ Each card features:
 ## 🎯 Interaction States
 
 ### Buttons
+
 - **Default**: Gradient background, shadow-lg
 - **Hover**: Scale 105%, shadow-xl
 - **Active**: Scale 98%
 - **Focus**: Ring-2 with primary color
 
 ### Cards
+
 - **Default**: Border-2, shadow-lg
 - **Hover**: Border-primary/50, shadow-2xl, -8px lift
 - **Focus**: Ring-2 outline
 
 ### Links
+
 - **Default**: Muted foreground
 - **Hover**: Primary color, scale 105%
 - **Active**: Darker primary
@@ -3455,24 +3705,28 @@ Each card features:
 ## 🌈 Gradient Recipes
 
 ### Primary Gradient
+
 ```css
 from-primary to-red-600
 /* Use for: CTAs, important buttons */
 ```
 
 ### Secondary Gradient
+
 ```css
 from-secondary to-yellow-500
 /* Use for: Badges, highlights */
 ```
 
 ### Accent Gradient
+
 ```css
 from-accent to-green-500
 /* Use for: Success states, positive actions */
 ```
 
 ### Hero Background
+
 ```css
 from-primary via-red-600 to-orange-500
 /* Animated with background-size: 200% 200% */
@@ -3483,6 +3737,7 @@ from-primary via-red-600 to-orange-500
 ## 🎭 Glassmorphism Effects
 
 ### Light Glass
+
 ```css
 .glass {
   background: rgba(255, 255, 255, 0.1);
@@ -3492,6 +3747,7 @@ from-primary via-red-600 to-orange-500
 ```
 
 ### Dark Glass
+
 ```css
 .glass-dark {
   background: rgba(0, 0, 0, 0.3);
@@ -3501,6 +3757,7 @@ from-primary via-red-600 to-orange-500
 ```
 
 **Usage**:
+
 - Search widget
 - Stat cards
 - Badges
@@ -3511,17 +3768,20 @@ from-primary via-red-600 to-orange-500
 ## 📱 Responsive Breakpoints
 
 ### Mobile (< 768px)
+
 - Single column layouts
 - Larger touch targets (h-12, h-16)
 - Simplified animations
 - Hamburger menu
 
 ### Tablet (768px - 1024px)
+
 - 2-column grids
 - Medium spacing
 - Partial animations
 
 ### Desktop (> 1024px)
+
 - 3-4 column grids
 - Full animations
 - Hover effects
@@ -3532,6 +3792,7 @@ from-primary via-red-600 to-orange-500
 ## 🚀 Performance Features
 
 ### Optimizations
+
 - **GPU Acceleration**: Transform and opacity animations
 - **Lazy Loading**: Scroll-triggered animations
 - **Once Property**: Animations play once, not on every scroll
@@ -3539,6 +3800,7 @@ from-primary via-red-600 to-orange-500
 - **Debounced Scroll**: Navbar state changes throttled
 
 ### Bundle Size
+
 - **Framer Motion**: Tree-shaken, only used features
 - **Lucide Icons**: Individual imports
 - **Tailwind**: Purged unused styles
@@ -3549,16 +3811,19 @@ from-primary via-red-600 to-orange-500
 ## 🎨 Typography Scale
 
 ### Headings
+
 - **Hero**: text-9xl (144px) → text-6xl mobile
 - **Section**: text-6xl (60px) → text-4xl mobile
 - **Card**: text-2xl (24px) → text-xl mobile
 
 ### Body
+
 - **Large**: text-xl (20px)
 - **Base**: text-lg (18px)
 - **Small**: text-sm (14px)
 
 ### Weights
+
 - **Black**: font-black (900) - Hero titles
 - **Bold**: font-bold (700) - Headings
 - **Semibold**: font-semibold (600) - Buttons
@@ -3570,6 +3835,7 @@ from-primary via-red-600 to-orange-500
 ## 🎯 Call-to-Action Hierarchy
 
 ### Primary CTAs
+
 - Gradient background (primary → red-600)
 - Large size (px-10 py-5)
 - Bold font
@@ -3577,12 +3843,14 @@ from-primary via-red-600 to-orange-500
 - Shadow-2xl
 
 ### Secondary CTAs
+
 - Outline style (border-2)
 - Medium size (px-8 py-4)
 - Semibold font
 - Hover fills with primary
 
 ### Tertiary CTAs
+
 - Ghost style
 - Small size (px-4 py-2)
 - Medium font
@@ -3593,18 +3861,21 @@ from-primary via-red-600 to-orange-500
 ## 💫 Micro-interactions
 
 ### Icon Animations
+
 - **Search Icon**: Rotates 12° on hover
 - **Arrow Icons**: Translates 4px right on hover
 - **Sparkles**: Pulse animation
 - **Chevron**: Bounces on scroll indicator
 
 ### Card Interactions
+
 - **Image**: Scales 110% on hover
 - **Border**: Changes color on hover
 - **Shadow**: Increases on hover
 - **Content**: Lifts -8px on hover
 
 ### Button Interactions
+
 - **Scale**: 105% on hover
 - **Shadow**: Increases on hover
 - **Icon**: Rotates or translates
@@ -3620,8 +3891,6 @@ from-primary via-red-600 to-orange-500
 
 🎉 **Ready to Impress!**
 
-
-
 ==================================================
 FILE: ./docs/GALLERY_VIDEO_FEATURE.md
 ==================================================
@@ -3635,11 +3904,13 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ## ✨ Features Added
 
 ### Backend (Admin):
+
 1. **Logo Upload** - File upload with preview
 2. **Gallery Upload** - Multiple images (up to 10)
 3. **Video URL** - YouTube/Vimeo with live preview
 
 ### Frontend (Public):
+
 1. **University Tour** - Embedded video player
 2. **Campus Gallery** - Beautiful image grid with hover effects
 
@@ -3650,6 +3921,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ### Admin Backend:
 
 #### Video URL Input:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Video (YouTube/Vimeo)        │
@@ -3667,6 +3939,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ```
 
 #### Features:
+
 - ✅ Accepts YouTube URLs
 - ✅ Accepts Vimeo URLs
 - ✅ Live preview in admin
@@ -3674,6 +3947,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 - ✅ Extracts video ID automatically
 
 #### Supported Formats:
+
 ```
 YouTube:
 ✓ https://www.youtube.com/watch?v=VIDEO_ID
@@ -3686,6 +3960,7 @@ Vimeo:
 ### Public Frontend:
 
 #### University Tour Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Tour                         │
@@ -3701,6 +3976,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ Full-width responsive player
 - ✅ 16:9 aspect ratio
 - ✅ Autoplay controls
@@ -3714,6 +3990,7 @@ Vimeo:
 ### Admin Backend:
 
 #### Gallery Upload:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Gallery                      │
@@ -3735,6 +4012,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ Upload up to 10 images
 - ✅ Grid preview (4 columns desktop, 2 mobile)
 - ✅ Remove individual images (X on hover)
@@ -3745,6 +4023,7 @@ Vimeo:
 ### Public Frontend:
 
 #### Campus Gallery Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Campus Gallery                          │
@@ -3761,6 +4040,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ 3-column grid (desktop)
 - ✅ 2-column grid (mobile)
 - ✅ Hover zoom effect
@@ -3774,6 +4054,7 @@ Vimeo:
 ## 🎨 Visual Effects
 
 ### Gallery Hover Effect:
+
 ```css
 Normal State:
 - Image at 100% scale
@@ -3786,6 +4067,7 @@ Hover State:
 ```
 
 ### Video Player:
+
 ```css
 - Aspect ratio: 16:9
 - Full width responsive
@@ -3799,8 +4081,9 @@ Hover State:
 ## 📊 Database Schema
 
 ### universities table needs:
+
 ```sql
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN video_url TEXT,
 ADD COLUMN gallery_images TEXT[];
 
@@ -3813,6 +4096,7 @@ ADD COLUMN gallery_images TEXT[];
 ## 🔧 Technical Implementation
 
 ### Admin - Video Preview:
+
 ```typescript
 {formData.video_url && (
     <div className="aspect-video bg-black rounded-lg overflow-hidden">
@@ -3832,38 +4116,40 @@ ADD COLUMN gallery_images TEXT[];
 ```
 
 ### Admin - Gallery Upload:
+
 ```typescript
 const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    
-    // Validate max 10 images
-    if (galleryPreviews.length + files.length > 10) {
-        toast.error('Maximum 10 images allowed');
-        return;
-    }
-    
-    // Process each file
-    files.forEach(file => {
-        // Validate type and size
-        if (!file.type.startsWith('image/')) return;
-        if (file.size > 5 * 1024 * 1024) return;
-        
-        // Create preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setGalleryPreviews(prev => [...prev, reader.result]);
-        };
-        reader.readAsDataURL(file);
-    });
+  const files = Array.from(e.target.files || []);
+
+  // Validate max 10 images
+  if (galleryPreviews.length + files.length > 10) {
+    toast.error("Maximum 10 images allowed");
+    return;
+  }
+
+  // Process each file
+  files.forEach((file) => {
+    // Validate type and size
+    if (!file.type.startsWith("image/")) return;
+    if (file.size > 5 * 1024 * 1024) return;
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setGalleryPreviews((prev) => [...prev, reader.result]);
+    };
+    reader.readAsDataURL(file);
+  });
 };
 ```
 
 ### Frontend - Gallery Display:
+
 ```typescript
 {university.gallery_images?.map((image, index) => (
     <Card key={index} className="group cursor-pointer">
         <div className="aspect-video relative overflow-hidden">
-            <img 
+            <img
                 src={image}
                 className="transition-transform group-hover:scale-110"
             />
@@ -3878,6 +4164,7 @@ const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 ```
 Video: Full width
 Gallery: 3 columns
@@ -3885,6 +4172,7 @@ Upload Grid: 4 columns
 ```
 
 ### Tablet:
+
 ```
 Video: Full width
 Gallery: 2 columns
@@ -3892,6 +4180,7 @@ Upload Grid: 3 columns
 ```
 
 ### Mobile:
+
 ```
 Video: Full width
 Gallery: 2 columns
@@ -3903,12 +4192,14 @@ Upload Grid: 2 columns
 ## ✅ Validation Rules
 
 ### Video URL:
+
 - ✅ YouTube URLs (youtube.com, youtu.be)
 - ✅ Vimeo URLs (vimeo.com)
 - ❌ Other video platforms
 - ℹ️ Shows "Invalid video URL" if unsupported
 
 ### Gallery Images:
+
 - ✅ Image files only (PNG, JPG, GIF, WebP)
 - ✅ Max 5MB per image
 - ✅ Max 10 images total
@@ -3922,12 +4213,14 @@ Upload Grid: 2 columns
 ### Admin Workflow:
 
 **Add Video:**
+
 1. Paste YouTube/Vimeo URL
 2. See instant preview
 3. Verify video is correct
 4. Save
 
 **Add Gallery:**
+
 1. Click upload area
 2. Select multiple images
 3. See grid preview
@@ -3938,12 +4231,14 @@ Upload Grid: 2 columns
 ### Public View:
 
 **Video Section:**
+
 - Appears after Admission Requirements
 - Full-width embedded player
 - Users can play, pause, fullscreen
 - Only shows if video URL exists
 
 **Gallery Section:**
+
 - Appears after Video section
 - Beautiful grid layout
 - Hover to zoom images
@@ -3955,6 +4250,7 @@ Upload Grid: 2 columns
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Lightbox** - Click image to view full size
 2. **Image Captions** - Add descriptions to gallery images
 3. **Video Thumbnail** - Custom thumbnail for video
@@ -3968,18 +4264,18 @@ Upload Grid: 2 columns
 
 ## 📊 Complete Feature Matrix
 
-| Feature | Admin | Public |
-|---------|-------|--------|
-| **Logo Upload** | ✅ File upload | ✅ Display |
-| **Gallery Upload** | ✅ Multi-file | ✅ Grid display |
-| **Gallery Remove** | ✅ Individual | - |
-| **Gallery Limit** | ✅ 10 max | - |
-| **Video URL** | ✅ Input + Preview | ✅ Embedded player |
-| **YouTube Support** | ✅ | ✅ |
-| **Vimeo Support** | ✅ | ✅ |
-| **Hover Effects** | - | ✅ Zoom + Overlay |
-| **Responsive** | ✅ | ✅ |
-| **Validation** | ✅ | - |
+| Feature             | Admin              | Public             |
+| ------------------- | ------------------ | ------------------ |
+| **Logo Upload**     | ✅ File upload     | ✅ Display         |
+| **Gallery Upload**  | ✅ Multi-file      | ✅ Grid display    |
+| **Gallery Remove**  | ✅ Individual      | -                  |
+| **Gallery Limit**   | ✅ 10 max          | -                  |
+| **Video URL**       | ✅ Input + Preview | ✅ Embedded player |
+| **YouTube Support** | ✅                 | ✅                 |
+| **Vimeo Support**   | ✅                 | ✅                 |
+| **Hover Effects**   | -                  | ✅ Zoom + Overlay  |
+| **Responsive**      | ✅                 | ✅                 |
+| **Validation**      | ✅                 | -                  |
 
 ---
 
@@ -3988,6 +4284,7 @@ Upload Grid: 2 columns
 A **complete multimedia system** for universities featuring:
 
 ### Backend:
+
 - ✅ Logo file upload
 - ✅ Gallery management (up to 10 images)
 - ✅ Video URL with live preview
@@ -3995,6 +4292,7 @@ A **complete multimedia system** for universities featuring:
 - ✅ Progress indicators
 
 ### Frontend:
+
 - ✅ University Tour video section
 - ✅ Campus Gallery with hover effects
 - ✅ Responsive design
@@ -4002,8 +4300,6 @@ A **complete multimedia system** for universities featuring:
 - ✅ Professional presentation
 
 **Perfect for showcasing universities with rich media content!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/GOOGLE_OAUTH_SETUP.md
@@ -4079,6 +4375,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ### Profile Creation
 
 For OAuth users, the callback handler automatically creates a profile if one doesn't exist:
+
 - Extracts name from Google user metadata
 - Splits into first name and last name
 - Sets role to 'student'
@@ -4089,6 +4386,7 @@ For OAuth users, the callback handler automatically creates a profile if one doe
 ### "Authentication Error" Page
 
 If users see the auth error page, check:
+
 - Google OAuth credentials are correctly configured in Supabase
 - Redirect URI matches exactly (including https/http)
 - Google Cloud Console project has the OAuth consent screen configured
@@ -4097,6 +4395,7 @@ If users see the auth error page, check:
 ### Profile Not Created
 
 If OAuth login works but profile isn't created:
+
 - Check Supabase logs for errors
 - Verify the profiles table has proper RLS policies
 - Ensure the callback route has permission to insert profiles
@@ -4108,8 +4407,6 @@ If OAuth login works but profile isn't created:
 - `src/app/(public)/auth/register/page.tsx` - Added Google OAuth button
 - `src/app/(public)/auth/callback/route.ts` - OAuth callback handler (NEW)
 - `src/app/(public)/auth/auth-error/page.tsx` - Error page (NEW)
-
-
 
 ==================================================
 FILE: ./docs/HOMEPAGE_DYNAMIC_UPDATE.md
@@ -4155,22 +4452,23 @@ Added all necessary fields to the universities query:
 
 ```typescript
 interface University {
-    id: string;
-    name: string;
-    slug: string;              // ✅ NEW
-    city: string;
-    province?: string;         // ✅ NEW
-    description: string;
-    logo_url?: string;         // ✅ NEW
-    founded?: string;          // ✅ NEW
-    total_students?: string;   // ✅ NEW
-    ranking?: string;          // ✅ NEW
+  id: string;
+  name: string;
+  slug: string; // ✅ NEW
+  city: string;
+  province?: string; // ✅ NEW
+  description: string;
+  logo_url?: string; // ✅ NEW
+  founded?: string; // ✅ NEW
+  total_students?: string; // ✅ NEW
+  ranking?: string; // ✅ NEW
 }
 ```
 
 ### 3. **University Cards Made Dynamic**
 
 #### Logo/Image:
+
 ```typescript
 // Before: Static placeholder
 src="https://images.unsplash.com/photo-..."
@@ -4180,6 +4478,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Ranking Badge:
+
 ```typescript
 // Before: Always "Top Ranked"
 <div>Top Ranked</div>
@@ -4191,6 +4490,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Location:
+
 ```typescript
 // Before: Only city
 <span>{uni.city}</span>
@@ -4200,6 +4500,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Stats:
+
 ```typescript
 // Before: Hardcoded
 <span>50+</span>  // Programs
@@ -4215,6 +4516,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Description:
+
 ```typescript
 // Before: No description shown
 
@@ -4225,6 +4527,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Link:
+
 ```typescript
 // Before: Using ID
 href={`/universities/${uni.id}`}
@@ -4266,7 +4569,7 @@ href={`/universities/${uni.slug}`}
 1. Homepage loads
    ↓
 2. Query universities table
-   SELECT id, name, slug, city, province, 
+   SELECT id, name, slug, city, province,
           logo_url, founded, total_students, ranking
    FROM universities
    ORDER BY created_at DESC
@@ -4283,26 +4586,28 @@ href={`/universities/${uni.slug}`}
 
 ## ✅ What's Now Dynamic
 
-| Field | Before | After |
-|-------|--------|-------|
-| **Logo** | Static placeholder | ✅ From database |
-| **Ranking** | "Top Ranked" | ✅ From database |
-| **Location** | City only | ✅ City + Province |
-| **Founded** | Hardcoded | ✅ From database |
-| **Students** | Hardcoded | ✅ From database |
-| **Description** | Not shown | ✅ From database |
-| **Link** | UUID | ✅ Slug (SEO) |
+| Field           | Before             | After              |
+| --------------- | ------------------ | ------------------ |
+| **Logo**        | Static placeholder | ✅ From database   |
+| **Ranking**     | "Top Ranked"       | ✅ From database   |
+| **Location**    | City only          | ✅ City + Province |
+| **Founded**     | Hardcoded          | ✅ From database   |
+| **Students**    | Hardcoded          | ✅ From database   |
+| **Description** | Not shown          | ✅ From database   |
+| **Link**        | UUID               | ✅ Slug (SEO)      |
 
 ---
 
 ## 🔗 URL Structure
 
 ### Before:
+
 ```
 ❌ /universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 ```
 
 ### After:
+
 ```
 ✅ /universities/tsinghua-university
 ✅ /universities/peking-university
@@ -4337,21 +4642,25 @@ href={`/universities/${uni.slug}`}
 ## 🚀 Benefits
 
 ### 1. **Fully Dynamic**
+
 - All data from database
 - No hardcoded values
 - Easy to update
 
 ### 2. **SEO Friendly**
+
 - Slug-based URLs
 - Descriptive links
 - Better rankings
 
 ### 3. **Better UX**
+
 - Real university data
 - Accurate information
 - Professional appearance
 
 ### 4. **Maintainable**
+
 - Update database, not code
 - Consistent data
 - Scalable
@@ -4377,6 +4686,7 @@ href={`/universities/${uni.slug}`}
 ## 📊 Grid Layout
 
 ### Desktop (lg):
+
 ```
 ┌────┐ ┌────┐ ┌────┐ ┌────┐
 │ U1 │ │ U2 │ │ U3 │ │ U4 │
@@ -4387,6 +4697,7 @@ href={`/universities/${uni.slug}`}
 ```
 
 ### Tablet (md):
+
 ```
 ┌────┐ ┌────┐
 │ U1 │ │ U2 │
@@ -4397,6 +4708,7 @@ href={`/universities/${uni.slug}`}
 ```
 
 ### Mobile:
+
 ```
 ┌────┐
 │ U1 │
@@ -4411,6 +4723,7 @@ href={`/universities/${uni.slug}`}
 ## 🎉 Result
 
 The homepage now displays:
+
 - ✅ **6 featured universities** (increased from 4)
 - ✅ **Real data** from database
 - ✅ **Dynamic content** (no hardcoded values)
@@ -4420,8 +4733,6 @@ The homepage now displays:
 
 **Elite Universities section is now fully dynamic and working!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/HOME_PAGE_IMPROVEMENTS.md
 ==================================================
@@ -4429,6 +4740,7 @@ FILE: ./docs/HOME_PAGE_IMPROVEMENTS.md
 # Home Page Improvements Summary
 
 ## Overview
+
 The home page has been completely redesigned and enhanced with modern, premium components that create a cohesive and engaging user experience.
 
 ## What Was Fixed/Added
@@ -4436,8 +4748,9 @@ The home page has been completely redesigned and enhanced with modern, premium c
 ### 1. **Redesigned Existing Sections** ✅
 
 #### ScholarshipsSection
+
 - **Before**: Basic card layout with minimal styling
-- **After**: 
+- **After**:
   - Modern gradient badges and icons
   - Animated cards with hover effects
   - Added scholarship amounts and award details
@@ -4446,6 +4759,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
   - Decorative background elements
 
 #### TestimonialsSection
+
 - **Before**: Simple testimonial cards
 - **After**:
   - Added 5-star rating display
@@ -4456,6 +4770,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
   - Quote icon background decoration
 
 #### FAQPreviewSection
+
 - **Before**: Basic accordion with simple styling
 - **After**:
   - Numbered FAQ items for better UX
@@ -4468,6 +4783,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 ### 2. **New Sections Added** ✨
 
 #### StatsSection (NEW)
+
 - Dark background with animated gradient orbs
 - 8 key statistics with count-up animations:
   - 500+ Partner Universities
@@ -4482,6 +4798,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 - Glassmorphism design with backdrop blur
 
 #### PartnersSection (NEW)
+
 - Showcase of 6 top partner universities
 - 3 recognition badges:
   - UNESCO Recognized
@@ -4508,6 +4825,7 @@ The home page now includes **10 comprehensive sections**:
 ## Design Improvements
 
 ### Visual Enhancements
+
 - ✅ Consistent gradient badges across all sections
 - ✅ Animated decorative background elements (gradient orbs)
 - ✅ Smooth hover effects and transitions
@@ -4517,6 +4835,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ Consistent color scheme (red, yellow, blue, purple, green gradients)
 
 ### User Experience
+
 - ✅ Count-up animations for statistics
 - ✅ Staggered animations for grid items
 - ✅ Hover states on all interactive elements
@@ -4526,6 +4845,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ Accessibility considerations
 
 ### Typography & Spacing
+
 - ✅ Consistent heading hierarchy
 - ✅ Proper spacing between sections (py-16)
 - ✅ Readable font sizes
@@ -4535,6 +4855,7 @@ The home page now includes **10 comprehensive sections**:
 ## Technical Implementation
 
 ### Components Created/Modified
+
 - ✅ `ScholarshipsSection.tsx` - Completely redesigned
 - ✅ `TestimonialsSection.tsx` - Completely redesigned
 - ✅ `FAQPreviewSection.tsx` - Completely redesigned
@@ -4543,6 +4864,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ `page.tsx` - Updated to include new sections
 
 ### Features Used
+
 - Framer Motion for animations
 - React hooks (useState, useEffect, useRef)
 - Intersection Observer (useInView)
@@ -4554,6 +4876,7 @@ The home page now includes **10 comprehensive sections**:
 ## Result
 
 The home page is now a **complete, modern, and engaging landing page** that:
+
 - ✅ Showcases all key information about studying in China
 - ✅ Builds trust through statistics and testimonials
 - ✅ Provides clear pathways for user action
@@ -4569,8 +4892,6 @@ The home page is now a **complete, modern, and engaging landing page** that:
 4. Implement video testimonials
 5. Add live chat widget
 6. Create interactive program comparison tool
-
-
 
 ==================================================
 FILE: ./docs/HOME_PAGE_STRUCTURE.md
@@ -4739,6 +5060,7 @@ FILE: ./docs/HOME_PAGE_STRUCTURE.md
 ## 🎨 Design Features
 
 ### Animations
+
 - ✅ Parallax scrolling on hero
 - ✅ Staggered card animations
 - ✅ Count-up number animations
@@ -4747,6 +5069,7 @@ FILE: ./docs/HOME_PAGE_STRUCTURE.md
 - ✅ Pulsing badges and indicators
 
 ### Visual Elements
+
 - ✅ Gradient backgrounds (red, yellow, blue, purple, green)
 - ✅ Decorative gradient orbs
 - ✅ Glassmorphism effects
@@ -4755,6 +5078,7 @@ FILE: ./docs/HOME_PAGE_STRUCTURE.md
 - ✅ Icon-based visual hierarchy
 
 ### User Experience
+
 - ✅ Clear CTAs throughout
 - ✅ Trust indicators and social proof
 - ✅ Mobile-responsive design
@@ -4778,8 +5102,6 @@ FILE: ./docs/HOME_PAGE_STRUCTURE.md
 - Minimal bundle size
 - Fast page load times
 
-
-
 ==================================================
 FILE: ./docs/HOW_TO_UPLOAD_IMAGES.md
 ==================================================
@@ -4795,6 +5117,7 @@ Background image and logo not showing on university page because they haven't be
 ## ✅ Solution: Upload Images in Admin
 
 ### Step 1: Go to Admin Edit Page
+
 ```
 1. Login to admin panel
 2. Go to Universities
@@ -4803,6 +5126,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 ### Step 2: Upload Logo
+
 ```
 ┌─────────────────────────────────┐
 │ University Logo                 │
@@ -4818,6 +5142,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 **Instructions:**
+
 1. Click the upload area
 2. Select your university logo (PNG, JPG, GIF)
 3. Max size: 5MB
@@ -4825,6 +5150,7 @@ Background image and logo not showing on university page because they haven't be
 5. Click Save
 
 ### Step 3: Upload Gallery Images
+
 ```
 ┌─────────────────────────────────┐
 │ University Gallery              │
@@ -4840,6 +5166,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 **Instructions:**
+
 1. Click the upload area
 2. Select multiple images (up to 10)
 3. Max size per image: 5MB
@@ -4852,17 +5179,21 @@ Background image and logo not showing on university page because they haven't be
 ## 📊 What Happens After Upload
 
 ### Logo:
+
 ```
 Admin Upload → Database (logo_url) → Public Page
 ```
+
 - Displays in header card
 - Shows in stats section
 - Fallback: University initials
 
 ### Gallery:
+
 ```
 Admin Upload → Database (gallery_images array) → Public Page
 ```
+
 - First image = Hero banner background
 - Rest = Gallery section
 - Fallback: Gradient background
@@ -4872,6 +5203,7 @@ Admin Upload → Database (gallery_images array) → Public Page
 ## 🎨 Image Recommendations
 
 ### Logo:
+
 - **Format**: PNG (transparent background)
 - **Size**: 500x500px minimum
 - **Aspect**: Square (1:1)
@@ -4879,12 +5211,13 @@ Admin Upload → Database (gallery_images array) → Public Page
 - **Background**: Transparent or white
 
 ### Gallery Images:
+
 - **Format**: JPG or PNG
 - **Size**: 1920x1080px minimum
 - **Aspect**: 16:9 (landscape)
 - **File Size**: Under 2MB each
 - **Quality**: High resolution
-- **Content**: 
+- **Content**:
   - Campus buildings
   - Classrooms
   - Library
@@ -4897,17 +5230,20 @@ Admin Upload → Database (gallery_images array) → Public Page
 ## 🔍 Debugging
 
 ### Check Console Logs:
+
 ```javascript
 console.log("Logo URL:", university?.logo_url);
 console.log("Gallery Images:", university?.gallery_images);
 ```
 
 ### If NULL or undefined:
+
 - Images not uploaded yet
 - Upload in admin panel
 - Save the university
 
 ### If showing but not displaying:
+
 - Check image URL is valid
 - Check image file exists
 - Check CORS settings
@@ -4918,6 +5254,7 @@ console.log("Gallery Images:", university?.gallery_images);
 ## 📝 Current Behavior
 
 ### Without Images:
+
 ```
 Logo: Shows university initials (e.g., "NU")
 Banner: Shows red gradient background
@@ -4925,6 +5262,7 @@ Gallery: Section hidden
 ```
 
 ### With Images:
+
 ```
 Logo: Shows uploaded logo
 Banner: Shows first gallery image
@@ -4965,11 +5303,13 @@ Before images will show:
 After uploading:
 
 **Header:**
+
 - ✅ Banner shows first gallery image
 - ✅ Logo shows in stats card
 - ✅ Professional appearance
 
 **Gallery Section:**
+
 - ✅ Shows all uploaded images
 - ✅ Hover zoom effects
 - ✅ Grid layout
@@ -4979,8 +5319,9 @@ After uploading:
 ## 📊 Database Check
 
 ### Verify images are saved:
+
 ```sql
-SELECT 
+SELECT
     name,
     logo_url,
     array_length(gallery_images, 1) as gallery_count
@@ -4989,6 +5330,7 @@ WHERE slug = 'ningbo-university';
 ```
 
 ### Expected output:
+
 ```
 name              | logo_url           | gallery_count
 Ningbo University | https://...        | 5
@@ -4999,14 +5341,13 @@ Ningbo University | https://...        | 5
 ## 🎉 Result
 
 Once images are uploaded in admin:
+
 - ✅ Logo displays in header
 - ✅ Banner shows gallery image
 - ✅ Gallery section appears
 - ✅ Professional university page
 
 **Upload images in the admin panel to see them on the public page!** 📸✨
-
-
 
 ==================================================
 FILE: ./docs/IMAGE_UPLOAD_FEATURE.md
@@ -5021,12 +5362,14 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## ✨ Features Added
 
 ### 1. **Logo Upload**
+
 - Drag & drop or click to upload
 - Image preview before saving
 - Remove/replace functionality
 - File validation
 
 ### 2. **Gallery Upload**
+
 - Multiple image upload
 - Up to 10 images
 - Grid preview layout
@@ -5036,6 +5379,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 📸 Logo Upload
 
 ### UI Design:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Logo                         │
@@ -5050,6 +5394,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ```
 
 ### Features:
+
 - ✅ **Preview** - Shows uploaded image
 - ✅ **Remove button** (X) on preview
 - ✅ **File type validation** (images only)
@@ -5057,6 +5402,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 - ✅ **Toast notifications** for feedback
 
 ### Validation:
+
 ```javascript
 ✓ Accepts: PNG, JPG, JPEG, GIF, WebP
 ✓ Max size: 5MB
@@ -5067,6 +5413,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🖼️ Gallery Upload
 
 ### UI Design:
+
 ```
 ┌─────────────────────────────────────────────────┐
 │ University Gallery                              │
@@ -5084,6 +5431,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ```
 
 ### Features:
+
 - ✅ **Multiple upload** - Select multiple files at once
 - ✅ **Grid preview** - 4 columns on desktop, 2 on mobile
 - ✅ **Remove individual images** - X button on hover
@@ -5092,6 +5440,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 - ✅ **Responsive** - Adapts to screen size
 
 ### Validation:
+
 ```javascript
 ✓ Multiple files: Yes
 ✓ Max images: 10
@@ -5103,6 +5452,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🎨 User Experience
 
 ### Logo Upload Flow:
+
 1. Click upload area
 2. Select image file
 3. See instant preview
@@ -5110,6 +5460,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 5. Can remove and re-upload
 
 ### Gallery Upload Flow:
+
 1. Click upload area
 2. Select multiple images
 3. See grid of previews
@@ -5121,75 +5472,80 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🔧 Technical Implementation
 
 ### State Management:
+
 ```typescript
 const [logoPreview, setLogoPreview] = useState<string>("");
 const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
 ```
 
 ### Logo Upload Handler:
+
 ```typescript
 const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-        toast.error('Please upload an image file');
-        return;
-    }
-    
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-        toast.error('Image size should be less than 5MB');
-        return;
-    }
-    
-    // Create preview
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        setLogoPreview(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-    
-    toast.success('Logo uploaded successfully');
+  const file = e.target.files?.[0];
+
+  // Validate file type
+  if (!file.type.startsWith("image/")) {
+    toast.error("Please upload an image file");
+    return;
+  }
+
+  // Validate file size (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    toast.error("Image size should be less than 5MB");
+    return;
+  }
+
+  // Create preview
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    setLogoPreview(reader.result as string);
+  };
+  reader.readAsDataURL(file);
+
+  toast.success("Logo uploaded successfully");
 };
 ```
 
 ### Gallery Upload Handler:
+
 ```typescript
 const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    
-    // Validate total images (max 10)
-    if (galleryPreviews.length + files.length > 10) {
-        toast.error('Maximum 10 images allowed in gallery');
-        return;
-    }
-    
-    // Process each file
-    files.forEach(file => {
-        // Validate and create preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setGalleryPreviews(prev => [...prev, reader.result as string]);
-        };
-        reader.readAsDataURL(file);
-    });
-    
-    toast.success(`${files.length} image(s) added to gallery`);
+  const files = Array.from(e.target.files || []);
+
+  // Validate total images (max 10)
+  if (galleryPreviews.length + files.length > 10) {
+    toast.error("Maximum 10 images allowed in gallery");
+    return;
+  }
+
+  // Process each file
+  files.forEach((file) => {
+    // Validate and create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setGalleryPreviews((prev) => [...prev, reader.result as string]);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  toast.success(`${files.length} image(s) added to gallery`);
 };
 ```
 
 ### Remove Gallery Image:
+
 ```typescript
 const removeGalleryImage = (index: number) => {
-    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
-    toast.success('Image removed from gallery');
+  setGalleryPreviews((prev) => prev.filter((_, i) => i !== index));
+  toast.success("Image removed from gallery");
 };
 ```
 
 ## 🎯 Validation Rules
 
 ### File Type:
+
 - ✅ PNG
 - ✅ JPG/JPEG
 - ✅ GIF
@@ -5198,22 +5554,26 @@ const removeGalleryImage = (index: number) => {
 - ❌ PDF, DOC, etc.
 
 ### File Size:
+
 - ✅ Up to 5MB per image
 - ❌ Larger than 5MB
 
 ### Gallery Limits:
+
 - ✅ Up to 10 images total
 - ❌ More than 10 images
 
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 ```
 Logo: Side-by-side (preview + upload)
 Gallery: 4 columns grid
 ```
 
 ### Mobile:
+
 ```
 Logo: Stacked (preview on top, upload below)
 Gallery: 2 columns grid
@@ -5222,18 +5582,21 @@ Gallery: 2 columns grid
 ## 🎨 Visual Features
 
 ### Logo Upload Area:
+
 - Dashed border
 - Upload icon
 - Hover effect (border color change)
 - Click anywhere to upload
 
 ### Logo Preview:
+
 - 128x128px box
 - Object-contain (maintains aspect ratio)
 - Remove button (top-right)
 - Dashed border
 
 ### Gallery Grid:
+
 - Aspect ratio: 16:9
 - Object-cover (fills space)
 - Hover effect on images
@@ -5241,6 +5604,7 @@ Gallery: 2 columns grid
 - Smooth transitions
 
 ### Upload Feedback:
+
 - ✅ Success: Green toast
 - ❌ Error: Red toast
 - ℹ️ Info: Blue toast
@@ -5248,6 +5612,7 @@ Gallery: 2 columns grid
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Drag & Drop** - Drag files directly to upload area
 2. **Image Cropping** - Crop/resize before upload
 3. **Compression** - Auto-compress large images
@@ -5259,6 +5624,7 @@ Gallery: 2 columns grid
 ## 📊 Comparison
 
 ### Before (URL Input):
+
 ```
 ❌ Had to host images elsewhere
 ❌ Manual URL entry
@@ -5268,6 +5634,7 @@ Gallery: 2 columns grid
 ```
 
 ### After (File Upload):
+
 ```
 ✅ Direct file upload
 ✅ Instant preview
@@ -5290,6 +5657,7 @@ Gallery: 2 columns grid
 ## 🎉 Result
 
 The university edit page now has a **professional, user-friendly image upload system** that:
+
 - ✅ Replaces URL inputs with file uploads
 - ✅ Provides instant previews
 - ✅ Validates files properly
@@ -5298,8 +5666,6 @@ The university edit page now has a **professional, user-friendly image upload sy
 - ✅ Works perfectly on mobile
 
 **Perfect for managing university images!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/IMPROVEMENTS_SUMMARY.md
@@ -5316,6 +5682,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 1. ⚡ How It Works Section - COMPLETELY REDESIGNED
 
 ### What Changed:
+
 - **Timeline Layout**: Switched from grid to alternating timeline layout (zigzag pattern)
 - **Animated Icons**: Large 24x24 pulsing circles with rotating entrance animations
 - **Color Scheme**: Changed to blue/purple/cyan gradient spectrum (more professional)
@@ -5327,6 +5694,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **CTA Button**: Shimmer effect with animated gradient overlay
 
 ### New Features:
+
 - Step numbers in white circles with colored text
 - Alternating left/right layout on desktop
 - Vertical timeline on mobile with gradient line
@@ -5340,6 +5708,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 2. 🎨 Hero Section - COLOR SCHEME FIXED
 
 ### What Changed:
+
 - **Background**: Dark slate/blue gradient instead of bright red/orange
 - **Mesh Gradient**: Radial gradient with subtle blue tones
 - **Grid Pattern**: Added subtle grid overlay for depth
@@ -5351,6 +5720,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Overall Tone**: Professional, elegant, tech-forward
 
 ### Color Psychology:
+
 - **Blue**: Trust, professionalism, stability
 - **Cyan**: Innovation, clarity, freshness
 - **Teal**: Growth, balance, sophistication
@@ -5360,6 +5730,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 3. 💎 Program Cards - ENHANCED DESIGN
 
 ### What Changed:
+
 - **Hover Animation**: Cards lift -12px on hover (more dramatic)
 - **Border Effect**: Gradient border glow on hover (blue/purple/cyan)
 - **Image Overlay**: Darker gradient (slate-900) for better contrast
@@ -5373,6 +5744,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Button**: Blue-600 → Cyan-600 with shadow glow
 
 ### Visual Improvements:
+
 - Better color harmony
 - Clearer information hierarchy
 - More engaging hover states
@@ -5384,6 +5756,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 4. 🏛️ Featured Universities - COMPLETELY REDESIGNED
 
 ### What Changed:
+
 - **Section Title**: "Elite Universities" with gradient text
 - **Trophy Badge**: "World-Class Institutions" indicator
 - **University Images**: Real images from Unsplash
@@ -5396,6 +5769,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Explore Button**: Gradient button at bottom
 
 ### New Information:
+
 - University rankings (#1-4 in China)
 - Student population numbers
 - Real university images
@@ -5403,6 +5777,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - Better visual hierarchy
 
 ### Color Coding:
+
 - **Tsinghua**: Red → Orange
 - **Peking**: Blue → Cyan
 - **Shanghai Jiao Tong**: Purple → Pink
@@ -5413,6 +5788,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 🎨 Overall Design System
 
 ### Color Palette:
+
 ```
 Primary Blues: #2563eb → #06b6d4 (Blue-600 → Cyan-600)
 Secondary Purples: #9333ea → #ec4899 (Purple-600 → Pink-600)
@@ -5421,6 +5797,7 @@ Background: Slate-900 with blue tones
 ```
 
 ### Animation Principles:
+
 1. **Entrance**: Fade + slide from direction
 2. **Hover**: Lift + scale + glow
 3. **Icons**: Rotate + scale on entrance
@@ -5428,6 +5805,7 @@ Background: Slate-900 with blue tones
 5. **Timing**: Staggered delays (0.15-0.2s)
 
 ### Typography:
+
 - **Headings**: font-black (900 weight)
 - **Subheadings**: font-bold (700 weight)
 - **Body**: font-medium (500 weight)
@@ -5437,18 +5815,19 @@ Background: Slate-900 with blue tones
 
 ## 📊 Before vs After
 
-| Section | Before | After |
-|---------|--------|-------|
-| **How It Works** | Grid layout, basic cards | Timeline with animations, pulsing icons |
-| **Hero Colors** | Red/Orange/Gold | Blue/Cyan/Teal (elegant) |
-| **Program Cards** | Simple design | Gradient effects, enhanced info |
-| **Universities** | Basic placeholders | Real images, rankings, stats |
+| Section           | Before                   | After                                   |
+| ----------------- | ------------------------ | --------------------------------------- |
+| **How It Works**  | Grid layout, basic cards | Timeline with animations, pulsing icons |
+| **Hero Colors**   | Red/Orange/Gold          | Blue/Cyan/Teal (elegant)                |
+| **Program Cards** | Simple design            | Gradient effects, enhanced info         |
+| **Universities**  | Basic placeholders       | Real images, rankings, stats            |
 
 ---
 
 ## ✨ Key Improvements
 
 ### Animations:
+
 ✅ Pulsing rings on timeline steps
 ✅ Rotating icon entrances
 ✅ Animated progress bars
@@ -5457,6 +5836,7 @@ Background: Slate-900 with blue tones
 ✅ Staggered card reveals
 
 ### Visual Design:
+
 ✅ Professional blue/purple color scheme
 ✅ Gradient text and backgrounds
 ✅ Better contrast and readability
@@ -5465,6 +5845,7 @@ Background: Slate-900 with blue tones
 ✅ Shadow glows on hover
 
 ### User Experience:
+
 ✅ Clear visual hierarchy
 ✅ Engaging micro-interactions
 ✅ Smooth, natural animations
@@ -5477,6 +5858,7 @@ Background: Slate-900 with blue tones
 ## 🚀 Technical Details
 
 ### Framer Motion Features Used:
+
 - `useInView` for scroll-triggered animations
 - `whileHover` for interactive states
 - `animate` for continuous animations
@@ -5484,6 +5866,7 @@ Background: Slate-900 with blue tones
 - `transition` for timing control
 
 ### Performance:
+
 - GPU-accelerated transforms
 - Optimized animation timing
 - Lazy loading with viewport detection
@@ -5495,6 +5878,7 @@ Background: Slate-900 with blue tones
 ## 🎯 Result
 
 All sections now have:
+
 - ✅ Better animations and interactions
 - ✅ Professional color scheme
 - ✅ Enhanced visual design
@@ -5509,8 +5893,6 @@ The website now looks more professional, engaging, and trustworthy while maintai
 **Status**: ✅ All improvements completed
 **Preview**: Available at http://localhost:3000
 
-
-
 ==================================================
 FILE: ./docs/MAP_LOCATION_FEATURE.md
 ==================================================
@@ -5524,12 +5906,14 @@ Added **interactive map location picker** in admin backend and **Google Maps dis
 ## ✨ Features
 
 ### Backend (Admin):
+
 1. **Latitude/Longitude inputs** with live preview
 2. **Google Maps embed** preview
 3. **Quick city buttons** for major Chinese cities
 4. **"Open in Google Maps"** link
 
 ### Frontend (Public):
+
 1. **Embedded Google Maps** showing exact location
 2. **"View on Google Maps"** link
 3. **Fallback** if no coordinates set
@@ -5571,25 +5955,30 @@ Added **interactive map location picker** in admin backend and **Google Maps dis
 ### Features:
 
 #### 1. **Coordinate Inputs**
+
 - Latitude field (decimal degrees)
 - Longitude field (decimal degrees)
 - Real-time validation
 - Updates map preview automatically
 
 #### 2. **Map Preview**
+
 - Shows Google Maps embed
 - Displays exact pin location
 - 16:9 aspect ratio
 - Zoom level: 15 (street level)
 
 #### 3. **Quick City Buttons**
+
 Pre-filled coordinates for major cities:
+
 - **Beijing**: 39.9042, 116.4074
 - **Shanghai**: 31.2304, 121.4737
 - **Shenzhen**: 22.5431, 114.0579
 - **Chengdu**: 30.5728, 104.0668
 
 #### 4. **External Link**
+
 - "Open in Google Maps" button
 - Opens in new tab
 - Shows exact location
@@ -5619,6 +6008,7 @@ Pre-filled coordinates for major cities:
 ### Features:
 
 #### With Coordinates:
+
 - ✅ Embedded Google Maps
 - ✅ Pin at exact location
 - ✅ Interactive map (zoom, pan)
@@ -5626,6 +6016,7 @@ Pre-filled coordinates for major cities:
 - ✅ City and province display
 
 #### Without Coordinates:
+
 - ✅ Placeholder map icon
 - ✅ "Map View" text
 - ✅ City and province display
@@ -5638,7 +6029,7 @@ Pre-filled coordinates for major cities:
 ### Database Schema:
 
 ```sql
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN latitude DECIMAL(10, 8),
 ADD COLUMN longitude DECIMAL(11, 8);
 
@@ -5658,9 +6049,9 @@ ADD COLUMN longitude DECIMAL(11, 8);
     onChange={(e) => {
         setFormData({ ...formData, latitude: e.target.value });
         if (e.target.value && formData.longitude) {
-            setMapLocation({ 
-                lat: parseFloat(e.target.value), 
-                lng: parseFloat(formData.longitude) 
+            setMapLocation({
+                lat: parseFloat(e.target.value),
+                lng: parseFloat(formData.longitude)
             });
         }
     }}
@@ -5686,10 +6077,10 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```typescript
 <Button
     onClick={() => {
-        setFormData({ 
-            ...formData, 
-            latitude: "39.9042", 
-            longitude: "116.4074" 
+        setFormData({
+            ...formData,
+            latitude: "39.9042",
+            longitude: "116.4074"
         });
         setMapLocation({ lat: 39.9042, lng: 116.4074 });
     }}
@@ -5719,6 +6110,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ### Admin Adding Location:
 
 **Method 1: Manual Entry**
+
 1. Enter latitude (e.g., 39.9042)
 2. Enter longitude (e.g., 116.4074)
 3. See map preview update
@@ -5726,6 +6118,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 5. Save
 
 **Method 2: Quick City**
+
 1. Click city button (e.g., "Beijing")
 2. Coordinates auto-fill
 3. Map preview updates
@@ -5733,6 +6126,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 5. Save
 
 **Method 3: Google Maps**
+
 1. Open Google Maps in browser
 2. Find university location
 3. Right-click → "What's here?"
@@ -5752,22 +6146,23 @@ ADD COLUMN longitude DECIMAL(11, 8);
 
 ## 📊 Major Chinese Cities Coordinates
 
-| City | Latitude | Longitude |
-|------|----------|-----------|
-| **Beijing** | 39.9042 | 116.4074 |
-| **Shanghai** | 31.2304 | 121.4737 |
-| **Shenzhen** | 22.5431 | 114.0579 |
-| **Chengdu** | 30.5728 | 104.0668 |
-| **Guangzhou** | 23.1291 | 113.2644 |
-| **Hangzhou** | 30.2741 | 120.1551 |
-| **Wuhan** | 30.5928 | 114.3055 |
-| **Xi'an** | 34.3416 | 108.9398 |
+| City          | Latitude | Longitude |
+| ------------- | -------- | --------- |
+| **Beijing**   | 39.9042  | 116.4074  |
+| **Shanghai**  | 31.2304  | 121.4737  |
+| **Shenzhen**  | 22.5431  | 114.0579  |
+| **Chengdu**   | 30.5728  | 104.0668  |
+| **Guangzhou** | 23.1291  | 113.2644  |
+| **Hangzhou**  | 30.2741  | 120.1551  |
+| **Wuhan**     | 30.5928  | 114.3055  |
+| **Xi'an**     | 34.3416  | 108.9398  |
 
 ---
 
 ## 🎨 Visual Design
 
 ### Admin Map Preview:
+
 ```css
 - Aspect ratio: 16:9
 - Rounded corners
@@ -5777,6 +6172,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```
 
 ### Public Map Display:
+
 ```css
 - Height: 192px (h-48)
 - Rounded corners
@@ -5786,6 +6182,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```
 
 ### Quick City Buttons:
+
 ```css
 - Outline variant
 - Small size
@@ -5807,9 +6204,11 @@ ADD COLUMN longitude DECIMAL(11, 8);
    - Restrict to your domain
 
 2. **Replace in Code:**
+
    ```
    YOUR_GOOGLE_MAPS_API_KEY
    ```
+
    Replace with your actual API key
 
 3. **API Endpoints Used:**
@@ -5821,6 +6220,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ## 📱 Responsive Design
 
 ### Desktop:
+
 ```
 Map Preview: Full width
 Coordinate Inputs: 2 columns
@@ -5828,6 +6228,7 @@ City Buttons: 4 buttons per row
 ```
 
 ### Mobile:
+
 ```
 Map Preview: Full width
 Coordinate Inputs: Stacked
@@ -5839,12 +6240,14 @@ City Buttons: 2 buttons per row
 ## ✅ Validation
 
 ### Coordinate Format:
+
 - ✅ Decimal degrees (e.g., 39.9042)
 - ✅ Positive or negative
 - ✅ Latitude: -90 to 90
 - ✅ Longitude: -180 to 180
 
 ### Map Display:
+
 - ✅ Shows only if both coordinates exist
 - ✅ Fallback if coordinates missing
 - ✅ Graceful error handling
@@ -5854,6 +6257,7 @@ City Buttons: 2 buttons per row
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Interactive Map Picker** - Click map to set pin
 2. **Address Geocoding** - Convert address to coordinates
 3. **Reverse Geocoding** - Get address from coordinates
@@ -5868,12 +6272,14 @@ City Buttons: 2 buttons per row
 ## 🎉 Benefits
 
 ### For Admins:
+
 - ✅ Easy to set location
 - ✅ Quick city presets
 - ✅ Visual confirmation
 - ✅ No complex tools needed
 
 ### For Users:
+
 - ✅ See exact location
 - ✅ Interactive map
 - ✅ Easy directions
@@ -5883,16 +6289,16 @@ City Buttons: 2 buttons per row
 
 ## 📊 Complete Feature Matrix
 
-| Feature | Admin | Public |
-|---------|-------|--------|
-| **Latitude Input** | ✅ | - |
-| **Longitude Input** | ✅ | - |
-| **Map Preview** | ✅ | ✅ |
-| **Quick Cities** | ✅ | - |
-| **Google Maps Link** | ✅ | ✅ |
-| **Interactive Map** | ✅ | ✅ |
-| **Fallback Display** | - | ✅ |
-| **Responsive** | ✅ | ✅ |
+| Feature              | Admin | Public |
+| -------------------- | ----- | ------ |
+| **Latitude Input**   | ✅    | -      |
+| **Longitude Input**  | ✅    | -      |
+| **Map Preview**      | ✅    | ✅     |
+| **Quick Cities**     | ✅    | -      |
+| **Google Maps Link** | ✅    | ✅     |
+| **Interactive Map**  | ✅    | ✅     |
+| **Fallback Display** | -     | ✅     |
+| **Responsive**       | ✅    | ✅     |
 
 ---
 
@@ -5901,20 +6307,20 @@ City Buttons: 2 buttons per row
 A **complete map location system** featuring:
 
 ### Backend:
+
 - ✅ Coordinate inputs with validation
 - ✅ Live map preview
 - ✅ Quick city buttons
 - ✅ Google Maps integration
 
 ### Frontend:
+
 - ✅ Embedded interactive map
 - ✅ Exact pin location
 - ✅ External link to Google Maps
 - ✅ Graceful fallback
 
 **Perfect for showing university locations with precision!** 🗺️
-
-
 
 ==================================================
 FILE: ./docs/OLD_PROGRAMS_TABLE_MIGRATION_COMPLETE.md
@@ -5933,12 +6339,14 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 ### 1. **Admin Files** (3 files)
 
 #### `/src/app/admin/(dashboard)/programs/actions.ts` ✅
+
 - `getPrograms()` → Uses `v_university_programs_full` view
 - `createProgram()` → Inserts into `university_programs` table
 - `updateProgram()` → Updates `university_programs` table
 - `deleteProgram()` → Deletes from `university_programs` table
 
 **Old Fields Removed:**
+
 - `title` (now `program_catalog_id`)
 - `level` (from catalog)
 - `field` (from catalog)
@@ -5946,6 +6354,7 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 - `deadline` (removed)
 
 **New Fields Added:**
+
 - `program_catalog_id` (required)
 - `custom_title` (optional)
 - `force_payment` (boolean)
@@ -5955,7 +6364,9 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 ### 2. **Public Pages** (6 files)
 
 #### `/src/app/(public)/page.tsx` (Homepage) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs")
 NEW: .from("v_university_programs_full")
@@ -5968,7 +6379,9 @@ NEW: university: { name: p.university_name, city: p.city }
 ```
 
 #### `/src/app/(public)/programs/page.tsx` (Programs List) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(...)")
 NEW: .from("v_university_programs_full").select("*")
@@ -5984,21 +6397,27 @@ NEW: tuition: `${p.tuition_fee} ${p.currency}/Year`
 ```
 
 #### `/src/app/(public)/programs/[id]/page.tsx` (Program Detail) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(...)")
 NEW: .from("v_university_programs_full").select("*")
 ```
 
 #### `/src/app/(public)/universities/page.tsx` (Universities List) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*", { count: "exact" })
 NEW: .from("university_programs").select("*", { count: "exact" }).eq("is_active", true)
 ```
 
 #### `/src/app/(public)/universities/[slug]/page.tsx` (University Detail) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .select("*, programs(id, title, level, ...)")
 NEW: Separate query to v_university_programs_full
@@ -6014,7 +6433,9 @@ NEW: language: p.language_name || "Not specified"
 ```
 
 #### `/src/app/(public)/applications/[id]/page.tsx` (Application Form) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(*)")
 NEW: .from("v_university_programs_full").select("*")
@@ -6025,6 +6446,7 @@ NEW: .from("v_university_programs_full").select("*")
 ## 📊 Database Structure
 
 ### OLD System (Deprecated)
+
 ```
 programs table:
 ├── id
@@ -6040,6 +6462,7 @@ programs table:
 ```
 
 ### NEW System (Current)
+
 ```
 program_catalog (Master list):
 ├── id
@@ -6083,6 +6506,7 @@ v_university_programs_full (View):
 ## 🔄 Field Mapping Reference
 
 ### For Display:
+
 ```typescript
 OLD → NEW
 
@@ -6096,6 +6520,7 @@ p.tuition_fee → p.tuition_fee (same)
 ```
 
 ### For Forms:
+
 ```typescript
 OLD → NEW
 
@@ -6113,21 +6538,25 @@ force_payment (new) → Boolean flag
 ## ✅ Benefits of New System
 
 ### 1. **Data Consistency**
+
 - Standardized program names
 - No duplicate/similar programs
 - Centralized program information
 
 ### 2. **Easier Data Entry**
+
 - Select from catalog instead of typing
 - Auto-fill level, category, duration
 - Optional custom naming
 
 ### 3. **Better Queries**
+
 - Single view for all data
 - No complex joins needed
 - Faster performance
 
 ### 4. **Flexibility**
+
 - Universities can customize titles
 - Override default duration
 - Add university-specific details
@@ -6137,12 +6566,14 @@ force_payment (new) → Boolean flag
 ## 🧪 Testing Checklist
 
 ### Admin Panel:
+
 - [ ] Create new program (select from catalog)
 - [ ] Edit existing program
 - [ ] Delete program
 - [ ] View programs list
 
 ### Public Pages:
+
 - [ ] Homepage - featured programs display
 - [ ] Programs list page - all programs display
 - [ ] Program detail page - single program
@@ -6155,19 +6586,24 @@ force_payment (new) → Boolean flag
 ## 🚨 Important Notes
 
 ### 1. **Old Data Migration**
+
 If you have existing data in the old `programs` table, you need to:
+
 1. Create entries in `program_catalog` for unique programs
 2. Migrate data to `university_programs` with `program_catalog_id`
 3. Drop or rename old `programs` table
 
 ### 2. **View Dependency**
+
 All public pages now depend on `v_university_programs_full` view. Make sure this view exists in your database by running:
+
 ```sql
 -- Check if view exists
 SELECT * FROM v_university_programs_full LIMIT 1;
 ```
 
 ### 3. **Active Programs Only**
+
 Most queries now filter by `is_active = true`. Make sure to set this field when creating programs.
 
 ---
@@ -6179,7 +6615,7 @@ If you need to migrate old data:
 ```sql
 -- 1. Insert unique programs into catalog
 INSERT INTO program_catalog (title, category, level, typical_duration)
-SELECT DISTINCT 
+SELECT DISTINCT
     title,
     'Uncategorized' as category,
     level,
@@ -6198,7 +6634,7 @@ INSERT INTO university_programs (
     intake,
     is_active
 )
-SELECT 
+SELECT
     p.university_id,
     pc.id as program_catalog_id,
     p.tuition_fee,
@@ -6228,8 +6664,6 @@ All files have been updated to use the new system. No files are using the old `p
 **Files Updated:** 9 files
 **Tables Updated:** 3 tables (program_catalog, university_programs, v_university_programs_full)
 
-
-
 ==================================================
 FILE: ./docs/PROGRAM_CATALOG_FIXES.md
 ==================================================
@@ -6239,16 +6673,20 @@ FILE: ./docs/PROGRAM_CATALOG_FIXES.md
 ## 🐛 Issues Fixed
 
 ### 1. **Edit Button Not Working** ✅
+
 **Problem:** Edit button had no functionality
-**Solution:** 
+**Solution:**
+
 - Added `handleEdit()` function that:
   - Sets the program being edited
   - Populates form with program data
   - Opens the dialog
 
 ### 2. **No Loading States** ✅
+
 **Problem:** No visual feedback during loading/saving
 **Solution:**
+
 - Added `loading` state for page load
 - Added `saving` state for form submission
 - Added loading spinner with text
@@ -6258,37 +6696,41 @@ FILE: ./docs/PROGRAM_CATALOG_FIXES.md
 ## ✨ New Features Added
 
 ### 1. **Working Edit Functionality**
+
 ```tsx
 // Click Edit button → Opens dialog with program data
 <Button onClick={() => handleEdit(program)}>
-    <Edit className="h-4 w-4 mr-2" />
-    Edit
+  <Edit className="h-4 w-4 mr-2" />
+  Edit
 </Button>
 ```
 
 ### 2. **Loading States**
 
 #### Page Loading:
+
 ```tsx
 if (loading) {
-    return (
-        <div className="flex items-center justify-center">
-            <Loader2 className="h-12 w-12 animate-spin" />
-            <p>Loading programs...</p>
-        </div>
-    );
+  return (
+    <div className="flex items-center justify-center">
+      <Loader2 className="h-12 w-12 animate-spin" />
+      <p>Loading programs...</p>
+    </div>
+  );
 }
 ```
 
 #### Button Loading:
+
 ```tsx
 <Button type="submit" disabled={saving}>
-    {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-    {editingProgram ? "Update Program" : "Add Program"}
+  {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+  {editingProgram ? "Update Program" : "Add Program"}
 </Button>
 ```
 
 ### 3. **Proper State Management**
+
 - `loading` - Page loading state
 - `saving` - Form submission state
 - `dialogOpen` - Dialog visibility
@@ -6296,25 +6738,29 @@ if (loading) {
 - `formData` - Form field values
 
 ### 4. **Toast Notifications**
+
 ```tsx
 toast.success("Program updated successfully");
 toast.success("Program added successfully");
 ```
 
 ### 5. **Form Validation**
-- Required fields marked with *
+
+- Required fields marked with \*
 - Form validation on submit
 - Controlled inputs with state
 
 ## 🎨 UI Improvements
 
 ### Before:
+
 - ❌ Edit button did nothing
 - ❌ No loading feedback
 - ❌ No way to know if action succeeded
 - ❌ Form didn't populate on edit
 
 ### After:
+
 - ✅ Edit button opens dialog with data
 - ✅ Loading spinner on page load
 - ✅ Loading spinner on button during save
@@ -6326,6 +6772,7 @@ toast.success("Program added successfully");
 ## 🔄 User Flow
 
 ### Adding a Program:
+
 1. Click "Add Program" button
 2. Dialog opens with empty form
 3. Fill in program details
@@ -6335,6 +6782,7 @@ toast.success("Program added successfully");
 7. Dialog closes
 
 ### Editing a Program:
+
 1. Click "Edit" button on any program card
 2. Dialog opens with program data pre-filled
 3. Modify program details
@@ -6346,6 +6794,7 @@ toast.success("Program added successfully");
 ## 🎯 Loading Indicators
 
 ### 1. Page Load:
+
 ```
 ┌─────────────────────────────┐
 │                             │
@@ -6356,6 +6805,7 @@ toast.success("Program added successfully");
 ```
 
 ### 2. Button Save:
+
 ```
 ┌──────────────────────────────┐
 │ [🔄 Update Program] (disabled)│
@@ -6363,6 +6813,7 @@ toast.success("Program added successfully");
 ```
 
 ### 3. Toast Notification:
+
 ```
 ┌──────────────────────────────┐
 │ ✅ Program updated successfully│
@@ -6372,12 +6823,14 @@ toast.success("Program added successfully");
 ## 📝 Code Changes Summary
 
 ### Added Imports:
+
 - `Loader2` - Loading spinner icon
 - `Edit` - Edit icon
 - `useEffect` - For future data fetching
 - `toast` - Toast notifications
 
 ### Added State:
+
 - `loading` - Page loading
 - `saving` - Form saving
 - `dialogOpen` - Dialog control
@@ -6385,12 +6838,14 @@ toast.success("Program added successfully");
 - `formData` - Form values
 
 ### Added Functions:
+
 - `handleEdit()` - Open edit dialog
 - `handleAdd()` - Open add dialog
 - `handleSubmit()` - Save program
 - `handleCloseDialog()` - Close dialog
 
 ### Updated Components:
+
 - Dialog now controlled with state
 - Form inputs now controlled
 - Edit button now functional
@@ -6399,6 +6854,7 @@ toast.success("Program added successfully");
 ## ✅ Result
 
 The Program Catalog page now has:
+
 1. ✅ **Working edit functionality**
 2. ✅ **Loading indicators** on page and buttons
 3. ✅ **Toast notifications** for user feedback
@@ -6407,8 +6863,6 @@ The Program Catalog page now has:
 6. ✅ **Disabled states** during operations
 
 **The page is now fully functional and user-friendly!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/PROGRAM_CATALOG_SYSTEM.md
@@ -6419,9 +6873,11 @@ FILE: ./docs/PROGRAM_CATALOG_SYSTEM.md
 ## 🎯 Problem Statement
 
 ### The Issue:
+
 When universities add programs independently, they use different names for the same program:
+
 - University A: "Business Administration"
-- University B: "Business Management"  
+- University B: "Business Management"
 - University C: "BA in Business"
 
 **Result:** These are the SAME program but appear as 3 different programs in filters and searches! ❌
@@ -6450,9 +6906,11 @@ When universities add programs independently, they use different names for the s
 ## 📊 Database Tables
 
 ### 1. `program_catalog` (Master List)
+
 **Purpose:** Standardized, centralized list of all academic programs
 
 **Fields:**
+
 - `id` - Unique identifier
 - `title` - **Standardized program name** (e.g., "Business Administration")
 - `category` - Main category (e.g., "Business & Management")
@@ -6462,6 +6920,7 @@ When universities add programs independently, they use different names for the s
 - `typical_duration` - Standard duration (e.g., "4 years")
 
 **Example Entry:**
+
 ```sql
 {
   id: "uuid-123",
@@ -6475,9 +6934,11 @@ When universities add programs independently, they use different names for the s
 ```
 
 ### 2. `university_programs` (University Offerings)
+
 **Purpose:** Links universities to programs with their specific details
 
 **Fields:**
+
 - `id` - Unique identifier
 - `university_id` - Which university offers this
 - `program_catalog_id` - Which standard program (FK to program_catalog)
@@ -6493,6 +6954,7 @@ When universities add programs independently, they use different names for the s
 - `is_active` - Active/Inactive status
 
 **Example Entry:**
+
 ```sql
 {
   id: "uuid-456",
@@ -6512,14 +6974,18 @@ When universities add programs independently, they use different names for the s
 ### Admin Workflow:
 
 #### Step 1: Create Program Catalog (One Time)
+
 Admin goes to **Program Catalog** page and adds standardized programs:
+
 - Business Administration
 - Computer Science
 - MBBS
 - etc.
 
 #### Step 2: Universities Add Programs
+
 When adding a program for a university:
+
 1. Select university
 2. **Choose from Program Catalog** (dropdown)
 3. Add university-specific details:
@@ -6532,6 +6998,7 @@ When adding a program for a university:
 ### Example Scenario:
 
 **Tsinghua University adds "Business Administration":**
+
 ```
 Program Catalog: Business Administration
 Custom Title: "Business Management" (optional)
@@ -6541,6 +7008,7 @@ Language: English
 ```
 
 **Peking University adds the SAME program:**
+
 ```
 Program Catalog: Business Administration
 Custom Title: "BA in Business" (optional)
@@ -6599,6 +7067,7 @@ Language: Chinese
 ## 🔍 Benefits
 
 ### 1. **Consistent Filtering**
+
 ```
 Filter: "Business & Management"
 Results: ALL business programs from ALL universities
@@ -6606,12 +7075,14 @@ Results: ALL business programs from ALL universities
 ```
 
 ### 2. **Better Search**
+
 ```
 Search: "Business"
 Finds: All variations (Business Admin, Business Management, etc.)
 ```
 
 ### 3. **Easy Comparison**
+
 ```
 Compare "Business Administration" across:
 - Tsinghua: 30,000 RMB
@@ -6620,12 +7091,14 @@ Compare "Business Administration" across:
 ```
 
 ### 4. **Analytics**
+
 ```
 Most Popular Program: Business Administration (45 universities)
 Most Expensive: MBBS (avg 50,000 RMB)
 ```
 
 ### 5. **Scalability**
+
 - Add new program once → All universities can use it
 - Update description once → Updates everywhere
 - Consistent data across platform
@@ -6633,9 +7106,11 @@ Most Expensive: MBBS (avg 50,000 RMB)
 ## 📱 Admin Pages
 
 ### 1. Program Catalog Page
+
 **Route:** `/admin/program-catalog`
 
 **Features:**
+
 - ✅ View all standardized programs
 - ✅ Add new programs to catalog
 - ✅ Edit program details
@@ -6644,9 +7119,11 @@ Most Expensive: MBBS (avg 50,000 RMB)
 - ✅ See how many universities offer each
 
 ### 2. University Programs Page (Updated)
+
 **Route:** `/admin/programs`
 
 **Features:**
+
 - ✅ Select from Program Catalog (dropdown)
 - ✅ Add university-specific details
 - ✅ Optional custom title
@@ -6656,23 +7133,27 @@ Most Expensive: MBBS (avg 50,000 RMB)
 ## 🚀 Implementation Steps
 
 ### 1. Run Database Migration
+
 ```bash
 # Execute the SQL migration file
 psql -d your_database < DATABASE_MIGRATION_PROGRAMS.sql
 ```
 
 ### 2. Migrate Existing Data
+
 ```sql
 -- Map existing programs to catalog
 -- This needs to be done carefully based on your data
 ```
 
 ### 3. Update Admin UI
+
 - ✅ Program Catalog page (created)
 - ✅ Update Programs page to use catalog selection
 - ✅ Update university detail page
 
 ### 4. Update Public Pages
+
 - Update filters to use categories
 - Update search to use catalog
 - Display program from catalog + university details
@@ -6686,11 +7167,13 @@ v_university_programs_full
 ```
 
 This view combines:
+
 - University info
 - Program catalog info
 - University-specific details
 
 **Usage:**
+
 ```sql
 SELECT * FROM v_university_programs_full
 WHERE category = 'Business & Management'
@@ -6701,14 +7184,16 @@ AND is_active = true;
 ## 🎯 Example Queries
 
 ### Get all Business programs:
+
 ```sql
 SELECT * FROM v_university_programs_full
 WHERE category = 'Business & Management';
 ```
 
 ### Compare same program across universities:
+
 ```sql
-SELECT 
+SELECT
   university_name,
   tuition_fee,
   duration,
@@ -6720,8 +7205,9 @@ ORDER BY tuition_fee;
 ```
 
 ### Most popular programs:
+
 ```sql
-SELECT 
+SELECT
   program_title,
   COUNT(*) as universities_offering
 FROM v_university_programs_full
@@ -6731,18 +7217,19 @@ ORDER BY universities_offering DESC;
 
 ## ✅ Advantages Summary
 
-| Before | After |
-|--------|-------|
-| Each university creates own program names | Select from standardized catalog |
+| Before                                    | After                              |
+| ----------------------------------------- | ---------------------------------- |
+| Each university creates own program names | Select from standardized catalog   |
 | "Business Admin" vs "Business Management" | Both are "Business Administration" |
-| Inconsistent filtering | Perfect category filtering |
-| Hard to compare | Easy comparison |
-| Duplicate data | Normalized data |
-| Manual categorization | Automatic categorization |
+| Inconsistent filtering                    | Perfect category filtering         |
+| Hard to compare                           | Easy comparison                    |
+| Duplicate data                            | Normalized data                    |
+| Manual categorization                     | Automatic categorization           |
 
 ## 🎉 Result
 
 A **professional, scalable, and maintainable** program management system that:
+
 - ✅ Solves the duplicate program name problem
 - ✅ Enables accurate filtering and searching
 - ✅ Makes program comparison easy
@@ -6752,8 +7239,6 @@ A **professional, scalable, and maintainable** program management system that:
 
 This is the **industry-standard approach** used by major education platforms! 🚀
 
-
-
 ==================================================
 FILE: ./docs/PROGRAM_SLUG_IMPLEMENTATION.md
 ==================================================
@@ -6761,11 +7246,13 @@ FILE: ./docs/PROGRAM_SLUG_IMPLEMENTATION.md
 # Program Slug Implementation Guide
 
 ## Overview
+
 Implemented slug-based routing for program pages with format: `program-name-university-name`
 
 ## Changes Made
 
 ### 1. Database Migration
+
 **File:** `DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql`
 
 - Added `slug` column to `university_programs` table
@@ -6775,49 +7262,59 @@ Implemented slug-based routing for program pages with format: `program-name-univ
 - Added index on slug column for performance
 
 **Slug Format:** `{program-title}-{university-name}`
+
 - Example: `computer-science-tsinghua-university`
 - Example: `business-administration-peking-university`
 
 ### 2. Frontend Changes
 
 #### New Route
+
 - **Created:** `/src/app/(public)/programs/[slug]/page.tsx`
 - Replaced ID-based routing with slug-based routing
 - Queries database using `slug` instead of `id`
 - Better SEO and user-friendly URLs
 
 #### Updated Components
+
 - **ProgramCard.tsx:** Updated to use `slug` in links (fallback to `id` if slug not available)
 - **programs/page.tsx:** Added `slug` field to formatted program data
 
 ### 3. Old Route
+
 The old `/programs/[id]/page.tsx` route still exists for backward compatibility, but new links will use the slug-based route.
 
 ## How to Apply
 
 ### Step 1: Run Database Migration
+
 ```bash
 # Connect to your Supabase database and run:
 psql -h your-db-host -U postgres -d postgres -f DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql
 ```
 
 Or via Supabase Dashboard:
+
 1. Go to SQL Editor
 2. Copy contents of `DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql`
 3. Execute the SQL
 
 ### Step 2: Verify Migration
+
 Check that slugs were generated:
+
 ```sql
 SELECT id, slug, custom_title FROM university_programs LIMIT 10;
 ```
 
 ### Step 3: Test the Application
+
 ```bash
 npm run dev
 ```
 
 Visit:
+
 - Old URL: `http://localhost:3000/programs/820d4cdc-0bb6-491b-8eb8-7b86784f96a9` (still works via old route)
 - New URL: `http://localhost:3000/programs/computer-science-tsinghua-university` (new slug-based route)
 
@@ -6831,9 +7328,11 @@ Visit:
 ## Example URLs
 
 Before:
+
 - `/programs/820d4cdc-0bb6-491b-8eb8-7b86784f96a9`
 
 After:
+
 - `/programs/computer-science-tsinghua-university`
 - `/programs/mba-master-of-business-administration-peking-university`
 - `/programs/mbbs-bachelor-of-medicine-bachelor-of-surgery-fudan-university`
@@ -6847,8 +7346,6 @@ The old `[id]` route is still functional, so existing bookmarks and links will c
 1. **Redirect old URLs:** Add a redirect from `/programs/[id]` to `/programs/[slug]`
 2. **Remove old route:** Once all traffic is migrated, remove the `[id]` folder
 3. **Add canonical tags:** Ensure SEO tools recognize the slug-based URL as canonical
-
-
 
 ==================================================
 FILE: ./docs/PROGRAM_SYSTEM_VISUAL_GUIDE.md
@@ -7078,6 +7575,7 @@ ADMIN PANEL NAVIGATION:
 ## 🎯 Workflow Comparison
 
 ### OLD WAY (Without Catalog):
+
 ```
 1. Go to Programs page
 2. Click "Add Program"
@@ -7085,11 +7583,12 @@ ADMIN PANEL NAVIGATION:
 4. Fill all details
 5. Save
 
-Problem: Next admin types "Business Management" 
+Problem: Next admin types "Business Management"
 → Creates duplicate! ❌
 ```
 
 ### NEW WAY (With Catalog):
+
 ```
 1. Go to Program Catalog (one-time setup)
 2. Add "Business Administration" to catalog
@@ -7169,6 +7668,7 @@ Step 4: User searches
 ## 🎨 UI Components
 
 ### Program Catalog Page:
+
 ```
 ┌──────────────────────────────────────────────┐
 │ Program Catalog                    [+ Add]   │
@@ -7200,6 +7700,7 @@ Step 4: User searches
 ```
 
 ### University Programs Page:
+
 ```
 ┌──────────────────────────────────────────────┐
 │ Add Program to University          [+ Add]   │
@@ -7228,6 +7729,7 @@ Step 4: User searches
 ## ✅ Summary
 
 ### What You Get:
+
 1. **Standardized Programs** - One source of truth
 2. **Consistent Filtering** - All variations found together
 3. **Easy Management** - Add program once, use everywhere
@@ -7236,6 +7738,7 @@ Step 4: User searches
 6. **Data Quality** - No duplicates or inconsistencies
 
 ### This is the BEST approach because:
+
 - ✅ Industry standard (used by Coursera, edX, etc.)
 - ✅ Solves the duplicate name problem
 - ✅ Makes filtering accurate
@@ -7245,8 +7748,6 @@ Step 4: User searches
 
 🎉 **You now have a professional, enterprise-grade program management system!**
 
-
-
 ==================================================
 FILE: ./docs/PROJECT_REFERENCE.md
 ==================================================
@@ -7254,6 +7755,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 # StudyAtChina - Project Reference Guide
 
 ## 📋 Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Database Schema](#database-schema)
 3. [Application Routes](#application-routes)
@@ -7267,6 +7769,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ## 🎯 Project Overview
 
 **StudyAtChina** is a Next.js application that helps international students apply to Chinese universities. It features:
+
 - University and program browsing
 - Student application system
 - Document upload
@@ -7274,6 +7777,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 - Application tracking dashboard
 
 **Tech Stack:**
+
 - **Framework:** Next.js 15 (App Router)
 - **Database:** PostgreSQL (Supabase)
 - **Authentication:** Supabase Auth
@@ -7288,6 +7792,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ### Core Tables
 
 #### 1. **universities**
+
 ```sql
 - id (UUID, PK)
 - name (VARCHAR 255)
@@ -7302,6 +7807,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ```
 
 #### 2. **languages**
+
 ```sql
 - id (UUID, PK)
 - name (VARCHAR 100, UNIQUE)
@@ -7310,6 +7816,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ```
 
 #### 3. **program_catalog**
+
 ```sql
 - id (UUID, PK)
 - title (VARCHAR 255, UNIQUE)
@@ -7322,6 +7829,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ```
 
 #### 4. **university_programs**
+
 ```sql
 - id (UUID, PK)
 - university_id (UUID, FK → universities)
@@ -7345,6 +7853,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ### Application System Tables
 
 #### 5. **applications**
+
 ```sql
 - id (UUID, PK)
 - student_id (UUID) -- References auth.users(id)
@@ -7367,6 +7876,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ```
 
 #### 6. **application_documents**
+
 ```sql
 - id (UUID, PK)
 - application_id (UUID, FK → applications)
@@ -7384,6 +7894,7 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ```
 
 #### 7. **application_status_history**
+
 ```sql
 - id (UUID, PK)
 - application_id (UUID, FK → applications)
@@ -7397,7 +7908,9 @@ FILE: ./docs/PROJECT_REFERENCE.md
 ### Views
 
 #### **v_university_programs_full**
+
 Combines university_programs with related data:
+
 - Program catalog details
 - University information
 - Language information
@@ -7409,6 +7922,7 @@ Combines university_programs with related data:
 ### Public Routes (No Auth Required)
 
 #### Homepage & Information
+
 - `/` - Homepage
 - `/universities` - Browse universities
 - `/universities/[slug]` - University detail page
@@ -7420,6 +7934,7 @@ Combines university_programs with related data:
 - `/contact` - Contact page
 
 #### Authentication
+
 - `/auth/login` - Login page
 - `/auth/register` - Registration page
 - `/auth/forgot-password` - Password reset
@@ -7427,6 +7942,7 @@ Combines university_programs with related data:
 ### Protected Routes (Auth Required)
 
 #### Application Flow
+
 - `/apply/[programSlug]` - Application form for specific program
   - Checks authentication
   - Checks for existing application
@@ -7434,6 +7950,7 @@ Combines university_programs with related data:
   - Shows multi-step form
 
 #### Student Dashboard
+
 - `/dashboard` - Main dashboard
   - Shows application statistics
   - Lists all user applications
@@ -7442,6 +7959,7 @@ Combines university_programs with related data:
 - `/dashboard/settings` - User settings
 
 ### Admin Routes
+
 - `/admin/login` - Admin login
 - `/admin/*` - Admin dashboard (separate from student dashboard)
 
@@ -7452,12 +7970,14 @@ Combines university_programs with related data:
 ### Layout Components
 
 #### **Navbar** (`/src/components/layout/Navbar.tsx`)
+
 - Responsive navigation
 - Auth state detection
 - User dropdown menu when logged in
 - Shows "Sign In" / "Get Started" when not logged in
 
 Features:
+
 - Transparent on homepage, solid on other pages
 - Scroll-based styling
 - Mobile menu with Sheet component
@@ -7466,9 +7986,11 @@ Features:
 ### Application Components
 
 #### **ApplyForm** (`/src/components/applications/ApplyForm.tsx`)
+
 Multi-step application form with:
 
 **Steps:**
+
 1. **Personal Information**
    - Pre-filled from user account
    - Country selector (dropdown)
@@ -7490,6 +8012,7 @@ Multi-step application form with:
    - Final submission
 
 **Success Screen:**
+
 - Animated checkmark
 - Application ID display
 - "What's Next?" section
@@ -7499,6 +8022,7 @@ Multi-step application form with:
 ### University Components
 
 #### **UniversityContent** (`/src/components/universities/UniversityContent.tsx`)
+
 - Displays university information
 - Tabs for different sections
 - Programs list
@@ -7506,13 +8030,16 @@ Multi-step application form with:
 - Accommodation section
 
 #### **AccommodationSection** (`/src/components/universities/AccommodationSection.tsx`)
+
 - Shows accommodation availability
 - Types and features
 - Fee ranges
 - Dynamic icons
 
 ### UI Components (shadcn/ui)
+
 Located in `/src/components/ui/`:
+
 - `button.tsx` - Button component
 - `card.tsx` - Card layouts
 - `input.tsx` - Form inputs
@@ -7527,6 +8054,7 @@ Located in `/src/components/ui/`:
 ## 🔐 Authentication Flow
 
 ### Registration Flow
+
 1. User fills registration form (`/auth/register`)
 2. Form data includes: email, password, firstName, lastName
 3. `signup()` action creates user with metadata:
@@ -7542,12 +8070,14 @@ Located in `/src/components/ui/`:
 5. Redirects to login with returnUrl preserved
 
 ### Login Flow
+
 1. User enters credentials (`/auth/login`)
 2. `login()` action authenticates
 3. Redirects to `returnUrl` or `/dashboard`
 4. Navbar updates to show user profile
 
 ### Auth State Management
+
 - **Server-side:** `createClient()` from `@/lib/supabase/server`
 - **Client-side:** `createClient()` from `@/lib/supabase/client`
 - **Auth listener:** `onAuthStateChange()` in Navbar
@@ -7557,24 +8087,29 @@ Located in `/src/components/ui/`:
 ## 📝 Application Submission Flow
 
 ### 1. User Clicks "Apply Now"
+
 - From program page or university page
 - Redirects to `/apply/[programSlug]`
 
 ### 2. Authentication Check
+
 ```typescript
-const { data: { user } } = await supabase.auth.getUser();
+const {
+  data: { user },
+} = await supabase.auth.getUser();
 if (!user) {
   redirect(`/auth/login?returnUrl=/apply/${programSlug}`);
 }
 ```
 
 ### 3. Existing Application Check
+
 ```typescript
 const { data: existingApplication } = await supabase
-  .from('applications')
-  .select('id, status')
-  .eq('student_id', user.id)
-  .eq('university_program_id', program.id)
+  .from("applications")
+  .select("id, status")
+  .eq("student_id", user.id)
+  .eq("university_program_id", program.id)
   .single();
 
 if (existingApplication) {
@@ -7583,7 +8118,9 @@ if (existingApplication) {
 ```
 
 ### 4. Form Pre-filling
+
 Data from `user.user_metadata`:
+
 - `full_name` → student_name
 - `email` → student_email
 - `phone` → student_phone
@@ -7591,22 +8128,22 @@ Data from `user.user_metadata`:
 - `phone_country_code` → phoneCountryCode
 
 ### 5. Document Upload
+
 ```typescript
 const fileName = `${user.id}/${requirementId}/${Date.now()}.${fileExt}`;
-await supabase.storage
-  .from('application-documents')
-  .upload(fileName, file);
+await supabase.storage.from("application-documents").upload(fileName, file);
 ```
 
 ### 6. Application Submission
+
 ```typescript
 const { data: application } = await supabase
-  .from('applications')
+  .from("applications")
   .insert({
     student_id: user.id,
     university_program_id: program.id,
     student_phone: `${phoneCountryCode} ${formData.student_phone}`,
-    status: requiresPayment ? 'pending_payment' : 'submitted',
+    status: requiresPayment ? "pending_payment" : "submitted",
     // ... other fields
   })
   .select()
@@ -7614,6 +8151,7 @@ const { data: application } = await supabase
 ```
 
 ### 7. Success & Redirect
+
 - Show animated success screen
 - Display application ID
 - Auto-redirect to `/dashboard` after 3 seconds
@@ -7623,12 +8161,14 @@ const { data: application } = await supabase
 ## 📁 Important Files
 
 ### Configuration
+
 - `/src/lib/supabase/server.ts` - Server-side Supabase client
 - `/src/lib/supabase/client.ts` - Client-side Supabase client
 - `/src/lib/constants/countries.ts` - Country and phone code data
 - `/components.json` - shadcn/ui configuration
 
 ### Database Scripts
+
 - `/DATABASE_COMPLETE_SCHEMA.sql` - Core database schema
 - `/DATABASE_ADD_APPLICATIONS.sql` - Application system schema
 - `/DATABASE_ADD_ACCOMMODATION.sql` - Accommodation fields
@@ -7637,6 +8177,7 @@ const { data: application } = await supabase
 - `/INSERT_EXTRA_BACHELOR_PROGRAMS_FIXED.sql` - Bachelor programs
 
 ### Authentication Actions
+
 - `/src/app/(public)/auth/actions/index.ts`
   - `login()` - User login
   - `signup()` - User registration
@@ -7644,6 +8185,7 @@ const { data: application } = await supabase
   - `resetPassword()` - Password reset
 
 ### Key Pages
+
 - `/src/app/(public)/apply/[programSlug]/page.tsx` - Application entry
 - `/src/app/dashboard/page.tsx` - Student dashboard
 - `/src/app/dashboard/layout.tsx` - Dashboard layout with sidebar
@@ -7655,6 +8197,7 @@ const { data: application } = await supabase
 ## 🎨 Styling & UI
 
 ### Color Scheme
+
 - **Primary:** Red/Orange gradient (Chinese theme)
 - **Status Colors:**
   - 🟡 Yellow - Pending actions
@@ -7664,12 +8207,14 @@ const { data: application } = await supabase
   - ⚪ Gray - Draft/Inactive
 
 ### Responsive Design
+
 - Mobile-first approach
 - Breakpoints: sm, md, lg, xl
 - Mobile menu with Sheet component
 - Responsive grid layouts
 
 ### Animations
+
 - Framer Motion for page transitions
 - Scroll-based navbar changes
 - Success screen animations
@@ -7680,6 +8225,7 @@ const { data: application } = await supabase
 ## 🔧 Environment Variables
 
 Required in `.env.local`:
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -7709,6 +8255,7 @@ accepted / rejected / withdrawn
 ## 🚀 Key Features
 
 ### ✅ Implemented
+
 - University browsing and search
 - Program catalog with filters
 - User authentication (register/login)
@@ -7723,6 +8270,7 @@ accepted / rejected / withdrawn
 - Pre-filled forms from user data
 
 ### 🔄 Pending
+
 - Payment gateway integration
 - Admin dashboard for application review
 - Email notifications
@@ -7736,6 +8284,7 @@ accepted / rejected / withdrawn
 ## 📝 Notes
 
 ### Important Conventions
+
 1. **User ID:** Stored in `auth.users`, referenced as `student_id` in applications
 2. **Slugs:** Used for SEO-friendly URLs (universities and programs)
 3. **Status:** Always lowercase with underscores (e.g., `pending_payment`)
@@ -7743,12 +8292,14 @@ accepted / rejected / withdrawn
 5. **Dates:** ISO format with timezone
 
 ### RLS (Row Level Security)
+
 - Students can only view/edit their own applications
 - Admins can view/edit all applications
 - Public can view universities and programs
 - Documents are protected by RLS
 
 ### File Storage Structure
+
 ```
 application-documents/
   └── {user_id}/
@@ -7761,15 +8312,19 @@ application-documents/
 ## 🐛 Common Issues & Solutions
 
 ### Issue: "Page Not Found" on `/dashboard/applications`
+
 **Solution:** This route doesn't exist. Use `/dashboard` instead.
 
 ### Issue: Name not pre-filled in application form
+
 **Solution:** Ensure `full_name` is saved during registration in `signup()` action.
 
 ### Issue: Duplicate key errors in country codes
+
 **Solution:** Use unique `id` field for React keys, not `code`.
 
 ### Issue: Auth redirect not working
+
 **Solution:** Check `returnUrl` parameter is preserved through registration → login flow.
 
 ---
@@ -7777,6 +8332,7 @@ application-documents/
 ## 📞 Support
 
 For issues or questions:
+
 1. Check this reference document
 2. Review database schema
 3. Check Supabase logs
@@ -7788,8 +8344,6 @@ For issues or questions:
 **Last Updated:** November 29, 2025
 **Version:** 1.0
 **Maintained by:** Development Team
-
-
 
 ==================================================
 FILE: ./docs/READ_MORE_FEATURE.md
@@ -7806,6 +8360,7 @@ Added an elegant **"Read More"** button to the university overview section to pr
 ## ✨ Features
 
 ### Before:
+
 ```
 Overview Section:
 ┌─────────────────────────────────────────┐
@@ -7819,6 +8374,7 @@ Overview Section:
 ```
 
 ### After:
+
 ```
 Overview Section:
 ┌─────────────────────────────────────────┐
@@ -7848,20 +8404,21 @@ Overview Section:
 ## 🔧 Implementation
 
 ### Component Created:
+
 **File:** `/src/components/universities/ExpandableText.tsx`
 
 ```typescript
 "use client";
 
-export function ExpandableText({ 
-    text, 
-    maxLength = 300 
+export function ExpandableText({
+    text,
+    maxLength = 300
 }: ExpandableTextProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const shouldTruncate = text.length > maxLength;
-    
-    const displayText = shouldTruncate && !isExpanded 
-        ? text.slice(0, maxLength) + "..." 
+
+    const displayText = shouldTruncate && !isExpanded
+        ? text.slice(0, maxLength) + "..."
         : text;
 
     return (
@@ -7878,14 +8435,15 @@ export function ExpandableText({
 ```
 
 ### Usage:
+
 ```typescript
 // Before
 <p>{universityData.overview}</p>
 
 // After
-<ExpandableText 
-    text={universityData.overview} 
-    maxLength={300} 
+<ExpandableText
+    text={universityData.overview}
+    maxLength={300}
 />
 ```
 
@@ -7894,6 +8452,7 @@ export function ExpandableText({
 ## 🎨 Visual Design
 
 ### Collapsed State (Default):
+
 ```
 ┌─────────────────────────────────────────┐
 │ Ningbo University is a comprehensive    │
@@ -7909,6 +8468,7 @@ export function ExpandableText({
 ```
 
 ### Expanded State:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Ningbo University is a comprehensive    │
@@ -7933,14 +8493,16 @@ export function ExpandableText({
 ## ⚙️ Configuration
 
 ### Character Limit:
+
 ```typescript
-<ExpandableText 
-    text={text} 
+<ExpandableText
+    text={text}
     maxLength={300}  // Default: 300 characters
 />
 ```
 
 ### Customizable:
+
 - **300 chars** = ~3-4 lines (Default)
 - **200 chars** = ~2-3 lines (Shorter)
 - **500 chars** = ~5-6 lines (Longer)
@@ -7970,6 +8532,7 @@ export function ExpandableText({
 ## 🎨 Button Styling
 
 ### Design:
+
 ```css
 - Variant: Ghost (subtle)
 - Size: Small
@@ -7980,6 +8543,7 @@ export function ExpandableText({
 ```
 
 ### States:
+
 ```
 Collapsed: [Read More ▼]
 Expanded:  [Show Less ▲]
@@ -7990,21 +8554,25 @@ Expanded:  [Show Less ▲]
 ## 📊 Benefits
 
 ### 1. **Better UX**
+
 - Not overwhelming
 - Clean appearance
 - User controls content
 
 ### 2. **Improved Readability**
+
 - Focused content
 - Less scrolling
 - Better engagement
 
 ### 3. **Professional**
+
 - Modern design
 - Smooth interaction
 - Elegant solution
 
 ### 4. **Flexible**
+
 - Works with any text length
 - Configurable limit
 - Automatic detection
@@ -8014,12 +8582,14 @@ Expanded:  [Show Less ▲]
 ## 🔄 Smart Behavior
 
 ### If text is SHORT (< 300 chars):
+
 ```
 No "Read More" button shown
 Full text displayed immediately
 ```
 
 ### If text is LONG (> 300 chars):
+
 ```
 Shows first 300 chars + "..."
 "Read More" button appears
@@ -8031,19 +8601,21 @@ User can expand to see full text
 ## 📝 Example
 
 ### Short Text (250 chars):
+
 ```
-Ningbo University is a comprehensive 
-research university located in Ningbo, 
+Ningbo University is a comprehensive
+research university located in Ningbo,
 Zhejiang Province. Founded in 1986.
 
 (No button - text is short enough)
 ```
 
 ### Long Text (800 chars):
+
 ```
-Ningbo University is a comprehensive 
-research university located in the 
-beautiful coastal city of Ningbo, 
+Ningbo University is a comprehensive
+research university located in the
+beautiful coastal city of Ningbo,
 Zhejiang Province. Founded in 1986...
 
 [Read More ▼]
@@ -8071,6 +8643,7 @@ Zhejiang Province. Founded in 1986...
 ## 🎉 Result
 
 The overview section now:
+
 - ✅ Shows concise preview (300 chars)
 - ✅ Has elegant "Read More" button
 - ✅ Expands on click
@@ -8080,8 +8653,6 @@ The overview section now:
 
 **Users can now read a preview and choose to expand for more details!** 📖✨
 
-
-
 ==================================================
 FILE: ./docs/REDESIGN_SUMMARY.md
 ==================================================
@@ -8089,7 +8660,9 @@ FILE: ./docs/REDESIGN_SUMMARY.md
 # StudyAtChina.com - Complete Redesign Summary
 
 ## 🎨 Overview
+
 A complete 100% redesign of the StudyAtChina website with modern, impressive UI/UX featuring:
+
 - Premium glassmorphism effects
 - Smooth parallax animations
 - Vibrant gradient color schemes
@@ -8101,6 +8674,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## ✨ Key Design Changes
 
 ### 1. **Color Palette Upgrade**
+
 - **Primary**: Vibrant Chinese Red (`oklch(0.58 0.24 25)`)
 - **Secondary**: Imperial Gold (`oklch(0.75 0.12 75)`)
 - **Accent**: Jade Green (`oklch(0.65 0.18 165)`)
@@ -8108,12 +8682,14 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Sophisticated gradients throughout
 
 ### 2. **Typography Enhancement**
+
 - Increased font weights (font-black for headings)
 - Better hierarchy with larger heading sizes (up to text-9xl)
 - Improved spacing and line-height
 - Gradient text effects on key headings
 
 ### 3. **Animation System**
+
 - Custom keyframe animations (float, glow, shimmer, gradient-shift)
 - Framer Motion integration for scroll-triggered animations
 - Parallax effects on hero section
@@ -8125,8 +8701,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 📄 Updated Components
 
 ### **Hero Section** (`HeroSection.tsx`)
+
 **Before**: Static hero with basic search
-**After**: 
+**After**:
+
 - Animated gradient background with floating orbs
 - Parallax scrolling effect
 - Enhanced glassmorphic search widget
@@ -8136,8 +8714,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Quick search tags
 
 ### **Why Study Section** (`WhyStudySection.tsx`)
+
 **Before**: 4 simple cards
 **After**:
+
 - 8 feature cards with unique gradient colors
 - Hover effects with scale and shadow transitions
 - Decorative corner elements
@@ -8146,8 +8726,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Gradient heading text
 
 ### **Featured Programs** (`FeaturedProgramsSection.tsx`)
+
 **Before**: Basic program cards
 **After**:
+
 - Enhanced card design with 2px borders
 - Hover overlay with gradient
 - Improved badge styling (glassmorphic)
@@ -8157,8 +8739,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - "Browse All Programs" section
 
 ### **How It Works** (`HowItWorksSection.tsx`)
+
 **Before**: 6 simple steps in a row
 **After**:
+
 - 3-column grid layout
 - Numbered badges with gradients
 - Large gradient icons (20x20)
@@ -8168,8 +8752,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - CTA button at bottom
 
 ### **Navbar** (`Navbar.tsx`)
+
 **Before**: Static transparent navbar
 **After**:
+
 - Scroll-triggered background change
 - Animated logo with glow effect
 - Tagline under logo
@@ -8179,8 +8765,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Language selector with dropdown icon
 
 ### **Footer** (`Footer.tsx`)
+
 **Before**: Basic footer layout
 **After**:
+
 - Newsletter subscription section with gradient background
 - Enhanced social media icons with hover effects
 - Better organized link sections
@@ -8193,6 +8781,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 🎯 New Features
 
 ### **Global Styles** (`globals.css`)
+
 1. **Custom Animations**:
    - `animate-float`: Floating effect for decorative elements
    - `animate-glow`: Pulsing glow effect
@@ -8210,6 +8799,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
    - Smooth scrolling enabled
 
 ### **Design Elements**
+
 - Floating orb backgrounds (blur-3xl)
 - Gradient overlays
 - Border radius increased to 1rem
@@ -8272,16 +8862,16 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 
 ## 📊 Before vs After Comparison
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| Color Palette | Basic red/navy | Vibrant red/gold/jade |
-| Animations | Minimal | Extensive (parallax, scroll-triggered) |
-| Typography | Standard | Bold, gradient effects |
-| Cards | Flat | 3D with shadows and hover effects |
-| Hero | Static | Dynamic with parallax |
-| Navbar | Fixed style | Scroll-responsive |
-| Footer | Basic | Newsletter + enhanced layout |
-| Overall Feel | Professional | Premium & Modern |
+| Aspect        | Before         | After                                  |
+| ------------- | -------------- | -------------------------------------- |
+| Color Palette | Basic red/navy | Vibrant red/gold/jade                  |
+| Animations    | Minimal        | Extensive (parallax, scroll-triggered) |
+| Typography    | Standard       | Bold, gradient effects                 |
+| Cards         | Flat           | 3D with shadows and hover effects      |
+| Hero          | Static         | Dynamic with parallax                  |
+| Navbar        | Fixed style    | Scroll-responsive                      |
+| Footer        | Basic          | Newsletter + enhanced layout           |
+| Overall Feel  | Professional   | Premium & Modern                       |
 
 ---
 
@@ -8302,6 +8892,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 🌐 Browser Preview
 
 The redesigned website is now running at:
+
 - **Local**: http://localhost:3000
 - **Network**: http://192.168.1.162:3000
 
@@ -8321,8 +8912,6 @@ Open the browser preview to see the stunning new design in action!
 **Redesign Completed**: November 27, 2024
 **Status**: ✅ Ready for Production
 
-
-
 ==================================================
 FILE: ./docs/SCHOLARSHIP_ADMIN_GUIDE.md
 ==================================================
@@ -8330,14 +8919,17 @@ FILE: ./docs/SCHOLARSHIP_ADMIN_GUIDE.md
 # Scholarship Types Admin Guide
 
 ## Overview
+
 You can now manage scholarship types from the admin panel. These scholarship types will automatically appear on all university and program pages.
 
 ## Admin Pages Created
 
 ### 1. Scholarship Types List
+
 **URL:** `/admin/scholarship-types`
 
 **Features:**
+
 - View all scholarship types in a table
 - See coverage percentage, service fees (USD & CNY)
 - Check active/inactive status
@@ -8349,9 +8941,11 @@ You can now manage scholarship types from the admin panel. These scholarship typ
 - Click "Add Scholarship Type" to create new
 
 ### 2. Edit/Create Scholarship Type
+
 **URL:** `/admin/scholarship-types/[id]` or `/admin/scholarship-types/new`
 
 **Features:**
+
 - **Basic Information:**
   - Name (e.g., "Type A")
   - Display Name (e.g., "Full Scholarship (Type A)")
@@ -8478,13 +9072,12 @@ You can edit these or create new ones as needed.
 ## Support
 
 If you need to:
+
 - Add new fields to scholarship types
 - Create custom scholarship applications
 - Generate reports on scholarship usage
 
 Contact your developer for database schema updates.
-
-
 
 ==================================================
 FILE: ./docs/SETUP_COMMUNICATION_SYSTEM.md
@@ -8499,6 +9092,7 @@ FILE: ./docs/SETUP_COMMUNICATION_SYSTEM.md
 You need to run the SQL script to create the messaging and payment tables.
 
 **Go to Supabase Dashboard:**
+
 1. Open https://supabase.com/dashboard
 2. Select your project
 3. Go to **SQL Editor**
@@ -8507,6 +9101,7 @@ You need to run the SQL script to create the messaging and payment tables.
 6. Click **Run** or press `Cmd/Ctrl + Enter`
 
 This will create:
+
 - ✅ `application_messages` table
 - ✅ `payment_transactions` table
 - ✅ `email_notifications` table
@@ -8519,10 +9114,11 @@ This will create:
 ### Step 2: Verify Tables Created
 
 Run this query to check:
+
 ```sql
-SELECT table_name 
-FROM information_schema.tables 
-WHERE table_schema = 'public' 
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
 AND table_name IN (
     'application_messages',
     'payment_transactions',
@@ -8539,6 +9135,7 @@ You should see all 7 tables listed.
 ### Step 3: Test Messaging
 
 Once tables are created, the admin can:
+
 1. Go to admin dashboard
 2. View an application
 3. Send a message
@@ -8560,21 +9157,24 @@ Currently, emails are **logged to database** but not actually sent.
    - Get API key
 
 2. **Install Resend:**
+
    ```bash
    npm install resend
    ```
 
 3. **Add to `.env.local`:**
+
    ```
    RESEND_API_KEY=re_xxxxxxxxxxxxx
    ```
 
 4. **Uncomment code in `/src/lib/email/service.ts`:**
+
    ```typescript
    // Find this section and uncomment:
    const resend = new Resend(process.env.RESEND_API_KEY);
    const { data, error } = await resend.emails.send({
-     from: 'StudyAtChina <noreply@studyatchina.com>',
+     from: "StudyAtChina <noreply@studyatchina.com>",
      to: params.to,
      subject: params.subject,
      html: params.html,
@@ -8602,37 +9202,42 @@ Currently, emails are **logged to database** but not actually sent.
 ### "No messages showing for student"
 
 **Check:**
+
 1. ✅ Tables created in database
 2. ✅ Message was actually created (check Supabase table)
 3. ✅ Student is logged in with correct account
 4. ✅ RLS policies allow student to see their messages
 
 **Verify message exists:**
+
 ```sql
-SELECT * FROM application_messages 
+SELECT * FROM application_messages
 WHERE application_id = 'your-application-id';
 ```
 
 ### "Email not sent"
 
 **Current behavior:**
+
 - Emails are logged to `email_notifications` table
 - Status will be 'sent' (but not actually sent)
 - To actually send, integrate Resend or SendGrid (see above)
 
 **Check email logs:**
+
 ```sql
-SELECT * FROM email_notifications 
-ORDER BY created_at DESC 
+SELECT * FROM email_notifications
+ORDER BY created_at DESC
 LIMIT 10;
 ```
 
 ### "Student can't see messages"
 
 **Check RLS policy:**
+
 ```sql
 -- This should return the student's messages
-SELECT m.* 
+SELECT m.*
 FROM application_messages m
 JOIN applications a ON a.id = m.application_id
 WHERE a.student_id = 'student-user-id';
@@ -8648,8 +9253,6 @@ Currently, the admin dashboard doesn't have a UI to send messages yet.
 
 I'll create this for you now...
 
-
-
 ==================================================
 FILE: ./docs/SLUG_URL_UPDATE.md
 ==================================================
@@ -8663,11 +9266,13 @@ Updated university URLs to use **human-readable slugs** instead of UUIDs!
 ## 📝 Changes Made
 
 ### Before (UUID):
+
 ```
 ❌ http://localhost:3000/universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 ```
 
 ### After (Slug):
+
 ```
 ✅ http://localhost:3000/universities/tsinghua-university
 ```
@@ -8677,12 +9282,14 @@ Updated university URLs to use **human-readable slugs** instead of UUIDs!
 ## 🔄 What Changed
 
 ### 1. **Route Folder Renamed**
+
 ```
 Before: /universities/[id]/page.tsx
 After:  /universities/[slug]/page.tsx
 ```
 
 ### 2. **Database Query Updated**
+
 ```typescript
 // Before
 .eq("id", id)
@@ -8692,6 +9299,7 @@ After:  /universities/[slug]/page.tsx
 ```
 
 ### 3. **All Links Updated**
+
 - UniversityCard component
 - FeaturedUniversitiesSection component
 - All university links now use slug
@@ -8706,31 +9314,31 @@ After:  /universities/[slug]/page.tsx
 
 ```typescript
 // Before
-export default async function UniversityDetailPage({ 
-    params 
-}: { 
-    params: Promise<{ id: string }> 
+export default async function UniversityDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
 }) {
-    const { id } = await params;
-    
-    const { data: university } = await supabase
-        .from("universities")
-        .eq("id", id)
-        .single();
+  const { id } = await params;
+
+  const { data: university } = await supabase
+    .from("universities")
+    .eq("id", id)
+    .single();
 }
 
 // After
-export default async function UniversityDetailPage({ 
-    params 
-}: { 
-    params: Promise<{ slug: string }> 
+export default async function UniversityDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-    const { slug } = await params;
-    
-    const { data: university } = await supabase
-        .from("universities")
-        .eq("slug", slug)
-        .single();
+  const { slug } = await params;
+
+  const { data: university } = await supabase
+    .from("universities")
+    .eq("slug", slug)
+    .single();
 }
 ```
 
@@ -8772,35 +9380,39 @@ export default async function UniversityDetailPage({
 
 ### Real-World Examples:
 
-| University | Old URL | New URL |
-|------------|---------|---------|
-| **Tsinghua University** | `/universities/uuid-123` | `/universities/tsinghua-university` |
-| **Peking University** | `/universities/uuid-456` | `/universities/peking-university` |
-| **Fudan University** | `/universities/uuid-789` | `/universities/fudan-university` |
-| **Shanghai Jiao Tong** | `/universities/uuid-abc` | `/universities/shanghai-jiao-tong-university` |
+| University              | Old URL                  | New URL                                       |
+| ----------------------- | ------------------------ | --------------------------------------------- |
+| **Tsinghua University** | `/universities/uuid-123` | `/universities/tsinghua-university`           |
+| **Peking University**   | `/universities/uuid-456` | `/universities/peking-university`             |
+| **Fudan University**    | `/universities/uuid-789` | `/universities/fudan-university`              |
+| **Shanghai Jiao Tong**  | `/universities/uuid-abc` | `/universities/shanghai-jiao-tong-university` |
 
 ---
 
 ## ✅ Benefits
 
 ### 1. **SEO Friendly**
+
 ```
 ✅ tsinghua-university (descriptive)
 ❌ 59a89e04-1821-44c4-8307-22717c4e3c3b (meaningless)
 ```
 
 ### 2. **User Friendly**
+
 - Easy to read
 - Easy to remember
 - Easy to share
 - Professional appearance
 
 ### 3. **Better Analytics**
+
 - Track by university name
 - Clearer URL patterns
 - Better reporting
 
 ### 4. **Social Sharing**
+
 ```
 When shared on social media:
 ✅ "Check out Tsinghua University"
@@ -8861,12 +9473,14 @@ const generateSlug = (name: string) => {
 ## 🛠️ Admin Panel
 
 ### Admin URLs (Still use ID):
+
 ```
 Admin Edit: /admin/universities/[id]
 Reason: Internal use, ID is more reliable
 ```
 
 ### Public URLs (Use Slug):
+
 ```
 Public View: /universities/[slug]
 Reason: User-facing, SEO-friendly
@@ -8880,14 +9494,14 @@ Reason: User-facing, SEO-friendly
 
 ```sql
 -- Slug column should exist
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN slug VARCHAR(255) UNIQUE;
 
 -- Create index for performance
 CREATE INDEX idx_universities_slug ON universities(slug);
 
 -- Ensure slugs are unique
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD CONSTRAINT universities_slug_unique UNIQUE (slug);
 ```
 
@@ -8908,14 +9522,14 @@ INSERT INTO universities (name, slug, city) VALUES
 
 ```sql
 -- Generate slugs from existing names
-UPDATE universities 
+UPDATE universities
 SET slug = LOWER(REPLACE(REPLACE(name, ' ', '-'), '.', ''))
 WHERE slug IS NULL;
 
 -- Verify uniqueness
-SELECT slug, COUNT(*) 
-FROM universities 
-GROUP BY slug 
+SELECT slug, COUNT(*)
+FROM universities
+GROUP BY slug
 HAVING COUNT(*) > 1;
 
 -- Fix duplicates manually if any
@@ -8959,6 +9573,7 @@ Program Links:
 ## 🚀 Result
 
 **Professional, SEO-friendly URLs** that are:
+
 - ✅ Easy to read
 - ✅ Easy to share
 - ✅ Better for SEO
@@ -8966,14 +9581,13 @@ Program Links:
 - ✅ User-friendly
 
 ### Example:
+
 ```
 Before: /universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 After:  /universities/tsinghua-university
 ```
 
 **Much better!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
@@ -8984,6 +9598,7 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 ## 🎯 What Changed
 
 ### Before:
+
 ```
 ┌─────────────────────────────────┐
 │ [Simple Banner]                 │
@@ -8999,6 +9614,7 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 ```
 
 ### After:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [STUNNING HERO BANNER - 500px]          │
@@ -9027,6 +9643,7 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 ## ✨ New Features
 
 ### 1. **Stunning Hero Banner** (500px height)
+
 - ✅ Full-width background image from gallery
 - ✅ Multiple gradient overlays (black, red, yellow)
 - ✅ Animated pulse effect
@@ -9034,18 +9651,21 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 - ✅ Professional depth
 
 ### 2. **Enhanced Typography**
+
 - ✅ **Huge** university name (text-6xl)
 - ✅ Drop shadow for readability
 - ✅ Chinese name subtitle
 - ✅ Bold, impactful fonts
 
 ### 3. **Ranking Badges**
+
 - ✅ Glass morphism effect (backdrop-blur)
 - ✅ White/transparent background
 - ✅ Star icons with yellow fill
 - ✅ Floating above content
 
 ### 4. **Quick Info Pills**
+
 - ✅ Rounded pill design
 - ✅ Glass morphism background
 - ✅ Icons for each stat
@@ -9053,12 +9673,14 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 - ✅ City, Founded, Students, Website
 
 ### 5. **Premium Action Buttons**
+
 - ✅ **Apply Now**: Gradient red with shadow glow
 - ✅ **Save**: Glass morphism with heart icon (toggles)
 - ✅ **Share**: Glass morphism with share icon
 - ✅ Large, prominent sizing
 
 ### 6. **Overlapping Stats Card**
+
 - ✅ White card with shadow
 - ✅ Positioned -mt-16 (overlaps banner)
 - ✅ University logo on left
@@ -9071,6 +9693,7 @@ FILE: ./docs/UNIVERSITY_HEADER_REDESIGN.md
 ## 🎨 Design Elements
 
 ### Color Palette:
+
 ```css
 Background: Dynamic from gallery or red gradient
 Overlays: Black gradients for depth
@@ -9081,6 +9704,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Gradients Used:
+
 ```css
 1. from-black via-black/50 to-transparent (vertical)
 2. from-black/30 to-transparent (horizontal)
@@ -9089,6 +9713,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Effects:
+
 ```css
 - backdrop-blur-md (glass morphism)
 - drop-shadow-2xl (text depth)
@@ -9103,6 +9728,7 @@ Buttons: Red gradient with glow
 ## 📊 Layout Structure
 
 ### Hero Section (500px):
+
 ```
 ┌─────────────────────────────────┐
 │ Background Image (scale-105)    │
@@ -9120,6 +9746,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Stats Card (overlapping):
+
 ```
 ┌─────────────────────────────────┐
 │ [Logo]  Founded | Students      │
@@ -9134,6 +9761,7 @@ Buttons: Red gradient with glow
 ## 🎯 Interactive Features
 
 ### Save Button:
+
 ```typescript
 const [isSaved, setIsSaved] = useState(false);
 
@@ -9144,6 +9772,7 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ```
 
 ### Hover Effects:
+
 - Website pill: bg-white/20
 - Buttons: Gradient shift
 - Stats card: Subtle lift (can add)
@@ -9153,12 +9782,14 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 - 500px hero height
 - text-6xl university name
 - 4-column stats grid
 - Side-by-side buttons
 
 ### Mobile:
+
 - 400px hero height
 - text-4xl university name
 - 2-column stats grid
@@ -9169,6 +9800,7 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## 🎨 Visual Hierarchy
 
 ### Priority Order:
+
 1. **University Name** - Largest, white, bold
 2. **Apply Now Button** - Red gradient, glowing
 3. **Badges** - Top-left, eye-catching
@@ -9181,16 +9813,20 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## ✨ Premium Details
 
 ### Glass Morphism:
+
 ```css
 bg-white/10 backdrop-blur-md
 border-white/30
 ```
+
 Used on:
+
 - Badges
 - Quick info pills
 - Save/Share buttons
 
 ### Shadows:
+
 ```css
 shadow-2xl (cards)
 shadow-2xl shadow-red-500/50 (Apply button)
@@ -9198,6 +9834,7 @@ drop-shadow-2xl (text)
 ```
 
 ### Borders:
+
 ```css
 border-white/30 (glass elements)
 border-gray-100 (white card)
@@ -9209,6 +9846,7 @@ border-2 border-gray-100 (logo)
 ## 🚀 Performance
 
 ### Optimizations:
+
 - ✅ Client component for interactivity
 - ✅ Conditional rendering (logo, badges)
 - ✅ Optimized image loading
@@ -9222,6 +9860,7 @@ border-2 border-gray-100 (logo)
 A **stunning, modern, professional** university header featuring:
 
 ### Visual Impact:
+
 - ✅ 500px hero banner
 - ✅ Multiple gradient layers
 - ✅ Glass morphism effects
@@ -9229,6 +9868,7 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Professional depth
 
 ### User Experience:
+
 - ✅ Clear hierarchy
 - ✅ Quick actions
 - ✅ Key info at glance
@@ -9236,6 +9876,7 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Mobile-friendly
 
 ### Conversion:
+
 - ✅ Prominent Apply button
 - ✅ Save for later
 - ✅ Easy sharing
@@ -9243,8 +9884,6 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Professional appearance
 
 **The most impressive university header ever!** 🎨✨🚀
-
-
 
 ==================================================
 FILE: ./docs/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
@@ -9274,13 +9913,13 @@ FILE: ./docs/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
    - Header with program count badge
    - Individual program cards
    - Each card shows:
-     * Program name
-     * Level badge (blue)
-     * Duration badge (purple)
-     * Language badge (green)
-     * Intake badge (orange)
-     * Tuition fee (large gradient text)
-     * Apply button
+     - Program name
+     - Level badge (blue)
+     - Duration badge (purple)
+     - Language badge (green)
+     - Intake badge (orange)
+     - Tuition fee (large gradient text)
+     - Apply button
    - Maps through university.programs array
 
 4. **Campus Tour Video** ✅
@@ -9314,28 +9953,28 @@ FILE: ./docs/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
    - Large icon
    - "Ready to Apply?" heading
    - Two buttons:
-     * Apply Now (white)
-     * Download Brochure (outline)
+     - Apply Now (white)
+     - Download Brochure (outline)
 
 8. **Quick Actions** ✅
    - Location: Lines 300-325
    - White card
    - 4 action buttons:
-     * Request Information (blue)
-     * Chat with Advisor (purple)
-     * Virtual Campus Tour (green)
-     * Schedule a Call (orange)
+     - Request Information (blue)
+     - Chat with Advisor (purple)
+     - Virtual Campus Tour (green)
+     - Schedule a Call (orange)
    - Each with icon and chevron
 
 9. **Quick Facts** ✅
    - Location: Lines 327-357
    - White card
    - 5 fact rows:
-     * Location (with MapPin icon)
-     * Founded (with Calendar icon)
-     * Students (with Users icon)
-     * International (with TrendingUp icon)
-     * Ranking (with Award icon)
+     - Location (with MapPin icon)
+     - Founded (with Calendar icon)
+     - Students (with Users icon)
+     - International (with TrendingUp icon)
+     - Ranking (with Award icon)
    - Official Website button at bottom
 
 ---
@@ -9352,17 +9991,17 @@ university = {
     city: string,
     province: string,
     website: string,
-    
+
     // Media
     logo_url: string,
     gallery_images: string[],  // Array of image URLs
     video_url: string,         // YouTube URL
-    
+
     // Content
     overview: string,          // Description text
     highlights: string[],      // Array of features
     badges: string[],          // Array of badges
-    
+
     // Stats
     stats: {
         founded: string,
@@ -9372,7 +10011,7 @@ university = {
         programs: string,
         acceptance: string
     },
-    
+
     // Programs
     programs: [{
         id: string,
@@ -9391,6 +10030,7 @@ university = {
 ## 🎨 Visual Hierarchy
 
 ### Order of Appearance:
+
 1. Hero Header (from UniversityHeader component)
 2. About Section
 3. Why Choose Us (gradient)
@@ -9400,6 +10040,7 @@ university = {
 7. Admission Requirements
 
 ### Sidebar (Always Visible):
+
 - Apply CTA (sticky)
 - Quick Actions
 - Quick Facts
@@ -9429,12 +10070,14 @@ Sections that only show if data exists:
 ### If Programs Don't Show:
 
 **Check:**
+
 1. Is `university.programs` defined?
 2. Is `university.programs.length > 0`?
 3. Are programs being passed from page.tsx?
 4. Check browser console for errors
 
 **Debug:**
+
 ```javascript
 console.log("Programs:", university.programs);
 console.log("Programs length:", university.programs?.length);
@@ -9443,6 +10086,7 @@ console.log("Programs length:", university.programs?.length);
 ### If Video Doesn't Show:
 
 **Check:**
+
 1. Is `university.video_url` defined and not empty?
 2. Is it a valid YouTube URL?
 3. Check browser console for iframe errors
@@ -9450,6 +10094,7 @@ console.log("Programs length:", university.programs?.length);
 ### If Gallery Doesn't Show:
 
 **Check:**
+
 1. Is `university.gallery_images` defined?
 2. Is it an array with length > 0?
 3. Are image URLs valid?
@@ -9461,6 +10106,7 @@ console.log("Programs length:", university.programs?.length);
 **Total Sections: 9**
 
 Main Content:
+
 1. About ✅
 2. Why Choose Us ✅
 3. Programs ✅
@@ -9468,10 +10114,7 @@ Main Content:
 5. Gallery ✅
 6. Admission ✅
 
-Sidebar:
-7. Apply CTA ✅
-8. Quick Actions ✅
-9. Quick Facts ✅
+Sidebar: 7. Apply CTA ✅ 8. Quick Actions ✅ 9. Quick Facts ✅
 
 ---
 
@@ -9491,6 +10134,7 @@ To verify all sections are working:
    - Sidebar (sticky on right)
 
 4. **Check data** in console:
+
 ```javascript
 // In browser console
 console.log(university);
@@ -9501,12 +10145,11 @@ console.log(university);
 ## ✅ Everything Is There!
 
 All 9 sections are implemented and will show based on available data. If you don't see programs, it's because:
+
 - No programs in database, OR
 - Programs not being passed correctly from page.tsx
 
 **The code is complete and ready!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/UNIVERSITY_PAGE_DYNAMIC.md
@@ -9523,6 +10166,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 ## ✅ What's Now Dynamic
 
 ### 1. **Banner Image**
+
 ```typescript
 // Before: Placeholder text
 <div>Campus Banner Image</div>
@@ -9538,6 +10182,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** First image from `gallery_images` array
 
 ### 2. **University Logo**
+
 ```typescript
 // Before: Text "Logo"
 <div>Logo</div>
@@ -9553,6 +10198,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `logo_url` field or initials as fallback
 
 ### 3. **University Name**
+
 ```typescript
 // Dynamic from database
 <h1>{university.name}</h1>
@@ -9562,6 +10208,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `name` and `name_local` fields
 
 ### 4. **Location**
+
 ```typescript
 // Dynamic location
 <MapPin /> {university.city}, {university.province}
@@ -9570,6 +10217,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `city` and `province` fields
 
 ### 5. **Website Link**
+
 ```typescript
 // Dynamic website
 <a href={university.website}>Official Website</a>
@@ -9578,6 +10226,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `website` field
 
 ### 6. **Badges/Features**
+
 ```typescript
 // Dynamic badges
 {university.badges.map(badge => (
@@ -9588,6 +10237,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `features` array
 
 ### 7. **Statistics Cards**
+
 ```typescript
 // All dynamic stats
 Founded: {stats.founded}        // from 'founded'
@@ -9599,6 +10249,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** University stats fields
 
 ### 8. **Overview Description**
+
 ```typescript
 // Dynamic description
 <p>{universityData.overview}</p>
@@ -9607,6 +10258,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `description` field
 
 ### 9. **Highlights**
+
 ```typescript
 // Dynamic highlights from features
 {universityData.highlights.map(highlight => (
@@ -9617,6 +10269,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `features` array (with fallback)
 
 ### 10. **Gallery Section**
+
 ```typescript
 // Dynamic gallery
 {university.gallery_images?.map((image, index) => (
@@ -9627,6 +10280,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `gallery_images` array
 
 ### 11. **Video Section**
+
 ```typescript
 // Dynamic video
 {university.video_url && (
@@ -9637,6 +10291,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `video_url` field
 
 ### 12. **Map Location**
+
 ```typescript
 // Dynamic map
 {university.latitude && university.longitude && (
@@ -9683,6 +10338,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ## 🎨 Visual Components
 
 ### Header Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Banner Image from gallery_images[0]]   │
@@ -9698,6 +10354,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Stats Cards:
+
 ```
 ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐
 │ Founded  │ │ Students │ │ Ranking  │ │ Intl.    │
@@ -9706,6 +10363,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Gallery Section:
+
 ```
 ┌────┐ ┌────┐ ┌────┐
 │IMG1│ │IMG2│ │IMG3│
@@ -9716,6 +10374,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Video Section:
+
 ```
 ┌─────────────────────────────────┐
 │                                 │
@@ -9725,6 +10384,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Map Section:
+
 ```
 ┌─────────────────────────────────┐
 │   [Google Maps Embed]           │
@@ -9739,23 +10399,24 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 
 ### If Data Missing:
 
-| Field | Fallback |
-|-------|----------|
-| **Banner** | Unsplash placeholder |
-| **Logo** | University initials |
-| **Name Local** | English name |
-| **Stats** | "N/A" |
+| Field           | Fallback                   |
+| --------------- | -------------------------- |
+| **Banner**      | Unsplash placeholder       |
+| **Logo**        | University initials        |
+| **Name Local**  | English name               |
+| **Stats**       | "N/A"                      |
 | **Description** | "No description available" |
-| **Highlights** | Default highlights |
-| **Gallery** | Not shown |
-| **Video** | Not shown |
-| **Map** | Placeholder |
+| **Highlights**  | Default highlights         |
+| **Gallery**     | Not shown                  |
+| **Video**       | Not shown                  |
+| **Map**         | Placeholder                |
 
 ---
 
 ## 📝 Example: Ningbo University
 
 ### Database Data:
+
 ```json
 {
   "name": "Ningbo University",
@@ -9782,11 +10443,12 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
   ],
   "video_url": "https://youtube.com/...",
   "latitude": 29.8167,
-  "longitude": 121.5500
+  "longitude": 121.55
 }
 ```
 
 ### Rendered Page:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Campus Photo 1 - from gallery]         │
@@ -9821,24 +10483,24 @@ Highlights:
 
 ## ✅ Complete Dynamic Fields
 
-| Section | Field | Source |
-|---------|-------|--------|
-| **Header** | Banner | `gallery_images[0]` |
-| **Header** | Logo | `logo_url` |
-| **Header** | Name | `name` |
-| **Header** | Local Name | `name_local` |
-| **Header** | Location | `city`, `province` |
-| **Header** | Website | `website` |
-| **Header** | Badges | `features` |
-| **Stats** | Founded | `founded` |
-| **Stats** | Students | `total_students` |
-| **Stats** | Ranking | `ranking` |
-| **Stats** | Intl Students | `international_students` |
-| **Overview** | Description | `description` |
-| **Highlights** | Features | `features` |
-| **Gallery** | Images | `gallery_images` |
-| **Video** | URL | `video_url` |
-| **Map** | Coordinates | `latitude`, `longitude` |
+| Section        | Field         | Source                   |
+| -------------- | ------------- | ------------------------ |
+| **Header**     | Banner        | `gallery_images[0]`      |
+| **Header**     | Logo          | `logo_url`               |
+| **Header**     | Name          | `name`                   |
+| **Header**     | Local Name    | `name_local`             |
+| **Header**     | Location      | `city`, `province`       |
+| **Header**     | Website       | `website`                |
+| **Header**     | Badges        | `features`               |
+| **Stats**      | Founded       | `founded`                |
+| **Stats**      | Students      | `total_students`         |
+| **Stats**      | Ranking       | `ranking`                |
+| **Stats**      | Intl Students | `international_students` |
+| **Overview**   | Description   | `description`            |
+| **Highlights** | Features      | `features`               |
+| **Gallery**    | Images        | `gallery_images`         |
+| **Video**      | URL           | `video_url`              |
+| **Map**        | Coordinates   | `latitude`, `longitude`  |
 
 ---
 
@@ -9859,8 +10521,6 @@ The university detail page is now **100% dynamic**:
 
 **Everything is dynamic - no hardcoded content!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ==================================================
@@ -9870,6 +10530,7 @@ FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ## 🎯 Improvements to Make
 
 ### 1. **Hero Section Enhancements**
+
 - ✨ Parallax scrolling effect on banner
 - ✨ Animated gradient overlay
 - ✨ Floating action buttons (Share, Save, Apply)
@@ -9877,12 +10538,14 @@ FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ University ranking badge with animation
 
 ### 2. **Quick Info Bar**
+
 - ✨ Sticky bar that appears on scroll
 - ✨ Quick stats (Founded, Students, Programs)
 - ✨ Quick action buttons
 - ✨ Smooth slide-in animation
 
 ### 3. **Interactive Tabs**
+
 - ✨ Overview
 - ✨ Programs
 - ✨ Admission
@@ -9892,12 +10555,14 @@ FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ Smooth scroll to sections
 
 ### 4. **Enhanced Stats Cards**
+
 - ✨ Animated counters
 - ✨ Gradient backgrounds
 - ✨ Icon animations on hover
 - ✨ Comparison with averages
 
 ### 5. **Program Cards Redesign**
+
 - ✨ Hover effects with lift
 - ✨ Quick view modal
 - ✨ Compare programs feature
@@ -9905,41 +10570,48 @@ FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ Sort by tuition/duration
 
 ### 6. **Gallery Section**
+
 - ✨ Lightbox for full-screen view
 - ✨ Image carousel
 - ✨ Category filters (Campus, Facilities, Events)
 - ✨ Smooth transitions
 
 ### 7. **Video Section**
+
 - ✨ Custom video player
 - ✨ Thumbnail preview
 - ✨ Play button overlay
 - ✨ Full-screen option
 
 ### 8. **Interactive Map**
+
 - ✨ 3D map view
 - ✨ Street view integration
 - ✨ Nearby amenities
 - ✨ Transportation info
 
 ### 9. **Testimonials/Reviews**
+
 - ✨ Student reviews carousel
 - ✨ Star ratings
 - ✨ Filter by program
 - ✨ Verified student badges
 
 ### 10. **Application CTA**
+
 - ✨ Floating apply button
 - ✨ Progress indicator
 - ✨ Deadline countdown
 - ✨ Quick application form
 
 ### 11. **Related Universities**
+
 - ✨ Similar universities
 - ✨ Same city universities
 - ✨ Comparison feature
 
 ### 12. **Social Proof**
+
 - ✨ Live applicant counter
 - ✨ Recent applications
 - ✨ Success stories
@@ -9950,6 +10622,7 @@ FILE: ./docs/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ## 🎨 Design Improvements
 
 ### Color Scheme:
+
 ```css
 Primary: Red gradient (from-red-600 to-red-700)
 Secondary: Yellow accents
@@ -9958,6 +10631,7 @@ Cards: Glass morphism effect
 ```
 
 ### Typography:
+
 ```css
 Headings: Bold, large, with gradient text
 Body: Clean, readable, good spacing
@@ -9965,6 +10639,7 @@ Stats: Extra bold, eye-catching
 ```
 
 ### Animations:
+
 ```css
 Fade in on scroll
 Slide from sides
@@ -9974,6 +10649,7 @@ Loading skeletons
 ```
 
 ### Spacing:
+
 ```css
 More white space
 Better section separation
@@ -9986,6 +10662,7 @@ Responsive margins
 ## 🚀 Interactive Features
 
 ### 1. **Quick Actions Bar**
+
 ```
 ┌─────────────────────────────────────┐
 │ [❤️ Save] [📤 Share] [📝 Apply Now]│
@@ -9993,6 +10670,7 @@ Responsive margins
 ```
 
 ### 2. **Sticky Navigation**
+
 ```
 ┌─────────────────────────────────────┐
 │ Overview | Programs | Admission     │
@@ -10001,6 +10679,7 @@ Responsive margins
 ```
 
 ### 3. **Comparison Tool**
+
 ```
 ┌─────────────────────────────────────┐
 │ Compare with:                       │
@@ -10010,6 +10689,7 @@ Responsive margins
 ```
 
 ### 4. **Live Chat**
+
 ```
 ┌─────────────────────────────────────┐
 │ 💬 Chat with Admissions             │
@@ -10022,6 +10702,7 @@ Responsive margins
 ## 📱 Mobile Optimizations
 
 ### Improvements:
+
 - ✅ Touch-friendly buttons
 - ✅ Swipeable galleries
 - ✅ Collapsible sections
@@ -10034,12 +10715,14 @@ Responsive margins
 ## 🎯 Performance Enhancements
 
 ### Loading:
+
 - ✅ Skeleton screens
 - ✅ Lazy loading images
 - ✅ Progressive enhancement
 - ✅ Optimized queries
 
 ### SEO:
+
 - ✅ Rich snippets
 - ✅ Schema markup
 - ✅ Meta tags
@@ -10050,18 +10733,21 @@ Responsive margins
 ## ✨ Micro-interactions
 
 ### Hover Effects:
+
 - Cards lift up
 - Images zoom
 - Buttons pulse
 - Icons rotate
 
 ### Click Effects:
+
 - Ripple animation
 - Success feedback
 - Loading states
 - Error handling
 
 ### Scroll Effects:
+
 - Parallax backgrounds
 - Fade in elements
 - Progress indicators
@@ -10072,6 +10758,7 @@ Responsive margins
 ## 🎨 Visual Hierarchy
 
 ### Priority Order:
+
 1. **Hero** - University name, banner
 2. **CTA** - Apply now button
 3. **Stats** - Key numbers
@@ -10084,12 +10771,14 @@ Responsive margins
 ## 📊 Data Visualization
 
 ### Charts:
+
 - Student demographics
 - Program distribution
 - Acceptance rates
 - Tuition comparison
 
 ### Infographics:
+
 - Application process
 - Campus facilities
 - Student life
@@ -10100,6 +10789,7 @@ Responsive margins
 ## 🎉 Engagement Features
 
 ### Interactive Elements:
+
 - Virtual campus tour
 - 360° photos
 - Student Q&A
@@ -10108,6 +10798,7 @@ Responsive margins
 - Cost estimator
 
 ### Social Integration:
+
 - Share buttons
 - Social media feeds
 - Student blogs
@@ -10118,6 +10809,7 @@ Responsive margins
 ## 🔥 Premium Features
 
 ### Advanced:
+
 - AI chatbot
 - Personalized recommendations
 - Application tracker
@@ -10130,6 +10822,7 @@ Responsive margins
 ## 📝 Content Enhancements
 
 ### Rich Content:
+
 - Video introductions
 - Faculty profiles
 - Research highlights
@@ -10138,6 +10831,7 @@ Responsive margins
 - Blog posts
 
 ### Downloads:
+
 - Brochures (PDF)
 - Program guides
 - Application forms
@@ -10149,6 +10843,7 @@ Responsive margins
 ## 🎯 Conversion Optimization
 
 ### CTAs:
+
 - Multiple apply buttons
 - Sticky footer CTA
 - Exit-intent popup
@@ -10156,6 +10851,7 @@ Responsive margins
 - Limited spots indicator
 
 ### Trust Signals:
+
 - Accreditation badges
 - Rankings
 - Success rates
@@ -10167,6 +10863,7 @@ Responsive margins
 ## 🚀 Implementation Priority
 
 ### Phase 1 (High Priority):
+
 1. Hero section redesign
 2. Interactive tabs
 3. Enhanced program cards
@@ -10174,6 +10871,7 @@ Responsive margins
 5. Sticky navigation
 
 ### Phase 2 (Medium Priority):
+
 6. Animated stats
 7. Video player
 8. Map improvements
@@ -10181,6 +10879,7 @@ Responsive margins
 10. Mobile optimizations
 
 ### Phase 3 (Nice to Have):
+
 11. Testimonials
 12. Comparison tool
 13. Live chat
@@ -10192,6 +10891,7 @@ Responsive margins
 ## 🎨 Example Sections
 
 ### Impressive Hero:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Parallax Banner with Gradient Overlay] │
@@ -10207,6 +10907,7 @@ Responsive margins
 ```
 
 ### Animated Stats:
+
 ```
 ┌─────────────────────────────────────────┐
 │  Founded    Students    Programs  Ranking│
@@ -10218,6 +10919,7 @@ Responsive margins
 ```
 
 ### Interactive Programs:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Programs                    [Filter ▼]  │
@@ -10239,6 +10941,7 @@ Responsive margins
 ## 🎉 Result
 
 A **stunning, modern, interactive** university page that:
+
 - ✅ Impresses visitors
 - ✅ Engages users
 - ✅ Converts to applications
@@ -10248,8 +10951,6 @@ A **stunning, modern, interactive** university page that:
 - ✅ Ranks well in SEO
 
 **The most impressive university page ever!** 🚀✨
-
-
 
 ==================================================
 FILE: ./docs/UNIVERSITY_PROGRAMS_UPDATE.md
@@ -10264,15 +10965,18 @@ The `/admin/programs` page has been **completely updated** to work with the new 
 ## ✨ New Workflow
 
 ### Before (Old System):
+
 ```
 1. Click "Add Program"
 2. Type program name manually (e.g., "Business Administration")
 3. Fill in all details
 4. Save
 ```
+
 **Problem:** Each university types their own program names → Duplicates!
 
 ### After (New System):
+
 ```
 1. Click "Add Program"
 2. Select university
@@ -10290,16 +10994,19 @@ The `/admin/programs` page has been **completely updated** to work with the new 
    - Fees
 5. Save
 ```
+
 **Result:** All universities use standardized programs! ✅
 
 ## 📋 Form Structure
 
 ### 1. **University Selection**
+
 ```
 University: [Select University ▼]
 ```
 
 ### 2. **Program Catalog Selection** ⭐ NEW
+
 ```
 ┌────────────────────────────────────────┐
 │ 📖 Select from Program Catalog         │
@@ -10314,12 +11021,14 @@ University: [Select University ▼]
 ```
 
 ### 3. **Custom Title** (Optional)
+
 ```
 Custom Title: [Business Management]
 (if university calls it differently)
 ```
 
 ### 4. **University-Specific Details**
+
 ```
 - Duration (override if different)
 - Intake
@@ -10333,6 +11042,7 @@ Custom Title: [Business Management]
 ```
 
 ### 5. **Status Toggles**
+
 ```
 [✓] Active Program
 [  ] Force Payment
@@ -10341,6 +11051,7 @@ Custom Title: [Business Management]
 ## 🎨 UI Improvements
 
 ### Visual Enhancements:
+
 1. **Section Headers** with icons
    - 📖 Select from Program Catalog
    - University-Specific Details
@@ -10359,19 +11070,21 @@ Custom Title: [Business Management]
    - Better UX feedback
 
 5. **Better Labels**
-   - Required fields marked with *
+   - Required fields marked with \*
    - Helpful placeholders
    - Contextual hints
 
 ## 📊 Program Catalog Dropdown
 
 Shows programs with:
+
 - **Program Title** (e.g., "Business Administration")
 - **Level Badge** (Bachelor, Master, PhD)
 - **Category** (shown after selection)
 - **Typical Duration** (shown after selection)
 
 Example:
+
 ```
 ┌──────────────────────────────────────┐
 │ Business Administration [Bachelor]   │
@@ -10390,11 +11103,13 @@ Example:
 ### Adding a Program:
 
 **Step 1:** Select University
+
 ```
 University: Tsinghua University
 ```
 
 **Step 2:** Choose from Catalog
+
 ```
 Standard Program: Business Administration [Bachelor]
 ↓
@@ -10403,12 +11118,14 @@ Shows: Category: Business & Management
 ```
 
 **Step 3:** Optional Custom Title
+
 ```
 Custom Title: Business Management
 (Tsinghua calls it "Business Management")
 ```
 
 **Step 4:** Add Details
+
 ```
 Tuition Fee: 30000 RMB
 Language: English
@@ -10417,11 +11134,13 @@ Scholarship: 10-100%
 ```
 
 **Step 5:** Save
+
 ```
 ✅ Program added successfully!
 ```
 
 ### Result in Database:
+
 ```
 university_programs table:
 {
@@ -10438,34 +11157,40 @@ university_programs table:
 ## 🎯 Benefits
 
 ### 1. **Standardization**
+
 - All programs link to catalog
 - No more duplicate names
 - Consistent categorization
 
 ### 2. **Flexibility**
+
 - Universities can add custom title
 - Can override duration
 - Full control over fees
 
 ### 3. **Better Filtering**
+
 - Users can filter by category
 - All "Business" programs grouped
 - Accurate search results
 
 ### 4. **Easy Comparison**
+
 - Compare same program across universities
 - See which university offers best price
 - Filter by language/level
 
 ## 📝 Form Fields
 
-### Required Fields (*)
+### Required Fields (\*)
+
 - University
 - Standard Program (from catalog)
 - Tuition Fee
 - Language
 
 ### Optional Fields
+
 - Custom Title
 - Duration (uses catalog default if empty)
 - Intake
@@ -10475,12 +11200,14 @@ university_programs table:
 - Deadline
 
 ### Toggles
+
 - Active Program (default: ON)
 - Force Payment (default: OFF)
 
 ## 🔍 Example Scenarios
 
 ### Scenario 1: Standard Program
+
 ```
 University: Peking University
 Program: Business Administration
@@ -10492,6 +11219,7 @@ Result: Displays as "Business Administration"
 ```
 
 ### Scenario 2: Custom Name
+
 ```
 University: Fudan University
 Program: Business Administration
@@ -10504,6 +11232,7 @@ Result: Displays as "BA in Business"
 ```
 
 ### Scenario 3: Different Duration
+
 ```
 University: Shanghai Jiao Tong
 Program: Computer Science (catalog says "4 years")
@@ -10539,6 +11268,7 @@ Result: Shows 3.5 years instead of catalog's 4 years
 ## 📊 Integration
 
 This form now integrates with:
+
 - ✅ Program Catalog (`/admin/program-catalog`)
 - ✅ Universities table
 - ✅ Languages table
@@ -10548,6 +11278,7 @@ This form now integrates with:
 ## 🎉 Result
 
 The University Programs page now:
+
 1. ✅ Uses the Program Catalog system
 2. ✅ Prevents duplicate program names
 3. ✅ Enables accurate filtering
@@ -10558,8 +11289,6 @@ The University Programs page now:
 
 **The system is now ready for the new Program Catalog workflow!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/UNIVERSITY_SCHOLARSHIPS_GUIDE.md
 ==================================================
@@ -10567,9 +11296,11 @@ FILE: ./docs/UNIVERSITY_SCHOLARSHIPS_GUIDE.md
 # University-Specific Scholarships System
 
 ## Overview
+
 Each university can now have its own custom scholarship types with unique benefits. This allows you to accurately represent the different scholarship offerings from each institution.
 
 ## Key Features
+
 - ✅ **University-Specific:** Each university defines its own scholarship types
 - ✅ **Flexible Benefits:** Support for tuition coverage, accommodation, stipend, medical insurance, and one-time allowances
 - ✅ **Custom Duration:** Scholarships can be for 1 year, 4 years, or full program duration
@@ -10581,6 +11312,7 @@ Each university can now have its own custom scholarship types with unique benefi
 ### Table: `university_scholarships`
 
 **Key Fields:**
+
 - `university_id` - Links to specific university
 - `type_name` - Short name (e.g., "Type A", "Type B")
 - `display_name` - Full descriptive name
@@ -10603,12 +11335,15 @@ Each university can now have its own custom scholarship types with unique benefi
 ## Admin Interface
 
 ### 1. Access University Scholarships
+
 **Path:** `/admin/universities` → Click "Scholarships" button for any university
 
 ### 2. Manage Scholarships Page
+
 **URL:** `/admin/universities/[id]/scholarships`
 
 **Features:**
+
 - View all scholarships for the university
 - See coverage %, duration, benefits, service fees
 - Quick stats (total scholarships, active count, avg service fee)
@@ -10616,40 +11351,48 @@ Each university can now have its own custom scholarship types with unique benefi
 - Edit existing scholarships
 
 ### 3. Create/Edit Scholarship
+
 **URL:** `/admin/universities/[id]/scholarships/[scholarshipId]` or `/new`
 
 **Form Sections:**
 
 #### Basic Information
+
 - Type Name (e.g., "Type A")
 - Display Name (e.g., "Type A: Full Scholarship with Stipend")
 - Description
 - Display Order
 
 #### Tuition Coverage
+
 - Coverage Percentage (0-100%)
 - Duration in Years (1, 4, or leave empty for full program)
 
 #### Accommodation
+
 - Toggle: Includes Accommodation
 - Accommodation Type (e.g., "Free university dormitory" or "Accommodation allowance")
 
 #### Monthly Stipend
+
 - Toggle: Includes Stipend
 - Amount per Month
 - Currency (CNY/RMB)
 - Months per Year (usually 12)
 
 #### Other Benefits
+
 - Toggle: Medical Insurance
 - One-Time Allowance (optional cash benefit)
 - Currency
 
 #### Service Fees
+
 - Service Fee in USD
 - Service Fee in CNY
 
 #### Status
+
 - Active/Inactive toggle
 - Live preview of how it will look to students
 
@@ -10746,12 +11489,15 @@ Type D: 20% off tuition (4 years)
 ## How to Add Scholarships
 
 ### Step 1: Go to Universities Admin
+
 Navigate to `/admin/universities`
 
 ### Step 2: Click "Scholarships" Button
+
 Click the "Scholarships" button next to the university you want to manage
 
 ### Step 3: Click "Add Scholarship"
+
 On the scholarships page, click "Add Scholarship"
 
 ### Step 4: Fill in the Form
@@ -10792,9 +11538,11 @@ Status:
 ```
 
 ### Step 5: Save
+
 Click "Save Changes"
 
 ### Step 6: Repeat
+
 Add as many scholarship types as the university offers
 
 ## Where Scholarships Appear
@@ -10819,11 +11567,13 @@ Once you add scholarships for a university, they automatically appear on:
 ### 1. Run the Database Migration
 
 Execute the SQL file:
+
 ```sql
 -- File: DATABASE_MIGRATION_UNIVERSITY_SCHOLARSHIPS.sql
 ```
 
 This will:
+
 - Drop old `scholarship_types` table
 - Create new `university_scholarships` table
 - Set up proper relationships and indexes
@@ -10831,6 +11581,7 @@ This will:
 ### 2. Add Scholarships via Admin
 
 For each university:
+
 1. Go to `/admin/universities`
 2. Click "Scholarships"
 3. Add each scholarship type
@@ -10840,6 +11591,7 @@ For each university:
 ### 3. Verify Frontend
 
 Visit:
+
 - Any university page
 - Any program page for that university
 - Check that scholarships display correctly
@@ -10874,33 +11626,36 @@ Visit:
 ## Troubleshooting
 
 **Q: Scholarships not showing on university page?**
+
 - Check if scholarships are marked as "Active"
 - Verify university_id is correct
 - Check browser console for errors
 
 **Q: How to delete a scholarship?**
+
 - Currently, set it to "Inactive" to hide it
 - Or delete directly from database if needed
 
 **Q: Can I copy scholarships from one university to another?**
+
 - Not via UI currently
 - Can duplicate in database and change university_id
 
 **Q: What if a university has no scholarships?**
+
 - That's fine! The section will show "No scholarships available"
 - Or you can add a generic "Contact us" scholarship type
 
 ## Support
 
 For additional features or customizations:
+
 - Adding bulk import for scholarships
 - Copying scholarships between universities
 - Custom scholarship application forms
 - Integration with payment systems
 
 Contact your developer for database schema updates.
-
-
 
 ==================================================
 FILE: ./docs/USER_ROLES_SYSTEM.md
@@ -10920,10 +11675,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ## 👥 User Roles
 
 ### 1. Admin (Full Access)
+
 **Badge Color:** Red
 **Icon:** Shield
 
 **Permissions:**
+
 - ✅ Full system access
 - ✅ Manage all users and roles
 - ✅ Access all features
@@ -10937,10 +11694,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 2. Data Entry
+
 **Badge Color:** Blue
 **Icon:** UserCog
 
 **Permissions:**
+
 - ✅ Add/Edit universities
 - ✅ Add/Edit programs
 - ✅ Manage program catalog
@@ -10956,10 +11715,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 3. Marketing & Leads
+
 **Badge Color:** Green
 **Icon:** Users
 
 **Permissions:**
+
 - ✅ View/Manage leads
 - ✅ View/Manage applications
 - ✅ Contact students
@@ -10975,10 +11736,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 4. Student
+
 **Badge Color:** Gray
 **Icon:** Users
 
 **Permissions:**
+
 - ✅ Browse programs
 - ✅ Submit applications
 - ✅ Track application status
@@ -10994,6 +11757,7 @@ The system now has **4 distinct user roles** with specific permissions:
 ### Features:
 
 #### **Stats Cards**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  👑 Admins: 3                               │
@@ -11004,6 +11768,7 @@ The system now has **4 distinct user roles** with specific permissions:
 ```
 
 #### **User Table**
+
 - Name
 - Email
 - Role (with colored badge)
@@ -11012,12 +11777,13 @@ The system now has **4 distinct user roles** with specific permissions:
 - Actions (Edit button)
 
 #### **Add User Dialog**
+
 - Personal Information
-  - First Name *
-  - Last Name *
-  - Email *
+  - First Name \*
+  - Last Name \*
+  - Email \*
   - Phone
-  - Password * (for new users)
+  - Password \* (for new users)
 - Role Selection with visual preview
 - Permission details display
 
@@ -11028,6 +11794,7 @@ The system now has **4 distinct user roles** with specific permissions:
 When selecting a role, the dialog shows:
 
 ### Admin Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 🛡️ Admin                                 │
@@ -11042,6 +11809,7 @@ When selecting a role, the dialog shows:
 ```
 
 ### Data Entry Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 👨‍💼 Data Entry                            │
@@ -11057,6 +11825,7 @@ When selecting a role, the dialog shows:
 ```
 
 ### Marketing Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 📢 Marketing & Leads                    │
@@ -11075,29 +11844,31 @@ When selecting a role, the dialog shows:
 
 ## 🔐 Access Control Matrix
 
-| Feature | Admin | Data Entry | Marketing | Student |
-|---------|-------|------------|-----------|---------|
-| **Dashboard** | ✅ | ✅ | ✅ | ❌ |
-| **Analytics** | ✅ | ❌ | ✅ | ❌ |
-| **Universities** | ✅ | ✅ | ❌ | ❌ |
-| **Program Catalog** | ✅ | ✅ | ❌ | ❌ |
-| **Programs** | ✅ | ✅ | ❌ | ❌ |
-| **Scholarships** | ✅ | ❌ | ✅ | ❌ |
-| **Applications** | ✅ | ❌ | ✅ | ❌ |
-| **Leads** | ✅ | ❌ | ✅ | ❌ |
-| **Users** | ✅ | ❌ | ❌ | ❌ |
-| **Academic Years** | ✅ | ✅ | ❌ | ❌ |
-| **Languages** | ✅ | ✅ | ❌ | ❌ |
-| **Settings** | ✅ | ❌ | ❌ | ❌ |
+| Feature             | Admin | Data Entry | Marketing | Student |
+| ------------------- | ----- | ---------- | --------- | ------- |
+| **Dashboard**       | ✅    | ✅         | ✅        | ❌      |
+| **Analytics**       | ✅    | ❌         | ✅        | ❌      |
+| **Universities**    | ✅    | ✅         | ❌        | ❌      |
+| **Program Catalog** | ✅    | ✅         | ❌        | ❌      |
+| **Programs**        | ✅    | ✅         | ❌        | ❌      |
+| **Scholarships**    | ✅    | ❌         | ✅        | ❌      |
+| **Applications**    | ✅    | ❌         | ✅        | ❌      |
+| **Leads**           | ✅    | ❌         | ✅        | ❌      |
+| **Users**           | ✅    | ❌         | ❌        | ❌      |
+| **Academic Years**  | ✅    | ✅         | ❌        | ❌      |
+| **Languages**       | ✅    | ✅         | ❌        | ❌      |
+| **Settings**        | ✅    | ❌         | ❌        | ❌      |
 
 ---
 
 ## 📝 Creating a New User
 
 ### Step 1: Click "Add User"
+
 Opens dialog with form
 
 ### Step 2: Fill Personal Information
+
 - First Name: John
 - Last Name: Doe
 - Email: john@example.com
@@ -11105,16 +11876,20 @@ Opens dialog with form
 - Password: ••••••••
 
 ### Step 3: Select Role
+
 Choose from dropdown:
+
 - Admin
 - Data Entry
 - Marketing & Leads
 - Student
 
 ### Step 4: Review Permissions
+
 The dialog automatically shows what permissions this role has
 
 ### Step 5: Create User
+
 Click "Create User" button
 
 ---
@@ -11122,6 +11897,7 @@ Click "Create User" button
 ## 🎯 Use Cases
 
 ### Scenario 1: Hiring Content Manager
+
 ```
 Role: Data Entry
 Reason: They need to add universities and programs
@@ -11130,6 +11906,7 @@ No Access: Leads, Applications, Settings
 ```
 
 ### Scenario 2: Hiring Marketing Staff
+
 ```
 Role: Marketing & Leads
 Reason: They need to manage student inquiries
@@ -11138,6 +11915,7 @@ No Access: Universities, Programs, Settings
 ```
 
 ### Scenario 3: New Student Registration
+
 ```
 Role: Student (default)
 Reason: Regular user account
@@ -11150,6 +11928,7 @@ No Access: Admin panel
 ## 🔄 Workflow Examples
 
 ### Data Entry Team Workflow:
+
 1. Login to admin panel
 2. Access Universities page
 3. Add new university
@@ -11159,6 +11938,7 @@ No Access: Admin panel
 7. Cannot see leads or applications
 
 ### Marketing Team Workflow:
+
 1. Login to admin panel
 2. Access Leads page
 3. View new inquiries
@@ -11173,12 +11953,14 @@ No Access: Admin panel
 ## 🎨 Visual Indicators
 
 ### Role Badges:
+
 - **Admin**: Red badge with "Admin"
 - **Data Entry**: Blue badge with "Data Entry"
 - **Marketing**: Green badge with "Marketing"
 - **Student**: Gray badge with "Student"
 
 ### Stats Cards:
+
 - **Admins**: Red icon (Shield)
 - **Data Entry**: Blue icon (UserCog)
 - **Marketing**: Green icon (Users)
@@ -11215,8 +11997,9 @@ No Access: Admin panel
 ## 📊 Database Schema
 
 ### profiles table needs:
+
 ```sql
-ALTER TABLE profiles 
+ALTER TABLE profiles
 ADD COLUMN role VARCHAR(50) DEFAULT 'student';
 
 -- Possible values: 'admin', 'data_entry', 'marketing', 'student'
@@ -11227,6 +12010,7 @@ ADD COLUMN role VARCHAR(50) DEFAULT 'student';
 ## 🎉 Result
 
 A **complete, professional user management system** with:
+
 - ✅ Clear role separation
 - ✅ Specific permissions per role
 - ✅ Easy user creation
@@ -11235,8 +12019,6 @@ A **complete, professional user management system** with:
 - ✅ Production-ready
 
 Perfect for managing a team with different responsibilities! 🚀
-
-
 
 ==================================================
 FILE: ./docs/WORLD_CLASS_UNIVERSITY_PAGE.md
@@ -11247,6 +12029,7 @@ FILE: ./docs/WORLD_CLASS_UNIVERSITY_PAGE.md
 ## 🎯 Vision
 
 Created the **most stunning, engaging, and conversion-optimized** university page with:
+
 - Cutting-edge animations
 - Interactive tabs
 - Sticky navigation
@@ -11258,12 +12041,14 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 ## ✨ Revolutionary Features
 
 ### 1. **Floating Stats Bar** (Sticky)
+
 ```
 ┌─────────────────────────────────────────┐
 │ 🏆 #15 QS  👥 50,000+  🎓 100+  🎯 15% │
 │                         [Apply Now]     │
 └─────────────────────────────────────────┘
 ```
+
 - Sticky at top while scrolling
 - Real-time stats
 - Quick apply button
@@ -11271,12 +12056,14 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Backdrop blur effect
 
 ### 2. **Interactive Tab Navigation**
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Overview] [Programs] [Admission]       │
 │ [Campus Life] [Rankings] [Contact]      │
 └─────────────────────────────────────────┘
 ```
+
 - 6 comprehensive tabs
 - Smooth transitions
 - Active state indicators
@@ -11284,6 +12071,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Mobile responsive
 
 ### 3. **Animated Content Cards**
+
 - Fade in on scroll
 - Stagger animations
 - Hover effects
@@ -11291,6 +12079,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Shadow elevations
 
 ### 4. **Premium CTA Sidebar** (Sticky)
+
 ```
 ┌─────────────────────────────────┐
 │ [GRADIENT BACKGROUND]           │
@@ -11310,6 +12099,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 ## 🎨 Design Excellence
 
 ### Color System:
+
 ```css
 Primary: Red-600 to Red-700 gradients
 Secondary: Yellow-600 accents
@@ -11320,6 +12110,7 @@ Purple: Purple-500 to Purple-600
 ```
 
 ### Typography:
+
 ```css
 Headings: font-black (900 weight)
 Gradient Text: bg-clip-text
@@ -11328,6 +12119,7 @@ Stats: text-4xl font-black
 ```
 
 ### Effects:
+
 ```css
 Backdrop Blur: backdrop-blur-xl
 Shadows: shadow-xl, shadow-2xl
@@ -11341,6 +12133,7 @@ Transitions: All smooth 300ms
 ## 📱 Tab-Based Architecture
 
 ### Tab 1: Overview
+
 ```
 ┌─────────────────────────────────────┐
 │ About University                    │
@@ -11356,6 +12149,7 @@ Transitions: All smooth 300ms
 ```
 
 ### Tab 2: Programs
+
 ```
 ┌─────────────────────────────────────┐
 │ Computer Science                    │
@@ -11367,6 +12161,7 @@ Transitions: All smooth 300ms
 ```
 
 ### Tab 3-6: Coming Soon
+
 - Admission Requirements
 - Campus Life
 - Rankings & Recognition
@@ -11379,6 +12174,7 @@ Transitions: All smooth 300ms
 ### Framer Motion Effects:
 
 **1. Scroll-Based:**
+
 ```typescript
 const { scrollY } = useScroll();
 const headerOpacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -11386,6 +12182,7 @@ const statsY = useTransform(scrollY, [0, 300], [0, -50]);
 ```
 
 **2. Stagger Children:**
+
 ```typescript
 {highlights.map((item, index) => (
     <motion.div
@@ -11397,6 +12194,7 @@ const statsY = useTransform(scrollY, [0, 300], [0, -50]);
 ```
 
 **3. Hover Interactions:**
+
 ```typescript
 group-hover:scale-110
 group-hover:translate-x-1
@@ -11408,6 +12206,7 @@ group-hover:shadow-2xl
 ## 💎 Premium Components
 
 ### Gradient CTA Card:
+
 ```
 Features:
 - Circular background decorations
@@ -11418,6 +12217,7 @@ Features:
 ```
 
 ### Program Cards:
+
 ```
 Features:
 - Decorative corner gradient
@@ -11428,6 +12228,7 @@ Features:
 ```
 
 ### Highlight Boxes:
+
 ```
 Features:
 - Gradient backgrounds
@@ -11442,6 +12243,7 @@ Features:
 ## 🎯 Conversion Optimization
 
 ### Multiple CTAs:
+
 1. **Sticky Apply Button** (Always visible)
 2. **Sidebar Apply Button** (Premium placement)
 3. **Download Brochure** (Lead generation)
@@ -11450,6 +12252,7 @@ Features:
 6. **Virtual Tour** (Engagement)
 
 ### Trust Signals:
+
 - World rankings prominently displayed
 - Student numbers (social proof)
 - Acceptance rate (exclusivity)
@@ -11457,6 +12260,7 @@ Features:
 - Program count (variety)
 
 ### Urgency Elements:
+
 - Limited acceptance rate shown
 - Application deadlines (future)
 - Scholarship availability (future)
@@ -11467,11 +12271,13 @@ Features:
 ## 📊 Information Architecture
 
 ### Primary Navigation:
+
 ```
 Overview → Programs → Admission → Campus → Rankings → Contact
 ```
 
 ### Content Hierarchy:
+
 ```
 1. Hero (Emotional impact)
 2. Stats Bar (Quick facts)
@@ -11485,16 +12291,19 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🎨 Visual Hierarchy
 
 ### Level 1 (Highest Priority):
+
 - University name (text-6xl)
 - Apply Now buttons (gradient)
 - Stats numbers (text-4xl)
 
 ### Level 2:
+
 - Tab navigation
 - Section headings (text-3xl)
 - Program names (text-2xl)
 
 ### Level 3:
+
 - Body content
 - Badges
 - Supporting text
@@ -11504,6 +12313,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🌟 Micro-Interactions
 
 ### Hover States:
+
 - Cards lift with shadow
 - Buttons change gradient
 - Icons rotate/scale
@@ -11511,12 +12321,14 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 - Text changes color
 
 ### Click States:
+
 - Ripple effect (future)
 - Success feedback
 - Loading states
 - Error handling
 
 ### Scroll States:
+
 - Fade in animations
 - Parallax effects
 - Sticky elements
@@ -11527,18 +12339,21 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 📱 Responsive Design
 
 ### Desktop (lg+):
+
 - 3-column layout
 - Sticky sidebar
 - Full tab navigation
 - Large typography
 
 ### Tablet (md):
+
 - 2-column layout
 - Stacked sidebar
 - Scrollable tabs
 - Medium typography
 
 ### Mobile:
+
 - Single column
 - Bottom navigation
 - Swipeable tabs
@@ -11549,6 +12364,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🎯 Performance
 
 ### Optimizations:
+
 - Lazy loading images
 - Code splitting by tabs
 - Optimized animations
@@ -11556,6 +12372,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 - Efficient state management
 
 ### Loading Strategy:
+
 - Skeleton screens (future)
 - Progressive enhancement
 - Optimistic UI updates
@@ -11566,30 +12383,35 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## ✨ Unique Selling Points
 
 ### 1. **Tab-Based Navigation**
+
 - Organized content
 - Easy to scan
 - Reduces scrolling
 - Better UX
 
 ### 2. **Sticky Stats Bar**
+
 - Always visible
 - Quick reference
 - Conversion focused
 - Professional
 
 ### 3. **Animated Highlights**
+
 - Eye-catching
 - Engaging
 - Modern
 - Memorable
 
 ### 4. **Premium CTA Sidebar**
+
 - Multiple options
 - Sticky positioning
 - Gradient design
 - Clear hierarchy
 
 ### 5. **Gradient Everything**
+
 - Modern aesthetic
 - Premium feel
 - Brand consistency
@@ -11600,18 +12422,21 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🚀 Future Enhancements
 
 ### Phase 1 (Immediate):
+
 - [ ] Connect to real data
 - [ ] Complete all tabs
 - [ ] Add more animations
 - [ ] Optimize performance
 
 ### Phase 2 (Short-term):
+
 - [ ] Virtual tour integration
 - [ ] Live chat widget
 - [ ] Application form
 - [ ] Scholarship calculator
 
 ### Phase 3 (Long-term):
+
 - [ ] AI chatbot
 - [ ] Personalization
 - [ ] A/B testing
@@ -11624,6 +12449,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 The **BEST university page on Earth** featuring:
 
 ### Design:
+
 - ✅ World-class aesthetics
 - ✅ Premium gradients
 - ✅ Smooth animations
@@ -11631,6 +12457,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Professional typography
 
 ### Functionality:
+
 - ✅ Tab-based navigation
 - ✅ Sticky elements
 - ✅ Interactive components
@@ -11638,6 +12465,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Responsive design
 
 ### User Experience:
+
 - ✅ Easy to navigate
 - ✅ Quick to scan
 - ✅ Engaging interactions
@@ -11645,6 +12473,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Conversion optimized
 
 ### Technical:
+
 - ✅ Framer Motion animations
 - ✅ Client-side interactivity
 - ✅ Optimized performance
@@ -11653,8 +12482,6 @@ The **BEST university page on Earth** featuring:
 
 **This is truly the BEST university page on Earth!** 🌍✨🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/ADMIN_PANEL_COMPLETE.md
 ==================================================
@@ -11662,13 +12489,16 @@ FILE: ./docs/guides/ADMIN_PANEL_COMPLETE.md
 # Admin Panel - Complete Feature List
 
 ## 🎯 Overview
+
 The StudyAtChina admin panel is a comprehensive dashboard for managing the entire platform, including universities, programs, applications, users, and more.
 
 ## 📊 Dashboard Sections
 
 ### 1. **Dashboard** (Main Overview)
+
 **Route:** `/admin`
 **Features:**
+
 - ✅ Real-time statistics cards:
   - Total Revenue
   - Applications Count
@@ -11680,8 +12510,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Visual status indicators (pending, submitted, accepted)
 
 ### 2. **Analytics & Reports** ⭐ NEW
+
 **Route:** `/admin/analytics`
 **Features:**
+
 - ✅ Key Performance Metrics:
   - Total Applications with trend
   - Total Revenue with trend
@@ -11701,8 +12533,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Tabbed interface (Overview, Programs, Universities)
 
 ### 3. **Universities**
+
 **Route:** `/admin/universities`
 **Features:**
+
 - ✅ Complete university listing
 - ✅ Search functionality
 - ✅ Add new university
@@ -11713,8 +12547,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Table view with sorting
 
 ### 4. **Programs**
+
 **Route:** `/admin/programs`
 **Features:**
+
 - ✅ Comprehensive program management
 - ✅ Add/Edit programs with dialog
 - ✅ Program details:
@@ -11731,8 +12567,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Card-based layout with full details
 
 ### 5. **Scholarships** ⭐ NEW
+
 **Route:** `/admin/scholarships`
 **Features:**
+
 - ✅ Scholarship program management
 - ✅ Statistics overview:
   - Total Scholarships
@@ -11751,8 +12589,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Status management (Active/Inactive)
 
 ### 6. **Applications**
+
 **Route:** `/admin/applications`
 **Features:**
+
 - ✅ Application pipeline management
 - ✅ Student information display
 - ✅ Program and university details
@@ -11769,8 +12609,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Edit application dialog
 
 ### 7. **Leads**
+
 **Route:** `/admin/leads`
 **Features:**
+
 - ✅ Lead management system
 - ✅ Contact information (Name, Email, Phone)
 - ✅ Message/Inquiry display
@@ -11786,8 +12628,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Color-coded status badges
 
 ### 8. **Users**
+
 **Route:** `/admin/users`
 **Features:**
+
 - ✅ User management
 - ✅ User details:
   - Full Name
@@ -11801,8 +12645,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ User profile access
 
 ### 9. **Academic Years**
+
 **Route:** `/admin/academic-years`
 **Features:**
+
 - ✅ Academic year management
 - ✅ Year details:
   - Name
@@ -11819,8 +12665,10 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Status badges
 
 ### 10. **Languages**
+
 **Route:** `/admin/languages`
 **Features:**
+
 - ✅ Language management
 - ✅ Language details:
   - Name
@@ -11831,10 +12679,12 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Used for program language selection
 
 ### 11. **Settings** ✨ ENHANCED
+
 **Route:** `/admin/settings`
 **Features:**
 
 #### General Settings Tab
+
 - ✅ Platform Information:
   - Platform Name
   - Platform URL
@@ -11845,6 +12695,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Default Currency
 
 #### Email Settings Tab
+
 - ✅ SMTP Configuration:
   - SMTP Host & Port
   - Username & Password
@@ -11856,6 +12707,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Template editing
 
 #### Payment Settings Tab
+
 - ✅ Stripe Configuration:
   - Publishable Key
   - Secret Key
@@ -11866,6 +12718,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
   - Default Service Fee
 
 #### Notifications Tab
+
 - ✅ Notification Preferences:
   - New Application Alerts
   - Payment Notifications
@@ -11874,6 +12727,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Toggle switches for each notification type
 
 #### Advanced Settings Tab
+
 - ✅ Database & Backup:
   - Automatic Backups
   - Backup Retention
@@ -11889,6 +12743,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 ## 🎨 Design Features
 
 ### UI/UX
+
 - ✅ Modern, clean interface
 - ✅ Consistent color scheme
 - ✅ Gradient stat cards
@@ -11900,6 +12755,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Toast notifications
 
 ### Navigation
+
 - ✅ Fixed sidebar navigation
 - ✅ Logo and branding
 - ✅ 11 main navigation items
@@ -11908,6 +12764,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Icon + text labels
 
 ### Data Display
+
 - ✅ Tables with sorting
 - ✅ Card layouts
 - ✅ Progress bars
@@ -11920,6 +12777,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 ## 🔧 Technical Implementation
 
 ### Technologies Used
+
 - Next.js 15 (App Router)
 - React Server Components
 - Supabase (Database)
@@ -11930,6 +12788,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - Framer Motion (Animations)
 
 ### Database Integration
+
 - ✅ Real-time data fetching
 - ✅ Server-side rendering
 - ✅ Error handling
@@ -11937,6 +12796,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Optimistic updates
 
 ### Security
+
 - ✅ Protected routes
 - ✅ Role-based access
 - ✅ Secure data handling
@@ -11973,6 +12833,7 @@ Admin Panel
 **Enhanced Pages:** 1 (Settings)
 
 ### All Features Include:
+
 - ✅ CRUD Operations (Create, Read, Update, Delete)
 - ✅ Search & Filter
 - ✅ Sorting & Pagination
@@ -11987,6 +12848,7 @@ Admin Panel
 ## 🚀 Ready for Production
 
 The admin panel is **fully functional** and ready for use with:
+
 - Complete data management
 - Comprehensive analytics
 - User-friendly interface
@@ -12001,8 +12863,6 @@ The admin panel is **fully functional** and ready for use with:
 - UI components are reusable and consistent
 - The system is designed for scalability
 - All features follow Next.js 15 best practices
-
-
 
 ==================================================
 FILE: ./docs/guides/ADMIN_PASSWORD_RESET_GUIDE.md
@@ -12039,19 +12899,22 @@ I've created a script for you at `/scripts/reset-admin-password.js`
 ### Steps:
 
 1. **Ensure you have the Service Role Key:**
+
    ```bash
    # Add to .env.local
    SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
    ```
-   
+
    Get this from: Supabase Dashboard → Settings → API → service_role key
 
 2. **Install dependencies (if not already installed):**
+
    ```bash
    npm install @supabase/supabase-js dotenv
    ```
 
 3. **Run the script:**
+
    ```bash
    node scripts/reset-admin-password.js
    ```
@@ -12072,9 +12935,10 @@ I've created a script for you at `/scripts/reset-admin-password.js`
 
 1. Go to Supabase Dashboard → **SQL Editor**
 2. Run this query to find the admin user:
+
    ```sql
-   SELECT id, email, raw_user_meta_data 
-   FROM auth.users 
+   SELECT id, email, raw_user_meta_data
+   FROM auth.users
    WHERE email = 'admin@studyatchina.com';
    ```
 
@@ -12104,7 +12968,7 @@ If you can't access the existing admin account, create a new one:
 7. Then update user metadata via SQL Editor:
    ```sql
    UPDATE auth.users
-   SET 
+   SET
        raw_user_meta_data = jsonb_set(
            COALESCE(raw_user_meta_data, '{}'::jsonb),
            '{role}',
@@ -12116,6 +12980,7 @@ If you can't access the existing admin account, create a new one:
 ### Via Node.js Script:
 
 Run the script and choose to create a new admin when prompted:
+
 ```bash
 node scripts/reset-admin-password.js
 ```
@@ -12135,21 +13000,25 @@ After resetting the password, verify it works:
 ## 🚨 Troubleshooting
 
 ### "User not found"
+
 - Check the email is correct
 - Verify user exists in Supabase Dashboard → Authentication → Users
 - Create a new admin user using Method 4
 
 ### "Invalid credentials"
+
 - Password was not updated correctly
 - Try Method 1 (password reset email)
 - Ensure email is confirmed (check `email_confirmed_at` in database)
 
 ### "Missing Service Role Key"
+
 - Get it from Supabase Dashboard → Settings → API
 - Add to `.env.local` as `SUPABASE_SERVICE_ROLE_KEY`
 - **Important:** This is different from the `anon` key!
 
 ### "Password too weak"
+
 - Supabase requires minimum 6 characters
 - Use a strong password with letters, numbers, and symbols
 
@@ -12190,6 +13059,7 @@ If you don't remember, use one of the reset methods above.
 ## 🎯 Quick Reset (TL;DR)
 
 **Fastest method:**
+
 ```bash
 # 1. Add Service Role Key to .env.local
 # 2. Run script
@@ -12200,6 +13070,7 @@ node scripts/reset-admin-password.js
 ```
 
 **Alternative (no coding):**
+
 1. Supabase Dashboard → Authentication → Users
 2. Find admin → Send password reset email
 3. Check email → Reset password
@@ -12210,6 +13081,7 @@ node scripts/reset-admin-password.js
 ## 📞 Need Help?
 
 If you're still having issues:
+
 1. Check Supabase logs for errors
 2. Verify environment variables are set
 3. Ensure Supabase project is active
@@ -12219,8 +13091,6 @@ If you're still having issues:
 
 **Last Updated:** November 29, 2025
 
-
-
 ==================================================
 FILE: ./docs/guides/ADMIN_UNIVERSITY_UPDATE.md
 ==================================================
@@ -12228,17 +13098,20 @@ FILE: ./docs/guides/ADMIN_UNIVERSITY_UPDATE.md
 # Admin University Detail Page - Complete Update
 
 ## 🎯 Overview
+
 The admin university detail page has been completely redesigned to include all dynamic information that appears on the public university page, making it a comprehensive management interface.
 
 ## ✨ New Features Added
 
 ### 1. **Header Section**
+
 - ✅ University name and location display
 - ✅ "View Public Page" button (opens in new tab)
 - ✅ Delete button
 - ✅ Back to universities list button
 
 ### 2. **Statistics Cards** (4 Cards)
+
 - ✅ **Programs**: Total number of programs offered
 - ✅ **Total Students**: Total enrolled students
 - ✅ **International Students**: Number of international students
@@ -12247,9 +13120,11 @@ The admin university detail page has been completely redesigned to include all d
 ### 3. **Tabbed Interface**
 
 #### **Details Tab**
+
 Comprehensive form with all university fields organized into sections:
 
 **Basic Information:**
+
 - ✅ University Name (required)
 - ✅ Local Name (Chinese)
 - ✅ Slug (URL friendly, required)
@@ -12257,19 +13132,23 @@ Comprehensive form with all university fields organized into sections:
 - ✅ Logo URL
 
 **Location:**
+
 - ✅ City (required)
 - ✅ Province
 
 **Statistics:**
+
 - ✅ Founded Year
 - ✅ Ranking
 - ✅ Total Students
 - ✅ International Students
 
 **Description:**
+
 - ✅ University Description (large textarea)
 
 #### **Programs Tab**
+
 - ✅ List of all programs offered by the university
 - ✅ Program details displayed:
   - Title
@@ -12285,6 +13164,7 @@ Comprehensive form with all university fields organized into sections:
 ## 📊 Database Fields Now Managed
 
 ### Previously Available:
+
 - name
 - slug
 - city
@@ -12292,6 +13172,7 @@ Comprehensive form with all university fields organized into sections:
 - website
 
 ### Newly Added:
+
 - ✅ name_local (Chinese name)
 - ✅ province
 - ✅ logo_url
@@ -12304,12 +13185,14 @@ Comprehensive form with all university fields organized into sections:
 ## 🔄 Dynamic Data Loading
 
 ### University Data:
+
 - Fetches all university fields from database
 - Loads associated programs with full details
 - Displays real-time program count
 - Shows actual statistics
 
 ### Programs Integration:
+
 - Automatically loads all programs for the university
 - Displays program status (Active/Inactive)
 - Shows key program information
@@ -12318,6 +13201,7 @@ Comprehensive form with all university fields organized into sections:
 ## 🎨 UI/UX Improvements
 
 ### Visual Design:
+
 - ✅ Gradient stat cards with icons
 - ✅ Organized form sections with separators
 - ✅ Tabbed interface for better organization
@@ -12326,9 +13210,10 @@ Comprehensive form with all university fields organized into sections:
 - ✅ Badge indicators for status
 
 ### User Experience:
+
 - ✅ Clear section headings
 - ✅ Helpful placeholders
-- ✅ Required field indicators (*)
+- ✅ Required field indicators (\*)
 - ✅ Loading states
 - ✅ Toast notifications for actions
 - ✅ Confirmation dialogs for delete
@@ -12339,6 +13224,7 @@ Comprehensive form with all university fields organized into sections:
 The admin page now manages ALL fields that appear on the public university page:
 
 ### Public Page Elements Managed:
+
 - ✅ University header (name, location, logo)
 - ✅ Statistics display (founded, students, ranking)
 - ✅ Overview/description
@@ -12349,7 +13235,7 @@ The admin page now manages ALL fields that appear on the public university page:
 
 ## 📝 Form Validation
 
-- ✅ Required fields marked with *
+- ✅ Required fields marked with \*
 - ✅ URL validation for website and logo
 - ✅ Form submission handling
 - ✅ Error messages via toast
@@ -12358,12 +13244,14 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 🚀 Actions Available
 
 ### CRUD Operations:
+
 - ✅ **View**: See all university details and programs
 - ✅ **Edit**: Update any university field
 - ✅ **Delete**: Remove university (with confirmation)
 - ✅ **Navigate**: Quick links to related pages
 
 ### Additional Actions:
+
 - ✅ View public page
 - ✅ Manage programs
 - ✅ Add new programs
@@ -12372,6 +13260,7 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 💾 Data Persistence
 
 ### Save Functionality:
+
 - ✅ Updates all fields in database
 - ✅ Shows loading state during save
 - ✅ Success/error notifications
@@ -12381,6 +13270,7 @@ The admin page now manages ALL fields that appear on the public university page:
 ## 🎯 Comparison: Before vs After
 
 ### Before:
+
 - Simple form with 5 fields
 - No statistics display
 - No programs integration
@@ -12388,6 +13278,7 @@ The admin page now manages ALL fields that appear on the public university page:
 - Limited information
 
 ### After:
+
 - Comprehensive form with 13+ fields
 - 4 statistics cards
 - Full programs integration
@@ -12416,30 +13307,35 @@ The admin page now manages ALL fields that appear on the public university page:
 ## ✅ Complete Feature List
 
 **Header:**
+
 - University name and location
 - View public page button
 - Delete button
 - Back navigation
 
 **Stats Cards:**
+
 - Programs count
 - Total students
 - International students
 - Founded year
 
 **Details Tab:**
+
 - Basic information (4 fields)
 - Location (2 fields)
 - Statistics (4 fields)
 - Description (1 field)
 
 **Programs Tab:**
+
 - Programs list with details
 - Active/Inactive badges
 - Program management link
 - Empty state handling
 
 **Actions:**
+
 - Save changes
 - Cancel
 - Delete university
@@ -12450,8 +13346,6 @@ The admin page now manages ALL fields that appear on the public university page:
 
 The admin university detail page is now a **complete, professional management interface** that provides full control over all university data and seamlessly integrates with the public-facing university page!
 
-
-
 ==================================================
 FILE: ./docs/guides/ADMISSION_REQUIREMENTS_INTEGRATION.md
 ==================================================
@@ -12459,11 +13353,13 @@ FILE: ./docs/guides/ADMISSION_REQUIREMENTS_INTEGRATION.md
 # Admission Requirements Integration
 
 ## Overview
+
 Successfully integrated the admission requirements system from the backend database into the program detail pages.
 
 ## Changes Made
 
 ### 1. Program Page Updates (`/programs/[slug]/page.tsx`)
+
 - **Fetches requirements from database** using `v_university_admission_requirements` view
 - Filters requirements by:
   - University ID
@@ -12472,9 +13368,10 @@ Successfully integrated the admission requirements system from the backend datab
 - Passes structured data to ProgramRequirements component
 
 ### 2. ProgramRequirements Component Updates
+
 - **Enhanced to handle 5 categories:**
   - ✅ Academic Requirements
-  - ✅ Language Requirements  
+  - ✅ Language Requirements
   - ✅ Document Requirements
   - ✅ Financial Requirements (NEW)
   - ✅ Additional Information/Other (NEW)
@@ -12492,11 +13389,13 @@ Successfully integrated the admission requirements system from the backend datab
 ## Database Structure
 
 ### Tables Used:
+
 1. **`admission_requirements_catalog`** - Master list of all requirements
 2. **`university_admission_requirements`** - Junction table linking universities to requirements
 3. **`v_university_admission_requirements`** - View for easy querying
 
 ### Requirement Categories:
+
 - `academic` - Diplomas, GPA, transcripts
 - `language` - IELTS, TOEFL, HSK scores
 - `document` - Passport, photos, certificates
@@ -12504,6 +13403,7 @@ Successfully integrated the admission requirements system from the backend datab
 - `other` - Age limits, health, interviews
 
 ### Requirement Types:
+
 - `bachelor` - For undergraduate programs
 - `master` - For graduate programs
 - `phd` - For doctoral programs
@@ -12543,14 +13443,16 @@ Successfully integrated the admission requirements system from the backend datab
 To populate requirements for your universities:
 
 1. **Run the migration** (if not already done):
+
    ```sql
    -- Execute DATABASE_MIGRATION_ADMISSION_REQUIREMENTS.sql
    ```
 
 2. **Link requirements to universities** via admin panel or SQL:
+
    ```sql
    INSERT INTO university_admission_requirements (university_id, requirement_id, is_required, display_order)
-   SELECT 
+   SELECT
        (SELECT id FROM universities WHERE slug = 'your-university-slug'),
        id,
        true,
@@ -12571,30 +13473,34 @@ To populate requirements for your universities:
 When viewing a Bachelor program at Tsinghua University, students will see:
 
 ### Entry Requirements
+
 **Academic:**
+
 - High School Diploma
 - Minimum GPA 3.0
 - Academic Transcripts
 
 **Language:**
+
 - IELTS 6.0 or TOEFL 80 (for English programs)
 - HSK 4 (for Chinese programs)
 
 ### Required Documents
+
 - Valid Passport ✓ Required
 - Physical Examination Form ✓ Required
 - Personal Statement ✓ Required
 - etc.
 
 ### Financial Requirements
+
 - Bank Statement
 - Financial Guarantee
 
 ### Additional Information
+
 - Age Requirement 18-25
 - Good Health
-
-
 
 ==================================================
 FILE: ./docs/guides/ADMISSION_REQUIREMENTS_SYSTEM.md
@@ -12643,6 +13549,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ## 📋 Requirement Categories
 
 ### 1. **Academic** (7 requirements)
+
 - High School Diploma
 - Bachelor Degree
 - Master Degree
@@ -12652,6 +13559,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Graduation Certificate
 
 ### 2. **Language** (8 requirements)
+
 - IELTS 6.0
 - IELTS 6.5
 - TOEFL 80
@@ -12662,6 +13570,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - English Proficiency Waiver
 
 ### 3. **Document** (9 requirements)
+
 - Valid Passport
 - Passport Photos
 - Physical Examination Form
@@ -12673,11 +13582,13 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Portfolio
 
 ### 4. **Financial** (3 requirements)
+
 - Bank Statement
 - Financial Guarantee
 - Scholarship Certificate
 
 ### 5. **Other** (6 requirements)
+
 - Age Requirement 18-25
 - Age Requirement 18-35
 - Age Requirement 18-40
@@ -12690,6 +13601,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ## 🎓 Requirement Types
 
 ### Bachelor Programs:
+
 - High School Diploma
 - Minimum GPA 3.0
 - IELTS 6.0 / TOEFL 80
@@ -12698,6 +13610,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Basic documents
 
 ### Master Programs:
+
 - Bachelor Degree
 - Minimum GPA 3.2
 - IELTS 6.5 / TOEFL 90
@@ -12707,6 +13620,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Study plan
 
 ### PhD Programs:
+
 - Master Degree
 - HSK 6 (for Chinese-taught)
 - Age 18-40
@@ -12714,6 +13628,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 - Interview
 
 ### All Programs:
+
 - Valid Passport
 - Physical Examination
 - Non-Criminal Record
@@ -12752,6 +13667,7 @@ Created a **centralized admission requirements catalog** system - similar to the
 ```
 
 ### Features:
+
 - ✅ View all requirements
 - ✅ Filter by category
 - ✅ Filter by type
@@ -12767,16 +13683,19 @@ Created a **centralized admission requirements catalog** system - similar to the
 ### For Data Entry Staff:
 
 #### Step 1: Go to University Edit Page
+
 ```
 /admin/universities/[id]
 ```
 
 #### Step 2: Select Requirements Tab
+
 ```
 Tabs: Details | Programs | Requirements
 ```
 
 #### Step 3: Select from Catalog
+
 ```
 ┌─────────────────────────────────────┐
 │ Select Admission Requirements       │
@@ -12798,17 +13717,20 @@ Tabs: Details | Programs | Requirements
 ```
 
 #### Step 4: Add Custom Notes (Optional)
+
 ```
 Requirement: IELTS 6.0
 Custom Note: "6.5 required for Business programs"
 ```
 
 #### Step 5: Set Display Order
+
 ```
 Drag to reorder requirements
 ```
 
 #### Step 6: Save
+
 ```
 Requirements linked to university ✅
 ```
@@ -12820,15 +13742,18 @@ Requirements linked to university ✅
 ### Selected Requirements:
 
 **Academic:**
+
 - ✅ High School Diploma
 - ✅ Minimum GPA 3.0
 - ✅ Academic Transcripts
 
 **Language:**
+
 - ✅ IELTS 6.5 (Custom: "6.5 for all programs")
 - ✅ HSK 5 (Custom: "Required for Chinese-taught")
 
 **Document:**
+
 - ✅ Valid Passport
 - ✅ Physical Examination Form
 - ✅ Non-Criminal Record
@@ -12836,9 +13761,11 @@ Requirements linked to university ✅
 - ✅ Personal Statement
 
 **Financial:**
+
 - ✅ Bank Statement
 
 **Other:**
+
 - ✅ Age Requirement 18-25
 - ✅ Good Health
 
@@ -12883,26 +13810,31 @@ Requirements linked to university ✅
 ## ✅ Benefits
 
 ### 1. **Consistency**
+
 - Same requirements across universities
 - Standardized language
 - No typos or variations
 
 ### 2. **Efficiency**
+
 - Select instead of type
 - Reuse common requirements
 - Save time
 
 ### 3. **Flexibility**
+
 - Add custom notes per university
 - Override descriptions
 - Custom display order
 
 ### 4. **Maintainability**
+
 - Update once, applies everywhere
 - Easy to add new requirements
 - Centralized management
 
 ### 5. **Better UX**
+
 - Clear categorization
 - Organized display
 - Easy to understand
@@ -12912,6 +13844,7 @@ Requirements linked to university ✅
 ## 🔄 Workflow Comparison
 
 ### Before (Manual):
+
 ```
 1. Open university edit page
 2. Type "High School Diploma"
@@ -12927,6 +13860,7 @@ Requirements linked to university ✅
 ```
 
 ### After (Catalog):
+
 ```
 1. Open university edit page
 2. Click "Select Requirements"
@@ -12943,6 +13877,7 @@ Requirements linked to university ✅
 ## 📊 Database Schema
 
 ### admission_requirements_catalog:
+
 ```sql
 CREATE TABLE admission_requirements_catalog (
     id UUID PRIMARY KEY,
@@ -12957,6 +13892,7 @@ CREATE TABLE admission_requirements_catalog (
 ```
 
 ### university_admission_requirements:
+
 ```sql
 CREATE TABLE university_admission_requirements (
     id UUID PRIMARY KEY,
@@ -12977,6 +13913,7 @@ CREATE TABLE university_admission_requirements (
 A **complete admission requirements system** featuring:
 
 ### Admin:
+
 - ✅ Centralized catalog (33 requirements)
 - ✅ 5 categories
 - ✅ 4 program types
@@ -12985,6 +13922,7 @@ A **complete admission requirements system** featuring:
 - ✅ Display order control
 
 ### Frontend:
+
 - ✅ Dynamic display
 - ✅ Organized by category
 - ✅ Clear descriptions
@@ -12992,8 +13930,6 @@ A **complete admission requirements system** featuring:
 - ✅ Professional appearance
 
 **Data entry staff can now select requirements from a catalog instead of typing them every time!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
@@ -13006,10 +13942,12 @@ FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
 ### 1. Database Structure (`DATABASE_MIGRATION_ARTICLES.sql`)
 
 **Tables:**
+
 - `articles` - Main articles table with full content management
 - `article_categories` - Predefined categories with colors and icons
 
 **Features:**
+
 - ✅ Auto-generated slugs (SEO-friendly URLs)
 - ✅ Draft/Published/Archived workflow
 - ✅ View counter for analytics
@@ -13021,6 +13959,7 @@ FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
 - ✅ Row Level Security (RLS)
 
 **Default Categories:**
+
 1. Study Tips
 2. University Life
 3. Scholarships
@@ -13033,6 +13972,7 @@ FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
 ### 2. Public Pages
 
 #### Articles Listing Page (`/articles`)
+
 - **Hero section** with search bar
 - **Category filters** with color-coded badges
 - **Featured articles** section (highlighted)
@@ -13046,6 +13986,7 @@ FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
   - Published date
 
 #### Article Detail Page (`/articles/[slug]`)
+
 - **Hero section** with featured image overlay
 - **Full article content** with rich formatting
 - **Author card** in sidebar
@@ -13058,6 +13999,7 @@ FILE: ./docs/guides/ARTICLES_SYSTEM_COMPLETE.md
 ### 3. Admin Panel
 
 #### Articles Management (`/admin/articles`)
+
 - **Dashboard with stats:**
   - Total articles
   - Published count
@@ -13078,6 +14020,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 🎨 Features
 
 ### Content Management
+
 - ✅ Rich text content support
 - ✅ Featured images
 - ✅ Excerpts for previews
@@ -13086,6 +14029,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 - ✅ SEO optimization (meta titles, descriptions)
 
 ### User Experience
+
 - ✅ Clean, modern design
 - ✅ Responsive layout
 - ✅ Fast loading with optimized images
@@ -13094,11 +14038,13 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 - ✅ Related articles suggestions
 
 ### Analytics
+
 - ✅ View tracking
 - ✅ Reading time calculation
 - ✅ Popular articles tracking
 
 ### Admin Features
+
 - ✅ Easy article management
 - ✅ Status filtering
 - ✅ Search functionality
@@ -13108,12 +14054,14 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 📝 How to Use
 
 ### Step 1: Run Database Migration
+
 ```sql
 -- Execute in Supabase SQL Editor
 -- Copy and run: DATABASE_MIGRATION_ARTICLES.sql
 ```
 
 ### Step 2: Access Admin Panel
+
 1. Go to `/admin/articles`
 2. Click "New Article"
 3. Fill in article details
@@ -13121,6 +14069,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 5. Save
 
 ### Step 3: View Public Pages
+
 - **All articles:** `http://localhost:3000/articles`
 - **Single article:** `http://localhost:3000/articles/[slug]`
 
@@ -13149,6 +14098,7 @@ Added "Articles" link to main navigation between "Scholarships" and "How to Appl
 ## 🎨 Category Colors
 
 Each category has a unique color for visual distinction:
+
 - Study Tips: Blue (#3B82F6)
 - University Life: Green (#10B981)
 - Scholarships: Amber (#F59E0B)
@@ -13179,6 +14129,7 @@ Each category has a unique color for visual distinction:
 ## 📱 Responsive Design
 
 All pages are fully responsive:
+
 - ✅ Mobile-friendly layouts
 - ✅ Touch-optimized interactions
 - ✅ Adaptive images
@@ -13187,6 +14138,7 @@ All pages are fully responsive:
 ## 🎉 Summary
 
 You now have a complete, production-ready articles/blog system with:
+
 - Beautiful public pages
 - Powerful admin interface
 - SEO optimization
@@ -13196,8 +14148,6 @@ You now have a complete, production-ready articles/blog system with:
 - Related content suggestions
 
 The system is ready to use! Just run the migration and start creating content! 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/ARTICLE_EDITOR_COMPLETE.md
@@ -13277,7 +14227,9 @@ Since we're using a textarea for content, you can use HTML tags:
 
 ```html
 <h2>Section Heading</h2>
-<p>This is a paragraph with <strong>bold text</strong> and <em>italic text</em>.</p>
+<p>
+  This is a paragraph with <strong>bold text</strong> and <em>italic text</em>.
+</p>
 
 <h3>Subsection</h3>
 <p>Another paragraph with a <a href="https://example.com">link</a>.</p>
@@ -13292,9 +14244,7 @@ Since we're using a textarea for content, you can use HTML tags:
   <li>Numbered item 2</li>
 </ol>
 
-<blockquote>
-  This is a quote or callout box.
-</blockquote>
+<blockquote>This is a quote or callout box.</blockquote>
 
 <img src="image-url.jpg" alt="Description" />
 ```
@@ -13302,6 +14252,7 @@ Since we're using a textarea for content, you can use HTML tags:
 ## 🎨 Styling
 
 Custom CSS has been added (`article.css`) to style the article content beautifully:
+
 - Proper heading sizes
 - Readable line heights
 - Styled links, lists, blockquotes
@@ -13311,6 +14262,7 @@ Custom CSS has been added (`article.css`) to style the article content beautiful
 ## 📸 Image Upload
 
 Images are uploaded to Supabase Storage in the `public/articles/` folder:
+
 - **Max size:** 5MB
 - **Formats:** All image types (jpg, png, gif, webp, etc.)
 - **Auto-naming:** Random filename to avoid conflicts
@@ -13360,13 +14312,14 @@ If you want to upgrade the editor later:
 ## 📋 Current Limitations
 
 - Content editor is plain HTML (not WYSIWYG)
-  - *This is intentional to avoid React 19 compatibility issues*
-  - *Works perfectly for users comfortable with HTML*
-  - *Can be upgraded later when libraries support React 19*
+  - _This is intentional to avoid React 19 compatibility issues_
+  - _Works perfectly for users comfortable with HTML_
+  - _Can be upgraded later when libraries support React 19_
 
 ## ✨ Summary
 
 You now have a fully functional article editor that:
+
 - Creates and edits articles
 - Uploads and manages images (required for each article)
 - Supports HTML formatting
@@ -13375,8 +14328,6 @@ You now have a fully functional article editor that:
 - Has a beautiful, intuitive interface
 
 The editor is production-ready and can be used immediately! 🎉
-
-
 
 ==================================================
 FILE: ./docs/guides/AUTOMATIC_UNIVERSITY_DETECTION.md
@@ -13410,16 +14361,23 @@ The system now **automatically detects** when universities are mentioned in arti
 
 ```html
 <h2>Top Universities in Beijing</h2>
-<p>Beijing is home to many prestigious universities. Tsinghua University and Peking University are among the best in China...</p>
+<p>
+  Beijing is home to many prestigious universities. Tsinghua University and
+  Peking University are among the best in China...
+</p>
 
-<p>Another great option is Beijing Normal University, which specializes in education programs...</p>
+<p>
+  Another great option is Beijing Normal University, which specializes in
+  education programs...
+</p>
 ```
 
 ### Result:
 
 The system will automatically detect and display cards for:
+
 - Tsinghua University
-- Peking University  
+- Peking University
 - Beijing Normal University
 
 ## 🎨 Display Features
@@ -13519,6 +14477,7 @@ Possible improvements:
 ## ✅ Summary
 
 This feature provides:
+
 - ✅ **Automatic** university detection
 - ✅ **Beautiful** display cards
 - ✅ **Smart** matching algorithm
@@ -13527,8 +14486,6 @@ This feature provides:
 - ✅ **Improved** SEO
 
 Just write your articles naturally, and the system will automatically show relevant universities at the bottom! 🎉
-
-
 
 ==================================================
 FILE: ./docs/guides/COMMUNICATION_PAYMENT_SYSTEM.md
@@ -13545,9 +14502,11 @@ A comprehensive communication and payment management system that enables seamles
 ## 📊 Database Schema
 
 ### 1. **application_messages**
+
 **Purpose:** Two-way communication between admin and students
 
 **Fields:**
+
 - `id` - UUID primary key
 - `application_id` - References application
 - `sender_id` - User who sent the message
@@ -13565,6 +14524,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Message Types:**
+
 - `general` - General communication
 - `document_request` - Request for documents
 - `payment_request` - Payment required
@@ -13575,9 +14535,11 @@ A comprehensive communication and payment management system that enables seamles
 - `additional_info_request` - More info needed
 
 ### 2. **payment_transactions**
+
 **Purpose:** Track all payment transactions
 
 **Fields:**
+
 - `id` - UUID primary key
 - `application_id` - References application
 - `student_id` - Student making payment
@@ -13600,6 +14562,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Payment Types:**
+
 - `application_fee` - Application processing fee
 - `service_fee` - Service fee
 - `tuition_deposit` - Deposit for tuition
@@ -13608,6 +14571,7 @@ A comprehensive communication and payment management system that enables seamles
 - `other` - Other payments
 
 **Payment Status:**
+
 - `pending` - Awaiting payment
 - `processing` - Being processed
 - `completed` - Successfully paid
@@ -13616,9 +14580,11 @@ A comprehensive communication and payment management system that enables seamles
 - `cancelled` - Payment cancelled
 
 ### 3. **email_notifications**
+
 **Purpose:** Track all emails sent to users
 
 **Fields:**
+
 - `id` - UUID primary key
 - `recipient_id` - User receiving email
 - `recipient_email` - Email address
@@ -13639,6 +14605,7 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 **Email Types:**
+
 - `application_submitted`
 - `application_received`
 - `status_changed`
@@ -13652,9 +14619,11 @@ A comprehensive communication and payment management system that enables seamles
 - `deadline_reminder`
 
 ### 4. **notification_preferences**
+
 **Purpose:** User notification settings
 
 **Fields:**
+
 - `user_id` - User ID (unique)
 - `email_application_updates` - Boolean
 - `email_messages` - Boolean
@@ -13667,9 +14636,11 @@ A comprehensive communication and payment management system that enables seamles
 - `sms_number` - Phone number for SMS
 
 ### 5. **document_requests**
+
 **Purpose:** Track specific document requests from admin
 
 **Fields:**
+
 - `application_id` - Related application
 - `message_id` - Related message
 - `document_name` - Name of document
@@ -13683,9 +14654,11 @@ A comprehensive communication and payment management system that enables seamles
 - `requested_by` - Admin who requested
 
 ### 6. **acceptance_letters**
+
 **Purpose:** Store acceptance letter information
 
 **Fields:**
+
 - `application_id` - Related application (unique)
 - `letter_number` - Official letter number
 - `issue_date` - When issued
@@ -13700,9 +14673,11 @@ A comprehensive communication and payment management system that enables seamles
 - Timestamps
 
 ### 7. **interview_schedules**
+
 **Purpose:** Manage interview appointments
 
 **Fields:**
+
 - `application_id` - Related application
 - `interview_type` - online/in_person/phone
 - `scheduled_date` - Date and time
@@ -13723,16 +14698,19 @@ A comprehensive communication and payment management system that enables seamles
 ## 🔔 Automated Email Triggers
 
 ### 1. **New Message Trigger**
+
 **When:** Admin sends message to student
 **Action:** Automatically creates email notification
 **Template:** Message received email with subject and content
 
 ### 2. **Payment Request Trigger**
+
 **When:** New payment transaction created with status 'pending'
 **Action:** Sends payment request email with payment link
 **Template:** Payment requested email with amount and link
 
 ### 3. **Status Change Trigger**
+
 **When:** Application status changes
 **Action:** Sends status update email
 **Template:** Status changed email with new status
@@ -13780,6 +14758,7 @@ A comprehensive communication and payment management system that enables seamles
    - Link to view full message
 
 All templates include:
+
 - Professional HTML design
 - Responsive layout
 - Brand colors and styling
@@ -13897,18 +14876,21 @@ All templates include:
 ### 1. Document Request Workflow
 
 **Admin Side:**
+
 1. Admin creates document request
 2. Selects document type and description
 3. Sets deadline
 4. Sends message
 
 **System:**
+
 1. Creates `document_requests` record
 2. Creates `application_messages` record
 3. Triggers email notification
 4. Sends email to student
 
 **Student Side:**
+
 1. Receives email notification
 2. Sees message in dashboard
 3. Views "Action Required" badge
@@ -13918,18 +14900,21 @@ All templates include:
 ### 2. Payment Request Workflow
 
 **Admin Side:**
+
 1. Admin creates payment transaction
 2. Sets amount, type, and deadline
 3. Generates unique payment link
 4. System sends automatically
 
 **System:**
+
 1. Creates `payment_transactions` record
 2. Generates secure payment link
 3. Triggers email notification
 4. Sends payment request email
 
 **Student Side:**
+
 1. Receives email with payment link
 2. Sees payment in dashboard
 3. Clicks "Pay Now" button
@@ -13940,16 +14925,19 @@ All templates include:
 ### 3. Status Change Workflow
 
 **Admin Side:**
+
 1. Admin updates application status
 2. Optionally adds notes
 
 **System:**
+
 1. Updates application status
 2. Creates status history record
 3. Triggers email notification
 4. Sends status update email
 
 **Student Side:**
+
 1. Receives email notification
 2. Sees updated status in dashboard
 3. Views status timeline
@@ -13958,17 +14946,20 @@ All templates include:
 ### 4. Acceptance Letter Workflow
 
 **Admin Side:**
+
 1. Admin issues acceptance letter
 2. Uploads letter PDF
 3. Adds JW202 and visa letter
 4. Sets letter number and dates
 
 **System:**
+
 1. Creates `acceptance_letters` record
 2. Triggers email notification
 3. Sends congratulations email
 
 **Student Side:**
+
 1. Receives congratulations email
 2. Downloads acceptance letter
 3. Downloads JW202 form
@@ -13980,6 +14971,7 @@ All templates include:
 ## 🎨 UI/UX Features
 
 ### Color Coding:
+
 - 🟢 **Green** - Completed, Accepted, Verified
 - 🔵 **Blue** - Processing, Under Review
 - 🟡 **Yellow** - Pending, Action Required
@@ -13987,6 +14979,7 @@ All templates include:
 - ⚪ **Gray** - Cancelled, Inactive
 
 ### Badges:
+
 - Status badges with icons
 - Unread count badges
 - Action required badges
@@ -13994,12 +14987,14 @@ All templates include:
 - New message badges
 
 ### Notifications:
+
 - Toast notifications for actions
 - Email notifications
 - In-app message center
 - Unread count in sidebar
 
 ### Responsive Design:
+
 - Mobile-friendly layouts
 - Touch-friendly buttons
 - Collapsible sections
@@ -14010,18 +15005,21 @@ All templates include:
 ## 🔒 Security & Privacy
 
 ### RLS Policies:
+
 - Students can only see their own data
 - Admins can see all data
 - Secure document access
 - Payment link validation
 
 ### Data Protection:
+
 - Encrypted payment links
 - Secure file storage
 - Email encryption
 - GDPR compliant
 
 ### Access Control:
+
 - Role-based permissions
 - Action logging
 - Audit trails
@@ -14046,12 +15044,14 @@ All templates include:
 ## 🛠️ Integration Points
 
 ### Email Service:
+
 - Ready for Resend API
 - Ready for SendGrid
 - Ready for AWS SES
 - Currently logs to database
 
 ### Payment Gateways:
+
 - Stripe integration ready
 - PayPal integration ready
 - Alipay support
@@ -14059,6 +15059,7 @@ All templates include:
 - Bank transfer tracking
 
 ### File Storage:
+
 - Supabase Storage
 - Document versioning
 - Secure URLs
@@ -14069,6 +15070,7 @@ All templates include:
 ## 📊 Analytics & Reporting
 
 ### Available Metrics:
+
 - Email delivery rates
 - Email open rates
 - Payment completion rates
@@ -14077,6 +15079,7 @@ All templates include:
 - Document upload rates
 
 ### Views Created:
+
 - `v_unread_messages_count` - Unread messages per application
 - `v_pending_payments` - Pending payments per student
 - `v_pending_actions` - All pending actions per student
@@ -14086,6 +15089,7 @@ All templates include:
 ## 🚀 Next Steps
 
 ### To Enable Email Sending:
+
 1. Sign up for Resend (recommended) or SendGrid
 2. Get API key
 3. Add to `.env.local`:
@@ -14095,6 +15099,7 @@ All templates include:
 4. Uncomment email sending code in `/src/lib/email/service.ts`
 
 ### To Enable Payments:
+
 1. Choose payment gateway (Stripe recommended)
 2. Set up account
 3. Add credentials to `.env.local`
@@ -14102,6 +15107,7 @@ All templates include:
 5. Test in sandbox mode
 
 ### To Customize:
+
 1. Edit email templates in `/src/lib/email/templates.ts`
 2. Modify message types in database schema
 3. Add custom payment types
@@ -14112,6 +15118,7 @@ All templates include:
 ## 📝 Summary
 
 This system provides:
+
 - ✅ Complete two-way communication
 - ✅ Automated email notifications
 - ✅ Payment management and tracking
@@ -14124,8 +15131,6 @@ This system provides:
 - ✅ Secure and scalable architecture
 
 **Everything is connected and ready for production!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/guides/CONSOLE_ERRORS_FIXED.md
@@ -14151,12 +15156,14 @@ From the console logs:
 ### 1. **Pattern.svg Missing (404)**
 
 **Problem:**
+
 ```javascript
 // Footer.tsx was trying to load non-existent file
 <div className="bg-[url('/pattern.svg')]" />
 ```
 
 **Solution:**
+
 ```javascript
 // Replaced with gradient overlay
 <div className="bg-gradient-to-br from-white/5 to-transparent opacity-20" />
@@ -14169,24 +15176,29 @@ From the console logs:
 ### 2. **Google Maps API Key (403)**
 
 **Problem:**
+
 ```javascript
 // Using placeholder API key
 src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=...`}
 ```
 
 **Solution:**
+
 ```javascript
 // Replaced with placeholder until real API key is added
 <div className="h-48 bg-muted flex items-center justify-center">
-    <MapPin icon />
-    <p>Map View</p>
-    <p>{latitude}, {longitude}</p>
+  <MapPin icon />
+  <p>Map View</p>
+  <p>
+    {latitude}, {longitude}
+  </p>
 </div>
 ```
 
 **Result:** ✅ No more 403 error
 
 **To Add Real Map Later:**
+
 1. Get Google Maps API key from Google Cloud Console
 2. Add to `.env.local`: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_key`
 3. Replace placeholder with iframe using the key
@@ -14196,6 +15208,7 @@ src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=
 ### 3. **Logo URL Empty**
 
 **Problem:**
+
 ```
 Logo URL: "" (empty string)
 ```
@@ -14203,16 +15216,18 @@ Logo URL: "" (empty string)
 **Cause:** Images uploaded but not saved to database
 
 **Solution:** Fixed in previous update
+
 ```javascript
 // Now saves logo and gallery to database
 const updateData = {
-    ...formData,
-    logo_url: logoPreview,
-    gallery_images: galleryPreviews,
+  ...formData,
+  logo_url: logoPreview,
+  gallery_images: galleryPreviews,
 };
 ```
 
 **Action Needed:**
+
 1. Go to admin panel
 2. Edit university
 3. Upload logo again
@@ -14224,6 +15239,7 @@ const updateData = {
 ### 4. **Gallery Images Empty**
 
 **Problem:**
+
 ```
 Gallery Images: [] (empty array)
 ```
@@ -14233,6 +15249,7 @@ Gallery Images: [] (empty array)
 **Solution:** Fixed in previous update
 
 **Action Needed:**
+
 1. Go to admin panel
 2. Edit university
 3. Upload gallery images
@@ -14244,6 +15261,7 @@ Gallery Images: [] (empty array)
 ## 📊 Console Output Explained
 
 ### Current State:
+
 ```javascript
 Fetching university with slug: ningbo-university
 Error: null  // ✅ No database error
@@ -14253,6 +15271,7 @@ Gallery Images: []  // ⚠️ Not uploaded yet
 ```
 
 ### After Uploading Images:
+
 ```javascript
 Fetching university with slug: ningbo-university
 Error: null  // ✅ No database error
@@ -14266,15 +15285,18 @@ Gallery Images: ["data:image/png;base64,..."]  // ✅ Gallery saved
 ## 🎯 Summary
 
 ### Fixed Immediately:
+
 - ✅ Pattern.svg 404 error
 - ✅ Google Maps 403 error
 
 ### Requires Action:
+
 - ⚠️ Upload logo in admin
 - ⚠️ Upload gallery images in admin
 - ⚠️ Click Save
 
 ### Optional (Future):
+
 - 📝 Add Google Maps API key for real maps
 - 📝 Use Supabase Storage instead of base64
 - 📝 Optimize image sizes
@@ -14289,8 +15311,6 @@ Gallery Images: ["data:image/png;base64,..."]  // ✅ Gallery saved
 4. **Refresh public page** - Images will appear!
 
 **All console errors are now fixed!** ✅
-
-
 
 ==================================================
 FILE: ./docs/guides/DATABASE_SETUP_COMPLETE.md
@@ -14307,9 +15327,11 @@ This guide contains **all database migrations** needed to run the Study At China
 ## 📋 Migration Files
 
 ### 1. **Universities Table Migration**
+
 **File:** `DATABASE_MIGRATION_UNIVERSITIES.sql`
 
 Adds all new columns to universities table:
+
 - ✅ `name_local` - Chinese name
 - ✅ `slug` - SEO-friendly URL (UNIQUE)
 - ✅ `province` - Province name
@@ -14324,9 +15346,11 @@ Adds all new columns to universities table:
 - ✅ `longitude` - Map longitude
 
 ### 2. **Program Catalog Migration**
+
 **File:** `DATABASE_MIGRATION_PROGRAMS.sql`
 
 Creates new program catalog system:
+
 - ✅ `program_catalog` table - Master program list
 - ✅ `university_programs` table - University-specific programs
 - ✅ `v_university_programs_full` view - Combined view
@@ -14337,16 +15361,19 @@ Creates new program catalog system:
 ## 🚀 How to Run Migrations
 
 ### Step 1: Open Supabase Dashboard
+
 1. Go to your Supabase project
 2. Click on "SQL Editor" in the sidebar
 
 ### Step 2: Run Universities Migration
+
 1. Copy content from `DATABASE_MIGRATION_UNIVERSITIES.sql`
 2. Paste into SQL Editor
 3. Click "Run" button
 4. Verify success ✅
 
 ### Step 3: Run Programs Migration
+
 1. Copy content from `DATABASE_MIGRATION_PROGRAMS.sql`
 2. Paste into SQL Editor
 3. Click "Run" button
@@ -14369,7 +15396,7 @@ CREATE TABLE universities (
     logo_url TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    
+
     -- New columns
     name_local VARCHAR(255),              -- Chinese name
     slug VARCHAR(255) UNIQUE,             -- SEO-friendly URL
@@ -14434,10 +15461,10 @@ CREATE TABLE university_programs (
 
 ```sql
 -- Verify all columns exist
-SELECT 
-    column_name, 
-    data_type 
-FROM information_schema.columns 
+SELECT
+    column_name,
+    data_type
+FROM information_schema.columns
 WHERE table_name = 'universities'
 ORDER BY ordinal_position;
 ```
@@ -14449,9 +15476,9 @@ ORDER BY ordinal_position;
 SELECT COUNT(*) as total_programs FROM program_catalog;
 
 -- View programs by category
-SELECT category, COUNT(*) as count 
-FROM program_catalog 
-GROUP BY category 
+SELECT category, COUNT(*) as count
+FROM program_catalog
+GROUP BY category
 ORDER BY count DESC;
 ```
 
@@ -14459,10 +15486,10 @@ ORDER BY count DESC;
 
 ```sql
 -- Verify indexes exist
-SELECT 
-    indexname, 
-    tablename 
-FROM pg_indexes 
+SELECT
+    indexname,
+    tablename
+FROM pg_indexes
 WHERE tablename IN ('universities', 'program_catalog', 'university_programs');
 ```
 
@@ -14471,12 +15498,14 @@ WHERE tablename IN ('universities', 'program_catalog', 'university_programs');
 ## 🔧 Troubleshooting
 
 ### Error: "column already exists"
+
 ```sql
 -- This is OK! It means the column was already added
 -- The migration uses IF NOT EXISTS to prevent errors
 ```
 
 ### Error: "relation does not exist"
+
 ```sql
 -- Make sure you're running the migration in the correct database
 -- Check that the universities table exists first
@@ -14484,12 +15513,13 @@ SELECT * FROM universities LIMIT 1;
 ```
 
 ### Error: "duplicate key value violates unique constraint"
+
 ```sql
 -- This means you have duplicate slugs
 -- Run this to find duplicates:
-SELECT slug, COUNT(*) 
-FROM universities 
-GROUP BY slug 
+SELECT slug, COUNT(*)
+FROM universities
+GROUP BY slug
 HAVING COUNT(*) > 1;
 
 -- Fix by updating duplicates manually
@@ -14503,10 +15533,10 @@ HAVING COUNT(*) > 1;
 
 ```sql
 INSERT INTO universities (
-    name, 
-    name_local, 
-    slug, 
-    city, 
+    name,
+    name_local,
+    slug,
+    city,
     province,
     founded,
     total_students,
@@ -14535,12 +15565,12 @@ INSERT INTO universities (
 
 ```sql
 INSERT INTO program_catalog (
-    title, 
-    category, 
-    field, 
-    level, 
+    title,
+    category,
+    field,
+    level,
     typical_duration
-) VALUES 
+) VALUES
 ('Business Administration', 'Business & Management', 'General Business', 'Bachelor', '4 years'),
 ('Computer Science', 'Engineering & Technology', 'Computer Science', 'Bachelor', '4 years'),
 ('MBBS', 'Medicine & Health Sciences', 'Medicine', 'Bachelor', '6 years');
@@ -14648,8 +15678,6 @@ After running all migrations, you'll have:
 
 **Your database is now ready for production!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/DEPLOYMENT.md
 ==================================================
@@ -14699,12 +15727,12 @@ This guide covers the steps to deploy the StudyAtChina application to production
     - **Root Directory**: `./` (default)
 3.  **Environment Variables**:
     - Add the following variables:
-        - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase Project URL
-        - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase Anon Key
-        - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase Service Role Key
-        - `STRIPE_SECRET_KEY`: Your Stripe Secret Key
-        - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Your Stripe Publishable Key
-        - `NEXT_PUBLIC_SITE_URL`: Your production domain (e.g., `https://studyatchina.com`)
+      - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase Project URL
+      - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase Anon Key
+      - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase Service Role Key
+      - `STRIPE_SECRET_KEY`: Your Stripe Secret Key
+      - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: Your Stripe Publishable Key
+      - `NEXT_PUBLIC_SITE_URL`: Your production domain (e.g., `https://studyatchina.com`)
 4.  **Deploy**:
     - Click **Deploy**. Vercel will build and deploy your application.
 
@@ -14721,8 +15749,6 @@ This guide covers the steps to deploy the StudyAtChina application to production
 - **Database Connection**: Verify your environment variables are correct.
 - **CORS Issues**: Ensure your Supabase project allows requests from your production domain.
 
-
-
 ==================================================
 FILE: ./docs/guides/DESIGN_HIGHLIGHTS.md
 ==================================================
@@ -14732,7 +15758,9 @@ FILE: ./docs/guides/DESIGN_HIGHLIGHTS.md
 ## Visual Transformation
 
 ### 🌟 Hero Section
+
 **The WOW Factor**
+
 - **Massive Typography**: Text scales up to 9xl (144px+) on large screens
 - **Animated Gradient Background**: Shifting colors create depth and movement
 - **Floating Orbs**: Three animated blur orbs create atmospheric depth
@@ -14742,7 +15770,9 @@ FILE: ./docs/guides/DESIGN_HIGHLIGHTS.md
 - **Scroll Indicator**: Bouncing arrow guides users to explore
 
 ### 💎 Why Study Section
+
 **8 Reasons, 8 Colors**
+
 1. **World-Class Universities** - Primary Red gradient
 2. **Affordable Excellence** - Gold gradient
 3. **Career Launchpad** - Jade Green gradient
@@ -14753,13 +15783,16 @@ FILE: ./docs/guides/DESIGN_HIGHLIGHTS.md
 8. **Recognition Worldwide** - Amber-Yellow gradient
 
 Each card features:
+
 - Unique gradient on hover
 - Scaling icon (16x16 → 18x18)
 - Decorative corner element
 - Smooth shadow transitions
 
 ### 🎓 Featured Programs
+
 **Premium Card Design**
+
 - **2px Borders**: Subtle to primary on hover
 - **Image Overlays**: Gradient from black to transparent
 - **Glassmorphic Badges**: Frosted glass with white text
@@ -14769,7 +15802,9 @@ Each card features:
 - **CTA Button**: Gradient from primary to red-600
 
 ### 🚀 How It Works
+
 **6-Step Journey**
+
 - **Numbered Badges**: Gradient circles with white numbers
 - **Gradient Icons**: Each step has unique color gradient (20x20)
 - **Connecting Line**: Subtle gradient line connects all steps
@@ -14778,7 +15813,9 @@ Each card features:
 - **Step Descriptions**: More detailed and helpful
 
 ### 🧭 Navigation
+
 **Smart Navbar**
+
 - **Scroll Detection**: Changes from transparent to solid at 50px
 - **Logo Glow**: Animated blur effect on logo background
 - **Dual-Line Logo**: Brand name + tagline
@@ -14787,7 +15824,9 @@ Each card features:
 - **Get Started Button**: Gradient with Sparkles icon
 
 ### 📧 Footer
+
 **Newsletter First**
+
 - **Gradient Banner**: Full-width primary to red-600 gradient
 - **Pattern Overlay**: Subtle texture (10% opacity)
 - **Email Input**: Glassmorphic with white/20 background
@@ -14800,16 +15839,19 @@ Each card features:
 ## 🎨 Color Psychology
 
 ### Primary Red (#DC2626 area)
+
 - **Meaning**: Energy, passion, determination
 - **Usage**: CTAs, important elements, brand identity
 - **Effect**: Draws attention, encourages action
 
 ### Secondary Gold (#F59E0B area)
+
 - **Meaning**: Prestige, excellence, achievement
 - **Usage**: Accents, badges, highlights
 - **Effect**: Conveys premium quality
 
 ### Accent Jade (#10B981 area)
+
 - **Meaning**: Growth, harmony, prosperity
 - **Usage**: Success indicators, positive actions
 - **Effect**: Reassuring and forward-looking
@@ -14819,6 +15861,7 @@ Each card features:
 ## ✨ Animation Choreography
 
 ### Page Load Sequence
+
 1. **Navbar**: Slides down from top (0.6s)
 2. **Hero Badge**: Scales in with spring (0.6s)
 3. **Hero Title**: Fades up (0.8s delay)
@@ -14828,11 +15871,13 @@ Each card features:
 7. **Scroll Indicator**: Fades in (1.5s delay)
 
 ### Scroll Animations
+
 - **Sections**: Fade up when 50% visible
 - **Cards**: Stagger children (0.1-0.15s delay)
 - **Once**: true (animations play only once)
 
 ### Hover Interactions
+
 - **Cards**: Lift -8px, shadow increases
 - **Buttons**: Scale 105%, shadow enhances
 - **Icons**: Rotate or scale
@@ -14843,15 +15888,18 @@ Each card features:
 ## 📐 Spacing System
 
 ### Section Padding
+
 - **Mobile**: py-20 (80px)
 - **Desktop**: py-32 (128px)
 
 ### Card Spacing
+
 - **Gap**: 6-8 (24-32px)
 - **Padding**: p-6 to p-8 (24-32px)
 - **Margin**: mb-16 to mb-20 (64-80px)
 
 ### Border Radius
+
 - **Small**: rounded-xl (12px)
 - **Medium**: rounded-2xl (16px)
 - **Large**: rounded-3xl (24px)
@@ -14861,17 +15909,20 @@ Each card features:
 ## 🎯 Interaction States
 
 ### Buttons
+
 - **Default**: Gradient background, shadow-lg
 - **Hover**: Scale 105%, shadow-xl
 - **Active**: Scale 98%
 - **Focus**: Ring-2 with primary color
 
 ### Cards
+
 - **Default**: Border-2, shadow-lg
 - **Hover**: Border-primary/50, shadow-2xl, -8px lift
 - **Focus**: Ring-2 outline
 
 ### Links
+
 - **Default**: Muted foreground
 - **Hover**: Primary color, scale 105%
 - **Active**: Darker primary
@@ -14881,24 +15932,28 @@ Each card features:
 ## 🌈 Gradient Recipes
 
 ### Primary Gradient
+
 ```css
 from-primary to-red-600
 /* Use for: CTAs, important buttons */
 ```
 
 ### Secondary Gradient
+
 ```css
 from-secondary to-yellow-500
 /* Use for: Badges, highlights */
 ```
 
 ### Accent Gradient
+
 ```css
 from-accent to-green-500
 /* Use for: Success states, positive actions */
 ```
 
 ### Hero Background
+
 ```css
 from-primary via-red-600 to-orange-500
 /* Animated with background-size: 200% 200% */
@@ -14909,6 +15964,7 @@ from-primary via-red-600 to-orange-500
 ## 🎭 Glassmorphism Effects
 
 ### Light Glass
+
 ```css
 .glass {
   background: rgba(255, 255, 255, 0.1);
@@ -14918,6 +15974,7 @@ from-primary via-red-600 to-orange-500
 ```
 
 ### Dark Glass
+
 ```css
 .glass-dark {
   background: rgba(0, 0, 0, 0.3);
@@ -14927,6 +15984,7 @@ from-primary via-red-600 to-orange-500
 ```
 
 **Usage**:
+
 - Search widget
 - Stat cards
 - Badges
@@ -14937,17 +15995,20 @@ from-primary via-red-600 to-orange-500
 ## 📱 Responsive Breakpoints
 
 ### Mobile (< 768px)
+
 - Single column layouts
 - Larger touch targets (h-12, h-16)
 - Simplified animations
 - Hamburger menu
 
 ### Tablet (768px - 1024px)
+
 - 2-column grids
 - Medium spacing
 - Partial animations
 
 ### Desktop (> 1024px)
+
 - 3-4 column grids
 - Full animations
 - Hover effects
@@ -14958,6 +16019,7 @@ from-primary via-red-600 to-orange-500
 ## 🚀 Performance Features
 
 ### Optimizations
+
 - **GPU Acceleration**: Transform and opacity animations
 - **Lazy Loading**: Scroll-triggered animations
 - **Once Property**: Animations play once, not on every scroll
@@ -14965,6 +16027,7 @@ from-primary via-red-600 to-orange-500
 - **Debounced Scroll**: Navbar state changes throttled
 
 ### Bundle Size
+
 - **Framer Motion**: Tree-shaken, only used features
 - **Lucide Icons**: Individual imports
 - **Tailwind**: Purged unused styles
@@ -14975,16 +16038,19 @@ from-primary via-red-600 to-orange-500
 ## 🎨 Typography Scale
 
 ### Headings
+
 - **Hero**: text-9xl (144px) → text-6xl mobile
 - **Section**: text-6xl (60px) → text-4xl mobile
 - **Card**: text-2xl (24px) → text-xl mobile
 
 ### Body
+
 - **Large**: text-xl (20px)
 - **Base**: text-lg (18px)
 - **Small**: text-sm (14px)
 
 ### Weights
+
 - **Black**: font-black (900) - Hero titles
 - **Bold**: font-bold (700) - Headings
 - **Semibold**: font-semibold (600) - Buttons
@@ -14996,6 +16062,7 @@ from-primary via-red-600 to-orange-500
 ## 🎯 Call-to-Action Hierarchy
 
 ### Primary CTAs
+
 - Gradient background (primary → red-600)
 - Large size (px-10 py-5)
 - Bold font
@@ -15003,12 +16070,14 @@ from-primary via-red-600 to-orange-500
 - Shadow-2xl
 
 ### Secondary CTAs
+
 - Outline style (border-2)
 - Medium size (px-8 py-4)
 - Semibold font
 - Hover fills with primary
 
 ### Tertiary CTAs
+
 - Ghost style
 - Small size (px-4 py-2)
 - Medium font
@@ -15019,18 +16088,21 @@ from-primary via-red-600 to-orange-500
 ## 💫 Micro-interactions
 
 ### Icon Animations
+
 - **Search Icon**: Rotates 12° on hover
 - **Arrow Icons**: Translates 4px right on hover
 - **Sparkles**: Pulse animation
 - **Chevron**: Bounces on scroll indicator
 
 ### Card Interactions
+
 - **Image**: Scales 110% on hover
 - **Border**: Changes color on hover
 - **Shadow**: Increases on hover
 - **Content**: Lifts -8px on hover
 
 ### Button Interactions
+
 - **Scale**: 105% on hover
 - **Shadow**: Increases on hover
 - **Icon**: Rotates or translates
@@ -15046,8 +16118,6 @@ from-primary via-red-600 to-orange-500
 
 🎉 **Ready to Impress!**
 
-
-
 ==================================================
 FILE: ./docs/guides/GALLERY_VIDEO_FEATURE.md
 ==================================================
@@ -15061,11 +16131,13 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ## ✨ Features Added
 
 ### Backend (Admin):
+
 1. **Logo Upload** - File upload with preview
 2. **Gallery Upload** - Multiple images (up to 10)
 3. **Video URL** - YouTube/Vimeo with live preview
 
 ### Frontend (Public):
+
 1. **University Tour** - Embedded video player
 2. **Campus Gallery** - Beautiful image grid with hover effects
 
@@ -15076,6 +16148,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ### Admin Backend:
 
 #### Video URL Input:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Video (YouTube/Vimeo)        │
@@ -15093,6 +16166,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 ```
 
 #### Features:
+
 - ✅ Accepts YouTube URLs
 - ✅ Accepts Vimeo URLs
 - ✅ Live preview in admin
@@ -15100,6 +16174,7 @@ Added **Gallery** and **Video** sections to both frontend (public university pag
 - ✅ Extracts video ID automatically
 
 #### Supported Formats:
+
 ```
 YouTube:
 ✓ https://www.youtube.com/watch?v=VIDEO_ID
@@ -15112,6 +16187,7 @@ Vimeo:
 ### Public Frontend:
 
 #### University Tour Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Tour                         │
@@ -15127,6 +16203,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ Full-width responsive player
 - ✅ 16:9 aspect ratio
 - ✅ Autoplay controls
@@ -15140,6 +16217,7 @@ Vimeo:
 ### Admin Backend:
 
 #### Gallery Upload:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Gallery                      │
@@ -15161,6 +16239,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ Upload up to 10 images
 - ✅ Grid preview (4 columns desktop, 2 mobile)
 - ✅ Remove individual images (X on hover)
@@ -15171,6 +16250,7 @@ Vimeo:
 ### Public Frontend:
 
 #### Campus Gallery Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Campus Gallery                          │
@@ -15187,6 +16267,7 @@ Vimeo:
 ```
 
 #### Features:
+
 - ✅ 3-column grid (desktop)
 - ✅ 2-column grid (mobile)
 - ✅ Hover zoom effect
@@ -15200,6 +16281,7 @@ Vimeo:
 ## 🎨 Visual Effects
 
 ### Gallery Hover Effect:
+
 ```css
 Normal State:
 - Image at 100% scale
@@ -15212,6 +16294,7 @@ Hover State:
 ```
 
 ### Video Player:
+
 ```css
 - Aspect ratio: 16:9
 - Full width responsive
@@ -15225,8 +16308,9 @@ Hover State:
 ## 📊 Database Schema
 
 ### universities table needs:
+
 ```sql
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN video_url TEXT,
 ADD COLUMN gallery_images TEXT[];
 
@@ -15239,6 +16323,7 @@ ADD COLUMN gallery_images TEXT[];
 ## 🔧 Technical Implementation
 
 ### Admin - Video Preview:
+
 ```typescript
 {formData.video_url && (
     <div className="aspect-video bg-black rounded-lg overflow-hidden">
@@ -15258,38 +16343,40 @@ ADD COLUMN gallery_images TEXT[];
 ```
 
 ### Admin - Gallery Upload:
+
 ```typescript
 const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    
-    // Validate max 10 images
-    if (galleryPreviews.length + files.length > 10) {
-        toast.error('Maximum 10 images allowed');
-        return;
-    }
-    
-    // Process each file
-    files.forEach(file => {
-        // Validate type and size
-        if (!file.type.startsWith('image/')) return;
-        if (file.size > 5 * 1024 * 1024) return;
-        
-        // Create preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setGalleryPreviews(prev => [...prev, reader.result]);
-        };
-        reader.readAsDataURL(file);
-    });
+  const files = Array.from(e.target.files || []);
+
+  // Validate max 10 images
+  if (galleryPreviews.length + files.length > 10) {
+    toast.error("Maximum 10 images allowed");
+    return;
+  }
+
+  // Process each file
+  files.forEach((file) => {
+    // Validate type and size
+    if (!file.type.startsWith("image/")) return;
+    if (file.size > 5 * 1024 * 1024) return;
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setGalleryPreviews((prev) => [...prev, reader.result]);
+    };
+    reader.readAsDataURL(file);
+  });
 };
 ```
 
 ### Frontend - Gallery Display:
+
 ```typescript
 {university.gallery_images?.map((image, index) => (
     <Card key={index} className="group cursor-pointer">
         <div className="aspect-video relative overflow-hidden">
-            <img 
+            <img
                 src={image}
                 className="transition-transform group-hover:scale-110"
             />
@@ -15304,6 +16391,7 @@ const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 ```
 Video: Full width
 Gallery: 3 columns
@@ -15311,6 +16399,7 @@ Upload Grid: 4 columns
 ```
 
 ### Tablet:
+
 ```
 Video: Full width
 Gallery: 2 columns
@@ -15318,6 +16407,7 @@ Upload Grid: 3 columns
 ```
 
 ### Mobile:
+
 ```
 Video: Full width
 Gallery: 2 columns
@@ -15329,12 +16419,14 @@ Upload Grid: 2 columns
 ## ✅ Validation Rules
 
 ### Video URL:
+
 - ✅ YouTube URLs (youtube.com, youtu.be)
 - ✅ Vimeo URLs (vimeo.com)
 - ❌ Other video platforms
 - ℹ️ Shows "Invalid video URL" if unsupported
 
 ### Gallery Images:
+
 - ✅ Image files only (PNG, JPG, GIF, WebP)
 - ✅ Max 5MB per image
 - ✅ Max 10 images total
@@ -15348,12 +16440,14 @@ Upload Grid: 2 columns
 ### Admin Workflow:
 
 **Add Video:**
+
 1. Paste YouTube/Vimeo URL
 2. See instant preview
 3. Verify video is correct
 4. Save
 
 **Add Gallery:**
+
 1. Click upload area
 2. Select multiple images
 3. See grid preview
@@ -15364,12 +16458,14 @@ Upload Grid: 2 columns
 ### Public View:
 
 **Video Section:**
+
 - Appears after Admission Requirements
 - Full-width embedded player
 - Users can play, pause, fullscreen
 - Only shows if video URL exists
 
 **Gallery Section:**
+
 - Appears after Video section
 - Beautiful grid layout
 - Hover to zoom images
@@ -15381,6 +16477,7 @@ Upload Grid: 2 columns
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Lightbox** - Click image to view full size
 2. **Image Captions** - Add descriptions to gallery images
 3. **Video Thumbnail** - Custom thumbnail for video
@@ -15394,18 +16491,18 @@ Upload Grid: 2 columns
 
 ## 📊 Complete Feature Matrix
 
-| Feature | Admin | Public |
-|---------|-------|--------|
-| **Logo Upload** | ✅ File upload | ✅ Display |
-| **Gallery Upload** | ✅ Multi-file | ✅ Grid display |
-| **Gallery Remove** | ✅ Individual | - |
-| **Gallery Limit** | ✅ 10 max | - |
-| **Video URL** | ✅ Input + Preview | ✅ Embedded player |
-| **YouTube Support** | ✅ | ✅ |
-| **Vimeo Support** | ✅ | ✅ |
-| **Hover Effects** | - | ✅ Zoom + Overlay |
-| **Responsive** | ✅ | ✅ |
-| **Validation** | ✅ | - |
+| Feature             | Admin              | Public             |
+| ------------------- | ------------------ | ------------------ |
+| **Logo Upload**     | ✅ File upload     | ✅ Display         |
+| **Gallery Upload**  | ✅ Multi-file      | ✅ Grid display    |
+| **Gallery Remove**  | ✅ Individual      | -                  |
+| **Gallery Limit**   | ✅ 10 max          | -                  |
+| **Video URL**       | ✅ Input + Preview | ✅ Embedded player |
+| **YouTube Support** | ✅                 | ✅                 |
+| **Vimeo Support**   | ✅                 | ✅                 |
+| **Hover Effects**   | -                  | ✅ Zoom + Overlay  |
+| **Responsive**      | ✅                 | ✅                 |
+| **Validation**      | ✅                 | -                  |
 
 ---
 
@@ -15414,6 +16511,7 @@ Upload Grid: 2 columns
 A **complete multimedia system** for universities featuring:
 
 ### Backend:
+
 - ✅ Logo file upload
 - ✅ Gallery management (up to 10 images)
 - ✅ Video URL with live preview
@@ -15421,6 +16519,7 @@ A **complete multimedia system** for universities featuring:
 - ✅ Progress indicators
 
 ### Frontend:
+
 - ✅ University Tour video section
 - ✅ Campus Gallery with hover effects
 - ✅ Responsive design
@@ -15428,8 +16527,6 @@ A **complete multimedia system** for universities featuring:
 - ✅ Professional presentation
 
 **Perfect for showcasing universities with rich media content!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/HOMEPAGE_DYNAMIC_UPDATE.md
@@ -15475,22 +16572,23 @@ Added all necessary fields to the universities query:
 
 ```typescript
 interface University {
-    id: string;
-    name: string;
-    slug: string;              // ✅ NEW
-    city: string;
-    province?: string;         // ✅ NEW
-    description: string;
-    logo_url?: string;         // ✅ NEW
-    founded?: string;          // ✅ NEW
-    total_students?: string;   // ✅ NEW
-    ranking?: string;          // ✅ NEW
+  id: string;
+  name: string;
+  slug: string; // ✅ NEW
+  city: string;
+  province?: string; // ✅ NEW
+  description: string;
+  logo_url?: string; // ✅ NEW
+  founded?: string; // ✅ NEW
+  total_students?: string; // ✅ NEW
+  ranking?: string; // ✅ NEW
 }
 ```
 
 ### 3. **University Cards Made Dynamic**
 
 #### Logo/Image:
+
 ```typescript
 // Before: Static placeholder
 src="https://images.unsplash.com/photo-..."
@@ -15500,6 +16598,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Ranking Badge:
+
 ```typescript
 // Before: Always "Top Ranked"
 <div>Top Ranked</div>
@@ -15511,6 +16610,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Location:
+
 ```typescript
 // Before: Only city
 <span>{uni.city}</span>
@@ -15520,6 +16620,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Stats:
+
 ```typescript
 // Before: Hardcoded
 <span>50+</span>  // Programs
@@ -15535,6 +16636,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Description:
+
 ```typescript
 // Before: No description shown
 
@@ -15545,6 +16647,7 @@ src={uni.logo_url || "fallback-image-url"}
 ```
 
 #### Link:
+
 ```typescript
 // Before: Using ID
 href={`/universities/${uni.id}`}
@@ -15586,7 +16689,7 @@ href={`/universities/${uni.slug}`}
 1. Homepage loads
    ↓
 2. Query universities table
-   SELECT id, name, slug, city, province, 
+   SELECT id, name, slug, city, province,
           logo_url, founded, total_students, ranking
    FROM universities
    ORDER BY created_at DESC
@@ -15603,26 +16706,28 @@ href={`/universities/${uni.slug}`}
 
 ## ✅ What's Now Dynamic
 
-| Field | Before | After |
-|-------|--------|-------|
-| **Logo** | Static placeholder | ✅ From database |
-| **Ranking** | "Top Ranked" | ✅ From database |
-| **Location** | City only | ✅ City + Province |
-| **Founded** | Hardcoded | ✅ From database |
-| **Students** | Hardcoded | ✅ From database |
-| **Description** | Not shown | ✅ From database |
-| **Link** | UUID | ✅ Slug (SEO) |
+| Field           | Before             | After              |
+| --------------- | ------------------ | ------------------ |
+| **Logo**        | Static placeholder | ✅ From database   |
+| **Ranking**     | "Top Ranked"       | ✅ From database   |
+| **Location**    | City only          | ✅ City + Province |
+| **Founded**     | Hardcoded          | ✅ From database   |
+| **Students**    | Hardcoded          | ✅ From database   |
+| **Description** | Not shown          | ✅ From database   |
+| **Link**        | UUID               | ✅ Slug (SEO)      |
 
 ---
 
 ## 🔗 URL Structure
 
 ### Before:
+
 ```
 ❌ /universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 ```
 
 ### After:
+
 ```
 ✅ /universities/tsinghua-university
 ✅ /universities/peking-university
@@ -15657,21 +16762,25 @@ href={`/universities/${uni.slug}`}
 ## 🚀 Benefits
 
 ### 1. **Fully Dynamic**
+
 - All data from database
 - No hardcoded values
 - Easy to update
 
 ### 2. **SEO Friendly**
+
 - Slug-based URLs
 - Descriptive links
 - Better rankings
 
 ### 3. **Better UX**
+
 - Real university data
 - Accurate information
 - Professional appearance
 
 ### 4. **Maintainable**
+
 - Update database, not code
 - Consistent data
 - Scalable
@@ -15697,6 +16806,7 @@ href={`/universities/${uni.slug}`}
 ## 📊 Grid Layout
 
 ### Desktop (lg):
+
 ```
 ┌────┐ ┌────┐ ┌────┐ ┌────┐
 │ U1 │ │ U2 │ │ U3 │ │ U4 │
@@ -15707,6 +16817,7 @@ href={`/universities/${uni.slug}`}
 ```
 
 ### Tablet (md):
+
 ```
 ┌────┐ ┌────┐
 │ U1 │ │ U2 │
@@ -15717,6 +16828,7 @@ href={`/universities/${uni.slug}`}
 ```
 
 ### Mobile:
+
 ```
 ┌────┐
 │ U1 │
@@ -15731,6 +16843,7 @@ href={`/universities/${uni.slug}`}
 ## 🎉 Result
 
 The homepage now displays:
+
 - ✅ **6 featured universities** (increased from 4)
 - ✅ **Real data** from database
 - ✅ **Dynamic content** (no hardcoded values)
@@ -15740,8 +16853,6 @@ The homepage now displays:
 
 **Elite Universities section is now fully dynamic and working!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/HOME_PAGE_IMPROVEMENTS.md
 ==================================================
@@ -15749,6 +16860,7 @@ FILE: ./docs/guides/HOME_PAGE_IMPROVEMENTS.md
 # Home Page Improvements Summary
 
 ## Overview
+
 The home page has been completely redesigned and enhanced with modern, premium components that create a cohesive and engaging user experience.
 
 ## What Was Fixed/Added
@@ -15756,8 +16868,9 @@ The home page has been completely redesigned and enhanced with modern, premium c
 ### 1. **Redesigned Existing Sections** ✅
 
 #### ScholarshipsSection
+
 - **Before**: Basic card layout with minimal styling
-- **After**: 
+- **After**:
   - Modern gradient badges and icons
   - Animated cards with hover effects
   - Added scholarship amounts and award details
@@ -15766,6 +16879,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
   - Decorative background elements
 
 #### TestimonialsSection
+
 - **Before**: Simple testimonial cards
 - **After**:
   - Added 5-star rating display
@@ -15776,6 +16890,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
   - Quote icon background decoration
 
 #### FAQPreviewSection
+
 - **Before**: Basic accordion with simple styling
 - **After**:
   - Numbered FAQ items for better UX
@@ -15788,6 +16903,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 ### 2. **New Sections Added** ✨
 
 #### StatsSection (NEW)
+
 - Dark background with animated gradient orbs
 - 8 key statistics with count-up animations:
   - 500+ Partner Universities
@@ -15802,6 +16918,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 - Glassmorphism design with backdrop blur
 
 #### PartnersSection (NEW)
+
 - Showcase of 6 top partner universities
 - 3 recognition badges:
   - UNESCO Recognized
@@ -15828,6 +16945,7 @@ The home page now includes **10 comprehensive sections**:
 ## Design Improvements
 
 ### Visual Enhancements
+
 - ✅ Consistent gradient badges across all sections
 - ✅ Animated decorative background elements (gradient orbs)
 - ✅ Smooth hover effects and transitions
@@ -15837,6 +16955,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ Consistent color scheme (red, yellow, blue, purple, green gradients)
 
 ### User Experience
+
 - ✅ Count-up animations for statistics
 - ✅ Staggered animations for grid items
 - ✅ Hover states on all interactive elements
@@ -15846,6 +16965,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ Accessibility considerations
 
 ### Typography & Spacing
+
 - ✅ Consistent heading hierarchy
 - ✅ Proper spacing between sections (py-16)
 - ✅ Readable font sizes
@@ -15855,6 +16975,7 @@ The home page now includes **10 comprehensive sections**:
 ## Technical Implementation
 
 ### Components Created/Modified
+
 - ✅ `ScholarshipsSection.tsx` - Completely redesigned
 - ✅ `TestimonialsSection.tsx` - Completely redesigned
 - ✅ `FAQPreviewSection.tsx` - Completely redesigned
@@ -15863,6 +16984,7 @@ The home page now includes **10 comprehensive sections**:
 - ✅ `page.tsx` - Updated to include new sections
 
 ### Features Used
+
 - Framer Motion for animations
 - React hooks (useState, useEffect, useRef)
 - Intersection Observer (useInView)
@@ -15874,6 +16996,7 @@ The home page now includes **10 comprehensive sections**:
 ## Result
 
 The home page is now a **complete, modern, and engaging landing page** that:
+
 - ✅ Showcases all key information about studying in China
 - ✅ Builds trust through statistics and testimonials
 - ✅ Provides clear pathways for user action
@@ -15889,8 +17012,6 @@ The home page is now a **complete, modern, and engaging landing page** that:
 4. Implement video testimonials
 5. Add live chat widget
 6. Create interactive program comparison tool
-
-
 
 ==================================================
 FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
@@ -16059,6 +17180,7 @@ FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
 ## 🎨 Design Features
 
 ### Animations
+
 - ✅ Parallax scrolling on hero
 - ✅ Staggered card animations
 - ✅ Count-up number animations
@@ -16067,6 +17189,7 @@ FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
 - ✅ Pulsing badges and indicators
 
 ### Visual Elements
+
 - ✅ Gradient backgrounds (red, yellow, blue, purple, green)
 - ✅ Decorative gradient orbs
 - ✅ Glassmorphism effects
@@ -16075,6 +17198,7 @@ FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
 - ✅ Icon-based visual hierarchy
 
 ### User Experience
+
 - ✅ Clear CTAs throughout
 - ✅ Trust indicators and social proof
 - ✅ Mobile-responsive design
@@ -16098,8 +17222,6 @@ FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
 - Minimal bundle size
 - Fast page load times
 
-
-
 ==================================================
 FILE: ./docs/guides/HOW_TO_UPLOAD_IMAGES.md
 ==================================================
@@ -16115,6 +17237,7 @@ Background image and logo not showing on university page because they haven't be
 ## ✅ Solution: Upload Images in Admin
 
 ### Step 1: Go to Admin Edit Page
+
 ```
 1. Login to admin panel
 2. Go to Universities
@@ -16123,6 +17246,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 ### Step 2: Upload Logo
+
 ```
 ┌─────────────────────────────────┐
 │ University Logo                 │
@@ -16138,6 +17262,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 **Instructions:**
+
 1. Click the upload area
 2. Select your university logo (PNG, JPG, GIF)
 3. Max size: 5MB
@@ -16145,6 +17270,7 @@ Background image and logo not showing on university page because they haven't be
 5. Click Save
 
 ### Step 3: Upload Gallery Images
+
 ```
 ┌─────────────────────────────────┐
 │ University Gallery              │
@@ -16160,6 +17286,7 @@ Background image and logo not showing on university page because they haven't be
 ```
 
 **Instructions:**
+
 1. Click the upload area
 2. Select multiple images (up to 10)
 3. Max size per image: 5MB
@@ -16172,17 +17299,21 @@ Background image and logo not showing on university page because they haven't be
 ## 📊 What Happens After Upload
 
 ### Logo:
+
 ```
 Admin Upload → Database (logo_url) → Public Page
 ```
+
 - Displays in header card
 - Shows in stats section
 - Fallback: University initials
 
 ### Gallery:
+
 ```
 Admin Upload → Database (gallery_images array) → Public Page
 ```
+
 - First image = Hero banner background
 - Rest = Gallery section
 - Fallback: Gradient background
@@ -16192,6 +17323,7 @@ Admin Upload → Database (gallery_images array) → Public Page
 ## 🎨 Image Recommendations
 
 ### Logo:
+
 - **Format**: PNG (transparent background)
 - **Size**: 500x500px minimum
 - **Aspect**: Square (1:1)
@@ -16199,12 +17331,13 @@ Admin Upload → Database (gallery_images array) → Public Page
 - **Background**: Transparent or white
 
 ### Gallery Images:
+
 - **Format**: JPG or PNG
 - **Size**: 1920x1080px minimum
 - **Aspect**: 16:9 (landscape)
 - **File Size**: Under 2MB each
 - **Quality**: High resolution
-- **Content**: 
+- **Content**:
   - Campus buildings
   - Classrooms
   - Library
@@ -16217,17 +17350,20 @@ Admin Upload → Database (gallery_images array) → Public Page
 ## 🔍 Debugging
 
 ### Check Console Logs:
+
 ```javascript
 console.log("Logo URL:", university?.logo_url);
 console.log("Gallery Images:", university?.gallery_images);
 ```
 
 ### If NULL or undefined:
+
 - Images not uploaded yet
 - Upload in admin panel
 - Save the university
 
 ### If showing but not displaying:
+
 - Check image URL is valid
 - Check image file exists
 - Check CORS settings
@@ -16238,6 +17374,7 @@ console.log("Gallery Images:", university?.gallery_images);
 ## 📝 Current Behavior
 
 ### Without Images:
+
 ```
 Logo: Shows university initials (e.g., "NU")
 Banner: Shows red gradient background
@@ -16245,6 +17382,7 @@ Gallery: Section hidden
 ```
 
 ### With Images:
+
 ```
 Logo: Shows uploaded logo
 Banner: Shows first gallery image
@@ -16285,11 +17423,13 @@ Before images will show:
 After uploading:
 
 **Header:**
+
 - ✅ Banner shows first gallery image
 - ✅ Logo shows in stats card
 - ✅ Professional appearance
 
 **Gallery Section:**
+
 - ✅ Shows all uploaded images
 - ✅ Hover zoom effects
 - ✅ Grid layout
@@ -16299,8 +17439,9 @@ After uploading:
 ## 📊 Database Check
 
 ### Verify images are saved:
+
 ```sql
-SELECT 
+SELECT
     name,
     logo_url,
     array_length(gallery_images, 1) as gallery_count
@@ -16309,6 +17450,7 @@ WHERE slug = 'ningbo-university';
 ```
 
 ### Expected output:
+
 ```
 name              | logo_url           | gallery_count
 Ningbo University | https://...        | 5
@@ -16319,14 +17461,13 @@ Ningbo University | https://...        | 5
 ## 🎉 Result
 
 Once images are uploaded in admin:
+
 - ✅ Logo displays in header
 - ✅ Banner shows gallery image
 - ✅ Gallery section appears
 - ✅ Professional university page
 
 **Upload images in the admin panel to see them on the public page!** 📸✨
-
-
 
 ==================================================
 FILE: ./docs/guides/IMAGE_UPLOAD_FEATURE.md
@@ -16341,12 +17482,14 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## ✨ Features Added
 
 ### 1. **Logo Upload**
+
 - Drag & drop or click to upload
 - Image preview before saving
 - Remove/replace functionality
 - File validation
 
 ### 2. **Gallery Upload**
+
 - Multiple image upload
 - Up to 10 images
 - Grid preview layout
@@ -16356,6 +17499,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 📸 Logo Upload
 
 ### UI Design:
+
 ```
 ┌─────────────────────────────────────────┐
 │ University Logo                         │
@@ -16370,6 +17514,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ```
 
 ### Features:
+
 - ✅ **Preview** - Shows uploaded image
 - ✅ **Remove button** (X) on preview
 - ✅ **File type validation** (images only)
@@ -16377,6 +17522,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 - ✅ **Toast notifications** for feedback
 
 ### Validation:
+
 ```javascript
 ✓ Accepts: PNG, JPG, JPEG, GIF, WebP
 ✓ Max size: 5MB
@@ -16387,6 +17533,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🖼️ Gallery Upload
 
 ### UI Design:
+
 ```
 ┌─────────────────────────────────────────────────┐
 │ University Gallery                              │
@@ -16404,6 +17551,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ```
 
 ### Features:
+
 - ✅ **Multiple upload** - Select multiple files at once
 - ✅ **Grid preview** - 4 columns on desktop, 2 on mobile
 - ✅ **Remove individual images** - X button on hover
@@ -16412,6 +17560,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 - ✅ **Responsive** - Adapts to screen size
 
 ### Validation:
+
 ```javascript
 ✓ Multiple files: Yes
 ✓ Max images: 10
@@ -16423,6 +17572,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🎨 User Experience
 
 ### Logo Upload Flow:
+
 1. Click upload area
 2. Select image file
 3. See instant preview
@@ -16430,6 +17580,7 @@ The university edit page now supports **file uploads** for logo and gallery imag
 5. Can remove and re-upload
 
 ### Gallery Upload Flow:
+
 1. Click upload area
 2. Select multiple images
 3. See grid of previews
@@ -16441,75 +17592,80 @@ The university edit page now supports **file uploads** for logo and gallery imag
 ## 🔧 Technical Implementation
 
 ### State Management:
+
 ```typescript
 const [logoPreview, setLogoPreview] = useState<string>("");
 const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
 ```
 
 ### Logo Upload Handler:
+
 ```typescript
 const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-        toast.error('Please upload an image file');
-        return;
-    }
-    
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-        toast.error('Image size should be less than 5MB');
-        return;
-    }
-    
-    // Create preview
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        setLogoPreview(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-    
-    toast.success('Logo uploaded successfully');
+  const file = e.target.files?.[0];
+
+  // Validate file type
+  if (!file.type.startsWith("image/")) {
+    toast.error("Please upload an image file");
+    return;
+  }
+
+  // Validate file size (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    toast.error("Image size should be less than 5MB");
+    return;
+  }
+
+  // Create preview
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    setLogoPreview(reader.result as string);
+  };
+  reader.readAsDataURL(file);
+
+  toast.success("Logo uploaded successfully");
 };
 ```
 
 ### Gallery Upload Handler:
+
 ```typescript
 const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    
-    // Validate total images (max 10)
-    if (galleryPreviews.length + files.length > 10) {
-        toast.error('Maximum 10 images allowed in gallery');
-        return;
-    }
-    
-    // Process each file
-    files.forEach(file => {
-        // Validate and create preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setGalleryPreviews(prev => [...prev, reader.result as string]);
-        };
-        reader.readAsDataURL(file);
-    });
-    
-    toast.success(`${files.length} image(s) added to gallery`);
+  const files = Array.from(e.target.files || []);
+
+  // Validate total images (max 10)
+  if (galleryPreviews.length + files.length > 10) {
+    toast.error("Maximum 10 images allowed in gallery");
+    return;
+  }
+
+  // Process each file
+  files.forEach((file) => {
+    // Validate and create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setGalleryPreviews((prev) => [...prev, reader.result as string]);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  toast.success(`${files.length} image(s) added to gallery`);
 };
 ```
 
 ### Remove Gallery Image:
+
 ```typescript
 const removeGalleryImage = (index: number) => {
-    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
-    toast.success('Image removed from gallery');
+  setGalleryPreviews((prev) => prev.filter((_, i) => i !== index));
+  toast.success("Image removed from gallery");
 };
 ```
 
 ## 🎯 Validation Rules
 
 ### File Type:
+
 - ✅ PNG
 - ✅ JPG/JPEG
 - ✅ GIF
@@ -16518,22 +17674,26 @@ const removeGalleryImage = (index: number) => {
 - ❌ PDF, DOC, etc.
 
 ### File Size:
+
 - ✅ Up to 5MB per image
 - ❌ Larger than 5MB
 
 ### Gallery Limits:
+
 - ✅ Up to 10 images total
 - ❌ More than 10 images
 
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 ```
 Logo: Side-by-side (preview + upload)
 Gallery: 4 columns grid
 ```
 
 ### Mobile:
+
 ```
 Logo: Stacked (preview on top, upload below)
 Gallery: 2 columns grid
@@ -16542,18 +17702,21 @@ Gallery: 2 columns grid
 ## 🎨 Visual Features
 
 ### Logo Upload Area:
+
 - Dashed border
 - Upload icon
 - Hover effect (border color change)
 - Click anywhere to upload
 
 ### Logo Preview:
+
 - 128x128px box
 - Object-contain (maintains aspect ratio)
 - Remove button (top-right)
 - Dashed border
 
 ### Gallery Grid:
+
 - Aspect ratio: 16:9
 - Object-cover (fills space)
 - Hover effect on images
@@ -16561,6 +17724,7 @@ Gallery: 2 columns grid
 - Smooth transitions
 
 ### Upload Feedback:
+
 - ✅ Success: Green toast
 - ❌ Error: Red toast
 - ℹ️ Info: Blue toast
@@ -16568,6 +17732,7 @@ Gallery: 2 columns grid
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Drag & Drop** - Drag files directly to upload area
 2. **Image Cropping** - Crop/resize before upload
 3. **Compression** - Auto-compress large images
@@ -16579,6 +17744,7 @@ Gallery: 2 columns grid
 ## 📊 Comparison
 
 ### Before (URL Input):
+
 ```
 ❌ Had to host images elsewhere
 ❌ Manual URL entry
@@ -16588,6 +17754,7 @@ Gallery: 2 columns grid
 ```
 
 ### After (File Upload):
+
 ```
 ✅ Direct file upload
 ✅ Instant preview
@@ -16610,6 +17777,7 @@ Gallery: 2 columns grid
 ## 🎉 Result
 
 The university edit page now has a **professional, user-friendly image upload system** that:
+
 - ✅ Replaces URL inputs with file uploads
 - ✅ Provides instant previews
 - ✅ Validates files properly
@@ -16618,8 +17786,6 @@ The university edit page now has a **professional, user-friendly image upload sy
 - ✅ Works perfectly on mobile
 
 **Perfect for managing university images!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/IMPROVEMENTS_SUMMARY.md
@@ -16636,6 +17802,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 1. ⚡ How It Works Section - COMPLETELY REDESIGNED
 
 ### What Changed:
+
 - **Timeline Layout**: Switched from grid to alternating timeline layout (zigzag pattern)
 - **Animated Icons**: Large 24x24 pulsing circles with rotating entrance animations
 - **Color Scheme**: Changed to blue/purple/cyan gradient spectrum (more professional)
@@ -16647,6 +17814,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **CTA Button**: Shimmer effect with animated gradient overlay
 
 ### New Features:
+
 - Step numbers in white circles with colored text
 - Alternating left/right layout on desktop
 - Vertical timeline on mobile with gradient line
@@ -16660,6 +17828,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 2. 🎨 Hero Section - COLOR SCHEME FIXED
 
 ### What Changed:
+
 - **Background**: Dark slate/blue gradient instead of bright red/orange
 - **Mesh Gradient**: Radial gradient with subtle blue tones
 - **Grid Pattern**: Added subtle grid overlay for depth
@@ -16671,6 +17840,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Overall Tone**: Professional, elegant, tech-forward
 
 ### Color Psychology:
+
 - **Blue**: Trust, professionalism, stability
 - **Cyan**: Innovation, clarity, freshness
 - **Teal**: Growth, balance, sophistication
@@ -16680,6 +17850,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 3. 💎 Program Cards - ENHANCED DESIGN
 
 ### What Changed:
+
 - **Hover Animation**: Cards lift -12px on hover (more dramatic)
 - **Border Effect**: Gradient border glow on hover (blue/purple/cyan)
 - **Image Overlay**: Darker gradient (slate-900) for better contrast
@@ -16693,6 +17864,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Button**: Blue-600 → Cyan-600 with shadow glow
 
 ### Visual Improvements:
+
 - Better color harmony
 - Clearer information hierarchy
 - More engaging hover states
@@ -16704,6 +17876,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 4. 🏛️ Featured Universities - COMPLETELY REDESIGNED
 
 ### What Changed:
+
 - **Section Title**: "Elite Universities" with gradient text
 - **Trophy Badge**: "World-Class Institutions" indicator
 - **University Images**: Real images from Unsplash
@@ -16716,6 +17889,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - **Explore Button**: Gradient button at bottom
 
 ### New Information:
+
 - University rankings (#1-4 in China)
 - Student population numbers
 - Real university images
@@ -16723,6 +17897,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 - Better visual hierarchy
 
 ### Color Coding:
+
 - **Tsinghua**: Red → Orange
 - **Peking**: Blue → Cyan
 - **Shanghai Jiao Tong**: Purple → Pink
@@ -16733,6 +17908,7 @@ Based on your feedback, I've made significant improvements to the sections you m
 ## 🎨 Overall Design System
 
 ### Color Palette:
+
 ```
 Primary Blues: #2563eb → #06b6d4 (Blue-600 → Cyan-600)
 Secondary Purples: #9333ea → #ec4899 (Purple-600 → Pink-600)
@@ -16741,6 +17917,7 @@ Background: Slate-900 with blue tones
 ```
 
 ### Animation Principles:
+
 1. **Entrance**: Fade + slide from direction
 2. **Hover**: Lift + scale + glow
 3. **Icons**: Rotate + scale on entrance
@@ -16748,6 +17925,7 @@ Background: Slate-900 with blue tones
 5. **Timing**: Staggered delays (0.15-0.2s)
 
 ### Typography:
+
 - **Headings**: font-black (900 weight)
 - **Subheadings**: font-bold (700 weight)
 - **Body**: font-medium (500 weight)
@@ -16757,18 +17935,19 @@ Background: Slate-900 with blue tones
 
 ## 📊 Before vs After
 
-| Section | Before | After |
-|---------|--------|-------|
-| **How It Works** | Grid layout, basic cards | Timeline with animations, pulsing icons |
-| **Hero Colors** | Red/Orange/Gold | Blue/Cyan/Teal (elegant) |
-| **Program Cards** | Simple design | Gradient effects, enhanced info |
-| **Universities** | Basic placeholders | Real images, rankings, stats |
+| Section           | Before                   | After                                   |
+| ----------------- | ------------------------ | --------------------------------------- |
+| **How It Works**  | Grid layout, basic cards | Timeline with animations, pulsing icons |
+| **Hero Colors**   | Red/Orange/Gold          | Blue/Cyan/Teal (elegant)                |
+| **Program Cards** | Simple design            | Gradient effects, enhanced info         |
+| **Universities**  | Basic placeholders       | Real images, rankings, stats            |
 
 ---
 
 ## ✨ Key Improvements
 
 ### Animations:
+
 ✅ Pulsing rings on timeline steps
 ✅ Rotating icon entrances
 ✅ Animated progress bars
@@ -16777,6 +17956,7 @@ Background: Slate-900 with blue tones
 ✅ Staggered card reveals
 
 ### Visual Design:
+
 ✅ Professional blue/purple color scheme
 ✅ Gradient text and backgrounds
 ✅ Better contrast and readability
@@ -16785,6 +17965,7 @@ Background: Slate-900 with blue tones
 ✅ Shadow glows on hover
 
 ### User Experience:
+
 ✅ Clear visual hierarchy
 ✅ Engaging micro-interactions
 ✅ Smooth, natural animations
@@ -16797,6 +17978,7 @@ Background: Slate-900 with blue tones
 ## 🚀 Technical Details
 
 ### Framer Motion Features Used:
+
 - `useInView` for scroll-triggered animations
 - `whileHover` for interactive states
 - `animate` for continuous animations
@@ -16804,6 +17986,7 @@ Background: Slate-900 with blue tones
 - `transition` for timing control
 
 ### Performance:
+
 - GPU-accelerated transforms
 - Optimized animation timing
 - Lazy loading with viewport detection
@@ -16815,6 +17998,7 @@ Background: Slate-900 with blue tones
 ## 🎯 Result
 
 All sections now have:
+
 - ✅ Better animations and interactions
 - ✅ Professional color scheme
 - ✅ Enhanced visual design
@@ -16829,8 +18013,6 @@ The website now looks more professional, engaging, and trustworthy while maintai
 **Status**: ✅ All improvements completed
 **Preview**: Available at http://localhost:3000
 
-
-
 ==================================================
 FILE: ./docs/guides/MAP_LOCATION_FEATURE.md
 ==================================================
@@ -16844,12 +18026,14 @@ Added **interactive map location picker** in admin backend and **Google Maps dis
 ## ✨ Features
 
 ### Backend (Admin):
+
 1. **Latitude/Longitude inputs** with live preview
 2. **Google Maps embed** preview
 3. **Quick city buttons** for major Chinese cities
 4. **"Open in Google Maps"** link
 
 ### Frontend (Public):
+
 1. **Embedded Google Maps** showing exact location
 2. **"View on Google Maps"** link
 3. **Fallback** if no coordinates set
@@ -16891,25 +18075,30 @@ Added **interactive map location picker** in admin backend and **Google Maps dis
 ### Features:
 
 #### 1. **Coordinate Inputs**
+
 - Latitude field (decimal degrees)
 - Longitude field (decimal degrees)
 - Real-time validation
 - Updates map preview automatically
 
 #### 2. **Map Preview**
+
 - Shows Google Maps embed
 - Displays exact pin location
 - 16:9 aspect ratio
 - Zoom level: 15 (street level)
 
 #### 3. **Quick City Buttons**
+
 Pre-filled coordinates for major cities:
+
 - **Beijing**: 39.9042, 116.4074
 - **Shanghai**: 31.2304, 121.4737
 - **Shenzhen**: 22.5431, 114.0579
 - **Chengdu**: 30.5728, 104.0668
 
 #### 4. **External Link**
+
 - "Open in Google Maps" button
 - Opens in new tab
 - Shows exact location
@@ -16939,6 +18128,7 @@ Pre-filled coordinates for major cities:
 ### Features:
 
 #### With Coordinates:
+
 - ✅ Embedded Google Maps
 - ✅ Pin at exact location
 - ✅ Interactive map (zoom, pan)
@@ -16946,6 +18136,7 @@ Pre-filled coordinates for major cities:
 - ✅ City and province display
 
 #### Without Coordinates:
+
 - ✅ Placeholder map icon
 - ✅ "Map View" text
 - ✅ City and province display
@@ -16958,7 +18149,7 @@ Pre-filled coordinates for major cities:
 ### Database Schema:
 
 ```sql
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN latitude DECIMAL(10, 8),
 ADD COLUMN longitude DECIMAL(11, 8);
 
@@ -16978,9 +18169,9 @@ ADD COLUMN longitude DECIMAL(11, 8);
     onChange={(e) => {
         setFormData({ ...formData, latitude: e.target.value });
         if (e.target.value && formData.longitude) {
-            setMapLocation({ 
-                lat: parseFloat(e.target.value), 
-                lng: parseFloat(formData.longitude) 
+            setMapLocation({
+                lat: parseFloat(e.target.value),
+                lng: parseFloat(formData.longitude)
             });
         }
     }}
@@ -17006,10 +18197,10 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```typescript
 <Button
     onClick={() => {
-        setFormData({ 
-            ...formData, 
-            latitude: "39.9042", 
-            longitude: "116.4074" 
+        setFormData({
+            ...formData,
+            latitude: "39.9042",
+            longitude: "116.4074"
         });
         setMapLocation({ lat: 39.9042, lng: 116.4074 });
     }}
@@ -17039,6 +18230,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ### Admin Adding Location:
 
 **Method 1: Manual Entry**
+
 1. Enter latitude (e.g., 39.9042)
 2. Enter longitude (e.g., 116.4074)
 3. See map preview update
@@ -17046,6 +18238,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 5. Save
 
 **Method 2: Quick City**
+
 1. Click city button (e.g., "Beijing")
 2. Coordinates auto-fill
 3. Map preview updates
@@ -17053,6 +18246,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 5. Save
 
 **Method 3: Google Maps**
+
 1. Open Google Maps in browser
 2. Find university location
 3. Right-click → "What's here?"
@@ -17072,22 +18266,23 @@ ADD COLUMN longitude DECIMAL(11, 8);
 
 ## 📊 Major Chinese Cities Coordinates
 
-| City | Latitude | Longitude |
-|------|----------|-----------|
-| **Beijing** | 39.9042 | 116.4074 |
-| **Shanghai** | 31.2304 | 121.4737 |
-| **Shenzhen** | 22.5431 | 114.0579 |
-| **Chengdu** | 30.5728 | 104.0668 |
-| **Guangzhou** | 23.1291 | 113.2644 |
-| **Hangzhou** | 30.2741 | 120.1551 |
-| **Wuhan** | 30.5928 | 114.3055 |
-| **Xi'an** | 34.3416 | 108.9398 |
+| City          | Latitude | Longitude |
+| ------------- | -------- | --------- |
+| **Beijing**   | 39.9042  | 116.4074  |
+| **Shanghai**  | 31.2304  | 121.4737  |
+| **Shenzhen**  | 22.5431  | 114.0579  |
+| **Chengdu**   | 30.5728  | 104.0668  |
+| **Guangzhou** | 23.1291  | 113.2644  |
+| **Hangzhou**  | 30.2741  | 120.1551  |
+| **Wuhan**     | 30.5928  | 114.3055  |
+| **Xi'an**     | 34.3416  | 108.9398  |
 
 ---
 
 ## 🎨 Visual Design
 
 ### Admin Map Preview:
+
 ```css
 - Aspect ratio: 16:9
 - Rounded corners
@@ -17097,6 +18292,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```
 
 ### Public Map Display:
+
 ```css
 - Height: 192px (h-48)
 - Rounded corners
@@ -17106,6 +18302,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ```
 
 ### Quick City Buttons:
+
 ```css
 - Outline variant
 - Small size
@@ -17127,9 +18324,11 @@ ADD COLUMN longitude DECIMAL(11, 8);
    - Restrict to your domain
 
 2. **Replace in Code:**
+
    ```
    YOUR_GOOGLE_MAPS_API_KEY
    ```
+
    Replace with your actual API key
 
 3. **API Endpoints Used:**
@@ -17141,6 +18340,7 @@ ADD COLUMN longitude DECIMAL(11, 8);
 ## 📱 Responsive Design
 
 ### Desktop:
+
 ```
 Map Preview: Full width
 Coordinate Inputs: 2 columns
@@ -17148,6 +18348,7 @@ City Buttons: 4 buttons per row
 ```
 
 ### Mobile:
+
 ```
 Map Preview: Full width
 Coordinate Inputs: Stacked
@@ -17159,12 +18360,14 @@ City Buttons: 2 buttons per row
 ## ✅ Validation
 
 ### Coordinate Format:
+
 - ✅ Decimal degrees (e.g., 39.9042)
 - ✅ Positive or negative
 - ✅ Latitude: -90 to 90
 - ✅ Longitude: -180 to 180
 
 ### Map Display:
+
 - ✅ Shows only if both coordinates exist
 - ✅ Fallback if coordinates missing
 - ✅ Graceful error handling
@@ -17174,6 +18377,7 @@ City Buttons: 2 buttons per row
 ## 🚀 Future Enhancements
 
 ### Potential Additions:
+
 1. **Interactive Map Picker** - Click map to set pin
 2. **Address Geocoding** - Convert address to coordinates
 3. **Reverse Geocoding** - Get address from coordinates
@@ -17188,12 +18392,14 @@ City Buttons: 2 buttons per row
 ## 🎉 Benefits
 
 ### For Admins:
+
 - ✅ Easy to set location
 - ✅ Quick city presets
 - ✅ Visual confirmation
 - ✅ No complex tools needed
 
 ### For Users:
+
 - ✅ See exact location
 - ✅ Interactive map
 - ✅ Easy directions
@@ -17203,16 +18409,16 @@ City Buttons: 2 buttons per row
 
 ## 📊 Complete Feature Matrix
 
-| Feature | Admin | Public |
-|---------|-------|--------|
-| **Latitude Input** | ✅ | - |
-| **Longitude Input** | ✅ | - |
-| **Map Preview** | ✅ | ✅ |
-| **Quick Cities** | ✅ | - |
-| **Google Maps Link** | ✅ | ✅ |
-| **Interactive Map** | ✅ | ✅ |
-| **Fallback Display** | - | ✅ |
-| **Responsive** | ✅ | ✅ |
+| Feature              | Admin | Public |
+| -------------------- | ----- | ------ |
+| **Latitude Input**   | ✅    | -      |
+| **Longitude Input**  | ✅    | -      |
+| **Map Preview**      | ✅    | ✅     |
+| **Quick Cities**     | ✅    | -      |
+| **Google Maps Link** | ✅    | ✅     |
+| **Interactive Map**  | ✅    | ✅     |
+| **Fallback Display** | -     | ✅     |
+| **Responsive**       | ✅    | ✅     |
 
 ---
 
@@ -17221,20 +18427,20 @@ City Buttons: 2 buttons per row
 A **complete map location system** featuring:
 
 ### Backend:
+
 - ✅ Coordinate inputs with validation
 - ✅ Live map preview
 - ✅ Quick city buttons
 - ✅ Google Maps integration
 
 ### Frontend:
+
 - ✅ Embedded interactive map
 - ✅ Exact pin location
 - ✅ External link to Google Maps
 - ✅ Graceful fallback
 
 **Perfect for showing university locations with precision!** 🗺️
-
-
 
 ==================================================
 FILE: ./docs/guides/OLD_PROGRAMS_TABLE_MIGRATION_COMPLETE.md
@@ -17253,12 +18459,14 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 ### 1. **Admin Files** (3 files)
 
 #### `/src/app/admin/(dashboard)/programs/actions.ts` ✅
+
 - `getPrograms()` → Uses `v_university_programs_full` view
 - `createProgram()` → Inserts into `university_programs` table
 - `updateProgram()` → Updates `university_programs` table
 - `deleteProgram()` → Deletes from `university_programs` table
 
 **Old Fields Removed:**
+
 - `title` (now `program_catalog_id`)
 - `level` (from catalog)
 - `field` (from catalog)
@@ -17266,6 +18474,7 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 - `deadline` (removed)
 
 **New Fields Added:**
+
 - `program_catalog_id` (required)
 - `custom_title` (optional)
 - `force_payment` (boolean)
@@ -17275,7 +18484,9 @@ Successfully migrated ALL files from the old `programs` table to the new `univer
 ### 2. **Public Pages** (6 files)
 
 #### `/src/app/(public)/page.tsx` (Homepage) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs")
 NEW: .from("v_university_programs_full")
@@ -17288,7 +18499,9 @@ NEW: university: { name: p.university_name, city: p.city }
 ```
 
 #### `/src/app/(public)/programs/page.tsx` (Programs List) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(...)")
 NEW: .from("v_university_programs_full").select("*")
@@ -17304,21 +18517,27 @@ NEW: tuition: `${p.tuition_fee} ${p.currency}/Year`
 ```
 
 #### `/src/app/(public)/programs/[id]/page.tsx` (Program Detail) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(...)")
 NEW: .from("v_university_programs_full").select("*")
 ```
 
 #### `/src/app/(public)/universities/page.tsx` (Universities List) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*", { count: "exact" })
 NEW: .from("university_programs").select("*", { count: "exact" }).eq("is_active", true)
 ```
 
 #### `/src/app/(public)/universities/[slug]/page.tsx` (University Detail) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .select("*, programs(id, title, level, ...)")
 NEW: Separate query to v_university_programs_full
@@ -17334,7 +18553,9 @@ NEW: language: p.language_name || "Not specified"
 ```
 
 #### `/src/app/(public)/applications/[id]/page.tsx` (Application Form) ✅
+
 **Changes:**
+
 ```typescript
 OLD: .from("programs").select("*, university:universities(*)")
 NEW: .from("v_university_programs_full").select("*")
@@ -17345,6 +18566,7 @@ NEW: .from("v_university_programs_full").select("*")
 ## 📊 Database Structure
 
 ### OLD System (Deprecated)
+
 ```
 programs table:
 ├── id
@@ -17360,6 +18582,7 @@ programs table:
 ```
 
 ### NEW System (Current)
+
 ```
 program_catalog (Master list):
 ├── id
@@ -17403,6 +18626,7 @@ v_university_programs_full (View):
 ## 🔄 Field Mapping Reference
 
 ### For Display:
+
 ```typescript
 OLD → NEW
 
@@ -17416,6 +18640,7 @@ p.tuition_fee → p.tuition_fee (same)
 ```
 
 ### For Forms:
+
 ```typescript
 OLD → NEW
 
@@ -17433,21 +18658,25 @@ force_payment (new) → Boolean flag
 ## ✅ Benefits of New System
 
 ### 1. **Data Consistency**
+
 - Standardized program names
 - No duplicate/similar programs
 - Centralized program information
 
 ### 2. **Easier Data Entry**
+
 - Select from catalog instead of typing
 - Auto-fill level, category, duration
 - Optional custom naming
 
 ### 3. **Better Queries**
+
 - Single view for all data
 - No complex joins needed
 - Faster performance
 
 ### 4. **Flexibility**
+
 - Universities can customize titles
 - Override default duration
 - Add university-specific details
@@ -17457,12 +18686,14 @@ force_payment (new) → Boolean flag
 ## 🧪 Testing Checklist
 
 ### Admin Panel:
+
 - [ ] Create new program (select from catalog)
 - [ ] Edit existing program
 - [ ] Delete program
 - [ ] View programs list
 
 ### Public Pages:
+
 - [ ] Homepage - featured programs display
 - [ ] Programs list page - all programs display
 - [ ] Program detail page - single program
@@ -17475,19 +18706,24 @@ force_payment (new) → Boolean flag
 ## 🚨 Important Notes
 
 ### 1. **Old Data Migration**
+
 If you have existing data in the old `programs` table, you need to:
+
 1. Create entries in `program_catalog` for unique programs
 2. Migrate data to `university_programs` with `program_catalog_id`
 3. Drop or rename old `programs` table
 
 ### 2. **View Dependency**
+
 All public pages now depend on `v_university_programs_full` view. Make sure this view exists in your database by running:
+
 ```sql
 -- Check if view exists
 SELECT * FROM v_university_programs_full LIMIT 1;
 ```
 
 ### 3. **Active Programs Only**
+
 Most queries now filter by `is_active = true`. Make sure to set this field when creating programs.
 
 ---
@@ -17499,7 +18735,7 @@ If you need to migrate old data:
 ```sql
 -- 1. Insert unique programs into catalog
 INSERT INTO program_catalog (title, category, level, typical_duration)
-SELECT DISTINCT 
+SELECT DISTINCT
     title,
     'Uncategorized' as category,
     level,
@@ -17518,7 +18754,7 @@ INSERT INTO university_programs (
     intake,
     is_active
 )
-SELECT 
+SELECT
     p.university_id,
     pc.id as program_catalog_id,
     p.tuition_fee,
@@ -17548,8 +18784,6 @@ All files have been updated to use the new system. No files are using the old `p
 **Files Updated:** 9 files
 **Tables Updated:** 3 tables (program_catalog, university_programs, v_university_programs_full)
 
-
-
 ==================================================
 FILE: ./docs/guides/PROGRAM_CATALOG_FIXES.md
 ==================================================
@@ -17559,16 +18793,20 @@ FILE: ./docs/guides/PROGRAM_CATALOG_FIXES.md
 ## 🐛 Issues Fixed
 
 ### 1. **Edit Button Not Working** ✅
+
 **Problem:** Edit button had no functionality
-**Solution:** 
+**Solution:**
+
 - Added `handleEdit()` function that:
   - Sets the program being edited
   - Populates form with program data
   - Opens the dialog
 
 ### 2. **No Loading States** ✅
+
 **Problem:** No visual feedback during loading/saving
 **Solution:**
+
 - Added `loading` state for page load
 - Added `saving` state for form submission
 - Added loading spinner with text
@@ -17578,37 +18816,41 @@ FILE: ./docs/guides/PROGRAM_CATALOG_FIXES.md
 ## ✨ New Features Added
 
 ### 1. **Working Edit Functionality**
+
 ```tsx
 // Click Edit button → Opens dialog with program data
 <Button onClick={() => handleEdit(program)}>
-    <Edit className="h-4 w-4 mr-2" />
-    Edit
+  <Edit className="h-4 w-4 mr-2" />
+  Edit
 </Button>
 ```
 
 ### 2. **Loading States**
 
 #### Page Loading:
+
 ```tsx
 if (loading) {
-    return (
-        <div className="flex items-center justify-center">
-            <Loader2 className="h-12 w-12 animate-spin" />
-            <p>Loading programs...</p>
-        </div>
-    );
+  return (
+    <div className="flex items-center justify-center">
+      <Loader2 className="h-12 w-12 animate-spin" />
+      <p>Loading programs...</p>
+    </div>
+  );
 }
 ```
 
 #### Button Loading:
+
 ```tsx
 <Button type="submit" disabled={saving}>
-    {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-    {editingProgram ? "Update Program" : "Add Program"}
+  {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+  {editingProgram ? "Update Program" : "Add Program"}
 </Button>
 ```
 
 ### 3. **Proper State Management**
+
 - `loading` - Page loading state
 - `saving` - Form submission state
 - `dialogOpen` - Dialog visibility
@@ -17616,25 +18858,29 @@ if (loading) {
 - `formData` - Form field values
 
 ### 4. **Toast Notifications**
+
 ```tsx
 toast.success("Program updated successfully");
 toast.success("Program added successfully");
 ```
 
 ### 5. **Form Validation**
-- Required fields marked with *
+
+- Required fields marked with \*
 - Form validation on submit
 - Controlled inputs with state
 
 ## 🎨 UI Improvements
 
 ### Before:
+
 - ❌ Edit button did nothing
 - ❌ No loading feedback
 - ❌ No way to know if action succeeded
 - ❌ Form didn't populate on edit
 
 ### After:
+
 - ✅ Edit button opens dialog with data
 - ✅ Loading spinner on page load
 - ✅ Loading spinner on button during save
@@ -17646,6 +18892,7 @@ toast.success("Program added successfully");
 ## 🔄 User Flow
 
 ### Adding a Program:
+
 1. Click "Add Program" button
 2. Dialog opens with empty form
 3. Fill in program details
@@ -17655,6 +18902,7 @@ toast.success("Program added successfully");
 7. Dialog closes
 
 ### Editing a Program:
+
 1. Click "Edit" button on any program card
 2. Dialog opens with program data pre-filled
 3. Modify program details
@@ -17666,6 +18914,7 @@ toast.success("Program added successfully");
 ## 🎯 Loading Indicators
 
 ### 1. Page Load:
+
 ```
 ┌─────────────────────────────┐
 │                             │
@@ -17676,6 +18925,7 @@ toast.success("Program added successfully");
 ```
 
 ### 2. Button Save:
+
 ```
 ┌──────────────────────────────┐
 │ [🔄 Update Program] (disabled)│
@@ -17683,6 +18933,7 @@ toast.success("Program added successfully");
 ```
 
 ### 3. Toast Notification:
+
 ```
 ┌──────────────────────────────┐
 │ ✅ Program updated successfully│
@@ -17692,12 +18943,14 @@ toast.success("Program added successfully");
 ## 📝 Code Changes Summary
 
 ### Added Imports:
+
 - `Loader2` - Loading spinner icon
 - `Edit` - Edit icon
 - `useEffect` - For future data fetching
 - `toast` - Toast notifications
 
 ### Added State:
+
 - `loading` - Page loading
 - `saving` - Form saving
 - `dialogOpen` - Dialog control
@@ -17705,12 +18958,14 @@ toast.success("Program added successfully");
 - `formData` - Form values
 
 ### Added Functions:
+
 - `handleEdit()` - Open edit dialog
 - `handleAdd()` - Open add dialog
 - `handleSubmit()` - Save program
 - `handleCloseDialog()` - Close dialog
 
 ### Updated Components:
+
 - Dialog now controlled with state
 - Form inputs now controlled
 - Edit button now functional
@@ -17719,6 +18974,7 @@ toast.success("Program added successfully");
 ## ✅ Result
 
 The Program Catalog page now has:
+
 1. ✅ **Working edit functionality**
 2. ✅ **Loading indicators** on page and buttons
 3. ✅ **Toast notifications** for user feedback
@@ -17727,8 +18983,6 @@ The Program Catalog page now has:
 6. ✅ **Disabled states** during operations
 
 **The page is now fully functional and user-friendly!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/guides/PROGRAM_CATALOG_SYSTEM.md
@@ -17739,9 +18993,11 @@ FILE: ./docs/guides/PROGRAM_CATALOG_SYSTEM.md
 ## 🎯 Problem Statement
 
 ### The Issue:
+
 When universities add programs independently, they use different names for the same program:
+
 - University A: "Business Administration"
-- University B: "Business Management"  
+- University B: "Business Management"
 - University C: "BA in Business"
 
 **Result:** These are the SAME program but appear as 3 different programs in filters and searches! ❌
@@ -17770,9 +19026,11 @@ When universities add programs independently, they use different names for the s
 ## 📊 Database Tables
 
 ### 1. `program_catalog` (Master List)
+
 **Purpose:** Standardized, centralized list of all academic programs
 
 **Fields:**
+
 - `id` - Unique identifier
 - `title` - **Standardized program name** (e.g., "Business Administration")
 - `category` - Main category (e.g., "Business & Management")
@@ -17782,6 +19040,7 @@ When universities add programs independently, they use different names for the s
 - `typical_duration` - Standard duration (e.g., "4 years")
 
 **Example Entry:**
+
 ```sql
 {
   id: "uuid-123",
@@ -17795,9 +19054,11 @@ When universities add programs independently, they use different names for the s
 ```
 
 ### 2. `university_programs` (University Offerings)
+
 **Purpose:** Links universities to programs with their specific details
 
 **Fields:**
+
 - `id` - Unique identifier
 - `university_id` - Which university offers this
 - `program_catalog_id` - Which standard program (FK to program_catalog)
@@ -17813,6 +19074,7 @@ When universities add programs independently, they use different names for the s
 - `is_active` - Active/Inactive status
 
 **Example Entry:**
+
 ```sql
 {
   id: "uuid-456",
@@ -17832,14 +19094,18 @@ When universities add programs independently, they use different names for the s
 ### Admin Workflow:
 
 #### Step 1: Create Program Catalog (One Time)
+
 Admin goes to **Program Catalog** page and adds standardized programs:
+
 - Business Administration
 - Computer Science
 - MBBS
 - etc.
 
 #### Step 2: Universities Add Programs
+
 When adding a program for a university:
+
 1. Select university
 2. **Choose from Program Catalog** (dropdown)
 3. Add university-specific details:
@@ -17852,6 +19118,7 @@ When adding a program for a university:
 ### Example Scenario:
 
 **Tsinghua University adds "Business Administration":**
+
 ```
 Program Catalog: Business Administration
 Custom Title: "Business Management" (optional)
@@ -17861,6 +19128,7 @@ Language: English
 ```
 
 **Peking University adds the SAME program:**
+
 ```
 Program Catalog: Business Administration
 Custom Title: "BA in Business" (optional)
@@ -17919,6 +19187,7 @@ Language: Chinese
 ## 🔍 Benefits
 
 ### 1. **Consistent Filtering**
+
 ```
 Filter: "Business & Management"
 Results: ALL business programs from ALL universities
@@ -17926,12 +19195,14 @@ Results: ALL business programs from ALL universities
 ```
 
 ### 2. **Better Search**
+
 ```
 Search: "Business"
 Finds: All variations (Business Admin, Business Management, etc.)
 ```
 
 ### 3. **Easy Comparison**
+
 ```
 Compare "Business Administration" across:
 - Tsinghua: 30,000 RMB
@@ -17940,12 +19211,14 @@ Compare "Business Administration" across:
 ```
 
 ### 4. **Analytics**
+
 ```
 Most Popular Program: Business Administration (45 universities)
 Most Expensive: MBBS (avg 50,000 RMB)
 ```
 
 ### 5. **Scalability**
+
 - Add new program once → All universities can use it
 - Update description once → Updates everywhere
 - Consistent data across platform
@@ -17953,9 +19226,11 @@ Most Expensive: MBBS (avg 50,000 RMB)
 ## 📱 Admin Pages
 
 ### 1. Program Catalog Page
+
 **Route:** `/admin/program-catalog`
 
 **Features:**
+
 - ✅ View all standardized programs
 - ✅ Add new programs to catalog
 - ✅ Edit program details
@@ -17964,9 +19239,11 @@ Most Expensive: MBBS (avg 50,000 RMB)
 - ✅ See how many universities offer each
 
 ### 2. University Programs Page (Updated)
+
 **Route:** `/admin/programs`
 
 **Features:**
+
 - ✅ Select from Program Catalog (dropdown)
 - ✅ Add university-specific details
 - ✅ Optional custom title
@@ -17976,23 +19253,27 @@ Most Expensive: MBBS (avg 50,000 RMB)
 ## 🚀 Implementation Steps
 
 ### 1. Run Database Migration
+
 ```bash
 # Execute the SQL migration file
 psql -d your_database < DATABASE_MIGRATION_PROGRAMS.sql
 ```
 
 ### 2. Migrate Existing Data
+
 ```sql
 -- Map existing programs to catalog
 -- This needs to be done carefully based on your data
 ```
 
 ### 3. Update Admin UI
+
 - ✅ Program Catalog page (created)
 - ✅ Update Programs page to use catalog selection
 - ✅ Update university detail page
 
 ### 4. Update Public Pages
+
 - Update filters to use categories
 - Update search to use catalog
 - Display program from catalog + university details
@@ -18006,11 +19287,13 @@ v_university_programs_full
 ```
 
 This view combines:
+
 - University info
 - Program catalog info
 - University-specific details
 
 **Usage:**
+
 ```sql
 SELECT * FROM v_university_programs_full
 WHERE category = 'Business & Management'
@@ -18021,14 +19304,16 @@ AND is_active = true;
 ## 🎯 Example Queries
 
 ### Get all Business programs:
+
 ```sql
 SELECT * FROM v_university_programs_full
 WHERE category = 'Business & Management';
 ```
 
 ### Compare same program across universities:
+
 ```sql
-SELECT 
+SELECT
   university_name,
   tuition_fee,
   duration,
@@ -18040,8 +19325,9 @@ ORDER BY tuition_fee;
 ```
 
 ### Most popular programs:
+
 ```sql
-SELECT 
+SELECT
   program_title,
   COUNT(*) as universities_offering
 FROM v_university_programs_full
@@ -18051,18 +19337,19 @@ ORDER BY universities_offering DESC;
 
 ## ✅ Advantages Summary
 
-| Before | After |
-|--------|-------|
-| Each university creates own program names | Select from standardized catalog |
+| Before                                    | After                              |
+| ----------------------------------------- | ---------------------------------- |
+| Each university creates own program names | Select from standardized catalog   |
 | "Business Admin" vs "Business Management" | Both are "Business Administration" |
-| Inconsistent filtering | Perfect category filtering |
-| Hard to compare | Easy comparison |
-| Duplicate data | Normalized data |
-| Manual categorization | Automatic categorization |
+| Inconsistent filtering                    | Perfect category filtering         |
+| Hard to compare                           | Easy comparison                    |
+| Duplicate data                            | Normalized data                    |
+| Manual categorization                     | Automatic categorization           |
 
 ## 🎉 Result
 
 A **professional, scalable, and maintainable** program management system that:
+
 - ✅ Solves the duplicate program name problem
 - ✅ Enables accurate filtering and searching
 - ✅ Makes program comparison easy
@@ -18072,8 +19359,6 @@ A **professional, scalable, and maintainable** program management system that:
 
 This is the **industry-standard approach** used by major education platforms! 🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/PROGRAM_SLUG_IMPLEMENTATION.md
 ==================================================
@@ -18081,11 +19366,13 @@ FILE: ./docs/guides/PROGRAM_SLUG_IMPLEMENTATION.md
 # Program Slug Implementation Guide
 
 ## Overview
+
 Implemented slug-based routing for program pages with format: `program-name-university-name`
 
 ## Changes Made
 
 ### 1. Database Migration
+
 **File:** `DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql`
 
 - Added `slug` column to `university_programs` table
@@ -18095,49 +19382,59 @@ Implemented slug-based routing for program pages with format: `program-name-univ
 - Added index on slug column for performance
 
 **Slug Format:** `{program-title}-{university-name}`
+
 - Example: `computer-science-tsinghua-university`
 - Example: `business-administration-peking-university`
 
 ### 2. Frontend Changes
 
 #### New Route
+
 - **Created:** `/src/app/(public)/programs/[slug]/page.tsx`
 - Replaced ID-based routing with slug-based routing
 - Queries database using `slug` instead of `id`
 - Better SEO and user-friendly URLs
 
 #### Updated Components
+
 - **ProgramCard.tsx:** Updated to use `slug` in links (fallback to `id` if slug not available)
 - **programs/page.tsx:** Added `slug` field to formatted program data
 
 ### 3. Old Route
+
 The old `/programs/[id]/page.tsx` route still exists for backward compatibility, but new links will use the slug-based route.
 
 ## How to Apply
 
 ### Step 1: Run Database Migration
+
 ```bash
 # Connect to your Supabase database and run:
 psql -h your-db-host -U postgres -d postgres -f DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql
 ```
 
 Or via Supabase Dashboard:
+
 1. Go to SQL Editor
 2. Copy contents of `DATABASE_MIGRATION_ADD_PROGRAM_SLUG.sql`
 3. Execute the SQL
 
 ### Step 2: Verify Migration
+
 Check that slugs were generated:
+
 ```sql
 SELECT id, slug, custom_title FROM university_programs LIMIT 10;
 ```
 
 ### Step 3: Test the Application
+
 ```bash
 npm run dev
 ```
 
 Visit:
+
 - Old URL: `http://localhost:3000/programs/820d4cdc-0bb6-491b-8eb8-7b86784f96a9` (still works via old route)
 - New URL: `http://localhost:3000/programs/computer-science-tsinghua-university` (new slug-based route)
 
@@ -18151,9 +19448,11 @@ Visit:
 ## Example URLs
 
 Before:
+
 - `/programs/820d4cdc-0bb6-491b-8eb8-7b86784f96a9`
 
 After:
+
 - `/programs/computer-science-tsinghua-university`
 - `/programs/mba-master-of-business-administration-peking-university`
 - `/programs/mbbs-bachelor-of-medicine-bachelor-of-surgery-fudan-university`
@@ -18167,8 +19466,6 @@ The old `[id]` route is still functional, so existing bookmarks and links will c
 1. **Redirect old URLs:** Add a redirect from `/programs/[id]` to `/programs/[slug]`
 2. **Remove old route:** Once all traffic is migrated, remove the `[id]` folder
 3. **Add canonical tags:** Ensure SEO tools recognize the slug-based URL as canonical
-
-
 
 ==================================================
 FILE: ./docs/guides/PROGRAM_SYSTEM_VISUAL_GUIDE.md
@@ -18398,6 +19695,7 @@ ADMIN PANEL NAVIGATION:
 ## 🎯 Workflow Comparison
 
 ### OLD WAY (Without Catalog):
+
 ```
 1. Go to Programs page
 2. Click "Add Program"
@@ -18405,11 +19703,12 @@ ADMIN PANEL NAVIGATION:
 4. Fill all details
 5. Save
 
-Problem: Next admin types "Business Management" 
+Problem: Next admin types "Business Management"
 → Creates duplicate! ❌
 ```
 
 ### NEW WAY (With Catalog):
+
 ```
 1. Go to Program Catalog (one-time setup)
 2. Add "Business Administration" to catalog
@@ -18489,6 +19788,7 @@ Step 4: User searches
 ## 🎨 UI Components
 
 ### Program Catalog Page:
+
 ```
 ┌──────────────────────────────────────────────┐
 │ Program Catalog                    [+ Add]   │
@@ -18520,6 +19820,7 @@ Step 4: User searches
 ```
 
 ### University Programs Page:
+
 ```
 ┌──────────────────────────────────────────────┐
 │ Add Program to University          [+ Add]   │
@@ -18548,6 +19849,7 @@ Step 4: User searches
 ## ✅ Summary
 
 ### What You Get:
+
 1. **Standardized Programs** - One source of truth
 2. **Consistent Filtering** - All variations found together
 3. **Easy Management** - Add program once, use everywhere
@@ -18556,6 +19858,7 @@ Step 4: User searches
 6. **Data Quality** - No duplicates or inconsistencies
 
 ### This is the BEST approach because:
+
 - ✅ Industry standard (used by Coursera, edX, etc.)
 - ✅ Solves the duplicate name problem
 - ✅ Makes filtering accurate
@@ -18565,8 +19868,6 @@ Step 4: User searches
 
 🎉 **You now have a professional, enterprise-grade program management system!**
 
-
-
 ==================================================
 FILE: ./docs/guides/PROJECT_REFERENCE.md
 ==================================================
@@ -18574,6 +19875,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 # StudyAtChina - Project Reference Guide
 
 ## 📋 Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Database Schema](#database-schema)
 3. [Application Routes](#application-routes)
@@ -18587,6 +19889,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ## 🎯 Project Overview
 
 **StudyAtChina** is a Next.js application that helps international students apply to Chinese universities. It features:
+
 - University and program browsing
 - Student application system
 - Document upload
@@ -18594,6 +19897,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 - Application tracking dashboard
 
 **Tech Stack:**
+
 - **Framework:** Next.js 15 (App Router)
 - **Database:** PostgreSQL (Supabase)
 - **Authentication:** Supabase Auth
@@ -18608,6 +19912,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ### Core Tables
 
 #### 1. **universities**
+
 ```sql
 - id (UUID, PK)
 - name (VARCHAR 255)
@@ -18622,6 +19927,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ```
 
 #### 2. **languages**
+
 ```sql
 - id (UUID, PK)
 - name (VARCHAR 100, UNIQUE)
@@ -18630,6 +19936,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ```
 
 #### 3. **program_catalog**
+
 ```sql
 - id (UUID, PK)
 - title (VARCHAR 255, UNIQUE)
@@ -18642,6 +19949,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ```
 
 #### 4. **university_programs**
+
 ```sql
 - id (UUID, PK)
 - university_id (UUID, FK → universities)
@@ -18665,6 +19973,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ### Application System Tables
 
 #### 5. **applications**
+
 ```sql
 - id (UUID, PK)
 - student_id (UUID) -- References auth.users(id)
@@ -18687,6 +19996,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ```
 
 #### 6. **application_documents**
+
 ```sql
 - id (UUID, PK)
 - application_id (UUID, FK → applications)
@@ -18704,6 +20014,7 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ```
 
 #### 7. **application_status_history**
+
 ```sql
 - id (UUID, PK)
 - application_id (UUID, FK → applications)
@@ -18717,7 +20028,9 @@ FILE: ./docs/guides/PROJECT_REFERENCE.md
 ### Views
 
 #### **v_university_programs_full**
+
 Combines university_programs with related data:
+
 - Program catalog details
 - University information
 - Language information
@@ -18729,6 +20042,7 @@ Combines university_programs with related data:
 ### Public Routes (No Auth Required)
 
 #### Homepage & Information
+
 - `/` - Homepage
 - `/universities` - Browse universities
 - `/universities/[slug]` - University detail page
@@ -18740,6 +20054,7 @@ Combines university_programs with related data:
 - `/contact` - Contact page
 
 #### Authentication
+
 - `/auth/login` - Login page
 - `/auth/register` - Registration page
 - `/auth/forgot-password` - Password reset
@@ -18747,6 +20062,7 @@ Combines university_programs with related data:
 ### Protected Routes (Auth Required)
 
 #### Application Flow
+
 - `/apply/[programSlug]` - Application form for specific program
   - Checks authentication
   - Checks for existing application
@@ -18754,6 +20070,7 @@ Combines university_programs with related data:
   - Shows multi-step form
 
 #### Student Dashboard
+
 - `/dashboard` - Main dashboard
   - Shows application statistics
   - Lists all user applications
@@ -18762,6 +20079,7 @@ Combines university_programs with related data:
 - `/dashboard/settings` - User settings
 
 ### Admin Routes
+
 - `/admin/login` - Admin login
 - `/admin/*` - Admin dashboard (separate from student dashboard)
 
@@ -18772,12 +20090,14 @@ Combines university_programs with related data:
 ### Layout Components
 
 #### **Navbar** (`/src/components/layout/Navbar.tsx`)
+
 - Responsive navigation
 - Auth state detection
 - User dropdown menu when logged in
 - Shows "Sign In" / "Get Started" when not logged in
 
 Features:
+
 - Transparent on homepage, solid on other pages
 - Scroll-based styling
 - Mobile menu with Sheet component
@@ -18786,9 +20106,11 @@ Features:
 ### Application Components
 
 #### **ApplyForm** (`/src/components/applications/ApplyForm.tsx`)
+
 Multi-step application form with:
 
 **Steps:**
+
 1. **Personal Information**
    - Pre-filled from user account
    - Country selector (dropdown)
@@ -18810,6 +20132,7 @@ Multi-step application form with:
    - Final submission
 
 **Success Screen:**
+
 - Animated checkmark
 - Application ID display
 - "What's Next?" section
@@ -18819,6 +20142,7 @@ Multi-step application form with:
 ### University Components
 
 #### **UniversityContent** (`/src/components/universities/UniversityContent.tsx`)
+
 - Displays university information
 - Tabs for different sections
 - Programs list
@@ -18826,13 +20150,16 @@ Multi-step application form with:
 - Accommodation section
 
 #### **AccommodationSection** (`/src/components/universities/AccommodationSection.tsx`)
+
 - Shows accommodation availability
 - Types and features
 - Fee ranges
 - Dynamic icons
 
 ### UI Components (shadcn/ui)
+
 Located in `/src/components/ui/`:
+
 - `button.tsx` - Button component
 - `card.tsx` - Card layouts
 - `input.tsx` - Form inputs
@@ -18847,6 +20174,7 @@ Located in `/src/components/ui/`:
 ## 🔐 Authentication Flow
 
 ### Registration Flow
+
 1. User fills registration form (`/auth/register`)
 2. Form data includes: email, password, firstName, lastName
 3. `signup()` action creates user with metadata:
@@ -18862,12 +20190,14 @@ Located in `/src/components/ui/`:
 5. Redirects to login with returnUrl preserved
 
 ### Login Flow
+
 1. User enters credentials (`/auth/login`)
 2. `login()` action authenticates
 3. Redirects to `returnUrl` or `/dashboard`
 4. Navbar updates to show user profile
 
 ### Auth State Management
+
 - **Server-side:** `createClient()` from `@/lib/supabase/server`
 - **Client-side:** `createClient()` from `@/lib/supabase/client`
 - **Auth listener:** `onAuthStateChange()` in Navbar
@@ -18877,24 +20207,29 @@ Located in `/src/components/ui/`:
 ## 📝 Application Submission Flow
 
 ### 1. User Clicks "Apply Now"
+
 - From program page or university page
 - Redirects to `/apply/[programSlug]`
 
 ### 2. Authentication Check
+
 ```typescript
-const { data: { user } } = await supabase.auth.getUser();
+const {
+  data: { user },
+} = await supabase.auth.getUser();
 if (!user) {
   redirect(`/auth/login?returnUrl=/apply/${programSlug}`);
 }
 ```
 
 ### 3. Existing Application Check
+
 ```typescript
 const { data: existingApplication } = await supabase
-  .from('applications')
-  .select('id, status')
-  .eq('student_id', user.id)
-  .eq('university_program_id', program.id)
+  .from("applications")
+  .select("id, status")
+  .eq("student_id", user.id)
+  .eq("university_program_id", program.id)
   .single();
 
 if (existingApplication) {
@@ -18903,7 +20238,9 @@ if (existingApplication) {
 ```
 
 ### 4. Form Pre-filling
+
 Data from `user.user_metadata`:
+
 - `full_name` → student_name
 - `email` → student_email
 - `phone` → student_phone
@@ -18911,22 +20248,22 @@ Data from `user.user_metadata`:
 - `phone_country_code` → phoneCountryCode
 
 ### 5. Document Upload
+
 ```typescript
 const fileName = `${user.id}/${requirementId}/${Date.now()}.${fileExt}`;
-await supabase.storage
-  .from('application-documents')
-  .upload(fileName, file);
+await supabase.storage.from("application-documents").upload(fileName, file);
 ```
 
 ### 6. Application Submission
+
 ```typescript
 const { data: application } = await supabase
-  .from('applications')
+  .from("applications")
   .insert({
     student_id: user.id,
     university_program_id: program.id,
     student_phone: `${phoneCountryCode} ${formData.student_phone}`,
-    status: requiresPayment ? 'pending_payment' : 'submitted',
+    status: requiresPayment ? "pending_payment" : "submitted",
     // ... other fields
   })
   .select()
@@ -18934,6 +20271,7 @@ const { data: application } = await supabase
 ```
 
 ### 7. Success & Redirect
+
 - Show animated success screen
 - Display application ID
 - Auto-redirect to `/dashboard` after 3 seconds
@@ -18943,12 +20281,14 @@ const { data: application } = await supabase
 ## 📁 Important Files
 
 ### Configuration
+
 - `/src/lib/supabase/server.ts` - Server-side Supabase client
 - `/src/lib/supabase/client.ts` - Client-side Supabase client
 - `/src/lib/constants/countries.ts` - Country and phone code data
 - `/components.json` - shadcn/ui configuration
 
 ### Database Scripts
+
 - `/DATABASE_COMPLETE_SCHEMA.sql` - Core database schema
 - `/DATABASE_ADD_APPLICATIONS.sql` - Application system schema
 - `/DATABASE_ADD_ACCOMMODATION.sql` - Accommodation fields
@@ -18957,6 +20297,7 @@ const { data: application } = await supabase
 - `/INSERT_EXTRA_BACHELOR_PROGRAMS_FIXED.sql` - Bachelor programs
 
 ### Authentication Actions
+
 - `/src/app/(public)/auth/actions/index.ts`
   - `login()` - User login
   - `signup()` - User registration
@@ -18964,6 +20305,7 @@ const { data: application } = await supabase
   - `resetPassword()` - Password reset
 
 ### Key Pages
+
 - `/src/app/(public)/apply/[programSlug]/page.tsx` - Application entry
 - `/src/app/dashboard/page.tsx` - Student dashboard
 - `/src/app/dashboard/layout.tsx` - Dashboard layout with sidebar
@@ -18975,6 +20317,7 @@ const { data: application } = await supabase
 ## 🎨 Styling & UI
 
 ### Color Scheme
+
 - **Primary:** Red/Orange gradient (Chinese theme)
 - **Status Colors:**
   - 🟡 Yellow - Pending actions
@@ -18984,12 +20327,14 @@ const { data: application } = await supabase
   - ⚪ Gray - Draft/Inactive
 
 ### Responsive Design
+
 - Mobile-first approach
 - Breakpoints: sm, md, lg, xl
 - Mobile menu with Sheet component
 - Responsive grid layouts
 
 ### Animations
+
 - Framer Motion for page transitions
 - Scroll-based navbar changes
 - Success screen animations
@@ -19000,6 +20345,7 @@ const { data: application } = await supabase
 ## 🔧 Environment Variables
 
 Required in `.env.local`:
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -19029,6 +20375,7 @@ accepted / rejected / withdrawn
 ## 🚀 Key Features
 
 ### ✅ Implemented
+
 - University browsing and search
 - Program catalog with filters
 - User authentication (register/login)
@@ -19043,6 +20390,7 @@ accepted / rejected / withdrawn
 - Pre-filled forms from user data
 
 ### 🔄 Pending
+
 - Payment gateway integration
 - Admin dashboard for application review
 - Email notifications
@@ -19056,6 +20404,7 @@ accepted / rejected / withdrawn
 ## 📝 Notes
 
 ### Important Conventions
+
 1. **User ID:** Stored in `auth.users`, referenced as `student_id` in applications
 2. **Slugs:** Used for SEO-friendly URLs (universities and programs)
 3. **Status:** Always lowercase with underscores (e.g., `pending_payment`)
@@ -19063,12 +20412,14 @@ accepted / rejected / withdrawn
 5. **Dates:** ISO format with timezone
 
 ### RLS (Row Level Security)
+
 - Students can only view/edit their own applications
 - Admins can view/edit all applications
 - Public can view universities and programs
 - Documents are protected by RLS
 
 ### File Storage Structure
+
 ```
 application-documents/
   └── {user_id}/
@@ -19081,15 +20432,19 @@ application-documents/
 ## 🐛 Common Issues & Solutions
 
 ### Issue: "Page Not Found" on `/dashboard/applications`
+
 **Solution:** This route doesn't exist. Use `/dashboard` instead.
 
 ### Issue: Name not pre-filled in application form
+
 **Solution:** Ensure `full_name` is saved during registration in `signup()` action.
 
 ### Issue: Duplicate key errors in country codes
+
 **Solution:** Use unique `id` field for React keys, not `code`.
 
 ### Issue: Auth redirect not working
+
 **Solution:** Check `returnUrl` parameter is preserved through registration → login flow.
 
 ---
@@ -19097,6 +20452,7 @@ application-documents/
 ## 📞 Support
 
 For issues or questions:
+
 1. Check this reference document
 2. Review database schema
 3. Check Supabase logs
@@ -19108,8 +20464,6 @@ For issues or questions:
 **Last Updated:** November 29, 2025
 **Version:** 1.0
 **Maintained by:** Development Team
-
-
 
 ==================================================
 FILE: ./docs/guides/README.md
@@ -19152,8 +20506,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
-
 ==================================================
 FILE: ./docs/guides/READ_MORE_FEATURE.md
 ==================================================
@@ -19169,6 +20521,7 @@ Added an elegant **"Read More"** button to the university overview section to pr
 ## ✨ Features
 
 ### Before:
+
 ```
 Overview Section:
 ┌─────────────────────────────────────────┐
@@ -19182,6 +20535,7 @@ Overview Section:
 ```
 
 ### After:
+
 ```
 Overview Section:
 ┌─────────────────────────────────────────┐
@@ -19211,20 +20565,21 @@ Overview Section:
 ## 🔧 Implementation
 
 ### Component Created:
+
 **File:** `/src/components/universities/ExpandableText.tsx`
 
 ```typescript
 "use client";
 
-export function ExpandableText({ 
-    text, 
-    maxLength = 300 
+export function ExpandableText({
+    text,
+    maxLength = 300
 }: ExpandableTextProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const shouldTruncate = text.length > maxLength;
-    
-    const displayText = shouldTruncate && !isExpanded 
-        ? text.slice(0, maxLength) + "..." 
+
+    const displayText = shouldTruncate && !isExpanded
+        ? text.slice(0, maxLength) + "..."
         : text;
 
     return (
@@ -19241,14 +20596,15 @@ export function ExpandableText({
 ```
 
 ### Usage:
+
 ```typescript
 // Before
 <p>{universityData.overview}</p>
 
 // After
-<ExpandableText 
-    text={universityData.overview} 
-    maxLength={300} 
+<ExpandableText
+    text={universityData.overview}
+    maxLength={300}
 />
 ```
 
@@ -19257,6 +20613,7 @@ export function ExpandableText({
 ## 🎨 Visual Design
 
 ### Collapsed State (Default):
+
 ```
 ┌─────────────────────────────────────────┐
 │ Ningbo University is a comprehensive    │
@@ -19272,6 +20629,7 @@ export function ExpandableText({
 ```
 
 ### Expanded State:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Ningbo University is a comprehensive    │
@@ -19296,14 +20654,16 @@ export function ExpandableText({
 ## ⚙️ Configuration
 
 ### Character Limit:
+
 ```typescript
-<ExpandableText 
-    text={text} 
+<ExpandableText
+    text={text}
     maxLength={300}  // Default: 300 characters
 />
 ```
 
 ### Customizable:
+
 - **300 chars** = ~3-4 lines (Default)
 - **200 chars** = ~2-3 lines (Shorter)
 - **500 chars** = ~5-6 lines (Longer)
@@ -19333,6 +20693,7 @@ export function ExpandableText({
 ## 🎨 Button Styling
 
 ### Design:
+
 ```css
 - Variant: Ghost (subtle)
 - Size: Small
@@ -19343,6 +20704,7 @@ export function ExpandableText({
 ```
 
 ### States:
+
 ```
 Collapsed: [Read More ▼]
 Expanded:  [Show Less ▲]
@@ -19353,21 +20715,25 @@ Expanded:  [Show Less ▲]
 ## 📊 Benefits
 
 ### 1. **Better UX**
+
 - Not overwhelming
 - Clean appearance
 - User controls content
 
 ### 2. **Improved Readability**
+
 - Focused content
 - Less scrolling
 - Better engagement
 
 ### 3. **Professional**
+
 - Modern design
 - Smooth interaction
 - Elegant solution
 
 ### 4. **Flexible**
+
 - Works with any text length
 - Configurable limit
 - Automatic detection
@@ -19377,12 +20743,14 @@ Expanded:  [Show Less ▲]
 ## 🔄 Smart Behavior
 
 ### If text is SHORT (< 300 chars):
+
 ```
 No "Read More" button shown
 Full text displayed immediately
 ```
 
 ### If text is LONG (> 300 chars):
+
 ```
 Shows first 300 chars + "..."
 "Read More" button appears
@@ -19394,19 +20762,21 @@ User can expand to see full text
 ## 📝 Example
 
 ### Short Text (250 chars):
+
 ```
-Ningbo University is a comprehensive 
-research university located in Ningbo, 
+Ningbo University is a comprehensive
+research university located in Ningbo,
 Zhejiang Province. Founded in 1986.
 
 (No button - text is short enough)
 ```
 
 ### Long Text (800 chars):
+
 ```
-Ningbo University is a comprehensive 
-research university located in the 
-beautiful coastal city of Ningbo, 
+Ningbo University is a comprehensive
+research university located in the
+beautiful coastal city of Ningbo,
 Zhejiang Province. Founded in 1986...
 
 [Read More ▼]
@@ -19434,6 +20804,7 @@ Zhejiang Province. Founded in 1986...
 ## 🎉 Result
 
 The overview section now:
+
 - ✅ Shows concise preview (300 chars)
 - ✅ Has elegant "Read More" button
 - ✅ Expands on click
@@ -19443,8 +20814,6 @@ The overview section now:
 
 **Users can now read a preview and choose to expand for more details!** 📖✨
 
-
-
 ==================================================
 FILE: ./docs/guides/REDESIGN_SUMMARY.md
 ==================================================
@@ -19452,7 +20821,9 @@ FILE: ./docs/guides/REDESIGN_SUMMARY.md
 # StudyAtChina.com - Complete Redesign Summary
 
 ## 🎨 Overview
+
 A complete 100% redesign of the StudyAtChina website with modern, impressive UI/UX featuring:
+
 - Premium glassmorphism effects
 - Smooth parallax animations
 - Vibrant gradient color schemes
@@ -19464,6 +20835,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## ✨ Key Design Changes
 
 ### 1. **Color Palette Upgrade**
+
 - **Primary**: Vibrant Chinese Red (`oklch(0.58 0.24 25)`)
 - **Secondary**: Imperial Gold (`oklch(0.75 0.12 75)`)
 - **Accent**: Jade Green (`oklch(0.65 0.18 165)`)
@@ -19471,12 +20843,14 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Sophisticated gradients throughout
 
 ### 2. **Typography Enhancement**
+
 - Increased font weights (font-black for headings)
 - Better hierarchy with larger heading sizes (up to text-9xl)
 - Improved spacing and line-height
 - Gradient text effects on key headings
 
 ### 3. **Animation System**
+
 - Custom keyframe animations (float, glow, shimmer, gradient-shift)
 - Framer Motion integration for scroll-triggered animations
 - Parallax effects on hero section
@@ -19488,8 +20862,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 📄 Updated Components
 
 ### **Hero Section** (`HeroSection.tsx`)
+
 **Before**: Static hero with basic search
-**After**: 
+**After**:
+
 - Animated gradient background with floating orbs
 - Parallax scrolling effect
 - Enhanced glassmorphic search widget
@@ -19499,8 +20875,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Quick search tags
 
 ### **Why Study Section** (`WhyStudySection.tsx`)
+
 **Before**: 4 simple cards
 **After**:
+
 - 8 feature cards with unique gradient colors
 - Hover effects with scale and shadow transitions
 - Decorative corner elements
@@ -19509,8 +20887,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Gradient heading text
 
 ### **Featured Programs** (`FeaturedProgramsSection.tsx`)
+
 **Before**: Basic program cards
 **After**:
+
 - Enhanced card design with 2px borders
 - Hover overlay with gradient
 - Improved badge styling (glassmorphic)
@@ -19520,8 +20900,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - "Browse All Programs" section
 
 ### **How It Works** (`HowItWorksSection.tsx`)
+
 **Before**: 6 simple steps in a row
 **After**:
+
 - 3-column grid layout
 - Numbered badges with gradients
 - Large gradient icons (20x20)
@@ -19531,8 +20913,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - CTA button at bottom
 
 ### **Navbar** (`Navbar.tsx`)
+
 **Before**: Static transparent navbar
 **After**:
+
 - Scroll-triggered background change
 - Animated logo with glow effect
 - Tagline under logo
@@ -19542,8 +20926,10 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 - Language selector with dropdown icon
 
 ### **Footer** (`Footer.tsx`)
+
 **Before**: Basic footer layout
 **After**:
+
 - Newsletter subscription section with gradient background
 - Enhanced social media icons with hover effects
 - Better organized link sections
@@ -19556,6 +20942,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 🎯 New Features
 
 ### **Global Styles** (`globals.css`)
+
 1. **Custom Animations**:
    - `animate-float`: Floating effect for decorative elements
    - `animate-glow`: Pulsing glow effect
@@ -19573,6 +20960,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
    - Smooth scrolling enabled
 
 ### **Design Elements**
+
 - Floating orb backgrounds (blur-3xl)
 - Gradient overlays
 - Border radius increased to 1rem
@@ -19635,16 +21023,16 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 
 ## 📊 Before vs After Comparison
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| Color Palette | Basic red/navy | Vibrant red/gold/jade |
-| Animations | Minimal | Extensive (parallax, scroll-triggered) |
-| Typography | Standard | Bold, gradient effects |
-| Cards | Flat | 3D with shadows and hover effects |
-| Hero | Static | Dynamic with parallax |
-| Navbar | Fixed style | Scroll-responsive |
-| Footer | Basic | Newsletter + enhanced layout |
-| Overall Feel | Professional | Premium & Modern |
+| Aspect        | Before         | After                                  |
+| ------------- | -------------- | -------------------------------------- |
+| Color Palette | Basic red/navy | Vibrant red/gold/jade                  |
+| Animations    | Minimal        | Extensive (parallax, scroll-triggered) |
+| Typography    | Standard       | Bold, gradient effects                 |
+| Cards         | Flat           | 3D with shadows and hover effects      |
+| Hero          | Static         | Dynamic with parallax                  |
+| Navbar        | Fixed style    | Scroll-responsive                      |
+| Footer        | Basic          | Newsletter + enhanced layout           |
+| Overall Feel  | Professional   | Premium & Modern                       |
 
 ---
 
@@ -19665,6 +21053,7 @@ A complete 100% redesign of the StudyAtChina website with modern, impressive UI/
 ## 🌐 Browser Preview
 
 The redesigned website is now running at:
+
 - **Local**: http://localhost:3000
 - **Network**: http://192.168.1.162:3000
 
@@ -19684,8 +21073,6 @@ Open the browser preview to see the stunning new design in action!
 **Redesign Completed**: November 27, 2024
 **Status**: ✅ Ready for Production
 
-
-
 ==================================================
 FILE: ./docs/guides/SCHOLARSHIP_ADMIN_GUIDE.md
 ==================================================
@@ -19693,14 +21080,17 @@ FILE: ./docs/guides/SCHOLARSHIP_ADMIN_GUIDE.md
 # Scholarship Types Admin Guide
 
 ## Overview
+
 You can now manage scholarship types from the admin panel. These scholarship types will automatically appear on all university and program pages.
 
 ## Admin Pages Created
 
 ### 1. Scholarship Types List
+
 **URL:** `/admin/scholarship-types`
 
 **Features:**
+
 - View all scholarship types in a table
 - See coverage percentage, service fees (USD & CNY)
 - Check active/inactive status
@@ -19712,9 +21102,11 @@ You can now manage scholarship types from the admin panel. These scholarship typ
 - Click "Add Scholarship Type" to create new
 
 ### 2. Edit/Create Scholarship Type
+
 **URL:** `/admin/scholarship-types/[id]` or `/admin/scholarship-types/new`
 
 **Features:**
+
 - **Basic Information:**
   - Name (e.g., "Type A")
   - Display Name (e.g., "Full Scholarship (Type A)")
@@ -19841,13 +21233,12 @@ You can edit these or create new ones as needed.
 ## Support
 
 If you need to:
+
 - Add new fields to scholarship types
 - Create custom scholarship applications
 - Generate reports on scholarship usage
 
 Contact your developer for database schema updates.
-
-
 
 ==================================================
 FILE: ./docs/guides/SETUP_COMMUNICATION_SYSTEM.md
@@ -19862,6 +21253,7 @@ FILE: ./docs/guides/SETUP_COMMUNICATION_SYSTEM.md
 You need to run the SQL script to create the messaging and payment tables.
 
 **Go to Supabase Dashboard:**
+
 1. Open https://supabase.com/dashboard
 2. Select your project
 3. Go to **SQL Editor**
@@ -19870,6 +21262,7 @@ You need to run the SQL script to create the messaging and payment tables.
 6. Click **Run** or press `Cmd/Ctrl + Enter`
 
 This will create:
+
 - ✅ `application_messages` table
 - ✅ `payment_transactions` table
 - ✅ `email_notifications` table
@@ -19882,10 +21275,11 @@ This will create:
 ### Step 2: Verify Tables Created
 
 Run this query to check:
+
 ```sql
-SELECT table_name 
-FROM information_schema.tables 
-WHERE table_schema = 'public' 
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
 AND table_name IN (
     'application_messages',
     'payment_transactions',
@@ -19902,6 +21296,7 @@ You should see all 7 tables listed.
 ### Step 3: Test Messaging
 
 Once tables are created, the admin can:
+
 1. Go to admin dashboard
 2. View an application
 3. Send a message
@@ -19923,21 +21318,24 @@ Currently, emails are **logged to database** but not actually sent.
    - Get API key
 
 2. **Install Resend:**
+
    ```bash
    npm install resend
    ```
 
 3. **Add to `.env.local`:**
+
    ```
    RESEND_API_KEY=re_xxxxxxxxxxxxx
    ```
 
 4. **Uncomment code in `/src/lib/email/service.ts`:**
+
    ```typescript
    // Find this section and uncomment:
    const resend = new Resend(process.env.RESEND_API_KEY);
    const { data, error } = await resend.emails.send({
-     from: 'StudyAtChina <noreply@studyatchina.com>',
+     from: "StudyAtChina <noreply@studyatchina.com>",
      to: params.to,
      subject: params.subject,
      html: params.html,
@@ -19965,37 +21363,42 @@ Currently, emails are **logged to database** but not actually sent.
 ### "No messages showing for student"
 
 **Check:**
+
 1. ✅ Tables created in database
 2. ✅ Message was actually created (check Supabase table)
 3. ✅ Student is logged in with correct account
 4. ✅ RLS policies allow student to see their messages
 
 **Verify message exists:**
+
 ```sql
-SELECT * FROM application_messages 
+SELECT * FROM application_messages
 WHERE application_id = 'your-application-id';
 ```
 
 ### "Email not sent"
 
 **Current behavior:**
+
 - Emails are logged to `email_notifications` table
 - Status will be 'sent' (but not actually sent)
 - To actually send, integrate Resend or SendGrid (see above)
 
 **Check email logs:**
+
 ```sql
-SELECT * FROM email_notifications 
-ORDER BY created_at DESC 
+SELECT * FROM email_notifications
+ORDER BY created_at DESC
 LIMIT 10;
 ```
 
 ### "Student can't see messages"
 
 **Check RLS policy:**
+
 ```sql
 -- This should return the student's messages
-SELECT m.* 
+SELECT m.*
 FROM application_messages m
 JOIN applications a ON a.id = m.application_id
 WHERE a.student_id = 'student-user-id';
@@ -20011,8 +21414,6 @@ Currently, the admin dashboard doesn't have a UI to send messages yet.
 
 I'll create this for you now...
 
-
-
 ==================================================
 FILE: ./docs/guides/SLUG_URL_UPDATE.md
 ==================================================
@@ -20026,11 +21427,13 @@ Updated university URLs to use **human-readable slugs** instead of UUIDs!
 ## 📝 Changes Made
 
 ### Before (UUID):
+
 ```
 ❌ http://localhost:3000/universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 ```
 
 ### After (Slug):
+
 ```
 ✅ http://localhost:3000/universities/tsinghua-university
 ```
@@ -20040,12 +21443,14 @@ Updated university URLs to use **human-readable slugs** instead of UUIDs!
 ## 🔄 What Changed
 
 ### 1. **Route Folder Renamed**
+
 ```
 Before: /universities/[id]/page.tsx
 After:  /universities/[slug]/page.tsx
 ```
 
 ### 2. **Database Query Updated**
+
 ```typescript
 // Before
 .eq("id", id)
@@ -20055,6 +21460,7 @@ After:  /universities/[slug]/page.tsx
 ```
 
 ### 3. **All Links Updated**
+
 - UniversityCard component
 - FeaturedUniversitiesSection component
 - All university links now use slug
@@ -20069,31 +21475,31 @@ After:  /universities/[slug]/page.tsx
 
 ```typescript
 // Before
-export default async function UniversityDetailPage({ 
-    params 
-}: { 
-    params: Promise<{ id: string }> 
+export default async function UniversityDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
 }) {
-    const { id } = await params;
-    
-    const { data: university } = await supabase
-        .from("universities")
-        .eq("id", id)
-        .single();
+  const { id } = await params;
+
+  const { data: university } = await supabase
+    .from("universities")
+    .eq("id", id)
+    .single();
 }
 
 // After
-export default async function UniversityDetailPage({ 
-    params 
-}: { 
-    params: Promise<{ slug: string }> 
+export default async function UniversityDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-    const { slug } = await params;
-    
-    const { data: university } = await supabase
-        .from("universities")
-        .eq("slug", slug)
-        .single();
+  const { slug } = await params;
+
+  const { data: university } = await supabase
+    .from("universities")
+    .eq("slug", slug)
+    .single();
 }
 ```
 
@@ -20135,35 +21541,39 @@ export default async function UniversityDetailPage({
 
 ### Real-World Examples:
 
-| University | Old URL | New URL |
-|------------|---------|---------|
-| **Tsinghua University** | `/universities/uuid-123` | `/universities/tsinghua-university` |
-| **Peking University** | `/universities/uuid-456` | `/universities/peking-university` |
-| **Fudan University** | `/universities/uuid-789` | `/universities/fudan-university` |
-| **Shanghai Jiao Tong** | `/universities/uuid-abc` | `/universities/shanghai-jiao-tong-university` |
+| University              | Old URL                  | New URL                                       |
+| ----------------------- | ------------------------ | --------------------------------------------- |
+| **Tsinghua University** | `/universities/uuid-123` | `/universities/tsinghua-university`           |
+| **Peking University**   | `/universities/uuid-456` | `/universities/peking-university`             |
+| **Fudan University**    | `/universities/uuid-789` | `/universities/fudan-university`              |
+| **Shanghai Jiao Tong**  | `/universities/uuid-abc` | `/universities/shanghai-jiao-tong-university` |
 
 ---
 
 ## ✅ Benefits
 
 ### 1. **SEO Friendly**
+
 ```
 ✅ tsinghua-university (descriptive)
 ❌ 59a89e04-1821-44c4-8307-22717c4e3c3b (meaningless)
 ```
 
 ### 2. **User Friendly**
+
 - Easy to read
 - Easy to remember
 - Easy to share
 - Professional appearance
 
 ### 3. **Better Analytics**
+
 - Track by university name
 - Clearer URL patterns
 - Better reporting
 
 ### 4. **Social Sharing**
+
 ```
 When shared on social media:
 ✅ "Check out Tsinghua University"
@@ -20224,12 +21634,14 @@ const generateSlug = (name: string) => {
 ## 🛠️ Admin Panel
 
 ### Admin URLs (Still use ID):
+
 ```
 Admin Edit: /admin/universities/[id]
 Reason: Internal use, ID is more reliable
 ```
 
 ### Public URLs (Use Slug):
+
 ```
 Public View: /universities/[slug]
 Reason: User-facing, SEO-friendly
@@ -20243,14 +21655,14 @@ Reason: User-facing, SEO-friendly
 
 ```sql
 -- Slug column should exist
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD COLUMN slug VARCHAR(255) UNIQUE;
 
 -- Create index for performance
 CREATE INDEX idx_universities_slug ON universities(slug);
 
 -- Ensure slugs are unique
-ALTER TABLE universities 
+ALTER TABLE universities
 ADD CONSTRAINT universities_slug_unique UNIQUE (slug);
 ```
 
@@ -20271,14 +21683,14 @@ INSERT INTO universities (name, slug, city) VALUES
 
 ```sql
 -- Generate slugs from existing names
-UPDATE universities 
+UPDATE universities
 SET slug = LOWER(REPLACE(REPLACE(name, ' ', '-'), '.', ''))
 WHERE slug IS NULL;
 
 -- Verify uniqueness
-SELECT slug, COUNT(*) 
-FROM universities 
-GROUP BY slug 
+SELECT slug, COUNT(*)
+FROM universities
+GROUP BY slug
 HAVING COUNT(*) > 1;
 
 -- Fix duplicates manually if any
@@ -20322,6 +21734,7 @@ Program Links:
 ## 🚀 Result
 
 **Professional, SEO-friendly URLs** that are:
+
 - ✅ Easy to read
 - ✅ Easy to share
 - ✅ Better for SEO
@@ -20329,14 +21742,13 @@ Program Links:
 - ✅ User-friendly
 
 ### Example:
+
 ```
 Before: /universities/59a89e04-1821-44c4-8307-22717c4e3c3b
 After:  /universities/tsinghua-university
 ```
 
 **Much better!** 🎉
-
-
 
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
@@ -20347,6 +21759,7 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 ## 🎯 What Changed
 
 ### Before:
+
 ```
 ┌─────────────────────────────────┐
 │ [Simple Banner]                 │
@@ -20362,6 +21775,7 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 ```
 
 ### After:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [STUNNING HERO BANNER - 500px]          │
@@ -20390,6 +21804,7 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 ## ✨ New Features
 
 ### 1. **Stunning Hero Banner** (500px height)
+
 - ✅ Full-width background image from gallery
 - ✅ Multiple gradient overlays (black, red, yellow)
 - ✅ Animated pulse effect
@@ -20397,18 +21812,21 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 - ✅ Professional depth
 
 ### 2. **Enhanced Typography**
+
 - ✅ **Huge** university name (text-6xl)
 - ✅ Drop shadow for readability
 - ✅ Chinese name subtitle
 - ✅ Bold, impactful fonts
 
 ### 3. **Ranking Badges**
+
 - ✅ Glass morphism effect (backdrop-blur)
 - ✅ White/transparent background
 - ✅ Star icons with yellow fill
 - ✅ Floating above content
 
 ### 4. **Quick Info Pills**
+
 - ✅ Rounded pill design
 - ✅ Glass morphism background
 - ✅ Icons for each stat
@@ -20416,12 +21834,14 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 - ✅ City, Founded, Students, Website
 
 ### 5. **Premium Action Buttons**
+
 - ✅ **Apply Now**: Gradient red with shadow glow
 - ✅ **Save**: Glass morphism with heart icon (toggles)
 - ✅ **Share**: Glass morphism with share icon
 - ✅ Large, prominent sizing
 
 ### 6. **Overlapping Stats Card**
+
 - ✅ White card with shadow
 - ✅ Positioned -mt-16 (overlaps banner)
 - ✅ University logo on left
@@ -20434,6 +21854,7 @@ FILE: ./docs/guides/UNIVERSITY_HEADER_REDESIGN.md
 ## 🎨 Design Elements
 
 ### Color Palette:
+
 ```css
 Background: Dynamic from gallery or red gradient
 Overlays: Black gradients for depth
@@ -20444,6 +21865,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Gradients Used:
+
 ```css
 1. from-black via-black/50 to-transparent (vertical)
 2. from-black/30 to-transparent (horizontal)
@@ -20452,6 +21874,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Effects:
+
 ```css
 - backdrop-blur-md (glass morphism)
 - drop-shadow-2xl (text depth)
@@ -20466,6 +21889,7 @@ Buttons: Red gradient with glow
 ## 📊 Layout Structure
 
 ### Hero Section (500px):
+
 ```
 ┌─────────────────────────────────┐
 │ Background Image (scale-105)    │
@@ -20483,6 +21907,7 @@ Buttons: Red gradient with glow
 ```
 
 ### Stats Card (overlapping):
+
 ```
 ┌─────────────────────────────────┐
 │ [Logo]  Founded | Students      │
@@ -20497,6 +21922,7 @@ Buttons: Red gradient with glow
 ## 🎯 Interactive Features
 
 ### Save Button:
+
 ```typescript
 const [isSaved, setIsSaved] = useState(false);
 
@@ -20507,6 +21933,7 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ```
 
 ### Hover Effects:
+
 - Website pill: bg-white/20
 - Buttons: Gradient shift
 - Stats card: Subtle lift (can add)
@@ -20516,12 +21943,14 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## 📱 Responsive Design
 
 ### Desktop (md+):
+
 - 500px hero height
 - text-6xl university name
 - 4-column stats grid
 - Side-by-side buttons
 
 ### Mobile:
+
 - 400px hero height
 - text-4xl university name
 - 2-column stats grid
@@ -20532,6 +21961,7 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## 🎨 Visual Hierarchy
 
 ### Priority Order:
+
 1. **University Name** - Largest, white, bold
 2. **Apply Now Button** - Red gradient, glowing
 3. **Badges** - Top-left, eye-catching
@@ -20544,16 +21974,20 @@ className={isSaved ? 'fill-red-500 text-red-500' : ''}
 ## ✨ Premium Details
 
 ### Glass Morphism:
+
 ```css
 bg-white/10 backdrop-blur-md
 border-white/30
 ```
+
 Used on:
+
 - Badges
 - Quick info pills
 - Save/Share buttons
 
 ### Shadows:
+
 ```css
 shadow-2xl (cards)
 shadow-2xl shadow-red-500/50 (Apply button)
@@ -20561,6 +21995,7 @@ drop-shadow-2xl (text)
 ```
 
 ### Borders:
+
 ```css
 border-white/30 (glass elements)
 border-gray-100 (white card)
@@ -20572,6 +22007,7 @@ border-2 border-gray-100 (logo)
 ## 🚀 Performance
 
 ### Optimizations:
+
 - ✅ Client component for interactivity
 - ✅ Conditional rendering (logo, badges)
 - ✅ Optimized image loading
@@ -20585,6 +22021,7 @@ border-2 border-gray-100 (logo)
 A **stunning, modern, professional** university header featuring:
 
 ### Visual Impact:
+
 - ✅ 500px hero banner
 - ✅ Multiple gradient layers
 - ✅ Glass morphism effects
@@ -20592,6 +22029,7 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Professional depth
 
 ### User Experience:
+
 - ✅ Clear hierarchy
 - ✅ Quick actions
 - ✅ Key info at glance
@@ -20599,6 +22037,7 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Mobile-friendly
 
 ### Conversion:
+
 - ✅ Prominent Apply button
 - ✅ Save for later
 - ✅ Easy sharing
@@ -20606,8 +22045,6 @@ A **stunning, modern, professional** university header featuring:
 - ✅ Professional appearance
 
 **The most impressive university header ever!** 🎨✨🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
@@ -20637,13 +22074,13 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
    - Header with program count badge
    - Individual program cards
    - Each card shows:
-     * Program name
-     * Level badge (blue)
-     * Duration badge (purple)
-     * Language badge (green)
-     * Intake badge (orange)
-     * Tuition fee (large gradient text)
-     * Apply button
+     - Program name
+     - Level badge (blue)
+     - Duration badge (purple)
+     - Language badge (green)
+     - Intake badge (orange)
+     - Tuition fee (large gradient text)
+     - Apply button
    - Maps through university.programs array
 
 4. **Campus Tour Video** ✅
@@ -20677,28 +22114,28 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_COMPLETE_CHECKLIST.md
    - Large icon
    - "Ready to Apply?" heading
    - Two buttons:
-     * Apply Now (white)
-     * Download Brochure (outline)
+     - Apply Now (white)
+     - Download Brochure (outline)
 
 8. **Quick Actions** ✅
    - Location: Lines 300-325
    - White card
    - 4 action buttons:
-     * Request Information (blue)
-     * Chat with Advisor (purple)
-     * Virtual Campus Tour (green)
-     * Schedule a Call (orange)
+     - Request Information (blue)
+     - Chat with Advisor (purple)
+     - Virtual Campus Tour (green)
+     - Schedule a Call (orange)
    - Each with icon and chevron
 
 9. **Quick Facts** ✅
    - Location: Lines 327-357
    - White card
    - 5 fact rows:
-     * Location (with MapPin icon)
-     * Founded (with Calendar icon)
-     * Students (with Users icon)
-     * International (with TrendingUp icon)
-     * Ranking (with Award icon)
+     - Location (with MapPin icon)
+     - Founded (with Calendar icon)
+     - Students (with Users icon)
+     - International (with TrendingUp icon)
+     - Ranking (with Award icon)
    - Official Website button at bottom
 
 ---
@@ -20715,17 +22152,17 @@ university = {
     city: string,
     province: string,
     website: string,
-    
+
     // Media
     logo_url: string,
     gallery_images: string[],  // Array of image URLs
     video_url: string,         // YouTube URL
-    
+
     // Content
     overview: string,          // Description text
     highlights: string[],      // Array of features
     badges: string[],          // Array of badges
-    
+
     // Stats
     stats: {
         founded: string,
@@ -20735,7 +22172,7 @@ university = {
         programs: string,
         acceptance: string
     },
-    
+
     // Programs
     programs: [{
         id: string,
@@ -20754,6 +22191,7 @@ university = {
 ## 🎨 Visual Hierarchy
 
 ### Order of Appearance:
+
 1. Hero Header (from UniversityHeader component)
 2. About Section
 3. Why Choose Us (gradient)
@@ -20763,6 +22201,7 @@ university = {
 7. Admission Requirements
 
 ### Sidebar (Always Visible):
+
 - Apply CTA (sticky)
 - Quick Actions
 - Quick Facts
@@ -20792,12 +22231,14 @@ Sections that only show if data exists:
 ### If Programs Don't Show:
 
 **Check:**
+
 1. Is `university.programs` defined?
 2. Is `university.programs.length > 0`?
 3. Are programs being passed from page.tsx?
 4. Check browser console for errors
 
 **Debug:**
+
 ```javascript
 console.log("Programs:", university.programs);
 console.log("Programs length:", university.programs?.length);
@@ -20806,6 +22247,7 @@ console.log("Programs length:", university.programs?.length);
 ### If Video Doesn't Show:
 
 **Check:**
+
 1. Is `university.video_url` defined and not empty?
 2. Is it a valid YouTube URL?
 3. Check browser console for iframe errors
@@ -20813,6 +22255,7 @@ console.log("Programs length:", university.programs?.length);
 ### If Gallery Doesn't Show:
 
 **Check:**
+
 1. Is `university.gallery_images` defined?
 2. Is it an array with length > 0?
 3. Are image URLs valid?
@@ -20824,6 +22267,7 @@ console.log("Programs length:", university.programs?.length);
 **Total Sections: 9**
 
 Main Content:
+
 1. About ✅
 2. Why Choose Us ✅
 3. Programs ✅
@@ -20831,10 +22275,7 @@ Main Content:
 5. Gallery ✅
 6. Admission ✅
 
-Sidebar:
-7. Apply CTA ✅
-8. Quick Actions ✅
-9. Quick Facts ✅
+Sidebar: 7. Apply CTA ✅ 8. Quick Actions ✅ 9. Quick Facts ✅
 
 ---
 
@@ -20854,6 +22295,7 @@ To verify all sections are working:
    - Sidebar (sticky on right)
 
 4. **Check data** in console:
+
 ```javascript
 // In browser console
 console.log(university);
@@ -20864,12 +22306,11 @@ console.log(university);
 ## ✅ Everything Is There!
 
 All 9 sections are implemented and will show based on available data. If you don't see programs, it's because:
+
 - No programs in database, OR
 - Programs not being passed correctly from page.tsx
 
 **The code is complete and ready!** 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_PAGE_DYNAMIC.md
@@ -20886,6 +22327,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 ## ✅ What's Now Dynamic
 
 ### 1. **Banner Image**
+
 ```typescript
 // Before: Placeholder text
 <div>Campus Banner Image</div>
@@ -20901,6 +22343,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** First image from `gallery_images` array
 
 ### 2. **University Logo**
+
 ```typescript
 // Before: Text "Logo"
 <div>Logo</div>
@@ -20916,6 +22359,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `logo_url` field or initials as fallback
 
 ### 3. **University Name**
+
 ```typescript
 // Dynamic from database
 <h1>{university.name}</h1>
@@ -20925,6 +22369,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `name` and `name_local` fields
 
 ### 4. **Location**
+
 ```typescript
 // Dynamic location
 <MapPin /> {university.city}, {university.province}
@@ -20933,6 +22378,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `city` and `province` fields
 
 ### 5. **Website Link**
+
 ```typescript
 // Dynamic website
 <a href={university.website}>Official Website</a>
@@ -20941,6 +22387,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `website` field
 
 ### 6. **Badges/Features**
+
 ```typescript
 // Dynamic badges
 {university.badges.map(badge => (
@@ -20951,6 +22398,7 @@ Made the university detail page (`/universities/[slug]`) **100% dynamic** with a
 **Source:** `features` array
 
 ### 7. **Statistics Cards**
+
 ```typescript
 // All dynamic stats
 Founded: {stats.founded}        // from 'founded'
@@ -20962,6 +22410,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** University stats fields
 
 ### 8. **Overview Description**
+
 ```typescript
 // Dynamic description
 <p>{universityData.overview}</p>
@@ -20970,6 +22419,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `description` field
 
 ### 9. **Highlights**
+
 ```typescript
 // Dynamic highlights from features
 {universityData.highlights.map(highlight => (
@@ -20980,6 +22430,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `features` array (with fallback)
 
 ### 10. **Gallery Section**
+
 ```typescript
 // Dynamic gallery
 {university.gallery_images?.map((image, index) => (
@@ -20990,6 +22441,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `gallery_images` array
 
 ### 11. **Video Section**
+
 ```typescript
 // Dynamic video
 {university.video_url && (
@@ -21000,6 +22452,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 **Source:** `video_url` field
 
 ### 12. **Map Location**
+
 ```typescript
 // Dynamic map
 {university.latitude && university.longitude && (
@@ -21046,6 +22499,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ## 🎨 Visual Components
 
 ### Header Section:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Banner Image from gallery_images[0]]   │
@@ -21061,6 +22515,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Stats Cards:
+
 ```
 ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐
 │ Founded  │ │ Students │ │ Ranking  │ │ Intl.    │
@@ -21069,6 +22524,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Gallery Section:
+
 ```
 ┌────┐ ┌────┐ ┌────┐
 │IMG1│ │IMG2│ │IMG3│
@@ -21079,6 +22535,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Video Section:
+
 ```
 ┌─────────────────────────────────┐
 │                                 │
@@ -21088,6 +22545,7 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 ```
 
 ### Map Section:
+
 ```
 ┌─────────────────────────────────┐
 │   [Google Maps Embed]           │
@@ -21102,23 +22560,24 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
 
 ### If Data Missing:
 
-| Field | Fallback |
-|-------|----------|
-| **Banner** | Unsplash placeholder |
-| **Logo** | University initials |
-| **Name Local** | English name |
-| **Stats** | "N/A" |
+| Field           | Fallback                   |
+| --------------- | -------------------------- |
+| **Banner**      | Unsplash placeholder       |
+| **Logo**        | University initials        |
+| **Name Local**  | English name               |
+| **Stats**       | "N/A"                      |
 | **Description** | "No description available" |
-| **Highlights** | Default highlights |
-| **Gallery** | Not shown |
-| **Video** | Not shown |
-| **Map** | Placeholder |
+| **Highlights**  | Default highlights         |
+| **Gallery**     | Not shown                  |
+| **Video**       | Not shown                  |
+| **Map**         | Placeholder                |
 
 ---
 
 ## 📝 Example: Ningbo University
 
 ### Database Data:
+
 ```json
 {
   "name": "Ningbo University",
@@ -21145,11 +22604,12 @@ Intl. Students: {stats.intlStudents}  // from 'international_students'
   ],
   "video_url": "https://youtube.com/...",
   "latitude": 29.8167,
-  "longitude": 121.5500
+  "longitude": 121.55
 }
 ```
 
 ### Rendered Page:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Campus Photo 1 - from gallery]         │
@@ -21184,24 +22644,24 @@ Highlights:
 
 ## ✅ Complete Dynamic Fields
 
-| Section | Field | Source |
-|---------|-------|--------|
-| **Header** | Banner | `gallery_images[0]` |
-| **Header** | Logo | `logo_url` |
-| **Header** | Name | `name` |
-| **Header** | Local Name | `name_local` |
-| **Header** | Location | `city`, `province` |
-| **Header** | Website | `website` |
-| **Header** | Badges | `features` |
-| **Stats** | Founded | `founded` |
-| **Stats** | Students | `total_students` |
-| **Stats** | Ranking | `ranking` |
-| **Stats** | Intl Students | `international_students` |
-| **Overview** | Description | `description` |
-| **Highlights** | Features | `features` |
-| **Gallery** | Images | `gallery_images` |
-| **Video** | URL | `video_url` |
-| **Map** | Coordinates | `latitude`, `longitude` |
+| Section        | Field         | Source                   |
+| -------------- | ------------- | ------------------------ |
+| **Header**     | Banner        | `gallery_images[0]`      |
+| **Header**     | Logo          | `logo_url`               |
+| **Header**     | Name          | `name`                   |
+| **Header**     | Local Name    | `name_local`             |
+| **Header**     | Location      | `city`, `province`       |
+| **Header**     | Website       | `website`                |
+| **Header**     | Badges        | `features`               |
+| **Stats**      | Founded       | `founded`                |
+| **Stats**      | Students      | `total_students`         |
+| **Stats**      | Ranking       | `ranking`                |
+| **Stats**      | Intl Students | `international_students` |
+| **Overview**   | Description   | `description`            |
+| **Highlights** | Features      | `features`               |
+| **Gallery**    | Images        | `gallery_images`         |
+| **Video**      | URL           | `video_url`              |
+| **Map**        | Coordinates   | `latitude`, `longitude`  |
 
 ---
 
@@ -21222,8 +22682,6 @@ The university detail page is now **100% dynamic**:
 
 **Everything is dynamic - no hardcoded content!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ==================================================
@@ -21233,6 +22691,7 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ## 🎯 Improvements to Make
 
 ### 1. **Hero Section Enhancements**
+
 - ✨ Parallax scrolling effect on banner
 - ✨ Animated gradient overlay
 - ✨ Floating action buttons (Share, Save, Apply)
@@ -21240,12 +22699,14 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ University ranking badge with animation
 
 ### 2. **Quick Info Bar**
+
 - ✨ Sticky bar that appears on scroll
 - ✨ Quick stats (Founded, Students, Programs)
 - ✨ Quick action buttons
 - ✨ Smooth slide-in animation
 
 ### 3. **Interactive Tabs**
+
 - ✨ Overview
 - ✨ Programs
 - ✨ Admission
@@ -21255,12 +22716,14 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ Smooth scroll to sections
 
 ### 4. **Enhanced Stats Cards**
+
 - ✨ Animated counters
 - ✨ Gradient backgrounds
 - ✨ Icon animations on hover
 - ✨ Comparison with averages
 
 ### 5. **Program Cards Redesign**
+
 - ✨ Hover effects with lift
 - ✨ Quick view modal
 - ✨ Compare programs feature
@@ -21268,41 +22731,48 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 - ✨ Sort by tuition/duration
 
 ### 6. **Gallery Section**
+
 - ✨ Lightbox for full-screen view
 - ✨ Image carousel
 - ✨ Category filters (Campus, Facilities, Events)
 - ✨ Smooth transitions
 
 ### 7. **Video Section**
+
 - ✨ Custom video player
 - ✨ Thumbnail preview
 - ✨ Play button overlay
 - ✨ Full-screen option
 
 ### 8. **Interactive Map**
+
 - ✨ 3D map view
 - ✨ Street view integration
 - ✨ Nearby amenities
 - ✨ Transportation info
 
 ### 9. **Testimonials/Reviews**
+
 - ✨ Student reviews carousel
 - ✨ Star ratings
 - ✨ Filter by program
 - ✨ Verified student badges
 
 ### 10. **Application CTA**
+
 - ✨ Floating apply button
 - ✨ Progress indicator
 - ✨ Deadline countdown
 - ✨ Quick application form
 
 ### 11. **Related Universities**
+
 - ✨ Similar universities
 - ✨ Same city universities
 - ✨ Comparison feature
 
 ### 12. **Social Proof**
+
 - ✨ Live applicant counter
 - ✨ Recent applications
 - ✨ Success stories
@@ -21313,6 +22783,7 @@ FILE: ./docs/guides/UNIVERSITY_PAGE_IMPROVEMENTS.md
 ## 🎨 Design Improvements
 
 ### Color Scheme:
+
 ```css
 Primary: Red gradient (from-red-600 to-red-700)
 Secondary: Yellow accents
@@ -21321,6 +22792,7 @@ Cards: Glass morphism effect
 ```
 
 ### Typography:
+
 ```css
 Headings: Bold, large, with gradient text
 Body: Clean, readable, good spacing
@@ -21328,6 +22800,7 @@ Stats: Extra bold, eye-catching
 ```
 
 ### Animations:
+
 ```css
 Fade in on scroll
 Slide from sides
@@ -21337,6 +22810,7 @@ Loading skeletons
 ```
 
 ### Spacing:
+
 ```css
 More white space
 Better section separation
@@ -21349,6 +22823,7 @@ Responsive margins
 ## 🚀 Interactive Features
 
 ### 1. **Quick Actions Bar**
+
 ```
 ┌─────────────────────────────────────┐
 │ [❤️ Save] [📤 Share] [📝 Apply Now]│
@@ -21356,6 +22831,7 @@ Responsive margins
 ```
 
 ### 2. **Sticky Navigation**
+
 ```
 ┌─────────────────────────────────────┐
 │ Overview | Programs | Admission     │
@@ -21364,6 +22840,7 @@ Responsive margins
 ```
 
 ### 3. **Comparison Tool**
+
 ```
 ┌─────────────────────────────────────┐
 │ Compare with:                       │
@@ -21373,6 +22850,7 @@ Responsive margins
 ```
 
 ### 4. **Live Chat**
+
 ```
 ┌─────────────────────────────────────┐
 │ 💬 Chat with Admissions             │
@@ -21385,6 +22863,7 @@ Responsive margins
 ## 📱 Mobile Optimizations
 
 ### Improvements:
+
 - ✅ Touch-friendly buttons
 - ✅ Swipeable galleries
 - ✅ Collapsible sections
@@ -21397,12 +22876,14 @@ Responsive margins
 ## 🎯 Performance Enhancements
 
 ### Loading:
+
 - ✅ Skeleton screens
 - ✅ Lazy loading images
 - ✅ Progressive enhancement
 - ✅ Optimized queries
 
 ### SEO:
+
 - ✅ Rich snippets
 - ✅ Schema markup
 - ✅ Meta tags
@@ -21413,18 +22894,21 @@ Responsive margins
 ## ✨ Micro-interactions
 
 ### Hover Effects:
+
 - Cards lift up
 - Images zoom
 - Buttons pulse
 - Icons rotate
 
 ### Click Effects:
+
 - Ripple animation
 - Success feedback
 - Loading states
 - Error handling
 
 ### Scroll Effects:
+
 - Parallax backgrounds
 - Fade in elements
 - Progress indicators
@@ -21435,6 +22919,7 @@ Responsive margins
 ## 🎨 Visual Hierarchy
 
 ### Priority Order:
+
 1. **Hero** - University name, banner
 2. **CTA** - Apply now button
 3. **Stats** - Key numbers
@@ -21447,12 +22932,14 @@ Responsive margins
 ## 📊 Data Visualization
 
 ### Charts:
+
 - Student demographics
 - Program distribution
 - Acceptance rates
 - Tuition comparison
 
 ### Infographics:
+
 - Application process
 - Campus facilities
 - Student life
@@ -21463,6 +22950,7 @@ Responsive margins
 ## 🎉 Engagement Features
 
 ### Interactive Elements:
+
 - Virtual campus tour
 - 360° photos
 - Student Q&A
@@ -21471,6 +22959,7 @@ Responsive margins
 - Cost estimator
 
 ### Social Integration:
+
 - Share buttons
 - Social media feeds
 - Student blogs
@@ -21481,6 +22970,7 @@ Responsive margins
 ## 🔥 Premium Features
 
 ### Advanced:
+
 - AI chatbot
 - Personalized recommendations
 - Application tracker
@@ -21493,6 +22983,7 @@ Responsive margins
 ## 📝 Content Enhancements
 
 ### Rich Content:
+
 - Video introductions
 - Faculty profiles
 - Research highlights
@@ -21501,6 +22992,7 @@ Responsive margins
 - Blog posts
 
 ### Downloads:
+
 - Brochures (PDF)
 - Program guides
 - Application forms
@@ -21512,6 +23004,7 @@ Responsive margins
 ## 🎯 Conversion Optimization
 
 ### CTAs:
+
 - Multiple apply buttons
 - Sticky footer CTA
 - Exit-intent popup
@@ -21519,6 +23012,7 @@ Responsive margins
 - Limited spots indicator
 
 ### Trust Signals:
+
 - Accreditation badges
 - Rankings
 - Success rates
@@ -21530,6 +23024,7 @@ Responsive margins
 ## 🚀 Implementation Priority
 
 ### Phase 1 (High Priority):
+
 1. Hero section redesign
 2. Interactive tabs
 3. Enhanced program cards
@@ -21537,6 +23032,7 @@ Responsive margins
 5. Sticky navigation
 
 ### Phase 2 (Medium Priority):
+
 6. Animated stats
 7. Video player
 8. Map improvements
@@ -21544,6 +23040,7 @@ Responsive margins
 10. Mobile optimizations
 
 ### Phase 3 (Nice to Have):
+
 11. Testimonials
 12. Comparison tool
 13. Live chat
@@ -21555,6 +23052,7 @@ Responsive margins
 ## 🎨 Example Sections
 
 ### Impressive Hero:
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Parallax Banner with Gradient Overlay] │
@@ -21570,6 +23068,7 @@ Responsive margins
 ```
 
 ### Animated Stats:
+
 ```
 ┌─────────────────────────────────────────┐
 │  Founded    Students    Programs  Ranking│
@@ -21581,6 +23080,7 @@ Responsive margins
 ```
 
 ### Interactive Programs:
+
 ```
 ┌─────────────────────────────────────────┐
 │ Programs                    [Filter ▼]  │
@@ -21602,6 +23102,7 @@ Responsive margins
 ## 🎉 Result
 
 A **stunning, modern, interactive** university page that:
+
 - ✅ Impresses visitors
 - ✅ Engages users
 - ✅ Converts to applications
@@ -21611,8 +23112,6 @@ A **stunning, modern, interactive** university page that:
 - ✅ Ranks well in SEO
 
 **The most impressive university page ever!** 🚀✨
-
-
 
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_PROGRAMS_UPDATE.md
@@ -21627,15 +23126,18 @@ The `/admin/programs` page has been **completely updated** to work with the new 
 ## ✨ New Workflow
 
 ### Before (Old System):
+
 ```
 1. Click "Add Program"
 2. Type program name manually (e.g., "Business Administration")
 3. Fill in all details
 4. Save
 ```
+
 **Problem:** Each university types their own program names → Duplicates!
 
 ### After (New System):
+
 ```
 1. Click "Add Program"
 2. Select university
@@ -21653,16 +23155,19 @@ The `/admin/programs` page has been **completely updated** to work with the new 
    - Fees
 5. Save
 ```
+
 **Result:** All universities use standardized programs! ✅
 
 ## 📋 Form Structure
 
 ### 1. **University Selection**
+
 ```
 University: [Select University ▼]
 ```
 
 ### 2. **Program Catalog Selection** ⭐ NEW
+
 ```
 ┌────────────────────────────────────────┐
 │ 📖 Select from Program Catalog         │
@@ -21677,12 +23182,14 @@ University: [Select University ▼]
 ```
 
 ### 3. **Custom Title** (Optional)
+
 ```
 Custom Title: [Business Management]
 (if university calls it differently)
 ```
 
 ### 4. **University-Specific Details**
+
 ```
 - Duration (override if different)
 - Intake
@@ -21696,6 +23203,7 @@ Custom Title: [Business Management]
 ```
 
 ### 5. **Status Toggles**
+
 ```
 [✓] Active Program
 [  ] Force Payment
@@ -21704,6 +23212,7 @@ Custom Title: [Business Management]
 ## 🎨 UI Improvements
 
 ### Visual Enhancements:
+
 1. **Section Headers** with icons
    - 📖 Select from Program Catalog
    - University-Specific Details
@@ -21722,19 +23231,21 @@ Custom Title: [Business Management]
    - Better UX feedback
 
 5. **Better Labels**
-   - Required fields marked with *
+   - Required fields marked with \*
    - Helpful placeholders
    - Contextual hints
 
 ## 📊 Program Catalog Dropdown
 
 Shows programs with:
+
 - **Program Title** (e.g., "Business Administration")
 - **Level Badge** (Bachelor, Master, PhD)
 - **Category** (shown after selection)
 - **Typical Duration** (shown after selection)
 
 Example:
+
 ```
 ┌──────────────────────────────────────┐
 │ Business Administration [Bachelor]   │
@@ -21753,11 +23264,13 @@ Example:
 ### Adding a Program:
 
 **Step 1:** Select University
+
 ```
 University: Tsinghua University
 ```
 
 **Step 2:** Choose from Catalog
+
 ```
 Standard Program: Business Administration [Bachelor]
 ↓
@@ -21766,12 +23279,14 @@ Shows: Category: Business & Management
 ```
 
 **Step 3:** Optional Custom Title
+
 ```
 Custom Title: Business Management
 (Tsinghua calls it "Business Management")
 ```
 
 **Step 4:** Add Details
+
 ```
 Tuition Fee: 30000 RMB
 Language: English
@@ -21780,11 +23295,13 @@ Scholarship: 10-100%
 ```
 
 **Step 5:** Save
+
 ```
 ✅ Program added successfully!
 ```
 
 ### Result in Database:
+
 ```
 university_programs table:
 {
@@ -21801,34 +23318,40 @@ university_programs table:
 ## 🎯 Benefits
 
 ### 1. **Standardization**
+
 - All programs link to catalog
 - No more duplicate names
 - Consistent categorization
 
 ### 2. **Flexibility**
+
 - Universities can add custom title
 - Can override duration
 - Full control over fees
 
 ### 3. **Better Filtering**
+
 - Users can filter by category
 - All "Business" programs grouped
 - Accurate search results
 
 ### 4. **Easy Comparison**
+
 - Compare same program across universities
 - See which university offers best price
 - Filter by language/level
 
 ## 📝 Form Fields
 
-### Required Fields (*)
+### Required Fields (\*)
+
 - University
 - Standard Program (from catalog)
 - Tuition Fee
 - Language
 
 ### Optional Fields
+
 - Custom Title
 - Duration (uses catalog default if empty)
 - Intake
@@ -21838,12 +23361,14 @@ university_programs table:
 - Deadline
 
 ### Toggles
+
 - Active Program (default: ON)
 - Force Payment (default: OFF)
 
 ## 🔍 Example Scenarios
 
 ### Scenario 1: Standard Program
+
 ```
 University: Peking University
 Program: Business Administration
@@ -21855,6 +23380,7 @@ Result: Displays as "Business Administration"
 ```
 
 ### Scenario 2: Custom Name
+
 ```
 University: Fudan University
 Program: Business Administration
@@ -21867,6 +23393,7 @@ Result: Displays as "BA in Business"
 ```
 
 ### Scenario 3: Different Duration
+
 ```
 University: Shanghai Jiao Tong
 Program: Computer Science (catalog says "4 years")
@@ -21902,6 +23429,7 @@ Result: Shows 3.5 years instead of catalog's 4 years
 ## 📊 Integration
 
 This form now integrates with:
+
 - ✅ Program Catalog (`/admin/program-catalog`)
 - ✅ Universities table
 - ✅ Languages table
@@ -21911,6 +23439,7 @@ This form now integrates with:
 ## 🎉 Result
 
 The University Programs page now:
+
 1. ✅ Uses the Program Catalog system
 2. ✅ Prevents duplicate program names
 3. ✅ Enables accurate filtering
@@ -21921,8 +23450,6 @@ The University Programs page now:
 
 **The system is now ready for the new Program Catalog workflow!** 🚀
 
-
-
 ==================================================
 FILE: ./docs/guides/UNIVERSITY_SCHOLARSHIPS_GUIDE.md
 ==================================================
@@ -21930,9 +23457,11 @@ FILE: ./docs/guides/UNIVERSITY_SCHOLARSHIPS_GUIDE.md
 # University-Specific Scholarships System
 
 ## Overview
+
 Each university can now have its own custom scholarship types with unique benefits. This allows you to accurately represent the different scholarship offerings from each institution.
 
 ## Key Features
+
 - ✅ **University-Specific:** Each university defines its own scholarship types
 - ✅ **Flexible Benefits:** Support for tuition coverage, accommodation, stipend, medical insurance, and one-time allowances
 - ✅ **Custom Duration:** Scholarships can be for 1 year, 4 years, or full program duration
@@ -21944,6 +23473,7 @@ Each university can now have its own custom scholarship types with unique benefi
 ### Table: `university_scholarships`
 
 **Key Fields:**
+
 - `university_id` - Links to specific university
 - `type_name` - Short name (e.g., "Type A", "Type B")
 - `display_name` - Full descriptive name
@@ -21966,12 +23496,15 @@ Each university can now have its own custom scholarship types with unique benefi
 ## Admin Interface
 
 ### 1. Access University Scholarships
+
 **Path:** `/admin/universities` → Click "Scholarships" button for any university
 
 ### 2. Manage Scholarships Page
+
 **URL:** `/admin/universities/[id]/scholarships`
 
 **Features:**
+
 - View all scholarships for the university
 - See coverage %, duration, benefits, service fees
 - Quick stats (total scholarships, active count, avg service fee)
@@ -21979,40 +23512,48 @@ Each university can now have its own custom scholarship types with unique benefi
 - Edit existing scholarships
 
 ### 3. Create/Edit Scholarship
+
 **URL:** `/admin/universities/[id]/scholarships/[scholarshipId]` or `/new`
 
 **Form Sections:**
 
 #### Basic Information
+
 - Type Name (e.g., "Type A")
 - Display Name (e.g., "Type A: Full Scholarship with Stipend")
 - Description
 - Display Order
 
 #### Tuition Coverage
+
 - Coverage Percentage (0-100%)
 - Duration in Years (1, 4, or leave empty for full program)
 
 #### Accommodation
+
 - Toggle: Includes Accommodation
 - Accommodation Type (e.g., "Free university dormitory" or "Accommodation allowance")
 
 #### Monthly Stipend
+
 - Toggle: Includes Stipend
 - Amount per Month
 - Currency (CNY/RMB)
 - Months per Year (usually 12)
 
 #### Other Benefits
+
 - Toggle: Medical Insurance
 - One-Time Allowance (optional cash benefit)
 - Currency
 
 #### Service Fees
+
 - Service Fee in USD
 - Service Fee in CNY
 
 #### Status
+
 - Active/Inactive toggle
 - Live preview of how it will look to students
 
@@ -22109,12 +23650,15 @@ Type D: 20% off tuition (4 years)
 ## How to Add Scholarships
 
 ### Step 1: Go to Universities Admin
+
 Navigate to `/admin/universities`
 
 ### Step 2: Click "Scholarships" Button
+
 Click the "Scholarships" button next to the university you want to manage
 
 ### Step 3: Click "Add Scholarship"
+
 On the scholarships page, click "Add Scholarship"
 
 ### Step 4: Fill in the Form
@@ -22155,9 +23699,11 @@ Status:
 ```
 
 ### Step 5: Save
+
 Click "Save Changes"
 
 ### Step 6: Repeat
+
 Add as many scholarship types as the university offers
 
 ## Where Scholarships Appear
@@ -22182,11 +23728,13 @@ Once you add scholarships for a university, they automatically appear on:
 ### 1. Run the Database Migration
 
 Execute the SQL file:
+
 ```sql
 -- File: DATABASE_MIGRATION_UNIVERSITY_SCHOLARSHIPS.sql
 ```
 
 This will:
+
 - Drop old `scholarship_types` table
 - Create new `university_scholarships` table
 - Set up proper relationships and indexes
@@ -22194,6 +23742,7 @@ This will:
 ### 2. Add Scholarships via Admin
 
 For each university:
+
 1. Go to `/admin/universities`
 2. Click "Scholarships"
 3. Add each scholarship type
@@ -22203,6 +23752,7 @@ For each university:
 ### 3. Verify Frontend
 
 Visit:
+
 - Any university page
 - Any program page for that university
 - Check that scholarships display correctly
@@ -22237,33 +23787,36 @@ Visit:
 ## Troubleshooting
 
 **Q: Scholarships not showing on university page?**
+
 - Check if scholarships are marked as "Active"
 - Verify university_id is correct
 - Check browser console for errors
 
 **Q: How to delete a scholarship?**
+
 - Currently, set it to "Inactive" to hide it
 - Or delete directly from database if needed
 
 **Q: Can I copy scholarships from one university to another?**
+
 - Not via UI currently
 - Can duplicate in database and change university_id
 
 **Q: What if a university has no scholarships?**
+
 - That's fine! The section will show "No scholarships available"
 - Or you can add a generic "Contact us" scholarship type
 
 ## Support
 
 For additional features or customizations:
+
 - Adding bulk import for scholarships
 - Copying scholarships between universities
 - Custom scholarship application forms
 - Integration with payment systems
 
 Contact your developer for database schema updates.
-
-
 
 ==================================================
 FILE: ./docs/guides/USER_ROLES_SYSTEM.md
@@ -22283,10 +23836,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ## 👥 User Roles
 
 ### 1. Admin (Full Access)
+
 **Badge Color:** Red
 **Icon:** Shield
 
 **Permissions:**
+
 - ✅ Full system access
 - ✅ Manage all users and roles
 - ✅ Access all features
@@ -22300,10 +23855,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 2. Data Entry
+
 **Badge Color:** Blue
 **Icon:** UserCog
 
 **Permissions:**
+
 - ✅ Add/Edit universities
 - ✅ Add/Edit programs
 - ✅ Manage program catalog
@@ -22319,10 +23876,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 3. Marketing & Leads
+
 **Badge Color:** Green
 **Icon:** Users
 
 **Permissions:**
+
 - ✅ View/Manage leads
 - ✅ View/Manage applications
 - ✅ Contact students
@@ -22338,10 +23897,12 @@ The system now has **4 distinct user roles** with specific permissions:
 ---
 
 ### 4. Student
+
 **Badge Color:** Gray
 **Icon:** Users
 
 **Permissions:**
+
 - ✅ Browse programs
 - ✅ Submit applications
 - ✅ Track application status
@@ -22357,6 +23918,7 @@ The system now has **4 distinct user roles** with specific permissions:
 ### Features:
 
 #### **Stats Cards**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  👑 Admins: 3                               │
@@ -22367,6 +23929,7 @@ The system now has **4 distinct user roles** with specific permissions:
 ```
 
 #### **User Table**
+
 - Name
 - Email
 - Role (with colored badge)
@@ -22375,12 +23938,13 @@ The system now has **4 distinct user roles** with specific permissions:
 - Actions (Edit button)
 
 #### **Add User Dialog**
+
 - Personal Information
-  - First Name *
-  - Last Name *
-  - Email *
+  - First Name \*
+  - Last Name \*
+  - Email \*
   - Phone
-  - Password * (for new users)
+  - Password \* (for new users)
 - Role Selection with visual preview
 - Permission details display
 
@@ -22391,6 +23955,7 @@ The system now has **4 distinct user roles** with specific permissions:
 When selecting a role, the dialog shows:
 
 ### Admin Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 🛡️ Admin                                 │
@@ -22405,6 +23970,7 @@ When selecting a role, the dialog shows:
 ```
 
 ### Data Entry Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 👨‍💼 Data Entry                            │
@@ -22420,6 +23986,7 @@ When selecting a role, the dialog shows:
 ```
 
 ### Marketing Role Preview:
+
 ```
 ┌─────────────────────────────────────────┐
 │ 📢 Marketing & Leads                    │
@@ -22438,29 +24005,31 @@ When selecting a role, the dialog shows:
 
 ## 🔐 Access Control Matrix
 
-| Feature | Admin | Data Entry | Marketing | Student |
-|---------|-------|------------|-----------|---------|
-| **Dashboard** | ✅ | ✅ | ✅ | ❌ |
-| **Analytics** | ✅ | ❌ | ✅ | ❌ |
-| **Universities** | ✅ | ✅ | ❌ | ❌ |
-| **Program Catalog** | ✅ | ✅ | ❌ | ❌ |
-| **Programs** | ✅ | ✅ | ❌ | ❌ |
-| **Scholarships** | ✅ | ❌ | ✅ | ❌ |
-| **Applications** | ✅ | ❌ | ✅ | ❌ |
-| **Leads** | ✅ | ❌ | ✅ | ❌ |
-| **Users** | ✅ | ❌ | ❌ | ❌ |
-| **Academic Years** | ✅ | ✅ | ❌ | ❌ |
-| **Languages** | ✅ | ✅ | ❌ | ❌ |
-| **Settings** | ✅ | ❌ | ❌ | ❌ |
+| Feature             | Admin | Data Entry | Marketing | Student |
+| ------------------- | ----- | ---------- | --------- | ------- |
+| **Dashboard**       | ✅    | ✅         | ✅        | ❌      |
+| **Analytics**       | ✅    | ❌         | ✅        | ❌      |
+| **Universities**    | ✅    | ✅         | ❌        | ❌      |
+| **Program Catalog** | ✅    | ✅         | ❌        | ❌      |
+| **Programs**        | ✅    | ✅         | ❌        | ❌      |
+| **Scholarships**    | ✅    | ❌         | ✅        | ❌      |
+| **Applications**    | ✅    | ❌         | ✅        | ❌      |
+| **Leads**           | ✅    | ❌         | ✅        | ❌      |
+| **Users**           | ✅    | ❌         | ❌        | ❌      |
+| **Academic Years**  | ✅    | ✅         | ❌        | ❌      |
+| **Languages**       | ✅    | ✅         | ❌        | ❌      |
+| **Settings**        | ✅    | ❌         | ❌        | ❌      |
 
 ---
 
 ## 📝 Creating a New User
 
 ### Step 1: Click "Add User"
+
 Opens dialog with form
 
 ### Step 2: Fill Personal Information
+
 - First Name: John
 - Last Name: Doe
 - Email: john@example.com
@@ -22468,16 +24037,20 @@ Opens dialog with form
 - Password: ••••••••
 
 ### Step 3: Select Role
+
 Choose from dropdown:
+
 - Admin
 - Data Entry
 - Marketing & Leads
 - Student
 
 ### Step 4: Review Permissions
+
 The dialog automatically shows what permissions this role has
 
 ### Step 5: Create User
+
 Click "Create User" button
 
 ---
@@ -22485,6 +24058,7 @@ Click "Create User" button
 ## 🎯 Use Cases
 
 ### Scenario 1: Hiring Content Manager
+
 ```
 Role: Data Entry
 Reason: They need to add universities and programs
@@ -22493,6 +24067,7 @@ No Access: Leads, Applications, Settings
 ```
 
 ### Scenario 2: Hiring Marketing Staff
+
 ```
 Role: Marketing & Leads
 Reason: They need to manage student inquiries
@@ -22501,6 +24076,7 @@ No Access: Universities, Programs, Settings
 ```
 
 ### Scenario 3: New Student Registration
+
 ```
 Role: Student (default)
 Reason: Regular user account
@@ -22513,6 +24089,7 @@ No Access: Admin panel
 ## 🔄 Workflow Examples
 
 ### Data Entry Team Workflow:
+
 1. Login to admin panel
 2. Access Universities page
 3. Add new university
@@ -22522,6 +24099,7 @@ No Access: Admin panel
 7. Cannot see leads or applications
 
 ### Marketing Team Workflow:
+
 1. Login to admin panel
 2. Access Leads page
 3. View new inquiries
@@ -22536,12 +24114,14 @@ No Access: Admin panel
 ## 🎨 Visual Indicators
 
 ### Role Badges:
+
 - **Admin**: Red badge with "Admin"
 - **Data Entry**: Blue badge with "Data Entry"
 - **Marketing**: Green badge with "Marketing"
 - **Student**: Gray badge with "Student"
 
 ### Stats Cards:
+
 - **Admins**: Red icon (Shield)
 - **Data Entry**: Blue icon (UserCog)
 - **Marketing**: Green icon (Users)
@@ -22578,8 +24158,9 @@ No Access: Admin panel
 ## 📊 Database Schema
 
 ### profiles table needs:
+
 ```sql
-ALTER TABLE profiles 
+ALTER TABLE profiles
 ADD COLUMN role VARCHAR(50) DEFAULT 'student';
 
 -- Possible values: 'admin', 'data_entry', 'marketing', 'student'
@@ -22590,6 +24171,7 @@ ADD COLUMN role VARCHAR(50) DEFAULT 'student';
 ## 🎉 Result
 
 A **complete, professional user management system** with:
+
 - ✅ Clear role separation
 - ✅ Specific permissions per role
 - ✅ Easy user creation
@@ -22598,8 +24180,6 @@ A **complete, professional user management system** with:
 - ✅ Production-ready
 
 Perfect for managing a team with different responsibilities! 🚀
-
-
 
 ==================================================
 FILE: ./docs/guides/WORLD_CLASS_UNIVERSITY_PAGE.md
@@ -22610,6 +24190,7 @@ FILE: ./docs/guides/WORLD_CLASS_UNIVERSITY_PAGE.md
 ## 🎯 Vision
 
 Created the **most stunning, engaging, and conversion-optimized** university page with:
+
 - Cutting-edge animations
 - Interactive tabs
 - Sticky navigation
@@ -22621,12 +24202,14 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 ## ✨ Revolutionary Features
 
 ### 1. **Floating Stats Bar** (Sticky)
+
 ```
 ┌─────────────────────────────────────────┐
 │ 🏆 #15 QS  👥 50,000+  🎓 100+  🎯 15% │
 │                         [Apply Now]     │
 └─────────────────────────────────────────┘
 ```
+
 - Sticky at top while scrolling
 - Real-time stats
 - Quick apply button
@@ -22634,12 +24217,14 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Backdrop blur effect
 
 ### 2. **Interactive Tab Navigation**
+
 ```
 ┌─────────────────────────────────────────┐
 │ [Overview] [Programs] [Admission]       │
 │ [Campus Life] [Rankings] [Contact]      │
 └─────────────────────────────────────────┘
 ```
+
 - 6 comprehensive tabs
 - Smooth transitions
 - Active state indicators
@@ -22647,6 +24232,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Mobile responsive
 
 ### 3. **Animated Content Cards**
+
 - Fade in on scroll
 - Stagger animations
 - Hover effects
@@ -22654,6 +24240,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 - Shadow elevations
 
 ### 4. **Premium CTA Sidebar** (Sticky)
+
 ```
 ┌─────────────────────────────────┐
 │ [GRADIENT BACKGROUND]           │
@@ -22673,6 +24260,7 @@ Created the **most stunning, engaging, and conversion-optimized** university pag
 ## 🎨 Design Excellence
 
 ### Color System:
+
 ```css
 Primary: Red-600 to Red-700 gradients
 Secondary: Yellow-600 accents
@@ -22683,6 +24271,7 @@ Purple: Purple-500 to Purple-600
 ```
 
 ### Typography:
+
 ```css
 Headings: font-black (900 weight)
 Gradient Text: bg-clip-text
@@ -22691,6 +24280,7 @@ Stats: text-4xl font-black
 ```
 
 ### Effects:
+
 ```css
 Backdrop Blur: backdrop-blur-xl
 Shadows: shadow-xl, shadow-2xl
@@ -22704,6 +24294,7 @@ Transitions: All smooth 300ms
 ## 📱 Tab-Based Architecture
 
 ### Tab 1: Overview
+
 ```
 ┌─────────────────────────────────────┐
 │ About University                    │
@@ -22719,6 +24310,7 @@ Transitions: All smooth 300ms
 ```
 
 ### Tab 2: Programs
+
 ```
 ┌─────────────────────────────────────┐
 │ Computer Science                    │
@@ -22730,6 +24322,7 @@ Transitions: All smooth 300ms
 ```
 
 ### Tab 3-6: Coming Soon
+
 - Admission Requirements
 - Campus Life
 - Rankings & Recognition
@@ -22742,6 +24335,7 @@ Transitions: All smooth 300ms
 ### Framer Motion Effects:
 
 **1. Scroll-Based:**
+
 ```typescript
 const { scrollY } = useScroll();
 const headerOpacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -22749,6 +24343,7 @@ const statsY = useTransform(scrollY, [0, 300], [0, -50]);
 ```
 
 **2. Stagger Children:**
+
 ```typescript
 {highlights.map((item, index) => (
     <motion.div
@@ -22760,6 +24355,7 @@ const statsY = useTransform(scrollY, [0, 300], [0, -50]);
 ```
 
 **3. Hover Interactions:**
+
 ```typescript
 group-hover:scale-110
 group-hover:translate-x-1
@@ -22771,6 +24367,7 @@ group-hover:shadow-2xl
 ## 💎 Premium Components
 
 ### Gradient CTA Card:
+
 ```
 Features:
 - Circular background decorations
@@ -22781,6 +24378,7 @@ Features:
 ```
 
 ### Program Cards:
+
 ```
 Features:
 - Decorative corner gradient
@@ -22791,6 +24389,7 @@ Features:
 ```
 
 ### Highlight Boxes:
+
 ```
 Features:
 - Gradient backgrounds
@@ -22805,6 +24404,7 @@ Features:
 ## 🎯 Conversion Optimization
 
 ### Multiple CTAs:
+
 1. **Sticky Apply Button** (Always visible)
 2. **Sidebar Apply Button** (Premium placement)
 3. **Download Brochure** (Lead generation)
@@ -22813,6 +24413,7 @@ Features:
 6. **Virtual Tour** (Engagement)
 
 ### Trust Signals:
+
 - World rankings prominently displayed
 - Student numbers (social proof)
 - Acceptance rate (exclusivity)
@@ -22820,6 +24421,7 @@ Features:
 - Program count (variety)
 
 ### Urgency Elements:
+
 - Limited acceptance rate shown
 - Application deadlines (future)
 - Scholarship availability (future)
@@ -22830,11 +24432,13 @@ Features:
 ## 📊 Information Architecture
 
 ### Primary Navigation:
+
 ```
 Overview → Programs → Admission → Campus → Rankings → Contact
 ```
 
 ### Content Hierarchy:
+
 ```
 1. Hero (Emotional impact)
 2. Stats Bar (Quick facts)
@@ -22848,16 +24452,19 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🎨 Visual Hierarchy
 
 ### Level 1 (Highest Priority):
+
 - University name (text-6xl)
 - Apply Now buttons (gradient)
 - Stats numbers (text-4xl)
 
 ### Level 2:
+
 - Tab navigation
 - Section headings (text-3xl)
 - Program names (text-2xl)
 
 ### Level 3:
+
 - Body content
 - Badges
 - Supporting text
@@ -22867,6 +24474,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🌟 Micro-Interactions
 
 ### Hover States:
+
 - Cards lift with shadow
 - Buttons change gradient
 - Icons rotate/scale
@@ -22874,12 +24482,14 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 - Text changes color
 
 ### Click States:
+
 - Ripple effect (future)
 - Success feedback
 - Loading states
 - Error handling
 
 ### Scroll States:
+
 - Fade in animations
 - Parallax effects
 - Sticky elements
@@ -22890,18 +24500,21 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 📱 Responsive Design
 
 ### Desktop (lg+):
+
 - 3-column layout
 - Sticky sidebar
 - Full tab navigation
 - Large typography
 
 ### Tablet (md):
+
 - 2-column layout
 - Stacked sidebar
 - Scrollable tabs
 - Medium typography
 
 ### Mobile:
+
 - Single column
 - Bottom navigation
 - Swipeable tabs
@@ -22912,6 +24525,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🎯 Performance
 
 ### Optimizations:
+
 - Lazy loading images
 - Code splitting by tabs
 - Optimized animations
@@ -22919,6 +24533,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 - Efficient state management
 
 ### Loading Strategy:
+
 - Skeleton screens (future)
 - Progressive enhancement
 - Optimistic UI updates
@@ -22929,30 +24544,35 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## ✨ Unique Selling Points
 
 ### 1. **Tab-Based Navigation**
+
 - Organized content
 - Easy to scan
 - Reduces scrolling
 - Better UX
 
 ### 2. **Sticky Stats Bar**
+
 - Always visible
 - Quick reference
 - Conversion focused
 - Professional
 
 ### 3. **Animated Highlights**
+
 - Eye-catching
 - Engaging
 - Modern
 - Memorable
 
 ### 4. **Premium CTA Sidebar**
+
 - Multiple options
 - Sticky positioning
 - Gradient design
 - Clear hierarchy
 
 ### 5. **Gradient Everything**
+
 - Modern aesthetic
 - Premium feel
 - Brand consistency
@@ -22963,18 +24583,21 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 ## 🚀 Future Enhancements
 
 ### Phase 1 (Immediate):
+
 - [ ] Connect to real data
 - [ ] Complete all tabs
 - [ ] Add more animations
 - [ ] Optimize performance
 
 ### Phase 2 (Short-term):
+
 - [ ] Virtual tour integration
 - [ ] Live chat widget
 - [ ] Application form
 - [ ] Scholarship calculator
 
 ### Phase 3 (Long-term):
+
 - [ ] AI chatbot
 - [ ] Personalization
 - [ ] A/B testing
@@ -22987,6 +24610,7 @@ Overview → Programs → Admission → Campus → Rankings → Contact
 The **BEST university page on Earth** featuring:
 
 ### Design:
+
 - ✅ World-class aesthetics
 - ✅ Premium gradients
 - ✅ Smooth animations
@@ -22994,6 +24618,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Professional typography
 
 ### Functionality:
+
 - ✅ Tab-based navigation
 - ✅ Sticky elements
 - ✅ Interactive components
@@ -23001,6 +24626,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Responsive design
 
 ### User Experience:
+
 - ✅ Easy to navigate
 - ✅ Quick to scan
 - ✅ Engaging interactions
@@ -23008,6 +24634,7 @@ The **BEST university page on Earth** featuring:
 - ✅ Conversion optimized
 
 ### Technical:
+
 - ✅ Framer Motion animations
 - ✅ Client-side interactivity
 - ✅ Optimized performance
@@ -23015,4 +24642,3 @@ The **BEST university page on Earth** featuring:
 - ✅ TypeScript ready
 
 **This is truly the BEST university page on Earth!** 🌍✨🚀
-

@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-02-25] - Added Google Analytics
+
+- **Analytics**: Added Google Analytics gtag.js tracking script to the main application layout (`src/app/[locale]/layout.tsx`).
+
 ## [2026-02-20] - Consolidated Service Fee & Standardized Applications
 
 - **Scholarship Disclaimer**: Injected a visual disclaimer across all scholarship components (`/scholarships`, individual program pages, and university pages) clarifying that continuation depends on academic performance.
