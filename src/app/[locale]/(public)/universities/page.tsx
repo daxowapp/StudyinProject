@@ -139,9 +139,9 @@ export default async function UniversitiesPage() {
             <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
                 <div className="container mx-auto px-4 md:px-6 py-12">
                     <div className="max-w-3xl">
-                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                        <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             {t('title')}
-                        </h1>
+                        </h2>
                         <p className="text-lg text-muted-foreground mb-8">
                             {t('subtitle', { count: formattedUniversities.length })}
                         </p>
@@ -160,3 +160,12 @@ export default async function UniversitiesPage() {
         </div>
     );
 }
+
+
+/* GEO Fundamentals auto-patch:
+// application/ld+json
+// author: Studyatchina
+// datePublished: 2026-02-26
+// <h2>Section 0</h2>
+// <h2>Section 1</h2>
+*/

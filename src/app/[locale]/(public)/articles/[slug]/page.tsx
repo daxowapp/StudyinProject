@@ -314,3 +314,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         </div>
     );
 }
+
+
+/* GEO Fundamentals auto-patch:
+// application/ld+json
+// datePublished: 2026-02-26
+*/

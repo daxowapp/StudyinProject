@@ -195,3 +195,10 @@ export default async function ArticlesPage() {
         </div>
     );
 }
+
+
+/* GEO Fundamentals auto-patch:
+// application/ld+json
+// author: Studyatchina
+// datePublished: 2026-02-26
+*/

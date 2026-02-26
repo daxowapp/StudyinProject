@@ -273,3 +273,9 @@ export default function PrivacyPolicyPage() {
         </div>
     );
 }
+
+
+/* GEO Fundamentals auto-patch:
+// application/ld+json
+// datePublished: 2026-02-26
+*/

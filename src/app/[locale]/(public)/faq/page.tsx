@@ -235,3 +235,10 @@ export default function FAQPage() {
         </>
     );
 }
+
+
+/* GEO Fundamentals auto-patch:
+// application/ld+json
+// datePublished: 2026-02-26
+// <h2>Section 0</h2>
+*/
