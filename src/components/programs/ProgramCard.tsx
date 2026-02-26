@@ -43,9 +43,10 @@ interface Program {
 
 interface ProgramCardProps {
     program: Program;
+    variant?: 'grid' | 'list';
 }
 
-export function ProgramCard({ program }: ProgramCardProps) {
+export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
     const t = useTranslations("Programs.card");
     const { addProgram, removeProgram, isSelected, canAdd } = useCompare();
     const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
@@ -63,6 +64,143 @@ export function ProgramCard({ program }: ProgramCardProps) {
     const hasScholarship = program.scholarship_chance || program.badges.some(b =>
         b.toLowerCase().includes('scholarship')
     );
+
+    if (variant === 'list') {
+        return (
+            <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 border shadow-sm bg-card relative">
+                <div className="flex flex-col sm:flex-row">
+                    {/* Left accent bar */}
+                    <div className="hidden sm:block w-1.5 bg-gradient-to-b from-primary via-primary/80 to-primary/60 shrink-0" />
+                    <div className="sm:hidden h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
+
+                    <div className="flex-1 p-4 sm:p-5 flex flex-col sm:flex-row gap-4">
+                        {/* Left: Icon + Program Info */}
+                        <div className="flex items-start gap-3 sm:flex-1 sm:min-w-0">
+                            <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center shrink-0">
+                                <GraduationCap className="h-5 w-5 text-primary" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2 flex-wrap mb-1">
+                                    <Badge
+                                        variant={program.level === "Master" ? "default" : "secondary"}
+                                        className="text-[10px] px-2 py-0.5"
+                                    >
+                                        {program.level}
+                                    </Badge>
+                                    {hasScholarship && (
+                                        <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-[10px] px-2 py-0.5">
+                                            <Sparkles className="h-2.5 w-2.5 mr-0.5" />
+                                            {t("scholarship")}
+                                        </Badge>
+                                    )}
+                                    {program.has_fast_track && (
+                                        <Badge className="bg-yellow-100 text-yellow-800 text-[10px] px-2 py-0.5 border-yellow-200">
+                                            <Zap className="h-2.5 w-2.5 mr-0.5 fill-yellow-600 text-yellow-600" />
+                                            {t("fastTrack") || 'Fast Track'}
+                                        </Badge>
+                                    )}
+                                </div>
+                                <h3 className="font-bold text-base leading-snug group-hover:text-primary transition-colors line-clamp-1">
+                                    {program.name}
+                                </h3>
+                                <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
+                                    <span className="flex items-center gap-1 truncate">
+                                        <Building2 className="h-3.5 w-3.5 shrink-0 text-primary/70" />
+                                        <span className="truncate">{program.university}</span>
+                                    </span>
+                                    <span className="flex items-center gap-1 shrink-0">
+                                        <MapPin className="h-3.5 w-3.5 shrink-0" />
+                                        {program.city}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Middle: Key Details */}
+                        <div className="flex items-center gap-4 sm:gap-6 text-sm sm:shrink-0">
+                            <div className="flex flex-col items-center">
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <Clock className="h-3 w-3" /> {t("duration")}
+                                </span>
+                                <span className="font-semibold text-sm">{program.duration}</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <Calendar className="h-3 w-3" /> {t("intake")}
+                                </span>
+                                <span className="font-semibold text-sm truncate max-w-[100px]">
+                                    {program.deadline || t("contact")}
+                                </span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <DollarSign className="h-3 w-3" /> {t("tuitionFee")}
+                                </span>
+                                <span className="font-semibold text-sm text-primary">
+                                    {typeof program.tuition_fee === "number" ? (
+                                        <Price amount={program.tuition_fee} currency={program.currency || "CNY"} />
+                                    ) : (
+                                        program.tuition
+                                    )}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Right: Actions */}
+                        <div className="flex items-center gap-2 sm:shrink-0 sm:ml-2">
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <div
+                                            className={`flex items-center gap-1 px-2 py-1.5 rounded-lg transition-all cursor-pointer ${selected
+                                                ? "bg-primary text-primary-foreground"
+                                                : "bg-muted/50 hover:bg-primary/10"
+                                                }`}
+                                            onClick={handleCompareToggle}
+                                        >
+                                            <Checkbox
+                                                checked={selected}
+                                                disabled={!selected && !canAdd}
+                                                className="h-3.5 w-3.5 border-none data-[state=checked]:bg-transparent"
+                                            />
+                                            <GitCompareArrows className="h-3 w-3" />
+                                        </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>{selected ? t("removeFromCompare") : t("addToCompare")}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+
+                            <Dialog open={isQuickViewOpen} onOpenChange={setIsQuickViewOpen}>
+                                <DialogTrigger asChild>
+                                    <Button variant="outline" size="icon" className="h-9 w-9 shrink-0">
+                                        <Eye className="h-4 w-4" />
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="max-w-2xl">
+                                    <DialogHeader>
+                                        <DialogTitle className="flex items-center gap-2">
+                                            <GraduationCap className="h-5 w-5 text-primary" />
+                                            {program.name}
+                                        </DialogTitle>
+                                    </DialogHeader>
+                                    <QuickViewContent program={program} onClose={() => setIsQuickViewOpen(false)} />
+                                </DialogContent>
+                            </Dialog>
+
+                            <Link href={`/programs/${program.slug || program.id}`}>
+                                <Button size="sm" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group h-9">
+                                    {t("viewProgram")}
+                                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+        );
+    }
 
     return (
         <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-none shadow-lg bg-card flex flex-col h-full relative">

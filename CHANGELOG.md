@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-02-26] - Smart Search Ranking Fix
+
+- **Search Ranking**: Fixed smart search result ordering so exact program matches appear first, followed by related programs. Searching "biomedical engineering" now shows Biomedical Engineering programs at the top, with MBBS/Nursing/etc. below.
+- **List View**: Implemented functional grid/list toggle on both Programs and Universities pages. List view shows compact horizontal card layouts for faster scanning, set as the default view.
+
 ## [2026-02-25] - Added Google Analytics
 
 - **Analytics**: Added Google Analytics gtag.js tracking script to the main application layout (`src/app/[locale]/layout.tsx`).

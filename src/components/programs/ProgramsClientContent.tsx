@@ -51,6 +51,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
     const universitySlug = searchParams.get('university');
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
     const ITEMS_PER_PAGE = 12;
 
     const [filters, setFilters] = useState<FilterState>({
@@ -203,9 +204,9 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         expandSearch();
     }, [debouncedSearch]);
 
-    // Filter programs based on current filters
+    // Filter programs based on current filters, then rank by relevance
     const filteredPrograms = useMemo(() => {
-        return programs.filter(program => {
+        const filtered = programs.filter(program => {
             // Search filter
             if (filters.search) {
                 const searchLower = filters.search.toLowerCase();
@@ -330,6 +331,51 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
 
             return true;
         });
+
+        // Rank results by relevance when search is active
+        // Exact matches appear first, then related/synonym matches
+        if (filters.search && expandedTerms.length > 0) {
+            const searchLower = filters.search.toLowerCase().trim();
+
+            const scored = filtered.map(program => {
+                const nameLower = program.name.toLowerCase();
+                const categoryLower = (program.category || '').toLowerCase();
+                let score = 0;
+
+                // Exact full name match (highest priority)
+                if (nameLower === searchLower) {
+                    score = 100;
+                }
+                // Name contains the full original search term
+                else if (nameLower.includes(searchLower)) {
+                    score = 80;
+                }
+                // Category contains the full original search term
+                else if (categoryLower.includes(searchLower)) {
+                    score = 60;
+                }
+                // Badges contain the full original search term
+                else if (program.badges?.some(b => b.toLowerCase().includes(searchLower))) {
+                    score = 40;
+                }
+                // Matched only via expanded synonym terms (related programs)
+                else {
+                    score = 10;
+                }
+
+                // Bonus: each word of the search term found in the name
+                const searchWords = searchLower.split(/\s+/).filter(w => w.length > 2);
+                const wordMatches = searchWords.filter(word => nameLower.includes(word)).length;
+                score += wordMatches * 5;
+
+                return { program, score };
+            });
+
+            scored.sort((a, b) => b.score - a.score);
+            return scored.map(s => s.program);
+        }
+
+        return filtered;
     }, [programs, filters, debouncedSearch, expandedTerms]);
 
     const activeFilterCount = useMemo(() => {
@@ -601,10 +647,20 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                             </div>
                             <div className="flex items-center gap-2 w-full sm:w-auto">
                                 <div className="flex items-center border rounded-lg overflow-hidden">
-                                    <Button variant="ghost" size="icon" className="h-10 w-10 bg-primary/10 text-primary rounded-none">
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className={`h-10 w-10 rounded-none ${viewMode === 'grid' ? 'bg-primary/10 text-primary' : ''}`}
+                                        onClick={() => setViewMode('grid')}
+                                    >
                                         <LayoutGrid className="h-4 w-4" />
                                     </Button>
-                                    <Button variant="ghost" size="icon" className="h-10 w-10 rounded-none">
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className={`h-10 w-10 rounded-none ${viewMode === 'list' ? 'bg-primary/10 text-primary' : ''}`}
+                                        onClick={() => setViewMode('list')}
+                                    >
                                         <List className="h-4 w-4" />
                                     </Button>
                                 </div>
@@ -625,9 +681,9 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                     </div>
 
                     {/* Results Grid */}
-                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    <div className={viewMode === 'grid' ? "grid gap-6 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-4"}>
                         {paginatedPrograms.map((program) => (
-                            <ProgramCard key={program.id} program={program} />
+                            <ProgramCard key={program.id} program={program} variant={viewMode} />
                         ))}
                         {!filteredPrograms.length && (
                             <div className="col-span-full">

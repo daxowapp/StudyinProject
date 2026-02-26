@@ -51,6 +51,7 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("search") || "";
     const [searchQuery, setSearchQuery] = useState(initialQuery);
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
     // Sync with URL changes
     useEffect(() => {
@@ -254,10 +255,20 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                         </div>
                         <div className="flex items-center gap-2 w-full sm:w-auto">
                             <div className="flex items-center border rounded-lg overflow-hidden hidden sm:flex">
-                                <Button variant="ghost" size="icon" className="h-10 w-10 bg-primary/10 text-primary rounded-none">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className={`h-10 w-10 rounded-none ${viewMode === 'grid' ? 'bg-primary/10 text-primary' : ''}`}
+                                    onClick={() => setViewMode('grid')}
+                                >
                                     <LayoutGrid className="h-4 w-4" />
                                 </Button>
-                                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-none">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className={`h-10 w-10 rounded-none ${viewMode === 'list' ? 'bg-primary/10 text-primary' : ''}`}
+                                    onClick={() => setViewMode('list')}
+                                >
                                     <List className="h-4 w-4" />
                                 </Button>
                             </div>
@@ -276,9 +287,9 @@ export function UniversitiesClient({ universities }: UniversitiesClientProps) {
                 </div>
 
                 {/* Results Grid */}
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                <div className={viewMode === 'grid' ? "grid gap-6 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-4"}>
                     {filteredUniversities.map((uni) => (
-                        <UniversityCard key={uni.id} university={uni} />
+                        <UniversityCard key={uni.id} university={uni} variant={viewMode} />
                     ))}
                     {filteredUniversities.length === 0 && (
                         <div className="col-span-full">
