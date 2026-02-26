@@ -8,6 +8,7 @@ import { LoadingBar } from "@/components/ui/loading-bar";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
+import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
@@ -149,6 +150,7 @@ export default async function LocaleLayout({
                     src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
                     strategy="beforeInteractive"
                 />
+                <OrganizationJsonLd />
                 <NextIntlClientProvider messages={messages}>
                     <CurrencyProvider>
                         <LoadingBar />
