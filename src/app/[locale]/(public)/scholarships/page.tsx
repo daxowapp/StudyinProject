@@ -3,8 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Award, CheckCircle2, DollarSign, Sparkles, Check, Info, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
-import { getScholarshipStats, ScholarshipStats } from "@/lib/scholarship-stats";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+import { getScholarshipStats } from "@/lib/scholarship-stats";
 
 const baseScholarshipTypes = [
     {
@@ -128,6 +131,12 @@ export default async function ScholarshipsPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Home', url: baseUrl },
+                    { name: 'Scholarships', url: `${baseUrl}/scholarships` }
+                ]}
+            />
             {/* Hero */}
             <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
                 <div className="container mx-auto px-4 md:px-6 py-20">

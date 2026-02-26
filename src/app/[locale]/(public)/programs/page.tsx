@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 import { CscaCtaSection } from "@/components/home/CscaCtaSection";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -125,6 +126,12 @@ export default async function ProgramsPage({
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Home', url: baseUrl },
+                    { name: 'Programs', url: `${baseUrl}/programs` }
+                ]}
+            />
             {/* Hero Section with AI Search */}
             <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
                 <div className="container mx-auto px-4 md:px-6 py-12">

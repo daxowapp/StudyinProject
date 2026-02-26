@@ -3,7 +3,6 @@ import { WhyStudySection } from "@/components/home/WhyStudySection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/server";
-import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 
 // Lazy load below-fold sections for faster initial page load
@@ -258,7 +257,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <main className="min-h-screen bg-background">
-      <OrganizationJsonLd />
       <HeroSection />
       <WhyStudySection />
       <HowItWorksSection isLoggedIn={!!user} />

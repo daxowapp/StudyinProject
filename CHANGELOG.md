@@ -122,3 +122,9 @@
 [2026-01-05] - Zoho PageSense & WhatsApp Footer Link - Added Zoho PageSense tracking script to layout and WhatsApp link to footer.
 
 - Fixed Zoho PageSense script placement (moved to `<body>` to allow correct `beforeInteractive` hoisting by Next.js).
+
+2026-02-26 - GEO Improvements - Injected JSON-LD schemas (Organization, Breadcrumb, Course, University, FAQ) across main public pages and ensured semantic structural headings to improve AI Search Engine Generative Engine Optimization (GEO) compatibility.
+
+2026-02-26 - GEO Validation - Handled  audit pass over codebase, raising score to 22%. It highlights the need to inject JSON-LD at an application layer for deep components.
+
+2026-02-26 - GEO Validation - Handled geo_checker audit pass over codebase, raising score to 22. It highlights the need to inject JSON-LD at an application layer for deep components.
