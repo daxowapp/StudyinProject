@@ -52,6 +52,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+    const [sortBy, setSortBy] = useState('relevance');
     const ITEMS_PER_PAGE = 12;
 
     const [filters, setFilters] = useState<FilterState>({
@@ -332,12 +333,30 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
             return true;
         });
 
+        // Apply sorting before relevance, as fallback and normal behavior
+        const sorted = [...filtered].sort((a, b) => {
+            if (sortBy === 'tuition-low') return (a.tuition_fee || 0) - (b.tuition_fee || 0);
+            if (sortBy === 'tuition-high') return (b.tuition_fee || 0) - (a.tuition_fee || 0);
+            if (sortBy === 'deadline') {
+                const aDate = new Date(a.deadline || '').getTime() || Number.MAX_VALUE;
+                const bDate = new Date(b.deadline || '').getTime() || Number.MAX_VALUE;
+                return aDate - bDate;
+            }
+            if (sortBy === 'popular') {
+                 // Fast track programs and programs with scholarships bubble to top
+                 const aPopularity = (a.has_fast_track ? 2 : 0) + (a.scholarship_chance ? 1 : 0);
+                 const bPopularity = (b.has_fast_track ? 2 : 0) + (b.scholarship_chance ? 1 : 0);
+                 return bPopularity - aPopularity;
+            }
+            return 0; // relevance or default
+        });
+
         // Rank results by relevance when search is active
         // Exact matches appear first, then related/synonym matches
-        if (filters.search && expandedTerms.length > 0) {
+        if (sortBy === 'relevance' && filters.search && expandedTerms.length > 0) {
             const searchLower = filters.search.toLowerCase().trim();
 
-            const scored = filtered.map(program => {
+            const scored = sorted.map(program => {
                 const nameLower = program.name.toLowerCase();
                 const categoryLower = (program.category || '').toLowerCase();
                 let score = 0;
@@ -375,8 +394,8 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
             return scored.map(s => s.program);
         }
 
-        return filtered;
-    }, [programs, filters, debouncedSearch, expandedTerms]);
+        return sorted;
+    }, [programs, filters, expandedTerms, sortBy]);
 
     const activeFilterCount = useMemo(() => {
         let count = 0;
@@ -509,7 +528,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                             {isSearching ? (
                                 <>
                                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                                    <span className="text-primary font-medium">AI is thinking... finding related fields for "{filters.search}"</span>
+                                    <span className="text-primary font-medium">AI is thinking... finding related fields for &quot;{filters.search}&quot;</span>
                                 </>
                             ) : (
                                 <>
@@ -664,7 +683,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                         <List className="h-4 w-4" />
                                     </Button>
                                 </div>
-                                <Select defaultValue="relevance">
+                                <Select value={sortBy} onValueChange={setSortBy}>
                                     <SelectTrigger className="w-[200px] h-10">
                                         <SelectValue placeholder={t('sort.label')} />
                                     </SelectTrigger>
@@ -695,7 +714,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                             </div>
                                             <h3 className="text-xl font-bold mb-2">AI is working on it...</h3>
                                             <p className="text-muted-foreground">
-                                                Looking for programs related to "{filters.search}"
+                                                Looking for programs related to &quot;{filters.search}&quot;
                                             </p>
                                         </div>
                                     </div>
