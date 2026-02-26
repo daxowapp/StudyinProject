@@ -2,19 +2,26 @@
 > study-at-china@0.1.0 dev
 > next dev
 
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/darwish/pnpm-lock.yaml as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/darwish/Dev/StudyinProject/package-lock.json
+
    ▲ Next.js 16.0.10 (Turbopack)
    - Local:         http://localhost:3000
-   - Network:       http://192.168.1.162:3000
+   - Network:       http://192.168.1.154:3000
    - Environments: .env.local
    - Experiments (use with caution):
      · optimizePackageImports
 
  ✓ Starting...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
- ✓ Ready in 914ms
- GET /en 200 in 3.1s (compile: 2.5s, proxy.ts: 76ms, render: 550ms)
- GET /en 200 in 265ms (compile: 28ms, proxy.ts: 10ms, render: 227ms)
- GET /en 200 in 135ms (compile: 11ms, proxy.ts: 14ms, render: 110ms)
- GET /en 200 in 147ms (compile: 9ms, proxy.ts: 4ms, render: 134ms)
- GET /en 200 in 125ms (compile: 8ms, proxy.ts: 3ms, render: 114ms)
-[?25h
+ ✓ Ready in 834ms
+ GET /en/programs?search=computer 200 in 3.6s (compile: 2.4s, proxy.ts: 78ms, render: 1129ms)
+ ✓ Compiled in 118ms
+ ✓ Compiled in 90ms
+ GET /en/programs?search=computer 200 in 1110ms (compile: 67ms, proxy.ts: 34ms, render: 1009ms)
+ GET /en/programs?level=bachelor 200 in 587ms (compile: 12ms, proxy.ts: 28ms, render: 547ms)
