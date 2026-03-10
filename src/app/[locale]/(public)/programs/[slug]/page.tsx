@@ -94,7 +94,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
     }
 
     // Fetch all related data in parallel for better performance
-    const [translationResult, universityResult, accommodationResult] = await Promise.all([
+    const [translationResult, universityResult, accommodationResult, overrideResult] = await Promise.all([
         // Program translation
         supabase
             .from("program_translations")

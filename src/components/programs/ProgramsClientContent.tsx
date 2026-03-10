@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 interface Program {
@@ -28,6 +28,7 @@ interface Program {
     city: string;
     level: string;
     duration: string;
+    language?: string;
     tuition: string;
     deadline: string;
     badges: string[];
@@ -479,31 +480,6 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     currentFilters={filters}
                                 />
                                 
-                                <div className="mt-6 pt-6 border-t flex flex-col gap-3">
-                                    <Label className="text-sm font-medium">{t('filters.quickAccess') || 'Quick Toggles'}</Label>
-                                    <button
-                                        onClick={() => setFilters(prev => ({ ...prev, scholarship: !prev.scholarship }))}
-                                        className={`
-                                            flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-semibold transition-colors border
-                                            ${filters.scholarship 
-                                                ? 'bg-primary text-primary-foreground border-primary shadow-sm hover:bg-primary/90' 
-                                                : 'bg-background text-muted-foreground border-border hover:bg-muted/50'}
-                                        `}
-                                    >
-                                        🎓 Scholarship Available
-                                    </button>
-                                    <button
-                                        onClick={() => setFilters(prev => ({ ...prev, cscaExam: !prev.cscaExam }))}
-                                        className={`
-                                            flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-semibold transition-colors border
-                                            ${filters.cscaExam 
-                                                ? 'bg-amber-500 text-white border-amber-500 shadow-sm hover:bg-amber-600' 
-                                                : 'bg-background text-muted-foreground border-border hover:bg-muted/50'}
-                                        `}
-                                    >
-                                        📝 Requires CSCA Exam
-                                    </button>
-                                </div>
                             </div>
                         </SheetContent>
                     </Sheet>
@@ -529,6 +505,27 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
 
                 {/* Main Content */}
                 <div className="flex-1 space-y-6">
+                    {/* Primary Keyword Search */}
+                    <div className="relative shadow-sm rounded-xl overflow-hidden border bg-background focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 transition-all">
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input
+                            className="pl-12 h-14 text-base bg-transparent border-0 focus-visible:ring-0 rounded-none w-full"
+                            placeholder={t('filters.searchPlaceholder') || "Search programs, universities, or fields of study..."}
+                            value={filters.search}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+                        />
+                        {filters.search && (
+                            <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 text-muted-foreground hover:text-foreground"
+                                onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
+                            >
+                                <X className="h-4 w-4" />
+                            </Button>
+                        )}
+                    </div>
+
                     {/* Quick Access Chips */}
                     <div className="flex flex-col space-y-3 mb-6">
                         <div className="flex items-center justify-between">
@@ -558,32 +555,6 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     {chip.label}
                                 </button>
                             ))}
-                        </div>
-
-                        {/* Secondary Toggles Row */}
-                        <div className="flex flex-wrap gap-3 pt-2">
-                            <button
-                                onClick={() => setFilters(prev => ({ ...prev, scholarship: !prev.scholarship }))}
-                                className={`
-                                    flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border
-                                    ${filters.scholarship 
-                                        ? 'bg-primary text-primary-foreground border-primary shadow-sm hover:bg-primary/90' 
-                                        : 'bg-background text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground'}
-                                `}
-                            >
-                                🎓 Scholarship Available
-                            </button>
-                            <button
-                                onClick={() => setFilters(prev => ({ ...prev, cscaExam: !prev.cscaExam }))}
-                                className={`
-                                    flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border
-                                    ${filters.cscaExam 
-                                        ? 'bg-amber-500 text-white border-amber-500 shadow-sm hover:bg-amber-600' 
-                                        : 'bg-background text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground'}
-                                `}
-                            >
-                                📝 Requires CSCA Exam
-                            </button>
                         </div>
                     </div>
 

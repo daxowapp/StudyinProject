@@ -17,7 +17,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap } from "lucide-react";
+import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap, Globe } from "lucide-react";
 import Link from "next/link";
 import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
@@ -32,6 +32,7 @@ interface Program {
     city: string;
     level: string;
     duration: string;
+    language?: string;
     tuition: string;
     tuition_fee?: number;
     currency?: string;
@@ -88,6 +89,15 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                                     >
                                         {program.level}
                                     </Badge>
+                                    {program.language && (
+                                        <Badge
+                                            variant="secondary"
+                                            className="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 border-transparent"
+                                        >
+                                            <Globe className="h-2.5 w-2.5 mr-1" />
+                                            {program.language}
+                                        </Badge>
+                                    )}
                                     {hasScholarship && (
                                         <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-[10px] px-2 py-0.5">
                                             <Sparkles className="h-2.5 w-2.5 mr-0.5" />
@@ -256,12 +266,23 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                     <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                         <GraduationCap className="h-7 w-7 text-primary" />
                     </div>
-                    <Badge
-                        variant={program.level === "Master" ? "default" : "secondary"}
-                        className="px-3 py-1 text-xs font-semibold"
-                    >
-                        {program.level}
-                    </Badge>
+                    <div className="flex gap-2">
+                        {program.language && (
+                            <Badge
+                                variant="secondary"
+                                className="px-3 py-1 text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 border-transparent"
+                            >
+                                <Globe className="h-3 w-3 mr-1" />
+                                {program.language}
+                            </Badge>
+                        )}
+                        <Badge
+                            variant={program.level === "Master" ? "default" : "secondary"}
+                            className="px-3 py-1 text-xs font-semibold"
+                        >
+                            {program.level}
+                        </Badge>
+                    </div>
                 </div>
 
                 {/* Program Info */}

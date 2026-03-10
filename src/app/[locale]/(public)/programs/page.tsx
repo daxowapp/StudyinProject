@@ -117,6 +117,7 @@ export default async function ProgramsPage({
         deadline: p.intake,
         badges: [p.language_name, p.level].filter(Boolean),
         category: p.category,
+        language: p.language_name,
         scholarship_chance: p.scholarship_chance,
         has_fast_track: fastTrackMap[p.university_slug] || false,
         min_age: p.min_age,
