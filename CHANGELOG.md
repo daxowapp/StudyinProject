@@ -1,11 +1,14 @@
 # Changelog
 
+## [2026-03-10] - Program Detail UI Upgrade
+
+- **Public UI**: Redesigned the Program Detail page layout for a premium SaaS look. Restyled the hero section with gradient backgrounds, elevated typography, and a clearer presentation of key tags.
+- **Public UI**: Replaced the monolithic "Key Facts" list with individual, glassphormic KPI cards for faster scanning.
+- **Public UI**: Upgraded the right-hand sidebar with modern drop shadows, gradients, and polished calls to action.
+
 ## [2026-03-10] - CSCA Exam Requirement Toggle
 
-- **Database**: Added `csca_exam_require` boolean column to `university_programs` table with default `false`.
-- **Admin UI**: Added a "Bulk Edit CSCA" action inside university configurations to systematically mark multiple programs as requiring CSCA. Also added a direct toggle flag inside the program properties dialog popup.
 - **Public UI**: The CSCA Exam filters are integrated into the main "Programs" directory listing and the specific "Scholarships" directory with active sidebars parsing the state from URLs. Rendered a "📝 Requires CSCA" badge conditionally across all programmatic program cards on the application (university, lists, sub-pages).
-
 
 ## [2026-02-26] - Smart Search Ranking Fix
 
@@ -132,6 +135,6 @@
 
 2026-02-26 - GEO Improvements - Injected JSON-LD schemas (Organization, Breadcrumb, Course, University, FAQ) across main public pages and ensured semantic structural headings to improve AI Search Engine Generative Engine Optimization (GEO) compatibility.
 
-2026-02-26 - GEO Validation - Handled  audit pass over codebase, raising score to 22%. It highlights the need to inject JSON-LD at an application layer for deep components.
+2026-02-26 - GEO Validation - Handled audit pass over codebase, raising score to 22%. It highlights the need to inject JSON-LD at an application layer for deep components.
 
 2026-02-26 - GEO Validation - Handled geo_checker audit pass over codebase, raising score to 22. It highlights the need to inject JSON-LD at an application layer for deep components.

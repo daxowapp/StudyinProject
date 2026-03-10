@@ -1032,3 +1032,278 @@ Universities Debug: [
   },
   { name: 'Lishui University', cover: undefined }
 ]
+ ✓ Compiled in 148ms
+ ✓ Compiled in 206ms
+ ✓ Compiled in 106ms
+ GET /en/programs 200 in 1463ms (compile: 93ms, proxy.ts: 443ms, render: 927ms)
+ GET /sw.js 404 in 76ms (compile: 19ms, render: 57ms)
+Universities Debug: [
+  {
+    name: 'Zhejiang University of Finance and Economics',
+    cover: undefined
+  },
+  {
+    name: 'Zhongnan University of Economics and Law',
+    cover: undefined
+  },
+  { name: 'Wenzhou Medical University', cover: undefined },
+  { name: 'Changzhou University', cover: undefined },
+  { name: 'University of Nottingham Ningbo China', cover: undefined },
+  {
+    name: 'Shanghai Lixin University of Accounting and Finance ',
+    cover: undefined
+  },
+  {
+    name: 'Shanghai University-SILC BUSINESS SCHOOL',
+    cover: undefined
+  },
+  { name: 'Lishui University', cover: undefined }
+]
+ ⨯ ReferenceError: overrideResult is not defined
+    at ProgramDetailPage (src/app/[locale]/(public)/programs/[slug]/page.tsx:128:30)
+  126 |     const university = universityResult.data;
+  127 |     const accommodationTypes = accommodationResult.data;
+> 128 |     const programOverrides = overrideResult.data;
+      |                              ^
+  129 |
+  130 |     // Fetch requirements - check if program has custom requirements
+  131 |     let requirements; {
+  digest: '792167094'
+}
+ GET /en/programs/urban-management-zhejiang-university-of-finance-and-economics 200 in 1597ms (compile: 890ms, proxy.ts: 116ms, render: 592ms)
+ ✓ Compiled in 94ms
+ ✓ Compiled in 165ms
+ ✓ Compiled in 17ms
+ ✓ Compiled in 92ms
+ ✓ Compiled in 145ms
+ GET /en/admin/universities/f7d46033-6611-4eff-9c78-d7950e6dcad8/scholarships/0819eb6c-2c47-4d81-8867-19b8e3b278f8 200 in 1275ms (compile: 61ms, proxy.ts: 884ms, render: 330ms)
+ GET /en/admin/universities/951ac24e-acf2-4980-898c-3301b4ba6102/scholarships/new 200 in 1278ms (compile: 120ms, proxy.ts: 883ms, render: 274ms)
+ GET /en/programs 200 in 1277ms (compile: 213ms, proxy.ts: 533ms, render: 530ms)
+ GET /en/programs?level=bachelor 200 in 1278ms (compile: 301ms, proxy.ts: 546ms, render: 432ms)
+ GET /en/programs 200 in 468ms (compile: 8ms, proxy.ts: 144ms, render: 316ms)
+ ✓ Compiled in 263ms
+TOTAL RAW: 5012 POPULAR RAW: 1 POPULAR FINAL: 1
+Error: MISSING_MESSAGE: Could not resolve `Scholarships.search.coverage` in messages for locale `en`.
+    at <unknown> (src/app/[locale]/(public)/scholarships/page.tsx:229:83)
+    at Array.map (<anonymous>)
+    at ScholarshipsPage (src/app/[locale]/(public)/scholarships/page.tsx:207:46)
+  227 |                                         <div className="flex flex-wrap gap-2">
+  228 |                                             <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+> 229 |                                                 {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+      |                                                                                   ^
+  230 |                                             </Badge>
+  231 |                                             {p.includes_stipend && (
+  232 |                                                 <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `Scholarships.search.coverage` in messages for locale `en`.'
+}
+ GET /en/scholarships 200 in 6.0s (compile: 64ms, proxy.ts: 510ms, render: 5.5s)
+ ✓ Compiled in 104ms
+ ⨯ ReferenceError: overrideResult is not defined
+    at ProgramDetailPage (src/app/[locale]/(public)/programs/[slug]/page.tsx:128:30)
+  126 |     const university = universityResult.data;
+  127 |     const accommodationTypes = accommodationResult.data;
+> 128 |     const programOverrides = overrideResult.data;
+      |                              ^
+  129 |
+  130 |     // Fetch requirements - check if program has custom requirements
+  131 |     let requirements; {
+  digest: '792167094'
+}
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 510ms (compile: 13ms, proxy.ts: 104ms, render: 392ms)
+ ⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at ProgramsClient (.next/dev/server/chunks/ssr/Dev_StudyinProject_src_5176be5a._.js:3378:246) {
+  digest: '2730383320'
+}
+ GET /en/programs 200 in 1490ms (compile: 84ms, proxy.ts: 330ms, render: 1076ms)
+ GET /sw.js 404 in 76ms (compile: 19ms, render: 57ms)
+Universities Debug: [
+  {
+    name: 'Zhejiang University of Finance and Economics',
+    cover: undefined
+  },
+  {
+    name: 'Zhongnan University of Economics and Law',
+    cover: undefined
+  },
+  { name: 'Wenzhou Medical University', cover: undefined },
+  { name: 'Changzhou University', cover: undefined },
+  { name: 'University of Nottingham Ningbo China', cover: undefined },
+  {
+    name: 'Shanghai Lixin University of Accounting and Finance ',
+    cover: undefined
+  },
+  {
+    name: 'Shanghai University-SILC BUSINESS SCHOOL',
+    cover: undefined
+  },
+  { name: 'Lishui University', cover: undefined }
+]
+ ✓ Compiled in 165ms
+TOTAL RAW: 5012 POPULAR RAW: 1 POPULAR FINAL: 1
+Error: MISSING_MESSAGE: Could not resolve `Scholarships.search.coverage` in messages for locale `en`.
+    at <unknown> (src/app/[locale]/(public)/scholarships/page.tsx:229:83)
+    at Array.map (<anonymous>)
+    at ScholarshipsPage (src/app/[locale]/(public)/scholarships/page.tsx:207:46)
+  227 |                                         <div className="flex flex-wrap gap-2">
+  228 |                                             <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+> 229 |                                                 {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+      |                                                                                   ^
+  230 |                                             </Badge>
+  231 |                                             {p.includes_stipend && (
+  232 |                                                 <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `Scholarships.search.coverage` in messages for locale `en`.'
+}
+ GET /en/programs 200 in 1794ms (compile: 21ms, proxy.ts: 146ms, render: 1627ms)
+ GET /en/admin/universities/f7d46033-6611-4eff-9c78-d7950e6dcad8/scholarships/0819eb6c-2c47-4d81-8867-19b8e3b278f8 200 in 1926ms (compile: 201ms, proxy.ts: 914ms, render: 811ms)
+ GET /en/admin/universities/951ac24e-acf2-4980-898c-3301b4ba6102/scholarships/new 200 in 1988ms (compile: 244ms, proxy.ts: 922ms, render: 822ms)
+ GET /en/programs 200 in 1717ms (compile: 413ms, proxy.ts: 258ms, render: 1047ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 2.2s (compile: 238ms, proxy.ts: 443ms, render: 1476ms)
+ GET /en/scholarships 200 in 2.4s (compile: 84ms, proxy.ts: 142ms, render: 2.1s)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 1346ms (compile: 10ms, proxy.ts: 124ms, render: 1212ms)
+ GET /sw.js 404 in 70ms (compile: 12ms, render: 58ms)
+Universities Debug: [
+  {
+    name: 'Zhejiang University of Finance and Economics',
+    cover: undefined
+  },
+  {
+    name: 'Zhongnan University of Economics and Law',
+    cover: undefined
+  },
+  { name: 'Wenzhou Medical University', cover: undefined },
+  { name: 'Changzhou University', cover: undefined },
+  { name: 'University of Nottingham Ningbo China', cover: undefined },
+  {
+    name: 'Shanghai Lixin University of Accounting and Finance ',
+    cover: undefined
+  },
+  {
+    name: 'Shanghai University-SILC BUSINESS SCHOOL',
+    cover: undefined
+  },
+  { name: 'Lishui University', cover: undefined }
+]
+ GET /en/universities/jiangsu-university 200 in 2.6s (compile: 669ms, proxy.ts: 161ms, render: 1807ms)
+ ✓ Compiled in 168ms
+ GET /en/admin/universities/951ac24e-acf2-4980-898c-3301b4ba6102/scholarships/new 200 in 1057ms (compile: 169ms, proxy.ts: 610ms, render: 278ms)
+ GET /en/admin/universities/f7d46033-6611-4eff-9c78-d7950e6dcad8/scholarships/0819eb6c-2c47-4d81-8867-19b8e3b278f8 200 in 1072ms (compile: 130ms, proxy.ts: 611ms, render: 331ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 1522ms (compile: 364ms, proxy.ts: 265ms, render: 892ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 1490ms (compile: 193ms, proxy.ts: 208ms, render: 1089ms)
+ GET /en/programs 200 in 1719ms (compile: 158ms, proxy.ts: 678ms, render: 882ms)
+TOTAL RAW: 5012 POPULAR RAW: 1 POPULAR FINAL: 1
+Error: MISSING_MESSAGE: Could not resolve `Scholarships.search.coverage` in messages for locale `en`.
+    at <unknown> (src/app/[locale]/(public)/scholarships/page.tsx:229:83)
+    at Array.map (<anonymous>)
+    at ScholarshipsPage (src/app/[locale]/(public)/scholarships/page.tsx:207:46)
+  227 |                                         <div className="flex flex-wrap gap-2">
+  228 |                                             <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+> 229 |                                                 {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+      |                                                                                   ^
+  230 |                                             </Badge>
+  231 |                                             {p.includes_stipend && (
+  232 |                                                 <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `Scholarships.search.coverage` in messages for locale `en`.'
+}
+ GET /en/scholarships 200 in 4.6s (compile: 297ms, proxy.ts: 223ms, render: 4.1s)
+ ✓ Compiled in 350ms
+TOTAL RAW: 5012 POPULAR RAW: 1 POPULAR FINAL: 1
+Error: MISSING_MESSAGE: Could not resolve `Scholarships.search.coverage` in messages for locale `en`.
+    at <unknown> (src/app/[locale]/(public)/scholarships/page.tsx:229:83)
+    at Array.map (<anonymous>)
+    at ScholarshipsPage (src/app/[locale]/(public)/scholarships/page.tsx:207:46)
+  227 |                                         <div className="flex flex-wrap gap-2">
+  228 |                                             <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+> 229 |                                                 {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+      |                                                                                   ^
+  230 |                                             </Badge>
+  231 |                                             {p.includes_stipend && (
+  232 |                                                 <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `Scholarships.search.coverage` in messages for locale `en`.'
+}
+ GET /en/admin/universities/951ac24e-acf2-4980-898c-3301b4ba6102/scholarships/new 200 in 1818ms (compile: 112ms, proxy.ts: 1318ms, render: 388ms)
+ GET /en/admin/universities/f7d46033-6611-4eff-9c78-d7950e6dcad8/scholarships/0819eb6c-2c47-4d81-8867-19b8e3b278f8 200 in 1832ms (compile: 27ms, proxy.ts: 1318ms, render: 486ms)
+ GET /en/programs 200 in 1835ms (compile: 216ms, proxy.ts: 388ms, render: 1231ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 2.1s (compile: 731ms, proxy.ts: 413ms, render: 978ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 2.1s (compile: 612ms, proxy.ts: 417ms, render: 1119ms)
+ GET /en/scholarships 200 in 2.4s (compile: 85ms, proxy.ts: 355ms, render: 1970ms)
+Universities Debug: [
+  {
+    name: 'Zhejiang University of Finance and Economics',
+    cover: undefined
+  },
+  {
+    name: 'Zhongnan University of Economics and Law',
+    cover: undefined
+  },
+  { name: 'Wenzhou Medical University', cover: undefined },
+  { name: 'Changzhou University', cover: undefined },
+  { name: 'University of Nottingham Ningbo China', cover: undefined },
+  {
+    name: 'Shanghai Lixin University of Accounting and Finance ',
+    cover: undefined
+  },
+  {
+    name: 'Shanghai University-SILC BUSINESS SCHOOL',
+    cover: undefined
+  },
+  { name: 'Lishui University', cover: undefined }
+]
+ GET /en 200 in 3.7s (compile: 21ms, proxy.ts: 122ms, render: 3.6s)
+ GET /en/articles/csca-guide 200 in 928ms (compile: 755ms, proxy.ts: 133ms, render: 39ms)
+ ✓ Compiled in 222ms
+TOTAL RAW: 5012 POPULAR RAW: 1 POPULAR FINAL: 1
+Error: MISSING_MESSAGE: Could not resolve `Scholarships.search.coverage` in messages for locale `en`.
+    at <unknown> (src/app/[locale]/(public)/scholarships/page.tsx:229:83)
+    at Array.map (<anonymous>)
+    at ScholarshipsPage (src/app/[locale]/(public)/scholarships/page.tsx:207:46)
+  227 |                                         <div className="flex flex-wrap gap-2">
+  228 |                                             <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+> 229 |                                                 {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+      |                                                                                   ^
+  230 |                                             </Badge>
+  231 |                                             {p.includes_stipend && (
+  232 |                                                 <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `Scholarships.search.coverage` in messages for locale `en`.'
+}
+ GET /en/admin/universities/f7d46033-6611-4eff-9c78-d7950e6dcad8/scholarships/0819eb6c-2c47-4d81-8867-19b8e3b278f8 200 in 1366ms (compile: 62ms, proxy.ts: 635ms, render: 669ms)
+ GET /en/admin/universities/951ac24e-acf2-4980-898c-3301b4ba6102/scholarships/new 200 in 1326ms (compile: 190ms, proxy.ts: 994ms, render: 142ms)
+ GET /en/programs 200 in 1333ms (compile: 155ms, proxy.ts: 628ms, render: 550ms)
+ GET /en/articles/csca-guide 200 in 1431ms (compile: 88ms, proxy.ts: 672ms, render: 672ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 1483ms (compile: 239ms, proxy.ts: 166ms, render: 1078ms)
+ GET /en/scholarships 200 in 1913ms (compile: 124ms, proxy.ts: 678ms, render: 1111ms)
+ GET /en/programs/business-administration-jiangsu-university-1 200 in 1505ms (compile: 7ms, proxy.ts: 131ms, render: 1367ms)
+ GET /sw.js 404 in 76ms (compile: 12ms, render: 64ms)
+Universities Debug: [
+  {
+    name: 'Zhejiang University of Finance and Economics',
+    cover: undefined
+  },
+  {
+    name: 'Zhongnan University of Economics and Law',
+    cover: undefined
+  },
+  { name: 'Wenzhou Medical University', cover: undefined },
+  { name: 'Changzhou University', cover: undefined },
+  { name: 'University of Nottingham Ningbo China', cover: undefined },
+  {
+    name: 'Shanghai Lixin University of Accounting and Finance ',
+    cover: undefined
+  },
+  {
+    name: 'Shanghai University-SILC BUSINESS SCHOOL',
+    cover: undefined
+  },
+  { name: 'Lishui University', cover: undefined }
+]

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import {
     Select,
     SelectContent,
@@ -12,7 +13,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Search, X } from "lucide-react";
+import { X, GraduationCap, FileCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -73,30 +74,73 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
     };
 
     return (
-        <div className="space-y-4">
-            {/* Clear Filters Button */}
-            <Button
-                variant="outline"
-                className="w-full"
-                onClick={clearFilters}
-            >
-                <X className="h-4 w-4 mr-2" />
-                {t('clearAll')}
-            </Button>
+        <div className="space-y-6">
+            {/* Quick Filters Grid (High Priority) */}
+            <div className="grid gap-3">
+                {/* Scholarship Filter */}
+                <div 
+                    className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
+                        currentFilters.scholarship 
+                            ? 'bg-primary/5 border-primary/20 shadow-sm' 
+                            : 'bg-card hover:bg-muted/50 border-border'
+                    }`}
+                >
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg ${currentFilters.scholarship ? 'bg-primary/10 text-primary' : 'bg-muted'}`}>
+                            <GraduationCap className="h-4 w-4" />
+                        </div>
+                        <div className="flex flex-col">
+                            <Label htmlFor="scholarship-toggle" className="text-sm font-semibold cursor-pointer">
+                                Scholarship Available
+                            </Label>
+                            <span className="text-[11px] text-muted-foreground">Show programs with funding</span>
+                        </div>
+                    </div>
+                    <Switch
+                        id="scholarship-toggle"
+                        checked={currentFilters.scholarship || false}
+                        onCheckedChange={(checked) => updateFilters({ scholarship: checked })}
+                    />
+                </div>
 
-            {/* Search */}
-            <div className="space-y-2">
-                <Label className="text-sm font-medium">{t('search')}</Label>
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                        className="pl-9 h-10"
-                        placeholder={t('searchPlaceholder')}
-                        value={currentFilters?.search || ''}
-                        onChange={(e) => updateFilters({ search: e.target.value })}
+                {/* CSCA Exam Filter */}
+                <div 
+                    className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
+                        currentFilters.cscaExam 
+                            ? 'bg-amber-500/5 border-amber-500/20 shadow-sm' 
+                            : 'bg-card hover:bg-muted/50 border-border'
+                    }`}
+                >
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg ${currentFilters.cscaExam ? 'bg-amber-500/10 text-amber-600' : 'bg-muted'}`}>
+                            <FileCheck className="h-4 w-4" />
+                        </div>
+                        <div className="flex flex-col">
+                            <Label htmlFor="csca-toggle" className="text-sm font-semibold cursor-pointer">
+                                Requires CSCA Exam
+                            </Label>
+                            <span className="text-[11px] text-muted-foreground">Filter by test requirement</span>
+                        </div>
+                    </div>
+                    <Switch
+                        id="csca-toggle"
+                        checked={currentFilters.cscaExam || false}
+                        onCheckedChange={(checked) => updateFilters({ cscaExam: checked })}
+                        className="data-[state=checked]:bg-amber-500"
                     />
                 </div>
             </div>
+
+            {/* Clear Filters Button */}
+            <Button
+                variant="outline"
+                size="sm"
+                className="w-full text-xs font-medium h-9"
+                onClick={clearFilters}
+            >
+                <X className="h-3.5 w-3.5 mr-2" />
+                {t('clearAll')}
+            </Button>
 
             {/* Study Level */}
             <div className="space-y-3 pt-2">
