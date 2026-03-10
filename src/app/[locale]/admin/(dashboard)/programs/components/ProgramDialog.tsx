@@ -47,6 +47,7 @@ interface Program {
     application_deadline: string;
     is_active: boolean;
     has_force_payment: boolean;
+    csca_exam_require?: boolean;
     has_custom_requirements?: boolean;
     gpa_requirement?: string;
     score_ielts?: number;
@@ -96,6 +97,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
         deadline: program?.application_deadline || "",
         is_active: program?.is_active ?? true,
         has_force_payment: program?.has_force_payment ?? false,
+        csca_exam_require: program?.csca_exam_require ?? false,
         gpa_requirement: program?.gpa_requirement || "",
         score_ielts: program?.score_ielts || "",
         score_toefl: program?.score_toefl || "",
@@ -118,6 +120,7 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                 deadline: program.application_deadline || "",
                 is_active: program.is_active ?? true,
                 has_force_payment: program.has_force_payment ?? false,
+                csca_exam_require: program.csca_exam_require ?? false,
                 gpa_requirement: program.gpa_requirement || "",
                 score_ielts: program.score_ielts || "",
                 score_toefl: program.score_toefl || "",
@@ -641,6 +644,15 @@ export function ProgramDialog({ program, universities, languages, trigger, unive
                                         onCheckedChange={(checked) => setFormState({ ...formState, has_force_payment: checked })}
                                     />
                                     <Label htmlFor="has_force_payment" className="text-red-600 font-medium">Force Payment</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <Switch
+                                        id="csca_exam_require"
+                                        name="csca_exam_require"
+                                        checked={formState.csca_exam_require}
+                                        onCheckedChange={(checked) => setFormState({ ...formState, csca_exam_require: checked })}
+                                    />
+                                    <Label htmlFor="csca_exam_require" className="text-amber-600 font-medium">CSCA Exam Required</Label>
                                 </div>
                             </div>
 

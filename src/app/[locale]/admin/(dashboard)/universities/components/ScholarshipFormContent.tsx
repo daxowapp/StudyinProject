@@ -26,21 +26,24 @@ export interface ScholarshipFormData {
     service_fee_usd?: number; // Shared
     service_fee_cny?: number; // Shared
     display_order?: number; // Shared
+    is_popular?: boolean; // Shared
 
     // Arrays
     additional_benefits?: string[]; // Translated
     requirements?: string[]; // Translated
+    applicable_programs?: string[]; // Shared (UUIDs of programs)
 }
 
 interface ScholarshipFormContentProps {
     locale: string;
     isDefault: boolean;
     data: ScholarshipFormData;
+    programs?: { id: string; display_title: string; level: string }[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (field: keyof ScholarshipFormData, value: any) => void;
 }
 
-export function ScholarshipFormContent({ locale, isDefault, data, onChange }: ScholarshipFormContentProps) {
+export function ScholarshipFormContent({ locale, isDefault, data, programs = [], onChange }: ScholarshipFormContentProps) {
     const isReadOnlyShared = !isDefault;
 
     const handleArrayChange = (field: 'additional_benefits' | 'requirements', index: number, value: string) => {
@@ -91,7 +94,59 @@ export function ScholarshipFormContent({ locale, isDefault, data, onChange }: Sc
                             </div>
                         </div>
 
-                        <div className="space-y-2">
+                        <div className="flex items-center justify-between p-4 rounded-lg bg-primary/5 mt-4">
+                            <div className="space-y-0.5">
+                                <Label htmlFor={`is_popular_${locale}`}>Popular Scholarship</Label>
+                                <p className="text-xs text-muted-foreground">Highlight this scholarship as popular/featured</p>
+                            </div>
+                            <Switch
+                                id={`is_popular_${locale}`}
+                                checked={data.is_popular || false}
+                                onCheckedChange={(checked) => onChange("is_popular", checked)}
+                                disabled={isReadOnlyShared}
+                            />
+                        </div>
+
+                        {/* Applicable Programs (Multi-select) */}
+                        <div className="space-y-2 mt-4">
+                            <Label>Applicable Programs</Label>
+                            <p className="text-xs text-muted-foreground mb-2">Select specific programs this scholarship applies to. If none are selected, it applies to ALL programs at this university.</p>
+                            <div className="border border-input rounded-md max-h-[200px] overflow-y-auto p-2 bg-background">
+                                {programs.length === 0 ? (
+                                    <p className="text-sm text-muted-foreground p-2">No programs available to select.</p>
+                                ) : (
+                                    programs.map((program) => {
+                                        const isSelected = (data.applicable_programs || []).includes(program.id);
+                                        return (
+                                            <div key={program.id} className="flex items-center space-x-2 py-1">
+                                                <input 
+                                                    type="checkbox" 
+                                                    className="rounded border-gray-300 text-primary focus:ring-primary w-4 h-4"
+                                                    disabled={isReadOnlyShared}
+                                                    checked={isSelected}
+                                                    onChange={(e) => {
+                                                        const checked = e.target.checked;
+                                                        let newArr = [...(data.applicable_programs || [])];
+                                                        if (checked) {
+                                                            newArr.push(program.id);
+                                                        } else {
+                                                            newArr = newArr.filter(id => id !== program.id);
+                                                        }
+                                                        onChange("applicable_programs", newArr);
+                                                    }}
+                                                    id={`prog_${program.id}`}
+                                                />
+                                                <Label htmlFor={`prog_${program.id}`} className="font-normal text-sm cursor-pointer whitespace-nowrap truncate overflow-hidden">
+                                                    {program.display_title || 'Untitled'} <span className="text-muted-foreground">({program.level})</span>
+                                                </Label>
+                                            </div>
+                                        );
+                                    })
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="space-y-2 mt-4">
                             <Label htmlFor={`display_name_${locale}`}>Display Name ({locale})</Label>
                             <Input
                                 id={`display_name_${locale}`}

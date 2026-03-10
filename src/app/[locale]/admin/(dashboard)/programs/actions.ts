@@ -147,3 +147,18 @@ export async function deleteProgram(id: string) {
     revalidatePath("/admin/programs");
     return { success: true };
 }
+
+export async function bulkUpdateProgramsCsca(programIds: string[], requireCsca: boolean) {
+    const supabase = await createClient();
+    
+    // Using an IN query to update multiple records at once
+    const { error } = await supabase
+        .from("university_programs")
+        .update({ csca_exam_require: requireCsca })
+        .in("id", programIds);
+
+    if (error) return { error: error.message };
+    revalidatePath("/admin/programs");
+    revalidatePath(`/admin/universities/[id]`, "page");
+    return { success: true };
+}

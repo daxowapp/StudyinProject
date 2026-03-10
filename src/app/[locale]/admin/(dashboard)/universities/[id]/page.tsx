@@ -37,6 +37,7 @@ import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";
 import { RequirementsManager } from "./requirements/RequirementsManager";
 import { UniversityTranslations, type Translation } from "../components/UniversityTranslations";
+import { BulkCscaExamButton } from "../components/BulkCscaExamButton";
 
 import Image from "next/image";
 
@@ -64,6 +65,7 @@ interface Program {
     service_fee: number;
     deadline: string;
     has_force_payment: boolean;
+    csca_exam_require?: boolean;
     [key: string]: unknown;
 }
 
@@ -1050,12 +1052,15 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                         <CardTitle>Programs</CardTitle>
                                         <CardDescription>Programs offered by this university</CardDescription>
                                     </div>
-                                    <Link href="/admin/programs">
-                                        <Button size="sm">
-                                            <GraduationCap className="mr-2 h-4 w-4" />
-                                            Manage Programs
-                                        </Button>
-                                    </Link>
+                                    <div className="flex items-center gap-2">
+                                        <BulkCscaExamButton programs={programs} />
+                                        <Link href="/admin/programs">
+                                            <Button size="sm">
+                                                <GraduationCap className="mr-2 h-4 w-4" />
+                                                Manage Programs
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </div>
                             </CardHeader>
                             <CardContent>
@@ -1071,6 +1076,9 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                                                 {p.is_active ? "Active" : "Inactive"}
                                                             </Badge>
                                                             <Badge variant="outline">{p.category}</Badge>
+                                                            {p.csca_exam_require && (
+                                                                <Badge variant="destructive" className="bg-amber-600">CSCA Req</Badge>
+                                                            )}
                                                         </div>
                                                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                                             <span>{p.level}</span>

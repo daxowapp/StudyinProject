@@ -475,34 +475,101 @@
     },
     "Scholarships": {
         "badge": "Financial Support",
-        "title": "Scholarships & Financial Aid",
-        "description": "Study in China is affordable. Explore various scholarship opportunities available for international students.",
-        "items": {
-            "csc": {
-                "title": "Chinese Government Scholarship (CSC)",
-                "description": "Full or partial scholarship for international students. Covers tuition, accommodation, and salary.",
-                "amount": "Up to $10,000/year"
-            },
-            "university": {
-                "title": "University Scholarships",
-                "description": "Merit-based scholarships offered directly by universities for outstanding applicants.",
-                "amount": "Up to $8,000/year"
-            },
-            "provincial": {
-                "title": "Provincial Government Scholarships",
-                "description": "Scholarships funded by local governments to attract international talent to specific regions.",
-                "amount": "Up to $6,000/year"
-            }
+        "title": "Discover Scholarships",
+        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+        "popular": {
+            "title": "Featured & Popular Scholarships"
         },
-        "awardAmount": "Award Amount",
-        "learnMore": "Learn More",
         "stats": {
-            "awarded": "Awarded Annually",
-            "funding": "Receive Funding",
-            "full": "Full Scholarships",
-            "eligible": "Programs Eligible"
+            "scholarshipOptions": "Scholarship Options",
+            "universities": "Universities",
+            "programs": "Programs"
         },
-        "viewAll": "View All Scholarships"
+        "tabs": {
+            "search": "Search Scholarships",
+            "about": "About Scholarships"
+        },
+        "search": {
+            "filter": "Filters",
+            "clearAll": "Clear All",
+            "searchPlaceholder": "Search program or university...",
+            "category": "Category",
+            "all": "All",
+            "fullScholarship": "Full Scholarship (100%)",
+            "partialScholarship": "Partial Scholarship",
+            "city": "City",
+            "university": "University",
+            "degree": "Degree Level",
+            "language": "Language",
+            "semester": "Semester",
+            "spring": "Spring",
+            "autumn": "Autumn",
+            "freeAccommodation": "Free Accommodation",
+            "monthlyStipend": "Monthly Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "scholarshipOptions": "scholarship options at",
+            "universities": "universities",
+            "noResults": "No scholarships found",
+            "noResultsDescription": "Try adjusting your filters to see more results.",
+            "programsAvailable": "Programs",
+            "upTo": "Up to",
+            "accommodation": "Accommodation",
+            "stipend": "Stipend",
+            "insurance": "Insurance",
+            "program": "Program",
+            "teachingLanguage": "Language",
+            "startingDate": "Intake",
+            "scholarshipCoverage": "Original Tuition",
+            "youNeedToPay": "You Need To Pay",
+            "tuition": "Tuition",
+            "free": "Free",
+            "moreOptions": "More Options",
+            "learnMore": "Learn More"
+        },
+        "detail": {
+            "backToSearch": "Back to Search",
+            "scholarshipAvailable": "Scholarship Available",
+            "programDetails": "Program Details",
+            "degree": "Degree",
+            "duration": "Duration",
+            "language": "Language",
+            "intake": "Intake",
+            "availableScholarships": "Available Scholarships",
+            "noScholarships": "No scholarships are currently available for this program.",
+            "tuitionCoverage": "Tuition Coverage",
+            "freeAccommodation": "Free Accommodation",
+            "stipend": "Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "originalTuition": "Original Tuition",
+            "youPay": "You Need to Pay",
+            "serviceFee": "Service Fee",
+            "applyNow": "Apply for this Scholarship",
+            "university": "University",
+            "viewUniversity": "View University Profile",
+            "viewProgram": "View Program Details"
+        },
+        "about": {
+            "howItWorks": "How Scholarships Work",
+            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+            "scholarshipCoverage": "Scholarship Coverage",
+            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+            "serviceFees": "Service & Processing Fees",
+            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+            "scholarshipTypes": "Common Scholarship Types",
+            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+            "searchPrograms": "Search Eligible Programs",
+            "requiredDocuments": "Required Documents",
+            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+            "faq": "Frequently Asked Questions",
+            "faq1Question": "Do I need to know Chinese to get a scholarship?",
+            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+            "faq2Question": "Can I work while studying?",
+            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+            "faq3Question": "What happens if I fail my classes?",
+            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+            "faq4Question": "How long does the application process take?",
+            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+        }
     },
     "Testimonials": {
         "badge": "Success Stories",

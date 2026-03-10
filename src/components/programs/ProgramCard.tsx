@@ -39,6 +39,7 @@ interface Program {
     badges: string[];
     scholarship_chance?: string;
     has_fast_track?: boolean;
+    csca_exam_require?: boolean;
 }
 
 interface ProgramCardProps {
@@ -97,6 +98,11 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                                         <Badge className="bg-yellow-100 text-yellow-800 text-[10px] px-2 py-0.5 border-yellow-200">
                                             <Zap className="h-2.5 w-2.5 mr-0.5 fill-yellow-600 text-yellow-600" />
                                             {t("fastTrack") || 'Fast Track'}
+                                        </Badge>
+                                    )}
+                                    {program.csca_exam_require && (
+                                        <Badge variant="destructive" className="bg-amber-600 text-[10px] px-2 py-0.5">
+                                            📝 Requires CSCA
                                         </Badge>
                                     )}
                                 </div>
@@ -313,6 +319,11 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                             {t("fastTrack") || 'Fast Track'}
                         </Badge>
                     )}
+                    {program.csca_exam_require && (
+                        <Badge variant="destructive" className="bg-amber-600 text-xs font-semibold shadow-sm">
+                            📝 Requires CSCA
+                        </Badge>
+                    )}
                     {program.badges.slice(0, 3).map((badge, index) => (
                         <Badge key={index} variant="outline" className="text-xs font-normal">
                             {badge}
@@ -410,6 +421,11 @@ function QuickViewContent({ program, onClose }: { program: Program; onClose: () 
             <div>
                 <p className="text-sm font-medium mb-2">{t("features")}</p>
                 <div className="flex flex-wrap gap-2">
+                    {program.csca_exam_require && (
+                        <Badge variant="destructive" className="bg-amber-600">
+                            📝 Requires CSCA
+                        </Badge>
+                    )}
                     {program.badges.map((badge, index) => (
                         <Badge key={index} variant="secondary">
                             {badge}

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Search, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export interface FilterState {
     search: string;
@@ -24,6 +25,7 @@ export interface FilterState {
     cities: string[];
     duration: string;
     scholarship: boolean;
+    cscaExam?: boolean;
     university: string;
     age?: number;
     gpa?: number;
@@ -62,6 +64,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             cities: [],
             duration: 'all',
             scholarship: false,
+            cscaExam: false,
             university: 'all',
             age: undefined,
             gpa: undefined,
@@ -114,45 +117,51 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 </div>
             </div>
 
-            {/* Academic Requirements (Age & GPA) */}
-            <div className="space-y-3 pt-4 border-t mt-4">
-                <Label className="text-sm font-medium">Academic Requirements</Label>
-                <div className="flex gap-4">
-                    <div className="space-y-2 flex-1">
-                        <Label htmlFor="age-filter" className="text-xs text-muted-foreground">My Age</Label>
-                        <Input
-                            id="age-filter"
-                            type="number"
-                            min={10}
-                            max={100}
-                            placeholder="e.g. 21"
-                            value={currentFilters?.age || ''}
-                            onChange={(e) => {
-                                const val = e.target.value ? parseInt(e.target.value) : undefined;
-                                updateFilters({ age: val });
-                            }}
-                            className="h-9"
-                        />
-                    </div>
-                    <div className="space-y-2 flex-1">
-                        <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">Min GPA</Label>
-                        <Input
-                            id="gpa-filter"
-                            type="number"
-                            min={0.0}
-                            max={100.0}
-                            step={0.1}
-                            placeholder="e.g. 3.0"
-                            value={currentFilters?.gpa || ''}
-                            onChange={(e) => {
-                                const val = e.target.value ? parseFloat(e.target.value) : undefined;
-                                updateFilters({ gpa: val });
-                            }}
-                            className="h-9"
-                        />
-                    </div>
-                </div>
-            </div>
+            {/* Advanced Filters */}
+            <Accordion type="multiple" className="w-full" defaultValue={['academic']}>
+                {/* Academic Requirements (Age & GPA) */}
+                <AccordionItem value="academic" className="border-b-0">
+                    <AccordionTrigger className="py-3 text-sm font-medium hover:no-underline">
+                        Academic Requirements
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-3 px-1">
+                        <div className="flex gap-4">
+                            <div className="space-y-2 flex-1">
+                                <Label htmlFor="age-filter" className="text-xs text-muted-foreground">My Age</Label>
+                                <Input
+                                    id="age-filter"
+                                    type="number"
+                                    min={10}
+                                    max={100}
+                                    placeholder="e.g. 21"
+                                    value={currentFilters?.age || ''}
+                                    onChange={(e) => {
+                                        const val = e.target.value ? parseInt(e.target.value) : undefined;
+                                        updateFilters({ age: val });
+                                    }}
+                                    className="h-9"
+                                />
+                            </div>
+                            <div className="space-y-2 flex-1">
+                                <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">Min GPA</Label>
+                                <Input
+                                    id="gpa-filter"
+                                    type="number"
+                                    min={0.0}
+                                    max={100.0}
+                                    step={0.1}
+                                    placeholder="e.g. 3.0"
+                                    value={currentFilters?.gpa || ''}
+                                    onChange={(e) => {
+                                        const val = e.target.value ? parseFloat(e.target.value) : undefined;
+                                        updateFilters({ gpa: val });
+                                    }}
+                                    className="h-9"
+                                />
+                            </div>
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
 
             {/* Field of Study */}
             <div className="space-y-2">
@@ -211,67 +220,70 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 </div>
             </div>
 
-            {/* City */}
-            <div className="space-y-2">
-                <Label className="text-sm font-medium">{t('city')}</Label>
-                <Select value={currentFilters?.cities?.[0] || 'all'} onValueChange={(value) => updateFilters({ cities: value === 'all' ? [] : [value] })}>
-                    <SelectTrigger className="h-10">
-                        <SelectValue placeholder={t('allCities')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">{t('allCities')}</SelectItem>
-                        {availableCities.map((city) => (
-                            <SelectItem key={city} value={city}>{city}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
+                {/* City */}
+                <AccordionItem value="city" className="border-b-0 mt-2">
+                    <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
+                        {t('city')}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-2 px-1">
+                        <Select value={currentFilters?.cities?.[0] || 'all'} onValueChange={(value) => updateFilters({ cities: value === 'all' ? [] : [value] })}>
+                            <SelectTrigger className="h-10">
+                                <SelectValue placeholder={t('allCities')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">{t('allCities')}</SelectItem>
+                                {availableCities.map((city) => (
+                                    <SelectItem key={city} value={city}>{city}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </AccordionContent>
+                </AccordionItem>
 
-            {/* University */}
-            <div className="space-y-2">
-                <Label className="text-sm font-medium">{t('university')}</Label>
-                <Select value={currentFilters?.university || 'all'} onValueChange={(value) => updateFilters({ university: value })}>
-                    <SelectTrigger className="h-10">
-                        <SelectValue placeholder={t('allUniversities')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">{t('allUniversities')}</SelectItem>
-                        {availableUniversities.map((uni) => (
-                            <SelectItem key={uni} value={uni}>{uni}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
+                {/* University */}
+                <AccordionItem value="university" className="border-b-0">
+                    <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
+                        {t('university')}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-2 px-1">
+                        <Select value={currentFilters?.university || 'all'} onValueChange={(value) => updateFilters({ university: value })}>
+                            <SelectTrigger className="h-10">
+                                <SelectValue placeholder={t('allUniversities')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">{t('allUniversities')}</SelectItem>
+                                {availableUniversities.map((uni) => (
+                                    <SelectItem key={uni} value={uni}>{uni}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </AccordionContent>
+                </AccordionItem>
 
-            {/* Duration */}
-            <div className="space-y-2">
-                <Label className="text-sm font-medium">{t('duration')}</Label>
-                <Select value={currentFilters?.duration || 'all'} onValueChange={(value) => updateFilters({ duration: value })}>
-                    <SelectTrigger className="h-10">
-                        <SelectValue placeholder={t('allDurations')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">{t('allDurations')}</SelectItem>
-                        <SelectItem value="2 years">{t('durations.2years')}</SelectItem>
-                        <SelectItem value="3 years">{t('durations.3years')}</SelectItem>
-                        <SelectItem value="4 years">{t('durations.4years')}</SelectItem>
-                        <SelectItem value="5 years">{t('durations.5years')}</SelectItem>
-                        <SelectItem value="6 years">{t('durations.6years')}</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+                {/* Duration */}
+                <AccordionItem value="duration" className="border-b-0">
+                    <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
+                        {t('duration')}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-2 px-1">
+                        <Select value={currentFilters?.duration || 'all'} onValueChange={(value) => updateFilters({ duration: value })}>
+                            <SelectTrigger className="h-10">
+                                <SelectValue placeholder={t('allDurations')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">{t('allDurations')}</SelectItem>
+                                <SelectItem value="2 years">{t('durations.2years')}</SelectItem>
+                                <SelectItem value="3 years">{t('durations.3years')}</SelectItem>
+                                <SelectItem value="4 years">{t('durations.4years')}</SelectItem>
+                                <SelectItem value="5 years">{t('durations.5years')}</SelectItem>
+                                <SelectItem value="6 years">{t('durations.6years')}</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
 
-            {/* Scholarship Available */}
-            <div className="space-y-3 pt-2">
-                <div className="flex items-center space-x-2">
-                    <Checkbox
-                        id="scholarship"
-                        checked={currentFilters?.scholarship || false}
-                        onCheckedChange={(checked) => updateFilters({ scholarship: checked as boolean })}
-                    />
-                    <Label htmlFor="scholarship" className="font-normal text-sm cursor-pointer">{t('scholarshipAvailable')}</Label>
-                </div>
-            </div>
+
         </div>
     );
 }

@@ -114,11 +114,18 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             .select("*")
             .eq("university_id", program.university_id)
             .order("display_order", { ascending: true }),
+        // Program specific overrides/missing fields
+        supabase
+            .from("university_programs")
+            .select("csca_exam_require")
+            .eq("id", program.id)
+            .single(),
     ]);
 
     const translation = translationResult.data;
     const university = universityResult.data;
     const accommodationTypes = accommodationResult.data;
+    const programOverrides = overrideResult.data;
 
     // Fetch requirements - check if program has custom requirements
     let requirements;
@@ -180,6 +187,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         applicationFee: program.application_fee ? `${program.application_fee} USD` : "300 USD",
         application_fee_amount: program.application_fee || 300, // Raw number for Price component
         application_fee_currency: 'USD',
+        csca_exam_require: programOverrides?.csca_exam_require || false,
         totalInitial: "~260 USD",
         badges: [program.language_name, program.level].filter(Boolean),
         overview: programDescription,
@@ -301,6 +309,11 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 <Badge className="px-4 py-2 text-sm bg-purple-500/10 text-purple-600 border-purple-500/20">
                                     <Star className="h-4 w-4 mr-2" />
                                     {t('badges.specialRequirements') || 'Special Requirements'}
+                                </Badge>
+                            )}
+                            {programData.csca_exam_require && (
+                                <Badge className="px-4 py-2 text-sm bg-amber-500/10 text-amber-600 border-amber-500/20">
+                                    📝 Requires CSCA Exam
                                 </Badge>
                             )}
                         </div>

@@ -32,6 +32,7 @@ export default function EditUniversityScholarshipPage() {
     const [saving, setSaving] = useState(false);
     const [generating, setGenerating] = useState(false);
     const [universityName, setUniversityName] = useState("");
+    const [programs, setPrograms] = useState<{ id: string; display_title: string; level: string }[]>([]);
 
     // Main English Data
     const [formData, setFormData] = useState<ScholarshipFormData>({
@@ -52,8 +53,10 @@ export default function EditUniversityScholarshipPage() {
         service_fee_usd: 0,
         service_fee_cny: 0,
         display_order: 0,
+        is_popular: false,
         additional_benefits: [],
         requirements: [],
+        applicable_programs: [],
     });
 
     const [isActive, setIsActive] = useState(true);
@@ -63,7 +66,7 @@ export default function EditUniversityScholarshipPage() {
 
     useEffect(() => {
         const init = async () => {
-            await fetchUniversity();
+            await Promise.all([fetchUniversity(), fetchPrograms()]);
             if (scholarshipId && scholarshipId !== "new") {
                 await Promise.all([fetchScholarship(), fetchTranslations()]);
             }
@@ -76,6 +79,15 @@ export default function EditUniversityScholarshipPage() {
     const fetchUniversity = async () => {
         const { data } = await supabase.from("universities").select("name").eq("id", universityId).single();
         if (data) setUniversityName(data.name);
+    };
+
+    const fetchPrograms = async () => {
+        const { data } = await supabase.from("v_university_programs_full")
+            .select("id, display_title, level")
+            .eq("university_id", universityId)
+            .eq("is_active", true)
+            .order("display_title");
+        if (data) setPrograms(data);
     };
 
     const fetchScholarship = async () => {
@@ -100,8 +112,10 @@ export default function EditUniversityScholarshipPage() {
             service_fee_usd: Number(data.service_fee_usd) || 0,
             service_fee_cny: Number(data.service_fee_cny) || 0,
             display_order: data.display_order || 0,
+            is_popular: data.is_popular || false,
             additional_benefits: data.additional_benefits || [],
             requirements: data.requirements || [],
+            applicable_programs: data.applicable_programs || [],
         });
         setIsActive(data.is_active ?? true);
     };
@@ -148,6 +162,8 @@ export default function EditUniversityScholarshipPage() {
             service_fee_cny: formData.service_fee_cny,
             type_name: formData.type_name,
             display_order: formData.display_order,
+            is_popular: formData.is_popular,
+            applicable_programs: formData.applicable_programs,
 
             // Translated text fields - Try trans first, fallback to empty (NOT formData which is English)
             display_name: trans.display_name || "",
@@ -228,6 +244,7 @@ export default function EditUniversityScholarshipPage() {
             // 1. Save Main Scholarship
             const mainData = {
                 ...formData,
+                applicable_programs: formData.applicable_programs?.length ? formData.applicable_programs : null,
                 university_id: universityId,
                 is_active: isActive,
                 updated_at: new Date().toISOString(),
@@ -264,6 +281,7 @@ export default function EditUniversityScholarshipPage() {
             }
 
             toast.success("Saved successfully");
+            router.refresh();
             router.push(`/admin/universities/${universityId}/scholarships`);
         } catch (error) {
             console.error("Error saving:", error);
@@ -324,6 +342,7 @@ export default function EditUniversityScholarshipPage() {
                                     locale={locale.code}
                                     isDefault={locale.code === "en"}
                                     data={getCombinedData(locale.code)}
+                                    programs={programs}
                                     onChange={(field, value) => handleFieldChange(locale.code, field, value)}
                                 />
                             </TabsContent>

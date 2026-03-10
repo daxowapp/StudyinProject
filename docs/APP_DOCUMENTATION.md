@@ -24647,3 +24647,7 @@ The **BEST university page on Earth** featuring:
 - Injected JSON-LD structural mapping to layouts
 - Created `BreadCrumbJsonLd`, `OrganizationJsonLd`, `FAQJsonLd`, `CourseJsonLd`, `UniversityJsonLd` metadata
 - Increased visibility for AI search queries via standard rich snippet schemas.
+
+### CSCA Exam Requirement
+
+The `csca_exam_require` property (boolean) exists in `university_programs` denoting whether Chinese universities require the applicant to clear the CSCA Exam for the stated program. Filtered via client-side params.

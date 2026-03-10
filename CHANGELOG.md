@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-03-10] - CSCA Exam Requirement Toggle
+
+- **Database**: Added `csca_exam_require` boolean column to `university_programs` table with default `false`.
+- **Admin UI**: Added a "Bulk Edit CSCA" action inside university configurations to systematically mark multiple programs as requiring CSCA. Also added a direct toggle flag inside the program properties dialog popup.
+- **Public UI**: The CSCA Exam filters are integrated into the main "Programs" directory listing and the specific "Scholarships" directory with active sidebars parsing the state from URLs. Rendered a "📝 Requires CSCA" badge conditionally across all programmatic program cards on the application (university, lists, sub-pages).
+
+
 ## [2026-02-26] - Smart Search Ranking Fix
 
 - **Search Ranking**: Fixed smart search result ordering so exact program matches appear first, followed by related programs. Searching "biomedical engineering" now shows Biomedical Engineering programs at the top, with MBBS/Nursing/etc. below.

@@ -1,132 +1,157 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Award, CheckCircle2, DollarSign, Sparkles, Check, Info, FileText, HelpCircle } from "lucide-react";
-import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
+import { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { Badge } from "@/components/ui/badge";
+import { getTranslations } from "next-intl/server";
+import { ScholarshipPageContent } from "@/components/scholarships/ScholarshipPageContent";
+import { Award, GraduationCap, MapPin, Building2, BookOpen, Clock, ArrowRight, Languages } from "lucide-react";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+const PORTAL_KEY = process.env.NEXT_PUBLIC_PORTAL_KEY || 'studyatchina';
 
-import { getScholarshipStats } from "@/lib/scholarship-stats";
+// Force dynamic rendering to ensure fresh data from DB views (especially for new columns like is_popular)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
-const baseScholarshipTypes = [
-    {
-        name: "Type A",
-        displayName: "Full Scholarship",
-        coverage: 100,
-        description: "Best option for students seeking complete tuition coverage",
-        benefits: [
-            "100% tuition fee coverage",
-            "Application support & guidance",
-            "Visa assistance",
-            "Pre-departure orientation",
-            "Accommodation arrangement support"
-        ],
-        color: "from-emerald-500/10 to-emerald-500/5",
-        borderColor: "border-emerald-500/20",
-        badgeColor: "bg-emerald-500/10 text-emerald-700",
-        popular: true
-    },
-    {
-        name: "Type B",
-        displayName: "Partial Scholarship (75%)",
-        coverage: 75,
-        description: "Great balance between scholarship coverage and service fees",
-        benefits: [
-            "75% tuition fee coverage",
-            "Application support & guidance",
-            "Visa assistance",
-            "Pre-departure orientation",
-            "Accommodation arrangement support"
-        ],
-        color: "from-blue-500/10 to-blue-500/5",
-        borderColor: "border-blue-500/20",
-        badgeColor: "bg-blue-500/10 text-blue-700"
-    },
-    {
-        name: "Type C",
-        displayName: "Half Scholarship (50%)",
-        coverage: 50,
-        description: "Affordable option with significant tuition reduction",
-        benefits: [
-            "50% tuition fee coverage",
-            "Application support & guidance",
-            "Visa assistance",
-            "Pre-departure orientation",
-            "Accommodation arrangement support"
-        ],
-        color: "from-purple-500/10 to-purple-500/5",
-        borderColor: "border-purple-500/20",
-        badgeColor: "bg-purple-500/10 text-purple-700"
-    },
-    {
-        name: "Self-Funded",
-        displayName: "Self-Funded (No Scholarship)",
-        coverage: 0,
-        description: "Pay full tuition with minimal service fees",
-        benefits: [
-            "No scholarship (0% coverage)",
-            "Application support & guidance",
-            "Visa assistance",
-            "Pre-departure orientation",
-            "Accommodation arrangement"
-        ],
-        color: "from-slate-500/10 to-slate-500/5",
-        borderColor: "border-slate-500/20",
-        badgeColor: "bg-slate-500/10 text-slate-700"
-    }
-];
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+    const { locale } = await params;
 
-const requiredDocuments = [
-    "Valid passport",
-    "High school certificate (translated version)",
-    "Transcript (translated version)",
-    "English proficiency certificate",
-    "Personal statement",
-    "Passport-size photo",
-    "Portfolio (for Art/Design programs)"
-];
+    const title = 'China Scholarships | Search Scholarship Programs Online';
+    const description = 'Browse scholarship programs at top Chinese universities. Filter by coverage, city, degree, and benefits. Find full and partial scholarships with accommodation and stipend.';
 
-function formatPrice(min: number, max: number) {
-    if (!min && !max) return "Contact";
-    if (min === max) return min.toLocaleString();
-    return `${min.toLocaleString()} - ${max.toLocaleString()}`;
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/scholarships`,
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+        },
+        alternates: {
+            canonical: `${baseUrl}/${locale}/scholarships`,
+            languages: {
+                'en': `${baseUrl}/en/scholarships`,
+                'ar': `${baseUrl}/ar/scholarships`,
+                'fa': `${baseUrl}/fa/scholarships`,
+                'tr': `${baseUrl}/tr/scholarships`,
+            },
+        },
+    };
 }
 
 export default async function ScholarshipsPage() {
-    const stats = await getScholarshipStats();
+    const supabase = await createClient();
+    const t = await getTranslations('Scholarships');
 
-    // Map base types to dynamic data, with fallbacks
-    const scholarshipTypes = baseScholarshipTypes.map(type => {
-        // Special mapping or key matching
-        // The stats keys are "Type A", "Type B", "Type C". 
-        // "Self-Funded" might not be in DB or might be distinct.
+    // Fetch ALL scholarship programs from the new view bypassing the 1000 PostgREST limit
+    let allPrograms: Record<string, unknown>[] = [];
+    let pageOffset = 0;
+    const pageSize = 1000;
+    let hasMore = true;
 
-        // For Self-Funded, we use manual fallback or check if DB has it.
-        // Assuming Self-Funded is static for now as per previous code ($1500), 
-        // OR we can look for it if it exists. 
-        // Previous static value: 1500 USD.
+    while (hasMore) {
+        const { data: chunk, error } = await supabase
+            .from("v_scholarship_programs")
+            .select("*, is_popular, csca_exam_require")
+            .eq("portal_key", PORTAL_KEY)
+            .eq("is_active", true)
+            .range(pageOffset, pageOffset + pageSize - 1);
 
-        const typeStats = stats[type.name];
-
-        let serviceFeeUSD = "1,500"; // Fallback for Self-Funded
-        let serviceFeeCNY = "11,000";
-
-        if (typeStats) {
-            serviceFeeUSD = formatPrice(typeStats.minUSD, typeStats.maxUSD);
-            serviceFeeCNY = formatPrice(typeStats.minCNY, typeStats.maxCNY);
-        } else if (type.name === "Self-Funded") {
-            // Keep static if not found
-            serviceFeeUSD = "1,500";
-            serviceFeeCNY = "11,000";
+        if (error) {
+            console.error("Error fetching scholarship programs:", error);
+            break;
         }
 
-        return {
-            ...type,
-            serviceFeeUSD,
-            serviceFeeCNY
-        };
+        if (chunk && chunk.length > 0) {
+            allPrograms = [...allPrograms, ...chunk];
+            pageOffset += pageSize;
+        } else {
+            hasMore = false;
+        }
+        
+        // Stop if we got less than requested, meaning we reached the end
+        if (chunk && chunk.length < pageSize) {
+            hasMore = false;
+        }
+    }
+    
+    const scholarshipPrograms = allPrograms;
+
+    // Fetch university logos separately (view may not include them)
+    const universityIds = [...new Set((scholarshipPrograms || []).map((p) => p.university_id as string))];
+
+    const { data: universities } = universityIds.length > 0
+        ? await supabase
+            .from("universities")
+            .select("id, logo_url")
+            .in("id", universityIds)
+        : { data: [] };
+
+    const logoMapObj: Record<string, string | null> = {};
+    (universities || []).forEach((u: { id: string; logo_url: string | null }) => {
+        logoMapObj[u.id] = u.logo_url;
     });
+
+    // Transform data
+    const formattedPrograms = (scholarshipPrograms || []).map((p: Record<string, unknown>) => ({
+        program_id: p.program_id as string,
+        program_slug: p.program_slug as string,
+        display_title: p.display_title as string,
+        program_title: p.program_title as string,
+        level: p.level as string,
+        duration: p.duration as string,
+        tuition_fee: p.tuition_fee as number,
+        currency: p.currency as string,
+        language_name: p.language_name as string,
+        intake: p.intake as string,
+        category: p.category as string,
+        field: p.field as string,
+        university_id: p.university_id as string,
+        university_name: p.university_name as string,
+        university_slug: p.university_slug as string,
+        city: p.city as string,
+        province: p.province as string,
+        scholarship_id: p.scholarship_id as string,
+        scholarship_type: p.scholarship_type as string,
+        scholarship_display_name: p.scholarship_display_name as string,
+        tuition_coverage_percentage: p.tuition_coverage_percentage as number,
+        includes_accommodation: p.includes_accommodation as boolean,
+        accommodation_type: p.accommodation_type as string | null,
+        includes_stipend: p.includes_stipend as boolean,
+        stipend_amount_monthly: p.stipend_amount_monthly as number | null,
+        includes_medical_insurance: p.includes_medical_insurance as boolean,
+        service_fee_usd: p.service_fee_usd as number,
+        service_fee_cny: p.service_fee_cny as number,
+        student_pays_tuition: p.student_pays_tuition as number,
+        is_popular: p.is_popular as boolean || false,
+        csca_exam_require: p.csca_exam_require as boolean || false,
+    }));
+
+    // Stats for hero
+    const uniqueUniversities = new Set(formattedPrograms.map(p => p.university_id)).size;
+    const uniquePrograms = new Set(formattedPrograms.map(p => p.program_id)).size;
+    
+    // Get Popular Scholarships (one per university to avoid spamming the same programs)
+    const popularScholarshipsRaw = formattedPrograms.filter(p => p.is_popular === true);
+    const popularScholarshipsMAP = new Map();
+    for (const p of popularScholarshipsRaw) {
+        if (!popularScholarshipsMAP.has(p.university_id) || p.tuition_coverage_percentage > popularScholarshipsMAP.get(p.university_id).tuition_coverage_percentage) {
+            popularScholarshipsMAP.set(p.university_id, p);
+        }
+    }
+    const popularScholarships = Array.from(popularScholarshipsMAP.values()).slice(0, 4);
+
+    console.log("TOTAL RAW:", formattedPrograms.length, "POPULAR RAW:", popularScholarshipsRaw.length, "POPULAR FINAL:", popularScholarships.length);
 
 
     return (
@@ -137,251 +162,88 @@ export default async function ScholarshipsPage() {
                     { name: 'Scholarships', url: `${baseUrl}/scholarships` }
                 ]}
             />
-            {/* Hero */}
-            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
-                <div className="container mx-auto px-4 md:px-6 py-20">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                            <Sparkles className="h-4 w-4" />
-                            Financial Support Available
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                            Scholarship Types & Service Fees
+
+            {/* Hero Section */}
+            <div className="bg-linear-to-r from-primary/10 via-primary/5 to-background border-b">
+                <div className="container mx-auto px-4 md:px-6 py-16">
+                    <div className="max-w-3xl">
+                        <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/20 font-medium px-4 py-1.5 border-primary/20">
+                            {t('badge')}
+                        </Badge>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight">
+                            {t('title')}
                         </h1>
-                        <p className="text-xl text-muted-foreground">
-                            Understand how the Chinese scholarship system works. Choose the scholarship type that fits your budget and get comprehensive support throughout your application journey.
+                        <p className="text-xl text-muted-foreground mb-10 max-w-2xl">
+                            {t('subtitle')}
                         </p>
+
+                        {/* Quick Stats Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 transition-all hover:shadow-md">
+                                <div className="text-3xl font-bold text-primary mb-1">{formattedPrograms.length}</div>
+                                <div className="text-sm font-medium text-muted-foreground">{t('stats.scholarshipOptions')}</div>
+                            </div>
+                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 transition-all hover:shadow-md">
+                                <div className="text-3xl font-bold text-primary mb-1">{uniqueUniversities}</div>
+                                <div className="text-sm font-medium text-muted-foreground">{t('stats.universities')}</div>
+                            </div>
+                            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 transition-all hover:shadow-md">
+                                <div className="text-3xl font-bold text-primary mb-1">{uniquePrograms}</div>
+                                <div className="text-sm font-medium text-muted-foreground">{t('stats.programs')}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 md:px-6 py-16">
-                {/* How It Works Section */}
-                <Card className="border-none shadow-xl mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                                <Info className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <CardTitle className="text-2xl">How the Scholarship System Works</CardTitle>
-                        </div>
-                        <CardDescription className="text-base">
-                            Chinese universities offer different scholarship types with varying tuition coverage. Each type has an associated service fee that covers application support, visa assistance, and other essential services.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="bg-white dark:bg-slate-900 rounded-lg p-6">
-                                <h4 className="font-semibold mb-3 flex items-center gap-2">
-                                    <Award className="h-5 w-5 text-primary" />
-                                    Scholarship Coverage
-                                </h4>
-                                <p className="text-sm text-muted-foreground">
-                                    Scholarships cover a percentage of your tuition fees (50%, 75%, or 100%). The remaining tuition is paid directly to the university. This is separate from the service fee.
-                                </p>
-                            </div>
-                            <div className="bg-white dark:bg-slate-900 rounded-lg p-6">
-                                <h4 className="font-semibold mb-3 flex items-center gap-2">
-                                    <DollarSign className="h-5 w-5 text-primary" />
-                                    Service Fees
-                                </h4>
-                                <p className="text-sm text-muted-foreground">
-                                    Service fees are one-time payments that cover comprehensive application support, document preparation, visa assistance, and pre-departure guidance. Higher scholarship types have higher service fees.
-                                </p>
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* Scholarship Types Grid */}
-                <div className="mb-16">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="h-10 w-1 bg-primary rounded-full" />
-                        <h2 className="text-3xl font-bold font-heading">Scholarship Types</h2>
-                    </div>
-
-                    {/* Scholarship Disclaimer */}
-                    <div className="bg-muted/50 border border-muted-foreground/20 rounded-lg p-4 text-sm text-muted-foreground flex items-start gap-3 mb-8">
-                        <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
-                        <p>
-                            <strong>Note:</strong> While a scholarship may cover the full duration of the program, its continuation depends on the student&apos;s academic performance.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {scholarshipTypes.map((type, index) => (
-                            <Card key={index} className={`border-2 ${type.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${type.color} relative overflow-hidden`}>
-                                {type.popular && (
-                                    <div className="absolute top-4 right-4">
-                                        <Badge className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
-                                            Most Popular
-                                        </Badge>
+            {/* Popular Scholarships Feature */}
+            {popularScholarships.length > 0 && (
+                <div className="container mx-auto px-4 md:px-6 py-12">
+                    <h2 className="text-2xl font-bold font-heading mb-6 flex items-center gap-2">
+                        <span className="bg-amber-100 text-amber-600 p-1.5 rounded-md">🔥</span> 
+                        {t('popular.title', { fallback: 'Featured & Popular Scholarships' })}
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {popularScholarships.map(p => (
+                            <a key={`${p.program_id}-${p.scholarship_id}`} href={`/scholarships/${p.program_slug}`} className="block group">
+                                <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all relative overflow-hidden h-full flex flex-col">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+                                        <Award className="w-16 h-16" />
                                     </div>
-                                )}
-                                <CardHeader>
-                                    <div className="mb-4">
-                                        <Badge className={type.badgeColor}>
-                                            {type.name}
-                                        </Badge>
-                                    </div>
-                                    <CardTitle className="text-xl mb-2">{type.displayName}</CardTitle>
-                                    <CardDescription className="text-sm">
-                                        {type.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent className="space-y-6">
-                                    {/* Coverage Badge */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4 text-center">
-                                        <div className="text-4xl font-bold text-primary mb-1">
-                                            {type.coverage}%
+                                    <div className="flex items-start gap-4 mb-4">
+                                        <div className="w-12 h-12 bg-white rounded-lg shadow-sm border p-1 shrink-0 flex items-center justify-center overflow-hidden">
+                                           {logoMapObj[p.university_id] ? (
+                                                <img src={logoMapObj[p.university_id] as string} alt={p.university_name as string} className="w-full h-full object-contain" />
+                                           ) : (
+                                                <Award className="w-6 h-6 text-primary/40" />
+                                           )}
                                         </div>
-                                        <p className="text-xs text-muted-foreground">Tuition Coverage</p>
-                                    </div>
-
-                                    {/* Service Fee */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
-                                        <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
-                                            <DollarSign className="h-4 w-4 text-primary" />
-                                            Service Fee
-                                        </h4>
-                                        <div className="space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm text-muted-foreground">USD:</span>
-                                                <span className="font-bold text-lg">${type.serviceFeeUSD}</span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm text-muted-foreground">CNY:</span>
-                                                <span className="font-semibold">¥{type.serviceFeeCNY}</span>
-                                            </div>
+                                        <div>
+                                            <h3 className="font-bold line-clamp-2 text-sm leading-snug group-hover:text-primary transition-colors">{p.program_title}</h3>
+                                            <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{p.university_name}</p>
                                         </div>
                                     </div>
-
-                                    {/* Benefits */}
-                                    <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
-                                        <h4 className="font-semibold mb-3 text-sm flex items-center gap-2">
-                                            <CheckCircle2 className="h-4 w-4 text-primary" />
-                                            What&apos;s Included
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {type.benefits.map((benefit, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
-                                                    <Check className="h-3 w-3 text-primary mt-0.5 shrink-0" />
-                                                    <span>{benefit}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                                        <div className="flex flex-wrap gap-2">
+                                            <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 font-medium">
+                                                {p.tuition_coverage_percentage}% {t('search.coverage', { fallback: 'Tuition' })}
+                                            </Badge>
+                                            {p.includes_stipend && (
+                                                <Badge variant="secondary" className="bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 font-medium">
+                                                    + {t('search.stipend', { fallback: 'Stipend' })}
+                                                </Badge>
+                                            )}
+                                        </div>
                                     </div>
-
-                                    <Link href="/programs">
-                                        <Button className="w-full" variant={type.popular ? "default" : "outline"}>
-                                            Apply Now
-                                        </Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
+                                </div>
+                            </a>
                         ))}
                     </div>
                 </div>
+            )}
 
-                {/* Required Documents */}
-                <Card className="border-none shadow-xl mb-16">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <FileText className="h-5 w-5 text-primary" />
-                            </div>
-                            <CardTitle className="text-2xl">Required Documents</CardTitle>
-                        </div>
-                        <CardDescription>
-                            Prepare these documents for your scholarship application
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {requiredDocuments.map((doc, index) => (
-                                <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-muted/50">
-                                    <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                                        <Check className="h-4 w-4 text-primary" />
-                                    </div>
-                                    <span className="text-sm font-medium">{doc}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* FAQ Section */}
-                <Card className="border-none shadow-xl mb-16">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                                <HelpCircle className="h-5 w-5 text-primary" />
-                            </div>
-                            <CardTitle className="text-2xl">Frequently Asked Questions</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="p-4 rounded-lg bg-muted/50">
-                            <h4 className="font-semibold mb-2">What does the service fee cover?</h4>
-                            <p className="text-sm text-muted-foreground">
-                                The service fee is a one-time payment that covers comprehensive application support, document preparation and translation assistance, visa application guidance, university communication, admission processing, and pre-departure orientation.
-                            </p>
-                        </div>
-                        <div className="p-4 rounded-lg bg-muted/50">
-                            <h4 className="font-semibold mb-2">Is the service fee refundable?</h4>
-                            <p className="text-sm text-muted-foreground">
-                                Service fees are generally non-refundable once the application process begins, as they cover the work and resources invested in your application. However, specific refund policies may vary.
-                            </p>
-                        </div>
-                        <div className="p-4 rounded-lg bg-muted/50">
-                            <h4 className="font-semibold mb-2">How do I pay the remaining tuition after scholarship?</h4>
-                            <p className="text-sm text-muted-foreground">
-                                After receiving your scholarship (e.g., 50% coverage), you pay the remaining tuition directly to the university. For example, if tuition is ¥93,000 and you have a 50% scholarship, you pay ¥46,500 to the university.
-                            </p>
-                        </div>
-                        <div className="p-4 rounded-lg bg-muted/50">
-                            <h4 className="font-semibold mb-2">Can I apply for multiple scholarship types?</h4>
-                            <p className="text-sm text-muted-foreground">
-                                You can only receive one scholarship type per program. We recommend choosing the type that best fits your budget and needs. Our team can help you decide which option is best for you.
-                            </p>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* CTA Section */}
-                <Card className="border-none shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background">
-                    <CardContent className="p-12 text-center">
-                        <div className="max-w-2xl mx-auto">
-                            <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
-                                <Award className="h-8 w-8 text-primary" />
-                            </div>
-                            <h2 className="text-3xl font-bold mb-4">Ready to Start Your Application?</h2>
-                            <p className="text-muted-foreground mb-8 text-lg">
-                                Choose your scholarship type and let our team guide you through every step of the application process. We&apos;re here to make studying in China accessible and affordable.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/programs">
-                                    <Button size="lg" className="min-w-[200px]">
-                                        Browse Programs
-                                    </Button>
-                                </Link>
-                                <Link href="/contact">
-                                    <Button size="lg" variant="outline" className="min-w-[200px]">
-                                        Contact Us
-                                    </Button>
-                                </Link>
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+            {/* Tabbed Content */}
+            <ScholarshipPageContent programs={formattedPrograms} logoMap={logoMapObj} />
         </div>
     );
 }
-
-
-/* GEO Fundamentals auto-patch:
-// application/ld+json
-// author: Studyatchina
-// datePublished: 2026-02-26
-*/

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 interface Program {
@@ -37,6 +38,7 @@ interface Program {
     min_age?: number;
     max_age?: number;
     gpa_requirement?: number;
+    csca_exam_require?: boolean;
 }
 
 interface ProgramsClientProps {
@@ -90,6 +92,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         const scholarship = searchParams.get('scholarship');
         const duration = searchParams.get('duration');
         const search = searchParams.get('search');
+        const cscaExam = searchParams.get('cscaExam');
 
         const newFilters: Partial<FilterState> = {};
 
@@ -136,6 +139,10 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
 
         if (scholarship && scholarship !== 'all') {
             newFilters.scholarship = scholarship === 'available' || scholarship === 'full' || scholarship === 'partial';
+        }
+
+        if (cscaExam === 'true') {
+            newFilters.cscaExam = true;
         }
 
         if (duration && duration !== 'any') {
@@ -313,6 +320,11 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                 return false;
             }
 
+            // CSCA Exam filter
+            if (filters.cscaExam && !program.csca_exam_require) {
+                return false;
+            }
+
             // Age filter
             if (filters.age !== undefined && filters.age !== null) {
                 if (program.min_age !== null && program.min_age !== undefined && filters.age < program.min_age) {
@@ -404,6 +416,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         if (filters.languages.length > 0) count += filters.languages.length;
         if (filters.field !== 'all') count++;
         if (filters.scholarship) count++;
+        if (filters.cscaExam) count++;
         if (filters.university !== 'all') count++;
         return count;
     }, [filters]);
@@ -465,6 +478,32 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     availableUniversities={availableUniversities}
                                     currentFilters={filters}
                                 />
+                                
+                                <div className="mt-6 pt-6 border-t flex flex-col gap-3">
+                                    <Label className="text-sm font-medium">{t('filters.quickAccess') || 'Quick Toggles'}</Label>
+                                    <button
+                                        onClick={() => setFilters(prev => ({ ...prev, scholarship: !prev.scholarship }))}
+                                        className={`
+                                            flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-semibold transition-colors border
+                                            ${filters.scholarship 
+                                                ? 'bg-primary text-primary-foreground border-primary shadow-sm hover:bg-primary/90' 
+                                                : 'bg-background text-muted-foreground border-border hover:bg-muted/50'}
+                                        `}
+                                    >
+                                        🎓 Scholarship Available
+                                    </button>
+                                    <button
+                                        onClick={() => setFilters(prev => ({ ...prev, cscaExam: !prev.cscaExam }))}
+                                        className={`
+                                            flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-semibold transition-colors border
+                                            ${filters.cscaExam 
+                                                ? 'bg-amber-500 text-white border-amber-500 shadow-sm hover:bg-amber-600' 
+                                                : 'bg-background text-muted-foreground border-border hover:bg-muted/50'}
+                                        `}
+                                    >
+                                        📝 Requires CSCA Exam
+                                    </button>
+                                </div>
                             </div>
                         </SheetContent>
                     </Sheet>
@@ -520,6 +559,32 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 </button>
                             ))}
                         </div>
+
+                        {/* Secondary Toggles Row */}
+                        <div className="flex flex-wrap gap-3 pt-2">
+                            <button
+                                onClick={() => setFilters(prev => ({ ...prev, scholarship: !prev.scholarship }))}
+                                className={`
+                                    flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border
+                                    ${filters.scholarship 
+                                        ? 'bg-primary text-primary-foreground border-primary shadow-sm hover:bg-primary/90' 
+                                        : 'bg-background text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground'}
+                                `}
+                            >
+                                🎓 Scholarship Available
+                            </button>
+                            <button
+                                onClick={() => setFilters(prev => ({ ...prev, cscaExam: !prev.cscaExam }))}
+                                className={`
+                                    flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border
+                                    ${filters.cscaExam 
+                                        ? 'bg-amber-500 text-white border-amber-500 shadow-sm hover:bg-amber-600' 
+                                        : 'bg-background text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground'}
+                                `}
+                            >
+                                📝 Requires CSCA Exam
+                            </button>
+                        </div>
                     </div>
 
                     {/* AI Search Status */}
@@ -539,7 +604,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                         </div>
                     )}
                     {/* Active Filters Display */}
-                    {(filters.levels.length > 0 || filters.cities.length > 0 || filters.languages.length > 0 || filters.field !== 'all' || filters.scholarship) && (
+                    {(filters.levels.length > 0 || filters.cities.length > 0 || filters.languages.length > 0 || filters.field !== 'all' || filters.scholarship || filters.cscaExam) && (
                         <div className="bg-card rounded-xl border shadow-sm p-4">
                             <div className="flex items-center justify-between flex-wrap gap-3">
                                 <div className="flex items-center gap-2 flex-wrap">
@@ -631,6 +696,21 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                             </div>
                                         </Badge>
                                     )}
+                                    {filters.cscaExam && (
+                                        <Badge variant="secondary" className="gap-1 pr-1">
+                                            📝 Requires CSCA
+                                            <div
+                                                role="button"
+                                                className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFilters(prev => ({ ...prev, cscaExam: false }));
+                                                }}
+                                            >
+                                                <X className="h-3 w-3 hover:text-destructive" />
+                                            </div>
+                                        </Badge>
+                                    )}
                                 </div>
                                 <Button
                                     variant="ghost"
@@ -644,6 +724,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                         cities: [],
                                         duration: 'all',
                                         scholarship: false,
+                                        cscaExam: false,
                                         university: 'all',
                                     })}
                                 >
