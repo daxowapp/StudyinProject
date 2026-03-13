@@ -69,7 +69,9 @@
             "articles": "Información y Recursos",
             "contact": "Contáctanos",
             "scholarshipFilter": "Filtro de Becas",
-            "scholarshipFilterDesc": "Filtra universidades por beneficios de becas"
+            "scholarshipFilterDesc": "Filtra universidades por beneficios de becas",
+            "qsRankings": "QS Rankings 2026",
+            "qsRankingsDesc": "Chinese universities in QS World Rankings"
         },
         "user": {
             "myApplications": "Mis Solicitudes",
@@ -78,6 +80,42 @@
             "getStarted": "Comenzar",
             "myAccount": "Mi Cuenta",
             "account": "Cuenta"
+        },
+        "destinations": {
+            "title": "Destinos",
+            "viewAll": "Ver Todos los Destinos",
+            "beijing": {
+                "title": "Pekín",
+                "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
+            },
+            "shanghai": {
+                "title": "Shanghái",
+                "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
+            },
+            "guangzhou": {
+                "title": "Cantón",
+                "description": "Southern metropolis with leading medical and engineering schools."
+            },
+            "wuhan": {
+                "title": "Wuhan",
+                "description": "Historic education center with Wuhan University and HUST."
+            },
+            "hangzhou": {
+                "title": "Hangzhou",
+                "description": "Tech hub and scenic city home to Zhejiang University."
+            },
+            "nanjing": {
+                "title": "Nanjing",
+                "description": "Ancient capital with Nanjing University and Southeast University."
+            },
+            "chengdu": {
+                "title": "Chengdú",
+                "description": "Western China gateway with Sichuan University and affordable living."
+            },
+            "xian": {
+                "title": "Xi'an",
+                "description": "Historic Silk Road city with Xi'an Jiaotong University."
+            }
         }
     },
     "Common": {
@@ -170,6 +208,33 @@
         "options": {
             "any": "Cualquiera",
             "all": "Todos"
+        },
+        "budget": {
+            "under3k": "Menos de $3,000",
+            "3kTo5k": "$3,000 - $5,000",
+            "5kTo8k": "$5,000 - $8,000",
+            "above8k": "Más de $8,000"
+        },
+        "scholarship": {
+            "allPrograms": "Todos los Programas",
+            "available": "Beca Disponible",
+            "full": "Beca Completa",
+            "partial": "Beca Parcial"
+        },
+        "duration": {
+            "1year": "1 Año",
+            "2years": "2 Años",
+            "3years": "3 Años",
+            "4years": "4 Años",
+            "5plus": "5+ Años"
+        },
+        "categories": {
+            "mba": "MBA",
+            "engineering": "Ingeniería",
+            "medicine": "Medicina",
+            "cs": "Ciencias de la Computación",
+            "fullScholarship": "Beca Completa",
+            "englishTaught": "Enseñanza en Inglés"
         }
     },
     "WhyStudy": {
@@ -597,11 +662,36 @@
             "label": "Ordenar por",
             "name": "Nombre: A-Z",
             "programs": "Más Programas",
-            "city": "Ciudad"
+            "city": "Ciudad",
+            "tuitionLow": "Tuition: Low to High",
+            "tuitionHigh": "Tuition: High to Low",
+            "ranking": "Best Ranking"
         },
         "noResults": {
             "title": "No se encontraron universidades",
             "description": "Intenta ajustar tus filtros o criterios de búsqueda"
+        },
+        "results": {
+            "universities": "universities",
+            "showMore": "Show {count} more",
+            "showingOf": "Showing {visible} of {total}"
+        },
+        "compare": {
+            "title": "Compare Universities",
+            "criteria": "Criteria",
+            "location": "Location",
+            "ranking": "Ranking",
+            "programs": "Programs",
+            "tuition": "Tuition",
+            "levels": "Study Levels",
+            "languages": "Languages",
+            "scholarship": "Scholarship",
+            "fastTrack": "Fast Track",
+            "cscaExam": "CSCA Exam",
+            "badges": "Accreditations",
+            "clearAll": "Clear All",
+            "selected": "{count} selected",
+            "compareNow": "Compare Now"
         }
     },
     "Programs": {
@@ -631,7 +721,8 @@
                 "master": "Maestría",
                 "phd": "Doctorado",
                 "diploma": "Diploma",
-                "language": "Curso de Idiomas"
+                "language": "Curso de Idiomas",
+                "nonDegree": "Non-Degree"
             },
             "fields": {
                 "business": "Negocios y Gestión",
@@ -655,7 +746,16 @@
                 "6years": "6 Años"
             },
             "matchingPrograms": "programas coinciden",
-            "applyFilters": "Aplicar Filtros"
+            "applyFilters": "Aplicar Filtros",
+            "scholarshipDesc": "Mostrar programas con financiación",
+            "cscaLabel": "Sin Examen CSCA",
+            "cscaDesc": "Mostrar programas sin examen CSCA",
+            "cscaBadge": "Sin CSCA",
+            "academicRequirements": "Academic Requirements",
+            "myAge": "My Age",
+            "agePlaceholder": "e.g. 21",
+            "minGpa": "Min GPA",
+            "gpaPlaceholder": "e.g. 3.0"
         },
         "stats": {
             "total": "Total de Programas",
@@ -723,6 +823,26 @@
             "minutesAgo": "hace {count}m",
             "hoursAgo": "hace {count}h",
             "daysAgo": "hace {count}d"
+        },
+        "quickAccess": "Acceso Rápido",
+        "quickChips": {
+            "cs": "Ciencias de la Computación",
+            "business": "Negocios",
+            "engineering": "Ingeniería",
+            "medicine": "Medicina",
+            "arts": "Artes",
+            "economics": "Economía"
+        },
+        "aiSearch": {
+            "thinking": "AI is thinking... finding related fields for \"{query}\"",
+            "active": "Smart Search Active",
+            "found": "Found programs related to: {terms}",
+            "working": "AI is working on it...",
+            "looking": "Looking for programs related to \"{query}\""
+        },
+        "view": {
+            "grid": "Cuadrícula",
+            "map": "Mapa"
         }
     },
     "Login": {
@@ -764,7 +884,37 @@
         "settings": "Configuración",
         "recentActivity": "Actividad Reciente",
         "notifications": "Notificaciones",
-        "profile": "Perfil"
+        "profile": "Perfil",
+        "sidebar": {
+            "myApplications": "My Applications",
+            "profile": "Profile",
+            "messages": "Messages",
+            "payments": "Payments",
+            "documents": "Documents",
+            "settings": "Settings",
+            "logout": "Log out"
+        },
+        "title": "Dashboard",
+        "subtitle": "Welcome back! Here's your application overview.",
+        "newApplication": "New Application",
+        "stats": {
+            "totalApplications": "Total Applications",
+            "submitted": "{count} submitted",
+            "pendingActions": "Pending Actions",
+            "requiresAttention": "Requires your attention",
+            "offersReceived": "Offers Received",
+            "congratulations": "Congratulations!",
+            "successRate": "Success Rate",
+            "acceptanceRate": "Acceptance rate"
+        },
+        "recentApplications": "My Applications",
+        "appliedOn": "Applied on {date}",
+        "viewDetails": "View Details",
+        "noApplications": {
+            "title": "No Applications Yet",
+            "description": "Start your journey by browsing programs and submitting your first application."
+        },
+        "browsePrograms": "Browse Programs"
     },
     "Application": {
         "status": {
@@ -786,7 +936,14 @@
         "programs": "Programas",
         "tuitionFrom": "Matrícula desde",
         "viewUniversity": "Ver Universidad",
-        "viewPrograms": "Ver Programas"
+        "viewPrograms": "Ver Programas",
+        "tuition": "Tuition",
+        "fastTrack": "Fast Track",
+        "scholarship": "Scholarship",
+        "contactForPricing": "Contact for pricing",
+        "cscaExam": "CSCA Exam",
+        "addToCompare": "Add to compare",
+        "removeFromCompare": "Remove from compare"
     },
     "DestinationsSection": {
         "badge": "Destinos Populares",
@@ -847,13 +1004,73 @@
             "duration": "Duración",
             "language": "Idioma",
             "level": "Nivel de Grado",
-            "gpaRequirement": "GPA Mínimo"
+            "gpaRequirement": "GPA Mínimo",
+            "languageRequirements": "Language Score"
         },
         "deadline": {
             "daysRemaining": "Quedan {days} días",
             "endingToday": "¡La solicitud termina hoy!",
             "closed": "Solicitud Cerrada",
             "deadline": "Fecha Límite"
+        },
+        "breadcrumb": {
+            "home": "Home",
+            "programs": "Programs"
+        },
+        "badges": {
+            "intake": "Intake: {intake}",
+            "contactUniversity": "Contact University",
+            "fastTrack": "Fast Track Acceptance",
+            "specialRequirements": "Special Requirements"
+        },
+        "buttons": {
+            "apply": "Apply Now",
+            "downloadBrochure": "Download Brochure",
+            "viewUniversity": "View University",
+            "startApplication": "Start Application",
+            "contactAdvisor": "Contact Advisor"
+        },
+        "overview": {
+            "title": "Program Overview",
+            "noDescription": "No description available for this program.",
+            "curriculum": "Core Curriculum",
+            "curriculumPlaceholder": "Core courses information will be updated soon"
+        },
+        "requirements": {
+            "title": "Admission Requirements"
+        },
+        "scholarships": {
+            "title": "Scholarship Options for This Program",
+            "description": "Choose the scholarship type that best fits your budget"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "deadline": "The application deadline is {deadline}.",
+            "accommodationQ": "Is accommodation provided?",
+            "accommodationA": "Yes, on-campus accommodation is available for international students.",
+            "workQ": "Can I work part-time?",
+            "workA": "Yes, international students can apply for work-study programs or internships with proper permits.",
+            "deadlineQ": "What is the application deadline?"
+        },
+        "sidebar": {
+            "ready": "Ready to Apply?",
+            "free": "Free Application",
+            "fast": "Fast Processing",
+            "expert": "Expert Support",
+            "cost": "Cost Breakdown",
+            "applicationFee": "Application Fee",
+            "serviceFee": "Service Fee",
+            "disclaimer": "* Additional costs may include accommodation, visa, and living expenses",
+            "why": "Why Choose This Program?",
+            "reasons": {
+                "degree": "Internationally recognized degree",
+                "faculty": "Experienced faculty members",
+                "facilities": "Modern facilities & resources",
+                "career": "Career development support"
+            }
+        },
+        "accommodation": {
+            "title": "Accommodation Options"
         }
     },
     "CSCAGuide": {
@@ -1053,5 +1270,632 @@
         },
         "action": "Action",
         "scholarshipType": "Scholarship Type"
+    },
+    "GuidedTour": {
+        "skip": "Omitir",
+        "next": "Siguiente",
+        "finish": "¡Entendido!",
+        "programs": {
+            "search": {
+                "title": "Find Your Program",
+                "content": "Use the search bar to find programs by name, field of study, or keywords."
+            },
+            "filters": {
+                "title": "Refine Your Search",
+                "content": "Use filters to narrow down by degree level, location, language, and budget."
+            },
+            "card": {
+                "title": "Program Details",
+                "content": "Click on any program card to see full details, requirements, and how to apply."
+            },
+            "compare": {
+                "title": "Compare Programs",
+                "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
+            }
+        }
+    },
+    "UniversityDetail": {
+        "quickLinks": {
+            "exploreCourses": "Explore Courses",
+            "getFunded": "Get Funded",
+            "findHousing": "Find Housing",
+            "findLocation": "Location"
+        },
+        "location": {
+            "title": "Campus Location",
+            "viewOnMap": "View on Google Maps"
+        },
+        "about": "About",
+        "whyChooseUs": "Why Choose Us",
+        "programs": {
+            "title": "Programs",
+            "allPrograms": "All Programs",
+            "noPrograms": "No programs found for this level.",
+            "viewProgram": "View Program",
+            "tuitionFee": "Tuition Fee",
+            "perYear": "per year",
+            "allLanguages": "All Languages",
+            "filterByLanguage": "Language",
+            "showing": "Showing {start}-{end} of {total} programs",
+            "previousPage": "Previous",
+            "nextPage": "Next",
+            "pageOf": "Page {current} of {total}"
+        },
+        "scholarships": {
+            "title": "Available Scholarship Options",
+            "description": "Choose the scholarship type that best fits your budget for programs at this university"
+        },
+        "campus": {
+            "tour": "Campus Tour",
+            "gallery": "Campus Gallery",
+            "viewImage": "View Image"
+        },
+        "admission": {
+            "title": "Admission Requirements",
+            "academic": "Academic Requirements",
+            "language": "Language Requirements",
+            "highSchool": "High school diploma or equivalent",
+            "gpa": "Minimum GPA of 3.0/4.0",
+            "transcripts": "Academic transcripts",
+            "ielts": "IELTS 6.0 or TOEFL 80+",
+            "hsk": "HSK 4 for Chinese programs",
+            "english": "English proficiency certificate"
+        },
+        "sidebar": {
+            "ready": "Ready to Apply?",
+            "startJourney": "Start your journey at {university}",
+            "applyNow": "Apply Now",
+            "downloadBrochure": "Download Brochure",
+            "quickActions": "Quick Actions",
+            "requestInfo": "Request Information",
+            "chatAdvisor": "Chat with Advisor",
+            "virtualTour": "Virtual Campus Tour",
+            "scheduleCall": "Schedule a Call",
+            "quickFacts": "Quick Facts",
+            "location": "Location",
+            "founded": "Founded",
+            "students": "Students",
+            "international": "International",
+            "ranking": "Ranking",
+            "officialWebsite": "Official Website"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions"
+        }
+    },
+    "RequestInformation": {
+        "title": "Request Information",
+        "description": "Get more details about {university}. Fill out the form below.",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "interest": "Interest",
+        "selectInterest": "Select your interest",
+        "interests": {
+            "admission": "Admission Requirements",
+            "programs": "Available Programs",
+            "scholarships": "Scholarship Opportunities",
+            "campus": "Campus Life",
+            "other": "Other"
+        },
+        "message": "Message",
+        "messagePlaceholder": "I am interested in studying at {university}...",
+        "submit": "Send Request",
+        "sending": "Sending...",
+        "success": "Request sent successfully! We will contact you soon.",
+        "error": "Failed to send request. Please try again."
+    },
+    "Accommodation": {
+        "notAvailable": "Accommodation information not available",
+        "badge": "Student Accommodation",
+        "title": "On-Campus Housing Options",
+        "priceRange": "Price Range",
+        "generalFacilities": "General Facilities",
+        "availableRoomTypes": "Available Room Types",
+        "defaultTitle": "Accommodation",
+        "priceOnRequest": "Price on request",
+        "month": "month",
+        "roomFeatures": "Room Features:",
+        "importantInfo": {
+            "title": "Important Information",
+            "fees": "Accommodation fees are paid per semester or academic year",
+            "availability": "Room allocation is subject to availability",
+            "prices": "Prices may vary and should be confirmed with the university",
+            "deposit": "Deposit may be required upon check-in"
+        }
+    },
+    "UniversityHeader": {
+        "fastTrack": "Fast Track Acceptance",
+        "est": "Est. {founded}",
+        "studentsCount": "{students} Students",
+        "website": "Website",
+        "applyNow": "Apply Now",
+        "requestInfo": "Request Info",
+        "brochure": "Brochure",
+        "virtualTour": "Virtual Tour",
+        "scheduleCall": "Schedule Call",
+        "chatAdvisor": "Chat Advisor",
+        "save": "Save",
+        "saved": "Saved",
+        "share": "Share",
+        "founded": "Founded",
+        "students": "Students",
+        "ranking": "Ranking",
+        "international": "International"
+    },
+    "Profile": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences",
+        "completion": "Profile Completion",
+        "completeProfile": "Complete your profile to speed up future applications",
+        "photo": {
+            "title": "Profile Photo",
+            "description": "Upload a professional photo",
+            "upload": "Upload Photo",
+            "uploading": "Uploading...",
+            "hint": "JPG, PNG or GIF. Max 5MB."
+        },
+        "personalInfo": {
+            "title": "Personal Information",
+            "description": "Your basic details for applications"
+        },
+        "fullName": "Full Name *",
+        "email": "Email",
+        "dob": "Date of Birth",
+        "phone": "Phone Number",
+        "nationality": "Nationality",
+        "passportNumber": "Passport Number",
+        "address": {
+            "title": "Address",
+            "description": "Your current residential address",
+            "street": "Street Address",
+            "city": "City",
+            "postalCode": "Postal Code"
+        },
+        "emergency": {
+            "title": "Emergency Contact",
+            "description": "Person to contact in case of emergency",
+            "name": "Name",
+            "phone": "Phone",
+            "relationship": "Relationship"
+        },
+        "save": "Save Profile",
+        "saving": "Saving...",
+        "success": "Éxito",
+        "error": "Error"
+    },
+    "Documents": {
+        "title": "My Documents",
+        "subtitle": "Manage your documents for university applications",
+        "stats": {
+            "total": "Total Documents",
+            "uploaded": "Uploaded files",
+            "verified": "Verified",
+            "approved": "Approved by admin",
+            "pending": "Pending Review",
+            "awaiting": "Awaiting verification"
+        },
+        "yourDocuments": "Your Documents",
+        "manageDocuments": "Upload and manage your application documents",
+        "uploadDocument": "Upload Document",
+        "noDocuments": "No documents yet",
+        "uploadFirst": "Upload your first document to get started",
+        "size": "Size",
+        "uploaded": "Uploaded",
+        "download": "Download",
+        "delete": "Delete",
+        "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+        "uploadDialog": {
+            "title": "Upload Document",
+            "description": "Select the document type and upload your file",
+            "type": "Document Type *",
+            "selectType": "Select document type",
+            "alreadyUploaded": "(Already Uploaded)",
+            "file": "File *",
+            "selected": "Selected",
+            "formats": "Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max 10MB.",
+            "cancel": "Cancel",
+            "uploading": "Uploading...",
+            "upload": "Upload"
+        },
+        "error": {
+            "fileSize": "File must be less than 10MB",
+            "selectFile": "Please select a document type and file",
+            "fileType": "Please upload an image file",
+            "imageSize": "Image must be less than 5MB"
+        },
+        "success": {
+            "uploaded": "Document uploaded successfully!",
+            "deleted": "Document deleted"
+        },
+        "types": {
+            "passport": "Passport",
+            "transcript": "Academic Transcript",
+            "diploma": "Diploma/Certificate",
+            "recommendation_letter": "Recommendation Letter",
+            "personal_statement": "Personal Statement",
+            "cv": "CV/Resume",
+            "language_certificate": "Language Certificate (IELTS/TOEFL)",
+            "photo": "Passport Photo",
+            "bank_statement": "Bank Statement",
+            "health_certificate": "Health Certificate",
+            "police_clearance": "Police Clearance",
+            "other": "Other Document"
+        },
+        "documentRequest": {
+            "title": "Document Request",
+            "description": "Please upload the following documents:\n1. Passport Copy\n2. Degree Certificate\n3. Personal Statement",
+            "note": "make sure everything is translated to all languages"
+        }
+    },
+    "Auth": {
+        "login": {
+            "title": "Sign in",
+            "description": "Enter your email and password to access your account",
+            "emailLabel": "Email",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "Password",
+            "forgotPassword": "Forgot password?",
+            "submit": "Sign In",
+            "orContinueWith": "Or continue with",
+            "continueWithGoogle": "Continue with Google",
+            "connecting": "Connecting...",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up",
+            "success": "Login successful! Redirecting...",
+            "error": "Something went wrong",
+            "googleError": "Failed to login with Google"
+        },
+        "layout": {
+            "branding": "Studyatchina",
+            "heroTitle": "Your Gateway to Chinese Universities",
+            "heroDescription": "Join thousands of international students pursuing their dreams in China's top universities.",
+            "programsTitle": "500+ Programs",
+            "programsDescription": "Access programs from top Chinese universities",
+            "guidanceTitle": "Expert Guidance",
+            "guidanceDescription": "Get support throughout your application journey",
+            "scholarshipsTitle": "Scholarship Opportunities",
+            "scholarshipsDescription": "Explore various scholarship options available",
+            "copyright": "© 2024 Studyatchina. All rights reserved."
+        }
+    },
+    "Apply": {
+        "title": "Apply for Program",
+        "steps": {
+            "info": "Info",
+            "documents": "Docs",
+            "payment": "Pay",
+            "review": "Review",
+            "personalInfo": "Personal Information",
+            "requiredDocuments": "Required Documents",
+            "paymentInfo": "Payment",
+            "reviewSubmit": "Review & Submit"
+        },
+        "sections": {
+            "identity": "Identidad y Datos Personales",
+            "identitySubtitle": "Please provide your details as shown on your passport",
+            "contact": "Información de Contacto",
+            "address": "Home Address",
+            "education": "Formación Académica",
+            "educationSubtitle": "Your most recent academic qualification",
+            "language": "Dominio de Idiomas",
+            "languageSubtitle": "Chinese and English levels for admission purposes",
+            "emergency": "Contacto de Emergencia",
+            "emergencySubtitle": "Required for your safety abroad"
+        },
+        "options": {
+            "male": "Masculino",
+            "female": "Femenino",
+            "islam": "Islam",
+            "christianity": "Christianity",
+            "buddhism": "Buddhism",
+            "hinduism": "Hinduism",
+            "noReligion": "No Religion",
+            "other": "Other",
+            "single": "Soltero/a",
+            "married": "Casado/a",
+            "divorced": "Divorced",
+            "highSchool": "High School",
+            "diploma": "Diploma",
+            "bachelor": "Bachelor's Degree",
+            "master": "Master's Degree",
+            "doctorate": "Doctorate / PhD",
+            "noProficiency": "No Proficiency",
+            "basic": "Basic",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced",
+            "native": "Native Speaker"
+        },
+        "labels": {
+            "firstName": "Nombre",
+            "lastName": "Apellido",
+            "fullName": "Full Name (as in passport)",
+            "email": "Email Address",
+            "phone": "Mobile Phone Number",
+            "country": "Nationality",
+            "passport": "Passport Number",
+            "gender": "Género",
+            "dateOfBirth": "Fecha de Nacimiento",
+            "religion": "Religion",
+            "maritalStatus": "Marital Status",
+            "wechatId": "WeChat ID",
+            "address": "Home Address",
+            "city": "City",
+            "postalCode": "Postal Code",
+            "highestEducation": "Highest Education",
+            "schoolName": "School / University Name",
+            "majorField": "Major / Field of Study",
+            "graduationYear": "Graduation Year",
+            "gpaScore": "GPA / Score",
+            "chineseProficiency": "Chinese (HSK Level)",
+            "englishProficiency": "English Proficiency",
+            "testScore": "Test Score (IELTS/TOEFL)",
+            "preferredIntake": "Preferred Intake",
+            "emergencyContactName": "Emergency Contact Name",
+            "emergencyContactPhone": "Emergency Contact Phone",
+            "emergencyContactRelationship": "Relationship"
+        },
+        "placeholders": {
+            "firstName": "e.g. John",
+            "lastName": "e.g. Smith",
+            "fullName": "e.g. John Smith",
+            "email": "e.g. john@example.com",
+            "phone": "e.g. 555 123 4567",
+            "passport": "e.g. AB1234567",
+            "selectGender": "Select gender",
+            "selectReligion": "Select religion",
+            "selectMaritalStatus": "Select marital status",
+            "wechatId": "e.g. wxid_abc123",
+            "address": "e.g. 123 Main Street, Apt 4B",
+            "city": "e.g. Cairo",
+            "postalCode": "e.g. 11511",
+            "selectEducation": "Select highest education",
+            "schoolName": "e.g. Cairo University",
+            "majorField": "e.g. Computer Science",
+            "graduationYear": "e.g. 2024",
+            "gpaScore": "e.g. 3.5 / 4.0",
+            "selectChinese": "Select HSK level",
+            "selectEnglish": "Select proficiency",
+            "testScore": "e.g. IELTS 6.5",
+            "emergencyName": "e.g. Parent or Guardian name",
+            "emergencyPhone": "e.g. 555 123 4567",
+            "relationship": "e.g. Parent, Spouse"
+        },
+        "hints": {
+            "phoneHint": "Enter your phone number without country code",
+            "passportHint": "Enter your passport number exactly as shown"
+        },
+        "buttons": {
+            "next": "Siguiente",
+            "continueToDocuments": "Continue to Documents",
+            "continueToPayment": "Continue to Payment",
+            "continueToReview": "Continue to Review",
+            "submitApplication": "Submit Application",
+            "back": "Back",
+            "uploadDocument": "Upload",
+            "selectFile": "Select File"
+        },
+        "validation": {
+            "missingFieldsTitle": "Please fill in the following required fields:",
+            "required": "This field is required"
+        },
+        "documents": {
+            "title": "Required Documents",
+            "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
+            "mandatory": "Required",
+            "optional": "Optional",
+            "uploaded": "Uploaded",
+            "pending": "Pending"
+        },
+        "payment": {
+            "title": "Application Fee",
+            "applicationFee": "Application Fee",
+            "serviceFee": "Service Fee",
+            "total": "Total",
+            "payNow": "Pay Now",
+            "payLater": "Pay Later"
+        },
+        "review": {
+            "title": "Review Your Application",
+            "personalDetails": "Personal Details",
+            "uploadedDocuments": "Uploaded Documents",
+            "confirmSubmit": "I confirm that all information provided is accurate",
+            "submitting": "Submitting...",
+            "success": "Application Submitted Successfully!",
+            "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
+        },
+        "errors": {
+            "generic": "An error occurred. Please try again.",
+            "uploadFailed": "Failed to upload document. Please try again.",
+            "paymentFailed": "Payment failed. Please try again."
+        }
+    },
+    "AISearch": {
+        "placeholder": "Try: 'Master's in Engineering under 30000 RMB in Beijing'",
+        "search": "Search",
+        "filters": "AI understood",
+        "error": "Something went wrong. Please try again."
+    },
+    "AIChat": {
+        "title": "Chen Wei 陈伟",
+        "subtitle": "Your Study Advisor",
+        "typing": "Typing...",
+        "greeting": "Hi there! 👋 I'm Chen Wei (陈伟), your personal study advisor. I'm here to help you find the perfect program in China, answer your questions, and even guide you through the application process. What brings you here today?",
+        "inputPlaceholder": "Type your message...",
+        "thinking": "Thinking...",
+        "error": "Sorry, I encountered an error. Please try again.",
+        "quickStart": "Quick start:",
+        "quickFind": "🎓 Find Programs",
+        "quickScholarship": "💰 Scholarships",
+        "quickApply": "📝 Start Application",
+        "chatHistory": "Chat History",
+        "newChat": "New Chat",
+        "noHistory": "No previous conversations",
+        "backToChat": "Back to Chat",
+        "loginPrompt": "🔐 Log in to save your chat history and track applications",
+        "login": "Log In",
+        "register": "Register"
+    },
+    "PaymentDashboard": {
+        "title": "Payments",
+        "subtitle": "Manage your application payments",
+        "totalAmount": "Total Amount",
+        "totalPaid": "Total Paid",
+        "pending": "Pending",
+        "rest": "Rest Amount",
+        "totalTransactions": "Total Transactions",
+        "successfullyProcessed": "Successfully processed",
+        "paymentDue": "payment(s) due",
+        "allTime": "All time",
+        "amount": "Amount",
+        "status": "Status",
+        "created": "Created",
+        "method": "Method",
+        "payNow": "Pay Now",
+        "viewApplication": "View Application",
+        "paymentProof": "Payment Proof",
+        "paymentRequest": {
+            "title": "Payment Request",
+            "amount": "USD 200",
+            "description": "make this payment",
+            "note": "Please complete the payment to proceed with your application."
+        },
+        "paymentStatuses": {
+            "completed": "Completed",
+            "pending": "Pending",
+            "processing": "Processing",
+            "failed": "Failed",
+            "refunded": "Refunded"
+        },
+        "types": {
+            "application_fee": "Application Fee",
+            "service_fee": "Service Fee",
+            "tuition_deposit": "Tuition Deposit",
+            "full_tuition": "Full Tuition",
+            "accommodation": "Accommodation",
+            "other": "Other"
+        },
+        "assistance": {
+            "title": "Payment Assistance",
+            "description": "You have {count} pending payment(s). If you need help with payments or have questions:",
+            "point1": "Contact our support team for payment assistance",
+            "point2": "Check if you're eligible for payment plans",
+            "point3": "Verify your payment method is supported"
+        },
+        "paidOn": "Paid On",
+        "reference": "Reference",
+        "verifiedByAdmin": "Verified by admin",
+        "expires": "Expires:",
+        "adminNote": "Admin Note:",
+        "paymentLinkExpired": "Payment Link Expired",
+        "document": "Document:",
+        "noPayments": "No Payments",
+        "noPaymentsDesc": "You don't have any pending payments.",
+        "contactSupport": "Contact Support"
+    },
+    "Refunds": {
+        "title": "Refund Requests",
+        "statusTitle": "Refund Status",
+        "requestButton": "Request Refund",
+        "submittedTitle": "Refund Request Submitted",
+        "submittedOn": "Submitted on {date}",
+        "reasonLabel": "Reason",
+        "adminResponseLabel": "Admin Response",
+        "rejectedTitle": "Application Rejected",
+        "rejectedMessage": "You may be eligible for a refund. Click the button to submit a request.",
+        "modalTitle": "Request Refund",
+        "modalDescription": "Submit a request for a refund. Please explain why you are requesting this refund.",
+        "modalReasonLabel": "Reason for Refund",
+        "modalPlaceholder": "I was rejected because...",
+        "submitButton": "Submit Request",
+        "cancelButton": "Cancel",
+        "successMessage": "Refund request submitted successfully",
+        "errorMessage": "Failed to submit request",
+        "table": {
+            "student": "Student",
+            "program": "University / Program",
+            "reason": "Reason",
+            "status": "Status",
+            "date": "Date",
+            "actions": "Actions",
+            "approve": "Approve",
+            "reject": "Reject",
+            "noRequests": "No refund requests found",
+            "approveTitle": "Approve Refund Request",
+            "rejectTitle": "Reject Refund Request",
+            "approveDescription": "This will mark the request as approved and update the application payment status to refunded.",
+            "rejectDescription": "This will mark the request as rejected.",
+            "adminResponsePlaceholder": "Add a note to the student..."
+        }
+    },
+    "Messages": {
+        "title": "Messages",
+        "subtitle": "Communication with admissions team",
+        "conversations": "Conversations",
+        "unreadMessages": "Unread Messages",
+        "actionRequired": "Action Required",
+        "actionCompleted": "Completed",
+        "noMessages": "No messages yet",
+        "noMessagesDesc": "Messages from the admissions team will appear here",
+        "reply": "Reply",
+        "replyingTo": "Replying to {name}",
+        "typeReply": "Type your reply...",
+        "sendReply": "Send Reply",
+        "sending": "Sending...",
+        "cancel": "Cancel",
+        "you": "You",
+        "admin": "Admissions Team",
+        "replyTooltip": "Reply to this message",
+        "actionRequiredMessage": "Please respond to this message or complete the requested action.",
+        "takeAction": "Take Action",
+        "attachment": "attachment",
+        "attachments": "attachments"
+    },
+    "QSRankings": {
+        "meta": {
+            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+        },
+        "hero": {
+            "badge": "QS World University Rankings 2026",
+            "titleHighlight": "Chinese Universities",
+            "titleRest": "in Global Rankings",
+            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+            "breadcrumb": "QS Rankings 2026",
+            "statRanked": "Ranked Universities",
+            "statHighest": "Highest Global Rank",
+            "statTop50": "In Global Top 50",
+            "statCities": "Cities Represented"
+        },
+        "content": {
+            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+            "browseAllTitle": "Browse All Rankings",
+            "searchPlaceholder": "Search universities...",
+            "allCities": "All Cities",
+            "showing": "Showing",
+            "of": "of",
+            "universities": "universities",
+            "university": "university",
+            "inCity": "in",
+            "matching": "matching",
+            "noResults": "No universities found",
+            "noResultsHint": "Try adjusting your search or filters",
+            "overallScore": "Overall Score",
+            "score": "Score",
+            "world": "World",
+            "china": "China",
+            "ctaTitle": "Ready to Study at a Top-Ranked University?",
+            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+            "browseUniversities": "Browse Universities",
+            "explorePrograms": "Explore Programs",
+            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+            "visitSite": "topuniversities.com",
+            "viewProfile": "View Profile",
+            "tierTop50": "Top 50 Globally",
+            "tierTop200": "Top 51–200",
+            "tierTop500": "Top 201–500",
+            "tierRemaining": "501+"
+        }
     }
 }

@@ -105,7 +105,9 @@
             "articles": "信息与资源",
             "contact": "联系我们",
             "scholarshipFilter": "奖学金筛选",
-            "scholarshipFilterDesc": "按奖学金福利筛选大学"
+            "scholarshipFilterDesc": "按奖学金福利筛选大学",
+            "qsRankings": "QS排名",
+            "qsRankingsDesc": "探索QS世界大学排名"
         },
         "user": {
             "myApplications": "我的申请",
@@ -373,6 +375,33 @@
         "options": {
             "any": "不限",
             "all": "全部"
+        },
+        "budget": {
+            "under3k": "Under $3,000",
+            "3kTo5k": "$3,000 - $5,000",
+            "5kTo8k": "$5,000 - $8,000",
+            "above8k": "Above $8,000"
+        },
+        "scholarship": {
+            "allPrograms": "All Programs",
+            "available": "Scholarship Available",
+            "full": "Full Scholarship",
+            "partial": "Partial Scholarship"
+        },
+        "duration": {
+            "1year": "1 Year",
+            "2years": "2 Years",
+            "3years": "3 Years",
+            "4years": "4 Years",
+            "5plus": "5+ Years"
+        },
+        "categories": {
+            "mba": "MBA Programs",
+            "engineering": "Engineering",
+            "medicine": "Medicine (MBBS)",
+            "cs": "Computer Science",
+            "fullScholarship": "Full Scholarship",
+            "englishTaught": "English Taught"
         }
     },
     "WhyStudy": {
@@ -800,11 +829,36 @@
             "label": "排序",
             "name": "名称: A-Z",
             "programs": "课程数量",
-            "city": "城市"
+            "city": "城市",
+            "tuitionLow": "Tuition: Low to High",
+            "tuitionHigh": "Tuition: High to Low",
+            "ranking": "Best Ranking"
         },
         "noResults": {
             "title": "未找到大学",
             "description": "尝试调整您的筛选或搜索条件"
+        },
+        "results": {
+            "universities": "universities",
+            "showMore": "Show {count} more",
+            "showingOf": "Showing {visible} of {total}"
+        },
+        "compare": {
+            "title": "Compare Universities",
+            "criteria": "Criteria",
+            "location": "Location",
+            "ranking": "Ranking",
+            "programs": "Programs",
+            "tuition": "Tuition",
+            "levels": "Study Levels",
+            "languages": "Languages",
+            "scholarship": "Scholarship",
+            "fastTrack": "Fast Track",
+            "cscaExam": "CSCA Exam",
+            "badges": "Accreditations",
+            "clearAll": "Clear All",
+            "selected": "{count} selected",
+            "compareNow": "Compare Now"
         }
     },
     "Programs": {
@@ -834,7 +888,8 @@
                 "master": "硕士",
                 "phd": "博士",
                 "diploma": "文凭",
-                "language": "语言课程"
+                "language": "语言课程",
+                "nonDegree": "Non-Degree"
             },
             "fields": {
                 "business": "商业与管理",
@@ -858,7 +913,16 @@
                 "6years": "6 年"
             },
             "matchingPrograms": "个课程匹配",
-            "applyFilters": "应用筛选"
+            "applyFilters": "应用筛选",
+            "scholarshipDesc": "Show programs with funding",
+            "cscaLabel": "无需CSCA考试",
+            "cscaDesc": "显示不需要CSCA考试的项目",
+            "cscaBadge": "No CSCA",
+            "academicRequirements": "Academic Requirements",
+            "myAge": "My Age",
+            "agePlaceholder": "e.g. 21",
+            "minGpa": "Min GPA",
+            "gpaPlaceholder": "e.g. 3.0"
         },
         "stats": {
             "total": "课程总数",
@@ -888,7 +952,8 @@
             "level": "层次",
             "features": "特色",
             "viewFullDetails": "查看完整详情",
-            "applyNow": "立即申请"
+            "applyNow": "立即申请",
+            "fastTrack": "Fast Track"
         },
         "compare": {
             "title": "对比课程",
@@ -925,6 +990,26 @@
             "minutesAgo": "{count}分钟前",
             "hoursAgo": "{count}小时前",
             "daysAgo": "{count}天前"
+        },
+        "quickAccess": "快速访问",
+        "quickChips": {
+            "cs": "计算机科学",
+            "business": "商科",
+            "engineering": "工程学",
+            "medicine": "医学",
+            "arts": "艺术",
+            "economics": "经济学"
+        },
+        "aiSearch": {
+            "thinking": "AI is thinking... finding related fields for \"{query}\"",
+            "active": "Smart Search Active",
+            "found": "Found programs related to: {terms}",
+            "working": "AI is working on it...",
+            "looking": "Looking for programs related to \"{query}\""
+        },
+        "view": {
+            "grid": "网格",
+            "map": "地图"
         }
     },
     "GuidedTour": {
@@ -955,7 +1040,13 @@
         "tuitionFrom": "学费起",
         "tuition": "学费",
         "viewUniversity": "查看大学",
-        "viewPrograms": "查看课程"
+        "viewPrograms": "查看课程",
+        "fastTrack": "Fast Track",
+        "scholarship": "Scholarship",
+        "contactForPricing": "Contact for pricing",
+        "cscaExam": "CSCA Exam",
+        "addToCompare": "Add to compare",
+        "removeFromCompare": "Remove from compare"
     },
     "ProgramDetail": {
         "breadcrumb": {
@@ -987,7 +1078,8 @@
             "duration": "学制",
             "language": "语言",
             "level": "学位等级",
-            "gpaRequirement": "最低GPA要求"
+            "gpaRequirement": "最低GPA要求",
+            "languageRequirements": "Language Score"
         },
         "overview": {
             "title": "课程概览",
@@ -1053,7 +1145,11 @@
             "tuitionFee": "学费",
             "perYear": "每年",
             "allLanguages": "所有语言",
-            "filterByLanguage": "语言"
+            "filterByLanguage": "语言",
+            "showing": "Showing {start}-{end} of {total} programs",
+            "previousPage": "Previous",
+            "nextPage": "Next",
+            "pageOf": "Page {current} of {total}"
         },
         "scholarships": {
             "title": "可用奖学金选项",
@@ -1092,6 +1188,9 @@
             "international": "国际",
             "ranking": "排名",
             "officialWebsite": "官方网站"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions"
         }
     },
     "RequestInformation": {
@@ -1497,7 +1596,8 @@
             "submitApplication": "提交申请",
             "back": "返回",
             "uploadDocument": "上传",
-            "selectFile": "选择文件"
+            "selectFile": "选择文件",
+            "next": "Next"
         },
         "validation": {
             "missingFieldsTitle": "请填写以下必填字段：",
@@ -1674,5 +1774,51 @@
         "takeAction": "采取行动",
         "attachment": "附件",
         "attachments": "附件"
+    },
+    "QSRankings": {
+        "meta": {
+            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+        },
+        "hero": {
+            "badge": "QS World University Rankings 2026",
+            "titleHighlight": "Chinese Universities",
+            "titleRest": "in Global Rankings",
+            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+            "breadcrumb": "QS Rankings 2026",
+            "statRanked": "Ranked Universities",
+            "statHighest": "Highest Global Rank",
+            "statTop50": "In Global Top 50",
+            "statCities": "Cities Represented"
+        },
+        "content": {
+            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+            "browseAllTitle": "Browse All Rankings",
+            "searchPlaceholder": "Search universities...",
+            "allCities": "All Cities",
+            "showing": "Showing",
+            "of": "of",
+            "universities": "universities",
+            "university": "university",
+            "inCity": "in",
+            "matching": "matching",
+            "noResults": "No universities found",
+            "noResultsHint": "Try adjusting your search or filters",
+            "overallScore": "Overall Score",
+            "score": "Score",
+            "world": "World",
+            "china": "China",
+            "ctaTitle": "Ready to Study at a Top-Ranked University?",
+            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+            "browseUniversities": "Browse Universities",
+            "explorePrograms": "Explore Programs",
+            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+            "visitSite": "topuniversities.com",
+            "viewProfile": "View Profile",
+            "tierTop50": "Top 50 Globally",
+            "tierTop200": "Top 51–200",
+            "tierTop500": "Top 201–500",
+            "tierRemaining": "501+"
+        }
     }
 }

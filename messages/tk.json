@@ -69,7 +69,9 @@
             "articles": "Maglumat we Çeşmeler",
             "contact": "Biz Bilen Habarlaşyň",
             "scholarshipFilter": "Talyp Haky Süzgüji",
-            "scholarshipFilterDesc": "Uniwersitetleri talyp haky artykmaçlyklaryna görä süzüň"
+            "scholarshipFilterDesc": "Uniwersitetleri talyp haky artykmaçlyklaryna görä süzüň",
+            "qsRankings": "QS Rankings 2026",
+            "qsRankingsDesc": "Chinese universities in QS World Rankings"
         },
         "user": {
             "myApplications": "Meniň Ýüz Tutmalarym",
@@ -78,6 +80,42 @@
             "getStarted": "Başlamak",
             "myAccount": "Meniň Hasabym",
             "account": "Hasap"
+        },
+        "destinations": {
+            "title": "Ugurlar",
+            "viewAll": "Ähli Ugurlary Görmek",
+            "beijing": {
+                "title": "Pekin",
+                "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
+            },
+            "shanghai": {
+                "title": "Şanhaý",
+                "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
+            },
+            "guangzhou": {
+                "title": "Guançžou",
+                "description": "Southern metropolis with leading medical and engineering schools."
+            },
+            "wuhan": {
+                "title": "Wuhan",
+                "description": "Historic education center with Wuhan University and HUST."
+            },
+            "hangzhou": {
+                "title": "Hançžou",
+                "description": "Tech hub and scenic city home to Zhejiang University."
+            },
+            "nanjing": {
+                "title": "Nanjing",
+                "description": "Ancient capital with Nanjing University and Southeast University."
+            },
+            "chengdu": {
+                "title": "Çengdu",
+                "description": "Western China gateway with Sichuan University and affordable living."
+            },
+            "xian": {
+                "title": "Sian",
+                "description": "Historic Silk Road city with Xi'an Jiaotong University."
+            }
         }
     },
     "Common": {
@@ -337,6 +375,33 @@
         "options": {
             "any": "Islendik",
             "all": "Hemmesi"
+        },
+        "budget": {
+            "under3k": "Under $3,000",
+            "3kTo5k": "$3,000 - $5,000",
+            "5kTo8k": "$5,000 - $8,000",
+            "above8k": "Above $8,000"
+        },
+        "scholarship": {
+            "allPrograms": "All Programs",
+            "available": "Scholarship Available",
+            "full": "Full Scholarship",
+            "partial": "Partial Scholarship"
+        },
+        "duration": {
+            "1year": "1 Year",
+            "2years": "2 Years",
+            "3years": "3 Years",
+            "4years": "4 Years",
+            "5plus": "5+ Years"
+        },
+        "categories": {
+            "mba": "MBA Programs",
+            "engineering": "Engineering",
+            "medicine": "Medicine (MBBS)",
+            "cs": "Computer Science",
+            "fullScholarship": "Full Scholarship",
+            "englishTaught": "English Taught"
         }
     },
     "WhyStudy": {
@@ -764,11 +829,36 @@
             "label": "Tertiple",
             "name": "Ady: A-Z",
             "programs": "Iň Köp Maksatnama",
-            "city": "Şäher"
+            "city": "Şäher",
+            "tuitionLow": "Tuition: Low to High",
+            "tuitionHigh": "Tuition: High to Low",
+            "ranking": "Best Ranking"
         },
         "noResults": {
             "title": "Uniwersitet tapylmady",
             "description": "Süzgüçleriňizi ýa-da gözleg kriteriýalaryňyzy üýtgedip görüň"
+        },
+        "results": {
+            "universities": "universities",
+            "showMore": "Show {count} more",
+            "showingOf": "Showing {visible} of {total}"
+        },
+        "compare": {
+            "title": "Compare Universities",
+            "criteria": "Criteria",
+            "location": "Location",
+            "ranking": "Ranking",
+            "programs": "Programs",
+            "tuition": "Tuition",
+            "levels": "Study Levels",
+            "languages": "Languages",
+            "scholarship": "Scholarship",
+            "fastTrack": "Fast Track",
+            "cscaExam": "CSCA Exam",
+            "badges": "Accreditations",
+            "clearAll": "Clear All",
+            "selected": "{count} selected",
+            "compareNow": "Compare Now"
         }
     },
     "Programs": {
@@ -798,7 +888,8 @@
                 "master": "Magistr",
                 "phd": "PhD",
                 "diploma": "Diplom",
-                "language": "Dil Kursy"
+                "language": "Dil Kursy",
+                "nonDegree": "Non-Degree"
             },
             "fields": {
                 "business": "Biznes we Dolandyryş",
@@ -822,7 +913,16 @@
                 "6years": "6 Ýyl"
             },
             "matchingPrograms": "maksatnama gabat gelýär",
-            "applyFilters": "Süzgüçleri Ullan"
+            "applyFilters": "Süzgüçleri Ullan",
+            "scholarshipDesc": "Show programs with funding",
+            "cscaLabel": "CSCA Synagy Gerek Däl",
+            "cscaDesc": "CSCA synagy bolmadyk programmalary görkez",
+            "cscaBadge": "No CSCA",
+            "academicRequirements": "Academic Requirements",
+            "myAge": "My Age",
+            "agePlaceholder": "e.g. 21",
+            "minGpa": "Min GPA",
+            "gpaPlaceholder": "e.g. 3.0"
         },
         "stats": {
             "total": "Jemi Maksatnama",
@@ -852,7 +952,8 @@
             "level": "Dereje",
             "features": "Aýratynlyklar",
             "viewFullDetails": "Doly Jikme-jiklikleri Gör",
-            "applyNow": "Häzir Ýüz Tut"
+            "applyNow": "Häzir Ýüz Tut",
+            "fastTrack": "Fast Track"
         },
         "compare": {
             "title": "Maksatnamalary Deňeşdir",
@@ -889,6 +990,26 @@
             "minutesAgo": "{count}m öň",
             "hoursAgo": "{count}s öň",
             "daysAgo": "{count}g öň"
+        },
+        "quickAccess": "Çalt Giriş",
+        "quickChips": {
+            "cs": "Kompýuter Ylmy",
+            "business": "Işewürlik",
+            "engineering": "Inženerçilik",
+            "medicine": "Lukmançylyk",
+            "arts": "Sungat",
+            "economics": "Ykdysadyýet"
+        },
+        "aiSearch": {
+            "thinking": "AI is thinking... finding related fields for \"{query}\"",
+            "active": "Smart Search Active",
+            "found": "Found programs related to: {terms}",
+            "working": "AI is working on it...",
+            "looking": "Looking for programs related to \"{query}\""
+        },
+        "view": {
+            "grid": "Tor",
+            "map": "Karta"
         }
     },
     "GuidedTour": {
@@ -919,7 +1040,13 @@
         "tuitionFrom": "Okuw Tölegi -dan",
         "tuition": "Okuw Tölegi",
         "viewUniversity": "Uniwersiteti Gör",
-        "viewPrograms": "Maksatnamalary Gör"
+        "viewPrograms": "Maksatnamalary Gör",
+        "fastTrack": "Fast Track",
+        "scholarship": "Scholarship",
+        "contactForPricing": "Contact for pricing",
+        "cscaExam": "CSCA Exam",
+        "addToCompare": "Add to compare",
+        "removeFromCompare": "Remove from compare"
     },
     "ProgramDetail": {
         "breadcrumb": {
@@ -951,7 +1078,8 @@
             "duration": "Möhlet",
             "language": "Dil",
             "level": "Dereje",
-            "gpaRequirement": "Minimum GPA"
+            "gpaRequirement": "Minimum GPA",
+            "languageRequirements": "Language Score"
         },
         "overview": {
             "title": "Maksatnama Umumy Syn",
@@ -1017,7 +1145,11 @@
             "tuitionFee": "Okuw Tölegi",
             "perYear": "ýylda",
             "allLanguages": "Ähli diller",
-            "filterByLanguage": "Dil"
+            "filterByLanguage": "Dil",
+            "showing": "Showing {start}-{end} of {total} programs",
+            "previousPage": "Previous",
+            "nextPage": "Next",
+            "pageOf": "Page {current} of {total}"
         },
         "scholarships": {
             "title": "Elýeterli Talyp Haky Opsiýalary",
@@ -1056,6 +1188,9 @@
             "international": "Halkara",
             "ranking": "Reýting",
             "officialWebsite": "Resmi Web Saýty"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions"
         }
     },
     "RequestInformation": {
@@ -1369,7 +1504,25 @@
             "preferredIntake": "Islenýän Kabul Ediş",
             "emergencyContactName": "Gyssagly Habarlaşylmaly Ady",
             "emergencyContactPhone": "Gyssagly Habarlaşylmaly Telefon",
-            "emergencyContactRelationship": "Gatnaşyk"
+            "emergencyContactRelationship": "Gatnaşyk",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "gender": "Gender",
+            "dateOfBirth": "Date of Birth",
+            "religion": "Religion",
+            "maritalStatus": "Marital Status",
+            "wechatId": "WeChat ID",
+            "address": "Home Address",
+            "city": "City",
+            "postalCode": "Postal Code",
+            "highestEducation": "Highest Education",
+            "schoolName": "School / University Name",
+            "majorField": "Major / Field of Study",
+            "graduationYear": "Graduation Year",
+            "gpaScore": "GPA / Score",
+            "chineseProficiency": "Chinese (HSK Level)",
+            "englishProficiency": "English Proficiency",
+            "testScore": "Test Score (IELTS/TOEFL)"
         },
         "placeholders": {
             "fullName": "meselem, John Smith",
@@ -1378,7 +1531,24 @@
             "passport": "meselem, AB1234567",
             "emergencyName": "meselem, Ene-ata ýa-da HOSSar ady",
             "emergencyPhone": "meselem, 555 123 4567",
-            "relationship": "meselem, Ene-ata, Ýanýoldaş"
+            "relationship": "meselem, Ene-ata, Ýanýoldaş",
+            "firstName": "e.g. John",
+            "lastName": "e.g. Smith",
+            "selectGender": "Select gender",
+            "selectReligion": "Select religion",
+            "selectMaritalStatus": "Select marital status",
+            "wechatId": "e.g. wxid_abc123",
+            "address": "e.g. 123 Main Street, Apt 4B",
+            "city": "e.g. Cairo",
+            "postalCode": "e.g. 11511",
+            "selectEducation": "Select highest education",
+            "schoolName": "e.g. Cairo University",
+            "majorField": "e.g. Computer Science",
+            "graduationYear": "e.g. 2024",
+            "gpaScore": "e.g. 3.5 / 4.0",
+            "selectChinese": "Select HSK level",
+            "selectEnglish": "Select proficiency",
+            "testScore": "e.g. IELTS 6.5"
         },
         "hints": {
             "phoneHint": "Telefon belgiňizi ýurt kody bolmazdan giriziň",
@@ -1391,7 +1561,8 @@
             "submitApplication": "Ýüz Tutmany Iber",
             "back": "Yza",
             "uploadDocument": "Ýükle",
-            "selectFile": "Faýl Saýla"
+            "selectFile": "Faýl Saýla",
+            "next": "Next"
         },
         "validation": {
             "missingFieldsTitle": "Aşakdaky zerur öýjükleri dolduryň:",
@@ -1426,6 +1597,41 @@
             "generic": "Ýalňyşlyk döredi. Gaýtadan synanyşyň.",
             "uploadFailed": "Resminama ýükläp bolmady. Gaýtadan synanyşyň.",
             "paymentFailed": "Töleg şowsuz boldy. Gaýtadan synanyşyň."
+        },
+        "sections": {
+            "identity": "Identity & Personal Details",
+            "identitySubtitle": "Please provide your details as shown on your passport",
+            "contact": "Contact Information",
+            "address": "Home Address",
+            "education": "Education Background",
+            "educationSubtitle": "Your most recent academic qualification",
+            "language": "Language Proficiency",
+            "languageSubtitle": "Chinese and English levels for admission purposes",
+            "emergency": "Emergency Contact",
+            "emergencySubtitle": "Required for your safety abroad"
+        },
+        "options": {
+            "male": "Male",
+            "female": "Female",
+            "islam": "Islam",
+            "christianity": "Christianity",
+            "buddhism": "Buddhism",
+            "hinduism": "Hinduism",
+            "noReligion": "No Religion",
+            "other": "Other",
+            "single": "Single",
+            "married": "Married",
+            "divorced": "Divorced",
+            "highSchool": "High School",
+            "diploma": "Diploma",
+            "bachelor": "Bachelor's Degree",
+            "master": "Master's Degree",
+            "doctorate": "Doctorate / PhD",
+            "noProficiency": "No Proficiency",
+            "basic": "Basic",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced",
+            "native": "Native Speaker"
         }
     },
     "AISearch": {
@@ -1568,5 +1774,51 @@
         "takeAction": "Hereket Et",
         "attachment": "birikme",
         "attachments": "birikmeler"
+    },
+    "QSRankings": {
+        "meta": {
+            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+        },
+        "hero": {
+            "badge": "QS World University Rankings 2026",
+            "titleHighlight": "Chinese Universities",
+            "titleRest": "in Global Rankings",
+            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+            "breadcrumb": "QS Rankings 2026",
+            "statRanked": "Ranked Universities",
+            "statHighest": "Highest Global Rank",
+            "statTop50": "In Global Top 50",
+            "statCities": "Cities Represented"
+        },
+        "content": {
+            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+            "browseAllTitle": "Browse All Rankings",
+            "searchPlaceholder": "Search universities...",
+            "allCities": "All Cities",
+            "showing": "Showing",
+            "of": "of",
+            "universities": "universities",
+            "university": "university",
+            "inCity": "in",
+            "matching": "matching",
+            "noResults": "No universities found",
+            "noResultsHint": "Try adjusting your search or filters",
+            "overallScore": "Overall Score",
+            "score": "Score",
+            "world": "World",
+            "china": "China",
+            "ctaTitle": "Ready to Study at a Top-Ranked University?",
+            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+            "browseUniversities": "Browse Universities",
+            "explorePrograms": "Explore Programs",
+            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+            "visitSite": "topuniversities.com",
+            "viewProfile": "View Profile",
+            "tierTop50": "Top 50 Globally",
+            "tierTop200": "Top 51–200",
+            "tierTop500": "Top 201–500",
+            "tierRemaining": "501+"
+        }
     }
 }
