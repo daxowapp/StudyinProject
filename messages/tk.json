@@ -139,159 +139,167 @@
     },
     "CSCAGuide": {
         "meta": {
-            "title": "Hytaýda CSCA Synawy Üçin Doly Gollanma",
-            "description": "Hytaý Akademik Ukyp Bahalandyrmasy (CSCA) barada bilmeli ähli zadyňyz - halkara talyplar üçin standartlaşdyrylan kabul ediş synawy."
+            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
         },
-        "backHome": "Baş Sahypa Dolanyň",
-        "newRequirement": "2026-njy Ýyl Üçin Täze Talap",
-        "title": "Hytaýda <span class=\"text-primary\">CSCA Synawy</span> Üçin Doly Gollanma",
-        "subtitle": "Hytaý Akademik Ukyp Bahalandyrmasy halkara talyplar üçin hökmany bolup barýar. Ine, taýýarlyk görmek we üstünlik gazanmak üçin bilmeli ähli zadyňyz.",
+        "backHome": "Back to Home",
+        "newRequirement": "New Requirement for 2026",
+        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
         "sections": {
             "overview": {
-                "title": "Umumy Syn",
-                "content": "<strong>CSCA (Hytaý Akademik Ukyp Bahalandyrmasy)</strong> Hytaý uniwersitetleriniň bakalawr maksatnamalaryna ýüz tutýan halkara talyplar üçin niýetlenen standartlaşdyrylan akademiki kabul ediş synawydyr. Hytaý Talyp Haky Geňeşi (CSC) tarapyndan 2025-nji ýylda resmi taýdan işe girizildi we <strong>2026-njy ýyldan başlap</strong> Hytaý Hökümetiniň Talyp Hakyny isleýän ähli halkara bakalawr dalaşgärleri üçin <strong>hökmany</strong> bolýar.",
+                "title": "Overview",
+                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
                 "keyDates": {
-                    "title": "Möhüm Seneler",
-                    "launch": "2025: Resmi Işe Giriziliş",
-                    "mandatory": "2026: Talyp Haky Dalaşgärleri Üçin Hökmany",
-                    "full": "2028: Ähli Uniwersitetlerde Doly Durmuşa Geçiriliş"
+                    "title": "Key Dates",
+                    "launch": "2025: Official Launch",
+                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+                    "full": "2028: Full Implementation across all Universities"
                 }
             },
             "structure": {
-                "title": "Synaw Gurluşy",
-                "description": "CSCA hökmany we saýlawly modeli ulanýar. Ähli soraglar köp jogaply (test) görnüşindedir.",
+                "title": "Exam Structure",
+                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
                 "table": {
-                    "subject": "Ders",
-                    "duration": "Wagt",
-                    "questions": "Soraglar",
-                    "requirement": "Talap",
+                    "subject": "Subject",
+                    "duration": "Duration",
+                    "questions": "Questions",
+                    "requirement": "Requirement",
                     "chinese": {
-                        "name": "Ýöriteleşdirilen Hytaý Dili",
-                        "req": "Talap Edilýär (Hytaý dilinde okadylýan)"
+                        "name": "Specialized Chinese",
+                        "req": "Humanities/Science"
                     },
                     "math": {
-                        "name": "Matematika",
-                        "req": "Hökmany"
+                        "name": "Mathematics",
+                        "req": "Mandatory"
                     },
                     "physics": {
-                        "name": "Fizika",
-                        "req": "STEM/Lukmançylyk üçin Talap Edilýär"
+                        "name": "Physics",
+                        "req": "Optional / Major-dependent"
                     },
                     "chemistry": {
-                        "name": "Himiýa",
-                        "req": "Lukmançylyk/Oba Hojalyk üçin Talap Edilýär"
+                        "name": "Chemistry",
+                        "req": "Optional / Major-dependent"
                     }
                 }
             },
             "subjects": {
-                "title": "Ders Jikme-jiklikleri",
+                "title": "Subject Details & Syllabus",
                 "chinese": {
-                    "title": "Ýöriteleşdirilen Hytaý Dili",
-                    "description": "HSK-dan tapawutly. Akademiki okamak we düşünmek ukybyny bahalandyrýar. <strong>Iňlisçe wersiýasy ýok.</strong>",
+                    "title": "Specialized Chinese",
+                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
                     "char": {
-                        "title": "Ieroglifleri Tanama",
-                        "desc": "Köp sesli ieroglifler, omonimler (HSK 4-5 derejesi)"
+                        "title": "Character Recognition",
+                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
                     },
                     "reading": {
-                        "title": "Okamaga Düşünmek",
-                        "desc": "Iň ýokary agyrlyk. Ylmy/Tehniki/Sosial düzmeler."
+                        "title": "Reading Comprehension",
+                        "desc": "Highest weight. Sci/Tech/Social essays."
                     },
                     "words": {
-                        "title": "Söz Tapawudy",
-                        "desc": "Sinonimler, akademiki söz baýlygy."
+                        "title": "Word Distinction",
+                        "desc": "Synonyms, academic vocabulary."
                     },
                     "sentences": {
-                        "title": "Sözlem/Paragraf",
-                        "desc": "Sözlemleri tertipleşdirmek, logikany tamamlamak."
+                        "title": "Sentence/Paragraph",
+                        "desc": "Ordering sentences, completing logic."
                     }
                 },
                 "math": {
-                    "title": "Matematika",
-                    "description": "Hemmeler üçin hökmany. Esasy akademiki we logiki pikirlenmäni barlaýar.",
-                    "note": "Hytaý we Iňlis wersiýalary elýeterli.",
-                    "topics": "<strong>Temalar:</strong> Yzygiderlikler, Funksiýalar, Konus kesimleri (ellipsler, giperbolalar), Analiz, Wektorlar.",
-                    "style": "<strong>Stil:</strong> Çalt depginli, geometriýa agyrlykly, düşünjä esaslanan."
+                    "title": "Mathematics",
+                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+                    "note": "Both Chinese and English versions available.",
+                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
                 },
                 "chem": {
-                    "title": "Himiýa",
-                    "desc": "Lukmançylyk, Oba Hojalyk, Farmasiýa üçin.",
-                    "items": "Ionlaryň bilelikde bolmagy, organiki himiýa we reaksiýalar, stehiometriýa"
+                    "title": "Chemistry",
+                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
                 },
                 "phys": {
-                    "title": "Fizika",
-                    "desc": "Ylym, Inženerçilik, Lukmançylyk üçin.",
-                    "items": "Mehanika we Hereket, Elektromagnitizm (Lens kanuny), Düşünje"
+                    "title": "Physics",
+                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
                 }
             },
+            "fees_and_process": {
+                "title": "Application Process & Fees",
+                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+            },
             "formats": {
-                "title": "Synaw Tertibi",
+                "title": "Test Modes",
                 "online": {
-                    "title": "Onlaýn Gözegçilikli",
-                    "desc": "Öýde AI + Ynsan gözegçiligi. Bütin dünýäde güýçli."
+                    "title": "Online Proctored",
+                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
                 },
                 "computer": {
-                    "title": "Kompýuter Esasly",
-                    "desc": "Resmi synaw merkezlerinde. Has durnukly."
+                    "title": "Computer-Based",
+                    "desc": "At official test centers (classrooms). Better stability."
                 },
                 "paper": {
-                    "title": "Kagyz Esasly",
-                    "desc": "Adaty format. Çäkli sebitlerde."
+                    "title": "Paper-Based",
+                    "desc": "Traditional format. Limited regions."
                 }
             },
             "faq": {
-                "title": "Köp Sorulýan Soraglar",
+                "title": "Frequently Asked Questions",
                 "q1": {
-                    "q": "CSCA ähli uniwersitetler üçin hökmanymy?",
-                    "a": "Häzirki wagtda Hytaý Hökümetiniň Talyp Hakyna (CSC) A we B görnüşleri boýunça ýüz tutmak üçin hökmanydyr. Köp sanly ýokary derejeli uniwersitetler (Goşa Birinji Dereje) hem 2026-njy ýyldan başlap öz-özüni maliýeleşdirýän talyplar üçin esasy kabul ediş synawy hökmünde muny kabul edýärler."
+                    "q": "Does the CSCA replace the HSK?",
+                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
                 },
                 "q2": {
-                    "q": "Men synawy öz ýurdumda tabşyryp bilerinmi?",
-                    "a": "Hawa! CSCA <strong>Onlaýn Gözegçilikli</strong> tertibi hödürleýär, bu bolsa durnukly internet birikmesi we tehniki talaplara laýyk gelýän bolsaňyz, synawy dünýäniň islendik ýerinden tabşyrmaga mümkinçilik berýär. Şeýle hem käbir ýurtlarda kagyz we kompýuter esasly synaw merkezleri bar."
+                    "q": "Can I take it in English?",
+                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
                 },
                 "q3": {
-                    "q": "Netijäniň möhleti näçe wagt?",
-                    "a": "CSCA bahalary diňe <strong>häzirki ýüz tutma ýyly</strong> üçin güýçlüdir. Meselem, eger 2025-nji ýylda synaw tabşyrsaňyz, ony 2025-2026 akademiki ýyly üçin ýüz tutmalarda ulanyp bilersiňiz."
+                    "q": "How long is the score valid?",
+                    "a": "CSCA results are valid for <strong>2 years</strong>."
                 },
                 "q4": {
-                    "q": "Gowy baha näçe?",
-                    "a": "Bahalandyrma uniwersitete görä üýtgeýär, ýöne umumylykda:<br/>- <strong>Ýokary Dereje (C9 Ligasy):</strong> Mat > 85, Fizika/Himiýa > 80<br/>- <strong>Birinji Derejeli Uniwersitetler:</strong> Mat > 75, Fizika/Himiýa > 70<br/>- <strong>Umumy Uniwersitetler:</strong> Mat > 60"
+                    "q": "Who is exempt from the CSCA?",
+                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+                },
+                "q5": {
+                    "q": "Are scores required for 2026 intake?",
+                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
                 },
                 "comparison": {
-                    "title": "CSCA we HSK",
-                    "feature": "Aýratynlyk",
+                    "title": "CSCA vs. HSK",
+                    "feature": "Feature",
                     "hsk": "HSK",
                     "csca": "CSCA",
-                    "focus": "Üns Merkezi",
-                    "focusHsk": "Gündelik Aragatnaşyk",
-                    "focusCsca": "Akademiki Okalşy",
-                    "vocab": "Söz Baýlygy",
-                    "vocabHsk": "Durmuş/Gündelik",
-                    "vocabCsca": "Tehniki/Akademiki",
-                    "req": "Talap",
-                    "reqHsk": "Dil Sertifikaty",
-                    "reqCsca": "Kabul Ediş Synawy"
+                    "focus": "Focus",
+                    "focusHsk": "Daily Communication",
+                    "focusCsca": "Academic Readiness",
+                    "vocab": "Vocabulary",
+                    "vocabHsk": "Life/Everyday",
+                    "vocabCsca": "Technical/Academic",
+                    "req": "Requirement",
+                    "reqHsk": "Language Cert",
+                    "reqCsca": "Academic Entrance"
                 }
             },
             "sidebar": {
-                "title": "Möhüm Jikme-jiklikler",
+                "title": "Important Details",
                 "dates": {
-                    "title": "Seneler",
-                    "desc": "Ýylda 5 gezek (Ýan, Mart, Apr, Iýun, Dek)"
+                    "title": "Dates",
+                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
                 },
                 "prep": {
-                    "title": "Taýýarlyk",
-                    "desc": "3+ aý maslahat berilýär"
+                    "title": "Preparation",
+                    "desc": "Difficulty level: Junior/Senior High"
                 },
                 "passing": {
-                    "title": "Geçiş Bahalary",
-                    "desc": "Mat: ~75, Hytaýça: ~80 (Ýokary Uniwersitetler)"
+                    "title": "Fees",
+                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
                 },
-                "warning": "Bahalar diňe ýüz tutma ýyly üçin güýçli.",
-                "register": "Resmi Hasaba Alyş Saýty",
+                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+                "register": "Official Registration Site",
                 "tutor": {
-                    "title": "Taýýarlyk Kömegi Gerekmi?",
-                    "desc": "Hyzmatdaşlarymyz CSCA Matematika we Ýöriteleşdirilen Hytaý Dili bölümleri üçin ýörite tälim berýärler.",
-                    "button": "Biz Bilen Habarlaşyň"
+                    "title": "Fast-Track with Study at China",
+                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+                    "button": "Apply With Us"
                 }
             }
         }
@@ -497,12 +505,104 @@
         "awardAmount": "Sylag Mukdary",
         "learnMore": "Has Köp Öwren",
         "stats": {
+            "scholarshipOptions": "Scholarship Options",
+            "universities": "Universities",
+            "programs": "Programs",
             "awarded": "Her Ýyl Berilýär",
             "funding": "Maliýe Alyň",
             "full": "Doly Talyp Haklary",
             "eligible": "Mümkinçilikli Maksatnamalar"
         },
-        "viewAll": "Ähli Talyp Haklaryny Gör"
+        "viewAll": "Ähli Talyp Haklaryny Gör",
+        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+        "popular": {
+            "title": "Featured & Popular Scholarships"
+        },
+        "tabs": {
+            "search": "Search Scholarships",
+            "about": "About Scholarships"
+        },
+        "search": {
+            "filter": "Filters",
+            "clearAll": "Clear All",
+            "searchPlaceholder": "Search program or university...",
+            "category": "Category",
+            "all": "All",
+            "fullScholarship": "Full Scholarship (100%)",
+            "partialScholarship": "Partial Scholarship",
+            "city": "City",
+            "university": "University",
+            "degree": "Degree Level",
+            "language": "Language",
+            "semester": "Semester",
+            "spring": "Spring",
+            "autumn": "Autumn",
+            "freeAccommodation": "Free Accommodation",
+            "monthlyStipend": "Monthly Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "scholarshipOptions": "scholarship options at",
+            "universities": "universities",
+            "noResults": "No scholarships found",
+            "noResultsDescription": "Try adjusting your filters to see more results.",
+            "programsAvailable": "Programs",
+            "upTo": "Up to",
+            "accommodation": "Accommodation",
+            "stipend": "Stipend",
+            "insurance": "Insurance",
+            "program": "Program",
+            "teachingLanguage": "Language",
+            "startingDate": "Intake",
+            "scholarshipCoverage": "Original Tuition",
+            "youNeedToPay": "You Need To Pay",
+            "tuition": "Tuition",
+            "free": "Free",
+            "moreOptions": "More Options",
+            "learnMore": "Learn More"
+        },
+        "detail": {
+            "backToSearch": "Back to Search",
+            "scholarshipAvailable": "Scholarship Available",
+            "programDetails": "Program Details",
+            "degree": "Degree",
+            "duration": "Duration",
+            "language": "Language",
+            "intake": "Intake",
+            "availableScholarships": "Available Scholarships",
+            "noScholarships": "No scholarships are currently available for this program.",
+            "tuitionCoverage": "Tuition Coverage",
+            "freeAccommodation": "Free Accommodation",
+            "stipend": "Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "originalTuition": "Original Tuition",
+            "youPay": "You Need to Pay",
+            "serviceFee": "Service Fee",
+            "applyNow": "Apply for this Scholarship",
+            "university": "University",
+            "viewUniversity": "View University Profile",
+            "viewProgram": "View Program Details"
+        },
+        "about": {
+            "howItWorks": "How Scholarships Work",
+            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+            "scholarshipCoverage": "Scholarship Coverage",
+            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+            "serviceFees": "Service & Processing Fees",
+            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+            "scholarshipTypes": "Common Scholarship Types",
+            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+            "searchPrograms": "Search Eligible Programs",
+            "requiredDocuments": "Required Documents",
+            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+            "faq": "Frequently Asked Questions",
+            "faq1Question": "Do I need to know Chinese to get a scholarship?",
+            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+            "faq2Question": "Can I work while studying?",
+            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+            "faq3Question": "What happens if I fail my classes?",
+            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+            "faq4Question": "How long does the application process take?",
+            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+        }
     },
     "Testimonials": {
         "badge": "Üstünlik Hekaýalary",
@@ -585,6 +685,23 @@
         "contactSupport": "Goldaw Bilen Habarlaş",
         "footer": "Ýene soraglaryňyz barmy? Goldaw toparymyz size kömek etmek üçin 24/7 elýeterli."
     },
+    "Destinations": {
+        "pageTitle": "Okuw ýerleri",
+        "badge": "Hytaýda okuw ýerleri",
+        "heroTitle": "Hytaýyň iň gowy",
+        "heroSubtitle": "okuw şäherlerini tapyň",
+        "heroDescription": "Taryhy paýtagt Pekinden häzirki zaman Şanhaýa çenli — Hytaýyň iň janly şäherlerini öwreniň we okuw saparyňyz üçin iň oňat ýeri tapyň.",
+        "statCities": "Şäher",
+        "statUniversities": "Jemi uniwersitet",
+        "statTopCity": "{city} uniwersitetleri",
+        "featuredTitle": "Saýlanan ýerler",
+        "featuredSubtitle": "Hytaýda halkara talyplar üçin iň meşhur şäherler",
+        "allCitiesTitle": "Has köp şäher",
+        "allCitiesSubtitle": "Hytaýda has köp şäherlerdäki uniwersitetleri tapyň",
+        "university": "Uniwersitet",
+        "universities": "Uniwersitet",
+        "explorePrograms": "Programmalary öwreniň"
+    },
     "Universities": {
         "title": "Hytaýyň Iň Gowy Uniwersitetlerini Öwreniň",
         "subtitle": "Hytaý boýunça {count}+ abraýly edaralary tapyň. Proýekt 985-den C9 Ligasy uniwersitetlerine çenli.",
@@ -595,7 +712,8 @@
         "search": {
             "placeholder": "Uniwersitet ady, şäher ýa-da reýting boýunça gözläň...",
             "label": "Gözleg",
-            "universityPlaceholder": "Uniwersitet ady..."
+            "universityPlaceholder": "Uniwersitet ady...",
+            "searching": "Gözlenýär..."
         },
         "filters": {
             "title": "Süzgüçler",
@@ -882,7 +1000,12 @@
         "quickLinks": {
             "exploreCourses": "Kurslary Öwren",
             "getFunded": "Maliýe Al",
-            "findHousing": "Ýaşaýyş Ýeri Tap"
+            "findHousing": "Ýaşaýyş Ýeri Tap",
+            "findLocation": "Ýerleşýän Ýeri"
+        },
+        "location": {
+            "title": "Kampusyň Ýerleşýän Ýeri",
+            "viewOnMap": "Google Kartada Gör"
         },
         "about": "Barada",
         "whyChooseUs": "Näme Üçin Biz",
@@ -892,7 +1015,9 @@
             "noPrograms": "Bu dereje üçin maksatnama tapylmady.",
             "viewProgram": "Maksatnamany Gör",
             "tuitionFee": "Okuw Tölegi",
-            "perYear": "ýylda"
+            "perYear": "ýylda",
+            "allLanguages": "Ähli diller",
+            "filterByLanguage": "Dil"
         },
         "scholarships": {
             "title": "Elýeterli Talyp Haky Opsiýalary",
@@ -973,7 +1098,8 @@
         "applyNow": "Häzir Ýüz Tut",
         "howItWorks": {
             "title": "Talyp Haklary Nähili Işleýär",
-            "description": "Talyp haky okuw tölegleriňiziň bir bölegini ýapýar. Siz galan okuw tölegini uniwersitete töleýärsiňiz + ýüz tutma goldawy, wiza kömegi we görkezme üçin bir gezeklik hyzmat tölegi."
+            "description": "Talyp haky okuw tölegleriňiziň bir bölegini ýapýar. Siz galan okuw tölegini uniwersitete töleýärsiňiz + ýüz tutma goldawy, wiza kömegi we görkezme üçin bir gezeklik hyzmat tölegi.",
+            "learnMore": "Learn more about scholarships →"
         },
         "benefits": {
             "tuitionCoverage": "{percentage}% okuw tölegini ýapmak",
@@ -982,7 +1108,9 @@
             "visa": "Wiza kömegi",
             "orientation": "Ugramazdan öňki gönükdirme",
             "accommodation": "Ýaşaýyş ýerini tertipleşdirmek goldawy"
-        }
+        },
+        "action": "Action",
+        "scholarshipType": "Scholarship Type"
     },
     "Accommodation": {
         "notAvailable": "Ýaşaýyş ýeri maglumaty elýeterli däl",

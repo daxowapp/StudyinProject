@@ -303,3 +303,40 @@ export async function sendAdminNewMessageEmail(data: {
     emailType: 'admin_new_message',
   });
 }
+
+// --- CONTACT FORM NOTIFICATIONS ---
+
+export async function sendContactConfirmationEmail(data: {
+  clientEmail: string;
+  clientName: string;
+  subject: string;
+}) {
+  const template = emailTemplates.contactConfirmation({
+    name: data.clientName,
+    subject: data.subject,
+  });
+  return sendEmail({
+    to: data.clientEmail,
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    emailType: 'contact_confirmation',
+  });
+}
+
+export async function sendAdminContactNotificationEmail(data: {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}) {
+  const template = emailTemplates.adminContactNotification(data);
+  return sendEmail({
+    to: getAdminEmail(),
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    emailType: 'admin_contact_notification',
+  });
+}

@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 
     return {
         rules: [
+            // Default: Allow search engines and legitimate bots
             {
                 userAgent: '*',
                 allow: '/',
@@ -17,9 +18,17 @@ export default function robots(): MetadataRoute.Robots {
                     '/profile/',
                 ],
             },
+
+            // ── AI Answer Engines (GEO/AEO) ── ALLOW ──
+            // These bots power AI search results (ChatGPT, Perplexity, Google AI, etc.)
+            // Allowing them is critical for Generative Engine Optimization
             {
-                // Allow AI crawlers for AEO (Answer Engine Optimization)
                 userAgent: 'GPTBot',
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
+            {
+                userAgent: 'ChatGPT-User',
                 allow: '/',
                 disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
             },
@@ -32,6 +41,61 @@ export default function robots(): MetadataRoute.Robots {
                 userAgent: 'PerplexityBot',
                 allow: '/',
                 disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
+            {
+                userAgent: 'ClaudeBot',
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
+            {
+                userAgent: 'Amazonbot',
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
+
+            // ── SEO Tool Scrapers ── BLOCK ──
+            // These crawl your data for competitor analysis, not for traffic
+            {
+                userAgent: 'AhrefsBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'SemrushBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'MJ12bot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'DotBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'BLEXBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'ZoominfoBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'DataForSeoBot',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'Bytespider',
+                disallow: ['/'],
+            },
+
+            // ── Generic Scrapers ── BLOCK ──
+            {
+                userAgent: 'Scrapy',
+                disallow: ['/'],
+            },
+            {
+                userAgent: 'HTTrack',
+                disallow: ['/'],
             },
         ],
         sitemap: `${baseUrl}/sitemap.xml`,

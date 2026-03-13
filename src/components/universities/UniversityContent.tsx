@@ -7,12 +7,14 @@ import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { ScholarshipCTA } from "@/components/scholarships/ScholarshipCTA";
 import { AccommodationSection } from "./AccommodationSection";
+import { UniversityMap } from "./UniversityMap";
 import {
     CheckCircle2, Globe, MapPin, Users, Calendar,
     GraduationCap, Clock, Languages,
     Award, TrendingUp, FileText,
-    Download, ChevronRight,
-    Sparkles, Video, Phone, MessageCircle
+    Download, ChevronRight, ChevronLeft,
+    Sparkles, Video, Phone, MessageCircle,
+    HelpCircle
 } from "lucide-react";
 import { Price } from "@/components/currency/PriceDisplay";
 import { motion } from "framer-motion";
@@ -62,6 +64,9 @@ interface University {
     accommodation_description?: string;
     accommodation_fee_range?: string;
     accommodation_features?: string[];
+    latitude?: number | string | null;
+    longitude?: number | string | null;
+    address?: string;
     video_url?: string;
     gallery_images?: string[];
     brochure_url?: string;
@@ -77,15 +82,25 @@ interface University {
         intlStudents: string;
         ranking: string;
     };
+    faqs?: { question: string; answer: string }[];
 }
 
 interface UniversityContentProps {
     university: University;
 }
 
+const PROGRAMS_PER_PAGE = 10;
+
 export function UniversityContent({ university }: UniversityContentProps) {
     const t = useTranslations('UniversityDetail');
     const [programLevel, setProgramLevel] = useState<string>("all");
+    const [programLanguage, setProgramLanguage] = useState<string>("all");
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [programLevel, programLanguage]);
 
     // Get unique program levels
     const [accommodations, setAccommodations] = useState<AccommodationType[]>([]);
@@ -108,10 +123,28 @@ export function UniversityContent({ university }: UniversityContentProps) {
     const uniqueLevels = university.programs?.map((p) => p.level) || [];
     const programLevels: string[] = ["all", ...(Array.from(new Set(uniqueLevels)) as string[])];
 
-    // Filter programs by level
-    const filteredPrograms = programLevel === "all"
-        ? university.programs
-        : university.programs?.filter((p) => p.level === programLevel);
+    // Get unique program languages
+    const uniqueLanguages = university.programs?.map((p) => p.language).filter(Boolean) || [];
+    const programLanguages: string[] = ["all", ...(Array.from(new Set(uniqueLanguages)) as string[])];
+
+    // Filter programs by level AND language
+    const filteredPrograms = university.programs?.filter((p) => {
+        const levelMatch = programLevel === "all" || p.level === programLevel;
+        const languageMatch = programLanguage === "all" || p.language === programLanguage;
+        return levelMatch && languageMatch;
+    });
+
+    // Pagination
+    const totalFilteredPrograms = filteredPrograms?.length || 0;
+    const totalPages = Math.ceil(totalFilteredPrograms / PROGRAMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * PROGRAMS_PER_PAGE;
+    const endIndex = Math.min(startIndex + PROGRAMS_PER_PAGE, totalFilteredPrograms);
+    const paginatedPrograms = filteredPrograms?.slice(startIndex, endIndex);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        document.getElementById('programs-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
     return (
         <div className="container mx-auto px-4 -mt-8 pb-20">
@@ -139,6 +172,15 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         <span className="text-lg group-hover:scale-110 transition-transform">🏠</span>
                         {t('quickLinks.findHousing')}
                     </button>
+                    {university.latitude && university.longitude && (
+                        <button
+                            onClick={() => document.getElementById('location-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
+                        >
+                            <span className="text-lg group-hover:scale-110 transition-transform">📍</span>
+                            {t('quickLinks.findLocation')}
+                        </button>
+                    )}
                 </div>
             </div>
 
@@ -240,14 +282,38 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 ))}
                             </div>
 
+                            {/* Language Filter */}
+                            {programLanguages.length > 2 && (
+                                <div className="flex items-center gap-3 mb-8">
+                                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground font-medium shrink-0">
+                                        <Languages className="h-4 w-4" />
+                                        {t('programs.filterByLanguage')}:
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 bg-muted/30 p-1.5 rounded-2xl w-fit">
+                                        {programLanguages.map((language) => (
+                                            <button
+                                                key={language}
+                                                onClick={() => setProgramLanguage(language)}
+                                                className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200 ${programLanguage === language
+                                                    ? 'bg-green-600 text-white shadow-md scale-100 ring-1 ring-green-600/20'
+                                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                                                    }`}
+                                            >
+                                                {language === "all" ? t('programs.allLanguages') : language}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             <div className="space-y-4">
-                                {filteredPrograms && filteredPrograms.length > 0 ? (
-                                    filteredPrograms.map((program, index) => (
+                                {paginatedPrograms && paginatedPrograms.length > 0 ? (
+                                    paginatedPrograms.map((program, index) => (
                                         <motion.div
                                             key={program.id}
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 0.3 + index * 0.1 }}
+                                            transition={{ delay: 0.1 + index * 0.05 }}
                                             className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 border border-gray-100 hover:border-red-200"
                                         >
                                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -303,6 +369,40 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     </div>
                                 )}
                             </div>
+
+                            {/* Pagination Controls */}
+                            {totalPages > 1 && (
+                                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50 rounded-2xl p-4">
+                                    <p className="text-sm text-muted-foreground">
+                                        {t('programs.showing', { start: startIndex + 1, end: endIndex, total: totalFilteredPrograms })}
+                                    </p>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            disabled={currentPage <= 1}
+                                            onClick={() => handlePageChange(currentPage - 1)}
+                                            className="gap-1"
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                            {t('programs.previousPage')}
+                                        </Button>
+                                        <span className="text-sm font-medium px-3">
+                                            {t('programs.pageOf', { current: currentPage, total: totalPages })}
+                                        </span>
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            disabled={currentPage >= totalPages}
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                            className="gap-1"
+                                        >
+                                            {t('programs.nextPage')}
+                                            <ChevronRight className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                </div>
+                            )}
                         </motion.div>
                     )}
 
@@ -339,6 +439,24 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             accommodationTypes={accommodations}
                         />
                     </motion.div>
+
+                    {/* Location Map Section */}
+                    {university.latitude && university.longitude && (
+                        <motion.div
+                            id="location-section"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.35 }}
+                            className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
+                        >
+                            <UniversityMap
+                                latitude={Number(university.latitude)}
+                                longitude={Number(university.longitude)}
+                                name={university.name}
+                                address={university.address}
+                            />
+                        </motion.div>
+                    )}
 
                     {/* Video Section */}
                     {university.video_url && (
@@ -457,6 +575,44 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             </div>
                         </div>
                     </motion.div>
+
+                    {/* University FAQ Section */}
+                    {university.faqs && university.faqs.length > 0 && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.45 }}
+                            className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100"
+                        >
+                            <div className="flex items-center gap-3 mb-8">
+                                <div className="h-12 w-1.5 bg-primary rounded-full" />
+                                <HelpCircle className="h-7 w-7 text-primary" />
+                                <h2 className="text-3xl font-bold tracking-tight">{t('faq.title')}</h2>
+                            </div>
+
+                            <div className="space-y-3">
+                                {university.faqs.map((faq, index) => (
+                                    <details
+                                        key={index}
+                                        className="group rounded-2xl border border-gray-100 bg-gray-50/50 transition-all hover:border-primary/20 hover:bg-primary/5 open:border-primary/30 open:bg-primary/5"
+                                    >
+                                        <summary className="flex items-center justify-between cursor-pointer p-5 text-base font-semibold text-gray-900 select-none list-none [&::-webkit-details-marker]:hidden">
+                                            <span className="flex items-center gap-3 pr-4">
+                                                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary text-sm font-bold shrink-0">
+                                                    {index + 1}
+                                                </span>
+                                                {faq.question}
+                                            </span>
+                                            <ChevronRight className="h-5 w-5 text-gray-400 shrink-0 transition-transform duration-200 group-open:rotate-90" />
+                                        </summary>
+                                        <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 ml-10">
+                                            {faq.answer}
+                                        </div>
+                                    </details>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
                 </div>
 
                 {/* Sidebar - 4 columns */}

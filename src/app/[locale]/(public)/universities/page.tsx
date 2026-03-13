@@ -1,7 +1,6 @@
-import { UniversitiesClient } from "@/components/universities/UniversitiesClient";
+import { UniversitiesPageClient } from "@/components/universities/UniversitiesPageClient";
 import { Building2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import { UniversityHeroSearch } from "@/components/universities/UniversityHeroSearch";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { PORTAL_KEY } from "@/lib/constants/portal";
@@ -26,7 +25,7 @@ export async function generateMetadata({
         openGraph: {
             title,
             description,
-            url: `${baseUrl} /${locale}/universities`,
+            url: `${baseUrl}/${locale}/universities`,
             type: 'website',
         },
         twitter: {
@@ -35,12 +34,12 @@ export async function generateMetadata({
             description,
         },
         alternates: {
-            canonical: `${baseUrl} /${locale}/universities`,
+            canonical: `${baseUrl}/${locale}/universities`,
             languages: {
-                'en': `${baseUrl} /en/universities`,
-                'ar': `${baseUrl} /ar/universities`,
-                'fa': `${baseUrl} /fa/universities`,
-                'tr': `${baseUrl} /tr/universities`,
+                'en': `${baseUrl}/en/universities`,
+                'ar': `${baseUrl}/ar/universities`,
+                'fa': `${baseUrl}/fa/universities`,
+                'tr': `${baseUrl}/tr/universities`,
             },
         },
     };
@@ -50,19 +49,13 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Fetch universities with program tuition fees
+    // Fetch from pre-aggregated view (flat query, no nested joins)
     const { data: universities, error } = await supabase
-        .from("universities")
-        .select(`
-            id, slug, name, city, province,
-            logo_url, cover_photo_url, banner_url, ranking,
-            university_type, institution_category, has_fast_track,
-            features,
-            university_programs(tuition_fee, currency)
-        `)
+        .from("v_universities_listing")
+        .select("*")
         .eq("portal_key", PORTAL_KEY)
         .order("name")
-        .limit(100);
+        .limit(1000);
 
     if (error) {
         console.error("Error fetching universities:", {
@@ -89,23 +82,10 @@ export default async function UniversitiesPage() {
         );
     }
 
-    // Transform data for client component
+    // Transform flat view data for client component (minimal mapping, no aggregation needed)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const formattedUniversities = (universities || []).map((uni: any) => {
-        // Get programs array
-        const programs = uni.university_programs || [];
-        const programCount = programs.length;
-
-        // Calculate minimum tuition fee from programs
-        const programsWithFees = programs
-            .filter((p: any) => typeof p.tuition_fee === 'number' && p.tuition_fee > 0);
-
-        const minProgram = programsWithFees.length > 0
-            ? programsWithFees.reduce((min: any, p: any) => p.tuition_fee < min.tuition_fee ? p : min)
-            : null;
-
-        const minTuitionFee = minProgram?.tuition_fee || 0;
-        const programCurrency = minProgram?.currency || programs[0]?.currency || 'CNY';
+        const minTuitionFee = uni.min_tuition_fee || 0;
 
         return {
             id: uni.id,
@@ -113,10 +93,10 @@ export default async function UniversitiesPage() {
             name: uni.name || "Unknown University",
             city: uni.city || "N/A",
             province: uni.province || "N/A",
-            programs: programCount,
+            programs: uni.program_count || 0,
             minTuition: minTuitionFee > 0 ? `¥${minTuitionFee.toLocaleString()}/year` : "Contact for pricing",
             minTuitionFee: minTuitionFee,
-            currency: programCurrency,
+            currency: uni.min_tuition_currency || 'CNY',
             badges: uni.features || [],
             logo: uni.logo_url,
             photo: uni.cover_photo_url || uni.banner_url,
@@ -124,6 +104,10 @@ export default async function UniversitiesPage() {
             university_type: uni.university_type,
             institution_category: uni.institution_category,
             has_fast_track: uni.has_fast_track,
+            availableLevels: uni.available_levels || [],
+            availableLanguages: uni.available_languages || [],
+            hasScholarship: uni.has_scholarship || false,
+            hasCscaExam: uni.has_csca_exam || false,
         };
     });
 
@@ -135,26 +119,19 @@ export default async function UniversitiesPage() {
                     { name: 'Universities', url: `${baseUrl}/universities` }
                 ]}
             />
-            {/* Hero Section */}
-            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-b">
-                <div className="container mx-auto px-4 md:px-6 py-12">
-                    <div className="max-w-3xl">
-                        <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <UniversitiesPageClient
+                universities={formattedUniversities}
+                heroContent={
+                    <>
+                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             {t('title')}
-                        </h2>
+                        </h1>
                         <p className="text-lg text-muted-foreground mb-8">
                             {t('subtitle', { count: formattedUniversities.length })}
                         </p>
-
-                        {/* Search Bar */}
-                        <UniversityHeroSearch />
-                    </div>
-                </div>
-            </div>
-
-            <div className="container mx-auto px-4 md:px-6 py-8">
-                <UniversitiesClient universities={formattedUniversities} />
-            </div>
+                    </>
+                }
+            />
 
             <CscaCtaSection />
         </div>

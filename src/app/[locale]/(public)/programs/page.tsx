@@ -66,20 +66,47 @@ export default async function ProgramsPage({
     const params = await searchParams;
     const universitySlug = params.university;
 
-    // Build query - if university filter is provided, fetch only that university's programs
-    let query = supabase
-        .from("v_university_programs_full")
-        .select("*")
-        .eq("portal_key", PORTAL_KEY)
-        .eq("is_active", true);
+    // Fetch ALL programs using pagination to bypass Supabase's 1000-row default limit
+    const PAGE_SIZE = 1000;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let allPrograms: any[] = [];
+    let page = 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let error: any = null;
+    let hasMore = true;
 
-    if (universitySlug) {
-        // Filter by university slug on server side
-        query = query.eq("university_slug", universitySlug);
+    while (hasMore) {
+        const from = page * PAGE_SIZE;
+        const to = from + PAGE_SIZE - 1;
+
+        let query = supabase
+            .from("v_university_programs_full")
+            .select("*")
+            .eq("portal_key", PORTAL_KEY)
+            .eq("is_active", true)
+            .range(from, to);
+
+        if (universitySlug) {
+            query = query.eq("university_slug", universitySlug);
+        }
+
+        const { data, error: pageError } = await query;
+
+        if (pageError) {
+            error = pageError;
+            break;
+        }
+
+        if (data && data.length > 0) {
+            allPrograms = allPrograms.concat(data);
+            hasMore = data.length === PAGE_SIZE;
+            page++;
+        } else {
+            hasMore = false;
+        }
     }
-    // Note: No limit - fetch all programs for proper filtering on client side
 
-    const { data: programs, error } = await query;
+    const programs = allPrograms;
 
     if (error) {
         console.error("Error fetching programs:", error);

@@ -321,8 +321,8 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                 return false;
             }
 
-            // CSCA Exam filter
-            if (filters.cscaExam && !program.csca_exam_require) {
+            // CSCA Exam filter — when toggled ON, hide programs that require CSCA
+            if (filters.cscaExam && program.csca_exam_require) {
                 return false;
             }
 
@@ -529,16 +529,16 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                     {/* Quick Access Chips */}
                     <div className="flex flex-col space-y-3 mb-6">
                         <div className="flex items-center justify-between">
-                            <h3 className="text-sm font-medium text-muted-foreground">Quick Access</h3>
+                            <h3 className="text-sm font-medium text-muted-foreground">{t('quickAccess')}</h3>
                         </div>
                         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
                             {[
-                                { label: 'Computer Science', icon: '💻', value: 'cs', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800' },
-                                { label: 'Business', icon: '💼', value: 'Business & Management', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' },
-                                { label: 'Engineering', icon: '🏗️', value: 'Engineering & Technology', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 border-orange-200 dark:border-orange-800' },
-                                { label: 'Medicine', icon: '🏥', value: 'Medicine & Health Sciences', color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 border-red-200 dark:border-red-800' },
-                                { label: 'Arts', icon: '🎨', value: 'Arts & Humanities', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border-purple-200 dark:border-purple-800' },
-                                { label: 'Economics', icon: '📊', value: 'Economics', color: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800' },
+                                { label: t('quickChips.cs'), icon: '💻', value: 'cs', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800' },
+                                { label: t('quickChips.business'), icon: '💼', value: 'Business & Management', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800' },
+                                { label: t('quickChips.engineering'), icon: '🏗️', value: 'Engineering & Technology', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 border-orange-200 dark:border-orange-800' },
+                                { label: t('quickChips.medicine'), icon: '🏥', value: 'Medicine & Health Sciences', color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 border-red-200 dark:border-red-800' },
+                                { label: t('quickChips.arts'), icon: '🎨', value: 'Arts & Humanities', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border-purple-200 dark:border-purple-800' },
+                                { label: t('quickChips.economics'), icon: '📊', value: 'Economics', color: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800' },
                             ].map((chip) => (
                                 <button
                                     key={chip.value}
@@ -564,12 +564,12 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                             {isSearching ? (
                                 <>
                                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                                    <span className="text-primary font-medium">AI is thinking... finding related fields for &quot;{filters.search}&quot;</span>
+                                    <span className="text-primary font-medium">{t('aiSearch.thinking', { query: filters.search })}</span>
                                 </>
                             ) : (
                                 <>
-                                    <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-medium">Smart Search Active</span>
-                                    <span>Found programs related to: {expandedTerms.slice(0, 3).join(", ")}{expandedTerms.length > 3 ? "..." : ""}</span>
+                                    <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-medium">{t('aiSearch.active')}</span>
+                                    <span>{t('aiSearch.found', { terms: expandedTerms.slice(0, 3).join(", ") + (expandedTerms.length > 3 ? "..." : "") })}</span>
                                 </>
                             )}
                         </div>
@@ -582,12 +582,12 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     <span className="text-sm font-semibold text-muted-foreground">{t('filters.active')}</span>
                                     {filters.levels.map(level => {
                                         const levelLabels: Record<string, string> = {
-                                            'bachelor': 'Bachelor',
-                                            'master': 'Master',
-                                            'phd': 'PhD',
-                                            'diploma': 'Diploma',
-                                            'language': 'Language Course',
-                                            'non-degree': 'Non-Degree'
+                                            'bachelor': t('filters.levels.bachelor'),
+                                            'master': t('filters.levels.master'),
+                                            'phd': t('filters.levels.phd'),
+                                            'diploma': t('filters.levels.diploma'),
+                                            'language': t('filters.levels.language'),
+                                            'non-degree': t('filters.levels.nonDegree')
                                         };
                                         const displayLabel = levelLabels[level.toLowerCase()] || level;
                                         return (
@@ -638,7 +638,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     ))}
                                     {filters.field !== 'all' && (
                                         <Badge variant="secondary" className="gap-1 pr-1">
-                                            📚 {filters.field === 'cs' ? 'Computer Science' :
+                                            📚 {['business', 'engineering', 'medicine', 'arts', 'science', 'education', 'cs', 'law'].includes(filters.field) ? t(`filters.fields.${filters.field}`) :
                                                 filters.field.charAt(0).toUpperCase() + filters.field.slice(1)}
                                             <div
                                                 role="button"
@@ -654,7 +654,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     )}
                                     {filters.scholarship && (
                                         <Badge variant="secondary" className="gap-1 pr-1">
-                                            🎓 Scholarship
+                                            🎓 {t('filters.scholarshipAvailable')}
                                             <div
                                                 role="button"
                                                 className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
@@ -669,7 +669,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                     )}
                                     {filters.cscaExam && (
                                         <Badge variant="secondary" className="gap-1 pr-1">
-                                            📝 Requires CSCA
+                                            📝 {t('filters.cscaBadge')}
                                             <div
                                                 role="button"
                                                 className="cursor-pointer hover:bg-destructive/10 rounded-full p-0.5 pointer-events-auto"
@@ -764,9 +764,9 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                             <div className="h-16 w-16 rounded-full bg-primary/10 mx-auto mb-4 flex items-center justify-center">
                                                 <Loader2 className="h-8 w-8 text-primary animate-spin" />
                                             </div>
-                                            <h3 className="text-xl font-bold mb-2">AI is working on it...</h3>
+                                            <h3 className="text-xl font-bold mb-2">{t('aiSearch.working')}</h3>
                                             <p className="text-muted-foreground">
-                                                Looking for programs related to &quot;{filters.search}&quot;
+                                                {t('aiSearch.looking', { query: filters.search })}
                                             </p>
                                         </div>
                                     </div>

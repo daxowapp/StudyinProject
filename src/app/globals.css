@@ -279,6 +279,55 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Navbar glass effect */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+}
+
+.navbar-glass-transparent {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+}
+
+/* Nav link animated underline */
+@keyframes nav-underline-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, oklch(0.58 0.24 25), oklch(0.75 0.12 75));
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline[data-state="open"]::after,
+.nav-link-underline.active::after {
+  transform: scaleX(1);
+}
+
+/* CTA glow pulse */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 16px 0 rgba(220, 38, 38, 0.25); }
+  50% { box-shadow: 0 0 24px 4px rgba(220, 38, 38, 0.4); }
+}
+
+.animate-cta-glow {
+  animation: cta-glow 3s ease-in-out infinite;
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);

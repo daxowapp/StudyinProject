@@ -134,7 +134,7 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Submission date tracking
 - ✅ Student email display
 - ✅ Edit application dialog
-
+- ✅ CUCAS-categorized document request (Universal, China Transfer, Under-18)
 ### 7. **Leads**
 
 **Route:** `/admin/leads`
@@ -266,6 +266,23 @@ The StudyAtChina admin panel is a comprehensive dashboard for managing the entir
 - ✅ Danger Zone:
   - Clear Cache
   - Reset Platform
+
+### 12. **Data Import** ⭐ NEW
+
+**Route:** `/admin/data-import`
+**Features:**
+
+- ✅ 3-step wizard for Excel bulk import of universities and programs
+- ✅ Step 1: Parse Excel, preview universities, detect duplicates
+- ✅ Step 2: Import universities with SSE streaming, OpenAI-generated descriptions/logos
+- ✅ Step 3: Batch-import programs with AI descriptions, SEO slug generation
+- ✅ **Smart Entry Requirements Auto-Assignment**: After importing all programs for a university, AI analyzes entry_requirements texts from Excel and auto-maps them to `admission_requirements_catalog` entries, populating `university_admission_requirements` with extracted custom notes (e.g. "Minimum IELTS 6.0")
+- ✅ **Description Backfill**: Existing `program_catalog` entries with null descriptions are auto-updated during import
+- ✅ **Bulk Fix All Requirements (DB Only)**: Scans all programs in the database and rewrites raw/unformatted entry requirements with AI. No Excel file needed. Supports force-all mode and resume from specific university.
+- ✅ Real-time progress with per-item log panel
+- ✅ Uses `createAdminClient()` with service role key for RLS bypass
+
+**API Routes:** `/api/import/parse`, `/api/import/universities`, `/api/import/programs`, `/api/import/backfill-requirements`, `/api/import/bulk-fix-requirements`
 
 ## 🎨 Design Features
 
@@ -2144,6 +2161,8 @@ A comprehensive communication and payment management system that enables seamles
 - `interview_invitation`
 - `message_received`
 - `deadline_reminder`
+- `contact_confirmation`
+- `admin_contact_notification`
 
 ### 4. **notification_preferences**
 
@@ -7987,28 +8006,45 @@ Features:
 
 #### **ApplyForm** (`/src/components/applications/ApplyForm.tsx`)
 
-Multi-step application form with:
+Multi-step application form with **level-aware configuration** (`formConfig.ts`):
+
+**Level-Aware Sections** (determined by `program_catalog.level`):
+- `Bachelor`/`Master`/`PhD` → Full form (Identity, Contact, Address, Education, Language, Emergency Contact)
+- `Non-Degree` → Minimal form (Identity, Contact only)
+
+**Configuration Module** (`/src/components/applications/formConfig.ts`):
+- `normalizeLevel(level)` — maps raw level strings to canonical types
+- `isSectionVisible(section, level)` / `isFieldVisible(field, level)` — guards for conditional rendering
+- `getRequiredFields(level)` — returns only required fields for the current level
+- Validation (`getMissingFields`) is config-driven
 
 **Steps:**
 
 1. **Personal Information**
-   - Pre-filled from user account
-   - Country selector (dropdown)
-   - Phone with country code selector
-   - Preferred intake (dropdown)
-   - Emergency contact
+   - Pre-filled from user profile
+   - Collapsible sections: Identity, Contact, Address, Education, Language, Emergency
+   - Sections hidden/shown per program level
+   - Country/phone selectors
 
 2. **Document Upload**
    - Fetches required documents for program
    - Upload to Supabase Storage
-   - File validation
+   - `DocumentNoticePanel` — 6 CUCAS upload rules (formats, ≤5MB, passport photo, scan quality, translation, notarization)
+   - `ServiceBanner` — two-column banner linking to CUCAS Accommodation and Airport Pickup services
+   - `DocumentUploadZone` — orange ribbon header with title, Required/Optional badge, drag-and-drop (RAR, PDF, JPG, PNG, GIF, DOC, DOCX)
+   - **Section I (Universal)**: 8 standard documents — Passport, Photo, Graduation Cert, Transcripts, Chinese Proficiency, English Proficiency, Physical Exam, Non-criminal Record
+   - **Section II (China Transfer)**: `ConditionalDocumentSection` with inverted checkbox — 4 docs for students currently in China
+   - **Section III (Under-18)**: `ConditionalDocumentSection` with inverted checkbox — Guardian letter with notarized ID
+   - `CUCAS_UNIVERSAL_DOCS`, `CUCAS_CHINA_DOCS`, `CUCAS_UNDER18_DOCS` data arrays drive doc cards
+
+**Navigation:**
+- `ProgressTopBar` — horizontal stepper at top with step icons, connectors, and progress percentage (replaces sidebar)
 
 3. **Payment Summary** (if force_payment)
    - Shows fees breakdown
-   - Payment confirmation
 
 4. **Review & Submit**
-   - Review all information
+   - Review only visible sections/fields
    - Final submission
 
 **Success Screen:**
@@ -24651,3 +24687,15 @@ The **BEST university page on Earth** featuring:
 ### CSCA Exam Requirement
 
 The `csca_exam_require` property (boolean) exists in `university_programs` denoting whether Chinese universities require the applicant to clear the CSCA Exam for the stated program. Filtered via client-side params.
+
+---
+
+## Recent Architectural Additions
+
+### 1. Database Population Script (`scripts/import_csvs.py`)
+Developed a Python script using parallel thread mapping and `asyncio` batching to read chunks of Excel spreadsheet datasets inside `.csv` format from the local system, dynamically querying `OpenAI` to generate compelling university data (along with tags, acronyms, and HTML layout descriptions), validating via `Pydantic` models, downloading images efficiently, and uploading to `Supabase`.
+
+Includes full duplicate skipping using deterministic hashing/UID mapping. Supports asynchronous database UPSERT operations on relationships like `universities`, `university_programs` ensuring database integrity over 14000+ items.
+
+### 2. Program Detail Page UI Redesign (`src/app/[locale]/(public)/programs/[slug]/page.tsx`)
+Significantly modernized the UI of the detailed program view (`/programs/[slug]`) bringing a more fluid, dynamic styling. Integrated glass-morphism effect using gradients (`from-primary/5 to-background`), restyled metric grid to use prominent icons with card backgrounds, elevated typography elements to standard `geist` layouts, and ensured appropriate localization with `next-intl` throughout key requirements metrics. Expanded translation strings in `/messages` arrays to cater to `score_ielts`, `gpa_requirement`, and extra admission thresholds.

@@ -110,6 +110,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
         gallery_images: [] as string[],
         latitude: "",
         longitude: "",
+        address: "",
         founded: "",
         total_students: "",
         international_students: "",
@@ -179,6 +180,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                 gallery_images: data.gallery_images || [],
                 latitude: data.latitude || "",
                 longitude: data.longitude || "",
+                address: data.address || "",
                 founded: data.founded || "",
                 total_students: data.total_students || "",
                 international_students: data.international_students || "",
@@ -454,6 +456,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             features?: string[];
             latitude?: string;
             longitude?: string;
+            address?: string;
         };
         setFormData(prev => ({
             ...prev,
@@ -470,6 +473,7 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
             features: aiData.features && Array.isArray(aiData.features) ? [...new Set([...prev.features, ...aiData.features])] : prev.features,
             latitude: aiData.latitude || prev.latitude,
             longitude: aiData.longitude || prev.longitude,
+            address: aiData.address || prev.address,
         }));
     };
 
@@ -800,6 +804,19 @@ export default function EditUniversityPage({ params }: { params: Promise<{ id: s
                                             <p className="text-xs text-muted-foreground">
                                                 Enter coordinates manually or use Google Maps to find the location
                                             </p>
+
+                                            {/* Address */}
+                                            <div className="space-y-2 mt-4">
+                                                <Label htmlFor="address">Street Address</Label>
+                                                <textarea
+                                                    id="address"
+                                                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[60px] resize-y"
+                                                    value={formData.address}
+                                                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                                                    placeholder="e.g., 1 Zhongguancun North Street, Haidian District, Beijing, China 100871"
+                                                    rows={2}
+                                                />
+                                            </div>
 
                                             {/* Map Preview */}
                                             {formData.latitude && formData.longitude && (

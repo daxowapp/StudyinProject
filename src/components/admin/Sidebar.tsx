@@ -30,7 +30,9 @@ import {
     User,
     Sparkles,
     CreditCard,
-    Shield
+    Shield,
+    Upload,
+    MessageSquareText
 } from "lucide-react";
 import Image from "next/image";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
@@ -127,6 +129,15 @@ export function Sidebar({ className }: SidebarProps) {
             items: [
                 { icon: Newspaper, label: "Articles", href: "/admin/articles", permissions: ["articles.view"] },
                 { icon: Mail, label: "Messages", href: "/admin/messages", permissions: ["messages.view"] },
+            ]
+        },
+        {
+            label: "Tools",
+            icon: Upload,
+            permissions: ["settings.view"],
+            items: [
+                { icon: Upload, label: "Data Import", href: "/admin/data-import", permissions: ["settings.view"] },
+                { icon: MessageSquareText, label: "FAQ Generator", href: "/admin/faq-generator", permissions: ["settings.view"] },
             ]
         },
         {

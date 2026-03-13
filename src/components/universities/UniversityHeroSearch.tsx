@@ -1,45 +1,60 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
+import { Search, Loader2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 
-export function UniversityHeroSearch() {
+interface HeroSearchProps {
+    onSearch: (query: string) => void;
+    isSearching?: boolean;
+    onTyping?: () => void;
+}
+
+export function UniversityHeroSearch({ onSearch, isSearching, onTyping }: HeroSearchProps) {
     const t = useTranslations('Universities');
-    const router = useRouter();
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("search") || "";
     const [query, setQuery] = useState(initialQuery);
-    const [debouncedQuery] = useDebounce(query, 500);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-    // Update local state if URL changes externally
+    // Sync initial URL param on mount only
     useEffect(() => {
-        setQuery(searchParams.get("search") || "");
-    }, [searchParams]);
-
-    // Update URL when debounced query changes
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams.toString());
-        if (debouncedQuery) {
-            params.set("search", debouncedQuery);
-        } else {
-            params.delete("search");
+        const q = searchParams.get("search") || "";
+        if (q && q !== query) {
+            setQuery(q);
+            onSearch(q);
         }
-        router.replace(`/universities?${params.toString()}`, { scroll: false });
-    }, [debouncedQuery, router, searchParams]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleChange = (value: string) => {
+        setQuery(value);
+        onTyping?.();
+        // Debounce: fire callback after 250ms of no typing
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => {
+            onSearch(value);
+        }, 250);
+    };
+
+    // Cleanup on unmount
+    useEffect(() => () => clearTimeout(timerRef.current), []);
 
     return (
-        <div className="w-full max-w-2xl mt-8">
+        <div className="w-full max-w-2xl">
             <div className="relative">
-                <Search className="absolute left-4 rtl:right-4 rtl:left-auto top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                {isSearching ? (
+                    <Loader2 className="absolute left-4 rtl:right-4 rtl:left-auto top-1/2 -translate-y-1/2 h-5 w-5 text-primary animate-spin" />
+                ) : (
+                    <Search className="absolute left-4 rtl:right-4 rtl:left-auto top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                )}
                 <Input
                     placeholder={t('search.placeholder')}
-                    className="pl-12 rtl:pr-12 rtl:pl-4 h-14 text-lg bg-background/95 backdrop-blur text-foreground border-0 shadow-xl"
+                    className="pl-12 rtl:pr-12 rtl:pl-4 h-14 text-lg rounded-full bg-background/95 backdrop-blur text-foreground border border-border/50 shadow-lg focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:border-primary/50 transition-all"
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => handleChange(e.target.value)}
                 />
             </div>
         </div>

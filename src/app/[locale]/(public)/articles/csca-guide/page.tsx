@@ -101,29 +101,29 @@ export default function CSCAGuidePage() {
                                         {[
                                             {
                                                 name: 'sections.structure.table.chinese.name',
-                                                dur: '45 mins',
-                                                q: '50',
+                                                dur: '90 mins',
+                                                q: '80',
                                                 req: 'sections.structure.table.chinese.req',
                                                 icon: Languages
                                             },
                                             {
                                                 name: 'sections.structure.table.math.name',
                                                 dur: '60 mins',
-                                                q: '45',
+                                                q: '48',
                                                 req: 'sections.structure.table.math.req',
                                                 icon: Calculator
                                             },
                                             {
                                                 name: 'sections.structure.table.physics.name',
-                                                dur: '45 mins',
-                                                q: '40',
+                                                dur: '60 mins',
+                                                q: '48',
                                                 req: 'sections.structure.table.physics.req',
                                                 icon: Microscope
                                             },
                                             {
                                                 name: 'sections.structure.table.chemistry.name',
-                                                dur: '45 mins',
-                                                q: '40',
+                                                dur: '60 mins',
+                                                q: '48',
                                                 req: 'sections.structure.table.chemistry.req',
                                                 icon: FlaskConical
                                             }
@@ -236,6 +236,20 @@ export default function CSCAGuidePage() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        </section>
+
+                        {/* Application Process & Fees */}
+                        <section className="prose prose-lg dark:prose-invert max-w-none">
+                            <h2 className="flex items-center gap-3 text-2xl font-bold text-foreground mb-6">
+                                <Calendar className="w-6 h-6 text-primary" />
+                                {t('sections.fees_and_process.title')}
+                            </h2>
+                            <div className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+                                <div
+                                    className="text-muted-foreground"
+                                    dangerouslySetInnerHTML={{ __html: t.raw('sections.fees_and_process.content') }}
+                                />
                             </div>
                         </section>
 

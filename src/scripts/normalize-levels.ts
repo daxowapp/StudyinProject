@@ -51,14 +51,14 @@ async function normalizeLevels() {
     try {
         // 1. Get all programs
         const { count } = await supabase
-            .from('university_programs')
+            .from('program_catalog')
             .select('*', { count: 'exact', head: true });
 
         console.log(`📊 Found ${count} total programs.`);
 
         while (true) {
             const { data: programs, error } = await supabase
-                .from('university_programs')
+                .from('program_catalog')
                 .select('id, level')
                 .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
 
@@ -87,7 +87,7 @@ async function normalizeLevels() {
                 // Only update if different
                 if (currentLevel !== targetLevel) {
                     const { error: updateError } = await supabase
-                        .from('university_programs')
+                        .from('program_catalog')
                         .update({ level: targetLevel })
                         .eq('id', program.id);
 

@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { sendContactConfirmationEmail, sendAdminContactNotificationEmail } from "@/lib/email/service";
 
 export async function submitLead(formData: FormData) {
     const supabase = await createClient();
@@ -9,12 +10,20 @@ export async function submitLead(formData: FormData) {
 
     let rawData: Record<string, unknown> = {};
 
+    // Store individual fields for email sending
+    const firstName = formData.get("firstName") as string || '';
+    const lastName = formData.get("lastName") as string || '';
+    const email = formData.get("email") as string || '';
+    const phone = formData.get("phone") as string || '';
+    const subject = formData.get("subject") as string || 'General';
+    const message = formData.get("message") as string || '';
+
     if (source === "contact_us") {
         rawData = {
-            name: `${formData.get("firstName")} ${formData.get("lastName")}`,
-            email: formData.get("email"),
-            phone: formData.get("phone"),
-            message: `[Subject: ${formData.get("subject")}] ${formData.get("message")}`,
+            name: `${firstName} ${lastName}`.trim(),
+            email: email,
+            phone: phone,
+            message: `[Subject: ${subject}] ${message}`,
             source: "contact_us",
             status: "new"
         };
@@ -46,6 +55,34 @@ export async function submitLead(formData: FormData) {
         return { error: "Failed to save your information. Please try again." };
     }
 
+    // Send emails for contact form submissions
+    if (source === "contact_us") {
+        const clientName = `${firstName} ${lastName}`.trim();
+        const subjectLabel = subject.charAt(0).toUpperCase() + subject.slice(1).replace('_', ' ');
+
+        // Send confirmation to client + notification to admin (in parallel, non-blocking)
+        try {
+            await Promise.all([
+                sendContactConfirmationEmail({
+                    clientEmail: email,
+                    clientName: clientName,
+                    subject: subjectLabel,
+                }),
+                sendAdminContactNotificationEmail({
+                    name: clientName,
+                    email: email,
+                    phone: phone,
+                    subject: subjectLabel,
+                    message: message,
+                }),
+            ]);
+            console.log(`[Email] Contact form emails sent for ${clientName}`);
+        } catch (emailError) {
+            // Don't fail the form submission if email fails — lead is already saved
+            console.error('[Email] Failed to send contact form emails:', emailError);
+        }
+    }
+
     // Only send guide if source is guide_download
     let guideUrl = null;
     if (source === "guide_download") {
@@ -61,9 +98,6 @@ export async function submitLead(formData: FormData) {
         // Simulate sending email (In a real app, use Resend or similar)
         console.log(`[Email Mock] Sending guide (${guideUrl}) to ${rawData.email}`);
     }
-
-    // Simulate admin notification
-    console.log(`[Admin Alert] New lead from ${source}: ${rawData.name}`);
 
     revalidatePath("/admin/leads");
     revalidatePath("/admin"); // Update sidebar counts

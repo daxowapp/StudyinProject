@@ -18,6 +18,7 @@ import { Metadata } from "next";
 import { CourseJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 import { CscaCtaSection } from "@/components/home/CscaCtaSection";
+import Image from "next/image";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -163,6 +164,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         return acc;
     }, {}) || {};
 
+    // Fetch dynamic FAQs from program_faqs table (filtered by locale)
+    const { data: dynamicFaqs } = await supabase
+        .from("program_faqs")
+        .select("question, answer")
+        .eq("program_id", program.id)
+        .eq("locale", locale)
+        .order("display_order");
+
     // Use translated content if available, fallback to original
     const programTitle = translation?.title || program.display_title || program.program_title;
     const programDescription = translation?.description || program.program_description || t('overview.noDescription');
@@ -206,19 +215,22 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
             { name: "Provincial Government Scholarship", type: "Partial Scholarship" },
             { name: "University Scholarship", type: "Tuition Waiver" },
         ],
-        faqs: [
-            { q: t('faq.accommodationQ'), a: t('faq.accommodationA') },
-            { q: t('faq.workQ'), a: t('faq.workA') },
-            { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
-        ],
+        faqs: (dynamicFaqs && dynamicFaqs.length > 0)
+            ? dynamicFaqs.map(faq => ({ q: faq.question, a: faq.answer }))
+            : [
+                { q: t('faq.accommodationQ'), a: t('faq.accommodationA') },
+                { q: t('faq.workQ'), a: t('faq.workA') },
+                { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
+            ],
         gpa_requirement: program.gpa_requirement,
         score_ielts: program.score_ielts,
         score_toefl: program.score_toefl,
         score_duolingo: program.score_duolingo,
+        entry_requirements: program.entry_requirements,
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/10">
+        <div className="min-h-screen bg-linear-to-b from-background via-background to-muted/10">
             <CourseJsonLd
                 name={programData.name}
                 description={programData.overview}
@@ -245,24 +257,20 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                 }))}
             />
             {/* Premium Hero Section */}
-            <div className="relative border-b overflow-hidden bg-background">
-                {/* Decorative Gradients */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
-                <div className="absolute top-0 right-0 w-full h-[500px] bg-primary/5 blur-[100px] rounded-full pointer-events-none transform translate-x-1/3 -translate-y-1/4" />
-                <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
-                
-                <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative z-10">
+            <div className="relative border-b overflow-hidden bg-linear-to-b from-[#fdfafa] to-white dark:from-background dark:to-muted/10">
+                <div className="absolute inset-y-0 right-0 w-[80%] bg-radial-[at_100%_50%] from-red-100/40 via-red-50/10 to-transparent dark:from-red-900/20 pointer-events-none" />
+                <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 relative z-10">
                     <div className="max-w-4xl">
                         {/* Breadcrumb */}
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap font-medium">
-                            <Link href="/" className="hover:text-primary transition-colors">{t('breadcrumb.home')}</Link>
-                            <span className="text-muted-foreground/50">/</span>
-                            <Link href="/programs" className="hover:text-primary transition-colors">{t('breadcrumb.programs')}</Link>
-                            <span className="text-muted-foreground/50">/</span>
-                            <Link href={`/${locale}/universities/${program.university_slug}`} className="hover:text-primary transition-colors">
+                        <div className="flex items-center gap-2 text-sm mb-6 flex-wrap font-medium text-muted-foreground/80">
+                            <Link href="/" className="hover:text-foreground transition-colors">{t('breadcrumb.home')}</Link>
+                            <span className="text-muted-foreground/30">/</span>
+                            <Link href="/programs" className="hover:text-foreground transition-colors">{t('breadcrumb.programs')}</Link>
+                            <span className="text-muted-foreground/30">/</span>
+                            <Link href={`/${locale}/universities/${program.university_slug}`} className="hover:text-foreground transition-colors">
                                 {programData.university}
                             </Link>
-                            <span className="text-muted-foreground/50">/</span>
+                            <span className="text-muted-foreground/30">/</span>
                             <span className="text-foreground">{programData.name}</span>
                         </div>
 
@@ -272,73 +280,84 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                         </h1>
 
                         {/* University Info */}
-                        <Link href={`/${locale}/universities/${program.university_slug}`} className="group inline-flex items-center gap-4 mb-8 bg-muted/40 hover:bg-muted/60 border border-muted/50 rounded-2xl p-2 pr-6 transition-all duration-300">
-                            <div className="h-12 w-12 rounded-xl bg-background shadow-sm border flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                <Building2 className="h-6 w-6 text-primary" />
+                        <Link href={`/${locale}/universities/${program.university_slug}`} className="group inline-flex flex-col sm:flex-row sm:items-center gap-4 p-2 pr-6 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/50 backdrop-blur-md mb-8 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-border/30">
+                            <div className="flex items-center justify-center h-14 w-14 rounded-full bg-white dark:bg-background shadow-xs border border-border/40 shrink-0">
+                                {(university as { logo_url?: string })?.logo_url ? (
+                                    <div className="relative h-10 w-10">
+                                        <Image
+                                            src={(university as { logo_url?: string }).logo_url!}
+                                            alt={programData.university}
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                ) : (
+                                    <Building2 className="h-6 w-6 text-red-600 dark:text-red-500" />
+                                )}
                             </div>
-                            <div>
-                                <p className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">{programData.university}</p>
-                                <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-0.5">
-                                    <MapPin className="h-3.5 w-3.5" />
+                            <div className="flex flex-col">
+                                <p className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">{programData.university}</p>
+                                <div className="flex items-center text-sm text-muted-foreground mt-0.5">
+                                    <MapPin className="h-3.5 w-3.5 mr-1 text-muted-foreground/70" />
                                     {programData.city}
-                                </p>
+                                </div>
                             </div>
                         </Link>
 
                         {/* Quick Info Badges */}
-                        <div className="flex flex-wrap gap-2.5 mb-10">
-                            <Badge variant="secondary" className="px-3.5 py-1.5 text-sm font-medium bg-muted/50 hover:bg-muted">
-                                <GraduationCap className="h-4 w-4 mr-2 text-muted-foreground" />
+                        <div className="flex flex-wrap items-center gap-2 mb-10 text-sm font-medium">
+                            <Badge variant="secondary" className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-zinc-50/80 hover:bg-zinc-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-800 text-foreground border-transparent backdrop-blur-md rounded-xl flex items-center gap-1.5 transition-colors">
+                                <GraduationCap className="h-3.5 w-3.5 text-muted-foreground" />
                                 {programData.level}
                             </Badge>
-                            <Badge variant="secondary" className="px-3.5 py-1.5 text-sm font-medium bg-muted/50 hover:bg-muted">
-                                <Clock className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Badge variant="secondary" className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-zinc-50/80 hover:bg-zinc-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-800 text-foreground border-transparent backdrop-blur-md rounded-xl flex items-center gap-1.5 transition-colors">
+                                <Clock className="h-3.5 w-3.5 text-muted-foreground" />
                                 {programData.duration}
                             </Badge>
-                            <Badge variant="secondary" className="px-3.5 py-1.5 text-sm font-medium bg-muted/50 hover:bg-muted">
-                                <Globe className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Badge variant="secondary" className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-zinc-50/80 hover:bg-zinc-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-800 text-foreground border-transparent backdrop-blur-md rounded-xl flex items-center gap-1.5 transition-colors">
+                                <Globe className="h-3.5 w-3.5 text-muted-foreground" />
                                 {programData.language}
                             </Badge>
-                            <Badge variant="secondary" className="px-3.5 py-1.5 text-sm font-medium bg-muted/50 hover:bg-muted">
-                                <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                            <Badge variant="secondary" className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-zinc-50/80 hover:bg-zinc-100 dark:bg-zinc-900/50 dark:hover:bg-zinc-800 text-foreground border-transparent backdrop-blur-md rounded-xl flex items-center gap-1.5 transition-colors">
+                                <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                                 {t('badges.intake', { intake: programData.intake || t('badges.contactUniversity') })}
                             </Badge>
                             {university?.has_fast_track && (
-                                <Badge className="px-3.5 py-1.5 text-sm font-medium bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/20 hover:bg-yellow-500/20">
-                                    <Zap className="h-4 w-4 mr-2 text-yellow-600 dark:text-yellow-400" />
+                                <Badge className="px-3 py-1.5 text-xs sm:text-sm bg-orange-50 hover:bg-orange-100 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400 border border-orange-200/50 dark:border-orange-800/50 rounded-xl font-medium flex items-center gap-1.5">
+                                    <Zap className="h-3.5 w-3.5 text-orange-600 dark:text-orange-500" />
                                     {t('badges.fastTrack')}
                                 </Badge>
                             )}
                             {program.has_custom_requirements && (
-                                <Badge className="px-3.5 py-1.5 text-sm font-medium bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20 hover:bg-purple-500/20">
-                                    <Star className="h-4 w-4 mr-2 text-purple-600 dark:text-purple-400" />
+                                <Badge className="px-3 py-1.5 text-xs sm:text-sm bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border border-purple-200/50 dark:border-purple-800/50 rounded-xl font-medium flex items-center gap-1.5">
+                                    <Star className="h-3.5 w-3.5 text-purple-600 dark:text-purple-500" />
                                     {t('badges.specialRequirements') || 'Special Requirements'}
                                 </Badge>
                             )}
                             {programData.csca_exam_require && (
-                                <Badge className="px-3.5 py-1.5 text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400 border-amber-500/30 hover:bg-amber-500/25 shadow-sm">
-                                    <span className="mr-1.5 text-base leading-none">📝</span> Requires CSCA Exam
+                                <Badge className="px-3 py-1.5 text-xs sm:text-sm bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border border-amber-200/50 dark:border-amber-800/50 rounded-xl font-medium shadow-sm flex items-center gap-1.5">
+                                    <span className="text-base leading-none">📝</span> Requires CSCA Exam
                                 </Badge>
                             )}
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-wrap items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4 mt-4">
                             <Link href={`/apply/${slug}`}>
-                                <Button size="lg" className="rounded-full px-8 h-14 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all bg-primary hover:bg-primary/90">
+                                <Button size="lg" className="rounded-full px-8 py-6 text-base font-bold bg-[#E60023] hover:bg-[#CC0020] text-white shadow-[0_8px_20px_rgba(230,0,35,0.3)] hover:shadow-[0_12px_25px_rgba(230,0,35,0.4)] transition-all border-0">
                                     {t('buttons.apply')}
                                     <ArrowRight className="ml-2 h-5 w-5" />
                                 </Button>
                             </Link>
                             <Link href={`/${locale}/universities/${program.university_slug}`}>
-                                <Button size="lg" variant="outline" className="rounded-full h-14 px-6 font-medium border-2 hover:bg-muted/50 transition-colors">
+                                <Button size="lg" variant="outline" className="rounded-full px-8 py-6 text-base font-medium border-border/60 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors shadow-xs bg-white dark:bg-transparent text-foreground">
                                     {t('buttons.viewUniversity')}
                                 </Button>
                             </Link>
                             {university?.brochure_url && (
                                 <a href={university.brochure_url} target="_blank" rel="noopener noreferrer">
-                                    <Button size="lg" variant="ghost" className="rounded-full h-14 px-6 font-medium hover:bg-muted/50 transition-colors">
-                                        <BookOpen className="h-5 w-5 mr-2" />
+                                    <Button size="lg" variant="ghost" className="rounded-full px-6 py-6 text-base font-medium hover:bg-muted/50 transition-colors">
+                                        <BookOpen className="h-5 w-5 mr-2 text-muted-foreground" />
                                         {t('buttons.downloadBrochure')}
                                     </Button>
                                 </a>
@@ -353,16 +372,16 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-8">
                         {/* Key Facts Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="flex flex-wrap gap-4 xl:gap-5 [&>div]:flex-1 [&>div]:min-w-[200px]">
                             {/* Tuition */}
-                            <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-primary/20 hover:shadow-md transition-all">
-                                <CardContent className="p-5 flex flex-col items-start gap-4">
-                                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                        <DollarSign className="h-5 w-5 text-primary" />
+                            <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                <CardContent className="p-6 flex flex-col items-start gap-3">
+                                    <div className="h-10 w-10 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center">
+                                        <DollarSign className="h-5 w-5 text-red-500 dark:text-red-400" />
                                     </div>
-                                    <div>
-                                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.tuition')}</p>
-                                        <p className="text-lg font-bold">
+                                    <div className="mt-1">
+                                        <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.tuition')}</p>
+                                        <p className="text-xl font-bold tracking-tight text-foreground">
                                             {programData.tuition_fee && typeof programData.tuition_fee === 'number' ? (
                                                 <Price amount={programData.tuition_fee} currency={programData.currency} />
                                             ) : (
@@ -374,82 +393,82 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                             </Card>
 
                             {/* Duration */}
-                            <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-blue-500/20 hover:shadow-md transition-all">
-                                <CardContent className="p-5 flex flex-col items-start gap-4">
-                                    <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                        <Clock className="h-5 w-5 text-blue-600" />
+                            <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                <CardContent className="p-6 flex flex-col items-start gap-3">
+                                    <div className="h-10 w-10 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center">
+                                        <Clock className="h-5 w-5 text-blue-500 dark:text-blue-400" />
                                     </div>
-                                    <div>
-                                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.duration')}</p>
-                                        <p className="text-lg font-bold">{programData.duration}</p>
+                                    <div className="mt-1">
+                                        <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.duration')}</p>
+                                        <p className="text-xl font-bold tracking-tight text-foreground">{programData.duration}</p>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* Language */}
-                            <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-green-500/20 hover:shadow-md transition-all">
-                                <CardContent className="p-5 flex flex-col items-start gap-4">
-                                    <div className="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center">
-                                        <Globe className="h-5 w-5 text-green-600" />
+                            <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                <CardContent className="p-6 flex flex-col items-start gap-3">
+                                    <div className="h-10 w-10 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center">
+                                        <Globe className="h-5 w-5 text-green-500 dark:text-green-400" />
                                     </div>
-                                    <div>
-                                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.language')}</p>
-                                        <p className="text-lg font-bold">{programData.language}</p>
+                                    <div className="mt-1">
+                                        <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.language')}</p>
+                                        <p className="text-xl font-bold tracking-tight text-foreground">{programData.language}</p>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* Level */}
-                            <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-orange-500/20 hover:shadow-md transition-all">
-                                <CardContent className="p-5 flex flex-col items-start gap-4">
-                                    <div className="h-10 w-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                                        <Users className="h-5 w-5 text-orange-600" />
+                            <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                <CardContent className="p-6 flex flex-col items-start gap-3">
+                                    <div className="h-10 w-10 rounded-full bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center">
+                                        <Users className="h-5 w-5 text-orange-500 dark:text-orange-400" />
                                     </div>
-                                    <div>
-                                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.level')}</p>
-                                        <p className="text-lg font-bold">{programData.level}</p>
+                                    <div className="mt-1">
+                                        <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.level')}</p>
+                                        <p className="text-xl font-bold tracking-tight text-foreground">{programData.level}</p>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* GPA */}
-                            {(program as any).gpa_requirement && (
-                                <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-purple-500/20 hover:shadow-md transition-all">
-                                    <CardContent className="p-5 flex flex-col items-start gap-4">
-                                        <div className="h-10 w-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                                            <GraduationCap className="h-5 w-5 text-purple-600" />
+                            {programData.gpa_requirement && (
+                                <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                    <CardContent className="p-6 flex flex-col items-start gap-3">
+                                        <div className="h-10 w-10 rounded-full bg-purple-50 dark:bg-purple-500/10 flex items-center justify-center">
+                                            <GraduationCap className="h-5 w-5 text-purple-500 dark:text-purple-400" />
                                         </div>
-                                        <div>
-                                            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
-                                            <p className="text-lg font-bold">{(program as any).gpa_requirement}</p>
+                                        <div className="mt-1">
+                                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
+                                            <p className="text-xl font-bold tracking-tight text-foreground">{programData.gpa_requirement}</p>
                                         </div>
                                     </CardContent>
                                 </Card>
                             )}
 
                             {/* Languages Scores */}
-                            {((program as any).score_ielts || (program as any).score_toefl || (program as any).score_duolingo) && (
-                                <Card className="border border-border/50 shadow-sm bg-gradient-to-br from-background to-muted/20 hover:border-pink-500/20 hover:shadow-md transition-all md:col-span-2 lg:col-span-1">
-                                    <CardContent className="p-5 flex flex-col items-start gap-4">
-                                        <div className="h-10 w-10 rounded-lg bg-pink-500/10 flex items-center justify-center">
-                                            <BookOpen className="h-5 w-5 text-pink-600" />
+                            {(programData.score_ielts || programData.score_toefl || programData.score_duolingo) && (
+                                <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl md:col-span-2 lg:col-span-1">
+                                    <CardContent className="p-6 flex flex-col items-start gap-3">
+                                        <div className="h-10 w-10 rounded-full bg-pink-50 dark:bg-pink-500/10 flex items-center justify-center">
+                                            <BookOpen className="h-5 w-5 text-pink-500 dark:text-pink-400" />
                                         </div>
-                                        <div>
-                                            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">{t('highlights.languageRequirements') || 'Language Requirements'}</p>
-                                            <div className="flex flex-wrap gap-2 mt-1">
-                                                {(program as any).score_ielts && (
+                                        <div className="mt-1">
+                                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.languageRequirements') || 'Language Requirements'}</p>
+                                            <div className="flex flex-wrap gap-2 mt-2">
+                                                {programData.score_ielts && (
                                                     <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 text-xs">
-                                                        IELTS: {(program as any).score_ielts}
+                                                        IELTS: {programData.score_ielts}
                                                     </Badge>
                                                 )}
-                                                {(program as any).score_toefl && (
+                                                {programData.score_toefl && (
                                                     <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
-                                                        TOEFL: {(program as any).score_toefl}
+                                                        TOEFL: {programData.score_toefl}
                                                     </Badge>
                                                 )}
-                                                {(program as any).score_duolingo && (
+                                                {programData.score_duolingo && (
                                                     <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs">
-                                                        Duolingo: {(program as any).score_duolingo}
+                                                        Duolingo: {programData.score_duolingo}
                                                     </Badge>
                                                 )}
                                             </div>
@@ -502,10 +521,11 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                 <ProgramRequirements
                                     requirements={programData.requirements}
                                     scores={{
-                                        ielts: (program as any).score_ielts,
-                                        toefl: (program as any).score_toefl,
-                                        duolingo: (program as any).score_duolingo
+                                        ielts: programData.score_ielts,
+                                        toefl: programData.score_toefl,
+                                        duolingo: programData.score_duolingo
                                     }}
+                                    entryRequirementsText={programData.entry_requirements}
                                 />
                             </CardContent>
                         </Card>
@@ -570,10 +590,10 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                             <DeadlineCountdown deadline={programData.application_deadline} />
 
                             {/* Quick Apply Card */}
-                            <Card className="border border-primary/20 shadow-xl shadow-primary/5 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
+                            <Card className="border border-primary/20 shadow-xl shadow-primary/5 bg-linear-to-b from-primary/5 to-background relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[50px] rounded-full pointer-events-none" />
                                 <CardHeader>
-                                    <CardTitle className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{t('sidebar.ready')}</CardTitle>
+                                    <CardTitle className="text-xl font-bold bg-linear-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">{t('sidebar.ready')}</CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-5 relative z-10">
                                     <div className="space-y-4">
@@ -651,7 +671,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                             </Card>
 
                             {/* Why Choose This Program */}
-                            <Card className="border border-blue-500/20 shadow-sm bg-gradient-to-b from-blue-500/5 to-transparent">
+                            <Card className="border border-blue-500/20 shadow-sm bg-linear-to-b from-blue-500/5 to-transparent">
                                 <CardHeader className="pb-4">
                                     <CardTitle className="text-lg flex items-center gap-2 text-blue-700 dark:text-blue-400">
                                         <TrendingUp className="h-5 w-5" />

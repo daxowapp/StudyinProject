@@ -15,6 +15,8 @@ import { UniversityFilters } from "./filters";
 import { UniversityActions } from "./components/UniversityActions";
 import { Pagination } from "@/components/ui/pagination";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { BulkAutofillButton } from "./components/BulkAutofillButton";
+import { BulkMediaImportButton } from "./components/BulkMediaImportButton";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -96,11 +98,15 @@ export default async function AdminUniversitiesPage({
                     <h1 className="text-3xl font-bold font-heading">Universities</h1>
                     <p className="text-muted-foreground">Manage universities and their programs.</p>
                 </div>
-                <Link href="/admin/universities/new">
-                    <Button>
-                        <Plus className="mr-2 h-4 w-4" /> Add University
-                    </Button>
-                </Link>
+                <div className="flex gap-2">
+                    <BulkMediaImportButton />
+                    <BulkAutofillButton />
+                    <Link href="/admin/universities/new">
+                        <Button>
+                            <Plus className="mr-2 h-4 w-4" /> Add University
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
             <UniversityFilters cities={cities} provinces={provinces} />

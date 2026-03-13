@@ -29,9 +29,63 @@ interface ProgramRequirementsProps {
         toefl?: number | null;
         duolingo?: number | null;
     };
+    entryRequirementsText?: string | null;
 }
 
-export function ProgramRequirements({ requirements, scores }: ProgramRequirementsProps) {
+export function ProgramRequirements({ requirements, scores, entryRequirementsText }: ProgramRequirementsProps) {
+    // Check if any structured requirements exist
+    const hasStructuredReqs = [
+        requirements.academic,
+        requirements.language,
+        requirements.documents,
+        requirements.financial,
+        requirements.other,
+    ].some(arr => arr && arr.length > 0);
+
+    // If no structured requirements, show AI-rewritten text as fallback
+    if (!hasStructuredReqs && entryRequirementsText) {
+        const lines = entryRequirementsText
+            .split('\n')
+            .map(l => l.replace(/^[•\-\*]\s*/, '').trim())
+            .filter(l => l.length > 0);
+
+        return (
+            <div className="space-y-4">
+                <Card>
+                    <CardContent className="p-6">
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                            {lines.map((line, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                    <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                    <span>{line}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        {/* Language Scores */}
+                        {(scores?.ielts || scores?.toefl || scores?.duolingo) && (
+                            <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-dashed">
+                                {scores.ielts && (
+                                    <Badge variant="outline" className="bg-pink-50 text-pink-700 border-pink-200 text-xs py-0 h-5">
+                                        IELTS: {scores.ielts}
+                                    </Badge>
+                                )}
+                                {scores.toefl && (
+                                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs py-0 h-5">
+                                        TOEFL: {scores.toefl}
+                                    </Badge>
+                                )}
+                                {scores.duolingo && (
+                                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs py-0 h-5">
+                                        Duolingo: {scores.duolingo}
+                                    </Badge>
+                                )}
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
     const renderRequirement = (req: RequirementItem | string) => {
         if (typeof req === 'string') return req;
         return (

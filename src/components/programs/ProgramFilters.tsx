@@ -91,9 +91,9 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                         </div>
                         <div className="flex flex-col">
                             <Label htmlFor="scholarship-toggle" className="text-sm font-semibold cursor-pointer">
-                                Scholarship Available
+                                {t('scholarshipAvailable')}
                             </Label>
-                            <span className="text-[11px] text-muted-foreground">Show programs with funding</span>
+                            <span className="text-[11px] text-muted-foreground">{t('scholarshipDesc')}</span>
                         </div>
                     </div>
                     <Switch
@@ -117,9 +117,9 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                         </div>
                         <div className="flex flex-col">
                             <Label htmlFor="csca-toggle" className="text-sm font-semibold cursor-pointer">
-                                Requires CSCA Exam
+                                {t('cscaLabel')}
                             </Label>
-                            <span className="text-[11px] text-muted-foreground">Filter by test requirement</span>
+                            <span className="text-[11px] text-muted-foreground">{t('cscaDesc')}</span>
                         </div>
                     </div>
                     <Switch
@@ -166,18 +166,18 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                 {/* Academic Requirements (Age & GPA) */}
                 <AccordionItem value="academic" className="border-b-0">
                     <AccordionTrigger className="py-3 text-sm font-medium hover:no-underline">
-                        Academic Requirements
+                        {t('academicRequirements')}
                     </AccordionTrigger>
                     <AccordionContent className="pb-3 px-1">
                         <div className="flex gap-4">
                             <div className="space-y-2 flex-1">
-                                <Label htmlFor="age-filter" className="text-xs text-muted-foreground">My Age</Label>
+                                <Label htmlFor="age-filter" className="text-xs text-muted-foreground">{t('myAge')}</Label>
                                 <Input
                                     id="age-filter"
                                     type="number"
                                     min={10}
                                     max={100}
-                                    placeholder="e.g. 21"
+                                    placeholder={t('agePlaceholder')}
                                     value={currentFilters?.age || ''}
                                     onChange={(e) => {
                                         const val = e.target.value ? parseInt(e.target.value) : undefined;
@@ -187,14 +187,14 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                                 />
                             </div>
                             <div className="space-y-2 flex-1">
-                                <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">Min GPA</Label>
+                                <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">{t('minGpa')}</Label>
                                 <Input
                                     id="gpa-filter"
                                     type="number"
                                     min={0.0}
                                     max={100.0}
                                     step={0.1}
-                                    placeholder="e.g. 3.0"
+                                    placeholder={t('gpaPlaceholder')}
                                     value={currentFilters?.gpa || ''}
                                     onChange={(e) => {
                                         const val = e.target.value ? parseFloat(e.target.value) : undefined;

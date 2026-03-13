@@ -421,6 +421,90 @@ export const emailTemplates = {
     }),
     text: `New Message from ${data.studentName}:\n\n${data.message}`
   }),
+
+  // --- CONTACT FORM TEMPLATES ---
+
+  // CONTACT: Confirmation to Client
+  contactConfirmation: (data: {
+    name: string;
+    subject: string;
+  }) => ({
+    subject: 'We Received Your Message — Study at China',
+    html: EmailLayout({
+      title: 'Message Received!',
+      subtitle: 'Thank you for contacting us',
+      previewText: 'We received your message and will get back to you shortly.',
+      content: `
+        <p>Dear ${data.name},</p>
+        <p>Thank you for reaching out to us! We have received your message regarding <strong>${data.subject}</strong>.</p>
+        
+        <div style="${STYLES.infoBox}; border-left: 4px solid ${COLORS.success};">
+          <p style="margin: 0; color: ${COLORS.success}; font-weight: 600;">✅ Your message has been received</p>
+          <p style="margin: 8px 0 0 0; color: ${COLORS.textLight};">Our team will review it and get back to you within <strong>24 hours</strong>.</p>
+        </div>
+
+        <p><strong>What happens next?</strong></p>
+        <ul style="padding-left: 20px; color: ${COLORS.textLight};">
+            <li style="margin-bottom: 8px;">Our team will review your inquiry</li>
+            <li style="margin-bottom: 8px;">You will receive a detailed response within 24 hours</li>
+            <li style="margin-bottom: 8px;">For urgent matters, you can reach us at <a href="tel:+905543081000" style="${STYLES.link}">+90 554 308 10 00</a></li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com'}" style="${STYLES.button}">Visit Our Website</a>
+        </div>
+
+        <p style="margin-top: 24px; color: ${COLORS.textLight}; font-size: 14px;">
+          Best regards,<br/>
+          <strong>Study at China Team</strong>
+        </p>
+      `
+    }),
+    text: `Dear ${data.name},\n\nThank you for contacting us! We received your message regarding "${data.subject}".\n\nOur team will review it and get back to you within 24 hours.\n\nFor urgent matters, call us at +90 554 308 10 00.\n\nBest regards,\nStudy at China Team`
+  }),
+
+  // ADMIN: Contact Form Notification
+  adminContactNotification: (data: {
+    name: string;
+    email: string;
+    phone: string;
+    subject: string;
+    message: string;
+  }) => ({
+    subject: `[Contact Form] ${data.name} — ${data.subject}`,
+    html: EmailLayout({
+      title: 'New Contact Form Submission',
+      subtitle: 'A visitor has sent a message',
+      previewText: `New contact from ${data.name}: ${data.subject}`,
+      content: `
+        <p>A new message has been received via the contact form on the website.</p>
+        
+        <div style="${STYLES.infoBox}">
+          <div style="${STYLES.infoLabel}">Name</div>
+          <div style="${STYLES.infoValue}">${data.name}</div>
+          
+          <div style="${STYLES.infoLabel}">Email</div>
+          <div style="${STYLES.infoValue}"><a href="mailto:${data.email}" style="${STYLES.link}">${data.email}</a></div>
+          
+          <div style="${STYLES.infoLabel}">Phone</div>
+          <div style="${STYLES.infoValue}">${data.phone || 'Not provided'}</div>
+          
+          <div style="${STYLES.infoLabel}">Subject</div>
+          <div style="${STYLES.infoValue}">${data.subject}</div>
+        </div>
+
+        <div style="${STYLES.infoBox}; border-left: 4px solid ${COLORS.primary};">
+          <div style="${STYLES.infoLabel}">Message</div>
+          <p style="white-space: pre-wrap; margin: 8px 0 0 0; color: ${COLORS.text};">${data.message}</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <a href="mailto:${data.email}?subject=Re: ${data.subject}" style="${STYLES.button}">Reply to ${data.name}</a>
+        </div>
+      `
+    }),
+    text: `New Contact Form Submission\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'Not provided'}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`
+  }),
 };
 
 export type EmailTemplate = keyof typeof emailTemplates;

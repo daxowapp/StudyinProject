@@ -3,7 +3,7 @@ import { UniversityContent } from "@/components/universities/UniversityContent";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { UniversityJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { UniversityJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 import { CscaCtaSection } from "@/components/home/CscaCtaSection";
 
@@ -122,7 +122,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
 
     // Fetch translations in parallel for better performance
     const { locale } = await params;
-    const [translationResult, accommodationResult] = await Promise.all([
+    const [translationResult, accommodationResult, universityFaqsResult] = await Promise.all([
         supabase
             .from("university_translations")
             .select("*")
@@ -134,11 +134,18 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             .select("*")
             .eq("university_id", university.id)
             .eq("locale", locale)
-            .single()
+            .single(),
+        supabase
+            .from("university_faqs")
+            .select("question, answer")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .order("display_order")
     ]);
 
     const translation = translationResult.data;
     const accommodationTranslation = accommodationResult.data;
+    const universityFaqs = universityFaqsResult.data || [];
 
     const universityData = {
         id: university.id,
@@ -166,6 +173,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         video_url: university.video_url,
         latitude: university.latitude,
         longitude: university.longitude,
+        address: university.address,
         accommodation_available: university.accommodation_available,
         accommodation_description: accommodationTranslation?.accommodation_description || university.accommodation_description,
         accommodation_fee_range: university.accommodation_fee_range,
@@ -176,6 +184,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         virtual_tour_url: university.virtual_tour_url,
         schedule_call_url: university.schedule_call_url,
         advisor_chat_url: university.advisor_chat_url,
+        faqs: universityFaqs.map(faq => ({ question: faq.question, answer: faq.answer })),
     };
 
     return (
@@ -196,6 +205,11 @@ export default async function UniversityDetailPage({ params }: { params: Promise
                     { name: universityData.name, url: `${baseUrl}/en/universities/${universityData.slug}` },
                 ]}
             />
+            {universityData.faqs && universityData.faqs.length > 0 && (
+                <FAQJsonLd
+                    questions={universityData.faqs}
+                />
+            )}
             <UniversityHeader university={universityData} />
             <UniversityContent university={universityData} />
             <CscaCtaSection />

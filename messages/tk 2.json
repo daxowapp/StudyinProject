@@ -301,12 +301,104 @@
         "awardAmount": "Award Amount",
         "learnMore": "Learn More",
         "stats": {
+            "scholarshipOptions": "Scholarship Options",
+            "universities": "Universities",
+            "programs": "Programs",
             "awarded": "Awarded Annually",
             "funding": "Receive Funding",
             "full": "Full Scholarships",
             "eligible": "Programs Eligible"
         },
-        "viewAll": "View All Scholarships"
+        "viewAll": "View All Scholarships",
+        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+        "popular": {
+            "title": "Featured & Popular Scholarships"
+        },
+        "tabs": {
+            "search": "Search Scholarships",
+            "about": "About Scholarships"
+        },
+        "search": {
+            "filter": "Filters",
+            "clearAll": "Clear All",
+            "searchPlaceholder": "Search program or university...",
+            "category": "Category",
+            "all": "All",
+            "fullScholarship": "Full Scholarship (100%)",
+            "partialScholarship": "Partial Scholarship",
+            "city": "City",
+            "university": "University",
+            "degree": "Degree Level",
+            "language": "Language",
+            "semester": "Semester",
+            "spring": "Spring",
+            "autumn": "Autumn",
+            "freeAccommodation": "Free Accommodation",
+            "monthlyStipend": "Monthly Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "scholarshipOptions": "scholarship options at",
+            "universities": "universities",
+            "noResults": "No scholarships found",
+            "noResultsDescription": "Try adjusting your filters to see more results.",
+            "programsAvailable": "Programs",
+            "upTo": "Up to",
+            "accommodation": "Accommodation",
+            "stipend": "Stipend",
+            "insurance": "Insurance",
+            "program": "Program",
+            "teachingLanguage": "Language",
+            "startingDate": "Intake",
+            "scholarshipCoverage": "Original Tuition",
+            "youNeedToPay": "You Need To Pay",
+            "tuition": "Tuition",
+            "free": "Free",
+            "moreOptions": "More Options",
+            "learnMore": "Learn More"
+        },
+        "detail": {
+            "backToSearch": "Back to Search",
+            "scholarshipAvailable": "Scholarship Available",
+            "programDetails": "Program Details",
+            "degree": "Degree",
+            "duration": "Duration",
+            "language": "Language",
+            "intake": "Intake",
+            "availableScholarships": "Available Scholarships",
+            "noScholarships": "No scholarships are currently available for this program.",
+            "tuitionCoverage": "Tuition Coverage",
+            "freeAccommodation": "Free Accommodation",
+            "stipend": "Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "originalTuition": "Original Tuition",
+            "youPay": "You Need to Pay",
+            "serviceFee": "Service Fee",
+            "applyNow": "Apply for this Scholarship",
+            "university": "University",
+            "viewUniversity": "View University Profile",
+            "viewProgram": "View Program Details"
+        },
+        "about": {
+            "howItWorks": "How Scholarships Work",
+            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+            "scholarshipCoverage": "Scholarship Coverage",
+            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+            "serviceFees": "Service & Processing Fees",
+            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+            "scholarshipTypes": "Common Scholarship Types",
+            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+            "searchPrograms": "Search Eligible Programs",
+            "requiredDocuments": "Required Documents",
+            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+            "faq": "Frequently Asked Questions",
+            "faq1Question": "Do I need to know Chinese to get a scholarship?",
+            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+            "faq2Question": "Can I work while studying?",
+            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+            "faq3Question": "What happens if I fail my classes?",
+            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+            "faq4Question": "How long does the application process take?",
+            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+        }
     },
     "Testimonials": {
         "badge": "Success Stories",
@@ -766,7 +858,9 @@
             "visa": "Visa assistance",
             "orientation": "Pre-departure orientation",
             "accommodation": "Accommodation arrangement support"
-        }
+        },
+        "action": "Action",
+        "scholarshipType": "Scholarship Type"
     },
     "Accommodation": {
         "notAvailable": "Accommodation information not available",
@@ -1121,5 +1215,179 @@
         "noPayments": "No Payments",
         "noPaymentsDesc": "You don't have any pending payments.",
         "contactSupport": "Contact Support"
+    },
+    "CSCAGuide": {
+        "meta": {
+            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+        },
+        "backHome": "Back to Home",
+        "newRequirement": "New Requirement for 2026",
+        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+        "sections": {
+            "overview": {
+                "title": "Overview",
+                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+                "keyDates": {
+                    "title": "Key Dates",
+                    "launch": "2025: Official Launch",
+                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+                    "full": "2028: Full Implementation across all Universities"
+                }
+            },
+            "structure": {
+                "title": "Exam Structure",
+                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+                "table": {
+                    "subject": "Subject",
+                    "duration": "Duration",
+                    "questions": "Questions",
+                    "requirement": "Requirement",
+                    "chinese": {
+                        "name": "Specialized Chinese",
+                        "req": "Humanities/Science"
+                    },
+                    "math": {
+                        "name": "Mathematics",
+                        "req": "Mandatory"
+                    },
+                    "physics": {
+                        "name": "Physics",
+                        "req": "Optional / Major-dependent"
+                    },
+                    "chemistry": {
+                        "name": "Chemistry",
+                        "req": "Optional / Major-dependent"
+                    }
+                }
+            },
+            "subjects": {
+                "title": "Subject Details & Syllabus",
+                "chinese": {
+                    "title": "Specialized Chinese",
+                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+                    "char": {
+                        "title": "Character Recognition",
+                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+                    },
+                    "reading": {
+                        "title": "Reading Comprehension",
+                        "desc": "Highest weight. Sci/Tech/Social essays."
+                    },
+                    "words": {
+                        "title": "Word Distinction",
+                        "desc": "Synonyms, academic vocabulary."
+                    },
+                    "sentences": {
+                        "title": "Sentence/Paragraph",
+                        "desc": "Ordering sentences, completing logic."
+                    }
+                },
+                "math": {
+                    "title": "Mathematics",
+                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+                    "note": "Both Chinese and English versions available.",
+                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+                },
+                "chem": {
+                    "title": "Chemistry",
+                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+                },
+                "phys": {
+                    "title": "Physics",
+                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+                }
+            },
+            "fees_and_process": {
+                "title": "Application Process & Fees",
+                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+            },
+            "formats": {
+                "title": "Test Modes",
+                "online": {
+                    "title": "Online Proctored",
+                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
+                },
+                "computer": {
+                    "title": "Computer-Based",
+                    "desc": "At official test centers (classrooms). Better stability."
+                },
+                "paper": {
+                    "title": "Paper-Based",
+                    "desc": "Traditional format. Limited regions."
+                }
+            },
+            "faq": {
+                "title": "Frequently Asked Questions",
+                "q1": {
+                    "q": "Does the CSCA replace the HSK?",
+                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+                },
+                "q2": {
+                    "q": "Can I take it in English?",
+                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+                },
+                "q3": {
+                    "q": "How long is the score valid?",
+                    "a": "CSCA results are valid for <strong>2 years</strong>."
+                },
+                "q4": {
+                    "q": "Who is exempt from the CSCA?",
+                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+                },
+                "q5": {
+                    "q": "Are scores required for 2026 intake?",
+                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+                },
+                "comparison": {
+                    "title": "CSCA vs. HSK",
+                    "feature": "Feature",
+                    "hsk": "HSK",
+                    "csca": "CSCA",
+                    "focus": "Focus",
+                    "focusHsk": "Daily Communication",
+                    "focusCsca": "Academic Readiness",
+                    "vocab": "Vocabulary",
+                    "vocabHsk": "Life/Everyday",
+                    "vocabCsca": "Technical/Academic",
+                    "req": "Requirement",
+                    "reqHsk": "Language Cert",
+                    "reqCsca": "Academic Entrance"
+                }
+            },
+            "sidebar": {
+                "title": "Important Details",
+                "dates": {
+                    "title": "Dates",
+                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+                },
+                "prep": {
+                    "title": "Preparation",
+                    "desc": "Difficulty level: Junior/Senior High"
+                },
+                "passing": {
+                    "title": "Fees",
+                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+                },
+                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+                "register": "Official Registration Site",
+                "tutor": {
+                    "title": "Fast-Track with Study at China",
+                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+                    "button": "Apply With Us"
+                }
+            }
+        }
+    },
+    "ScholarshipCTA": {
+        "badge": "Discover More Opportunities",
+        "title": "Explore All Scholarship Options",
+        "description": "Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.",
+        "viewAll": "View All Scholarships",
+        "getAdvice": "Get Personalized Advice"
     }
 }

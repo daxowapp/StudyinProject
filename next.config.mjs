@@ -17,6 +17,8 @@ const nextConfig = {
   poweredByHeader: false,
 
   // Performance optimizations
+  serverExternalPackages: ['xlsx'],
+
   experimental: {
     optimizePackageImports: [
       'lucide-react',

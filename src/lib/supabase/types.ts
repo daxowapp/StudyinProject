@@ -2541,6 +2541,7 @@ export type Database = {
           duration: string | null
           education_type: string | null
           english_requirement: string | null
+          entry_requirements: string | null
           force_payment: boolean | null
           gpa_requirement: string | null
           has_custom_requirements: boolean | null
@@ -2573,6 +2574,7 @@ export type Database = {
           duration?: string | null
           education_type?: string | null
           english_requirement?: string | null
+          entry_requirements?: string | null
           force_payment?: boolean | null
           gpa_requirement?: string | null
           has_custom_requirements?: boolean | null
@@ -2605,6 +2607,7 @@ export type Database = {
           duration?: string | null
           education_type?: string | null
           english_requirement?: string | null
+          entry_requirements?: string | null
           force_payment?: boolean | null
           gpa_requirement?: string | null
           has_custom_requirements?: boolean | null

@@ -62,6 +62,42 @@
             "viewAll": "查看所有课程"
         },
         "viewAllUniversities": "查看所有大学",
+        "destinations": {
+            "title": "留学目的地",
+            "viewAll": "查看所有目的地",
+            "beijing": {
+                "title": "北京",
+                "description": "首都城市，拥有清华大学和北京大学等顶尖院校。"
+            },
+            "shanghai": {
+                "title": "上海",
+                "description": "全球金融中心，复旦大学和上海交通大学所在地。"
+            },
+            "guangzhou": {
+                "title": "广州",
+                "description": "南方大都市，拥有领先的医学和工程院校。"
+            },
+            "wuhan": {
+                "title": "武汉",
+                "description": "历史教育中心，武汉大学和华中科技大学所在地。"
+            },
+            "hangzhou": {
+                "title": "杭州",
+                "description": "科技中心和风景名城，浙江大学所在地。"
+            },
+            "nanjing": {
+                "title": "南京",
+                "description": "古都，拥有南京大学和东南大学。"
+            },
+            "chengdu": {
+                "title": "成都",
+                "description": "西部门户城市，四川大学所在地，生活成本低廉。"
+            },
+            "xian": {
+                "title": "西安",
+                "description": "丝绸之路历史名城，西安交通大学所在地。"
+            }
+        },
         "resources": {
             "title": "资源",
             "scholarships": "奖学金",
@@ -139,159 +175,167 @@
     },
     "CSCAGuide": {
         "meta": {
-            "title": "中国 CSCA 考试综合指南",
-            "description": "关于中国学术能力评估 (CSCA) 的一切 - 国际学生的标准化入学考试。"
+            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
         },
-        "backHome": "返回首页",
-        "newRequirement": "2026年新要求",
-        "title": "中国 <span class=\"text-primary\">CSCA 考试</span> 综合指南",
-        "subtitle": "中国学术能力评估正成为国际学生的强制要求。这里有您需要了解的一切，助您备考成功。",
+        "backHome": "Back to Home",
+        "newRequirement": "New Requirement for 2026",
+        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
         "sections": {
             "overview": {
-                "title": "概述",
-                "content": "<strong>CSCA (中国学术能力评估)</strong> 是为申请中国大学本科课程的国际学生设计的标准化学术入学考试。由国家留学基金委 (CSC) 于2025年正式推出，从 <strong>2026年起</strong> 对所有申请中国政府奖学金的国际本科申请者 <strong>强制执行</strong>。",
+                "title": "Overview",
+                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
                 "keyDates": {
-                    "title": "关键日期",
-                    "launch": "2025: 正式推出",
-                    "mandatory": "2026: 奖学金申请者强制要求",
-                    "full": "2028: 所有大学全面实施"
+                    "title": "Key Dates",
+                    "launch": "2025: Official Launch",
+                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+                    "full": "2028: Full Implementation across all Universities"
                 }
             },
             "structure": {
-                "title": "考试结构",
-                "description": "CSCA 采用必考加选考模式。所有问题均为多项选择题。",
+                "title": "Exam Structure",
+                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
                 "table": {
-                    "subject": "科目",
-                    "duration": "时长",
-                    "questions": "题量",
-                    "requirement": "要求",
+                    "subject": "Subject",
+                    "duration": "Duration",
+                    "questions": "Questions",
+                    "requirement": "Requirement",
                     "chinese": {
-                        "name": "专业汉语",
-                        "req": "必考 (中文授课)"
+                        "name": "Specialized Chinese",
+                        "req": "Humanities/Science"
                     },
                     "math": {
-                        "name": "数学",
-                        "req": "强制"
+                        "name": "Mathematics",
+                        "req": "Mandatory"
                     },
                     "physics": {
-                        "name": "物理",
-                        "req": "理工医科必考"
+                        "name": "Physics",
+                        "req": "Optional / Major-dependent"
                     },
                     "chemistry": {
-                        "name": "化学",
-                        "req": "医农科必考"
+                        "name": "Chemistry",
+                        "req": "Optional / Major-dependent"
                     }
                 }
             },
             "subjects": {
-                "title": "科目详情",
+                "title": "Subject Details & Syllabus",
                 "chinese": {
-                    "title": "专业汉语",
-                    "description": "区别于 HSK。评估学术阅读和理解能力。<strong>无英文版本。</strong>",
+                    "title": "Specialized Chinese",
+                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
                     "char": {
-                        "title": "汉字识别",
-                        "desc": "多音字，同音字 (HSK 4-5 级水平)"
+                        "title": "Character Recognition",
+                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
                     },
                     "reading": {
-                        "title": "阅读理解",
-                        "desc": "比重最高。科技/社科论文。"
+                        "title": "Reading Comprehension",
+                        "desc": "Highest weight. Sci/Tech/Social essays."
                     },
                     "words": {
-                        "title": "词语辨析",
-                        "desc": "同义词，学术词汇。"
+                        "title": "Word Distinction",
+                        "desc": "Synonyms, academic vocabulary."
                     },
                     "sentences": {
-                        "title": "句子/段落",
-                        "desc": "句子排序，完成逻辑。"
+                        "title": "Sentence/Paragraph",
+                        "desc": "Ordering sentences, completing logic."
                     }
                 },
                 "math": {
-                    "title": "数学",
-                    "description": "所有考生必考。测试基础学术和逻辑推理能力。",
-                    "note": "提供中文和英文版本。",
-                    "topics": "<strong>主题：</strong> 数列，函数，圆锥曲线（椭圆，双曲线），微积分，向量。",
-                    "style": "<strong>风格：</strong> 节奏快，偏重几何，概念理解。"
+                    "title": "Mathematics",
+                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+                    "note": "Both Chinese and English versions available.",
+                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
                 },
                 "chem": {
-                    "title": "化学",
-                    "desc": "适用于医学，农业，药学。",
-                    "items": "离子共存（重点），有机化学与反应，化学计量"
+                    "title": "Chemistry",
+                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
                 },
                 "phys": {
-                    "title": "物理",
-                    "desc": "适用于科学，工程，医学。",
-                    "items": "力学与运动，电磁学（楞次定律），概念理解"
+                    "title": "Physics",
+                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
                 }
             },
+            "fees_and_process": {
+                "title": "Application Process & Fees",
+                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+            },
             "formats": {
-                "title": "考试模式",
+                "title": "Test Modes",
                 "online": {
-                    "title": "在线监考",
-                    "desc": "居家考试，AI + 人工监考。全球有效。"
+                    "title": "Online Proctored",
+                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
                 },
                 "computer": {
-                    "title": "机考",
-                    "desc": "在官方考试中心进行。更稳定。"
+                    "title": "Computer-Based",
+                    "desc": "At official test centers (classrooms). Better stability."
                 },
                 "paper": {
-                    "title": "笔试",
-                    "desc": "传统模式。特定地区。"
+                    "title": "Paper-Based",
+                    "desc": "Traditional format. Limited regions."
                 }
             },
             "faq": {
-                "title": "常见问题",
+                "title": "Frequently Asked Questions",
                 "q1": {
-                    "q": "CSCA 对所有大学都是强制的吗？",
-                    "a": "目前，申请中国政府奖学金 (CSC) A 类和 B 类是强制的。许多顶尖大学（双一流）也从 2026 年开始将其作为自费学生的主要入学考试。"
+                    "q": "Does the CSCA replace the HSK?",
+                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
                 },
                 "q2": {
-                    "q": "我可以在我的祖国参加考试吗？",
-                    "a": "可以！CSCA 提供 <strong>在线监考</strong> 模式，只要您有稳定的互联网连接并符合技术要求，就可以在世界任何地方参加考试。在部分国家/地区也设有笔试和机考中心。"
+                    "q": "Can I take it in English?",
+                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
                 },
                 "q3": {
-                    "q": "成绩有效期多久？",
-                    "a": "CSCA 成绩仅在 <strong>当前申请年度</strong> 有效。例如，如果您在 2025 年参加考试，您可以用它申请 2025-2026 学年。"
+                    "q": "How long is the score valid?",
+                    "a": "CSCA results are valid for <strong>2 years</strong>."
                 },
                 "q4": {
-                    "q": "多少分算好分数？",
-                    "a": "分数线因大学而异，但通常：<br/>- <strong>顶尖 (C9 联盟):</strong> 数学 > 85, 物理/化学 > 80<br/>- <strong>一流大学:</strong> 数学 > 75, 物理/化学 > 70<br/>- <strong>普通大学:</strong> 数学 > 60"
+                    "q": "Who is exempt from the CSCA?",
+                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+                },
+                "q5": {
+                    "q": "Are scores required for 2026 intake?",
+                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
                 },
                 "comparison": {
-                    "title": "CSCA 与 HSK 对比",
-                    "feature": "特性",
+                    "title": "CSCA vs. HSK",
+                    "feature": "Feature",
                     "hsk": "HSK",
                     "csca": "CSCA",
-                    "focus": "侧重点",
-                    "focusHsk": "日常交流",
-                    "focusCsca": "学术阅读",
-                    "vocab": "词汇",
-                    "vocabHsk": "生活/日常",
-                    "vocabCsca": "技术/学术",
-                    "req": "要求",
-                    "reqHsk": "语言证书",
-                    "reqCsca": "入学考试"
+                    "focus": "Focus",
+                    "focusHsk": "Daily Communication",
+                    "focusCsca": "Academic Readiness",
+                    "vocab": "Vocabulary",
+                    "vocabHsk": "Life/Everyday",
+                    "vocabCsca": "Technical/Academic",
+                    "req": "Requirement",
+                    "reqHsk": "Language Cert",
+                    "reqCsca": "Academic Entrance"
                 }
             },
             "sidebar": {
-                "title": "重要详情",
+                "title": "Important Details",
                 "dates": {
-                    "title": "日期",
-                    "desc": "每年 5 次 (1月, 3月, 4月, 6月, 12月)"
+                    "title": "Dates",
+                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
                 },
                 "prep": {
-                    "title": "备考",
-                    "desc": "建议 3 个月以上"
+                    "title": "Preparation",
+                    "desc": "Difficulty level: Junior/Senior High"
                 },
                 "passing": {
-                    "title": "及格分数",
-                    "desc": "数学: ~75, 中文: ~80 (顶尖大学)"
+                    "title": "Fees",
+                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
                 },
-                "warning": "成绩仅限申请当年有效。",
-                "register": "官方注册网站",
+                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+                "register": "Official Registration Site",
                 "tutor": {
-                    "title": "需要备考帮助？",
-                    "desc": "我们的合作伙伴为 CSCA 数学和专业汉语部分提供专门辅导。",
-                    "button": "联系我们"
+                    "title": "Fast-Track with Study at China",
+                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+                    "button": "Apply With Us"
                 }
             }
         }
@@ -497,12 +541,104 @@
         "awardAmount": "奖励金额",
         "learnMore": "了解更多",
         "stats": {
+            "scholarshipOptions": "Scholarship Options",
+            "universities": "Universities",
+            "programs": "Programs",
             "awarded": "每年颁发",
             "funding": "获得资助",
             "full": "全额奖学金",
             "eligible": "符合条件的课程"
         },
-        "viewAll": "查看所有奖学金"
+        "viewAll": "查看所有奖学金",
+        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+        "popular": {
+            "title": "Featured & Popular Scholarships"
+        },
+        "tabs": {
+            "search": "Search Scholarships",
+            "about": "About Scholarships"
+        },
+        "search": {
+            "filter": "Filters",
+            "clearAll": "Clear All",
+            "searchPlaceholder": "Search program or university...",
+            "category": "Category",
+            "all": "All",
+            "fullScholarship": "Full Scholarship (100%)",
+            "partialScholarship": "Partial Scholarship",
+            "city": "City",
+            "university": "University",
+            "degree": "Degree Level",
+            "language": "Language",
+            "semester": "Semester",
+            "spring": "Spring",
+            "autumn": "Autumn",
+            "freeAccommodation": "Free Accommodation",
+            "monthlyStipend": "Monthly Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "scholarshipOptions": "scholarship options at",
+            "universities": "universities",
+            "noResults": "No scholarships found",
+            "noResultsDescription": "Try adjusting your filters to see more results.",
+            "programsAvailable": "Programs",
+            "upTo": "Up to",
+            "accommodation": "Accommodation",
+            "stipend": "Stipend",
+            "insurance": "Insurance",
+            "program": "Program",
+            "teachingLanguage": "Language",
+            "startingDate": "Intake",
+            "scholarshipCoverage": "Original Tuition",
+            "youNeedToPay": "You Need To Pay",
+            "tuition": "Tuition",
+            "free": "Free",
+            "moreOptions": "More Options",
+            "learnMore": "Learn More"
+        },
+        "detail": {
+            "backToSearch": "Back to Search",
+            "scholarshipAvailable": "Scholarship Available",
+            "programDetails": "Program Details",
+            "degree": "Degree",
+            "duration": "Duration",
+            "language": "Language",
+            "intake": "Intake",
+            "availableScholarships": "Available Scholarships",
+            "noScholarships": "No scholarships are currently available for this program.",
+            "tuitionCoverage": "Tuition Coverage",
+            "freeAccommodation": "Free Accommodation",
+            "stipend": "Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "originalTuition": "Original Tuition",
+            "youPay": "You Need to Pay",
+            "serviceFee": "Service Fee",
+            "applyNow": "Apply for this Scholarship",
+            "university": "University",
+            "viewUniversity": "View University Profile",
+            "viewProgram": "View Program Details"
+        },
+        "about": {
+            "howItWorks": "How Scholarships Work",
+            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+            "scholarshipCoverage": "Scholarship Coverage",
+            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+            "serviceFees": "Service & Processing Fees",
+            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+            "scholarshipTypes": "Common Scholarship Types",
+            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+            "searchPrograms": "Search Eligible Programs",
+            "requiredDocuments": "Required Documents",
+            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+            "faq": "Frequently Asked Questions",
+            "faq1Question": "Do I need to know Chinese to get a scholarship?",
+            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+            "faq2Question": "Can I work while studying?",
+            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+            "faq3Question": "What happens if I fail my classes?",
+            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+            "faq4Question": "How long does the application process take?",
+            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+        }
     },
     "Testimonials": {
         "badge": "成功故事",
@@ -585,6 +721,23 @@
         "contactSupport": "联系支持",
         "footer": "还有问题？我们的支持团队 24/7 全天候为您提供帮助。"
     },
+    "Destinations": {
+        "pageTitle": "留学目的地",
+        "badge": "中国留学目的地",
+        "heroTitle": "探索中国",
+        "heroSubtitle": "最佳留学城市",
+        "heroDescription": "从历史悠久的首都北京到现代化的上海天际线——探索中国最具活力的城市，找到最适合您学术之旅的地方。",
+        "statCities": "可选城市",
+        "statUniversities": "大学总数",
+        "statTopCity": "{city}的大学数量",
+        "featuredTitle": "热门目的地",
+        "featuredSubtitle": "最受国际学生欢迎的中国城市",
+        "allCitiesTitle": "更多城市",
+        "allCitiesSubtitle": "探索中国更多城市的大学",
+        "university": "所大学",
+        "universities": "所大学",
+        "explorePrograms": "探索课程"
+    },
     "Universities": {
         "title": "探索中国顶尖大学",
         "subtitle": "发现 {count}+ 所著名的中国院校。从 985 工程到 C9 联盟大学。",
@@ -595,7 +748,8 @@
         "search": {
             "placeholder": "按大学名称、城市或排名搜索...",
             "label": "搜索",
-            "universityPlaceholder": "大学名称..."
+            "universityPlaceholder": "大学名称...",
+            "searching": "搜索中..."
         },
         "filters": {
             "title": "筛选",
@@ -882,7 +1036,12 @@
         "quickLinks": {
             "exploreCourses": "探索课程",
             "getFunded": "获得资助",
-            "findHousing": "寻找住房"
+            "findHousing": "寻找住房",
+            "findLocation": "位置"
+        },
+        "location": {
+            "title": "校园位置",
+            "viewOnMap": "在谷歌地图上查看"
         },
         "about": "关于",
         "whyChooseUs": "为什么选择我们",
@@ -892,7 +1051,9 @@
             "noPrograms": "未找到此级别的课程。",
             "viewProgram": "查看课程",
             "tuitionFee": "学费",
-            "perYear": "每年"
+            "perYear": "每年",
+            "allLanguages": "所有语言",
+            "filterByLanguage": "语言"
         },
         "scholarships": {
             "title": "可用奖学金选项",
@@ -983,7 +1144,9 @@
             "visa": "签证协助",
             "orientation": "行前指导",
             "accommodation": "住宿安排支持"
-        }
+        },
+        "action": "Action",
+        "scholarshipType": "Scholarship Type"
     },
     "Accommodation": {
         "notAvailable": "暂无住宿信息",
@@ -1233,22 +1396,92 @@
             "paymentInfo": "支付信息",
             "reviewSubmit": "审查并提交"
         },
+        "sections": {
+            "identity": "身份与个人信息",
+            "identitySubtitle": "请按照护照上的信息填写",
+            "contact": "联系方式",
+            "address": "家庭住址",
+            "education": "教育背景",
+            "educationSubtitle": "您最近的学历信息",
+            "language": "语言水平",
+            "languageSubtitle": "中文和英文水平（用于录取评估）",
+            "emergency": "紧急联系人",
+            "emergencySubtitle": "出国安全必需"
+        },
+        "options": {
+            "male": "男",
+            "female": "女",
+            "islam": "伊斯兰教",
+            "christianity": "基督教",
+            "buddhism": "佛教",
+            "hinduism": "印度教",
+            "noReligion": "无宗教",
+            "other": "其他",
+            "single": "未婚",
+            "married": "已婚",
+            "divorced": "离异",
+            "highSchool": "高中",
+            "diploma": "大专",
+            "bachelor": "本科",
+            "master": "硕士",
+            "doctorate": "博士",
+            "noProficiency": "无基础",
+            "basic": "初级",
+            "intermediate": "中级",
+            "advanced": "高级",
+            "native": "母语"
+        },
         "labels": {
+            "firstName": "名",
+            "lastName": "姓",
             "fullName": "全名 (与护照一致)",
             "email": "电子邮件",
             "phone": "手机号码",
-            "country": "国家",
+            "country": "国籍",
             "passport": "护照号码",
+            "gender": "性别",
+            "dateOfBirth": "出生日期",
+            "religion": "宗教信仰",
+            "maritalStatus": "婚姻状况",
+            "wechatId": "微信号",
+            "address": "家庭住址",
+            "city": "城市",
+            "postalCode": "邮政编码",
+            "highestEducation": "最高学历",
+            "schoolName": "学校/大学名称",
+            "majorField": "专业/学科",
+            "graduationYear": "毕业年份",
+            "gpaScore": "GPA / 成绩",
+            "chineseProficiency": "中文水平 (HSK等级)",
+            "englishProficiency": "英语水平",
+            "testScore": "考试成绩 (IELTS/TOEFL)",
             "preferredIntake": "首选入学时间",
             "emergencyContactName": "紧急联系人姓名",
             "emergencyContactPhone": "紧急联系人电话",
             "emergencyContactRelationship": "关系"
         },
         "placeholders": {
-            "fullName": "例如 John Smith",
+            "firstName": "例如 Wei",
+            "lastName": "例如 Zhang",
+            "fullName": "例如 Zhang Wei",
             "email": "例如 john@example.com",
             "phone": "例如 555 123 4567",
             "passport": "例如 AB1234567",
+            "selectGender": "选择性别",
+            "selectReligion": "选择宗教",
+            "selectMaritalStatus": "选择婚姻状况",
+            "wechatId": "例如 wxid_abc123",
+            "address": "例如 XX路123号4号楼",
+            "city": "例如 北京",
+            "postalCode": "例如 100000",
+            "selectEducation": "选择最高学历",
+            "schoolName": "例如 北京大学",
+            "majorField": "例如 计算机科学",
+            "graduationYear": "例如 2024",
+            "gpaScore": "例如 3.5 / 4.0",
+            "selectChinese": "选择HSK等级",
+            "selectEnglish": "选择水平",
+            "testScore": "例如 IELTS 6.5",
             "emergencyName": "例如 父母或监护人姓名",
             "emergencyPhone": "例如 555 123 4567",
             "relationship": "例如 父母，配偶"

@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Badge } from "@/components/ui/badge";
 import { getTranslations } from "next-intl/server";
 import { ScholarshipPageContent } from "@/components/scholarships/ScholarshipPageContent";
-import { Award, GraduationCap, MapPin, Building2, BookOpen, Clock, ArrowRight, Languages } from "lucide-react";
+import { Award } from "lucide-react";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 const PORTAL_KEY = process.env.NEXT_PUBLIC_PORTAL_KEY || 'studyatchina';
@@ -155,7 +155,7 @@ export default async function ScholarshipsPage() {
 
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+        <div className="min-h-screen bg-linear-to-b from-background to-muted/20">
             <BreadcrumbJsonLd
                 items={[
                     { name: 'Home', url: baseUrl },

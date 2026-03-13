@@ -122,6 +122,20 @@ export function HeroSection() {
         }
     }, []);
 
+    // Eagerly fetch just the program count on mount
+    useEffect(() => {
+        const fetchCount = async () => {
+            try {
+                const { getProgramCount } = await import('@/app/actions/getProgramCount');
+                const count = await getProgramCount();
+                setAvailableOptions(prev => ({ ...prev, programCount: count }));
+            } catch (error) {
+                console.error("Failed to fetch program count", error);
+            }
+        };
+        fetchCount();
+    }, []);
+
     // Lazy fetch - only when user interacts with filters
     const handleDropdownOpen = useCallback(() => {
         if (!hasFetchedOptions) {
@@ -157,11 +171,11 @@ export function HeroSection() {
     const ref = useRef(null);
 
     return (
-        <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-900 via-red-800 to-slate-900">
+        <section ref={ref} className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-linear-to-br from-red-900 via-red-800 to-slate-900">
             {/* Background with CSS-based animations - no parallax for performance */}
             <div className="absolute inset-0 z-0">
                 {/* Mesh Gradient Background */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
 
                 <Image
                     src="/hero-bg.png"
@@ -174,7 +188,7 @@ export function HeroSection() {
                 />
 
                 {/* Subtle Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[100px_100px]" />
 
                 {/* Floating Orbs - CSS Animations (no framer-motion) */}
                 <div className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-orb-float" />
@@ -346,10 +360,10 @@ export function HeroSection() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem value="any">{t('options.any')} {t('placeholders.budget')}</SelectItem>
-                                            <SelectItem value="0-3000">Under $3,000</SelectItem>
-                                            <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
-                                            <SelectItem value="5000-8000">$5,000 - $8,000</SelectItem>
-                                            <SelectItem value="8000+">Above $8,000</SelectItem>
+                                            <SelectItem value="0-3000">{t('budget.under3k')}</SelectItem>
+                                            <SelectItem value="3000-5000">{t('budget.3kTo5k')}</SelectItem>
+                                            <SelectItem value="5000-8000">{t('budget.5kTo8k')}</SelectItem>
+                                            <SelectItem value="8000+">{t('budget.above8k')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -361,10 +375,10 @@ export function HeroSection() {
                                             <SelectValue placeholder={t('placeholders.scholarship')} />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="all">{t('options.all')} Programs</SelectItem>
-                                            <SelectItem value="available">Scholarship Available</SelectItem>
-                                            <SelectItem value="full">Full Scholarship</SelectItem>
-                                            <SelectItem value="partial">Partial Scholarship</SelectItem>
+                                            <SelectItem value="all">{t('scholarship.allPrograms')}</SelectItem>
+                                            <SelectItem value="available">{t('scholarship.available')}</SelectItem>
+                                            <SelectItem value="full">{t('scholarship.full')}</SelectItem>
+                                            <SelectItem value="partial">{t('scholarship.partial')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -377,11 +391,11 @@ export function HeroSection() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem value="any">{t('options.any')} {t('placeholders.duration')}</SelectItem>
-                                            <SelectItem value="1">1 Year</SelectItem>
-                                            <SelectItem value="2">2 Years</SelectItem>
-                                            <SelectItem value="3">3 Years</SelectItem>
-                                            <SelectItem value="4">4 Years</SelectItem>
-                                            <SelectItem value="5+">5+ Years</SelectItem>
+                                            <SelectItem value="1">{t('duration.1year')}</SelectItem>
+                                            <SelectItem value="2">{t('duration.2years')}</SelectItem>
+                                            <SelectItem value="3">{t('duration.3years')}</SelectItem>
+                                            <SelectItem value="4">{t('duration.4years')}</SelectItem>
+                                            <SelectItem value="5+">{t('duration.5plus')}</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -390,11 +404,11 @@ export function HeroSection() {
                             {/* Search Button */}
                             <Button
                                 onClick={handleSearch}
-                                className="w-full h-14 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
+                                className="w-full h-14 bg-linear-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
                                 disabled={isLoading}
                             >
                                 <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                                {t('searchWord')} <span className="font-black mx-1">{availableOptions.programCount > 0 ? `${availableOptions.programCount}` : '500+'}</span> {t('programsWord')}
+                                {t('searchWord')} <span className="font-black mx-1">{availableOptions.programCount > 0 ? `${availableOptions.programCount}+` : '500+'}</span> {t('programsWord')}
                             </Button>
 
                             {/* Quick Search Tags */}
@@ -406,42 +420,42 @@ export function HeroSection() {
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <TrendingUp className="w-4 h-4" />
-                                        MBA Programs
+                                        {t('categories.mba')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=engineering&degree=bachelor')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Zap className="w-4 h-4" />
-                                        Engineering
+                                        {t('categories.engineering')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=medicine&degree=bachelor')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <HeartPulse className="w-4 h-4" />
-                                        Medicine (MBBS)
+                                        {t('categories.medicine')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=cs&degree=bachelor')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Code className="w-4 h-4" />
-                                        Computer Science
+                                        {t('categories.cs')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?scholarship=full')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Award className="w-4 h-4" />
-                                        Full Scholarship
+                                        {t('categories.fullScholarship')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?language=english')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Globe className="w-4 h-4" />
-                                        English Taught
+                                        {t('categories.englishTaught')}
                                     </button>
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { CUCAS_UNIVERSAL_DOCS, CUCAS_CHINA_DOCS, CUCAS_UNDER18_DOCS } from '@/components/applications/ApplyFormSteps';
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -60,17 +61,10 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
     // File upload state
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const commonDocuments = [
-        "Passport Copy",
-        "Academic Transcripts",
-        "Degree Certificate",
-        "English Proficiency Test (IELTS/TOEFL)",
-        "Personal Statement",
-        "Recommendation Letters",
-        "CV/Resume",
-        "Financial Proof",
-        "Medical Certificate",
-        "Police Clearance Certificate"
+    const documentSections = [
+        { label: 'I. Universal Documents', docs: CUCAS_UNIVERSAL_DOCS },
+        { label: 'II. China Transfer Documents', docs: CUCAS_CHINA_DOCS },
+        { label: 'III. Under-18 Documents', docs: CUCAS_UNDER18_DOCS },
     ];
 
     async function handleStatusChange(value: string) {
@@ -470,20 +464,28 @@ export function ApplicationDialog({ application }: ApplicationDialogProps) {
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label>Select Required Documents</Label>
-                                    <div className="grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto border rounded-lg p-4">
-                                        {commonDocuments.map((doc) => (
-                                            <div key={doc} className="flex items-center space-x-2">
-                                                <Checkbox
-                                                    id={doc}
-                                                    checked={selectedDocuments.includes(doc)}
-                                                    onCheckedChange={() => toggleDocument(doc)}
-                                                />
-                                                <label
-                                                    htmlFor={doc}
-                                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                                                >
-                                                    {doc}
-                                                </label>
+                                    <div className="max-h-[400px] overflow-y-auto border rounded-lg p-4 space-y-4">
+                                        {documentSections.map((section) => (
+                                            <div key={section.label}>
+                                                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">{section.label}</p>
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    {section.docs.map((doc) => (
+                                                        <div key={doc.id} className="flex items-start space-x-2">
+                                                            <Checkbox
+                                                                id={`dlg-${doc.id}`}
+                                                                checked={selectedDocuments.includes(doc.title)}
+                                                                onCheckedChange={() => toggleDocument(doc.title)}
+                                                            />
+                                                            <label
+                                                                htmlFor={`dlg-${doc.id}`}
+                                                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                                                            >
+                                                                {doc.title}
+                                                                {doc.isRequired && <span className="text-red-500 ml-0.5">*</span>}
+                                                            </label>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

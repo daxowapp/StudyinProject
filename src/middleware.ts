@@ -2,13 +2,59 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
+import { rateLimit, isBlockedBot } from '@/lib/rate-limit';
 
 const intlMiddleware = createMiddleware(routing);
 
-// Force rebuild
+// AI answer engine bots that should NEVER be rate-limited (GEO/AEO)
+const AI_BOT_WHITELIST = [
+    'googlebot', 'bingbot', 'yandexbot', 'baiduspider',
+    'gptbot', 'chatgpt-user', 'perplexitybot', 'claudebot',
+    'google-extended', 'amazonbot', 'applebot',
+];
+
+function isWhitelistedBot(userAgent: string): boolean {
+    if (!userAgent) return false;
+    const ua = userAgent.toLowerCase();
+    return AI_BOT_WHITELIST.some(bot => ua.includes(bot));
+}
 
 export async function middleware(request: NextRequest) {
-    // 1. Run Supabase Auth Middleware to update session
+    const userAgent = request.headers.get('user-agent') || '';
+
+    // 0. Block known scraper bots immediately (before any processing)
+    if (isBlockedBot(userAgent)) {
+        return new NextResponse('Forbidden', { status: 403 });
+    }
+
+    // 1. Rate limiting (skip for whitelisted AI/search bots)
+    if (!isWhitelistedBot(userAgent)) {
+        const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+            || request.headers.get('x-real-ip')
+            || 'unknown';
+
+        // 60 requests per minute for regular users, 30 for /api routes
+        const isApiRoute = request.nextUrl.pathname.startsWith('/api');
+        const maxRequests = isApiRoute ? 30 : 60;
+
+        const { limited, resetTime } = rateLimit(ip, maxRequests);
+
+        if (limited) {
+            const retryAfter = Math.ceil((resetTime - Date.now()) / 1000);
+            return new NextResponse('Too Many Requests', {
+                status: 429,
+                headers: {
+                    'Retry-After': String(retryAfter),
+                    'X-RateLimit-Limit': String(maxRequests),
+                    'X-RateLimit-Remaining': '0',
+                    'X-RateLimit-Reset': String(resetTime),
+                },
+            });
+        }
+
+    }
+
+    // 2. Run Supabase Auth Middleware to update session
     // We pass the request to updateSession, but we don't return its response immediately
     // because we need to let next-intl handle the routing/locale first if possible,
     // OR we need to ensure the session is updated on the response that next-intl generates.
