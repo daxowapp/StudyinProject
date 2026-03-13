@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-14] - i18n: French Apply Form Translations
+
+- **messages/fr.json** [UPDATED]: Added complete `Apply` section with 150+ French-translated keys covering the entire application form — steps, section headers, options (gender, religion, marital status, education, proficiency), field labels, placeholders, hints, buttons (`next` → `Suivant`, `continueToDocuments` → `Continuer vers les Documents`, etc.), validation messages, documents, payment, review, and error strings.
+
 ## [2026-03-14] - Fix: Too Many Requests Rate Limiting
 
 - **middleware.ts** [UPDATED]: Disabled rate limiting entirely in development mode (`NODE_ENV === 'development'`). Increased production limits from 60→200 req/min for pages and 30→100 req/min for API routes to prevent false positives during normal browsing.
