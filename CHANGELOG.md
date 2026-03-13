@@ -1,8 +1,8 @@
 # Changelog
 
-## [2026-03-14] - i18n: French Apply Form Translations
+## [2026-03-14] - i18n: French Navbar Destinations & Apply Form Translations
 
-- **messages/fr.json** [UPDATED]: Added complete `Apply` section with 150+ French-translated keys covering the entire application form — steps, section headers, options (gender, religion, marital status, education, proficiency), field labels, placeholders, hints, buttons (`next` → `Suivant`, `continueToDocuments` → `Continuer vers les Documents`, etc.), validation messages, documents, payment, review, and error strings.
+- **messages/fr.json** [UPDATED]: Added `Navbar.destinations` section with French translations for title, viewAll, and all 8 city entries (Beijing, Shanghai, Guangzhou, Wuhan, Hangzhou, Nanjing, Chengdu, Xi'an). Added missing `qsRankings` and `qsRankingsDesc` to `Navbar.resources`. Added complete `Apply` section with 150+ French-translated keys covering the entire application form.
 
 ## [2026-03-14] - Fix: Too Many Requests Rate Limiting
 

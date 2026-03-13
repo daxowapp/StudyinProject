@@ -62,6 +62,42 @@
             "viewAll": "Voir Tous les Programmes"
         },
         "viewAllUniversities": "Voir Toutes les Universités",
+        "destinations": {
+            "title": "Destinations",
+            "viewAll": "Voir Toutes les Destinations",
+            "beijing": {
+                "title": "Pékin",
+                "description": "Capitale avec des universités de premier rang comme Tsinghua et l'Université de Pékin."
+            },
+            "shanghai": {
+                "title": "Shanghai",
+                "description": "Centre financier mondial abritant Fudan et l'Université Jiao Tong de Shanghai."
+            },
+            "guangzhou": {
+                "title": "Guangzhou",
+                "description": "Métropole du sud avec des écoles de médecine et d'ingénierie de premier plan."
+            },
+            "wuhan": {
+                "title": "Wuhan",
+                "description": "Centre éducatif historique avec l'Université de Wuhan et HUST."
+            },
+            "hangzhou": {
+                "title": "Hangzhou",
+                "description": "Pôle technologique et ville pittoresque abritant l'Université du Zhejiang."
+            },
+            "nanjing": {
+                "title": "Nanjing",
+                "description": "Ancienne capitale avec l'Université de Nanjing et l'Université du Sud-Est."
+            },
+            "chengdu": {
+                "title": "Chengdu",
+                "description": "Porte d'entrée de la Chine occidentale avec l'Université du Sichuan et un coût de vie abordable."
+            },
+            "xian": {
+                "title": "Xi'an",
+                "description": "Ville historique de la Route de la Soie avec l'Université Jiaotong de Xi'an."
+            }
+        },
         "resources": {
             "title": "Ressources",
             "scholarships": "Bourses",
@@ -69,7 +105,9 @@
             "articles": "Informations & Ressources",
             "contact": "Nous Contacter",
             "scholarshipFilter": "Filtre de Bourses",
-            "scholarshipFilterDesc": "Filtrer les universités par avantages de bourses"
+            "scholarshipFilterDesc": "Filtrer les universités par avantages de bourses",
+            "qsRankings": "Classements QS 2026",
+            "qsRankingsDesc": "Universités chinoises dans le classement mondial QS"
         },
         "user": {
             "myApplications": "Mes Candidatures",
