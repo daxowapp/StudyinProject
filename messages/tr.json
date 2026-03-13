@@ -1,1543 +1,1824 @@
 {
-  "Navbar": {
-    "home": "Ana Sayfa",
-    "programs": "Programlar",
-    "universities": "Üniversiteler",
-    "about": "Hakkımızda",
-    "contact": "İletişim",
-    "login": "Giriş Yap",
-    "dashboard": "Panel",
-    "admin": "Yönetici",
-    "categories": {
-      "topRanked": {
-        "title": "En İyiler",
-        "description": "Çin'deki en yüksek dereceli üniversiteleri keşfedin."
-      },
-      "medical": {
-        "title": "Tıp Fakülteleri",
-        "description": "Tıp ve sağlık alanında önde gelen kurumlar."
-      },
-      "engineering": {
-        "title": "Mühendislik",
-        "description": "Mühendislik için en iyi teknik üniversiteler."
-      },
-      "business": {
-        "title": "İşletme & Ekonomi",
-        "description": "Seçkin işletme okulları ve ekonomi enstitüleri."
-      },
-      "arts": {
-        "title": "Sanat & Beşeri Bilimler",
-        "description": "Sanat, kültür ve beşeri bilimler merkezleri."
-      },
-      "all": {
-        "title": "Tüm Üniversiteler",
-        "description": "Anlaşmalı üniversitelerimizin tam listesine göz atın."
-      }
-    },
-    "levels": {
-      "bachelor": {
-        "title": "Lisans Derecesi",
-        "description": "Lise mezunları için lisans programları."
-      },
-      "master": {
-        "title": "Yüksek Lisans Derecesi",
-        "description": "Lisans mezunları için lisansüstü programlar."
-      },
-      "phd": {
-        "title": "Doktora Programları",
-        "description": "Doktora araştırma programları."
-      },
-      "nonDegree": {
-        "title": "Çince Kursları",
-        "description": "Çince dili ve kültürünü öğrenin."
-      },
-      "diploma": {
-        "title": "Diploma",
-        "description": "Mesleki ve teknik programlar."
-      },
-      "language": {
-        "title": "Dil Kursu",
-        "description": "Çince öğrenin."
-      },
-      "viewAll": "Tüm Programları Gör"
-    },
-    "viewAllUniversities": "Tüm Üniversiteleri Gör",
-    "resources": {
-      "title": "Kaynaklar",
-      "scholarships": "Burslar",
-      "howToApply": "Nasıl Başvurulur",
-      "articles": "Bilgi & Kaynaklar",
-      "contact": "Bize Ulaşın",
-      "scholarshipFilter": "Burs Filtresi",
-      "scholarshipFilterDesc": "Üniversiteleri burs avantajlarına göre filtrele",
-      "qsRankings": "QS Sıralamaları 2026",
-      "qsRankingsDesc": "QS Dünya Sıralamalarında Çin üniversiteleri"
-    },
-    "user": {
-      "myApplications": "Başvurularım",
-      "logout": "Çıkış Yap",
-      "signIn": "Giriş Yap",
-      "getStarted": "Başlayın",
-      "myAccount": "Hesabım",
-      "account": "Hesap"
-    }
-  },
-  "Common": {
-    "loading": "Yükleniyor...",
-    "error": "Bir hata oluştu",
-    "submit": "Gönder",
-    "cancel": "İptal",
-    "save": "Kaydet",
-    "delete": "Sil",
-    "edit": "Düzenle",
-    "view": "Görüntüle",
-    "back": "Geri"
-  },
-  "Footer": {
-    "stayUpdated": "Güncel Kalın",
-    "getLatestUpdates": "Son Güncellemeler İçin Abone Olun",
-    "subscribeText": "Programlar, burslar ve başvuru tarihleri hakkında haber almak için abone olun.",
-    "description": "Çin'in en iyi üniversitelerini keşfetmek ve başvurmak için güvenilir ortağınız.",
-    "explore": "Keşfet",
-    "programs": "Programlar",
-    "universities": "Üniversiteler",
-    "scholarships": "Burslar",
-    "howToApply": "Nasıl Başvurulur",
-    "faq": "SSS",
-    "forStudents": "Öğrenciler İçin",
-    "createAccount": "Hesap Oluştur",
-    "trackApplication": "Başvuruyu Takip Et",
-    "documentChecklist": "Belge Listesi",
-    "studentPortal": "Öğrenci Portalı",
-    "contact": "İletişim",
-    "rightsReserved": "Tüm hakları saklıdır.",
-    "designedBy": "Tasarım ve Altyapı:",
-    "termsOfService": "Hizmet Şartları",
-    "privacyPolicy": "Gizlilik Politikası",
-    "cookiePolicy": "Çerez Politikası"
-  },
-  "ScholarshipCTA": {
-    "badge": "Daha Fazla Fırsat Keşfedin",
-    "title": "Tüm Burs Seçeneklerini İnceleyin",
-    "description": "Hangi bursun sizin için uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk şartlarını anlamak ve akademik yolculuğunuz için en uygun olanı bulmak için kapsamlı burs rehberimize göz atın.",
-    "viewAll": "Tüm Bursları Görüntüle",
-    "getAdvice": "Kişiselleştirilmiş Tavsiye Alın"
-  },
-  "CscaCta": {
-    "badge": "2026'dan İtibaren Zorunlu",
-    "title": "<span class=\"text-primary\">CSCA Sınavına</span> Mı Hazırlanıyorsunuz?",
-    "titlePlain": "CSCA Sınavına Mı Hazırlanıyorsunuz?",
-    "description": "Çin Akademik Yeterlilik Değerlendirmesi (CSCA) artık üst düzey burslar için bir gerekliliktir. Yeni kapsamlı kılavuzumuzda konuların, puanlamanın ve hazırlık stratejilerinin tam dökümünü edinin.",
-    "readGuide": "Kılavuzu Oku",
-    "findPrograms": "Programları Bul",
-    "proTip1": {
-      "title": "İpucu #1",
-      "text": "Uzmanlaşmış Çince sadece HSK değil, akademik kelime dağarcığı gerektirir."
-    },
-    "proTip2": {
-      "title": "İpucu #2",
-      "text": "Matematik bölümleri geometri ağırlıklıdır. Konik kesitleri gözden geçirin."
-    }
-  },
-  "CSCAGuide": {
-    "meta": {
-      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-    },
-    "backHome": "Back to Home",
-    "newRequirement": "New Requirement for 2026",
-    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-    "sections": {
-      "overview": {
-        "title": "Overview",
-        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-        "keyDates": {
-          "title": "Key Dates",
-          "launch": "2025: Official Launch",
-          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-          "full": "2028: Full Implementation across all Universities"
+    "Navbar": {
+        "home": "Ana Sayfa",
+        "programs": "Programlar",
+        "universities": "Üniversiteler",
+        "about": "Hakkımızda",
+        "contact": "İletişim",
+        "login": "Giriş Yap",
+        "dashboard": "Panel",
+        "admin": "Yönetici",
+        "categories": {
+            "topRanked": {
+                "title": "En İyiler",
+                "description": "Çin'deki en yüksek dereceli üniversiteleri keşfedin."
+            },
+            "medical": {
+                "title": "Tıp Fakülteleri",
+                "description": "Tıp ve sağlık alanında önde gelen kurumlar."
+            },
+            "engineering": {
+                "title": "Mühendislik",
+                "description": "Mühendislik için en iyi teknik üniversiteler."
+            },
+            "business": {
+                "title": "İşletme & Ekonomi",
+                "description": "Seçkin işletme okulları ve ekonomi enstitüleri."
+            },
+            "arts": {
+                "title": "Sanat & Beşeri Bilimler",
+                "description": "Sanat, kültür ve beşeri bilimler merkezleri."
+            },
+            "all": {
+                "title": "Tüm Üniversiteler",
+                "description": "Anlaşmalı üniversitelerimizin tam listesine göz atın."
+            }
+        },
+        "levels": {
+            "bachelor": {
+                "title": "Lisans Derecesi",
+                "description": "Lise mezunları için lisans programları."
+            },
+            "master": {
+                "title": "Yüksek Lisans Derecesi",
+                "description": "Lisans mezunları için lisansüstü programlar."
+            },
+            "phd": {
+                "title": "Doktora Programları",
+                "description": "Doktora araştırma programları."
+            },
+            "nonDegree": {
+                "title": "Çince Kursları",
+                "description": "Çince dili ve kültürünü öğrenin."
+            },
+            "diploma": {
+                "title": "Diploma",
+                "description": "Mesleki ve teknik programlar."
+            },
+            "language": {
+                "title": "Dil Kursu",
+                "description": "Çince öğrenin."
+            },
+            "viewAll": "Tüm Programları Gör"
+        },
+        "viewAllUniversities": "Tüm Üniversiteleri Gör",
+        "resources": {
+            "title": "Kaynaklar",
+            "scholarships": "Burslar",
+            "howToApply": "Nasıl Başvurulur",
+            "articles": "Bilgi & Kaynaklar",
+            "contact": "Bize Ulaşın",
+            "scholarshipFilter": "Burs Filtresi",
+            "scholarshipFilterDesc": "Üniversiteleri burs avantajlarına göre filtrele",
+            "qsRankings": "QS Sıralamaları 2026",
+            "qsRankingsDesc": "QS Dünya Sıralamalarında Çin üniversiteleri"
+        },
+        "user": {
+            "myApplications": "Başvurularım",
+            "logout": "Çıkış Yap",
+            "signIn": "Giriş Yap",
+            "getStarted": "Başlayın",
+            "myAccount": "Hesabım",
+            "account": "Hesap"
+        },
+        "destinations": {
+            "title": "Destinasyonlar",
+            "viewAll": "Tüm Destinasyonları Gör",
+            "beijing": {
+                "title": "Pekin",
+                "description": "Tsinghua ve Pekin Üniversitesi gibi en üst sıralardaki üniversitelerin bulunduğu başkent."
+            },
+            "shanghai": {
+                "title": "Şanghay",
+                "description": "Fudan ve Şanghay Jiao Tong Üniversitesi'ne ev sahipliği yapan küresel finans merkezi."
+            },
+            "guangzhou": {
+                "title": "Guangzhou",
+                "description": "Önde gelen tıp ve mühendislik okullarına sahip güney metropolü."
+            },
+            "wuhan": {
+                "title": "Wuhan",
+                "description": "Wuhan Üniversitesi ve HUST'a ev sahipliği yapan tarihi eğitim merkezi."
+            },
+            "hangzhou": {
+                "title": "Hangzhou",
+                "description": "Zhejiang Üniversitesi'ne ev sahipliği yapan teknoloji merkezi ve doğal güzellikleriyle ünlü şehir."
+            },
+            "nanjing": {
+                "title": "Nanjing",
+                "description": "Nanjing Üniversitesi ve Güneydoğu Üniversitesi'nin bulunduğu antik başkent."
+            },
+            "chengdu": {
+                "title": "Chengdu",
+                "description": "Sichuan Üniversitesi ve uygun fiyatlı yaşamıyla Batı Çin'in kapısı."
+            },
+            "xian": {
+                "title": "Xi'an",
+                "description": "Xi'an Jiaotong Üniversitesi'nin bulunduğu tarihi İpek Yolu şehri."
+            }
         }
-      },
-      "structure": {
-        "title": "Exam Structure",
-        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-        "table": {
-          "subject": "Subject",
-          "duration": "Duration",
-          "questions": "Questions",
-          "requirement": "Requirement",
-          "chinese": {
-            "name": "Specialized Chinese",
-            "req": "Humanities/Science"
-          },
-          "math": {
-            "name": "Mathematics",
-            "req": "Mandatory"
-          },
-          "physics": {
-            "name": "Physics",
-            "req": "Optional / Major-dependent"
-          },
-          "chemistry": {
-            "name": "Chemistry",
-            "req": "Optional / Major-dependent"
-          }
+    },
+    "Common": {
+        "loading": "Yükleniyor...",
+        "error": "Bir hata oluştu",
+        "submit": "Gönder",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "view": "Görüntüle",
+        "back": "Geri"
+    },
+    "Footer": {
+        "stayUpdated": "Güncel Kalın",
+        "getLatestUpdates": "Son Güncellemeler İçin Abone Olun",
+        "subscribeText": "Programlar, burslar ve başvuru tarihleri hakkında haber almak için abone olun.",
+        "description": "Çin'in en iyi üniversitelerini keşfetmek ve başvurmak için güvenilir ortağınız.",
+        "explore": "Keşfet",
+        "programs": "Programlar",
+        "universities": "Üniversiteler",
+        "scholarships": "Burslar",
+        "howToApply": "Nasıl Başvurulur",
+        "faq": "SSS",
+        "forStudents": "Öğrenciler İçin",
+        "createAccount": "Hesap Oluştur",
+        "trackApplication": "Başvuruyu Takip Et",
+        "documentChecklist": "Belge Listesi",
+        "studentPortal": "Öğrenci Portalı",
+        "contact": "İletişim",
+        "rightsReserved": "Tüm hakları saklıdır.",
+        "designedBy": "Tasarım ve Altyapı:",
+        "termsOfService": "Hizmet Şartları",
+        "privacyPolicy": "Gizlilik Politikası",
+        "cookiePolicy": "Çerez Politikası"
+    },
+    "ScholarshipCTA": {
+        "badge": "Daha Fazla Fırsat Keşfedin",
+        "title": "Tüm Burs Seçeneklerini İnceleyin",
+        "description": "Hangi bursun sizin için uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk şartlarını anlamak ve akademik yolculuğunuz için en uygun olanı bulmak için kapsamlı burs rehberimize göz atın.",
+        "viewAll": "Tüm Bursları Görüntüle",
+        "getAdvice": "Kişiselleştirilmiş Tavsiye Alın"
+    },
+    "CscaCta": {
+        "badge": "2026'dan İtibaren Zorunlu",
+        "title": "<span class=\"text-primary\">CSCA Sınavına</span> Mı Hazırlanıyorsunuz?",
+        "titlePlain": "CSCA Sınavına Mı Hazırlanıyorsunuz?",
+        "description": "Çin Akademik Yeterlilik Değerlendirmesi (CSCA) artık üst düzey burslar için bir gerekliliktir. Yeni kapsamlı kılavuzumuzda konuların, puanlamanın ve hazırlık stratejilerinin tam dökümünü edinin.",
+        "readGuide": "Kılavuzu Oku",
+        "findPrograms": "Programları Bul",
+        "proTip1": {
+            "title": "İpucu #1",
+            "text": "Uzmanlaşmış Çince sadece HSK değil, akademik kelime dağarcığı gerektirir."
+        },
+        "proTip2": {
+            "title": "İpucu #2",
+            "text": "Matematik bölümleri geometri ağırlıklıdır. Konik kesitleri gözden geçirin."
         }
-      },
-      "subjects": {
-        "title": "Subject Details & Syllabus",
-        "chinese": {
-          "title": "Specialized Chinese",
-          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-          "char": {
-            "title": "Character Recognition",
-            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-          },
-          "reading": {
-            "title": "Reading Comprehension",
-            "desc": "Highest weight. Sci/Tech/Social essays."
-          },
-          "words": {
-            "title": "Word Distinction",
-            "desc": "Synonyms, academic vocabulary."
-          },
-          "sentences": {
-            "title": "Sentence/Paragraph",
-            "desc": "Ordering sentences, completing logic."
-          }
+    },
+    "CSCAGuide": {
+        "meta": {
+            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
         },
-        "math": {
-          "title": "Mathematics",
-          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-          "note": "Both Chinese and English versions available.",
-          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-        },
-        "chem": {
-          "title": "Chemistry",
-          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-        },
-        "phys": {
-          "title": "Physics",
-          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        "backHome": "Back to Home",
+        "newRequirement": "New Requirement for 2026",
+        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+        "sections": {
+            "overview": {
+                "title": "Overview",
+                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+                "keyDates": {
+                    "title": "Key Dates",
+                    "launch": "2025: Official Launch",
+                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+                    "full": "2028: Full Implementation across all Universities"
+                }
+            },
+            "structure": {
+                "title": "Exam Structure",
+                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+                "table": {
+                    "subject": "Subject",
+                    "duration": "Duration",
+                    "questions": "Questions",
+                    "requirement": "Requirement",
+                    "chinese": {
+                        "name": "Specialized Chinese",
+                        "req": "Humanities/Science"
+                    },
+                    "math": {
+                        "name": "Mathematics",
+                        "req": "Mandatory"
+                    },
+                    "physics": {
+                        "name": "Physics",
+                        "req": "Optional / Major-dependent"
+                    },
+                    "chemistry": {
+                        "name": "Chemistry",
+                        "req": "Optional / Major-dependent"
+                    }
+                }
+            },
+            "subjects": {
+                "title": "Subject Details & Syllabus",
+                "chinese": {
+                    "title": "Specialized Chinese",
+                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+                    "char": {
+                        "title": "Character Recognition",
+                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+                    },
+                    "reading": {
+                        "title": "Reading Comprehension",
+                        "desc": "Highest weight. Sci/Tech/Social essays."
+                    },
+                    "words": {
+                        "title": "Word Distinction",
+                        "desc": "Synonyms, academic vocabulary."
+                    },
+                    "sentences": {
+                        "title": "Sentence/Paragraph",
+                        "desc": "Ordering sentences, completing logic."
+                    }
+                },
+                "math": {
+                    "title": "Mathematics",
+                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+                    "note": "Both Chinese and English versions available.",
+                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+                },
+                "chem": {
+                    "title": "Chemistry",
+                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+                },
+                "phys": {
+                    "title": "Physics",
+                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+                }
+            },
+            "fees_and_process": {
+                "title": "Application Process & Fees",
+                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+            },
+            "formats": {
+                "title": "Test Modes",
+                "online": {
+                    "title": "Online Proctored",
+                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
+                },
+                "computer": {
+                    "title": "Computer-Based",
+                    "desc": "At official test centers (classrooms). Better stability."
+                },
+                "paper": {
+                    "title": "Paper-Based",
+                    "desc": "Traditional format. Limited regions."
+                }
+            },
+            "faq": {
+                "title": "Frequently Asked Questions",
+                "q1": {
+                    "q": "Does the CSCA replace the HSK?",
+                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+                },
+                "q2": {
+                    "q": "Can I take it in English?",
+                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+                },
+                "q3": {
+                    "q": "How long is the score valid?",
+                    "a": "CSCA results are valid for <strong>2 years</strong>."
+                },
+                "q4": {
+                    "q": "Who is exempt from the CSCA?",
+                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+                },
+                "q5": {
+                    "q": "Are scores required for 2026 intake?",
+                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+                },
+                "comparison": {
+                    "title": "CSCA vs. HSK",
+                    "feature": "Feature",
+                    "hsk": "HSK",
+                    "csca": "CSCA",
+                    "focus": "Focus",
+                    "focusHsk": "Daily Communication",
+                    "focusCsca": "Academic Readiness",
+                    "vocab": "Vocabulary",
+                    "vocabHsk": "Life/Everyday",
+                    "vocabCsca": "Technical/Academic",
+                    "req": "Requirement",
+                    "reqHsk": "Language Cert",
+                    "reqCsca": "Academic Entrance"
+                }
+            },
+            "sidebar": {
+                "title": "Important Details",
+                "dates": {
+                    "title": "Dates",
+                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+                },
+                "prep": {
+                    "title": "Preparation",
+                    "desc": "Difficulty level: Junior/Senior High"
+                },
+                "passing": {
+                    "title": "Fees",
+                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+                },
+                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+                "register": "Official Registration Site",
+                "tutor": {
+                    "title": "Fast-Track with Study at China",
+                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+                    "button": "Apply With Us"
+                }
+            }
         }
-      },
-      "fees_and_process": {
-        "title": "Application Process & Fees",
-        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-      },
-      "formats": {
-        "title": "Test Modes",
-        "online": {
-          "title": "Online Proctored",
-          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+    },
+    "Hero": {
+        "admissionsOpen": "2026 Kayıtları Başladı",
+        "searchPlaceholder": "Ne okumak istiyorsunuz? (ör. Bilgisayar Mühendisliği, Tıp)",
+        "title": "Çin'deki Geleceğiniz Burada Başlıyor",
+        "subtitle": "Çin'in en iyi üniversitelerinde <bold>50.000+ öğrenciye</bold> katılın",
+        "searchButton": "<bold>500+</bold> Programı Ara",
+        "searchWord": "Ara",
+        "programsWord": "Program",
+        "browseByCategory": "Kategoriye Göre Göz At",
+        "scrollToExplore": "Keşfetmek için kaydır",
+        "stats": {
+            "universities": "Üniversite",
+            "students": "Öğrenci",
+            "success": "Başarı",
+            "scholarships": "Burs"
         },
-        "computer": {
-          "title": "Computer-Based",
-          "desc": "At official test centers (classrooms). Better stability."
+        "tabs": {
+            "programs": "Programlar",
+            "universities": "Üniversiteler",
+            "scholarships": "Burslar"
         },
-        "paper": {
-          "title": "Paper-Based",
-          "desc": "Traditional format. Limited regions."
+        "placeholders": {
+            "degree": "Derece Seviyesi",
+            "field": "Çalışma Alanı",
+            "city": "Şehir",
+            "language": "Dil",
+            "budget": "Bütçe (USD/Yıl)",
+            "scholarship": "Burs",
+            "duration": "Süre"
+        },
+        "options": {
+            "any": "Herhangi",
+            "all": "Tümü"
+        },
+        "budget": {
+            "under3k": "3.000$'ın altında",
+            "3kTo5k": "3.000$ - 5.000$",
+            "5kTo8k": "5.000$ - 8.000$",
+            "above8k": "8.000$'ın üstünde"
+        },
+        "scholarship": {
+            "allPrograms": "Tüm Programlar",
+            "available": "Burs Mevcut",
+            "full": "Tam Burs",
+            "partial": "Kısmi Burs"
+        },
+        "duration": {
+            "1year": "1 Yıl",
+            "2years": "2 Yıl",
+            "3years": "3 Yıl",
+            "4years": "4 Yıl",
+            "5plus": "5+ Yıl"
+        },
+        "categories": {
+            "mba": "MBA",
+            "engineering": "Mühendislik",
+            "medicine": "Tıp",
+            "cs": "Bilgisayar Bilimi",
+            "fullScholarship": "Tam Burslu",
+            "englishTaught": "İngilizce Eğitim"
         }
-      },
-      "faq": {
-        "title": "Frequently Asked Questions",
-        "q1": {
-          "q": "Does the CSCA replace the HSK?",
-          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+    },
+    "WhyStudy": {
+        "badge": "Neden Çin'i Seçmelisiniz",
+        "title": "<gradient>Küresel Başarıya</gradient> Açılan Kapınız",
+        "description": "Çin, kadim bilgelik ile en son yenilikleri birleştirerek, Asya'nın ekonomik güç merkezinin kalbinde uluslararası öğrencilere benzersiz bir eğitim deneyimi sunuyor.",
+        "cta": {
+            "explore": "Programları Keşfet",
+            "download": "Rehberi İndir"
         },
-        "q2": {
-          "q": "Can I take it in English?",
-          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-        },
-        "q3": {
-          "q": "How long is the score valid?",
-          "a": "CSCA results are valid for <strong>2 years</strong>."
-        },
-        "q4": {
-          "q": "Who is exempt from the CSCA?",
-          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-        },
-        "q5": {
-          "q": "Are scores required for 2026 intake?",
-          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-        },
-        "comparison": {
-          "title": "CSCA vs. HSK",
-          "feature": "Feature",
-          "hsk": "HSK",
-          "csca": "CSCA",
-          "focus": "Focus",
-          "focusHsk": "Daily Communication",
-          "focusCsca": "Academic Readiness",
-          "vocab": "Vocabulary",
-          "vocabHsk": "Life/Everyday",
-          "vocabCsca": "Technical/Academic",
-          "req": "Requirement",
-          "reqHsk": "Language Cert",
-          "reqCsca": "Academic Entrance"
+        "features": {
+            "worldClass": {
+                "title": "Dünya Klasında Üniversiteler",
+                "description": "Son teknoloji araştırma tesisleri ve ünlü öğretim üyeleri ile küresel sıralamadaki kurumlarda eğitim alın."
+            },
+            "affordable": {
+                "title": "Uygun Fiyatlı Mükemmellik",
+                "description": "%100'e varan cömert burs fırsatları ile rekabetçi maliyetlerle birinci sınıf eğitim."
+            },
+            "career": {
+                "title": "Kariyer Basamağı",
+                "description": "Eşsiz staj ve iş fırsatları ile Asya'nın en büyük ekonomisine erişim."
+            },
+            "safe": {
+                "title": "Güvenli ve Canlı",
+                "description": "Gelişen bir uluslararası toplulukla dünyanın en güvenli ülkelerinden birini deneyimleyin."
+            },
+            "culture": {
+                "title": "Kültürel Daldırma",
+                "description": "Ultra modern, dinamik şehirlerde yaşarken 5.000 yıllık tarihi keşfedin."
+            },
+            "network": {
+                "title": "Küresel Ağ",
+                "description": "200'den fazla ülkeden 500.000'den fazla uluslararası öğrenciden oluşan bir topluluğa katılın."
+            },
+            "english": {
+                "title": "İngilizce Programlar",
+                "description": "Tüm disiplinlerde tamamen İngilizce olarak öğretilen 1.000'den fazla program arasından seçim yapın."
+            },
+            "recognition": {
+                "title": "Dünya Çapında Tanınırlık",
+                "description": "UNESCO, WHO ve küresel meslek kuruluşları tarafından tanınan dereceler kazanın."
+            }
         }
-      },
-      "sidebar": {
-        "title": "Important Details",
-        "dates": {
-          "title": "Dates",
-          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+    },
+    "HowItWorks": {
+        "badge": "Yıldırım Hızında Süreç",
+        "title": "Başvurudan <gradient>Kabul</gradient>e",
+        "description": "Programlara göz atmaktan kabul mektubunuzu almaya kadar sizi rekor sürede ulaştırmak için tasarlanmış 6 adımlı akıcı bir yolculuk.",
+        "cta": {
+            "button": "Başvurunuza Şimdi Başlayın",
+            "time": "Ortalama tamamlanma süresi: <bold>15 dakika</bold>"
         },
-        "prep": {
-          "title": "Preparation",
-          "desc": "Difficulty level: Junior/Senior High"
-        },
-        "passing": {
-          "title": "Fees",
-          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-        },
-        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-        "register": "Official Registration Site",
-        "tutor": {
-          "title": "Fast-Track with Study at China",
-          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-          "button": "Apply With Us"
+        "steps": {
+            "discover": {
+                "title": "Programları Keşfet",
+                "description": "Hedeflerinize uygun en iyi Çin üniversitelerinden 500+ programa göz atın."
+            },
+            "profile": {
+                "title": "Profil Oluştur",
+                "description": "Hesabınızı kurun ve akademik profilinizi dakikalar içinde tamamlayın."
+            },
+            "upload": {
+                "title": "Belgeleri Yükle",
+                "description": "Sertifikaları, transkriptleri ve gerekli belgeleri güvenli bir şekilde gönderin."
+            },
+            "scholarship": {
+                "title": "Burs Türünü Seçin",
+                "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
+            },
+            "pay": {
+                "title": "Burs Türünü Seçin",
+                "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
+            },
+            "track": {
+                "title": "İlerlemeyi Takip Et",
+                "description": "Gerçek zamanlı güncellemeler ve bildirimlerle başvuru durumunuzu izleyin."
+            },
+            "admission": {
+                "title": "Kabul Al",
+                "description": "Teklif mektubunuzu, vize belgelerinizi alın ve yolculuğunuza başlayın!"
+            }
         }
-      }
-    }
-  },
-  "Hero": {
-    "admissionsOpen": "2026 Kayıtları Başladı",
-    "searchPlaceholder": "Ne okumak istiyorsunuz? (ör. Bilgisayar Mühendisliği, Tıp)",
-    "title": "Çin'deki Geleceğiniz Burada Başlıyor",
-    "subtitle": "Çin'in en iyi üniversitelerinde <bold>50.000+ öğrenciye</bold> katılın",
-    "searchButton": "<bold>500+</bold> Programı Ara",
-    "searchWord": "Ara",
-    "programsWord": "Program",
-    "browseByCategory": "Kategoriye Göre Göz At",
-    "scrollToExplore": "Keşfetmek için kaydır",
-    "stats": {
-      "universities": "Üniversite",
-      "students": "Öğrenci",
-      "success": "Başarı",
-      "scholarships": "Burs"
     },
-    "tabs": {
-      "programs": "Programlar",
-      "universities": "Üniversiteler",
-      "scholarships": "Burslar"
+    "Stats": {
+        "badge": "Etkimiz",
+        "title": "Dünya Çapında Binlerce Kişi Tarafından Güveniliyor",
+        "description": "Platformumuz aracılığıyla hayallerine ulaşan başarılı öğrencilerden oluşan küresel bir topluluğa katılın",
+        "items": {
+            "universities": {
+                "label": "Ortak Üniversiteler",
+                "description": "Üst düzey kurumlar"
+            },
+            "students": {
+                "label": "Uluslararası Öğrenciler",
+                "description": "200+ ülkeden"
+            },
+            "programs": {
+                "label": "Mevcut Programlar",
+                "description": "Tüm çalışma alanları"
+            },
+            "success": {
+                "label": "Başarı Oranı",
+                "description": "Kabul onayı"
+            },
+            "countries": {
+                "label": "Temsil Edilen Ülkeler",
+                "description": "Küresel topluluk"
+            },
+            "scholarships": {
+                "label": "Verilen Burslar",
+                "description": "Finansal destek"
+            },
+            "time": {
+                "label": "Başvuru Süresi",
+                "description": "Hızlı ve kolay süreç"
+            },
+            "employment": {
+                "label": "Mezun İstihdamı",
+                "description": "6 ay içinde"
+            }
+        }
     },
-    "placeholders": {
-      "degree": "Derece Seviyesi",
-      "field": "Çalışma Alanı",
-      "city": "Şehir",
-      "language": "Dil",
-      "budget": "Bütçe (USD/Yıl)",
-      "scholarship": "Burs",
-      "duration": "Süre"
+    "FeaturedPrograms": {
+        "badge": "Öne Çıkan Programlar",
+        "title": "Popüler Programlar",
+        "description": "Çin'in en iyi üniversitelerindeki en çok aranan programlarımızı keşfedin",
+        "duration": "Süre",
+        "tuition": "Yıllık Ücret",
+        "explore": "Programı İncele",
+        "viewAll": "Tüm Programları Görüntüle",
+        "fastTrack": "Hızlı Geçiş"
     },
-    "options": {
-      "any": "Herhangi",
-      "all": "Tümü"
-    }
-  },
-  "WhyStudy": {
-    "badge": "Neden Çin'i Seçmelisiniz",
-    "title": "<gradient>Küresel Başarıya</gradient> Açılan Kapınız",
-    "description": "Çin, kadim bilgelik ile en son yenilikleri birleştirerek, Asya'nın ekonomik güç merkezinin kalbinde uluslararası öğrencilere benzersiz bir eğitim deneyimi sunuyor.",
-    "cta": {
-      "explore": "Programları Keşfet",
-      "download": "Rehberi İndir"
+    "FeaturedUniversities": {
+        "badge": "En İyi Üniversiteler",
+        "title": "Seçkin Üniversiteler",
+        "description": "Çin'in en prestijli kurumlarında eğitim alın",
+        "fastTrack": "Hızlı Başvuru",
+        "programs": "Programlar",
+        "tuitionFrom": "Başlangıç Fiyatı",
+        "students": "Öğrenciler",
+        "viewDetails": "Detayları Gör",
+        "viewAll": "Tüm Üniversiteleri Gör"
     },
-    "features": {
-      "worldClass": {
-        "title": "Dünya Klasında Üniversiteler",
-        "description": "Son teknoloji araştırma tesisleri ve ünlü öğretim üyeleri ile küresel sıralamadaki kurumlarda eğitim alın."
-      },
-      "affordable": {
-        "title": "Uygun Fiyatlı Mükemmellik",
-        "description": "%100'e varan cömert burs fırsatları ile rekabetçi maliyetlerle birinci sınıf eğitim."
-      },
-      "career": {
-        "title": "Kariyer Basamağı",
-        "description": "Eşsiz staj ve iş fırsatları ile Asya'nın en büyük ekonomisine erişim."
-      },
-      "safe": {
-        "title": "Güvenli ve Canlı",
-        "description": "Gelişen bir uluslararası toplulukla dünyanın en güvenli ülkelerinden birini deneyimleyin."
-      },
-      "culture": {
-        "title": "Kültürel Daldırma",
-        "description": "Ultra modern, dinamik şehirlerde yaşarken 5.000 yıllık tarihi keşfedin."
-      },
-      "network": {
-        "title": "Küresel Ağ",
-        "description": "200'den fazla ülkeden 500.000'den fazla uluslararası öğrenciden oluşan bir topluluğa katılın."
-      },
-      "english": {
-        "title": "İngilizce Programlar",
-        "description": "Tüm disiplinlerde tamamen İngilizce olarak öğretilen 1.000'den fazla program arasından seçim yapın."
-      },
-      "recognition": {
-        "title": "Dünya Çapında Tanınırlık",
-        "description": "UNESCO, WHO ve küresel meslek kuruluşları tarafından tanınan dereceler kazanın."
-      }
-    }
-  },
-  "HowItWorks": {
-    "badge": "Yıldırım Hızında Süreç",
-    "title": "Başvurudan <gradient>Kabul</gradient>e",
-    "description": "Programlara göz atmaktan kabul mektubunuzu almaya kadar sizi rekor sürede ulaştırmak için tasarlanmış 6 adımlı akıcı bir yolculuk.",
-    "cta": {
-      "button": "Başvurunuza Şimdi Başlayın",
-      "time": "Ortalama tamamlanma süresi: <bold>15 dakika</bold>"
+    "Scholarships": {
+        "badge": "Finansal Destek",
+        "title": "Burslar ve Finansal Yardım",
+        "description": "Çin'de eğitim ekonomiktir. Uluslararası öğrenciler için mevcut olan çeşitli burs fırsatlarını keşfedin.",
+        "items": {
+            "csc": {
+                "title": "Çin Hükümeti Bursu (CSC)",
+                "description": "Uluslararası öğrenciler için tam veya kısmi burs. Eğitim ücreti, konaklama ve harçlığı kapsar.",
+                "amount": "Yılda 10.000$'a kadar"
+            },
+            "university": {
+                "title": "Üniversite Bursları",
+                "description": "Üstün başarılı başvuru sahipleri için doğrudan üniversiteler tarafından sunulan başarıya dayalı burslar.",
+                "amount": "Yılda 8.000$'a kadar"
+            },
+            "provincial": {
+                "title": "Eyalet Hükümeti Bursları",
+                "description": "Uluslararası yetenekleri belirli bölgelere çekmek için yerel yönetimler tarafından finanse edilen burslar.",
+                "amount": "Yılda 6.000$'a kadar"
+            }
+        },
+        "awardAmount": "Burs Miktarı",
+        "learnMore": "Daha Fazla Bilgi",
+        "stats": {
+            "scholarshipOptions": "Scholarship Options",
+            "universities": "Universities",
+            "programs": "Programs",
+            "awarded": "Yıllık Verilen",
+            "funding": "Fon Alan",
+            "full": "Tam Burslar",
+            "eligible": "Uygun Programlar"
+        },
+        "viewAll": "Tüm Bursları Gör",
+        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+        "popular": {
+            "title": "Featured & Popular Scholarships"
+        },
+        "tabs": {
+            "search": "Search Scholarships",
+            "about": "About Scholarships"
+        },
+        "search": {
+            "filter": "Filters",
+            "clearAll": "Clear All",
+            "searchPlaceholder": "Search program or university...",
+            "category": "Category",
+            "all": "All",
+            "fullScholarship": "Full Scholarship (100%)",
+            "partialScholarship": "Partial Scholarship",
+            "city": "City",
+            "university": "University",
+            "degree": "Degree Level",
+            "language": "Language",
+            "semester": "Semester",
+            "spring": "Spring",
+            "autumn": "Autumn",
+            "freeAccommodation": "Free Accommodation",
+            "monthlyStipend": "Monthly Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "scholarshipOptions": "scholarship options at",
+            "universities": "universities",
+            "noResults": "No scholarships found",
+            "noResultsDescription": "Try adjusting your filters to see more results.",
+            "programsAvailable": "Programs",
+            "upTo": "Up to",
+            "accommodation": "Accommodation",
+            "stipend": "Stipend",
+            "insurance": "Insurance",
+            "program": "Program",
+            "teachingLanguage": "Language",
+            "startingDate": "Intake",
+            "scholarshipCoverage": "Original Tuition",
+            "youNeedToPay": "You Need To Pay",
+            "tuition": "Tuition",
+            "free": "Free",
+            "moreOptions": "More Options",
+            "learnMore": "Learn More"
+        },
+        "detail": {
+            "backToSearch": "Back to Search",
+            "scholarshipAvailable": "Scholarship Available",
+            "programDetails": "Program Details",
+            "degree": "Degree",
+            "duration": "Duration",
+            "language": "Language",
+            "intake": "Intake",
+            "availableScholarships": "Available Scholarships",
+            "noScholarships": "No scholarships are currently available for this program.",
+            "tuitionCoverage": "Tuition Coverage",
+            "freeAccommodation": "Free Accommodation",
+            "stipend": "Stipend",
+            "medicalInsurance": "Medical Insurance",
+            "originalTuition": "Original Tuition",
+            "youPay": "You Need to Pay",
+            "serviceFee": "Service Fee",
+            "applyNow": "Apply for this Scholarship",
+            "university": "University",
+            "viewUniversity": "View University Profile",
+            "viewProgram": "View Program Details"
+        },
+        "about": {
+            "howItWorks": "How Scholarships Work",
+            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+            "scholarshipCoverage": "Scholarship Coverage",
+            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+            "serviceFees": "Service & Processing Fees",
+            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+            "scholarshipTypes": "Common Scholarship Types",
+            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+            "searchPrograms": "Search Eligible Programs",
+            "requiredDocuments": "Required Documents",
+            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+            "faq": "Frequently Asked Questions",
+            "faq1Question": "Do I need to know Chinese to get a scholarship?",
+            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+            "faq2Question": "Can I work while studying?",
+            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+            "faq3Question": "What happens if I fail my classes?",
+            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+            "faq4Question": "How long does the application process take?",
+            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+        }
     },
-    "steps": {
-      "discover": {
-        "title": "Programları Keşfet",
-        "description": "Hedeflerinize uygun en iyi Çin üniversitelerinden 500+ programa göz atın."
-      },
-      "profile": {
-        "title": "Profil Oluştur",
-        "description": "Hesabınızı kurun ve akademik profilinizi dakikalar içinde tamamlayın."
-      },
-      "upload": {
-        "title": "Belgeleri Yükle",
-        "description": "Sertifikaları, transkriptleri ve gerekli belgeleri güvenli bir şekilde gönderin."
-      },
-      "scholarship": {
-        "title": "Burs Türünü Seçin",
-        "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
-      },
-      "pay": {
-        "title": "Burs Türünü Seçin",
-        "description": "Her üniversitenin burs türleri var. Birini seçin ve başvurun."
-      },
-      "track": {
-        "title": "İlerlemeyi Takip Et",
-        "description": "Gerçek zamanlı güncellemeler ve bildirimlerle başvuru durumunuzu izleyin."
-      },
-      "admission": {
-        "title": "Kabul Al",
-        "description": "Teklif mektubunuzu, vize belgelerinizi alın ve yolculuğunuza başlayın!"
-      }
-    }
-  },
-  "Stats": {
-    "badge": "Etkimiz",
-    "title": "Dünya Çapında Binlerce Kişi Tarafından Güveniliyor",
-    "description": "Platformumuz aracılığıyla hayallerine ulaşan başarılı öğrencilerden oluşan küresel bir topluluğa katılın",
-    "items": {
-      "universities": {
-        "label": "Ortak Üniversiteler",
-        "description": "Üst düzey kurumlar"
-      },
-      "students": {
-        "label": "Uluslararası Öğrenciler",
-        "description": "200+ ülkeden"
-      },
-      "programs": {
-        "label": "Mevcut Programlar",
-        "description": "Tüm çalışma alanları"
-      },
-      "success": {
-        "label": "Başarı Oranı",
-        "description": "Kabul onayı"
-      },
-      "countries": {
-        "label": "Temsil Edilen Ülkeler",
-        "description": "Küresel topluluk"
-      },
-      "scholarships": {
-        "label": "Verilen Burslar",
-        "description": "Finansal destek"
-      },
-      "time": {
-        "label": "Başvuru Süresi",
-        "description": "Hızlı ve kolay süreç"
-      },
-      "employment": {
-        "label": "Mezun İstihdamı",
-        "description": "6 ay içinde"
-      }
-    }
-  },
-  "FeaturedPrograms": {
-    "badge": "Öne Çıkan Programlar",
-    "title": "Popüler Programlar",
-    "description": "Çin'in en iyi üniversitelerindeki en çok aranan programlarımızı keşfedin",
-    "duration": "Süre",
-    "tuition": "Yıllık Ücret",
-    "explore": "Programı İncele",
-    "viewAll": "Tüm Programları Görüntüle",
-    "fastTrack": "Hızlı Geçiş"
-  },
-  "FeaturedUniversities": {
-    "badge": "En İyi Üniversiteler",
-    "title": "Seçkin Üniversiteler",
-    "description": "Çin'in en prestijli kurumlarında eğitim alın",
-    "fastTrack": "Hızlı Başvuru",
-    "programs": "Programlar",
-    "tuitionFrom": "Başlangıç Fiyatı",
-    "students": "Öğrenciler",
-    "viewDetails": "Detayları Gör",
-    "viewAll": "Tüm Üniversiteleri Gör"
-  },
-  "Scholarships": {
-    "badge": "Finansal Destek",
-    "title": "Burslar ve Finansal Yardım",
-    "description": "Çin'de eğitim ekonomiktir. Uluslararası öğrenciler için mevcut olan çeşitli burs fırsatlarını keşfedin.",
-    "items": {
-      "csc": {
-        "title": "Çin Hükümeti Bursu (CSC)",
-        "description": "Uluslararası öğrenciler için tam veya kısmi burs. Eğitim ücreti, konaklama ve harçlığı kapsar.",
-        "amount": "Yılda 10.000$'a kadar"
-      },
-      "university": {
-        "title": "Üniversite Bursları",
-        "description": "Üstün başarılı başvuru sahipleri için doğrudan üniversiteler tarafından sunulan başarıya dayalı burslar.",
-        "amount": "Yılda 8.000$'a kadar"
-      },
-      "provincial": {
-        "title": "Eyalet Hükümeti Bursları",
-        "description": "Uluslararası yetenekleri belirli bölgelere çekmek için yerel yönetimler tarafından finanse edilen burslar.",
-        "amount": "Yılda 6.000$'a kadar"
-      }
+    "Testimonials": {
+        "badge": "Başarı Hikayeleri",
+        "title": "Öğrencilerimiz Ne Diyor",
+        "description": "Platformumuz aracılığıyla başarıyla başvuru yapan ve şu anda Çin'de gelişmekte olan öğrencilerden haber alın.",
+        "testimonials": {
+            "sarah": {
+                "quote": "Tsinghua'da okumak hayatımı değiştiren bir deneyimdi. Kampüs güzel ve profesörler dünya standartlarında. Hem akademik hem de kişisel olarak geliştim.",
+                "program": "Bilgisayar Bilimleri",
+                "university": "Tsinghua Üniversitesi",
+                "country": "ABD"
+            },
+            "ahmed": {
+                "quote": "Studyatchina sayesinde başvuru süreci sorunsuz geçti. Şimdi İnşaat Mühendisliği yüksek lisansımı yapıyorum ve her anını seviyorum.",
+                "program": "İnşaat Mühendisliği",
+                "university": "Zhejiang Üniversitesi",
+                "country": "Mısır"
+            },
+            "maria": {
+                "quote": "Şanghay harika bir şehir! Kültürü, yemeği ve burada edindiğim arkadaşları seviyorum. Aldığım burs her şeyi mümkün kıldı.",
+                "program": "Uluslararası İşletme",
+                "university": "Fudan Üniversitesi",
+                "country": "İspanya"
+            }
+        },
+        "averageRating": "Ortalama Puan",
+        "reviews": "Yorumlar",
+        "satisfaction": "Memnuniyet"
     },
-    "awardAmount": "Burs Miktarı",
-    "learnMore": "Daha Fazla Bilgi",
-    "stats": {
-      "scholarshipOptions": "Scholarship Options",
-      "universities": "Universities",
-      "programs": "Programs",
-      "awarded": "Yıllık Verilen",
-      "funding": "Fon Alan",
-      "full": "Tam Burslar",
-      "eligible": "Uygun Programlar"
+    "Partners": {
+        "badge": "Güvenilir Ortaklar",
+        "title": "Anlaşmalı Üniversiteler",
+        "description": "Size en iyi eğitim fırsatlarını sunmak için Çin'in en prestijli kurumlarıyla işbirliği yapıyoruz",
+        "recognitions": {
+            "unesco": {
+                "title": "UNESCO Tarafından Tanınan",
+                "description": "Tüm anlaşmalı üniversiteler UNESCO tarafından tanınmaktadır"
+            },
+            "government": {
+                "title": "Hükümet Onaylı",
+                "description": "Çin Eğitim Bakanlığı tarafından resmen onaylanmıştır"
+            },
+            "accredited": {
+                "title": "Küresel Akreditasyon",
+                "description": "Diplomalar dünya çapında 180'den fazla ülkede tanınmaktadır"
+            }
+        }
     },
-    "viewAll": "Tüm Bursları Gör",
-    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-    "popular": {
-      "title": "Featured & Popular Scholarships"
+    "FAQ": {
+        "badge": "Sorularınız mı Var?",
+        "title": "Sıkça Sorulan Sorular",
+        "description": "Çin'de eğitim hakkında sık sorulan soruların yanıtlarını bulun",
+        "items": {
+            "deadline": {
+                "question": "Başvuru son tarihi ne zaman?",
+                "answer": "Son tarihler üniversiteye ve programa göre değişir. Genellikle Eylül dönemi için başvurular Mart ve Haziran ayları arasında kapanır. Kesin tarihler için ilgili program sayfalarını kontrol edin."
+            },
+            "language": {
+                "question": "Çin'de okumak için Çince bilmem gerekiyor mu?",
+                "answer": "Şart değil! Lisans, Yüksek Lisans ve Doktora dereceleri için binlerce İngilizce eğitimli program mevcuttur. Ancak, günlük yaşam için temel düzeyde Çince öğrenmeniz önerilir."
+            },
+            "work": {
+                "question": "Okurken çalışabilir miyim?",
+                "answer": "Uluslararası öğrenciler, üniversitelerinden ve göçmenlik bürosundan izin alarak yarı zamanlı çalışabilir veya staj yapabilirler. Politikalar son yıllarda daha esnek hale gelmiştir."
+            },
+            "scholarships": {
+                "question": "Burslara nasıl başvurabilirim?",
+                "answer": "Başvurunuzu yaparken doğrudan platformumuz üzerinden burslara başvurabilirsiniz. CSC ve üniversite bursları için gerekli belgeler konusunda size rehberlik edeceğiz."
+            },
+            "visa": {
+                "question": "Vize gereksinimleri nelerdir?",
+                "answer": "Geçerli bir pasaport, kabul mektubu ve üniversitenizden JW202 formuna ihtiyacınız olacak. Süreç boyunca kapsamlı vize rehberliği ve desteği sağlıyoruz."
+            },
+            "process": {
+                "question": "Başvuru süreci ne kadar sürer?",
+                "answer": "Tipik başvuru süreci 2-4 hafta sürer. Gönderildikten sonra üniversiteler genellikle 4-8 hafta içinde yanıt verir. Her adımda sizi bilgilendiriyoruz."
+            }
+        },
+        "seeAll": "Tüm SSS'leri Gör",
+        "contactSupport": "Destek ile İletişime Geç",
+        "footer": "Hala sorularınız mı var? Destek ekibimiz size yardımcı olmak için 7/24 hizmetinizdedir."
     },
-    "tabs": {
-      "search": "Search Scholarships",
-      "about": "About Scholarships"
+    "Dashboard": {
+        "sidebar": {
+            "myApplications": "Başvurularım",
+            "profile": "Profil",
+            "messages": "Mesajlar",
+            "payments": "Ödemeler",
+            "documents": "Belgeler",
+            "settings": "Ayarlar",
+            "logout": "Çıkış Yap"
+        },
+        "title": "Panel",
+        "subtitle": "Tekrar hoş geldiniz! İşte başvuru genel bakışınız.",
+        "newApplication": "Yeni Başvuru",
+        "stats": {
+            "totalApplications": "Toplam Başvuru",
+            "submitted": "{count} gönderildi",
+            "pendingActions": "Bekleyen İşlemler",
+            "requiresAttention": "İlginizi gerektiriyor",
+            "offersReceived": "Alınan Teklifler",
+            "congratulations": "Tebrikler!",
+            "successRate": "Başarı Oranı",
+            "acceptanceRate": "Kabul oranı"
+        },
+        "recentApplications": "Başvurularım",
+        "appliedOn": "{date} tarihinde başvuruldu",
+        "viewDetails": "Detayları Gör",
+        "noApplications": {
+            "title": "Henüz Başvuru Yok",
+            "description": "Programlara göz atarak ve ilk başvurunuzu göndererek yolculuğunuza başlayın."
+        },
+        "browsePrograms": "Programlara Göz At"
     },
-    "search": {
-      "filter": "Filters",
-      "clearAll": "Clear All",
-      "searchPlaceholder": "Search program or university...",
-      "category": "Category",
-      "all": "All",
-      "fullScholarship": "Full Scholarship (100%)",
-      "partialScholarship": "Partial Scholarship",
-      "city": "City",
-      "university": "University",
-      "degree": "Degree Level",
-      "language": "Language",
-      "semester": "Semester",
-      "spring": "Spring",
-      "autumn": "Autumn",
-      "freeAccommodation": "Free Accommodation",
-      "monthlyStipend": "Monthly Stipend",
-      "medicalInsurance": "Medical Insurance",
-      "scholarshipOptions": "scholarship options at",
-      "universities": "universities",
-      "noResults": "No scholarships found",
-      "noResultsDescription": "Try adjusting your filters to see more results.",
-      "programsAvailable": "Programs",
-      "upTo": "Up to",
-      "accommodation": "Accommodation",
-      "stipend": "Stipend",
-      "insurance": "Insurance",
-      "program": "Program",
-      "teachingLanguage": "Language",
-      "startingDate": "Intake",
-      "scholarshipCoverage": "Original Tuition",
-      "youNeedToPay": "You Need To Pay",
-      "tuition": "Tuition",
-      "free": "Free",
-      "moreOptions": "More Options",
-      "learnMore": "Learn More"
+    "Profile": {
+        "title": "Profilim",
+        "subtitle": "Kişisel bilgilerinizi ve tercihlerinizi yönetin",
+        "completion": "Profil Tamamlama",
+        "completeProfile": "Gelecekteki başvuruları hızlandırmak için profilinizi tamamlayın",
+        "photo": {
+            "title": "Profil Fotoğrafı",
+            "description": "Profesyonel bir fotoğraf yükleyin",
+            "upload": "Fotoğraf Yükle",
+            "uploading": "Yükleniyor...",
+            "hint": "JPG, PNG veya GIF. Maks 5MB."
+        },
+        "personalInfo": {
+            "title": "Kişisel Bilgiler",
+            "description": "Başvurular için temel bilgileriniz"
+        },
+        "fullName": "Ad Soyad *",
+        "email": "E-posta",
+        "dob": "Doğum Tarihi",
+        "phone": "Telefon Numarası",
+        "nationality": "Uyruk",
+        "passportNumber": "Pasaport Numarası",
+        "address": {
+            "title": "Adres",
+            "description": "Mevcut ikamet adresiniz",
+            "street": "Sokak Adresi",
+            "city": "Şehir",
+            "postalCode": "Posta Kodu"
+        },
+        "emergency": {
+            "title": "Acil Durum İletişimi",
+            "description": "Acil durumda aranacak kişi",
+            "name": "İsim",
+            "phone": "Telefon",
+            "relationship": "Yakınlık Derecesi"
+        },
+        "save": "Profili Kaydet",
+        "saving": "Kaydediliyor...",
+        "success": "Başarılı",
+        "error": "Hata"
     },
-    "detail": {
-      "backToSearch": "Back to Search",
-      "scholarshipAvailable": "Scholarship Available",
-      "programDetails": "Program Details",
-      "degree": "Degree",
-      "duration": "Duration",
-      "language": "Language",
-      "intake": "Intake",
-      "availableScholarships": "Available Scholarships",
-      "noScholarships": "No scholarships are currently available for this program.",
-      "tuitionCoverage": "Tuition Coverage",
-      "freeAccommodation": "Free Accommodation",
-      "stipend": "Stipend",
-      "medicalInsurance": "Medical Insurance",
-      "originalTuition": "Original Tuition",
-      "youPay": "You Need to Pay",
-      "serviceFee": "Service Fee",
-      "applyNow": "Apply for this Scholarship",
-      "university": "University",
-      "viewUniversity": "View University Profile",
-      "viewProgram": "View Program Details"
+    "Documents": {
+        "title": "Belgelerim",
+        "subtitle": "Üniversite başvuruları için belgelerinizi yönetin",
+        "stats": {
+            "total": "Toplam Belge",
+            "uploaded": "Yüklenen dosyalar",
+            "verified": "Doğrulanmış",
+            "approved": "Yönetici tarafından onaylandı",
+            "pending": "İnceleme Bekliyor",
+            "awaiting": "Doğrulama bekleniyor"
+        },
+        "yourDocuments": "Belgeleriniz",
+        "manageDocuments": "Başvuru belgelerinizi yükleyin ve yönetin",
+        "uploadDocument": "Belge Yükle",
+        "noDocuments": "Henüz belge yok",
+        "uploadFirst": "Başlamak için ilk belgenizi yükleyin",
+        "size": "Boyut",
+        "uploaded": "Yüklendi",
+        "download": "İndir",
+        "delete": "Sil",
+        "deleteConfirm": "\"{name}\" belgesini silmek istediğinizden emin misiniz?",
+        "uploadDialog": {
+            "title": "Belge Yükle",
+            "description": "Belge türünü seçin ve dosyanızı yükleyin",
+            "type": "Belge Türü *",
+            "selectType": "Belge türü seçin",
+            "alreadyUploaded": "(Zaten Yüklendi)",
+            "file": "Dosya *",
+            "selected": "Seçildi",
+            "formats": "Kabul edilen formatlar: PDF, JPG, PNG, DOC, DOCX. Maks 10MB.",
+            "cancel": "İptal",
+            "uploading": "Yükleniyor...",
+            "upload": "Yükle"
+        },
+        "error": {
+            "fileSize": "Dosya 10MB'den küçük olmalıdır",
+            "selectFile": "Lütfen bir belge türü ve dosya seçin",
+            "fileType": "Lütfen bir resim dosyası yükleyin",
+            "imageSize": "Resim 5MB'den küçük olmalıdır"
+        },
+        "success": {
+            "uploaded": "Belge başarıyla yüklendi!",
+            "deleted": "Belge silindi"
+        },
+        "types": {
+            "passport": "Pasaport",
+            "transcript": "Akademik Transkript",
+            "diploma": "Diploma/Sertifika",
+            "recommendation_letter": "Referans Mektubu",
+            "personal_statement": "Niyet Mektubu",
+            "cv": "Özgeçmiş (CV)",
+            "language_certificate": "Dil Sertifikası (IELTS/TOEFL)",
+            "photo": "Vesikalık Fotoğraf",
+            "bank_statement": "Banka Hesap Dökümü",
+            "health_certificate": "Sağlık Raporu",
+            "police_clearance": "Adli Sicil Kaydı",
+            "other": "Diğer Belge"
+        },
+        "documentRequest": {
+            "title": "Belge Talebi",
+            "description": "Lütfen aşağıdaki belgeleri yükleyin:\n1. Pasaport Kopyası\n2. Diploma Belgesi\n3. Niyet Mektubu",
+            "note": "her şeyin tüm dillere çevrildiğinden emin olun"
+        }
     },
-    "about": {
-      "howItWorks": "How Scholarships Work",
-      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-      "scholarshipCoverage": "Scholarship Coverage",
-      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-      "serviceFees": "Service & Processing Fees",
-      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-      "scholarshipTypes": "Common Scholarship Types",
-      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-      "searchPrograms": "Search Eligible Programs",
-      "requiredDocuments": "Required Documents",
-      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-      "faq": "Frequently Asked Questions",
-      "faq1Question": "Do I need to know Chinese to get a scholarship?",
-      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-      "faq2Question": "Can I work while studying?",
-      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-      "faq3Question": "What happens if I fail my classes?",
-      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-      "faq4Question": "How long does the application process take?",
-      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-    }
-  },
-  "Testimonials": {
-    "badge": "Başarı Hikayeleri",
-    "title": "Öğrencilerimiz Ne Diyor",
-    "description": "Platformumuz aracılığıyla başarıyla başvuru yapan ve şu anda Çin'de gelişmekte olan öğrencilerden haber alın.",
-    "testimonials": {
-      "sarah": {
-        "quote": "Tsinghua'da okumak hayatımı değiştiren bir deneyimdi. Kampüs güzel ve profesörler dünya standartlarında. Hem akademik hem de kişisel olarak geliştim.",
-        "program": "Bilgisayar Bilimleri",
-        "university": "Tsinghua Üniversitesi",
-        "country": "ABD"
-      },
-      "ahmed": {
-        "quote": "Studyatchina sayesinde başvuru süreci sorunsuz geçti. Şimdi İnşaat Mühendisliği yüksek lisansımı yapıyorum ve her anını seviyorum.",
-        "program": "İnşaat Mühendisliği",
-        "university": "Zhejiang Üniversitesi",
-        "country": "Mısır"
-      },
-      "maria": {
-        "quote": "Şanghay harika bir şehir! Kültürü, yemeği ve burada edindiğim arkadaşları seviyorum. Aldığım burs her şeyi mümkün kıldı.",
-        "program": "Uluslararası İşletme",
-        "university": "Fudan Üniversitesi",
-        "country": "İspanya"
-      }
+    "Status": {
+        "pending_documents": "Belge Bekliyor",
+        "pending_payment": "Ödeme Bekleniyor",
+        "payment_verification": "Ödeme Doğrulama",
+        "submitted": "Gönderildi",
+        "under_review": "İnceleniyor",
+        "accepted": "Kabul Edildi",
+        "rejected": "Reddedildi",
+        "unknown": "Bilinmiyor"
     },
-    "averageRating": "Ortalama Puan",
-    "reviews": "Yorumlar",
-    "satisfaction": "Memnuniyet"
-  },
-  "Partners": {
-    "badge": "Güvenilir Ortaklar",
-    "title": "Anlaşmalı Üniversiteler",
-    "description": "Size en iyi eğitim fırsatlarını sunmak için Çin'in en prestijli kurumlarıyla işbirliği yapıyoruz",
-    "recognitions": {
-      "unesco": {
-        "title": "UNESCO Tarafından Tanınan",
-        "description": "Tüm anlaşmalı üniversiteler UNESCO tarafından tanınmaktadır"
-      },
-      "government": {
-        "title": "Hükümet Onaylı",
-        "description": "Çin Eğitim Bakanlığı tarafından resmen onaylanmıştır"
-      },
-      "accredited": {
-        "title": "Küresel Akreditasyon",
-        "description": "Diplomalar dünya çapında 180'den fazla ülkede tanınmaktadır"
-      }
-    }
-  },
-  "FAQ": {
-    "badge": "Sorularınız mı Var?",
-    "title": "Sıkça Sorulan Sorular",
-    "description": "Çin'de eğitim hakkında sık sorulan soruların yanıtlarını bulun",
-    "items": {
-      "deadline": {
-        "question": "Başvuru son tarihi ne zaman?",
-        "answer": "Son tarihler üniversiteye ve programa göre değişir. Genellikle Eylül dönemi için başvurular Mart ve Haziran ayları arasında kapanır. Kesin tarihler için ilgili program sayfalarını kontrol edin."
-      },
-      "language": {
-        "question": "Çin'de okumak için Çince bilmem gerekiyor mu?",
-        "answer": "Şart değil! Lisans, Yüksek Lisans ve Doktora dereceleri için binlerce İngilizce eğitimli program mevcuttur. Ancak, günlük yaşam için temel düzeyde Çince öğrenmeniz önerilir."
-      },
-      "work": {
-        "question": "Okurken çalışabilir miyim?",
-        "answer": "Uluslararası öğrenciler, üniversitelerinden ve göçmenlik bürosundan izin alarak yarı zamanlı çalışabilir veya staj yapabilirler. Politikalar son yıllarda daha esnek hale gelmiştir."
-      },
-      "scholarships": {
-        "question": "Burslara nasıl başvurabilirim?",
-        "answer": "Başvurunuzu yaparken doğrudan platformumuz üzerinden burslara başvurabilirsiniz. CSC ve üniversite bursları için gerekli belgeler konusunda size rehberlik edeceğiz."
-      },
-      "visa": {
-        "question": "Vize gereksinimleri nelerdir?",
-        "answer": "Geçerli bir pasaport, kabul mektubu ve üniversitenizden JW202 formuna ihtiyacınız olacak. Süreç boyunca kapsamlı vize rehberliği ve desteği sağlıyoruz."
-      },
-      "process": {
-        "question": "Başvuru süreci ne kadar sürer?",
-        "answer": "Tipik başvuru süreci 2-4 hafta sürer. Gönderildikten sonra üniversiteler genellikle 4-8 hafta içinde yanıt verir. Her adımda sizi bilgilendiriyoruz."
-      }
+    "Auth": {
+        "login": {
+            "title": "Giriş Yap",
+            "description": "Hesabınıza erişmek için e-posta ve şifrenizi girin",
+            "emailLabel": "E-posta",
+            "emailPlaceholder": "m@example.com",
+            "passwordLabel": "Şifre",
+            "forgotPassword": "Şifrenizi mi unuttunuz?",
+            "submit": "Giriş Yap",
+            "orContinueWith": "Veya şununla devam et",
+            "continueWithGoogle": "Google ile Devam Et",
+            "connecting": "Bağlanıyor...",
+            "noAccount": "Hesabınız yok mu?",
+            "signUp": "Kaydol",
+            "success": "Giriş başarılı! Yönlendiriliyor...",
+            "error": "Bir şeyler ters gitti",
+            "googleError": "Google ile giriş yapılamadı"
+        },
+        "layout": {
+            "branding": "Studyatchina",
+            "heroTitle": "Çin Üniversitelerine Açılan Kapınız",
+            "heroDescription": "Hayallerini Çin'in en iyi üniversitelerinde sürdüren binlerce uluslararası öğrenciye katılın.",
+            "programsTitle": "500+ Program",
+            "programsDescription": "En iyi Çin üniversitelerinden programlara erişin",
+            "guidanceTitle": "Uzman Rehberliği",
+            "guidanceDescription": "Başvuru yolculuğunuz boyunca destek alın",
+            "scholarshipsTitle": "Burs Fırsatları",
+            "scholarshipsDescription": "Mevcut çeşitli burs seçeneklerini keşfedin",
+            "copyright": "© 2024 Studyatchina. Tüm hakları saklıdır."
+        }
     },
-    "seeAll": "Tüm SSS'leri Gör",
-    "contactSupport": "Destek ile İletişime Geç",
-    "footer": "Hala sorularınız mı var? Destek ekibimiz size yardımcı olmak için 7/24 hizmetinizdedir."
-  },
-  "Dashboard": {
-    "sidebar": {
-      "myApplications": "Başvurularım",
-      "profile": "Profil",
-      "messages": "Mesajlar",
-      "payments": "Ödemeler",
-      "documents": "Belgeler",
-      "settings": "Ayarlar",
-      "logout": "Çıkış Yap"
+    "Notifications": {
+        "title": "Bildirimler",
+        "markAllRead": "Tümünü okundu olarak işaretle",
+        "noNotifications": "Henüz bildirim yok",
+        "viewAll": "Tüm bildirimleri görüntüle",
+        "loading": "Bildirimler yükleniyor...",
+        "types": {
+            "statusChange": "Başvuru Durumu Güncellendi",
+            "documentRequested": "Belge Talep Edildi",
+            "paymentRequested": "Ödeme Gerekli",
+            "messageReceived": "Yeni Mesaj",
+            "newApplication": "Yeni Başvuru",
+            "newLead": "Yeni Potansiyel Müşteri",
+            "documentUploaded": "Belge Yüklendi",
+            "acceptanceLetter": "Kabul Mektubu"
+        },
+        "messages": {
+            "statusChange": "Başvuru durumunuz {status} olarak değişti"
+        }
     },
-    "title": "Panel",
-    "subtitle": "Tekrar hoş geldiniz! İşte başvuru genel bakışınız.",
-    "newApplication": "Yeni Başvuru",
-    "stats": {
-      "totalApplications": "Toplam Başvuru",
-      "submitted": "{count} gönderildi",
-      "pendingActions": "Bekleyen İşlemler",
-      "requiresAttention": "İlginizi gerektiriyor",
-      "offersReceived": "Alınan Teklifler",
-      "congratulations": "Tebrikler!",
-      "successRate": "Başarı Oranı",
-      "acceptanceRate": "Kabul oranı"
-    },
-    "recentApplications": "Başvurularım",
-    "appliedOn": "{date} tarihinde başvuruldu",
-    "viewDetails": "Detayları Gör",
-    "noApplications": {
-      "title": "Henüz Başvuru Yok",
-      "description": "Programlara göz atarak ve ilk başvurunuzu göndererek yolculuğunuza başlayın."
-    },
-    "browsePrograms": "Programlara Göz At"
-  },
-  "Profile": {
-    "title": "Profilim",
-    "subtitle": "Kişisel bilgilerinizi ve tercihlerinizi yönetin",
-    "completion": "Profil Tamamlama",
-    "completeProfile": "Gelecekteki başvuruları hızlandırmak için profilinizi tamamlayın",
-    "photo": {
-      "title": "Profil Fotoğrafı",
-      "description": "Profesyonel bir fotoğraf yükleyin",
-      "upload": "Fotoğraf Yükle",
-      "uploading": "Yükleniyor...",
-      "hint": "JPG, PNG veya GIF. Maks 5MB."
-    },
-    "personalInfo": {
-      "title": "Kişisel Bilgiler",
-      "description": "Başvurular için temel bilgileriniz"
-    },
-    "fullName": "Ad Soyad *",
-    "email": "E-posta",
-    "dob": "Doğum Tarihi",
-    "phone": "Telefon Numarası",
-    "nationality": "Uyruk",
-    "passportNumber": "Pasaport Numarası",
-    "address": {
-      "title": "Adres",
-      "description": "Mevcut ikamet adresiniz",
-      "street": "Sokak Adresi",
-      "city": "Şehir",
-      "postalCode": "Posta Kodu"
-    },
-    "emergency": {
-      "title": "Acil Durum İletişimi",
-      "description": "Acil durumda aranacak kişi",
-      "name": "İsim",
-      "phone": "Telefon",
-      "relationship": "Yakınlık Derecesi"
-    },
-    "save": "Profili Kaydet",
-    "saving": "Kaydediliyor..."
-  },
-  "Documents": {
-    "title": "Belgelerim",
-    "subtitle": "Üniversite başvuruları için belgelerinizi yönetin",
-    "stats": {
-      "total": "Toplam Belge",
-      "uploaded": "Yüklenen dosyalar",
-      "verified": "Doğrulanmış",
-      "approved": "Yönetici tarafından onaylandı",
-      "pending": "İnceleme Bekliyor",
-      "awaiting": "Doğrulama bekleniyor"
-    },
-    "yourDocuments": "Belgeleriniz",
-    "manageDocuments": "Başvuru belgelerinizi yükleyin ve yönetin",
-    "uploadDocument": "Belge Yükle",
-    "noDocuments": "Henüz belge yok",
-    "uploadFirst": "Başlamak için ilk belgenizi yükleyin",
-    "size": "Boyut",
-    "uploaded": "Yüklendi",
-    "download": "İndir",
-    "delete": "Sil",
-    "deleteConfirm": "\"{name}\" belgesini silmek istediğinizden emin misiniz?",
-    "uploadDialog": {
-      "title": "Belge Yükle",
-      "description": "Belge türünü seçin ve dosyanızı yükleyin",
-      "type": "Belge Türü *",
-      "selectType": "Belge türü seçin",
-      "alreadyUploaded": "(Zaten Yüklendi)",
-      "file": "Dosya *",
-      "selected": "Seçildi",
-      "formats": "Kabul edilen formatlar: PDF, JPG, PNG, DOC, DOCX. Maks 10MB.",
-      "cancel": "İptal",
-      "uploading": "Yükleniyor...",
-      "upload": "Yükle"
-    },
-    "error": {
-      "fileSize": "Dosya 10MB'den küçük olmalıdır",
-      "selectFile": "Lütfen bir belge türü ve dosya seçin",
-      "fileType": "Lütfen bir resim dosyası yükleyin",
-      "imageSize": "Resim 5MB'den küçük olmalıdır"
-    },
-    "success": {
-      "uploaded": "Belge başarıyla yüklendi!",
-      "deleted": "Belge silindi"
-    },
-    "types": {
-      "passport": "Pasaport",
-      "transcript": "Akademik Transkript",
-      "diploma": "Diploma/Sertifika",
-      "recommendation_letter": "Referans Mektubu",
-      "personal_statement": "Niyet Mektubu",
-      "cv": "Özgeçmiş (CV)",
-      "language_certificate": "Dil Sertifikası (IELTS/TOEFL)",
-      "photo": "Vesikalık Fotoğraf",
-      "bank_statement": "Banka Hesap Dökümü",
-      "health_certificate": "Sağlık Raporu",
-      "police_clearance": "Adli Sicil Kaydı",
-      "other": "Diğer Belge"
-    },
-    "documentRequest": {
-      "title": "Belge Talebi",
-      "description": "Lütfen aşağıdaki belgeleri yükleyin:\n1. Pasaport Kopyası\n2. Diploma Belgesi\n3. Niyet Mektubu",
-      "note": "her şeyin tüm dillere çevrildiğinden emin olun"
-    }
-  },
-  "Status": {
-    "pending_documents": "Belge Bekliyor",
-    "pending_payment": "Ödeme Bekleniyor",
-    "payment_verification": "Ödeme Doğrulama",
-    "submitted": "Gönderildi",
-    "under_review": "İnceleniyor",
-    "accepted": "Kabul Edildi",
-    "rejected": "Reddedildi",
-    "unknown": "Bilinmiyor"
-  },
-  "Auth": {
-    "login": {
-      "title": "Giriş Yap",
-      "description": "Hesabınıza erişmek için e-posta ve şifrenizi girin",
-      "emailLabel": "E-posta",
-      "emailPlaceholder": "m@example.com",
-      "passwordLabel": "Şifre",
-      "forgotPassword": "Şifrenizi mi unuttunuz?",
-      "submit": "Giriş Yap",
-      "orContinueWith": "Veya şununla devam et",
-      "continueWithGoogle": "Google ile Devam Et",
-      "connecting": "Bağlanıyor...",
-      "noAccount": "Hesabınız yok mu?",
-      "signUp": "Kaydol",
-      "success": "Giriş başarılı! Yönlendiriliyor...",
-      "error": "Bir şeyler ters gitti",
-      "googleError": "Google ile giriş yapılamadı"
-    },
-    "layout": {
-      "branding": "Studyatchina",
-      "heroTitle": "Çin Üniversitelerine Açılan Kapınız",
-      "heroDescription": "Hayallerini Çin'in en iyi üniversitelerinde sürdüren binlerce uluslararası öğrenciye katılın.",
-      "programsTitle": "500+ Program",
-      "programsDescription": "En iyi Çin üniversitelerinden programlara erişin",
-      "guidanceTitle": "Uzman Rehberliği",
-      "guidanceDescription": "Başvuru yolculuğunuz boyunca destek alın",
-      "scholarshipsTitle": "Burs Fırsatları",
-      "scholarshipsDescription": "Mevcut çeşitli burs seçeneklerini keşfedin",
-      "copyright": "© 2024 Studyatchina. Tüm hakları saklıdır."
-    }
-  },
-  "Notifications": {
-    "title": "Bildirimler",
-    "markAllRead": "Tümünü okundu olarak işaretle",
-    "noNotifications": "Henüz bildirim yok",
-    "viewAll": "Tüm bildirimleri görüntüle",
-    "loading": "Bildirimler yükleniyor...",
-    "types": {
-      "statusChange": "Başvuru Durumu Güncellendi",
-      "documentRequested": "Belge Talep Edildi",
-      "paymentRequested": "Ödeme Gerekli",
-      "messageReceived": "Yeni Mesaj",
-      "newApplication": "Yeni Başvuru",
-      "newLead": "Yeni Potansiyel Müşteri",
-      "documentUploaded": "Belge Yüklendi",
-      "acceptanceLetter": "Kabul Mektubu"
-    },
-    "messages": {
-      "statusChange": "Başvuru durumunuz {status} olarak değişti"
-    }
-  },
-  "Destinations": {
-    "pageTitle": "Eğitim Destinasyonları",
-    "badge": "Çin'de Eğitim Destinasyonları",
-    "heroTitle": "Çin'in En İyi",
-    "heroSubtitle": "Eğitim Şehirlerini Keşfedin",
-    "heroDescription": "Tarihi başkent Pekin'den modern Şanghay silüetine kadar — Çin'in en canlı şehirlerini keşfedin ve akademik yolculuğunuz için en uygun yeri bulun.",
-    "statCities": "Mevcut Şehir",
-    "statUniversities": "Toplam Üniversite",
-    "statTopCity": "{city} İçindeki Üniversiteler",
-    "featuredTitle": "Öne Çıkan Destinasyonlar",
-    "featuredSubtitle": "Çin'de uluslararası öğrenciler için en popüler şehirler",
-    "allCitiesTitle": "Daha Fazla Şehir",
-    "allCitiesSubtitle": "Çin genelinde daha fazla şehirdeki üniversiteleri keşfedin",
-    "university": "Üniversite",
-    "universities": "Üniversite",
-    "explorePrograms": "Programları Keşfet"
-  },
-  "Universities": {
-    "title": "Çin'in En İyi Üniversitelerini Keşfedin",
-    "subtitle": "{count}+ prestijli kurumu keşfedin. 985 Projesi'nden C9 Ligi üniversitelerine kadar.",
-    "error": {
-      "title": "Üniversiteler yüklenemedi",
-      "hint": "İpucu: {hint}"
-    },
-    "search": {
-      "placeholder": "Üniversite adı, şehir veya sıralama ile ara...",
-      "label": "Ara",
-      "universityPlaceholder": "Üniversite adı...",
-      "searching": "Aranıyor..."
-    },
-    "filters": {
-      "title": "Filtreler",
-      "description": "Üniversite aramanızı daraltın",
-      "clear": "Filtreleri Temizle",
-      "clearAll": "Tüm Filtreleri Temizle",
-      "city": "Şehir",
-      "allCities": "Tüm Şehirler",
-      "institutionType": "Kurum Türü",
-      "allTypes": "Tüm Türler",
-      "universityCategory": "Üniversite Kategorisi",
-      "allCategories": "Tüm Kategoriler",
-      "rankingRecognition": "Sıralama ve Tanınma",
-      "specialFeatures": "Özel Özellikler",
-      "institutionTypes": {
+    "Destinations": {
+        "pageTitle": "Eğitim Destinasyonları",
+        "badge": "Çin'de Eğitim Destinasyonları",
+        "heroTitle": "Çin'in En İyi",
+        "heroSubtitle": "Eğitim Şehirlerini Keşfedin",
+        "heroDescription": "Tarihi başkent Pekin'den modern Şanghay silüetine kadar — Çin'in en canlı şehirlerini keşfedin ve akademik yolculuğunuz için en uygun yeri bulun.",
+        "statCities": "Mevcut Şehir",
+        "statUniversities": "Toplam Üniversite",
+        "statTopCity": "{city} İçindeki Üniversiteler",
+        "featuredTitle": "Öne Çıkan Destinasyonlar",
+        "featuredSubtitle": "Çin'de uluslararası öğrenciler için en popüler şehirler",
+        "allCitiesTitle": "Daha Fazla Şehir",
+        "allCitiesSubtitle": "Çin genelinde daha fazla şehirdeki üniversiteleri keşfedin",
         "university": "Üniversite",
-        "college": "Kolej",
-        "languageInstitute": "Dil Enstitüsü",
-        "vocationalSchool": "Meslek Yüksekokulu",
-        "technicalInstitute": "Teknik Enstitü"
-      },
-      "categories": {
-        "public": "Devlet",
-        "private": "Özel",
-        "research": "Araştırma",
-        "comprehensive": "Kapsamlı",
-        "specialized": "Uzman",
-        "vocational": "Mesleki"
-      },
-      "rankings": {
-        "project985": "985 Projesi",
-        "project211": "211 Projesi",
-        "doubleFirstClass": "Çift Birinci Sınıf"
-      },
-      "features": {
+        "universities": "Üniversite",
+        "explorePrograms": "Programları Keşfet"
+    },
+    "Universities": {
+        "title": "Çin'in En İyi Üniversitelerini Keşfedin",
+        "subtitle": "{count}+ prestijli kurumu keşfedin. 985 Projesi'nden C9 Ligi üniversitelerine kadar.",
+        "error": {
+            "title": "Üniversiteler yüklenemedi",
+            "hint": "İpucu: {hint}"
+        },
+        "search": {
+            "placeholder": "Üniversite adı, şehir veya sıralama ile ara...",
+            "label": "Ara",
+            "universityPlaceholder": "Üniversite adı...",
+            "searching": "Aranıyor..."
+        },
+        "filters": {
+            "title": "Filtreler",
+            "description": "Üniversite aramanızı daraltın",
+            "clear": "Filtreleri Temizle",
+            "clearAll": "Tüm Filtreleri Temizle",
+            "city": "Şehir",
+            "allCities": "Tüm Şehirler",
+            "institutionType": "Kurum Türü",
+            "allTypes": "Tüm Türler",
+            "universityCategory": "Üniversite Kategorisi",
+            "allCategories": "Tüm Kategoriler",
+            "rankingRecognition": "Sıralama ve Tanınma",
+            "specialFeatures": "Özel Özellikler",
+            "institutionTypes": {
+                "university": "Üniversite",
+                "college": "Kolej",
+                "languageInstitute": "Dil Enstitüsü",
+                "vocationalSchool": "Meslek Yüksekokulu",
+                "technicalInstitute": "Teknik Enstitü"
+            },
+            "categories": {
+                "public": "Devlet",
+                "private": "Özel",
+                "research": "Araştırma",
+                "comprehensive": "Kapsamlı",
+                "specialized": "Uzman",
+                "vocational": "Mesleki"
+            },
+            "rankings": {
+                "project985": "985 Projesi",
+                "project211": "211 Projesi",
+                "doubleFirstClass": "Çift Birinci Sınıf"
+            },
+            "features": {
+                "fastTrack": "Hızlı Kabul",
+                "scholarships": "Burs Mevcut",
+                "englishPrograms": "İngilizce Programlar"
+            }
+        },
+        "stats": {
+            "title": "Hızlı İstatistikler",
+            "total": "Toplam Üniversite",
+            "showing": "Gösterilen",
+            "cities": "Şehirler"
+        },
+        "sort": {
+            "label": "Sırala",
+            "name": "İsim: A-Z",
+            "programs": "En Çok Program",
+            "city": "Şehir",
+            "tuitionLow": "Ücret: Düşükten Yükseğe",
+            "tuitionHigh": "Ücret: Yüksekten Düşüğe",
+            "ranking": "Sıralama"
+        },
+        "noResults": {
+            "title": "Üniversite bulunamadı",
+            "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
+        },
+        "results": {
+            "universities": "üniversite",
+            "showMore": "Daha Fazla Göster",
+            "showingOf": "gösteriliyor"
+        },
+        "compare": {
+            "title": "Üniversiteleri Karşılaştır",
+            "criteria": "Kriterler",
+            "location": "Konum",
+            "ranking": "Sıralama",
+            "programs": "Programlar",
+            "tuition": "Ücret",
+            "levels": "Seviyeler",
+            "languages": "Diller",
+            "scholarship": "Burs",
+            "fastTrack": "Hızlı Kabul",
+            "cscaExam": "CSCA Sınavı",
+            "badges": "Rozetler",
+            "clearAll": "Tümünü Temizle",
+            "selected": "seçili",
+            "compareNow": "Şimdi Karşılaştır"
+        }
+    },
+    "Programs": {
+        "title": "Mükemmel Programınızı Keşfedin",
+        "subtitle": "En iyi Çin üniversitelerinden {count}+ programa göz atın. Akademik yolculuğunuz için mükemmel eşleşmeyi bulun.",
+        "filters": {
+            "title": "Filtreler",
+            "active": "Aktif Filtreler:",
+            "clear": "Filtreleri Temizle",
+            "clearAll": "Tüm Filtreleri Temizle",
+            "search": "Ara",
+            "searchPlaceholder": "Program veya bölüm...",
+            "studyLevel": "Eğitim Seviyesi",
+            "fieldOfStudy": "Çalışma Alanı",
+            "allFields": "Tüm Alanlar",
+            "maxTuition": "Maks Ücret",
+            "language": "Dil",
+            "city": "Şehir",
+            "allCities": "Tüm Şehirler",
+            "university": "Üniversite",
+            "allUniversities": "Tüm Üniversiteler",
+            "duration": "Süre",
+            "allDurations": "Tüm Süreler",
+            "scholarshipAvailable": "Burs Mevcut",
+            "levels": {
+                "bachelor": "Lisans",
+                "master": "Yüksek Lisans",
+                "phd": "Doktora",
+                "diploma": "Diploma",
+                "language": "Dil Kursu",
+                "nonDegree": "Derece Dışı"
+            },
+            "fields": {
+                "business": "İşletme ve Yönetim",
+                "engineering": "Mühendislik ve Teknoloji",
+                "medicine": "Tıp ve Sağlık Bilimleri",
+                "arts": "Sanat ve Beşeri Bilimler",
+                "science": "Doğa Bilimleri",
+                "education": "Eğitim",
+                "cs": "Bilgisayar Bilimleri",
+                "law": "Hukuk"
+            },
+            "languages": {
+                "english": "İngilizce",
+                "chinese": "Çince"
+            },
+            "durations": {
+                "2years": "2 Yıl",
+                "3years": "3 Yıl",
+                "4years": "4 Yıl",
+                "5years": "5 Yıl",
+                "6years": "6 Yıl"
+            },
+            "matchingPrograms": "program eşleşiyor",
+            "applyFilters": "Filtreleri Uygula",
+            "scholarshipDesc": "Burslu programları göster",
+            "cscaLabel": "CSCA Sınavı Gerekli Değil",
+            "cscaDesc": "CSCA sınavı olmayan programları göster",
+            "cscaBadge": "CSCA Yok",
+            "academicRequirements": "Akademik Gereksinimler",
+            "myAge": "Yaşım",
+            "agePlaceholder": "örn. 21",
+            "minGpa": "Min GPA",
+            "gpaPlaceholder": "örn. 3.0"
+        },
+        "stats": {
+            "total": "Toplam Program",
+            "showing": "Gösterilen"
+        },
+        "sort": {
+            "label": "Sırala",
+            "relevance": "En Alakalı",
+            "tuitionLow": "Ücret: Düşükten Yükseğe",
+            "tuitionHigh": "Ücret: Yüksekten Düşüğe",
+            "deadline": "Son Tarih: En Yakın",
+            "popular": "En Popüler"
+        },
+        "noResults": {
+            "title": "Program bulunamadı",
+            "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
+        },
+        "card": {
+            "duration": "Süre",
+            "intake": "Dönem",
+            "tuitionFee": "Öğrenim Ücreti",
+            "viewProgram": "Programı Gör",
+            "contact": "İletişim",
+            "scholarship": "Burs",
+            "addToCompare": "Karşılaştırmaya ekle",
+            "removeFromCompare": "Karşılaştırmadan çıkar",
+            "level": "Seviye",
+            "features": "Özellikler",
+            "viewFullDetails": "Tüm Detayları Gör",
+            "applyNow": "Şimdi Başvur",
+            "fastTrack": "Hızlı Kabul"
+        },
+        "compare": {
+            "title": "Programları Karşılaştır",
+            "comparing": "Karşılaştırma",
+            "more": "daha fazla",
+            "clear": "Temizle",
+            "compareNow": "Şimdi Karşılaştır",
+            "university": "Üniversite",
+            "location": "Konum",
+            "level": "Seviye",
+            "duration": "Süre",
+            "tuition": "Ücret",
+            "intake": "Alım Dönemi",
+            "language": "Dil",
+            "viewDetails": "Detayları Gör",
+            "apply": "Başvur"
+        },
+        "emptyState": {
+            "title": "Program Bulunamadı",
+            "description": "Hiçbir program bulamadık. Tam kataloğumuza göz atmayı deneyin.",
+            "filteredDescription": "Mevcut filtrelerinizle eşleşen program yok. Arama kriterlerinizi değiştirmeyi deneyin.",
+            "currentFilters": "Mevcut filtreleriniz:",
+            "scholarship": "Burs",
+            "clearFilters": "Tüm Filtreleri Temizle",
+            "tryInstead": "Deneyebileceğiniz popüler aramalar:",
+            "browseAll": "Tüm Programlara Göz At",
+            "exploreUniversities": "Üniversiteleri Keşfet"
+        },
+        "recentlyViewed": {
+            "title": "Son Görüntülenen",
+            "clear": "Temizle",
+            "viewAgain": "Tekrar gör",
+            "justNow": "Az önce",
+            "minutesAgo": "{count} dk önce",
+            "hoursAgo": "{count} saat önce",
+            "daysAgo": "{count} gün önce"
+        },
+        "quickAccess": "Hızlı Erişim",
+        "quickChips": {
+            "cs": "Bilgisayar Bilimi",
+            "business": "İşletme",
+            "engineering": "Mühendislik",
+            "medicine": "Tıp",
+            "arts": "Sanat",
+            "economics": "Ekonomi"
+        },
+        "aiSearch": {
+            "thinking": "Yapay zeka düşünüyor... \"{query}\" ile ilgili alanlar bulunuyor",
+            "active": "Akıllı Arama Aktif",
+            "found": "İlgili programlar bulundu: {terms}",
+            "working": "Yapay zeka üzerinde çalışıyor...",
+            "looking": "\"{query}\" ile ilgili programlar aranıyor"
+        },
+        "view": {
+            "grid": "Izgara",
+            "map": "Harita"
+        }
+    },
+    "UniversitiesCard": {
+        "programs": "Programlar",
+        "tuitionFrom": "Ücret Başlangıcı",
+        "tuition": "Öğrenim Ücreti",
+        "viewUniversity": "Üniversiteyi Gör",
+        "viewPrograms": "Programları Gör",
         "fastTrack": "Hızlı Kabul",
-        "scholarships": "Burs Mevcut",
-        "englishPrograms": "İngilizce Programlar"
-      }
+        "scholarship": "Burs",
+        "contactForPricing": "Fiyat İçin İletişime Geçin",
+        "cscaExam": "CSCA Sınavı",
+        "addToCompare": "Karşılaştırmaya ekle",
+        "removeFromCompare": "Karşılaştırmadan çıkar"
     },
-    "stats": {
-      "title": "Hızlı İstatistikler",
-      "total": "Toplam Üniversite",
-      "showing": "Gösterilen",
-      "cities": "Şehirler"
+    "ProgramDetail": {
+        "breadcrumb": {
+            "home": "Ana Sayfa",
+            "programs": "Programlar"
+        },
+        "badges": {
+            "intake": "Dönem: {intake}",
+            "contactUniversity": "Üniversite ile İletişim",
+            "fastTrack": "Hızlı Kabul",
+            "specialRequirements": "Özel Gereksinimler"
+        },
+        "buttons": {
+            "apply": "Şimdi Başvur",
+            "downloadBrochure": "Broşürü İndir",
+            "viewUniversity": "Üniversiteyi Gör",
+            "startApplication": "Başvuruyu Başlat",
+            "contactAdvisor": "Danışmanla İletişim"
+        },
+        "highlights": {
+            "title": "Program Özellikleri",
+            "tuition": "Öğrenim Ücreti",
+            "duration": "Süre",
+            "language": "Dil",
+            "level": "Derece Seviyesi",
+            "gpaRequirement": "Minimum Not Ortalaması",
+            "languageRequirements": "Dil Gereksinimleri"
+        },
+        "overview": {
+            "title": "Program Genel Bakış",
+            "noDescription": "Bu program için açıklama mevcut değil.",
+            "curriculum": "Temel Müfredat",
+            "curriculumPlaceholder": "Temel dersler bilgisi yakında güncellenecek"
+        },
+        "requirements": {
+            "title": "Kabul Gereksinimleri"
+        },
+        "scholarships": {
+            "title": "Bu Program İçin Burs Seçenekleri",
+            "description": "Bütçenize en uygun burs türünü seçin"
+        },
+        "faq": {
+            "title": "Sıkça Sorulan Sorular",
+            "deadline": "Başvuru son tarihi {deadline}.",
+            "accommodationQ": "Konaklama sağlanıyor mu?",
+            "accommodationA": "Evet, uluslararası öğrenciler için kampüs içi konaklama mevcuttur.",
+            "workQ": "Yarı zamanlı çalışabilir miyim?",
+            "workA": "Evet, uluslararası öğrenciler uygun izinlerle iş-eğitim programlarına veya stajlara başvurabilirler.",
+            "deadlineQ": "Başvuru son tarihi nedir?"
+        },
+        "sidebar": {
+            "ready": "Başvurmaya Hazır mısınız?",
+            "free": "Ücretsiz Başvuru",
+            "fast": "Hızlı İşlem",
+            "expert": "Uzman Desteği",
+            "cost": "Maliyet Dağılımı",
+            "applicationFee": "Başvuru Ücreti",
+            "serviceFee": "Hizmet Ücreti",
+            "disclaimer": "* Ek maliyetler konaklama, vize ve yaşam giderlerini içerebilir",
+            "why": "Neden Bu Programı Seçmelisiniz?",
+            "reasons": {
+                "degree": "Uluslararası tanınır derece",
+                "faculty": "Deneyimli öğretim üyeleri",
+                "facilities": "Modern tesisler ve kaynaklar",
+                "career": "Kariyer geliştirme desteği"
+            }
+        },
+        "accommodation": {
+            "title": "Konaklama Seçenekleri"
+        },
+        "deadline": {
+            "daysRemaining": "{days} gün kaldı",
+            "endingToday": "Başvuru bugün kapanıyor!",
+            "closed": "Başvuru Kapatıldı",
+            "deadline": "Son Başvuru"
+        }
     },
-    "sort": {
-      "label": "Sırala",
-      "name": "İsim: A-Z",
-      "programs": "En Çok Program",
-      "city": "Şehir"
+    "UniversityDetail": {
+        "quickLinks": {
+            "exploreCourses": "Kursları Keşfet",
+            "getFunded": "Finansman Alın",
+            "findHousing": "Konaklama Bul",
+            "findLocation": "Konum"
+        },
+        "location": {
+            "title": "Kampüs Konumu",
+            "viewOnMap": "Google Haritalarda Görüntüle"
+        },
+        "about": "Üniversite Hakkında",
+        "whyChooseUs": "Neden Bizi Seçmelisiniz",
+        "programs": {
+            "title": "Programlar",
+            "allPrograms": "Tüm Programlar",
+            "noPrograms": "Bu seviye için program bulunamadı.",
+            "viewProgram": "Programı Gör",
+            "tuitionFee": "Öğrenim Ücreti",
+            "perYear": "yıllık",
+            "allLanguages": "Tüm Diller",
+            "filterByLanguage": "Dil",
+            "showing": "Gösterilen",
+            "previousPage": "Önceki Sayfa",
+            "nextPage": "Sonraki Sayfa",
+            "pageOf": "Sayfa"
+        },
+        "scholarships": {
+            "title": "Mevcut Burs Seçenekleri",
+            "description": "Bu üniversitedeki programlar için bütçenize en uygun burs türünü seçin"
+        },
+        "campus": {
+            "tour": "Kampüs Turu",
+            "gallery": "Kampüs Galerisi",
+            "viewImage": "Resmi Görüntüle"
+        },
+        "admission": {
+            "title": "Kabul Gereksinimleri",
+            "academic": "Akademik Gereksinimler",
+            "language": "Dil Gereksinimleri",
+            "highSchool": "Lise diploması veya dengi",
+            "gpa": "Minimum GPA 3.0/4.0",
+            "transcripts": "Akademik transkript",
+            "ielts": "IELTS 6.0 veya TOEFL 80+",
+            "hsk": "Çince programlar için HSK 4",
+            "english": "İngilizce yeterlilik belgesi"
+        },
+        "sidebar": {
+            "ready": "Başvurmaya Hazır mısınız?",
+            "startJourney": "{university}'de yolculuğunuza başlayın",
+            "applyNow": "Şimdi Başvur",
+            "downloadBrochure": "Broşürü İndir",
+            "quickActions": "Hızlı İşlemler",
+            "requestInfo": "Bilgi İste",
+            "chatAdvisor": "Danışmanla Sohbet",
+            "virtualTour": "Sanal Kampüs Turu",
+            "scheduleCall": "Görüşme Planla",
+            "quickFacts": "Hızlı Bilgiler",
+            "location": "Konum",
+            "founded": "Kuruluş",
+            "students": "Öğrenciler",
+            "international": "Uluslararası",
+            "ranking": "Sıralama",
+            "officialWebsite": "Resmi Web Sitesi"
+        },
+        "faq": {
+            "title": "Sıkça Sorulan Sorular"
+        }
     },
-    "noResults": {
-      "title": "Üniversite bulunamadı",
-      "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
+    "RequestInformation": {
+        "title": "Bilgi İste",
+        "description": "{university} hakkında daha fazla bilgi edinin. Aşağıdaki formu doldurun.",
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "E-posta",
+        "phone": "Telefon Numarası",
+        "interest": "İlgi Alanı",
+        "selectInterest": "İlgi alanınızı seçin",
+        "interests": {
+            "admission": "Kabul Gereksinimleri",
+            "programs": "Mevcut Programlar",
+            "scholarships": "Burs Fırsatları",
+            "campus": "Kampüs Hayatı",
+            "other": "Diğer"
+        },
+        "message": "Mesaj",
+        "messagePlaceholder": "{university}'de okumakla ilgileniyorum...",
+        "submit": "Talep Gönder",
+        "sending": "Gönderiliyor...",
+        "success": "Talep başarıyla gönderildi! Yakında sizinle iletişime geçeceğiz.",
+        "error": "Talep gönderilemedi. Lütfen tekrar deneyin."
+    },
+    "UniversityScholarships": {
+        "loading": "Burslar yükleniyor...",
+        "noScholarships": "Bu üniversite için henüz burs mevcut değil.",
+        "options": "Burs Seçenekleri",
+        "discover": "Daha Fazla Fırsat Keşfedin",
+        "explore": "Tüm Burs Seçeneklerini Keşfedin",
+        "description": "Hangi bursun size uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk gereksinimlerini anlamak ve akademik yolculuğunuz için mükemmel olanı bulmak için tam burs rehberimize göz atın.",
+        "viewAll": "Tüm Bursları Gör",
+        "advice": "Kişiselleştirilmiş Tavsiye Al",
+        "mostPopular": "En Popüler",
+        "defaultDescription": "Uluslararası öğrenciler için harika seçenek.",
+        "tuitionCoverage": "Öğrenim Karşılama",
+        "serviceFee": "Hizmet Ücreti",
+        "whatsIncluded": "Neler Dahil",
+        "scholarshipType": "Burs Türü",
+        "action": "İşlem",
+        "applyNow": "Şimdi Başvur",
+        "howItWorks": {
+            "title": "Burslar Nasıl Çalışır",
+            "description": "Burs, öğrenim ücretlerinizin bir yüzdesini karşılar. Kalan öğrenim ücretini üniversiteye + başvuru desteği, vize yardımı ve rehberlik için tek seferlik hizmet ücretini ödersiniz.",
+            "learnMore": "Burslar hakkında daha fazla bilgi →"
+        },
+        "benefits": {
+            "tuitionCoverage": "%{percentage} öğrenim ücreti karşılama",
+            "noScholarship": "Burs yok (%0 karşılama)",
+            "support": "Başvuru desteği ve rehberlik",
+            "visa": "Vize yardımı",
+            "orientation": "Uçuş öncesi oryantasyon",
+            "accommodation": "Konaklama düzenleme desteği"
+        }
+    },
+    "Accommodation": {
+        "notAvailable": "Konaklama bilgisi mevcut değil",
+        "badge": "Öğrenci Konaklama",
+        "title": "Kampüs İçi Konaklama Seçenekleri",
+        "priceRange": "Fiyat Aralığı",
+        "generalFacilities": "Genel Tesisler",
+        "availableRoomTypes": "Mevcut Oda Türleri",
+        "defaultTitle": "Konaklama",
+        "priceOnRequest": "İstek üzerine fiyat",
+        "month": "ay",
+        "roomFeatures": "Oda Özellikleri:",
+        "importantInfo": {
+            "title": "Önemli Bilgiler",
+            "fees": "Konaklama ücretleri dönem veya akademik yıl bazında ödenir",
+            "availability": "Oda tahsisi müsaitliğe bağlıdır",
+            "prices": "Fiyatlar değişebilir ve üniversite ile teyit edilmelidir",
+            "deposit": "Giriş sırasında depozito gerekebilir"
+        }
+    },
+    "UniversityHeader": {
+        "fastTrack": "Hızlı Kabul",
+        "est": "Krl. {founded}",
+        "studentsCount": "{students} Öğrenci",
+        "website": "Web Sitesi",
+        "applyNow": "Şimdi Başvur",
+        "requestInfo": "Bilgi İste",
+        "brochure": "Broşür",
+        "virtualTour": "Sanal Tur",
+        "scheduleCall": "Görüşme Planla",
+        "chatAdvisor": "Danışman",
+        "save": "Kaydet",
+        "saved": "Kaydedildi",
+        "share": "Paylaş",
+        "founded": "Kuruluş",
+        "students": "Öğrenciler",
+        "ranking": "Sıralama",
+        "international": "Uluslararası"
+    },
+    "Apply": {
+        "title": "Programa Başvur",
+        "steps": {
+            "info": "Bilgi",
+            "documents": "Belgeler",
+            "payment": "Ödeme",
+            "review": "İnceleme",
+            "personalInfo": "Kişisel Bilgiler",
+            "requiredDocuments": "Gerekli Belgeler",
+            "paymentInfo": "Ödeme",
+            "reviewSubmit": "İncele ve Gönder"
+        },
+        "labels": {
+            "fullName": "Ad Soyad (pasaportta yazıldığı gibi)",
+            "email": "E-posta Adresi",
+            "phone": "Cep Telefonu Numarası",
+            "country": "Ülke",
+            "passport": "Pasaport Numarası",
+            "preferredIntake": "Tercih Edilen Dönem",
+            "emergencyContactName": "Acil Durum İletişim Adı",
+            "emergencyContactPhone": "Acil Durum İletişim Telefonu",
+            "emergencyContactRelationship": "Yakınlık Derecesi",
+            "firstName": "Ad",
+            "lastName": "Soyad",
+            "gender": "Cinsiyet",
+            "dateOfBirth": "Doğum Tarihi",
+            "religion": "Din",
+            "maritalStatus": "Medeni Durum",
+            "wechatId": "WeChat ID",
+            "address": "Adres",
+            "city": "Şehir",
+            "postalCode": "Posta Kodu",
+            "highestEducation": "En Son Eğitim",
+            "schoolName": "Okul Adı",
+            "majorField": "Ana Dal",
+            "graduationYear": "Mezuniyet Yılı",
+            "gpaScore": "GPA Notu",
+            "chineseProficiency": "Çince Yetkinliği",
+            "englishProficiency": "İngilizce Yetkinliği",
+            "testScore": "Sınav Puanı"
+        },
+        "placeholders": {
+            "fullName": "örn. Ahmet Yılmaz",
+            "email": "örn. ahmet@ornek.com",
+            "phone": "örn. 555 123 4567",
+            "passport": "örn. AB1234567",
+            "emergencyName": "örn. Veli veya Vasi adı",
+            "emergencyPhone": "örn. 555 123 4567",
+            "relationship": "örn. Ebeveyn, Eş",
+            "firstName": "örn. Ahmet",
+            "lastName": "örn. Yılmaz",
+            "selectGender": "Cinsiyet seçin",
+            "selectReligion": "Din seçin",
+            "selectMaritalStatus": "Medeni durum seçin",
+            "wechatId": "örn. wxid_abc123",
+            "address": "örn. Atatürk Cd. No:1",
+            "city": "örn. İstanbul",
+            "postalCode": "örn. 34000",
+            "selectEducation": "Eğitim seviyesi seçin",
+            "schoolName": "örn. İstanbul Üniversitesi",
+            "majorField": "örn. Bilgisayar Mühendisliği",
+            "graduationYear": "örn. 2024",
+            "gpaScore": "örn. 3.5",
+            "selectChinese": "Çince seviyesi seçin",
+            "selectEnglish": "İngilizce seviyesi seçin",
+            "testScore": "örn. 6.5"
+        },
+        "hints": {
+            "phoneHint": "Ülke kodu olmadan telefon numaranızı girin",
+            "passportHint": "Pasaport numaranızı tam olarak yazıldığı gibi girin"
+        },
+        "buttons": {
+            "continueToDocuments": "Belgelere Devam Et",
+            "continueToPayment": "Ödemeye Devam Et",
+            "continueToReview": "İncelemeye Devam Et",
+            "submitApplication": "Başvuruyu Gönder",
+            "back": "Geri",
+            "uploadDocument": "Yükle",
+            "selectFile": "Dosya Seç",
+            "next": "İleri"
+        },
+        "validation": {
+            "missingFieldsTitle": "Lütfen aşağıdaki gerekli alanları doldurun:",
+            "required": "Bu alan zorunludur"
+        },
+        "documents": {
+            "title": "Gerekli Belgeler",
+            "description": "Lütfen aşağıdaki belgeleri yükleyin. Kabul edilen formatlar: PDF, JPG, PNG (maks 10MB)",
+            "mandatory": "Zorunlu",
+            "optional": "İsteğe Bağlı",
+            "uploaded": "Yüklendi",
+            "pending": "Bekliyor"
+        },
+        "payment": {
+            "title": "Başvuru Ücreti",
+            "applicationFee": "Başvuru Ücreti",
+            "serviceFee": "Hizmet Ücreti",
+            "total": "Toplam",
+            "payNow": "Şimdi Öde",
+            "payLater": "Sonra Öde"
+        },
+        "review": {
+            "title": "Başvurunuzu İnceleyin",
+            "personalDetails": "Kişisel Bilgiler",
+            "uploadedDocuments": "Yüklenen Belgeler",
+            "confirmSubmit": "Sağlanan tüm bilgilerin doğru olduğunu onaylıyorum",
+            "submitting": "Gönderiliyor...",
+            "success": "Başvuru Başarıyla Gönderildi!",
+            "successMessage": "Başvurunuz gönderildi. Kısa süre içinde onay e-postası alacaksınız."
+        },
+        "errors": {
+            "generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
+            "uploadFailed": "Belge yüklenemedi. Lütfen tekrar deneyin.",
+            "paymentFailed": "Ödeme başarısız. Lütfen tekrar deneyin."
+        },
+        "sections": {
+            "identity": "Kimlik ve Kişisel Bilgiler",
+            "identitySubtitle": "Pasaportunuzdaki bilgileri girin",
+            "contact": "İletişim Bilgileri",
+            "address": "Adres",
+            "education": "Eğitim Bilgileri",
+            "educationSubtitle": "En son eğitim bilgileriniz",
+            "language": "Dil Yetkinlikleri",
+            "languageSubtitle": "Dil seviyeniz",
+            "emergency": "Acil Durumda Aranacak Kişi",
+            "emergencySubtitle": "Acil durum iletişim bilgileri"
+        },
+        "options": {
+            "male": "Erkek",
+            "female": "Kadın",
+            "islam": "İslam",
+            "christianity": "Hristiyanlık",
+            "buddhism": "Budizm",
+            "hinduism": "Hinduizm",
+            "noReligion": "Dinsiz",
+            "other": "Diğer",
+            "single": "Bekar",
+            "married": "Evli",
+            "divorced": "Boşanmış",
+            "highSchool": "Lise",
+            "diploma": "Ön Lisans",
+            "bachelor": "Lisans",
+            "master": "Yüksek Lisans",
+            "doctorate": "Doktora",
+            "noProficiency": "Yeterlilik Yok",
+            "basic": "Temel",
+            "intermediate": "Orta",
+            "advanced": "İleri",
+            "native": "Anadil"
+        }
+    },
+    "AISearch": {
+        "placeholder": "Deneyin: 'Pekin'de 30000 RMB altında Mühendislik Yüksek Lisansı'",
+        "search": "Ara",
+        "filters": "AI anladı",
+        "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    },
+    "AIChat": {
+        "title": "Chen Wei 陈伟",
+        "subtitle": "Eğitim Danışmanınız",
+        "typing": "Yazıyor...",
+        "greeting": "Merhaba! 👋 Ben Chen Wei (陈伟), kişisel eğitim danışmanınız. Çin'de sizin için mükemmel programı bulmanıza, sorularınızı yanıtlamanıza ve hatta başvuru sürecinde size rehberlik etmek için buradayım. Bugün size nasıl yardımcı olabilirim?",
+        "inputPlaceholder": "Mesajınızı yazın...",
+        "thinking": "Düşünüyor...",
+        "error": "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.",
+        "quickStart": "Hızlı başlangıç:",
+        "quickFind": "🎓 Program Bul",
+        "quickScholarship": "💰 Burslar",
+        "quickApply": "📝 Başvuru Başlat",
+        "chatHistory": "Sohbet Geçmişi",
+        "newChat": "Yeni Sohbet",
+        "noHistory": "Önceki konuşma yok",
+        "backToChat": "Sohbete Dön",
+        "loginPrompt": "🔐 Sohbet geçmişinizi kaydetmek ve başvuruları takip etmek için giriş yapın",
+        "login": "Giriş Yap",
+        "register": "Kayıt Ol"
+    },
+    "PaymentDashboard": {
+        "title": "Ödemeler",
+        "subtitle": "Başvuru ödemelerinizi yönetin",
+        "totalAmount": "Toplam Tutar",
+        "totalPaid": "Toplam Ödenen",
+        "pending": "Bekleyen",
+        "rest": "Kalan Tutar",
+        "totalTransactions": "Toplam İşlem",
+        "successfullyProcessed": "Başarıyla işlendi",
+        "paymentDue": "vadesi gelen ödeme",
+        "allTime": "Tüm zamanlar",
+        "amount": "Tutar",
+        "status": "Durum",
+        "created": "Oluşturulma Tarihi",
+        "method": "Yöntem",
+        "payNow": "Şimdi Öde",
+        "viewApplication": "Başvuruyu Görüntüle",
+        "paymentProof": "Ödeme Kanıtı",
+        "paymentRequest": {
+            "title": "Ödeme Talebi",
+            "amount": "USD 200",
+            "description": "bu ödemeyi yapın",
+            "note": "Başvurunuza devam etmek için lütfen ödemeyi tamamlayın."
+        },
+        "paymentStatuses": {
+            "completed": "Tamamlandı",
+            "pending": "Bekliyor",
+            "processing": "İşleniyor",
+            "failed": "Başarısız",
+            "refunded": "İade Edildi"
+        },
+        "types": {
+            "application_fee": "Başvuru Ücreti",
+            "service_fee": "Hizmet Ücreti",
+            "tuition_deposit": "Eğitim Depozitosu",
+            "full_tuition": "Tam Eğitim Ücreti",
+            "accommodation": "Konaklama",
+            "other": "Diğer"
+        },
+        "assistance": {
+            "title": "Ödeme Yardımı",
+            "description": "{count} bekleyen ödemeniz var. Ödemelerle ilgili yardıma ihtiyacınız varsa veya sorularınız varsa:",
+            "point1": "Ödeme yardımı için destek ekibimizle iletişime geçin",
+            "point2": "Ödeme planlarına uygun olup olmadığınızı kontrol edin",
+            "point3": "Ödeme yönteminizin desteklendiğini doğrulayın"
+        },
+        "paidOn": "Ödeme Tarihi",
+        "reference": "Referans",
+        "verifiedByAdmin": "Yönetici tarafından doğrulandı",
+        "expires": "Bitiş:",
+        "adminNote": "Yönetici Notu:",
+        "paymentLinkExpired": "Ödeme Bağlantısı Süresi Doldu",
+        "document": "Belge:",
+        "noPayments": "Ödeme Yok",
+        "noPaymentsDesc": "Bekleyen ödemeniz bulunmamaktadır.",
+        "contactSupport": "Destek İle İletişime Geçin"
+    },
+    "Refunds": {
+        "title": "İade Talepleri",
+        "statusTitle": "İade Durumu",
+        "requestButton": "İade Talep Et",
+        "submittedTitle": "İade Talebi Gönderildi",
+        "submittedOn": "{date} tarihinde gönderildi",
+        "reasonLabel": "Sebep",
+        "adminResponseLabel": "Yönetici Yanıtı",
+        "rejectedTitle": "Başvuru Reddedildi",
+        "rejectedMessage": "Geri ödeme/İade için uygun olabilirsiniz. Talep göndermek için düğmeye tıklayın.",
+        "modalTitle": "İade Talep Et",
+        "modalDescription": "İade talebinde bulunun. Lütfen neden iade talep ettiğinizi açıklayın.",
+        "modalReasonLabel": "İade Sebebi",
+        "modalPlaceholder": "Reddedildim çünkü...",
+        "submitButton": "Talebi Gönder",
+        "cancelButton": "İptal",
+        "successMessage": "İade talebi başarıyla gönderildi",
+        "errorMessage": "Talep gönderilemedi",
+        "table": {
+            "student": "Öğrenci",
+            "program": "Üniversite / Program",
+            "reason": "Sebep",
+            "status": "Durum",
+            "date": "Tarih",
+            "actions": "İşlemler",
+            "approve": "Onayla",
+            "reject": "Reddet",
+            "noRequests": "İade talebi bulunamadı",
+            "approveTitle": "İade Talebini Onayla",
+            "rejectTitle": "İade Talebini Reddet",
+            "approveDescription": "Bu işlem, talebi onaylandı olarak işaretleyecek ve başvuru ödeme durumunu iade edildi olarak güncelleyecektir.",
+            "rejectDescription": "Bu işlem, talebi reddedildi olarak işaretleyecektir.",
+            "adminResponsePlaceholder": "Öğrenciye bir not ekleyin..."
+        }
+    },
+    "Messages": {
+        "title": "Mesajlar",
+        "subtitle": "Kabul ekibi ile iletişim",
+        "conversations": "Konuşmalar",
+        "unreadMessages": "Okunmamış Mesajlar",
+        "actionRequired": "Eylem Gerekiyor",
+        "actionCompleted": "Tamamlandı",
+        "noMessages": "Henüz mesaj yok",
+        "noMessagesDesc": "Kabul ekibinden gelen mesajlar burada görünecek",
+        "reply": "Yanıtla",
+        "replyingTo": "{name}'e yanıt veriliyor",
+        "typeReply": "Yanıtınızı yazın...",
+        "sendReply": "Yanıt Gönder",
+        "sending": "Gönderiliyor...",
+        "cancel": "İptal",
+        "you": "Siz",
+        "admin": "Kabul Ekibi",
+        "replyTooltip": "Bu mesajı yanıtla",
+        "actionRequiredMessage": "Lütfen bu mesajı yanıtlayın veya istenen eylemi tamamlayın.",
+        "takeAction": "Harekete Geç",
+        "attachment": "ek",
+        "attachments": "ekler"
+    },
+    "QSRankings": {
+        "meta": {
+            "title": "QS Dünya Üniversite Sıralamaları 2026 — Çin Üniversiteleri | Çin'de Oku",
+            "description": "QS Dünya Üniversite Sıralamaları 2026'da Çin'i keşfedin. 72 Çin üniversitesinin küresel sıralamasını görün, Pekin Üniversitesi (#14)'dan gelişen araştırma kurumlarına kadar. Çin'deki ideal üniversitenizi bulun."
+        },
+        "hero": {
+            "badge": "QS Dünya Üniversite Sıralamaları 2026",
+            "titleHighlight": "Çin Üniversiteleri",
+            "titleRest": "Küresel Sıralamalarda",
+            "subtitle": "QS Dünya Üniversite Sıralamaları 2026'da Çin'in en iyi üniversitelerinin nerede olduğunu keşfedin. Pekin Üniversitesi #14'ten gelişen araştırma güçlerine — eğitiminiz için mükemmel kurumu bulun.",
+            "breadcrumb": "QS Sıralamaları 2026",
+            "statRanked": "Sıralanan Üniversite",
+            "statHighest": "En Yüksek Küresel Sıra",
+            "statTop50": "Küresel İlk 50'de",
+            "statCities": "Temsil Edilen Şehir"
+        },
+        "content": {
+            "topUniversitiesTitle": "Çin'in Küresel Olarak En Üst Sıralı Üniversiteleri",
+            "browseAllTitle": "Tüm Sıralamaları Gör",
+            "searchPlaceholder": "Üniversite ara...",
+            "allCities": "Tüm Şehirler",
+            "showing": "Gösterilen",
+            "of": "/",
+            "universities": "üniversite",
+            "university": "üniversite",
+            "inCity": "şehir:",
+            "matching": "eşleşen",
+            "noResults": "Üniversite bulunamadı",
+            "noResultsHint": "Arama veya filtrelerinizi ayarlamayı deneyin",
+            "overallScore": "Genel Puan",
+            "score": "Puan",
+            "world": "Dünya",
+            "china": "Çin",
+            "ctaTitle": "Üst Sıralı Bir Üniversitede Okumaya Hazır mısınız?",
+            "ctaDescription": "Çin'in QS sıralamalı üniversitelerindeki programları inceleyin. Burs bulun, öğrenim ücretlerini karşılaştırın ve bugün başvurunuzu başlatın.",
+            "browseUniversities": "Üniversitelere Göz At",
+            "explorePrograms": "Programları Keşfet",
+            "disclaimer": "Sıralama verileri Quacquarelli Symonds tarafından yayınlanan QS Dünya Üniversite Sıralamaları 2026'dan alınmıştır. Resmi ve güncel sıralamalar için ziyaret edin",
+            "visitSite": "topuniversities.com",
+            "viewProfile": "Profili Gör",
+            "tierTop50": "Küresel İlk 50",
+            "tierTop200": "Sıra 51–200",
+            "tierTop500": "Sıra 201–500",
+            "tierRemaining": "501+"
+        }
+    },
+    "GuidedTour": {
+        "skip": "Atla",
+        "next": "İleri",
+        "finish": "Bitir",
+        "programs": {
+            "search": {
+                "title": "Program Ara",
+                "content": "Anahtar kelime, alan veya üniversite adıyla programları arayın."
+            },
+            "filters": {
+                "title": "Filtreleri Kullan",
+                "content": "Sonuçları seviye, burs, ücret ve daha fazlasına göre daraltın."
+            },
+            "card": {
+                "title": "Program Kartları",
+                "content": "Her kart temel bilgileri gösterir. Detaylar için tıklayın."
+            },
+            "compare": {
+                "title": "Programları Karşılaştır",
+                "content": "Yan yana karşılaştırmak için programları seçin."
+            }
+        }
     }
-  },
-  "Programs": {
-    "title": "Mükemmel Programınızı Keşfedin",
-    "subtitle": "En iyi Çin üniversitelerinden {count}+ programa göz atın. Akademik yolculuğunuz için mükemmel eşleşmeyi bulun.",
-    "filters": {
-      "title": "Filtreler",
-      "active": "Aktif Filtreler:",
-      "clear": "Filtreleri Temizle",
-      "clearAll": "Tüm Filtreleri Temizle",
-      "search": "Ara",
-      "searchPlaceholder": "Program veya bölüm...",
-      "studyLevel": "Eğitim Seviyesi",
-      "fieldOfStudy": "Çalışma Alanı",
-      "allFields": "Tüm Alanlar",
-      "maxTuition": "Maks Ücret",
-      "language": "Dil",
-      "city": "Şehir",
-      "allCities": "Tüm Şehirler",
-      "university": "Üniversite",
-      "allUniversities": "Tüm Üniversiteler",
-      "duration": "Süre",
-      "allDurations": "Tüm Süreler",
-      "scholarshipAvailable": "Burs Mevcut",
-      "levels": {
-        "bachelor": "Lisans",
-        "master": "Yüksek Lisans",
-        "phd": "Doktora",
-        "diploma": "Diploma",
-        "language": "Dil Kursu"
-      },
-      "fields": {
-        "business": "İşletme ve Yönetim",
-        "engineering": "Mühendislik ve Teknoloji",
-        "medicine": "Tıp ve Sağlık Bilimleri",
-        "arts": "Sanat ve Beşeri Bilimler",
-        "science": "Doğa Bilimleri",
-        "education": "Eğitim",
-        "cs": "Bilgisayar Bilimleri",
-        "law": "Hukuk"
-      },
-      "languages": {
-        "english": "İngilizce",
-        "chinese": "Çince"
-      },
-      "durations": {
-        "2years": "2 Yıl",
-        "3years": "3 Yıl",
-        "4years": "4 Yıl",
-        "5years": "5 Yıl",
-        "6years": "6 Yıl"
-      }
-    },
-    "stats": {
-      "total": "Toplam Program",
-      "showing": "Gösterilen"
-    },
-    "sort": {
-      "label": "Sırala",
-      "relevance": "En Alakalı",
-      "tuitionLow": "Ücret: Düşükten Yükseğe",
-      "tuitionHigh": "Ücret: Yüksekten Düşüğe",
-      "deadline": "Son Tarih: En Yakın",
-      "popular": "En Popüler"
-    },
-    "noResults": {
-      "title": "Program bulunamadı",
-      "description": "Filtrelerinizi veya arama kriterlerinizi değiştirmeyi deneyin"
-    },
-    "card": {
-      "duration": "Süre",
-      "intake": "Dönem",
-      "tuitionFee": "Öğrenim Ücreti",
-      "viewProgram": "Programı Gör",
-      "contact": "İletişim"
-    }
-  },
-  "UniversitiesCard": {
-    "programs": "Programlar",
-    "tuitionFrom": "Ücret Başlangıcı",
-    "tuition": "Öğrenim Ücreti",
-    "viewUniversity": "Üniversiteyi Gör",
-    "viewPrograms": "Programları Gör"
-  },
-  "ProgramDetail": {
-    "breadcrumb": {
-      "home": "Ana Sayfa",
-      "programs": "Programlar"
-    },
-    "badges": {
-      "intake": "Dönem: {intake}",
-      "contactUniversity": "Üniversite ile İletişim",
-      "fastTrack": "Hızlı Kabul"
-    },
-    "buttons": {
-      "apply": "Şimdi Başvur",
-      "downloadBrochure": "Broşürü İndir",
-      "viewUniversity": "Üniversiteyi Gör",
-      "startApplication": "Başvuruyu Başlat",
-      "contactAdvisor": "Danışmanla İletişim"
-    },
-    "highlights": {
-      "title": "Program Özellikleri",
-      "tuition": "Öğrenim Ücreti",
-      "duration": "Süre",
-      "language": "Dil",
-      "level": "Derece Seviyesi",
-      "gpaRequirement": "Minimum Not Ortalaması"
-    },
-    "overview": {
-      "title": "Program Genel Bakış",
-      "noDescription": "Bu program için açıklama mevcut değil.",
-      "curriculum": "Temel Müfredat",
-      "curriculumPlaceholder": "Temel dersler bilgisi yakında güncellenecek"
-    },
-    "requirements": {
-      "title": "Kabul Gereksinimleri"
-    },
-    "scholarships": {
-      "title": "Bu Program İçin Burs Seçenekleri",
-      "description": "Bütçenize en uygun burs türünü seçin"
-    },
-    "faq": {
-      "title": "Sıkça Sorulan Sorular",
-      "deadline": "Başvuru son tarihi {deadline}.",
-      "accommodationQ": "Konaklama sağlanıyor mu?",
-      "accommodationA": "Evet, uluslararası öğrenciler için kampüs içi konaklama mevcuttur.",
-      "workQ": "Yarı zamanlı çalışabilir miyim?",
-      "workA": "Evet, uluslararası öğrenciler uygun izinlerle iş-eğitim programlarına veya stajlara başvurabilirler.",
-      "deadlineQ": "Başvuru son tarihi nedir?"
-    },
-    "sidebar": {
-      "ready": "Başvurmaya Hazır mısınız?",
-      "free": "Ücretsiz Başvuru",
-      "fast": "Hızlı İşlem",
-      "expert": "Uzman Desteği",
-      "cost": "Maliyet Dağılımı",
-      "applicationFee": "Başvuru Ücreti",
-      "serviceFee": "Hizmet Ücreti",
-      "disclaimer": "* Ek maliyetler konaklama, vize ve yaşam giderlerini içerebilir",
-      "why": "Neden Bu Programı Seçmelisiniz?",
-      "reasons": {
-        "degree": "Uluslararası tanınır derece",
-        "faculty": "Deneyimli öğretim üyeleri",
-        "facilities": "Modern tesisler ve kaynaklar",
-        "career": "Kariyer geliştirme desteği"
-      }
-    },
-    "accommodation": {
-      "title": "Konaklama Seçenekleri"
-    }
-  },
-  "UniversityDetail": {
-    "quickLinks": {
-      "exploreCourses": "Kursları Keşfet",
-      "getFunded": "Finansman Alın",
-      "findHousing": "Konaklama Bul",
-      "findLocation": "Konum"
-    },
-    "location": {
-      "title": "Kampüs Konumu",
-      "viewOnMap": "Google Haritalarda Görüntüle"
-    },
-    "about": "Üniversite Hakkında",
-    "whyChooseUs": "Neden Bizi Seçmelisiniz",
-    "programs": {
-      "title": "Programlar",
-      "allPrograms": "Tüm Programlar",
-      "noPrograms": "Bu seviye için program bulunamadı.",
-      "viewProgram": "Programı Gör",
-      "tuitionFee": "Öğrenim Ücreti",
-      "perYear": "yıllık",
-      "allLanguages": "Tüm Diller",
-      "filterByLanguage": "Dil"
-    },
-    "scholarships": {
-      "title": "Mevcut Burs Seçenekleri",
-      "description": "Bu üniversitedeki programlar için bütçenize en uygun burs türünü seçin"
-    },
-    "campus": {
-      "tour": "Kampüs Turu",
-      "gallery": "Kampüs Galerisi",
-      "viewImage": "Resmi Görüntüle"
-    },
-    "admission": {
-      "title": "Kabul Gereksinimleri",
-      "academic": "Akademik Gereksinimler",
-      "language": "Dil Gereksinimleri",
-      "highSchool": "Lise diploması veya dengi",
-      "gpa": "Minimum GPA 3.0/4.0",
-      "transcripts": "Akademik transkript",
-      "ielts": "IELTS 6.0 veya TOEFL 80+",
-      "hsk": "Çince programlar için HSK 4",
-      "english": "İngilizce yeterlilik belgesi"
-    },
-    "sidebar": {
-      "ready": "Başvurmaya Hazır mısınız?",
-      "startJourney": "{university}'de yolculuğunuza başlayın",
-      "applyNow": "Şimdi Başvur",
-      "downloadBrochure": "Broşürü İndir",
-      "quickActions": "Hızlı İşlemler",
-      "requestInfo": "Bilgi İste",
-      "chatAdvisor": "Danışmanla Sohbet",
-      "virtualTour": "Sanal Kampüs Turu",
-      "scheduleCall": "Görüşme Planla",
-      "quickFacts": "Hızlı Bilgiler",
-      "location": "Konum",
-      "founded": "Kuruluş",
-      "students": "Öğrenciler",
-      "international": "Uluslararası",
-      "ranking": "Sıralama",
-      "officialWebsite": "Resmi Web Sitesi"
-    }
-  },
-  "RequestInformation": {
-    "title": "Bilgi İste",
-    "description": "{university} hakkında daha fazla bilgi edinin. Aşağıdaki formu doldurun.",
-    "firstName": "Ad",
-    "lastName": "Soyad",
-    "email": "E-posta",
-    "phone": "Telefon Numarası",
-    "interest": "İlgi Alanı",
-    "selectInterest": "İlgi alanınızı seçin",
-    "interests": {
-      "admission": "Kabul Gereksinimleri",
-      "programs": "Mevcut Programlar",
-      "scholarships": "Burs Fırsatları",
-      "campus": "Kampüs Hayatı",
-      "other": "Diğer"
-    },
-    "message": "Mesaj",
-    "messagePlaceholder": "{university}'de okumakla ilgileniyorum...",
-    "submit": "Talep Gönder",
-    "sending": "Gönderiliyor...",
-    "success": "Talep başarıyla gönderildi! Yakında sizinle iletişime geçeceğiz.",
-    "error": "Talep gönderilemedi. Lütfen tekrar deneyin."
-  },
-  "UniversityScholarships": {
-    "loading": "Burslar yükleniyor...",
-    "noScholarships": "Bu üniversite için henüz burs mevcut değil.",
-    "options": "Burs Seçenekleri",
-    "discover": "Daha Fazla Fırsat Keşfedin",
-    "explore": "Tüm Burs Seçeneklerini Keşfedin",
-    "description": "Hangi bursun size uygun olduğundan emin değil misiniz? Tüm seçenekleri karşılaştırmak, uygunluk gereksinimlerini anlamak ve akademik yolculuğunuz için mükemmel olanı bulmak için tam burs rehberimize göz atın.",
-    "viewAll": "Tüm Bursları Gör",
-    "advice": "Kişiselleştirilmiş Tavsiye Al",
-    "mostPopular": "En Popüler",
-    "defaultDescription": "Uluslararası öğrenciler için harika seçenek.",
-    "tuitionCoverage": "Öğrenim Karşılama",
-    "serviceFee": "Hizmet Ücreti",
-    "whatsIncluded": "Neler Dahil",
-    "scholarshipType": "Burs Türü",
-    "action": "İşlem",
-    "applyNow": "Şimdi Başvur",
-    "howItWorks": {
-      "title": "Burslar Nasıl Çalışır",
-      "description": "Burs, öğrenim ücretlerinizin bir yüzdesini karşılar. Kalan öğrenim ücretini üniversiteye + başvuru desteği, vize yardımı ve rehberlik için tek seferlik hizmet ücretini ödersiniz.",
-      "learnMore": "Burslar hakkında daha fazla bilgi →"
-    },
-    "benefits": {
-      "tuitionCoverage": "%{percentage} öğrenim ücreti karşılama",
-      "noScholarship": "Burs yok (%0 karşılama)",
-      "support": "Başvuru desteği ve rehberlik",
-      "visa": "Vize yardımı",
-      "orientation": "Uçuş öncesi oryantasyon",
-      "accommodation": "Konaklama düzenleme desteği"
-    }
-  },
-  "Accommodation": {
-    "notAvailable": "Konaklama bilgisi mevcut değil",
-    "badge": "Öğrenci Konaklama",
-    "title": "Kampüs İçi Konaklama Seçenekleri",
-    "priceRange": "Fiyat Aralığı",
-    "generalFacilities": "Genel Tesisler",
-    "availableRoomTypes": "Mevcut Oda Türleri",
-    "defaultTitle": "Konaklama",
-    "priceOnRequest": "İstek üzerine fiyat",
-    "month": "ay",
-    "roomFeatures": "Oda Özellikleri:",
-    "importantInfo": {
-      "title": "Önemli Bilgiler",
-      "fees": "Konaklama ücretleri dönem veya akademik yıl bazında ödenir",
-      "availability": "Oda tahsisi müsaitliğe bağlıdır",
-      "prices": "Fiyatlar değişebilir ve üniversite ile teyit edilmelidir",
-      "deposit": "Giriş sırasında depozito gerekebilir"
-    }
-  },
-  "UniversityHeader": {
-    "fastTrack": "Hızlı Kabul",
-    "est": "Krl. {founded}",
-    "studentsCount": "{students} Öğrenci",
-    "website": "Web Sitesi",
-    "applyNow": "Şimdi Başvur",
-    "requestInfo": "Bilgi İste",
-    "brochure": "Broşür",
-    "virtualTour": "Sanal Tur",
-    "scheduleCall": "Görüşme Planla",
-    "chatAdvisor": "Danışman",
-    "save": "Kaydet",
-    "saved": "Kaydedildi",
-    "share": "Paylaş",
-    "founded": "Kuruluş",
-    "students": "Öğrenciler",
-    "ranking": "Sıralama",
-    "international": "Uluslararası"
-  },
-  "Apply": {
-    "title": "Programa Başvur",
-    "steps": {
-      "info": "Bilgi",
-      "documents": "Belgeler",
-      "payment": "Ödeme",
-      "review": "İnceleme",
-      "personalInfo": "Kişisel Bilgiler",
-      "requiredDocuments": "Gerekli Belgeler",
-      "paymentInfo": "Ödeme",
-      "reviewSubmit": "İncele ve Gönder"
-    },
-    "labels": {
-      "fullName": "Ad Soyad (pasaportta yazıldığı gibi)",
-      "email": "E-posta Adresi",
-      "phone": "Cep Telefonu Numarası",
-      "country": "Ülke",
-      "passport": "Pasaport Numarası",
-      "preferredIntake": "Tercih Edilen Dönem",
-      "emergencyContactName": "Acil Durum İletişim Adı",
-      "emergencyContactPhone": "Acil Durum İletişim Telefonu",
-      "emergencyContactRelationship": "Yakınlık Derecesi"
-    },
-    "placeholders": {
-      "fullName": "örn. Ahmet Yılmaz",
-      "email": "örn. ahmet@ornek.com",
-      "phone": "örn. 555 123 4567",
-      "passport": "örn. AB1234567",
-      "emergencyName": "örn. Veli veya Vasi adı",
-      "emergencyPhone": "örn. 555 123 4567",
-      "relationship": "örn. Ebeveyn, Eş"
-    },
-    "hints": {
-      "phoneHint": "Ülke kodu olmadan telefon numaranızı girin",
-      "passportHint": "Pasaport numaranızı tam olarak yazıldığı gibi girin"
-    },
-    "buttons": {
-      "continueToDocuments": "Belgelere Devam Et",
-      "continueToPayment": "Ödemeye Devam Et",
-      "continueToReview": "İncelemeye Devam Et",
-      "submitApplication": "Başvuruyu Gönder",
-      "back": "Geri",
-      "uploadDocument": "Yükle",
-      "selectFile": "Dosya Seç"
-    },
-    "validation": {
-      "missingFieldsTitle": "Lütfen aşağıdaki gerekli alanları doldurun:",
-      "required": "Bu alan zorunludur"
-    },
-    "documents": {
-      "title": "Gerekli Belgeler",
-      "description": "Lütfen aşağıdaki belgeleri yükleyin. Kabul edilen formatlar: PDF, JPG, PNG (maks 10MB)",
-      "mandatory": "Zorunlu",
-      "optional": "İsteğe Bağlı",
-      "uploaded": "Yüklendi",
-      "pending": "Bekliyor"
-    },
-    "payment": {
-      "title": "Başvuru Ücreti",
-      "applicationFee": "Başvuru Ücreti",
-      "serviceFee": "Hizmet Ücreti",
-      "total": "Toplam",
-      "payNow": "Şimdi Öde",
-      "payLater": "Sonra Öde"
-    },
-    "review": {
-      "title": "Başvurunuzu İnceleyin",
-      "personalDetails": "Kişisel Bilgiler",
-      "uploadedDocuments": "Yüklenen Belgeler",
-      "confirmSubmit": "Sağlanan tüm bilgilerin doğru olduğunu onaylıyorum",
-      "submitting": "Gönderiliyor...",
-      "success": "Başvuru Başarıyla Gönderildi!",
-      "successMessage": "Başvurunuz gönderildi. Kısa süre içinde onay e-postası alacaksınız."
-    },
-    "errors": {
-      "generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
-      "uploadFailed": "Belge yüklenemedi. Lütfen tekrar deneyin.",
-      "paymentFailed": "Ödeme başarısız. Lütfen tekrar deneyin."
-    }
-  },
-  "AISearch": {
-    "placeholder": "Deneyin: 'Pekin'de 30000 RMB altında Mühendislik Yüksek Lisansı'",
-    "search": "Ara",
-    "filters": "AI anladı",
-    "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
-  },
-  "AIChat": {
-    "title": "Chen Wei 陈伟",
-    "subtitle": "Eğitim Danışmanınız",
-    "typing": "Yazıyor...",
-    "greeting": "Merhaba! 👋 Ben Chen Wei (陈伟), kişisel eğitim danışmanınız. Çin'de sizin için mükemmel programı bulmanıza, sorularınızı yanıtlamanıza ve hatta başvuru sürecinde size rehberlik etmek için buradayım. Bugün size nasıl yardımcı olabilirim?",
-    "inputPlaceholder": "Mesajınızı yazın...",
-    "thinking": "Düşünüyor...",
-    "error": "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.",
-    "quickStart": "Hızlı başlangıç:",
-    "quickFind": "🎓 Program Bul",
-    "quickScholarship": "💰 Burslar",
-    "quickApply": "📝 Başvuru Başlat",
-    "chatHistory": "Sohbet Geçmişi",
-    "newChat": "Yeni Sohbet",
-    "noHistory": "Önceki konuşma yok",
-    "backToChat": "Sohbete Dön",
-    "loginPrompt": "🔐 Sohbet geçmişinizi kaydetmek ve başvuruları takip etmek için giriş yapın",
-    "login": "Giriş Yap",
-    "register": "Kayıt Ol"
-  },
-  "PaymentDashboard": {
-    "title": "Ödemeler",
-    "subtitle": "Başvuru ödemelerinizi yönetin",
-    "totalAmount": "Toplam Tutar",
-    "totalPaid": "Toplam Ödenen",
-    "pending": "Bekleyen",
-    "rest": "Kalan Tutar",
-    "totalTransactions": "Toplam İşlem",
-    "successfullyProcessed": "Başarıyla işlendi",
-    "paymentDue": "vadesi gelen ödeme",
-    "allTime": "Tüm zamanlar",
-    "amount": "Tutar",
-    "status": "Durum",
-    "created": "Oluşturulma Tarihi",
-    "method": "Yöntem",
-    "payNow": "Şimdi Öde",
-    "viewApplication": "Başvuruyu Görüntüle",
-    "paymentProof": "Ödeme Kanıtı",
-    "paymentRequest": {
-      "title": "Ödeme Talebi",
-      "amount": "USD 200",
-      "description": "bu ödemeyi yapın",
-      "note": "Başvurunuza devam etmek için lütfen ödemeyi tamamlayın."
-    },
-    "paymentStatuses": {
-      "completed": "Tamamlandı",
-      "pending": "Bekliyor",
-      "processing": "İşleniyor",
-      "failed": "Başarısız",
-      "refunded": "İade Edildi"
-    },
-    "types": {
-      "application_fee": "Başvuru Ücreti",
-      "service_fee": "Hizmet Ücreti",
-      "tuition_deposit": "Eğitim Depozitosu",
-      "full_tuition": "Tam Eğitim Ücreti",
-      "accommodation": "Konaklama",
-      "other": "Diğer"
-    },
-    "assistance": {
-      "title": "Ödeme Yardımı",
-      "description": "{count} bekleyen ödemeniz var. Ödemelerle ilgili yardıma ihtiyacınız varsa veya sorularınız varsa:",
-      "point1": "Ödeme yardımı için destek ekibimizle iletişime geçin",
-      "point2": "Ödeme planlarına uygun olup olmadığınızı kontrol edin",
-      "point3": "Ödeme yönteminizin desteklendiğini doğrulayın"
-    },
-    "paidOn": "Ödeme Tarihi",
-    "reference": "Referans",
-    "verifiedByAdmin": "Yönetici tarafından doğrulandı",
-    "expires": "Bitiş:",
-    "adminNote": "Yönetici Notu:",
-    "paymentLinkExpired": "Ödeme Bağlantısı Süresi Doldu",
-    "document": "Belge:",
-    "noPayments": "Ödeme Yok",
-    "noPaymentsDesc": "Bekleyen ödemeniz bulunmamaktadır.",
-    "contactSupport": "Destek İle İletişime Geçin"
-  },
-  "Refunds": {
-    "title": "İade Talepleri",
-    "statusTitle": "İade Durumu",
-    "requestButton": "İade Talep Et",
-    "submittedTitle": "İade Talebi Gönderildi",
-    "submittedOn": "{date} tarihinde gönderildi",
-    "reasonLabel": "Sebep",
-    "adminResponseLabel": "Yönetici Yanıtı",
-    "rejectedTitle": "Başvuru Reddedildi",
-    "rejectedMessage": "Geri ödeme/İade için uygun olabilirsiniz. Talep göndermek için düğmeye tıklayın.",
-    "modalTitle": "İade Talep Et",
-    "modalDescription": "İade talebinde bulunun. Lütfen neden iade talep ettiğinizi açıklayın.",
-    "modalReasonLabel": "İade Sebebi",
-    "modalPlaceholder": "Reddedildim çünkü...",
-    "submitButton": "Talebi Gönder",
-    "cancelButton": "İptal",
-    "successMessage": "İade talebi başarıyla gönderildi",
-    "errorMessage": "Talep gönderilemedi",
-    "table": {
-      "student": "Öğrenci",
-      "program": "Üniversite / Program",
-      "reason": "Sebep",
-      "status": "Durum",
-      "date": "Tarih",
-      "actions": "İşlemler",
-      "approve": "Onayla",
-      "reject": "Reddet",
-      "noRequests": "İade talebi bulunamadı",
-      "approveTitle": "İade Talebini Onayla",
-      "rejectTitle": "İade Talebini Reddet",
-      "approveDescription": "Bu işlem, talebi onaylandı olarak işaretleyecek ve başvuru ödeme durumunu iade edildi olarak güncelleyecektir.",
-      "rejectDescription": "Bu işlem, talebi reddedildi olarak işaretleyecektir.",
-      "adminResponsePlaceholder": "Öğrenciye bir not ekleyin..."
-    }
-  },
-  "Messages": {
-    "title": "Mesajlar",
-    "subtitle": "Kabul ekibi ile iletişim",
-    "conversations": "Konuşmalar",
-    "unreadMessages": "Okunmamış Mesajlar",
-    "actionRequired": "Eylem Gerekiyor",
-    "actionCompleted": "Tamamlandı",
-    "noMessages": "Henüz mesaj yok",
-    "noMessagesDesc": "Kabul ekibinden gelen mesajlar burada görünecek",
-    "reply": "Yanıtla",
-    "replyingTo": "{name}'e yanıt veriliyor",
-    "typeReply": "Yanıtınızı yazın...",
-    "sendReply": "Yanıt Gönder",
-    "sending": "Gönderiliyor...",
-    "cancel": "İptal",
-    "you": "Siz",
-    "admin": "Kabul Ekibi",
-    "replyTooltip": "Bu mesajı yanıtla",
-    "actionRequiredMessage": "Lütfen bu mesajı yanıtlayın veya istenen eylemi tamamlayın.",
-    "takeAction": "Harekete Geç",
-    "attachment": "ek",
-    "attachments": "ekler"
-  },
-  "QSRankings": {
-    "meta": {
-      "title": "QS Dünya Üniversite Sıralamaları 2026 — Çin Üniversiteleri | Çin'de Oku",
-      "description": "QS Dünya Üniversite Sıralamaları 2026'da Çin'i keşfedin. 72 Çin üniversitesinin küresel sıralamasını görün, Pekin Üniversitesi (#14)'dan gelişen araştırma kurumlarına kadar. Çin'deki ideal üniversitenizi bulun."
-    },
-    "hero": {
-      "badge": "QS Dünya Üniversite Sıralamaları 2026",
-      "titleHighlight": "Çin Üniversiteleri",
-      "titleRest": "Küresel Sıralamalarda",
-      "subtitle": "QS Dünya Üniversite Sıralamaları 2026'da Çin'in en iyi üniversitelerinin nerede olduğunu keşfedin. Pekin Üniversitesi #14'ten gelişen araştırma güçlerine — eğitiminiz için mükemmel kurumu bulun.",
-      "breadcrumb": "QS Sıralamaları 2026",
-      "statRanked": "Sıralanan Üniversite",
-      "statHighest": "En Yüksek Küresel Sıra",
-      "statTop50": "Küresel İlk 50'de",
-      "statCities": "Temsil Edilen Şehir"
-    },
-    "content": {
-      "topUniversitiesTitle": "Çin'in Küresel Olarak En Üst Sıralı Üniversiteleri",
-      "browseAllTitle": "Tüm Sıralamaları Gör",
-      "searchPlaceholder": "Üniversite ara...",
-      "allCities": "Tüm Şehirler",
-      "showing": "Gösterilen",
-      "of": "/",
-      "universities": "üniversite",
-      "university": "üniversite",
-      "inCity": "şehir:",
-      "matching": "eşleşen",
-      "noResults": "Üniversite bulunamadı",
-      "noResultsHint": "Arama veya filtrelerinizi ayarlamayı deneyin",
-      "overallScore": "Genel Puan",
-      "score": "Puan",
-      "world": "Dünya",
-      "china": "Çin",
-      "ctaTitle": "Üst Sıralı Bir Üniversitede Okumaya Hazır mısınız?",
-      "ctaDescription": "Çin'in QS sıralamalı üniversitelerindeki programları inceleyin. Burs bulun, öğrenim ücretlerini karşılaştırın ve bugün başvurunuzu başlatın.",
-      "browseUniversities": "Üniversitelere Göz At",
-      "explorePrograms": "Programları Keşfet",
-      "disclaimer": "Sıralama verileri Quacquarelli Symonds tarafından yayınlanan QS Dünya Üniversite Sıralamaları 2026'dan alınmıştır. Resmi ve güncel sıralamalar için ziyaret edin",
-      "visitSite": "topuniversities.com",
-      "viewProfile": "Profili Gör",
-      "tierTop50": "Küresel İlk 50",
-      "tierTop200": "Sıra 51–200",
-      "tierTop500": "Sıra 201–500",
-      "tierRemaining": "501+"
-    }
-  }
 }

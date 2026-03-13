@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-14] - i18n: Sync Turkish translations with English (219 keys)
+
+- **messages/tr.json** [UPDATED]: Added 219 missing Turkish translation keys — Navbar destinations (8 cities), Hero budget/scholarship/duration/categories, Programs filters/cards/compare/emptyState/quickChips/aiSearch/view, GuidedTour, UniversitiesCard, ProgramDetail (badges/deadline/highlights), UniversityDetail (programs/faq), Profile, and full Apply form section (sections/options/labels/placeholders/buttons).
+
 ## [2026-03-14] - i18n: French Navbar Destinations & Apply Form Translations
 
 - **messages/fr.json** [UPDATED]: Added `Navbar.destinations` section with French translations for title, viewAll, and all 8 city entries (Beijing, Shanghai, Guangzhou, Wuhan, Hangzhou, Nanjing, Chengdu, Xi'an). Added missing `qsRankings` and `qsRankingsDesc` to `Navbar.resources`. Added complete `Apply` section with 150+ French-translated keys covering the entire application form.
