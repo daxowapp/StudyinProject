@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-14] - Fix: Too Many Requests Rate Limiting
+
+- **middleware.ts** [UPDATED]: Disabled rate limiting entirely in development mode (`NODE_ENV === 'development'`). Increased production limits from 60→200 req/min for pages and 30→100 req/min for API routes to prevent false positives during normal browsing.
+
 ## [2026-03-13] - Enhancement: Destinations City Images (Batch 7)
 
 - **public/cities/** [NEW × 23]: Generated unique cityscape images for 23 additional cities — Jinhua, Jiaozuo, Cangzhou, Yiwu, Baoji, Zibo, Fuling, Kuala Lumpur, Dezhou, Xiangyang, Dongying, Karamay, Zhanjiang, Linyi, Zhenjiang, Guangyuan, Luoyang, Baoding, Huaiyin, Lianyungang, Daqing, Lishui, Guilin. Total city images now: 99.

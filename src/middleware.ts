@@ -27,15 +27,16 @@ export async function middleware(request: NextRequest) {
         return new NextResponse('Forbidden', { status: 403 });
     }
 
-    // 1. Rate limiting (skip for whitelisted AI/search bots)
-    if (!isWhitelistedBot(userAgent)) {
+    // 1. Rate limiting (skip in development and for whitelisted AI/search bots)
+    const isDev = process.env.NODE_ENV === 'development';
+    if (!isDev && !isWhitelistedBot(userAgent)) {
         const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
             || request.headers.get('x-real-ip')
             || 'unknown';
 
-        // 60 requests per minute for regular users, 30 for /api routes
+        // 200 requests per minute for pages, 100 for /api routes
         const isApiRoute = request.nextUrl.pathname.startsWith('/api');
-        const maxRequests = isApiRoute ? 30 : 60;
+        const maxRequests = isApiRoute ? 100 : 200;
 
         const { limited, resetTime } = rateLimit(ip, maxRequests);
 
