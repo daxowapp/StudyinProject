@@ -499,6 +499,20 @@ html {
   flex-shrink: 0;
 }
 
+/* Reset scroll-strip on desktop so Tailwind md:grid classes take effect */
+@media (min-width: 768px) {
+  .scroll-strip {
+    display: grid !important;
+    overflow-x: visible !important;
+    scroll-snap-type: none;
+  }
+  .scroll-strip > * {
+    flex-shrink: 1;
+    scroll-snap-align: unset;
+    min-width: 0;
+  }
+}
+
 /* Scroll strip fade edges */
 .scroll-strip-container {
   position: relative;
@@ -569,21 +583,7 @@ html {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Horizontal scroll-strip with snap */
-.scroll-strip {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.scroll-strip::-webkit-scrollbar {
-  display: none;
-}
-.scroll-strip > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
+
 
 /* Bottom sheet / drawer slide-up */
 @keyframes slide-up-sheet {

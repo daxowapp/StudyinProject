@@ -17,6 +17,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code, Loader2, SlidersHorizontal } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -184,6 +185,16 @@ export function HeroSection() {
             <div className="absolute inset-0 z-0">
                 {/* Mesh Gradient Background */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
+
+                {/* Hero Background Image */}
+                <Image
+                    src="/hero-bg.png"
+                    alt="Study in China"
+                    fill
+                    className="object-cover mix-blend-soft-light opacity-20"
+                    priority
+                    sizes="100vw"
+                />
 
                 {/* Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[100px_100px]" />
