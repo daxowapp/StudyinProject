@@ -564,49 +564,49 @@ export interface UniversalDoc {
 
 export const CUCAS_UNIVERSAL_DOCS: UniversalDoc[] = [
   {
-    id: 'univ_passport',
+    id: 'a0000001-0000-4000-8000-000000000001',
     title: 'Passport',
     description: 'A clear, full-color scan of your passport information page, showing your name, passport number, expiration date, and photo. Some universities may also require blank visa pages, so you are advised to upload a few blank pages as well.',
     isRequired: true,
   },
   {
-    id: 'univ_photo',
+    id: 'a0000001-0000-4000-8000-000000000002',
     title: 'Photo',
     description: 'A recent passport-sized ID photo (2 × 2 inches) with a plain white background. Full face visible, no headwear (except for religious reasons). Taken within the last 6 months.',
     isRequired: true,
   },
   {
-    id: 'univ_graduation_cert',
+    id: 'a0000001-0000-4000-8000-000000000003',
     title: 'Highest Degree Graduation Certificate',
     description: 'A formal graduation certificate of your highest completed education level (e.g., Senior High School, Bachelor\'s, or Master\'s degree). If the document is not in Chinese or English, it must be translated into Chinese or English and notarized by an authorized translation agency or relevant authority. Self-translations are not accepted.',
     isRequired: false,
   },
   {
-    id: 'univ_transcripts',
+    id: 'a0000001-0000-4000-8000-000000000004',
     title: 'Highest Degree Academic Transcripts',
     description: 'Formal academic transcripts of your highest completed education level, covering ALL academic years, NOT just the final year. If the document is not in Chinese or English, it must be translated into Chinese or English and notarized by an authorized translation agency or relevant authority.',
     isRequired: false,
   },
   {
-    id: 'univ_chinese_proficiency',
+    id: 'a0000001-0000-4000-8000-000000000005',
     title: 'Chinese Language Proficiency Certificate (For Chinese Medium Programs)',
     description: 'For Bachelor\'s degree programs taught in Chinese, HSK Level 4 or above with a minimum score of 180 is usually required. For Master\'s degree programs, HSK Level 5 with a score of 180 or above is generally required. Higher scores and levels are preferred.',
     isRequired: false,
   },
   {
-    id: 'univ_english_proficiency',
+    id: 'a0000001-0000-4000-8000-000000000006',
     title: 'English Language Proficiency Certificate (For English Medium Programs)',
     description: 'IELTS (6.0 or above) or TOEFL iBT (90 or above) is generally preferred. If unable to provide these, you may submit alternative proof such as a Duolingo English Test score or an official English proficiency certificate from your previous school/university.',
     isRequired: false,
   },
   {
-    id: 'univ_police_clearance',
+    id: 'a0000001-0000-4000-8000-000000000007',
     title: 'Non-criminal Record Certificate',
     description: 'This document is generally valid for only 6 months. Obtain this certificate from the local police station of your current residence, confirming no criminal record during the 6 months prior to issuance. If currently in China, the certificate must be issued by the local Chinese police. If not in Chinese or English, it must be translated and notarized.',
     isRequired: false,
   },
   {
-    id: 'univ_physical_exam',
+    id: 'a0000001-0000-4000-8000-000000000008',
     title: 'Physical Examination Form',
     description: 'Download the form template, print it, and bring it to a hospital for the required medical tests. The medical examination must cover all items listed. Ensure your photo is attached and the form is stamped and signed by the hospital. Medical results are valid for 6 months only. The document must be in English or Chinese.',
     isRequired: false,
@@ -617,25 +617,25 @@ export const CUCAS_UNIVERSAL_DOCS: UniversalDoc[] = [
 
 export const CUCAS_CHINA_DOCS: UniversalDoc[] = [
   {
-    id: 'china_transfer_cert',
+    id: 'a0000001-0000-4000-8000-000000000009',
     title: 'A Non-objection Transfer Certificate (无异议转学证明)',
     description: 'Issued by your previous Chinese university. This document should include your personal information, academic performance (including attendance), estimated graduation date, and your current university\'s approval of your transfer application. It must also contain the university\'s contact information (email and phone), issue date, and official stamp.',
     isRequired: true,
   },
   {
-    id: 'china_entry_exit_stamps',
+    id: 'a0000001-0000-4000-8000-000000000010',
     title: 'Scanned copies of all passport pages with entry and exit stamps for China',
     description: '',
     isRequired: true,
   },
   {
-    id: 'china_visa_residence',
+    id: 'a0000001-0000-4000-8000-000000000011',
     title: 'Scanned copies of all visa pages (X1, X2, T, or others) and residence permit pages (if applicable)',
     description: '',
     isRequired: true,
   },
   {
-    id: 'china_recommendation',
+    id: 'a0000001-0000-4000-8000-000000000012',
     title: 'A Recommendation Letter From Previous Chinese University',
     description: 'Some universities may also request a recommendation letter from your previous university or other supporting documents.',
     isRequired: false,
@@ -644,7 +644,7 @@ export const CUCAS_CHINA_DOCS: UniversalDoc[] = [
 
 export const CUCAS_UNDER18_DOCS: UniversalDoc[] = [
   {
-    id: 'under18_guardian_letter',
+    id: 'a0000001-0000-4000-8000-000000000013',
     title: 'Notarized Guardian\'s Letter of Commitment',
     description: 'Students under 18 must find a Chinese guardian who resides in the same city as the university you are applying to. Upload a scanned copy of the notarized Guardian\'s Letter of Commitment. This document must be certified in your home country and notarized in China. A Notarization of Declaration (声明公证) issued in China is eventually required. A scanned copy is acceptable at the initial stage.',
     isRequired: true,
