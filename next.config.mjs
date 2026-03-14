@@ -4,6 +4,8 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Serve static assets via Bunny.net CDN in production
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://studyatchina.b-cdn.net' : undefined,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**.supabase.co' },
