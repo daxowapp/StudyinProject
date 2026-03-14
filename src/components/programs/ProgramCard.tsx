@@ -190,8 +190,8 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
 
                             <Dialog open={isQuickViewOpen} onOpenChange={setIsQuickViewOpen}>
                                 <DialogTrigger asChild>
-                                    <Button variant="outline" size="icon" className="h-9 w-9 shrink-0">
-                                        <Eye className="h-4 w-4" />
+                                    <Button variant="outline" size="icon" className="h-11 w-11 sm:h-9 sm:w-9 shrink-0 active:scale-[0.97] transition-transform">
+                                        <Eye className="h-4.5 w-4.5 sm:h-4 sm:w-4" />
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="max-w-2xl">
@@ -206,9 +206,9 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                             </Dialog>
 
                             <Link href={`/programs/${program.slug || program.id}`}>
-                                <Button size="sm" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group h-9">
+                                <Button size="sm" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group h-11 sm:h-9 active:scale-[0.97] transition-transform">
                                     {t("viewProgram")}
-                                    <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="ml-1.5 h-4 w-4 sm:h-3.5 sm:w-3.5 group-hover:translate-x-1 transition-transform" />
                                 </Button>
                             </Link>
                         </div>
@@ -319,11 +319,11 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                 </div>
 
                 {/* Tuition - Highlighted */}
-                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg mb-4 border border-primary/20">
-                    <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                        <DollarSign className="h-4 w-4 text-primary" /> {t("tuitionFee")}
+                <div className="flex items-center justify-between p-3.5 md:p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg mb-4 border border-primary/20">
+                    <span className="text-sm md:text-xs font-medium text-muted-foreground flex items-center gap-1.5 md:gap-1">
+                        <DollarSign className="h-4.5 w-4.5 md:h-4 md:w-4 text-primary" /> {t("tuitionFee")}
                     </span>
-                    <span className="text-base font-bold text-primary">
+                    <span className="text-lg md:text-base font-bold text-primary">
                         {typeof program.tuition_fee === "number" ? (
                             <Price amount={program.tuition_fee} currency={program.currency || "CNY"} />
                         ) : (
@@ -362,8 +362,8 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                 {/* Quick View Button */}
                 <Dialog open={isQuickViewOpen} onOpenChange={setIsQuickViewOpen}>
                     <DialogTrigger asChild>
-                        <Button variant="outline" size="icon" className="shrink-0">
-                            <Eye className="h-4 w-4" />
+                        <Button variant="outline" size="icon" className="shrink-0 h-12 w-12 md:h-10 md:w-10 active:scale-[0.97] transition-transform">
+                            <Eye className="h-5 w-5 md:h-4 md:w-4" />
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-2xl">
@@ -379,9 +379,9 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
 
                 {/* View Program Button */}
                 <Link href={`/programs/${program.slug || program.id}`} className="flex-1">
-                    <Button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group">
+                    <Button className="w-full h-12 md:h-10 text-[15px] md:text-sm bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group active:scale-[0.97] transition-transform">
                         {t("viewProgram")}
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="ml-2 h-4.5 w-4.5 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                 </Link>
             </CardFooter>

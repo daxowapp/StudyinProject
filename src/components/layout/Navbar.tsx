@@ -4,6 +4,12 @@ import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
     NavigationMenu,
     NavigationMenuContent,
     NavigationMenuItem,
@@ -37,7 +43,6 @@ import {
     Sparkles
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { createClient } from "@/lib/supabase/client";
 import { signout } from "@/app/[locale]/(auth)/actions/index";
 import { CurrencySelector } from "@/components/currency/CurrencySelector";
@@ -59,7 +64,6 @@ export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-    const { scrollY } = useScroll();
     const router = useRouter();
     const supabase = createClient();
 
@@ -180,9 +184,14 @@ export function Navbar() {
         }
     ];
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        setScrolled(latest > 50);
-    });
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        handleScroll(); // Check initial position
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const checkUser = async () => {
@@ -218,12 +227,9 @@ export function Navbar() {
 
     return (
         <>
-            <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            <nav
                 className={cn(
-                    "fixed top-0 z-50 w-full transition-all duration-500 ease-out",
+                    "fixed top-0 z-50 w-full transition-all duration-500 ease-out animate-[slideDown_0.5s_ease-out]",
                     showSolid
                         ? "navbar-glass border-b border-black/[0.06] shadow-[0_1px_3px_rgba(0,0,0,0.05),0_8px_20px_rgba(0,0,0,0.04)]"
                         : "bg-transparent border-b border-white/[0.08]"
@@ -237,11 +243,12 @@ export function Navbar() {
                     <Link href="/" className="flex items-center gap-3 group me-6 shrink-0">
                         <div className="relative h-10 w-36 transition-transform duration-300 group-hover:scale-[1.03]">
                             <Image
-                                src={showSolid ? "/logo-red.png" : "/logo-white.png"}
+                                src={showSolid ? "/logo.png" : "/logo-white.png"}
                                 alt="Studyatchina Logo"
                                 fill
                                 className="object-contain"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                sizes="144px"
+                                priority
                             />
                         </div>
                     </Link>
@@ -567,7 +574,7 @@ export function Navbar() {
                                             <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
                                                 <div className="relative h-8 w-28">
                                                     <Image
-                                                        src="/logo-red.png"
+                                                        src="/logo.png"
                                                         alt="Studyatchina Logo"
                                                         fill
                                                         className="object-contain"
@@ -576,6 +583,18 @@ export function Navbar() {
                                                 </div>
                                             </Link>
                                         </div>
+                                        {/* User greeting (only if logged in) */}
+                                        {!loading && user && (
+                                            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-black/[0.06]">
+                                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center ring-1 ring-primary/20">
+                                                    <UserIcon className="h-5 w-5 text-primary" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <p className="text-sm font-semibold truncate">{user.user_metadata?.full_name || t('user.myAccount')}</p>
+                                                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                                                </div>
+                                            </div>
+                                        )}
                                         {/* Mobile Language & Currency */}
                                         <div className="flex items-center gap-2 mt-4 pt-4 border-t border-black/[0.06]">
                                             <LanguageSwitcher />
@@ -583,197 +602,180 @@ export function Navbar() {
                                         </div>
                                     </div>
 
-                                    {/* Mobile Nav Links */}
-                                    <div className="flex-1 overflow-y-auto py-4 px-4">
-                                        <div className="flex flex-col gap-6">
-                                            {/* Home */}
-                                            <Link
-                                                href="/"
-                                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200"
-                                                onClick={() => setIsOpen(false)}
-                                            >
-                                                <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center">
-                                                    <Home className="h-4 w-4 text-primary" />
-                                                </div>
-                                                <span className="text-sm font-semibold">{t('home')}</span>
-                                            </Link>
+                                    {/* Mobile Nav Links — Accordion Sections */}
+                                    <div className="flex-1 overflow-y-auto py-3 px-3">
+                                        {/* Home (always visible) */}
+                                        <Link
+                                            href="/"
+                                            className="flex items-center gap-3 px-3 py-3.5 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all duration-200 mb-1"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                <Home className="h-4.5 w-4.5 text-primary" />
+                                            </div>
+                                            <span className="text-sm font-semibold">{t('home')}</span>
+                                        </Link>
 
-                                            {/* Universities Section */}
-                                            <div className="space-y-1.5">
-                                                <h4 className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground/50 px-3">{t('universities')}</h4>
-                                                <div className="grid grid-cols-1 gap-0.5">
-                                                    {universityCategories.slice(0, 4).map((item) => (
+                                        <Accordion type="single" collapsible className="w-full">
+                                            {/* Universities */}
+                                            <AccordionItem value="universities" className="border-b border-black/[0.04]">
+                                                <AccordionTrigger className="px-3 py-4 min-h-[52px] hover:no-underline hover:bg-black/[0.03] active:bg-black/[0.06] rounded-xl">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                            <Building2 className="h-4.5 w-4.5 text-primary" />
+                                                        </div>
+                                                        <span className="text-sm font-semibold">{t('universities')}</span>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="pb-2 ps-6">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        {universityCategories.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                href={item.href}
+                                                                className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all"
+                                                                onClick={() => setIsOpen(false)}
+                                                            >
+                                                                <item.icon className="h-4 w-4 text-primary/70 shrink-0" />
+                                                                <span className="text-sm text-foreground/80">{item.title}</span>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+
+                                            {/* Programs */}
+                                            <AccordionItem value="programs" className="border-b border-black/[0.04]">
+                                                <AccordionTrigger className="px-3 py-4 min-h-[52px] hover:no-underline hover:bg-black/[0.03] active:bg-black/[0.06] rounded-xl">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                            <GraduationCap className="h-4.5 w-4.5 text-primary" />
+                                                        </div>
+                                                        <span className="text-sm font-semibold">{t('programs')}</span>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="pb-2 ps-6">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        {programLevels.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                href={item.href}
+                                                                className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all"
+                                                                onClick={() => setIsOpen(false)}
+                                                            >
+                                                                <item.icon className="h-4 w-4 text-primary/70 shrink-0" />
+                                                                <span className="text-sm text-foreground/80">{item.title}</span>
+                                                            </Link>
+                                                        ))}
                                                         <Link
-                                                            key={item.title}
-                                                            href={item.href}
-                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
+                                                            href="/programs"
+                                                            className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-primary/5 active:bg-primary/10 text-primary transition-all"
                                                             onClick={() => setIsOpen(false)}
                                                         >
-                                                            <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                                <item.icon className="h-4 w-4 text-primary/80" />
-                                                            </div>
-                                                            <span className="text-sm font-medium text-foreground/80">{item.title}</span>
+                                                            <ChevronRight className="h-4 w-4 shrink-0" />
+                                                            <span className="text-sm font-semibold">{t('levels.viewAll')}</span>
                                                         </Link>
-                                                    ))}
-                                                    <Link
-                                                        href="/universities"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary/5 transition-all duration-200 text-primary"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                                                            <Building2 className="h-4 w-4" />
-                                                        </div>
-                                                        <span className="text-sm font-semibold">{t('viewAllUniversities')}</span>
-                                                    </Link>
-                                                </div>
-                                            </div>
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
 
-                                            {/* Programs Section */}
-                                            <div className="space-y-1.5">
-                                                <h4 className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground/50 px-3">{t('programs')}</h4>
-                                                <div className="grid grid-cols-1 gap-0.5">
-                                                    {programLevels.map((item) => (
+                                            {/* Destinations */}
+                                            <AccordionItem value="destinations" className="border-b border-black/[0.04]">
+                                                <AccordionTrigger className="px-3 py-4 min-h-[52px] hover:no-underline hover:bg-black/[0.03] active:bg-black/[0.06] rounded-xl">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                            <MapPin className="h-4.5 w-4.5 text-primary" />
+                                                        </div>
+                                                        <span className="text-sm font-semibold">{t('destinations.title')}</span>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="pb-2 ps-6">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        {destinations.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                href={item.href}
+                                                                className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all"
+                                                                onClick={() => setIsOpen(false)}
+                                                            >
+                                                                <item.icon className="h-4 w-4 text-primary/70 shrink-0" />
+                                                                <span className="text-sm text-foreground/80">{item.title}</span>
+                                                            </Link>
+                                                        ))}
                                                         <Link
-                                                            key={item.title}
-                                                            href={item.href}
-                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
+                                                            href="/destinations"
+                                                            className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-primary/5 active:bg-primary/10 text-primary transition-all"
                                                             onClick={() => setIsOpen(false)}
                                                         >
-                                                            <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                                <item.icon className="h-4 w-4 text-primary/80" />
-                                                            </div>
-                                                            <span className="text-sm font-medium text-foreground/80">{item.title}</span>
+                                                            <ChevronRight className="h-4 w-4 shrink-0" />
+                                                            <span className="text-sm font-semibold">{t('destinations.viewAll')}</span>
                                                         </Link>
-                                                    ))}
-                                                </div>
-                                            </div>
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
 
-                                            {/* Destinations Section */}
-                                            <div className="space-y-1.5">
-                                                <h4 className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground/50 px-3">{t('destinations.title')}</h4>
-                                                <div className="grid grid-cols-1 gap-0.5">
-                                                    {destinations.slice(0, 6).map((item) => (
-                                                        <Link
-                                                            key={item.title}
-                                                            href={item.href}
-                                                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                            onClick={() => setIsOpen(false)}
-                                                        >
-                                                            <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                                <item.icon className="h-4 w-4 text-primary/80" />
-                                                            </div>
-                                                            <span className="text-sm font-medium text-foreground/80">{item.title}</span>
+                                            {/* Resources */}
+                                            <AccordionItem value="resources" className="border-b-0">
+                                                <AccordionTrigger className="px-3 py-4 min-h-[52px] hover:no-underline hover:bg-black/[0.03] active:bg-black/[0.06] rounded-xl">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                            <BookOpen className="h-4.5 w-4.5 text-primary" />
+                                                        </div>
+                                                        <span className="text-sm font-semibold">{t('resources.title')}</span>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="pb-2 ps-6">
+                                                    <div className="flex flex-col gap-0.5">
+                                                        <Link href="/scholarships" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <Award className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">{t('resources.scholarships')}</span>
                                                         </Link>
-                                                    ))}
-                                                    <Link
-                                                        href="/destinations"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary/5 transition-all duration-200 text-primary"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                                                            <MapPin className="h-4 w-4" />
-                                                        </div>
-                                                        <span className="text-sm font-semibold">{t('destinations.viewAll')}</span>
-                                                    </Link>
-                                                </div>
-                                            </div>
+                                                        <Link href="/how-to-apply" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <HelpCircle className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">{t('resources.howToApply')}</span>
+                                                        </Link>
+                                                        <Link href="/articles" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <Newspaper className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">{t('resources.articles')}</span>
+                                                        </Link>
+                                                        <Link href="/scholarships/filter" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <Filter className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">{t('resources.scholarshipFilter')}</span>
+                                                        </Link>
+                                                        <Link href="/articles/csca-guide" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <BookOpen className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">CSCA Exam Guide</span>
+                                                        </Link>
+                                                        <Link href="/qs-rankings" className="flex items-center gap-3 px-3 py-3 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all" onClick={() => setIsOpen(false)}>
+                                                            <Trophy className="h-4 w-4 text-primary/70 shrink-0" />
+                                                            <span className="text-sm text-foreground/80">{t('resources.qsRankings')}</span>
+                                                        </Link>
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
 
-                                            {/* Resources Section */}
-                                            <div className="space-y-1.5">
-                                                <h4 className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground/50 px-3">{t('resources.title')}</h4>
-                                                <div className="grid grid-cols-1 gap-0.5">
-                                                    <Link
-                                                        href="/scholarships"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <Award className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.scholarships')}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/how-to-apply"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <HelpCircle className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.howToApply')}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/articles"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <Newspaper className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.articles')}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/scholarships/filter"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <Filter className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.scholarshipFilter')}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/articles/csca-guide"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <BookOpen className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">CSCA Exam Guide</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/qs-rankings"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <Trophy className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.qsRankings')}</span>
-                                                    </Link>
-                                                    <Link
-                                                        href="/contact"
-                                                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-black/[0.03] transition-all duration-200 group"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/12 transition-colors">
-                                                            <Mail className="h-4 w-4 text-primary/80" />
-                                                        </div>
-                                                        <span className="text-sm font-medium text-foreground/80">{t('resources.contact')}</span>
-                                                    </Link>
-                                                </div>
+                                        {/* Contact (always visible) */}
+                                        <Link
+                                            href="/contact"
+                                            className="flex items-center gap-3 px-3 py-3.5 min-h-[48px] rounded-xl hover:bg-black/[0.03] active:bg-black/[0.06] transition-all duration-200 mt-1"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                                                <Mail className="h-4.5 w-4.5 text-primary" />
                                             </div>
-                                        </div>
+                                            <span className="text-sm font-semibold">{t('contact')}</span>
+                                        </Link>
                                     </div>
 
                                     {/* Mobile Footer Auth */}
-                                    <div className="p-5 border-t border-black/[0.06] bg-black/[0.02]">
+                                    <div className="p-5 border-t border-black/[0.06] bg-black/[0.02]" style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}>
                                         {!loading && (
                                             user ? (
                                                 <div className="space-y-3">
-                                                    <div className="flex items-center gap-3 px-1 mb-3">
-                                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center ring-1 ring-primary/20">
-                                                            <UserIcon className="h-5 w-5 text-primary" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-sm font-semibold">{user.user_metadata?.full_name || t('user.myAccount')}</p>
-                                                            <p className="text-xs text-muted-foreground">{user.email}</p>
-                                                        </div>
-                                                    </div>
                                                     <Button
                                                         variant="outline"
-                                                        className="w-full justify-start rounded-xl h-10"
+                                                        className="w-full justify-start rounded-xl h-12 active:scale-[0.98] transition-transform"
                                                         onClick={() => {
                                                             setIsOpen(false);
                                                             router.push('/dashboard');
@@ -784,7 +786,7 @@ export function Navbar() {
                                                     </Button>
                                                     <Button
                                                         variant="ghost"
-                                                        className="w-full justify-start text-muted-foreground hover:text-destructive rounded-xl h-10"
+                                                        className="w-full justify-start text-muted-foreground hover:text-destructive rounded-xl h-12 active:scale-[0.98] transition-transform"
                                                         onClick={() => {
                                                             setIsOpen(false);
                                                             handleLogout();
@@ -797,12 +799,12 @@ export function Navbar() {
                                             ) : (
                                                 <div className="space-y-2.5">
                                                     <Link href="/login" onClick={() => setIsOpen(false)}>
-                                                        <Button variant="outline" className="w-full rounded-xl h-11 font-medium">
+                                                        <Button variant="outline" className="w-full rounded-xl h-12 font-medium active:scale-[0.98] transition-transform">
                                                             {t('user.signIn')}
                                                         </Button>
                                                     </Link>
                                                     <Link href="/register" onClick={() => setIsOpen(false)}>
-                                                        <Button className="w-full rounded-xl h-11 bg-gradient-to-r from-primary to-primary/85 hover:from-primary/95 hover:to-primary shadow-lg shadow-primary/20 transition-all duration-300 font-semibold">
+                                                        <Button className="w-full rounded-xl h-12 bg-gradient-to-r from-primary to-primary/85 hover:from-primary/95 hover:to-primary shadow-lg shadow-primary/20 transition-all duration-300 font-semibold active:scale-[0.98]">
                                                             <Sparkles className="h-4 w-4 me-2" />
                                                             {t('user.getStarted')}
                                                         </Button>
@@ -816,7 +818,7 @@ export function Navbar() {
                         </Sheet>
                     </div>
                 </div>
-            </motion.nav>
+            </nav>
             {/* Spacer for non-home pages */}
             {!isHome && <div className={cn("transition-all duration-500", scrolled ? "h-16" : "h-[72px]")} />}
         </>

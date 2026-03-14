@@ -153,27 +153,27 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                 {/* Feature pills row */}
                 <div className="flex flex-wrap gap-1.5 mb-3 min-h-7">
                     {university.hasScholarship && (
-                        <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <Sparkles className="h-2.5 w-2.5" />
+                        <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
+                            <Sparkles className="h-3 w-3 md:h-2.5 md:w-2.5" />
                             {t('scholarship')}
                         </Badge>
                     )}
                     {university.hasCscaExam && (
-                        <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <ClipboardCheck className="h-2.5 w-2.5" />
+                        <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
+                            <ClipboardCheck className="h-3 w-3 md:h-2.5 md:w-2.5" />
                             {t('cscaExam')}
                         </Badge>
                     )}
                     {university.availableLevels && university.availableLevels.length > 0 && (
-                        <Badge variant="outline" className="text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <GraduationCap className="h-2.5 w-2.5" />
+                        <Badge variant="outline" className="text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
+                            <GraduationCap className="h-3 w-3 md:h-2.5 md:w-2.5" />
                             {university.availableLevels.slice(0, 2).join(' · ')}
                             {university.availableLevels.length > 2 && ` +${university.availableLevels.length - 2}`}
                         </Badge>
                     )}
                     {university.availableLanguages && university.availableLanguages.length > 0 && (
-                        <Badge variant="outline" className="text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <Globe className="h-2.5 w-2.5" />
+                        <Badge variant="outline" className="text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
+                            <Globe className="h-3 w-3 md:h-2.5 md:w-2.5" />
                             {university.availableLanguages.slice(0, 2).join(' · ')}
                         </Badge>
                     )}
@@ -214,26 +214,26 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
 
             <CardFooter className="px-5 pb-5 pt-0 gap-2 shrink-0">
                 <Link href={`/universities/${university.slug}`} className="flex-1">
-                    <Button className="w-full h-9 text-[13px] gap-1.5 group/btn" size="sm">
+                    <Button className="w-full h-11 md:h-9 text-sm md:text-[13px] gap-1.5 group/btn active:scale-[0.97] transition-transform" size="sm">
                         {t('viewUniversity')}
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                        <ArrowRight className="h-4 w-4 md:h-3.5 md:w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                     </Button>
                 </Link>
                 <Link href={`/programs?university=${university.slug}`}>
-                    <Button variant="outline" size="sm" className="h-9 text-[13px] px-3">
-                        <BookOpen className="h-3.5 w-3.5" />
+                    <Button variant="outline" size="sm" className="h-11 w-11 md:h-9 md:w-auto md:px-3 text-sm md:text-[13px] active:scale-[0.97] transition-transform">
+                        <BookOpen className="h-4 w-4 md:h-3.5 md:w-3.5" />
                     </Button>
                 </Link>
                 {onToggleCompare && (
                     <Button
                         variant={isComparing ? "default" : "outline"}
                         size="sm"
-                        className={`h-9 text-[13px] px-3 ${isComparing ? 'bg-primary' : ''}`}
+                        className={`h-11 w-11 md:h-9 md:w-auto md:px-3 text-sm md:text-[13px] active:scale-[0.97] transition-transform ${isComparing ? 'bg-primary' : ''}`}
                         onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
                         disabled={compareDisabled}
                         title={isComparing ? t('removeFromCompare') : t('addToCompare')}
                     >
-                        <GitCompareArrows className="h-3.5 w-3.5" />
+                        <GitCompareArrows className="h-4 w-4 md:h-3.5 md:w-3.5" />
                     </Button>
                 )}
             </CardFooter>
@@ -385,13 +385,13 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                     {/* Actions */}
                     <div className="flex items-center gap-2 sm:shrink-0">
                         <Link href={`/universities/${university.slug}`}>
-                            <Button size="sm" className="h-9 gap-1.5 group/btn">
+                            <Button size="sm" className="h-11 sm:h-9 gap-1.5 group/btn active:scale-[0.97] transition-transform">
                                 {t('viewUniversity')}
-                                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                                <ArrowRight className="h-4 w-4 sm:h-3.5 sm:w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                             </Button>
                         </Link>
                         <Link href={`/programs?university=${university.slug}`}>
-                            <Button variant="outline" size="sm" className="h-9">
+                            <Button variant="outline" size="sm" className="h-11 sm:h-9 active:scale-[0.97] transition-transform">
                                 {t('viewPrograms')}
                             </Button>
                         </Link>
@@ -399,12 +399,12 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                             <Button
                                 variant={isComparing ? "default" : "outline"}
                                 size="sm"
-                                className={`h-9 ${isComparing ? 'bg-primary' : ''}`}
+                                className={`h-11 sm:h-9 active:scale-[0.97] transition-transform ${isComparing ? 'bg-primary' : ''}`}
                                 onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
                                 disabled={compareDisabled}
                                 title={isComparing ? t('removeFromCompare') : t('addToCompare')}
                             >
-                                <GitCompareArrows className="h-3.5 w-3.5" />
+                                <GitCompareArrows className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
                             </Button>
                         )}
                     </div>
