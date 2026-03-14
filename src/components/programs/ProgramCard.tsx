@@ -218,10 +218,23 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
         );
     }
 
+    /* ===========================
+       GRID CARD VARIANT — Simplified Mobile
+       =========================== */
     return (
-        <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-none shadow-lg bg-card flex flex-col h-full relative">
-            {/* Compare Checkbox */}
-            <div className="absolute top-3 right-3 z-10">
+        <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border border-border/50 shadow-sm bg-card flex flex-col h-full relative md:hover:-translate-y-1">
+            {/* Scholarship Badge — compact on mobile */}
+            {hasScholarship && (
+                <div className="absolute top-2.5 md:top-3 left-2.5 md:left-3 z-10">
+                    <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 shadow-md text-[10px] md:text-xs px-2 md:px-2.5 py-0.5">
+                        <Sparkles className="h-2.5 md:h-3 w-2.5 md:w-3 mr-0.5 md:mr-1" />
+                        {t("scholarship")}
+                    </Badge>
+                </div>
+            )}
+
+            {/* Compare checkbox — hidden on mobile */}
+            <div className="absolute top-3 right-3 z-10 hidden md:block">
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -247,83 +260,72 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                 </TooltipProvider>
             </div>
 
-            {/* Scholarship Badge */}
-            {hasScholarship && (
-                <div className="absolute top-3 left-3 z-10">
-                    <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 shadow-md">
-                        <Sparkles className="h-3 w-3 mr-1" />
-                        {t("scholarship")}
+            {/* Accent bar — hidden on mobile, shown on desktop */}
+            <div className="hidden md:block h-2 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
+
+            <CardContent className="p-4 md:p-6 flex-1 flex flex-col">
+                {/* Top Section — Level & Language badges (no large icon on mobile) */}
+                <div className="flex items-center gap-2 flex-wrap mb-2.5 md:mb-4">
+                    <Badge
+                        variant={program.level === "Master" ? "default" : "secondary"}
+                        className="text-[10px] md:text-xs px-2 md:px-3 py-0.5 md:py-1 font-semibold"
+                    >
+                        {program.level}
                     </Badge>
-                </div>
-            )}
-
-            {/* Header with gradient */}
-            <div className="h-2 bg-gradient-to-r from-primary via-primary/80 to-primary/60" />
-
-            <CardContent className="p-6 flex-1 flex flex-col">
-                {/* Top Section - Level Badge & Icon */}
-                <div className="flex justify-between items-start mb-4">
-                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                        <GraduationCap className="h-7 w-7 text-primary" />
-                    </div>
-                    <div className="flex gap-2">
-                        {program.language && (
-                            <Badge
-                                variant="secondary"
-                                className="px-3 py-1 text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 border-transparent"
-                            >
-                                <Globe className="h-3 w-3 mr-1" />
-                                {program.language}
-                            </Badge>
-                        )}
+                    {program.language && (
                         <Badge
-                            variant={program.level === "Master" ? "default" : "secondary"}
-                            className="px-3 py-1 text-xs font-semibold"
+                            variant="secondary"
+                            className="text-[10px] md:text-xs px-2 md:px-3 py-0.5 md:py-1 font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 border-transparent"
                         >
-                            {program.level}
+                            <Globe className="h-2.5 md:h-3 w-2.5 md:w-3 mr-0.5 md:mr-1" />
+                            {program.language}
                         </Badge>
+                    )}
+                    {/* Large icon — desktop only */}
+                    <div className="hidden md:flex ml-auto h-14 w-14 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                        <GraduationCap className="h-7 w-7 text-primary" />
                     </div>
                 </div>
 
                 {/* Program Info */}
-                <div className="mb-4 flex-1">
-                    <div className="flex items-start gap-2 text-sm font-semibold text-primary mb-2 min-h-[2.5rem]">
-                        <Building2 className="h-4 w-4 shrink-0 mt-0.5" />
-                        <span className="line-clamp-2">{program.university}</span>
+                <div className="mb-3 md:mb-4 flex-1">
+                    <div className="flex items-center gap-1.5 text-[13px] md:text-sm font-semibold text-primary mb-1.5 md:mb-2">
+                        <Building2 className="h-3.5 md:h-4 w-3.5 md:w-4 shrink-0" />
+                        <span className="line-clamp-1">{program.university}</span>
                     </div>
-                    <h3 className="font-bold text-lg leading-tight mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-primary transition-colors">
+                    <h3 className="font-bold text-base md:text-lg leading-tight mb-2 md:mb-3 line-clamp-2 min-h-[2.75rem] md:min-h-[3.5rem] group-hover:text-primary transition-colors">
                         {program.name}
                     </h3>
-                    <div className="flex items-center text-sm text-muted-foreground">
+                    <div className="flex items-center text-[13px] md:text-sm text-muted-foreground">
                         <MapPin className="h-3.5 w-3.5 mr-1 shrink-0" />
                         <span className="truncate">{program.city}</span>
                     </div>
                 </div>
 
-                {/* Details Grid */}
-                <div className="grid grid-cols-2 gap-3 mb-4 p-4 bg-muted/30 rounded-lg">
+                {/* Details — compact 2-col grid */}
+                <div className="grid grid-cols-2 gap-2 md:gap-3 mb-3 md:mb-4 p-3 md:p-4 bg-muted/30 rounded-lg">
                     <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
+                        <span className="text-[11px] md:text-xs text-muted-foreground flex items-center gap-1 mb-0.5">
                             <Clock className="h-3 w-3" /> {t("duration")}
                         </span>
-                        <span className="text-sm font-semibold">{program.duration}</span>
+                        <span className="text-[13px] md:text-sm font-semibold">{program.duration}</span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
+                        <span className="text-[11px] md:text-xs text-muted-foreground flex items-center gap-1 mb-0.5">
                             <Calendar className="h-3 w-3" /> {t("intake")}
                         </span>
-                        <span className="text-sm font-semibold truncate">
+                        <span className="text-[13px] md:text-sm font-semibold truncate">
                             {program.deadline || t("contact")}
                         </span>
                     </div>
                 </div>
 
-                {/* Tuition - Highlighted */}
-                <div className="flex items-center justify-between p-3.5 md:p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg mb-4 border border-primary/20">
-                    <span className="text-sm md:text-xs font-medium text-muted-foreground flex items-center gap-1.5 md:gap-1">
-                        <DollarSign className="h-4.5 w-4.5 md:h-4 md:w-4 text-primary" /> {t("tuitionFee")}
+                {/* Tuition — clean and simple on mobile */}
+                <div className="flex items-center justify-between p-3 md:p-3.5 bg-primary/5 md:bg-gradient-to-r md:from-primary/10 md:to-primary/5 rounded-lg mb-3 md:mb-4 border border-primary/10 md:border-primary/20">
+                    <span className="text-[12px] md:text-xs font-medium text-muted-foreground flex items-center gap-1">
+                        <DollarSign className="h-4 w-4 text-primary" /> {t("tuitionFee")}
                     </span>
-                    <span className="text-lg md:text-base font-bold text-primary">
+                    <span className="text-base md:text-base font-bold text-primary">
                         {typeof program.tuition_fee === "number" ? (
                             <Price amount={program.tuition_fee} currency={program.currency || "CNY"} />
                         ) : (
@@ -332,38 +334,46 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                     </span>
                 </div>
 
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2 mt-auto">
+                {/* Badges — max 2 on mobile, max 3 on desktop */}
+                <div className="flex flex-wrap gap-1.5 md:gap-2 mt-auto">
                     {program.has_fast_track && (
-                        <Badge className="bg-yellow-100 text-yellow-800 text-xs hover:bg-yellow-200 border-yellow-200">
-                            <Zap className="h-3 w-3 mr-1 fill-yellow-600 text-yellow-600 animate-pulse" />
+                        <Badge className="bg-yellow-100 text-yellow-800 text-[10px] md:text-xs hover:bg-yellow-200 border-yellow-200 px-2 py-0.5">
+                            <Zap className="h-2.5 md:h-3 w-2.5 md:w-3 mr-0.5 fill-yellow-600 text-yellow-600" />
                             {t("fastTrack") || 'Fast Track'}
                         </Badge>
                     )}
                     {program.csca_exam_require && (
-                        <Badge variant="destructive" className="bg-amber-600 text-xs font-semibold shadow-sm">
-                            📝 Requires CSCA
+                        <Badge variant="destructive" className="bg-amber-600 text-[10px] md:text-xs font-semibold shadow-sm px-2 py-0.5">
+                            📝 CSCA
                         </Badge>
                     )}
-                    {program.badges.slice(0, 3).map((badge, index) => (
-                        <Badge key={index} variant="outline" className="text-xs font-normal">
+                    {/* Show fewer badges on mobile */}
+                    {program.badges.slice(0, 2).map((badge, index) => (
+                        <Badge key={index} variant="outline" className="text-[10px] md:text-xs font-normal px-2 py-0.5 hidden first:inline-flex [&:nth-child(2)]:inline-flex md:inline-flex">
                             {badge}
                         </Badge>
                     ))}
+                    {/* Additional badges — desktop only */}
+                    {program.badges.length > 2 && (
+                        <Badge variant="outline" className="hidden md:inline-flex text-xs font-normal px-2 py-0.5">
+                            {program.badges[2]}
+                        </Badge>
+                    )}
                     {program.badges.length > 3 && (
-                        <Badge variant="outline" className="text-xs font-normal">
+                        <Badge variant="outline" className="hidden md:inline-flex text-xs font-normal px-2 py-0.5">
                             +{program.badges.length - 3}
                         </Badge>
                     )}
                 </div>
             </CardContent>
 
-            <CardFooter className="p-6 pt-0 flex gap-2">
-                {/* Quick View Button */}
+            {/* Footer — single button on mobile, icon + button on desktop */}
+            <CardFooter className="p-4 md:p-6 pt-0 flex gap-2">
+                {/* Quick View — desktop only */}
                 <Dialog open={isQuickViewOpen} onOpenChange={setIsQuickViewOpen}>
                     <DialogTrigger asChild>
-                        <Button variant="outline" size="icon" className="shrink-0 h-12 w-12 md:h-10 md:w-10 active:scale-[0.97] transition-transform">
-                            <Eye className="h-5 w-5 md:h-4 md:w-4" />
+                        <Button variant="outline" size="icon" className="shrink-0 hidden md:flex h-10 w-10 active:scale-[0.97] transition-transform">
+                            <Eye className="h-4 w-4" />
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-2xl">
@@ -377,11 +387,11 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
                     </DialogContent>
                 </Dialog>
 
-                {/* View Program Button */}
+                {/* View Program Button — full width on mobile */}
                 <Link href={`/programs/${program.slug || program.id}`} className="flex-1">
-                    <Button className="w-full h-12 md:h-10 text-[15px] md:text-sm bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 group active:scale-[0.97] transition-transform">
+                    <Button className="w-full h-10 md:h-10 text-sm gap-1.5 group/btn active:scale-[0.97] transition-transform">
                         {t("viewProgram")}
-                        <ArrowRight className="ml-2 h-4.5 w-4.5 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
                 </Link>
             </CardFooter>

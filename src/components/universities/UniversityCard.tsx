@@ -72,11 +72,11 @@ export const UniversityCard = React.memo(function UniversityCard({ university, v
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function UniversityGridCard({ university, t, isComparing, onToggleCompare, compareDisabled }: { university: University; t: any; isComparing?: boolean; onToggleCompare?: () => void; compareDisabled?: boolean }) {
     return (
-        <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 border border-border/50 shadow-sm bg-card group flex flex-col h-full hover:-translate-y-1">
+        <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 border border-border/50 shadow-sm bg-card group flex flex-col h-full md:hover:-translate-y-1">
             {/* Hero Banner Section */}
             <Link
                 href={`/universities/${university.slug}`}
-                className="h-44 relative overflow-hidden shrink-0 block"
+                className="h-36 md:h-44 relative overflow-hidden shrink-0 block"
             >
                 {/* Background Image or Gradient */}
                 {university.photo ? (
@@ -120,12 +120,12 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                 </div>
             </Link>
 
-            <CardContent className="px-5 pt-12 pb-4 relative flex-1 flex flex-col">
+            <CardContent className="px-4 pt-10 pb-3 md:px-5 md:pt-12 md:pb-4 relative flex-1 flex flex-col">
                 {/* Logo - floating above content with ring */}
-                <div className="absolute -top-10 left-5 h-20 w-20 rounded-2xl bg-white dark:bg-card shadow-lg flex items-center justify-center border-4 border-background overflow-hidden z-10 ring-1 ring-border/30">
+                <div className="absolute -top-8 md:-top-10 left-4 md:left-5 h-16 w-16 md:h-20 md:w-20 rounded-2xl bg-white dark:bg-card shadow-lg flex items-center justify-center border-4 border-background overflow-hidden z-10 ring-1 ring-border/30">
                     {university.logo ? (
                         <Image
-                            src={university.logo}
+                            src={`${university.logo}`}
                             alt={`${university.name} logo`}
                             fill
                             sizes="80px"
@@ -133,55 +133,56 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                             className="object-contain p-2"
                         />
                     ) : (
-                        <Building2 className="h-8 w-8 text-primary/70" />
+                        <Building2 className="h-6 w-6 md:h-8 md:w-8 text-primary/70" />
                     )}
                 </div>
 
                 {/* University Name & Location */}
-                <div className="mb-3">
+                <div className="mb-2 md:mb-3">
                     <Link href={`/universities/${university.slug}`} className="block group/title">
                         <h3 className="font-bold text-[15px] leading-snug group-hover/title:text-primary transition-colors line-clamp-2 min-h-11">
                             {university.name}
                         </h3>
                     </Link>
-                    <div className="flex items-center text-[13px] text-muted-foreground mt-1.5">
+                    <div className="flex items-center text-[13px] text-muted-foreground mt-1">
                         <MapPin className="h-3.5 w-3.5 mr-1 shrink-0 text-primary/60" />
                         <span className="truncate">{university.city}, {university.province}</span>
                     </div>
                 </div>
 
-                {/* Feature pills row */}
-                <div className="flex flex-wrap gap-1.5 mb-3 min-h-7">
+                {/* Feature pills row — limited on mobile */}
+                <div className="flex flex-wrap gap-1.5 mb-2 md:mb-3">
                     {university.hasScholarship && (
-                        <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
-                            <Sparkles className="h-3 w-3 md:h-2.5 md:w-2.5" />
+                        <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
+                            <Sparkles className="h-2.5 w-2.5" />
                             {t('scholarship')}
                         </Badge>
                     )}
                     {university.hasCscaExam && (
-                        <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
-                            <ClipboardCheck className="h-3 w-3 md:h-2.5 md:w-2.5" />
+                        <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
+                            <ClipboardCheck className="h-2.5 w-2.5" />
                             {t('cscaExam')}
                         </Badge>
                     )}
+                    {/* Levels & Languages — desktop only */}
                     {university.availableLevels && university.availableLevels.length > 0 && (
-                        <Badge variant="outline" className="text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
-                            <GraduationCap className="h-3 w-3 md:h-2.5 md:w-2.5" />
+                        <Badge variant="outline" className="hidden md:inline-flex text-[10px] font-medium px-2 py-0.5 gap-1">
+                            <GraduationCap className="h-2.5 w-2.5" />
                             {university.availableLevels.slice(0, 2).join(' · ')}
                             {university.availableLevels.length > 2 && ` +${university.availableLevels.length - 2}`}
                         </Badge>
                     )}
                     {university.availableLanguages && university.availableLanguages.length > 0 && (
-                        <Badge variant="outline" className="text-xs md:text-[10px] font-medium px-2.5 md:px-2 py-1 md:py-0.5 gap-1">
-                            <Globe className="h-3 w-3 md:h-2.5 md:w-2.5" />
+                        <Badge variant="outline" className="hidden md:inline-flex text-[10px] font-medium px-2 py-0.5 gap-1">
+                            <Globe className="h-2.5 w-2.5" />
                             {university.availableLanguages.slice(0, 2).join(' · ')}
                         </Badge>
                     )}
                 </div>
 
-                {/* Feature badges */}
+                {/* Feature badges — desktop only */}
                 {university.badges && university.badges.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    <div className="hidden md:flex flex-wrap gap-1 mb-4">
                         {university.badges.slice(0, 3).map((badge, index) => (
                             <Badge key={index} variant="secondary" className="text-[10px] font-normal px-2 py-0.5 bg-muted/70">
                                 {badge}
@@ -196,7 +197,7 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                 )}
 
                 {/* Tuition section */}
-                <div className="mt-auto pt-3 border-t border-dashed border-border/60">
+                <div className="mt-auto pt-2 md:pt-3 border-t border-border/40 md:border-dashed md:border-border/60">
                     <div className="flex items-baseline justify-between">
                         <span className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">
                             {university.minTuitionFee && university.minTuitionFee > 0 ? t('tuitionFrom') : t('tuition')}
@@ -212,28 +213,30 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                 </div>
             </CardContent>
 
-            <CardFooter className="px-5 pb-5 pt-0 gap-2 shrink-0">
+            {/* Footer — simplified on mobile */}
+            <CardFooter className="px-4 pb-4 pt-0 md:px-5 md:pb-5 gap-2 shrink-0">
                 <Link href={`/universities/${university.slug}`} className="flex-1">
-                    <Button className="w-full h-11 md:h-9 text-sm md:text-[13px] gap-1.5 group/btn active:scale-[0.97] transition-transform" size="sm">
+                    <Button className="w-full h-10 md:h-9 text-sm md:text-[13px] gap-1.5 group/btn active:scale-[0.97] transition-transform" size="sm">
                         {t('viewUniversity')}
-                        <ArrowRight className="h-4 w-4 md:h-3.5 md:w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                     </Button>
                 </Link>
-                <Link href={`/programs?university=${university.slug}`}>
-                    <Button variant="outline" size="sm" className="h-11 w-11 md:h-9 md:w-auto md:px-3 text-sm md:text-[13px] active:scale-[0.97] transition-transform">
-                        <BookOpen className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                {/* Programs & Compare — desktop only */}
+                <Link href={`/programs?university=${university.slug}`} className="hidden md:block">
+                    <Button variant="outline" size="sm" className="h-9 w-auto px-3 text-[13px]">
+                        <BookOpen className="h-3.5 w-3.5" />
                     </Button>
                 </Link>
                 {onToggleCompare && (
                     <Button
                         variant={isComparing ? "default" : "outline"}
                         size="sm"
-                        className={`h-11 w-11 md:h-9 md:w-auto md:px-3 text-sm md:text-[13px] active:scale-[0.97] transition-transform ${isComparing ? 'bg-primary' : ''}`}
+                        className={`hidden md:flex h-9 w-auto px-3 text-[13px] ${isComparing ? 'bg-primary' : ''}`}
                         onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
                         disabled={compareDisabled}
                         title={isComparing ? t('removeFromCompare') : t('addToCompare')}
                     >
-                        <GitCompareArrows className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                        <GitCompareArrows className="h-3.5 w-3.5" />
                     </Button>
                 )}
             </CardFooter>
@@ -385,13 +388,13 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                     {/* Actions */}
                     <div className="flex items-center gap-2 sm:shrink-0">
                         <Link href={`/universities/${university.slug}`}>
-                            <Button size="sm" className="h-11 sm:h-9 gap-1.5 group/btn active:scale-[0.97] transition-transform">
+                            <Button size="sm" className="h-9 gap-1.5 group/btn active:scale-[0.97] transition-transform">
                                 {t('viewUniversity')}
-                                <ArrowRight className="h-4 w-4 sm:h-3.5 sm:w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
                             </Button>
                         </Link>
                         <Link href={`/programs?university=${university.slug}`}>
-                            <Button variant="outline" size="sm" className="h-11 sm:h-9 active:scale-[0.97] transition-transform">
+                            <Button variant="outline" size="sm" className="h-9 active:scale-[0.97] transition-transform">
                                 {t('viewPrograms')}
                             </Button>
                         </Link>
@@ -399,12 +402,12 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                             <Button
                                 variant={isComparing ? "default" : "outline"}
                                 size="sm"
-                                className={`h-11 sm:h-9 active:scale-[0.97] transition-transform ${isComparing ? 'bg-primary' : ''}`}
+                                className={`h-9 active:scale-[0.97] transition-transform ${isComparing ? 'bg-primary' : ''}`}
                                 onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
                                 disabled={compareDisabled}
                                 title={isComparing ? t('removeFromCompare') : t('addToCompare')}
                             >
-                                <GitCompareArrows className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+                                <GitCompareArrows className="h-3.5 w-3.5" />
                             </Button>
                         )}
                     </div>
