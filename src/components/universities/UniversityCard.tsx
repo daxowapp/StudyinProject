@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -71,13 +72,12 @@ export const UniversityCard = React.memo(function UniversityCard({ university, v
    =========================== */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function UniversityGridCard({ university, t, isComparing, onToggleCompare, compareDisabled }: { university: University; t: any; isComparing?: boolean; onToggleCompare?: () => void; compareDisabled?: boolean }) {
-    return (
-        <Card className="overflow-hidden transition-all duration-300 bg-card group flex flex-col h-full
-            border border-border/60 shadow-sm hover:shadow-md
-            md:hover:shadow-xl md:hover:-translate-y-1">
+    const isMobile = useIsMobile();
 
-            {/* ── MOBILE LAYOUT (below md) ── */}
-            <div className="md:hidden flex flex-col h-full">
+    if (isMobile) {
+        return (
+            <Card className="overflow-hidden transition-all duration-300 bg-card group flex flex-col h-full border border-border/60 shadow-sm hover:shadow-md">
+                <div className="flex flex-col h-full">
                 <Link href={`/universities/${university.slug}`} className="flex flex-col h-full">
                     {/* Compact hero with logo inline */}
                     <div className="relative h-32 overflow-hidden shrink-0">
@@ -190,10 +190,14 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
                         </Button>
                     </Link>
                 </div>
-            </div>
+                </div>
+            </Card>
+        );
+    }
 
-            {/* ── DESKTOP LAYOUT (md and up) ── */}
-            <div className="hidden md:flex md:flex-col md:h-full">
+    return (
+        <Card className="overflow-hidden transition-all duration-300 bg-card group flex flex-col h-full border border-border/60 shadow-sm hover:shadow-md md:hover:shadow-xl md:hover:-translate-y-1">
+            <div className="flex flex-col h-full">
                 {/* Hero Banner */}
                 <Link
                     href={`/universities/${university.slug}`}
@@ -359,6 +363,7 @@ function UniversityGridCard({ university, t, isComparing, onToggleCompare, compa
             </div>
         </Card>
     );
+    // end desktop return
 }
 
 /* ===========================

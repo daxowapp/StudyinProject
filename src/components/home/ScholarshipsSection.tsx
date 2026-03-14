@@ -4,26 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Award, DollarSign, GraduationCap, Sparkles, TrendingUp } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-};
+function useInView() {
+    const ref = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+        }, { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, visible };
+}
 
 export function ScholarshipsSection() {
     const t = useTranslations('Scholarships');
+    const { ref: headerRef, visible: headerVisible } = useInView();
+    const { ref: gridRef, visible: gridVisible } = useInView();
+    const { ref: statsRef, visible: statsVisible } = useInView();
+    const { ref: ctaRef, visible: ctaVisible } = useInView();
 
     const scholarships = [
         {
@@ -59,11 +63,9 @@ export function ScholarshipsSection() {
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12 max-w-3xl mx-auto"
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-12 max-w-3xl mx-auto transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 font-semibold text-sm mb-4">
                         <DollarSign className="h-4 w-4 text-yellow-600" />
@@ -75,23 +77,18 @@ export function ScholarshipsSection() {
                     <p className="text-muted-foreground text-base md:text-lg">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Scholarships — horizontal scroll on mobile, grid on desktop */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 mb-12"
+                <div
+                    ref={gridRef}
+                    className={`flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 mb-12 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     {scholarships.map((scholarship, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={item}
-                            whileHover={{ y: -8 }}
-                            transition={{ duration: 0.2 }}
-                            className="min-w-[280px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1"
+                            className="min-w-[280px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1 hover:-translate-y-2 transition-transform duration-300"
+                            style={{ transitionDelay: gridVisible ? `${index * 150}ms` : '0ms' }}
                         >
                             <Card className="group h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white overflow-hidden">
                                 <CardContent className="p-6 md:p-8">
@@ -133,17 +130,14 @@ export function ScholarshipsSection() {
                                     </div>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
 
                 {/* Stats Bar */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 p-6 md:p-10 text-white mb-12"
+                <div
+                    ref={statsRef}
+                    className={`rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 p-6 md:p-10 text-white mb-12 transition-all duration-700 delay-300 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
                         {[
@@ -158,15 +152,12 @@ export function ScholarshipsSection() {
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="text-center"
+                <div
+                    ref={ctaRef}
+                    className={`text-center transition-all duration-700 delay-[400ms] ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <Link href="/scholarships">
                         <Button size="lg" className="rounded-xl bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 px-8">
@@ -174,7 +165,7 @@ export function ScholarshipsSection() {
                             {t('viewAll')}
                         </Button>
                     </Link>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

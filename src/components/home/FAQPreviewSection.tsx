@@ -9,11 +9,29 @@ import {
 import { Button } from "@/components/ui/button";
 import { HelpCircle, ArrowRight, MessageSquare } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+
+function useInView() {
+    const ref = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+        }, { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, visible };
+}
 
 export function FAQPreviewSection() {
     const t = useTranslations('FAQ');
+    const { ref: headerRef, visible: headerVisible } = useInView();
+    const { ref: accordionRef, visible: accordionVisible } = useInView();
+    const { ref: ctaRef, visible: ctaVisible } = useInView();
 
     const faqs = [
         'deadline',
@@ -34,11 +52,9 @@ export function FAQPreviewSection() {
 
             <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-12 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 font-semibold text-sm mb-4">
                         <HelpCircle className="h-4 w-4 text-blue-600" />
@@ -50,15 +66,12 @@ export function FAQPreviewSection() {
                     <p className="text-muted-foreground text-base md:text-lg">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* FAQ Accordion */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8"
+                <div
+                    ref={accordionRef}
+                    className={`bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8 transition-all duration-700 delay-200 ${accordionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <Accordion type="single" collapsible className="w-full">
                         {faqs.map((faqKey, index) => (
@@ -81,15 +94,12 @@ export function FAQPreviewSection() {
                             </AccordionItem>
                         ))}
                     </Accordion>
-                </motion.div>
+                </div>
 
                 {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="text-center"
+                <div
+                    ref={ctaRef}
+                    className={`text-center transition-all duration-700 delay-[400ms] ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex flex-col sm:flex-row gap-4">
                         <Link href="/faq">
@@ -112,8 +122,7 @@ export function FAQPreviewSection() {
                             </Button>
                         </Link>
                     </div>
-                    {/* Footer text removed to avoid confusion with site footer */}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

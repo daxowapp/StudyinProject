@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Award, ArrowRight, Trophy, ChevronLeft, ChevronRight, Zap } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -32,20 +31,20 @@ interface FeaturedUniversitiesSectionProps {
     universities?: University[];
 }
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-};
+function useInView() {
+    const ref = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+        }, { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, visible };
+}
 
 export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUniversitiesSectionProps) {
     const t = useTranslations('FeaturedUniversities');
@@ -53,6 +52,10 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 4;
     const totalPages = Math.ceil(displayUniversities.length / itemsPerPage);
+
+    const { ref: headerRef, visible: headerVisible } = useInView();
+    const { ref: gridRef, visible: gridVisible } = useInView();
+    const { ref: ctaRef, visible: ctaVisible } = useInView();
 
     const nextSlide = () => {
         setCurrentIndex((prev) => (prev + 1) % totalPages);
@@ -77,11 +80,9 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12 max-w-3xl mx-auto"
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-12 max-w-3xl mx-auto transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-yellow-500/10 border border-red-500/20 font-semibold text-sm mb-4">
                         <Trophy className="h-4 w-4 text-red-600" />
@@ -93,26 +94,20 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                     <p className="text-muted-foreground text-base md:text-lg">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Universities Carousel */}
                 <div className="relative">
-                    <motion.div
-                        key={currentIndex}
-                        variants={container}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+                    <div
+                        ref={gridRef}
+                        className={`grid gap-8 md:grid-cols-2 lg:grid-cols-4 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                         style={{ gridAutoRows: '1fr' }}
                     >
-                        {visibleUniversities.map((uni) => (
-                            <motion.div
+                        {visibleUniversities.map((uni, idx) => (
+                            <div
                                 key={uni.id}
-                                variants={item}
-                                whileHover={{ y: -8 }}
-                                transition={{ duration: 0.2 }}
-                                className="flex"
+                                className="flex hover:-translate-y-2 transition-transform duration-300"
+                                style={{ transitionDelay: gridVisible ? `${idx * 100}ms` : '0ms' }}
                             >
                                 <Card className="group overflow-hidden hover:shadow-xl transition-all cursor-pointer border-0 rounded-2xl shadow-lg bg-white flex flex-col w-full">
                                     <CardContent className="p-0 flex flex-col flex-1">
@@ -121,12 +116,12 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                             <div className="relative h-40 overflow-hidden bg-gradient-to-br from-red-50 to-orange-50 shrink-0">
                                                 {(() => {
                                                     const PLACEHOLDER_IMAGES = [
-                                                        "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop", // Existing
-                                                        "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=600&auto=format&fit=crop", // Library
-                                                        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop", // Campus
-                                                        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop", // Students
-                                                        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=600&auto=format&fit=crop", // Architecture
-                                                        "https://images.unsplash.com/photo-1590012314607-6da59983c8b6?q=80&w=600&auto=format&fit=crop"  // Modern building
+                                                        "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=600&auto=format&fit=crop",
+                                                        "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=600&auto=format&fit=crop",
+                                                        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop",
+                                                        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop",
+                                                        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=600&auto=format&fit=crop",
+                                                        "https://images.unsplash.com/photo-1590012314607-6da59983c8b6?q=80&w=600&auto=format&fit=crop"
                                                     ];
 
                                                     const getPlaceholder = (id: string, name: string) => {
@@ -139,7 +134,6 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                         return PLACEHOLDER_IMAGES[index];
                                                     };
 
-                                                    // Never render base64 data: URLs — they bloat SSR HTML by megabytes
                                                     const rawSrc = uni.cover_photo_url;
                                                     const imgSrc = (rawSrc && !rawSrc.startsWith('data:')) ? rawSrc : getPlaceholder(uni.id, uni.name);
 
@@ -203,7 +197,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 <span className="truncate">{uni.city}{uni.province && `, ${uni.province}`}</span>
                                             </div>
 
-                                            {/* Stats - Fixed height */}
+                                            {/* Stats */}
                                             <div className="space-y-2 mb-4 min-h-[4rem]">
                                                 {uni.programCount !== undefined && uni.programCount > 0 && (
                                                     <div className="flex items-center justify-between text-sm">
@@ -229,7 +223,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                 )}
                                             </div>
 
-                                            {/* Description & Button - Push to bottom */}
+                                            {/* Description & Button */}
                                             <div className="pt-4 border-t mt-auto">
                                                 {uni.description && (
                                                     <p className="text-xs text-muted-foreground mb-3 line-clamp-2 min-h-[2.5rem]">
@@ -247,9 +241,9 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                         </div>
                                     </CardContent>
                                 </Card>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
 
                     {/* Navigation Buttons */}
                     {totalPages > 1 && (
@@ -289,12 +283,9 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                     </div>
                 )}
                 {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-12 text-center"
+                <div
+                    ref={ctaRef}
+                    className={`mt-12 text-center transition-all duration-700 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <Link href="/universities">
                         <Button size="lg" variant="outline" className="rounded-xl border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold">
@@ -302,8 +293,8 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
                     </Link>
-                </motion.div>
+                </div>
             </div>
-        </section >
+        </section>
     );
 }

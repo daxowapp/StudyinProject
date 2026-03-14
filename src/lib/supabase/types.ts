@@ -501,6 +501,7 @@ export type Database = {
         Row: {
           acceptance_letter_url: string | null
           admin_notes: string | null
+          contacted_at: string | null
           created_at: string | null
           decision_at: string | null
           documents_complete: boolean | null
@@ -536,6 +537,7 @@ export type Database = {
         Insert: {
           acceptance_letter_url?: string | null
           admin_notes?: string | null
+          contacted_at?: string | null
           created_at?: string | null
           decision_at?: string | null
           documents_complete?: boolean | null
@@ -571,6 +573,7 @@ export type Database = {
         Update: {
           acceptance_letter_url?: string | null
           admin_notes?: string | null
+          contacted_at?: string | null
           created_at?: string | null
           decision_at?: string | null
           documents_complete?: boolean | null

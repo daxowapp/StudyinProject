@@ -1,5 +1,7 @@
 "use client";
 
+import { useIsMobile } from "@/hooks/useIsMobile";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -79,13 +81,12 @@ export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
    =========================== */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ProgramGridCard({ program, t, selected, canAdd, handleCompareToggle, isQuickViewOpen, setIsQuickViewOpen, hasScholarship }: any) {
-    return (
-        <Card className="group overflow-hidden transition-all duration-300 bg-card flex flex-col h-full relative
-            border border-border/60 shadow-sm hover:shadow-md
-            md:hover:shadow-xl md:hover:-translate-y-0.5">
+    const isMobile = useIsMobile();
 
-            {/* ── MOBILE LAYOUT (below md) ── */}
-            <div className="md:hidden flex flex-col h-full">
+    if (isMobile) {
+        return (
+            <Card className="group overflow-hidden transition-all duration-300 bg-card flex flex-col h-full relative border border-border/60 shadow-sm hover:shadow-md">
+                <div className="flex flex-col h-full">
                 <Link href={`/programs/${program.slug || program.id}`} className="flex flex-col h-full">
                     {/* Top: badges row */}
                     <div className="px-4 pt-4 pb-2 flex items-center gap-1.5 flex-wrap">
@@ -167,9 +168,13 @@ function ProgramGridCard({ program, t, selected, canAdd, handleCompareToggle, is
                     </Link>
                 </div>
             </div>
+            </Card>
+        );
+    }
 
-            {/* ── DESKTOP LAYOUT (md and up) ── */}
-            <div className="hidden md:flex md:flex-col md:h-full">
+    return (
+        <Card className="group overflow-hidden transition-all duration-300 bg-card flex flex-col h-full relative border border-border/60 shadow-sm hover:shadow-md md:hover:shadow-xl md:hover:-translate-y-0.5">
+            <div className="flex flex-col h-full">
                 {/* Compare Checkbox — desktop only */}
                 <div className="absolute top-3 right-3 z-10">
                     <TooltipProvider>
@@ -333,6 +338,7 @@ function ProgramGridCard({ program, t, selected, canAdd, handleCompareToggle, is
             </div>
         </Card>
     );
+    // end desktop return
 }
 
 /* ===========================

@@ -3,26 +3,29 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote, Star, MessageCircle, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-};
+function useInView() {
+    const ref = useRef<HTMLDivElement>(null);
+    const [visible, setVisible] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+        }, { threshold: 0.1 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, visible };
+}
 
 export function TestimonialsSection() {
     const t = useTranslations('Testimonials');
+    const { ref: headerRef, visible: headerVisible } = useInView();
+    const { ref: gridRef, visible: gridVisible } = useInView();
+    const { ref: trustRef, visible: trustVisible } = useInView();
 
     const testimonials = [
         {
@@ -55,11 +58,9 @@ export function TestimonialsSection() {
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12 max-w-3xl mx-auto"
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-12 max-w-3xl mx-auto transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 font-semibold text-sm mb-4">
                         <MessageCircle className="h-4 w-4 text-purple-600" />
@@ -71,23 +72,18 @@ export function TestimonialsSection() {
                     <p className="text-muted-foreground text-base md:text-lg">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Testimonials — horizontal scroll on mobile, grid on desktop */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
+                <div
+                    ref={gridRef}
+                    className={`flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     {testimonials.map((testimonial, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={item}
-                            whileHover={{ y: -8 }}
-                            transition={{ duration: 0.2 }}
-                            className="min-w-[300px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1"
+                            className="min-w-[300px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1 hover:-translate-y-2 transition-transform duration-300"
+                            style={{ transitionDelay: gridVisible ? `${index * 150}ms` : '0ms' }}
                         >
                             <Card className="group h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white relative overflow-hidden">
                                 {/* Quote Icon Background */}
@@ -131,17 +127,14 @@ export function TestimonialsSection() {
                                 {/* Decorative Corner */}
                                 <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </Card>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
 
                 {/* Trust Indicators */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-16 text-center"
+                <div
+                    ref={trustRef}
+                    className={`mt-16 text-center transition-all duration-700 delay-300 ${trustVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex flex-wrap items-center justify-center gap-8 px-8 py-6 rounded-2xl bg-muted/30">
                         <div className="flex items-center gap-2">
@@ -168,7 +161,7 @@ export function TestimonialsSection() {
                             </span>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

@@ -1,17 +1,30 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { GraduationCap, Users, Building2, Award, Globe, TrendingUp, BookOpen, CheckCircle } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
+function useIntersectionObserver(options?: IntersectionObserverInit) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) { setIsVisible(true); obs.disconnect(); }
+        }, { threshold: 0.1, ...options });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+    return { ref, isVisible };
+}
+
 function CountUpAnimation({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
     const [count, setCount] = useState(0);
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
+    const { ref, isVisible } = useIntersectionObserver();
 
     useEffect(() => {
-        if (!isInView) return;
+        if (!isVisible) return;
 
         let startTime: number;
         let animationFrame: number;
@@ -30,7 +43,7 @@ function CountUpAnimation({ end, suffix = "", duration = 2 }: { end: number; suf
         animationFrame = requestAnimationFrame(animate);
 
         return () => cancelAnimationFrame(animationFrame);
-    }, [end, duration, isInView]);
+    }, [end, duration, isVisible]);
 
     return (
         <span ref={ref}>
@@ -39,23 +52,10 @@ function CountUpAnimation({ end, suffix = "", duration = 2 }: { end: number; suf
     );
 }
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, scale: 0.8 },
-    show: { opacity: 1, scale: 1 }
-};
-
 export function StatsSection() {
     const t = useTranslations('Stats');
+    const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
+    const { ref: gridRef, isVisible: gridVisible } = useIntersectionObserver();
 
     const stats = [
         {
@@ -126,33 +126,17 @@ export function StatsSection() {
 
     return (
         <section className="py-10 md:py-16 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
-            {/* Animated Background */}
+            {/* Animated Background — CSS pulsing orbs */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.1, 0.2, 0.1]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1.2, 1, 1.2],
-                        opacity: [0.1, 0.2, 0.1]
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"
-                />
+                <div className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse [animation-delay:1s]" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-8 md:mb-16"
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 font-semibold text-sm mb-4 text-white">
                         <TrendingUp className="h-4 w-4 text-yellow-400" />
@@ -164,25 +148,20 @@ export function StatsSection() {
                     <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Stats Grid */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8"
+                <div
+                    ref={gridRef}
+                    className={`grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
                 >
                     {stats.map((stat, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={item}
-                            whileHover={{ y: -8, scale: 1.05 }}
-                            transition={{ duration: 0.2 }}
                             className={`group ${index >= 4 ? 'hidden md:block' : ''}`}
+                            style={{ transitionDelay: gridVisible ? `${index * 100}ms` : '0ms' }}
                         >
-                            <div className="relative h-full rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="relative h-full rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 md:p-6 hover:bg-white/10 hover:-translate-y-2 hover:scale-[1.05] transition-all duration-300">
                                 {/* Icon */}
                                 <div className={`h-10 w-10 md:h-12 md:w-12 rounded-xl ${stat.bgColor} backdrop-blur-sm flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                                     <stat.icon className={`h-5 w-5 md:h-6 md:w-6 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`} strokeWidth={2.5} style={{ stroke: 'url(#gradient)' }} />
@@ -214,9 +193,9 @@ export function StatsSection() {
                                 {/* Decorative Corner */}
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-white/5 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );
