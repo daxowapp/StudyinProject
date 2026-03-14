@@ -67,179 +67,296 @@ export const UniversityCard = React.memo(function UniversityCard({ university, v
 });
 
 /* ===========================
-   GRID CARD VARIANT
+   GRID CARD — Separate Mobile / Desktop
    =========================== */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function UniversityGridCard({ university, t, isComparing, onToggleCompare, compareDisabled }: { university: University; t: any; isComparing?: boolean; onToggleCompare?: () => void; compareDisabled?: boolean }) {
     return (
-        <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 border border-border/50 shadow-sm bg-card group flex flex-col h-full md:hover:-translate-y-1">
-            {/* Hero Banner Section */}
-            <Link
-                href={`/universities/${university.slug}`}
-                className="h-36 md:h-44 relative overflow-hidden shrink-0 block"
-            >
-                {/* Background Image or Gradient */}
-                {university.photo ? (
-                    <Image
-                        src={university.photo}
-                        alt={university.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                        loading="lazy"
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                    />
-                ) : (
-                    <div className="absolute inset-0 bg-linear-to-br from-primary/30 via-primary/10 to-secondary/20 flex items-center justify-center">
-                        <Building2 className="h-16 w-16 text-muted-foreground/15" />
+        <Card className="overflow-hidden transition-all duration-300 bg-card group flex flex-col h-full
+            border border-border/60 shadow-sm hover:shadow-md
+            md:hover:shadow-xl md:hover:-translate-y-1">
+
+            {/* ── MOBILE LAYOUT (below md) ── */}
+            <div className="md:hidden flex flex-col h-full">
+                <Link href={`/universities/${university.slug}`} className="flex flex-col h-full">
+                    {/* Compact hero with logo inline */}
+                    <div className="relative h-32 overflow-hidden shrink-0">
+                        {university.photo ? (
+                            <Image
+                                src={university.photo}
+                                alt={university.name}
+                                fill
+                                sizes="100vw"
+                                loading="lazy"
+                                className="object-cover"
+                            />
+                        ) : (
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/15 flex items-center justify-center">
+                                <Building2 className="h-12 w-12 text-muted-foreground/15" />
+                            </div>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+
+                        {/* Top badges */}
+                        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center gap-1.5">
+                            {university.ranking && (
+                                <div className="bg-amber-500/90 text-white px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1">
+                                    <Award className="h-2.5 w-2.5" />
+                                    #{university.ranking}
+                                </div>
+                            )}
+                            {university.has_fast_track && (
+                                <div className="bg-emerald-500/90 text-white px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1">
+                                    <Zap className="h-2.5 w-2.5" />
+                                    {t('fastTrack')}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Logo chip at bottom-left of image */}
+                        <div className="absolute bottom-2.5 left-2.5 h-11 w-11 rounded-xl bg-white shadow-md flex items-center justify-center overflow-hidden border-2 border-white">
+                            {university.logo ? (
+                                <Image
+                                    src={university.logo}
+                                    alt={`${university.name} logo`}
+                                    fill
+                                    sizes="44px"
+                                    loading="lazy"
+                                    className="object-contain p-1"
+                                />
+                            ) : (
+                                <Building2 className="h-5 w-5 text-primary/70" />
+                            )}
+                        </div>
+
+                        {/* Program count chip */}
+                        <div className="absolute bottom-2.5 right-2.5 bg-white/90 backdrop-blur-sm text-foreground px-2 py-0.5 rounded-md text-[11px] font-semibold flex items-center gap-1">
+                            <BookOpen className="h-3 w-3 text-primary" />
+                            {university.programs}
+                        </div>
                     </div>
-                )}
 
-                {/* Gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
-
-                {/* Top row: Ranking + Fast Track */}
-                <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-                    {university.ranking && (
-                        <div className="bg-amber-500/95 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1 shadow-lg">
-                            <Award className="h-3 w-3" />
-                            #{university.ranking}
-                        </div>
-                    )}
-                    {university.has_fast_track && (
-                        <div className="bg-emerald-500/95 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1 shadow-lg ml-auto">
-                            <Zap className="h-3 w-3" />
-                            {t('fastTrack')}
-                        </div>
-                    )}
-                </div>
-
-                {/* Bottom: Program count overlay */}
-                <div className="absolute bottom-3 right-3 bg-white/95 dark:bg-background/95 backdrop-blur-sm text-foreground px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 shadow-md">
-                    <BookOpen className="h-3 w-3 text-primary" />
-                    {university.programs} {t('programs')}
-                </div>
-            </Link>
-
-            <CardContent className="px-4 pt-10 pb-3 md:px-5 md:pt-12 md:pb-4 relative flex-1 flex flex-col">
-                {/* Logo - floating above content with ring */}
-                <div className="absolute -top-8 md:-top-10 left-4 md:left-5 h-16 w-16 md:h-20 md:w-20 rounded-2xl bg-white dark:bg-card shadow-lg flex items-center justify-center border-4 border-background overflow-hidden z-10 ring-1 ring-border/30">
-                    {university.logo ? (
-                        <Image
-                            src={`${university.logo}`}
-                            alt={`${university.name} logo`}
-                            fill
-                            sizes="80px"
-                            loading="lazy"
-                            className="object-contain p-2"
-                        />
-                    ) : (
-                        <Building2 className="h-6 w-6 md:h-8 md:w-8 text-primary/70" />
-                    )}
-                </div>
-
-                {/* University Name & Location */}
-                <div className="mb-2 md:mb-3">
-                    <Link href={`/universities/${university.slug}`} className="block group/title">
-                        <h3 className="font-bold text-[15px] leading-snug group-hover/title:text-primary transition-colors line-clamp-2 min-h-11">
+                    {/* Content */}
+                    <div className="px-4 pt-3 pb-2 flex-1 flex flex-col">
+                        {/* Name */}
+                        <h3 className="font-bold text-[15px] leading-snug line-clamp-2 text-foreground mb-1">
                             {university.name}
                         </h3>
-                    </Link>
-                    <div className="flex items-center text-[13px] text-muted-foreground mt-1">
-                        <MapPin className="h-3.5 w-3.5 mr-1 shrink-0 text-primary/60" />
-                        <span className="truncate">{university.city}, {university.province}</span>
+
+                        {/* Location */}
+                        <div className="flex items-center text-[13px] text-muted-foreground mb-2.5">
+                            <MapPin className="h-3.5 w-3.5 mr-1 shrink-0 text-primary/60" />
+                            <span className="truncate">{university.city}, {university.province}</span>
+                        </div>
+
+                        {/* Key badges — max 2 */}
+                        <div className="flex flex-wrap gap-1.5 mb-3">
+                            {university.hasScholarship && (
+                                <Badge className="bg-amber-50 text-amber-700 border-amber-200 text-[10px] font-medium px-2 py-0.5 gap-1">
+                                    <Sparkles className="h-2.5 w-2.5" />
+                                    {t('scholarship')}
+                                </Badge>
+                            )}
+                            {university.hasCscaExam && (
+                                <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] font-medium px-2 py-0.5 gap-1">
+                                    <ClipboardCheck className="h-2.5 w-2.5" />
+                                    {t('cscaExam')}
+                                </Badge>
+                            )}
+                        </div>
+
+                        {/* Tuition — clean line */}
+                        <div className="mt-auto pt-2.5 border-t border-border/40 flex items-center justify-between">
+                            <span className="text-[11px] text-muted-foreground uppercase tracking-wide font-medium">
+                                {university.minTuitionFee && university.minTuitionFee > 0 ? t('tuitionFrom') : t('tuition')}
+                            </span>
+                            <span className="font-bold text-[15px] text-primary">
+                                {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (
+                                    <Price amount={university.minTuitionFee} currency={university.currency || 'CNY'} />
+                                ) : (
+                                    <span className="text-[13px] text-muted-foreground font-medium">{t('contactForPricing')}</span>
+                                )}
+                            </span>
+                        </div>
                     </div>
-                </div>
+                </Link>
 
-                {/* Feature pills row — limited on mobile */}
-                <div className="flex flex-wrap gap-1.5 mb-2 md:mb-3">
-                    {university.hasScholarship && (
-                        <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <Sparkles className="h-2.5 w-2.5" />
-                            {t('scholarship')}
-                        </Badge>
-                    )}
-                    {university.hasCscaExam && (
-                        <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <ClipboardCheck className="h-2.5 w-2.5" />
-                            {t('cscaExam')}
-                        </Badge>
-                    )}
-                    {/* Levels & Languages — desktop only */}
-                    {university.availableLevels && university.availableLevels.length > 0 && (
-                        <Badge variant="outline" className="hidden md:inline-flex text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <GraduationCap className="h-2.5 w-2.5" />
-                            {university.availableLevels.slice(0, 2).join(' · ')}
-                            {university.availableLevels.length > 2 && ` +${university.availableLevels.length - 2}`}
-                        </Badge>
-                    )}
-                    {university.availableLanguages && university.availableLanguages.length > 0 && (
-                        <Badge variant="outline" className="hidden md:inline-flex text-[10px] font-medium px-2 py-0.5 gap-1">
-                            <Globe className="h-2.5 w-2.5" />
-                            {university.availableLanguages.slice(0, 2).join(' · ')}
-                        </Badge>
-                    )}
+                {/* Single CTA */}
+                <div className="px-4 pb-4">
+                    <Link href={`/universities/${university.slug}`} className="block">
+                        <Button className="w-full h-10 text-sm gap-1.5 active:scale-[0.97] transition-transform">
+                            {t('viewUniversity')}
+                            <ArrowRight className="h-3.5 w-3.5" />
+                        </Button>
+                    </Link>
                 </div>
+            </div>
 
-                {/* Feature badges — desktop only */}
-                {university.badges && university.badges.length > 0 && (
-                    <div className="hidden md:flex flex-wrap gap-1 mb-4">
-                        {university.badges.slice(0, 3).map((badge, index) => (
-                            <Badge key={index} variant="secondary" className="text-[10px] font-normal px-2 py-0.5 bg-muted/70">
-                                {badge}
+            {/* ── DESKTOP LAYOUT (md and up) ── */}
+            <div className="hidden md:flex md:flex-col md:h-full">
+                {/* Hero Banner */}
+                <Link
+                    href={`/universities/${university.slug}`}
+                    className="h-44 relative overflow-hidden shrink-0 block"
+                >
+                    {university.photo ? (
+                        <Image
+                            src={university.photo}
+                            alt={university.name}
+                            fill
+                            sizes="(max-width: 1280px) 50vw, 33vw"
+                            loading="lazy"
+                            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        />
+                    ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-primary/10 to-secondary/20 flex items-center justify-center">
+                            <Building2 className="h-16 w-16 text-muted-foreground/15" />
+                        </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                    {/* Ranking + Fast Track */}
+                    <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
+                        {university.ranking && (
+                            <div className="bg-amber-500/95 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1 shadow-lg">
+                                <Award className="h-3 w-3" />
+                                #{university.ranking}
+                            </div>
+                        )}
+                        {university.has_fast_track && (
+                            <div className="bg-emerald-500/95 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1 shadow-lg ml-auto">
+                                <Zap className="h-3 w-3" />
+                                {t('fastTrack')}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Program count */}
+                    <div className="absolute bottom-3 right-3 bg-white/95 dark:bg-background/95 backdrop-blur-sm text-foreground px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 shadow-md">
+                        <BookOpen className="h-3 w-3 text-primary" />
+                        {university.programs} {t('programs')}
+                    </div>
+                </Link>
+
+                <CardContent className="px-5 pt-12 pb-4 relative flex-1 flex flex-col">
+                    {/* Logo */}
+                    <div className="absolute -top-10 left-5 h-20 w-20 rounded-2xl bg-white dark:bg-card shadow-lg flex items-center justify-center border-4 border-background overflow-hidden z-10 ring-1 ring-border/30">
+                        {university.logo ? (
+                            <Image
+                                src={university.logo}
+                                alt={`${university.name} logo`}
+                                fill
+                                sizes="80px"
+                                loading="lazy"
+                                className="object-contain p-2"
+                            />
+                        ) : (
+                            <Building2 className="h-8 w-8 text-primary/70" />
+                        )}
+                    </div>
+
+                    {/* Name & Location */}
+                    <div className="mb-3">
+                        <Link href={`/universities/${university.slug}`} className="block group/title">
+                            <h3 className="font-bold text-[15px] leading-snug group-hover/title:text-primary transition-colors line-clamp-2 min-h-11">
+                                {university.name}
+                            </h3>
+                        </Link>
+                        <div className="flex items-center text-[13px] text-muted-foreground mt-1">
+                            <MapPin className="h-3.5 w-3.5 mr-1 shrink-0 text-primary/60" />
+                            <span className="truncate">{university.city}, {university.province}</span>
+                        </div>
+                    </div>
+
+                    {/* Feature pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                        {university.hasScholarship && (
+                            <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 text-[10px] font-medium px-2 py-0.5 gap-1">
+                                <Sparkles className="h-2.5 w-2.5" />
+                                {t('scholarship')}
                             </Badge>
-                        ))}
-                        {university.badges.length > 3 && (
-                            <Badge variant="secondary" className="text-[10px] font-normal px-2 py-0.5 bg-muted/70">
-                                +{university.badges.length - 3}
+                        )}
+                        {university.hasCscaExam && (
+                            <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 text-[10px] font-medium px-2 py-0.5 gap-1">
+                                <ClipboardCheck className="h-2.5 w-2.5" />
+                                {t('cscaExam')}
+                            </Badge>
+                        )}
+                        {university.availableLevels && university.availableLevels.length > 0 && (
+                            <Badge variant="outline" className="text-[10px] font-medium px-2 py-0.5 gap-1">
+                                <GraduationCap className="h-2.5 w-2.5" />
+                                {university.availableLevels.slice(0, 2).join(' · ')}
+                                {university.availableLevels.length > 2 && ` +${university.availableLevels.length - 2}`}
+                            </Badge>
+                        )}
+                        {university.availableLanguages && university.availableLanguages.length > 0 && (
+                            <Badge variant="outline" className="text-[10px] font-medium px-2 py-0.5 gap-1">
+                                <Globe className="h-2.5 w-2.5" />
+                                {university.availableLanguages.slice(0, 2).join(' · ')}
                             </Badge>
                         )}
                     </div>
-                )}
 
-                {/* Tuition section */}
-                <div className="mt-auto pt-2 md:pt-3 border-t border-border/40 md:border-dashed md:border-border/60">
-                    <div className="flex items-baseline justify-between">
-                        <span className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">
-                            {university.minTuitionFee && university.minTuitionFee > 0 ? t('tuitionFrom') : t('tuition')}
-                        </span>
-                        <span className="font-bold text-base text-primary">
-                            {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (
-                                <Price amount={university.minTuitionFee} currency={university.currency || 'CNY'} />
-                            ) : (
-                                <span className="text-sm text-muted-foreground font-medium">{t('contactForPricing')}</span>
+                    {/* Feature badges */}
+                    {university.badges && university.badges.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-4">
+                            {university.badges.slice(0, 3).map((badge, index) => (
+                                <Badge key={index} variant="secondary" className="text-[10px] font-normal px-2 py-0.5 bg-muted/70">
+                                    {badge}
+                                </Badge>
+                            ))}
+                            {university.badges.length > 3 && (
+                                <Badge variant="secondary" className="text-[10px] font-normal px-2 py-0.5 bg-muted/70">
+                                    +{university.badges.length - 3}
+                                </Badge>
                             )}
-                        </span>
-                    </div>
-                </div>
-            </CardContent>
+                        </div>
+                    )}
 
-            {/* Footer — simplified on mobile */}
-            <CardFooter className="px-4 pb-4 pt-0 md:px-5 md:pb-5 gap-2 shrink-0">
-                <Link href={`/universities/${university.slug}`} className="flex-1">
-                    <Button className="w-full h-10 md:h-9 text-sm md:text-[13px] gap-1.5 group/btn active:scale-[0.97] transition-transform" size="sm">
-                        {t('viewUniversity')}
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
-                    </Button>
-                </Link>
-                {/* Programs & Compare — desktop only */}
-                <Link href={`/programs?university=${university.slug}`} className="hidden md:block">
-                    <Button variant="outline" size="sm" className="h-9 w-auto px-3 text-[13px]">
-                        <BookOpen className="h-3.5 w-3.5" />
-                    </Button>
-                </Link>
-                {onToggleCompare && (
-                    <Button
-                        variant={isComparing ? "default" : "outline"}
-                        size="sm"
-                        className={`hidden md:flex h-9 w-auto px-3 text-[13px] ${isComparing ? 'bg-primary' : ''}`}
-                        onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
-                        disabled={compareDisabled}
-                        title={isComparing ? t('removeFromCompare') : t('addToCompare')}
-                    >
-                        <GitCompareArrows className="h-3.5 w-3.5" />
-                    </Button>
-                )}
-            </CardFooter>
+                    {/* Tuition */}
+                    <div className="mt-auto pt-3 border-t border-dashed border-border/60">
+                        <div className="flex items-baseline justify-between">
+                            <span className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">
+                                {university.minTuitionFee && university.minTuitionFee > 0 ? t('tuitionFrom') : t('tuition')}
+                            </span>
+                            <span className="font-bold text-base text-primary">
+                                {university.minTuitionFee && typeof university.minTuitionFee === 'number' ? (
+                                    <Price amount={university.minTuitionFee} currency={university.currency || 'CNY'} />
+                                ) : (
+                                    <span className="text-sm text-muted-foreground font-medium">{t('contactForPricing')}</span>
+                                )}
+                            </span>
+                        </div>
+                    </div>
+                </CardContent>
+
+                {/* Footer */}
+                <CardFooter className="px-5 pb-5 gap-2 shrink-0">
+                    <Link href={`/universities/${university.slug}`} className="flex-1">
+                        <Button className="w-full h-9 text-[13px] gap-1.5 group/btn active:scale-[0.97] transition-transform" size="sm">
+                            {t('viewUniversity')}
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                        </Button>
+                    </Link>
+                    <Link href={`/programs?university=${university.slug}`}>
+                        <Button variant="outline" size="sm" className="h-9 w-auto px-3 text-[13px]">
+                            <BookOpen className="h-3.5 w-3.5" />
+                        </Button>
+                    </Link>
+                    {onToggleCompare && (
+                        <Button
+                            variant={isComparing ? "default" : "outline"}
+                            size="sm"
+                            className={`h-9 w-auto px-3 text-[13px] ${isComparing ? 'bg-primary' : ''}`}
+                            onClick={(e) => { e.preventDefault(); onToggleCompare(); }}
+                            disabled={compareDisabled}
+                            title={isComparing ? t('removeFromCompare') : t('addToCompare')}
+                        >
+                            <GitCompareArrows className="h-3.5 w-3.5" />
+                        </Button>
+                    )}
+                </CardFooter>
+            </div>
         </Card>
     );
 }
@@ -255,7 +372,7 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                 {/* Left: Photo + Logo */}
                 <Link
                     href={`/universities/${university.slug}`}
-                    className="w-full sm:w-52 h-36 sm:h-auto bg-linear-to-br from-primary/20 to-primary/5 relative overflow-hidden shrink-0 block"
+                    className="w-full sm:w-52 h-36 sm:h-auto bg-gradient-to-br from-primary/20 to-primary/5 relative overflow-hidden shrink-0 block"
                 >
                     {university.photo ? (
                         <Image
@@ -267,12 +384,11 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                     ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-primary/20 via-primary/10 to-secondary/20">
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/20">
                             <Building2 className="h-12 w-12 text-muted-foreground/15" />
                         </div>
                     )}
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent sm:bg-linear-to-r sm:from-transparent sm:to-black/5" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-black/5" />
 
                     {university.ranking && (
                         <div className="absolute top-2.5 left-2.5 bg-amber-500/95 backdrop-blur-sm text-white px-2 py-0.5 rounded-lg text-[10px] font-bold flex items-center gap-1 shadow-md">
@@ -280,7 +396,6 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                             #{university.ranking}
                         </div>
                     )}
-                    {/* Logo overlay */}
                     <div className="absolute bottom-2.5 left-2.5 h-14 w-14 rounded-xl bg-white dark:bg-card shadow-lg flex items-center justify-center border-2 border-background overflow-hidden ring-1 ring-border/20">
                         {university.logo ? (
                             <Image
@@ -299,7 +414,6 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
 
                 {/* Right: Content */}
                 <div className="flex-1 p-4 sm:p-5 flex flex-col sm:flex-row gap-4">
-                    {/* University Info */}
                     <div className="flex-1 min-w-0">
                         <Link href={`/universities/${university.slug}`} className="block group/title">
                             <h3 className="font-bold text-base leading-snug group-hover/title:text-primary transition-colors line-clamp-1 mb-1">
@@ -318,16 +432,15 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                                 </Badge>
                             )}
                         </div>
-                        {/* Feature pills */}
                         <div className="flex flex-wrap gap-1.5 mb-2">
                             {university.hasScholarship && (
-                                <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-[10px] font-medium px-2 py-0 gap-1">
+                                <Badge className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 text-[10px] font-medium px-2 py-0 gap-1">
                                     <Sparkles className="h-2.5 w-2.5" />
                                     {t('scholarship')}
                                 </Badge>
                             )}
                             {university.hasCscaExam && (
-                                <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[10px] font-medium px-2 py-0 gap-1">
+                                <Badge className="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800 text-[10px] font-medium px-2 py-0 gap-1">
                                     <ClipboardCheck className="h-2.5 w-2.5" />
                                     {t('cscaExam')}
                                 </Badge>
@@ -345,7 +458,6 @@ function UniversityListCard({ university, t, isComparing, onToggleCompare, compa
                                 </Badge>
                             )}
                         </div>
-                        {/* Tags */}
                         {university.badges && university.badges.length > 0 && (
                             <div className="flex flex-wrap gap-1">
                                 {university.badges.slice(0, 4).map((badge, index) => (
