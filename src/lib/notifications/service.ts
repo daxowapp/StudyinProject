@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 
 export interface Notification {
     id: string;
-    user_id: string;
+    userId: string;
     title: string;
     message: string;
     type: string;
@@ -30,7 +30,7 @@ export async function createNotification(params: CreateNotificationParams) {
     const { data, error } = await supabase
         .from('notifications')
         .insert({
-            user_id: params.userId,
+            userId: params.userId,
             title: params.title,
             message: params.message,
             type: params.type,
@@ -57,7 +57,7 @@ export async function getNotifications(userId: string, limit = 20, offset = 0) {
     const { data, error } = await supabase
         .from('notifications')
         .select('*')
-        .eq('user_id', userId)
+        .eq('userId', userId)
         .order('created_at', { ascending: false })
         .range(offset, offset + limit - 1);
 
@@ -78,7 +78,7 @@ export async function getUnreadCount(userId: string): Promise<number> {
     const { count, error } = await supabase
         .from('notifications')
         .select('*', { count: 'exact', head: true })
-        .eq('user_id', userId)
+        .eq('userId', userId)
         .eq('read', false);
 
     if (error) {
@@ -117,7 +117,7 @@ export async function markAllAsRead(userId: string) {
     const { error } = await supabase
         .from('notifications')
         .update({ read: true })
-        .eq('user_id', userId)
+        .eq('userId', userId)
         .eq('read', false);
 
     if (error) {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { UniversityCard } from "@/components/universities/UniversityCard";
 import { UniversityFilters } from "@/components/universities/UniversityFilters";
 import {
@@ -225,8 +226,16 @@ export function UniversitiesClient({ universities, heroSearchQuery }: Universiti
     const [debouncedSearch, setDebouncedSearch] = useState(initialQuery);
     const [isSearching, setIsSearching] = useState(false);
     const sidebarTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    const isMobile = useIsMobile();
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
     const [sortBy, setSortBy] = useState<SortOption>('name');
+
+    // Force grid view on mobile (mobile layout is in UniversityGridCard)
+    useEffect(() => {
+        if (isMobile) {
+            setViewMode('grid');
+        }
+    }, [isMobile]);
 
     // Compare feature
     const [compareIds, setCompareIds] = useState<string[]>([]);

@@ -70,7 +70,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
         const { data, error } = await supabase
             .from('notifications')
             .select('*')
-            .eq('user_id', userId)
+            .eq('userId', userId)
             .order('created_at', { ascending: false })
             .limit(10);
 
@@ -93,7 +93,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
                     event: '*',
                     schema: 'public',
                     table: 'notifications',
-                    filter: `user_id=eq.${userId}`,
+                    filter: `userId=eq.${userId}`,
                 },
                 () => {
                     fetchNotifications();
@@ -118,7 +118,7 @@ export function NotificationBell({ userId, className }: NotificationBellProps) {
         await supabase
             .from('notifications')
             .update({ read: true })
-            .eq('user_id', userId)
+            .eq('userId', userId)
             .eq('read', false);
         setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
         setUnreadCount(0);

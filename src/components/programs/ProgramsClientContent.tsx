@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ProgramCard } from "@/components/programs/ProgramCard";
@@ -54,8 +55,16 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
     const universitySlug = searchParams.get('university');
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const isMobile = useIsMobile();
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
     const [sortBy, setSortBy] = useState('relevance');
+
+    // Force grid view on mobile (mobile layout is in ProgramGridCard)
+    useEffect(() => {
+        if (isMobile) {
+            setViewMode('grid');
+        }
+    }, [isMobile]);
     const ITEMS_PER_PAGE = 12;
 
     const [filters, setFilters] = useState<FilterState>({
@@ -717,7 +726,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 </div>
                             </div>
                             <div className="flex items-center gap-2 w-full sm:w-auto">
-                                <div className="flex items-center border rounded-lg overflow-hidden">
+                                <div className="hidden sm:flex items-center border rounded-lg overflow-hidden">
                                     <Button
                                         variant="ghost"
                                         size="icon"
