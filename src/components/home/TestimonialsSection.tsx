@@ -77,12 +77,13 @@ export function TestimonialsSection() {
                 {/* Testimonials — horizontal scroll on mobile, grid on desktop */}
                 <div
                     ref={gridRef}
-                    className={`flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+                    className={`flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+                    style={{ scrollbarWidth: 'none' }}
                 >
                     {testimonials.map((testimonial, index) => (
                         <div
                             key={index}
-                            className="min-w-[300px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1 hover:-translate-y-2 transition-transform duration-300"
+                            className="min-w-[300px] w-[85vw] shrink-0 snap-start md:min-w-0 md:w-auto md:shrink hover:-translate-y-2 transition-transform duration-300"
                             style={{ transitionDelay: gridVisible ? `${index * 150}ms` : '0ms' }}
                         >
                             <Card className="group h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white relative overflow-hidden">

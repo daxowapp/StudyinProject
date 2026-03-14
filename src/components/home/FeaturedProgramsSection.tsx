@@ -73,7 +73,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
         }
     }, [programs]);
 
-    const displayPrograms = shuffledPrograms.length > 0 ? shuffledPrograms.slice(0, 4) : [];
+    const displayPrograms = shuffledPrograms.length > 0 ? shuffledPrograms.slice(0, 3) : [];
 
     return (
         <section className="py-10 md:py-20 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
@@ -96,12 +96,15 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                 </div>
 
                 {/* Programs Grid — horizontal scroll on mobile, grid on desktop */}
-                <div className="scroll-strip-container md:!overflow-visible">
-                    <div className="scroll-strip gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:!overflow-visible md:!flex-wrap">
+                <div className="relative md:overflow-visible">
+                    <div
+                        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 md:mx-0 md:px-0"
+                        style={{ scrollbarWidth: 'none' }}
+                    >
                     {displayPrograms.map((program) => (
                         <div
                             key={program.id}
-                            className="group min-w-[280px] w-[85vw] md:min-w-0 md:w-auto snap-start shrink-0 md:shrink"
+                            className="group min-w-[280px] w-[85vw] shrink-0 snap-start md:min-w-0 md:w-auto md:shrink"
                         >
                             <Link href={`/programs/${program.slug || program.id}`}>
                                 <Card className="h-full overflow-hidden border-border/50 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group rounded-2xl">
