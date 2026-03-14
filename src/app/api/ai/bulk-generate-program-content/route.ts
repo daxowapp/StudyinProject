@@ -123,7 +123,7 @@ async function generateContentForProgram(program: ProgramRow, locale: string): P
     }
 }
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
         async start(controller) {
@@ -132,11 +132,10 @@ export async function GET(request: NextRequest) {
             };
 
             try {
-                const { searchParams } = new URL(request.url);
-                const overwrite = searchParams.get("overwrite") === "true";
-                const localesParam = searchParams.getAll("locales");
-                const requestedLocales: string[] = localesParam.length > 0
-                    ? localesParam.filter((l: string) => ALL_LOCALES.includes(l as typeof ALL_LOCALES[number]))
+                const body = await request.json().catch(() => ({}));
+                const overwrite = body.overwrite === true;
+                const requestedLocales: string[] = Array.isArray(body.locales) && body.locales.length > 0
+                    ? body.locales.filter((l: string) => ALL_LOCALES.includes(l as typeof ALL_LOCALES[number]))
                     : ["en"];
 
                 const supabase = await createAdminClient();
