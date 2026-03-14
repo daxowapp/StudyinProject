@@ -175,9 +175,9 @@ export default async function DestinationsPage({
     const supabase = await createClient();
     const t = await getTranslations("Destinations");
 
-    // Fetch all universities to aggregate by city
+    // Fetch city/province directly from universities table (no view overhead)
     const { data: universities } = await supabase
-        .from("v_universities_listing")
+        .from("universities")
         .select("city, province")
         .eq("portal_key", PORTAL_KEY);
 

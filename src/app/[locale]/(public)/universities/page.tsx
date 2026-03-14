@@ -49,14 +49,23 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Fetch from pre-aggregated view (flat query, no nested joins)
-    const { data: universities, error } = await supabase
-        .from("v_universities_listing")
-        .select("*")
-        .eq("portal_key", PORTAL_KEY)
-        .order("name")
-        .limit(1000);
+    // Two parallel fast queries instead of one slow aggregation view
+    const [uniResult, programResult] = await Promise.all([
+        // 1. University metadata — simple filtered scan, no joins
+        supabase
+            .from("universities")
+            .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key")
+            .eq("portal_key", PORTAL_KEY)
+            .order("name")
+            .limit(1000),
+        // 2. Program stats — lightweight join for aggregation
+        supabase
+            .from("university_programs")
+            .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, program_catalog(level), languages:language_id(name)")
+            .limit(50000),
+    ]);
 
+    const error = uniResult.error || programResult.error;
     if (error) {
         console.error("Error fetching universities:", {
             message: error.message,
@@ -64,7 +73,6 @@ export default async function UniversitiesPage() {
             hint: error.hint,
             code: error.code
         });
-        // Return empty array instead of throwing to prevent page crash
         return (
             <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
                 <div className="text-center max-w-lg mx-auto p-6">
@@ -82,10 +90,47 @@ export default async function UniversitiesPage() {
         );
     }
 
-    // Transform flat view data for client component (minimal mapping, no aggregation needed)
+    // Aggregate program stats per university in JS (fast in-memory)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formattedUniversities = (universities || []).map((uni: any) => {
-        const minTuitionFee = uni.min_tuition_fee || 0;
+    const programsByUni = new Map<string, {
+        count: number;
+        minFee: number;
+        minCurrency: string;
+        levels: Set<string>;
+        languages: Set<string>;
+        hasScholarship: boolean;
+        hasCsca: boolean;
+    }>();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    for (const prog of (programResult.data || []) as any[]) {
+        const uid = prog.university_id;
+        let stats = programsByUni.get(uid);
+        if (!stats) {
+            stats = { count: 0, minFee: Infinity, minCurrency: 'CNY', levels: new Set(), languages: new Set(), hasScholarship: false, hasCsca: false };
+            programsByUni.set(uid, stats);
+        }
+        stats.count++;
+        if (prog.tuition_fee > 0 && prog.tuition_fee < stats.minFee) {
+            stats.minFee = prog.tuition_fee;
+            stats.minCurrency = prog.currency || 'CNY';
+        }
+        const level = prog.program_catalog?.level;
+        if (level) stats.levels.add(level);
+        const lang = prog.languages?.name;
+        if (lang) stats.languages.add(lang);
+        if (prog.scholarship_chance && prog.scholarship_chance !== '' && prog.scholarship_chance !== 'None') {
+            stats.hasScholarship = true;
+        }
+        if (prog.csca_exam_require === true) {
+            stats.hasCsca = true;
+        }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const formattedUniversities = (uniResult.data || []).map((uni: any) => {
+        const stats = programsByUni.get(uni.id);
+        const minTuitionFee = stats && stats.minFee !== Infinity ? stats.minFee : 0;
 
         return {
             id: uni.id,
@@ -93,10 +138,10 @@ export default async function UniversitiesPage() {
             name: uni.name || "Unknown University",
             city: uni.city || "N/A",
             province: uni.province || "N/A",
-            programs: uni.program_count || 0,
+            programs: stats?.count || 0,
             minTuition: minTuitionFee > 0 ? `¥${minTuitionFee.toLocaleString()}/year` : "Contact for pricing",
             minTuitionFee: minTuitionFee,
-            currency: uni.min_tuition_currency || 'CNY',
+            currency: stats?.minCurrency || 'CNY',
             badges: uni.features || [],
             logo: uni.logo_url,
             photo: uni.cover_photo_url || uni.banner_url,
@@ -104,10 +149,10 @@ export default async function UniversitiesPage() {
             university_type: uni.university_type,
             institution_category: uni.institution_category,
             has_fast_track: uni.has_fast_track,
-            availableLevels: uni.available_levels || [],
-            availableLanguages: uni.available_languages || [],
-            hasScholarship: uni.has_scholarship || false,
-            hasCscaExam: uni.has_csca_exam || false,
+            availableLevels: stats ? Array.from(stats.levels) : [],
+            availableLanguages: stats ? Array.from(stats.languages) : [],
+            hasScholarship: stats?.hasScholarship || false,
+            hasCscaExam: stats?.hasCsca || false,
         };
     });
 
