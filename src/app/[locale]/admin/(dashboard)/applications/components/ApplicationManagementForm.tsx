@@ -230,6 +230,7 @@ export function ApplicationManagementForm({ application }: ApplicationManagement
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="draft">Draft</SelectItem>
+                                    <SelectItem value="contacted">Contacted</SelectItem>
                                     <SelectItem value="pending_documents">Pending Documents</SelectItem>
                                     <SelectItem value="pending_payment">Pending Payment</SelectItem>
                                     <SelectItem value="submitted">Submitted</SelectItem>

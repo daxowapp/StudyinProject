@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function LoadingBar() {
     const pathname = usePathname();
@@ -37,17 +36,16 @@ export function LoadingBar() {
         };
     }, [pathname, searchParams]);
 
+    if (!isLoading) return null;
+
     return (
-        <AnimatePresence>
-            {isLoading && (
-                <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: progress / 100 }}
-                    exit={{ scaleX: 1, opacity: 0 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-orange-500 to-red-500 z-[9999] origin-left shadow-lg shadow-primary/50"
-                />
-            )}
-        </AnimatePresence>
+        <div
+            className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-orange-500 to-red-500 z-[9999] origin-left shadow-lg shadow-primary/50"
+            style={{
+                transform: `scaleX(${progress / 100})`,
+                transition: 'transform 0.2s ease-out, opacity 0.2s ease-out',
+                opacity: progress >= 100 ? 0 : 1,
+            }}
+        />
     );
 }

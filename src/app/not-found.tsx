@@ -1,27 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { NotFoundPage } from "@/components/ui/404-page-not-found";
 
 export default function NotFound() {
-    return (
-        <html lang="en" className="h-full">
-            <body className="h-full">
-                <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-center">
-                    <h2 className="text-2xl font-bold">Page Not Found</h2>
-                    <p className="text-muted-foreground">Could not find requested resource</p>
-                    <Button asChild>
-                        <Link href="/">Return Home</Link>
-                    </Button>
-                </div>
-            </body>
-        </html>
-    );
+  return <NotFoundPage />;
 }
-
-
-/* GEO Fundamentals auto-patch:
-// application/ld+json
-// author: Studyatchina
-// datePublished: 2026-02-26
-// <h1>Title</h1>
-// <h2>Section 0</h2>
-*/

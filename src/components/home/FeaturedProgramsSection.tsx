@@ -93,7 +93,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
     const displayPrograms = shuffledPrograms.length > 0 ? shuffledPrograms.slice(0, 4) : [];
 
     return (
-        <section className="py-20 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+        <section className="py-10 md:py-20 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
             {/* Subtle background pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-50" />
 
@@ -103,13 +103,13 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-14 max-w-2xl mx-auto"
+                    className="text-center mb-8 md:mb-14 max-w-2xl mx-auto"
                 >
                     <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                         <Star className="h-3 w-3 mr-1 fill-primary" />
                         {t('badge')}
                     </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                    <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">
                         {t('title')}
                     </h2>
                     <p className="text-muted-foreground">
@@ -117,19 +117,20 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                     </p>
                 </motion.div>
 
-                {/* Programs Grid */}
+                {/* Programs Grid — horizontal scroll on mobile, grid on desktop */}
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+                    className="scroll-strip-container md:!overflow-visible"
                 >
+                    <div className="scroll-strip gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:!overflow-visible md:!flex-wrap">
                     {displayPrograms.map((program) => (
                         <motion.div
                             key={program.id}
                             variants={item}
-                            className="group"
+                            className="group min-w-[280px] w-[85vw] md:min-w-0 md:w-auto snap-start shrink-0 md:shrink"
                         >
                             <Link href={`/programs/${program.slug || program.id}`}>
                                 <Card className="h-full overflow-hidden border-border/50 hover:border-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group rounded-2xl">
@@ -219,6 +220,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                             </Link>
                         </motion.div>
                     ))}
+                    </div>
                 </motion.div>
 
                 {/* Bottom CTA */}
@@ -227,10 +229,10 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="mt-12 text-center"
+                    className="mt-8 md:mt-12 text-center"
                 >
                     <Link href="/programs">
-                        <Button size="lg" variant="outline" className="border-2 font-medium">
+                        <Button size="lg" variant="outline" className="border-2 font-medium w-full sm:w-auto">
                             {t('viewAll')}
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>

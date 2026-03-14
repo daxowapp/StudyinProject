@@ -84,14 +84,6 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
     .eq('application_id', id)
     .order('created_at', { ascending: false });
 
-  console.log('=== DEBUG INFO ===');
-  console.log('Application ID:', id);
-  console.log('Payment transactions:', paymentTransactions);
-  console.log('Payment error:', paymentError);
-  console.log('Document requests:', documentRequests);
-  console.log('Document error:', docError);
-  console.log('==================');
-
   // Fetch messages for this application
   const { data: messages } = await supabase
     .from('application_messages')

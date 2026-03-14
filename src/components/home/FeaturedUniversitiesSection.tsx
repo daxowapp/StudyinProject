@@ -139,7 +139,9 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                         return PLACEHOLDER_IMAGES[index];
                                                     };
 
-                                                    const imgSrc = uni.cover_photo_url || getPlaceholder(uni.id, uni.name);
+                                                    // Never render base64 data: URLs — they bloat SSR HTML by megabytes
+                                                    const rawSrc = uni.cover_photo_url;
+                                                    const imgSrc = (rawSrc && !rawSrc.startsWith('data:')) ? rawSrc : getPlaceholder(uni.id, uni.name);
 
                                                     return (
                                                         <Image
@@ -147,7 +149,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                             alt={uni.name}
                                                             fill
                                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                            unoptimized={imgSrc.startsWith('http') || imgSrc.startsWith('data:')}
+                                                            unoptimized={imgSrc.startsWith('http')}
                                                         />
                                                     );
                                                 })()}
@@ -176,7 +178,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                         {/* Content */}
                                         <div className="p-5 flex flex-col flex-1">
                                             <div className="flex items-start gap-3 mb-2">
-                                                {uni.logo_url && (
+                                                {uni.logo_url && !uni.logo_url.startsWith('data:') && (
                                                     <Link href={`/universities/${uni.slug}`}>
                                                         <div className="relative w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center p-1 shrink-0 hover:border-red-300 transition-colors">
                                                             <Image
@@ -184,7 +186,7 @@ export function FeaturedUniversitiesSection({ universities = [] }: FeaturedUnive
                                                                 alt={uni.name}
                                                                 fill
                                                                 className="object-contain p-1"
-                                                                unoptimized={uni.logo_url.startsWith('data:')}
+                                                                unoptimized={uni.logo_url.startsWith('http')}
                                                             />
                                                         </div>
                                                     </Link>

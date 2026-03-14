@@ -125,7 +125,7 @@ export function StatsSection() {
     ];
 
     return (
-        <section className="py-16 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
+        <section className="py-10 md:py-16 bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
             {/* Animated Background */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <motion.div
@@ -152,13 +152,13 @@ export function StatsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-8 md:mb-16"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 font-semibold text-sm mb-4 text-white">
                         <TrendingUp className="h-4 w-4 text-yellow-400" />
                         <span>{t('badge')}</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black tracking-tight font-heading mb-4 text-white">
+                    <h2 className="text-2xl md:text-5xl font-black tracking-tight font-heading mb-3 md:mb-4 text-white">
                         {t('title')}
                     </h2>
                     <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">
@@ -172,7 +172,7 @@ export function StatsSection() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8"
                 >
                     {stats.map((stat, index) => (
                         <motion.div
@@ -180,12 +180,12 @@ export function StatsSection() {
                             variants={item}
                             whileHover={{ y: -8, scale: 1.05 }}
                             transition={{ duration: 0.2 }}
-                            className="group"
+                            className={`group ${index >= 4 ? 'hidden md:block' : ''}`}
                         >
-                            <div className="relative h-full rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-all duration-300">
+                            <div className="relative h-full rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 md:p-6 hover:bg-white/10 transition-all duration-300">
                                 {/* Icon */}
-                                <div className={`h-12 w-12 rounded-xl ${stat.bgColor} backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                                    <stat.icon className={`h-6 w-6 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`} strokeWidth={2.5} style={{ stroke: 'url(#gradient)' }} />
+                                <div className={`h-10 w-10 md:h-12 md:w-12 rounded-xl ${stat.bgColor} backdrop-blur-sm flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                    <stat.icon className={`h-5 w-5 md:h-6 md:w-6 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`} strokeWidth={2.5} style={{ stroke: 'url(#gradient)' }} />
                                     <svg width="0" height="0">
                                         <defs>
                                             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -197,17 +197,17 @@ export function StatsSection() {
                                 </div>
 
                                 {/* Value */}
-                                <div className={`text-3xl md:text-4xl font-black mb-2 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
+                                <div className={`text-xl md:text-4xl font-black mb-1 md:mb-2 bg-gradient-to-br ${stat.color} bg-clip-text text-transparent`}>
                                     <CountUpAnimation end={stat.value} suffix={stat.suffix} />
                                 </div>
 
                                 {/* Label */}
-                                <div className="text-sm md:text-base font-bold text-white mb-1">
+                                <div className="text-xs md:text-base font-bold text-white mb-1">
                                     {t(`items.${stat.key}.label`)}
                                 </div>
 
-                                {/* Description */}
-                                <div className="text-xs text-white/60">
+                                {/* Description — hidden on mobile to save space */}
+                                <div className="hidden md:block text-xs text-white/60">
                                     {t(`items.${stat.key}.description`)}
                                 </div>
 

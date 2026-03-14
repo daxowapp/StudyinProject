@@ -50,9 +50,9 @@ export const metadata: Metadata = {
         description: 'Your gateway to studying in China. Browse top Chinese universities, find scholarship opportunities, and apply to degree programs.',
         images: [
             {
-                url: '/og-image.png',
-                width: 1200,
-                height: 630,
+                url: '/logo.png',
+                width: 512,
+                height: 512,
                 alt: 'Studyatchina - Study in China',
             },
         ],
@@ -141,14 +141,18 @@ export default async function LocaleLayout({
                 {/* Preconnect to Supabase for faster API calls */}
                 <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
-                {/* Preload hero image for LCP */}
-                <link rel="preload" as="image" href="/hero-bg.png" fetchPriority="high" />
+                {/* DNS-prefetch for third-party script domains */}
+                <link rel="dns-prefetch" href="https://cdn.pagesense.io" />
+                <link rel="dns-prefetch" href="https://connect.facebook.net" />
+                <link rel="dns-prefetch" href="https://salesiq.zohopublic.com" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
             </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
                 <Script
                     id="zoho-pagesense-script"
                     src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
-                    strategy="beforeInteractive"
+                    strategy="lazyOnload"
                 />
                 <OrganizationJsonLd />
                 <NextIntlClientProvider messages={messages}>
@@ -160,7 +164,7 @@ export default async function LocaleLayout({
                 </NextIntlClientProvider>
                 <Script
                     id="fb-pixel"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `
                             !function(f,b,e,v,n,t,s)
@@ -187,7 +191,7 @@ export default async function LocaleLayout({
                 </noscript>
                 <Script
                     id="zoho-salesiq-init"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`
                     }}
@@ -195,18 +199,18 @@ export default async function LocaleLayout({
                 <Script
                     id="zsiqscript"
                     src="https://salesiq.zohopublic.com/widget?wc=siqc671c2f53632c30a591a902bec55f9bdcfc7670e7f9cbdd86f64bdc1d326a19a"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     defer
                 />
 
                 {/* Google tag (gtag.js) */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-47QZWWTPZ1"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
                 <Script
                     id="google-analytics"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `
                             window.dataLayer = window.dataLayer || [];

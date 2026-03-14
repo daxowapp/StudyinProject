@@ -237,6 +237,16 @@
   }
 }
 
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -461,4 +471,130 @@ html {
 [id*="zsiq"],
 [class*="siq"] {
   z-index: 9999 !important;
+}
+
+/* ===== MOBILE UX UTILITIES ===== */
+
+/* Touch target enforcement — 44px minimum per Apple/Google HIG */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Horizontal scroll strip — snap-scroll cards */
+.scroll-strip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-strip::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.scroll-strip > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Scroll strip fade edges */
+.scroll-strip-container {
+  position: relative;
+}
+
+.scroll-strip-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, transparent, var(--background));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Reduce/disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-glow,
+  .animate-shimmer,
+  .animate-gradient,
+  .animate-cta-glow,
+  .animate-logo-pulse,
+  .animate-ping-slow,
+  .animate-orb-float,
+  .animate-orb-float-delayed,
+  .animate-orb-float-slow {
+    animation: none !important;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-scale-in {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific heading tightening */
+@media (max-width: 768px) {
+  .font-heading {
+    letter-spacing: -0.02em;
+  }
+
+  /* Reduce glassmorphism intensity on mobile for performance */
+  .glass {
+    backdrop-filter: blur(6px);
+  }
+
+  .navbar-glass {
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  }
+}
+
+/* ──────────────────────────────────────────── */
+/* Mobile UX Utilities                         */
+/* ──────────────────────────────────────────── */
+
+/* Touch press feedback — apply to tappable elements */
+.touch-press {
+  @apply active:scale-[0.98] active:opacity-90 transition-transform duration-100;
+}
+
+/* Safe area bottom padding — for bottom nav overlap */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Horizontal scroll-strip with snap */
+.scroll-strip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-strip::-webkit-scrollbar {
+  display: none;
+}
+.scroll-strip > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Bottom sheet / drawer slide-up */
+@keyframes slide-up-sheet {
+  from { transform: translateY(100%); opacity: 0.5; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.animate-slide-up {
+  animation: slide-up-sheet 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Mobile card peek — show partial next card */
+.card-peek {
+  padding-right: 15vw;
 }

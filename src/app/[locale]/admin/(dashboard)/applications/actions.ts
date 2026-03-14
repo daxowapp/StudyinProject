@@ -40,7 +40,10 @@ export async function updateApplicationStatus(id: string, status: string) {
     const supabase = await createClient();
     const { error } = await supabase
         .from("applications")
-        .update({ status })
+        .update({
+            status,
+            ...(status === 'contacted' ? { contacted_at: new Date().toISOString() } : {})
+        })
         .eq("id", id);
 
     if (error) return { error: error.message };

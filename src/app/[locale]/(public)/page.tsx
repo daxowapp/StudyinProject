@@ -6,7 +6,10 @@ import { createClient } from "@/lib/supabase/server";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 
 // Lazy load below-fold sections for faster initial page load
-import { CscaCtaSection } from "@/components/home/CscaCtaSection";
+const CscaCtaSection = dynamic(
+  () => import("@/components/home/CscaCtaSection").then(mod => ({ default: mod.CscaCtaSection })),
+  { ssr: true }
+);
 // Lazy load ONLY truly below-fold heavy sections if needed
 const FeaturedProgramsSection = dynamic(
   () => import("@/components/home/FeaturedProgramsSection").then(mod => ({ default: mod.FeaturedProgramsSection })),
@@ -16,11 +19,10 @@ const FeaturedUniversitiesSection = dynamic(
   () => import("@/components/home/FeaturedUniversitiesSection").then(mod => ({ default: mod.FeaturedUniversitiesSection })),
   { ssr: true }
 );
-// Removed dynamic import for CscaCtaSection to ensure visibility
+
 
 import { LazyHomeSections } from '@/components/home/LazyHomeSections';
 
-// Enable ISR with 5 minute revalidation
 // Enable ISR with 5 minute revalidation
 export const revalidate = 300;
 
@@ -230,10 +232,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         const stat = statsMap.get(uni.id);
         const translation = translationsMap.get(`${uni.id}_${locale}`);
         return {
-          ...uni,
+          id: uni.id,
+          slug: uni.slug,
+          city: uni.city,
+          province: uni.province,
+          has_fast_track: uni.has_fast_track,
           name: translation?.name || uni.name,
           description: translation?.description || uni.description,
-          logo_url: uni.logo_url,
+          logo_url: sanitizeImageUrl(uni.logo_url, uni.id),
           cover_photo_url: sanitizeImageUrl(uni.cover_photo_url, uni.id),
           founded: uni.founded ? String(uni.founded) : "",
           total_students: uni.total_students ? String(uni.total_students) : "",
@@ -247,8 +253,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
     if (universitiesError) {
       console.error("Error fetching universities:", universitiesError);
-    } else {
-      console.log("Universities Debug:", universitiesWithStats.map(u => ({ name: u.name, cover: u.cover_photo_url })));
     }
 
   } catch (error) {

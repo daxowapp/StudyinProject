@@ -1,34 +1,34 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { Instagram, Linkedin, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, Phone, Sparkles, ChevronDown } from "lucide-react";
 import { NewsletterForm } from "./NewsletterForm";
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-
-import { useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
-import { User } from "@supabase/supabase-js";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function Footer() {
     const t = useTranslations('Footer');
-    const [user, setUser] = useState<User | null>(null);
-    const supabase = createClient();
 
-    useEffect(() => {
-        const checkUser = async () => {
-            const { data: { user } } = await supabase.auth.getUser();
-            setUser(user);
-        };
-        checkUser();
+    const exploreLinks = [
+        { name: t('programs'), href: "/programs" },
+        { name: t('universities'), href: "/universities" },
+        { name: t('scholarships'), href: "/scholarships" },
+        { name: t('howToApply'), href: "/how-to-apply" },
+        { name: t('faq'), href: "/faq" }
+    ];
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null);
-        });
-
-        return () => subscription.unsubscribe();
-    }, [supabase.auth]);
+    const studentLinks = [
+        { name: t('createAccount'), href: "/register" },
+        { name: t('trackApplication'), href: "/dashboard" },
+        { name: t('documentChecklist'), href: "/dashboard/documents" },
+        { name: t('studentPortal'), href: "/dashboard" }
+    ];
 
     return (
         <footer className="relative bg-gradient-to-b from-background to-muted/50 border-t-2 border-border overflow-hidden">
@@ -38,13 +38,10 @@ export function Footer() {
                 <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
             </div>
 
-            <div className="container mx-auto px-4 py-16 md:px-6 lg:py-20 relative z-10">
+            <div className="container mx-auto px-4 py-12 md:py-16 md:px-6 lg:py-20 relative z-10">
                 {/* Newsletter Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-16 rounded-3xl bg-gradient-to-r from-primary to-red-600 p-8 md:p-12 text-white relative overflow-hidden"
+                <div
+                    className="mb-12 md:mb-16 rounded-3xl bg-gradient-to-r from-primary to-red-600 p-6 md:p-12 text-white relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-20" />
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -53,20 +50,21 @@ export function Footer() {
                                 <Sparkles className="h-5 w-5" />
                                 <span className="text-sm font-bold uppercase tracking-wider">{t('stayUpdated')}</span>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-black mb-2">{t('getLatestUpdates')}</h3>
-                            <p className="text-white/90">{t('subscribeText')}</p>
+                            <h3 className="text-xl md:text-3xl font-black mb-2">{t('getLatestUpdates')}</h3>
+                            <p className="text-white/90 text-sm md:text-base">{t('subscribeText')}</p>
                         </div>
                         <NewsletterForm />
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Main Footer Content */}
-                <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5 mb-12">
+                {/* Desktop: grid layout */}
+                <div className="hidden md:grid gap-12 md:grid-cols-2 lg:grid-cols-5 mb-12">
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-6 group">
                             <Image
-                                src="/logo-red.png"
+                                src="/logo.png"
                                 alt="Studyatchina Logo"
                                 width={150}
                                 height={48}
@@ -119,13 +117,7 @@ export function Footer() {
                     <div>
                         <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('explore')}</h3>
                         <ul className="space-y-3">
-                            {[
-                                { name: t('programs'), href: "/programs" },
-                                { name: t('universities'), href: "/universities" },
-                                { name: t('scholarships'), href: "/scholarships" },
-                                { name: t('howToApply'), href: "/how-to-apply" },
-                                { name: t('faq'), href: "/faq" }
-                            ].map((link) => (
+                            {exploreLinks.map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
@@ -142,12 +134,7 @@ export function Footer() {
                     <div>
                         <h3 className="text-sm font-bold mb-6 uppercase tracking-wider">{t('forStudents')}</h3>
                         <ul className="space-y-3">
-                            {[
-                                { name: t('createAccount'), href: "/register", show: !user },
-                                { name: t('trackApplication'), href: "/dashboard", show: true },
-                                { name: t('documentChecklist'), href: "/dashboard/documents", show: true },
-                                { name: t('studentPortal'), href: "/dashboard", show: true }
-                            ].filter(link => link.show).map((link) => (
+                            {studentLinks.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
@@ -202,6 +189,151 @@ export function Footer() {
                             </li>
                         </ul>
                     </div>
+                </div>
+
+                {/* Mobile: Brand + Accordion */}
+                <div className="md:hidden mb-10">
+                    {/* Brand + Social */}
+                    <div className="mb-6">
+                        <Link href="/" className="flex items-center gap-3 mb-4 group">
+                            <Image
+                                src="/logo.png"
+                                alt="Studyatchina Logo"
+                                width={120}
+                                height={40}
+                                className="h-10 w-auto object-contain"
+                                style={{ width: 'auto' }}
+                            />
+                        </Link>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                            {t('description')}
+                        </p>
+                        <div className="flex gap-3">
+                            {[
+                                { icon: Linkedin, href: "https://www.linkedin.com/company/study-at-china", label: "LinkedIn" },
+                                { icon: Instagram, href: "https://instagram.com/studyatcn", label: "Instagram" },
+                                {
+                                    icon: ({ className }: { className?: string }) => (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className={className}
+                                        >
+                                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                                            <path d="M9 10a.5.5 0 0 0 1 1h4a.5.5 0 0 0 1-1v-1a.5.5 0 0 0-1-1H9z" />
+                                        </svg>
+                                    ),
+                                    href: "https://wa.me/905453081000",
+                                    label: "WhatsApp"
+                                }
+                            ].map((social) => (
+                                <a
+                                    key={social.label}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="h-10 w-10 rounded-xl bg-muted hover:bg-primary hover:text-white flex items-center justify-center transition-all"
+                                >
+                                    <social.icon className="h-5 w-5" />
+                                    <span className="sr-only">{social.label}</span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Accordion sections */}
+                    <Accordion type="multiple" className="w-full">
+                        <AccordionItem value="explore" className="border-border">
+                            <AccordionTrigger className="text-sm font-bold uppercase tracking-wider py-4 hover:no-underline">
+                                {t('explore')}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <ul className="space-y-3 pb-2">
+                                    {exploreLinks.map((link) => (
+                                        <li key={link.href}>
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium block py-1"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="students" className="border-border">
+                            <AccordionTrigger className="text-sm font-bold uppercase tracking-wider py-4 hover:no-underline">
+                                {t('forStudents')}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <ul className="space-y-3 pb-2">
+                                    {studentLinks.map((link) => (
+                                        <li key={link.name}>
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium block py-1"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="contact" className="border-border">
+                            <AccordionTrigger className="text-sm font-bold uppercase tracking-wider py-4 hover:no-underline">
+                                {t('contact')}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <ul className="space-y-4 pb-2">
+                                    <li className="flex items-start gap-3">
+                                        <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <a
+                                            href="mailto:support@studyatchina.com"
+                                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        >
+                                            support@studyatchina.com
+                                        </a>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <div className="flex flex-col">
+                                            <a
+                                                href="https://wa.me/905453081000"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                            >
+                                                +90 545 308 10 00
+                                            </a>
+                                            <a
+                                                href="https://wa.me/905453081000"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-xs text-primary hover:text-primary/80 transition-colors mt-0.5 font-medium"
+                                            >
+                                                Chat on WhatsApp
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <span className="text-sm text-muted-foreground">
+                                            Beijing, China
+                                        </span>
+                                    </li>
+                                </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
 
                 {/* Bottom Bar */}
@@ -259,3 +391,4 @@ export function Footer() {
         </footer>
     );
 }
+

@@ -9,11 +9,18 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code, Loader2 } from "lucide-react";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
+import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown, Zap, HeartPulse, Code, Loader2, SlidersHorizontal } from "lucide-react";
 import { useRouter } from "@/i18n/routing";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
+
 
 export function HeroSection() {
     const t = useTranslations('Hero');
@@ -56,6 +63,7 @@ export function HeroSection() {
 
     const [isLoading] = useState(false);
     const [isLoadingOptions, setIsLoadingOptions] = useState(false);
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     // Debounce filter updating
     const [debouncedFilters, setDebouncedFilters] = useState(filters);
@@ -177,16 +185,6 @@ export function HeroSection() {
                 {/* Mesh Gradient Background */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-yellow-600/20 via-red-900 to-red-950" />
 
-                <Image
-                    src="/hero-bg.png"
-                    alt="Study in China"
-                    fill
-                    className="object-cover mix-blend-soft-light opacity-20"
-                    priority
-                    loading="eager"
-                    sizes="100vw"
-                />
-
                 {/* Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[100px_100px]" />
 
@@ -246,8 +244,172 @@ export function HeroSection() {
                                 />
                             </div>
 
-                            {/* Search Fields Grid - All Equal Width */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            {/* Mobile: Filters Button + Search */}
+                            <div className="flex gap-3 mb-4 md:hidden">
+                                <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+                                    <SheetTrigger asChild>
+                                        <Button
+                                            variant="outline"
+                                            className="flex-1 h-12 rounded-xl border-2 border-slate-200 font-medium text-sm gap-2"
+                                            onClick={() => { if (!hasFetchedOptions) fetchOptions({}); }}
+                                        >
+                                            <SlidersHorizontal className="h-4 w-4" />
+                                            {t('placeholders.degree') || 'Filters'}
+                                            {Object.values(filters).filter(v => v && v !== 'any' && v !== 'all' && v !== filters.search).length > 0 && (
+                                                <span className="ml-1 min-w-[20px] h-5 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-[10px] font-bold px-1">
+                                                    {Object.values(filters).filter(v => v && v !== 'any' && v !== 'all' && v !== filters.search).length}
+                                                </span>
+                                            )}
+                                        </Button>
+                                    </SheetTrigger>
+                                    <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl px-5 pb-safe">
+                                        <SheetHeader className="pb-4 border-b">
+                                            <SheetTitle className="text-lg font-bold">Filter Programs</SheetTitle>
+                                        </SheetHeader>
+                                        <div className="overflow-y-auto flex-1 py-4 space-y-5">
+                                            {/* Degree Level */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.degree')}</label>
+                                                <Select value={filters.degree} onValueChange={(v) => setFilters({ ...filters, degree: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.degree')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="any">{t('options.any')}</SelectItem>
+                                                        {getUniqueDegrees().map((degree: string) => {
+                                                            const key = getLevelKey(degree);
+                                                            return <SelectItem key={degree} value={degree}>{key ? tNavbar(`levels.${key}.title`) : degree}</SelectItem>;
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* Field of Study */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.field')}</label>
+                                                <Select value={filters.field} onValueChange={(v) => setFilters({ ...filters, field: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.field')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="any">{t('options.any')}</SelectItem>
+                                                        {getUniqueFields().map((field: string) => {
+                                                            const key = getFieldKey(field);
+                                                            return <SelectItem key={field} value={field}>{key ? tPrograms(`filters.fields.${key}`) : field}</SelectItem>;
+                                                        })}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* City */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.city')}</label>
+                                                <Select value={filters.city} onValueChange={(v) => setFilters({ ...filters, city: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.city')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {isLoadingOptions ? (
+                                                            <div className="flex items-center justify-center py-4"><Loader2 className="h-5 w-5 animate-spin text-primary" /></div>
+                                                        ) : (
+                                                            <>
+                                                                <SelectItem value="any">{t('options.any')} {t('placeholders.city')}</SelectItem>
+                                                                {availableOptions.cities.map((city: string) => <SelectItem key={city} value={city}>{city}</SelectItem>)}
+                                                            </>
+                                                        )}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* Language */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.language')}</label>
+                                                <Select value={filters.language} onValueChange={(v) => setFilters({ ...filters, language: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.language')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {isLoadingOptions ? (
+                                                            <div className="flex items-center justify-center py-4"><Loader2 className="h-5 w-5 animate-spin text-primary" /></div>
+                                                        ) : (
+                                                            <>
+                                                                <SelectItem value="any">{t('options.any')} {t('placeholders.language')}</SelectItem>
+                                                                {availableOptions.languages.map((lang: string) => <SelectItem key={lang} value={lang}>{lang}</SelectItem>)}
+                                                            </>
+                                                        )}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* Budget */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.budget')}</label>
+                                                <Select onValueChange={(v) => setFilters({ ...filters, budget: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.budget')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="any">{t('options.any')} {t('placeholders.budget')}</SelectItem>
+                                                        <SelectItem value="0-3000">{t('budget.under3k')}</SelectItem>
+                                                        <SelectItem value="3000-5000">{t('budget.3kTo5k')}</SelectItem>
+                                                        <SelectItem value="5000-8000">{t('budget.5kTo8k')}</SelectItem>
+                                                        <SelectItem value="8000+">{t('budget.above8k')}</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* Scholarship */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.scholarship')}</label>
+                                                <Select onValueChange={(v) => setFilters({ ...filters, scholarship: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.scholarship')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="all">{t('scholarship.allPrograms')}</SelectItem>
+                                                        <SelectItem value="available">{t('scholarship.available')}</SelectItem>
+                                                        <SelectItem value="full">{t('scholarship.full')}</SelectItem>
+                                                        <SelectItem value="partial">{t('scholarship.partial')}</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            {/* Duration */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-semibold text-muted-foreground">{t('placeholders.duration')}</label>
+                                                <Select onValueChange={(v) => setFilters({ ...filters, duration: v })}>
+                                                    <SelectTrigger className="w-full h-12 bg-white border-2 border-slate-200 rounded-xl">
+                                                        <SelectValue placeholder={t('placeholders.duration')} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="any">{t('options.any')} {t('placeholders.duration')}</SelectItem>
+                                                        <SelectItem value="1">{t('duration.1year')}</SelectItem>
+                                                        <SelectItem value="2">{t('duration.2years')}</SelectItem>
+                                                        <SelectItem value="3">{t('duration.3years')}</SelectItem>
+                                                        <SelectItem value="4">{t('duration.4years')}</SelectItem>
+                                                        <SelectItem value="5+">{t('duration.5plus')}</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                        {/* Sticky bottom CTA in Sheet */}
+                                        <div className="border-t pt-4 pb-2">
+                                            <Button
+                                                onClick={() => { handleSearch(); setMobileFiltersOpen(false); }}
+                                                className="w-full h-14 bg-linear-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg rounded-xl"
+                                            >
+                                                <Search className="mr-2 h-5 w-5" />
+                                                {t('searchWord')} {availableOptions.programCount > 0 ? `${availableOptions.programCount}+` : '500+'} {t('programsWord')}
+                                            </Button>
+                                        </div>
+                                    </SheetContent>
+                                </Sheet>
+                                <Button
+                                    onClick={handleSearch}
+                                    className="flex-1 h-12 bg-linear-to-r from-red-600 to-red-700 text-white font-bold text-base shadow-lg rounded-xl"
+                                    disabled={isLoading}
+                                >
+                                    <Search className="mr-2 h-5 w-5" />
+                                    {t('searchWord')}
+                                </Button>
+                            </div>
+
+                            {/* Desktop: Full Filter Grid (hidden on mobile) */}
+                            <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                                 {/* Degree Level */}
                                 <div className="w-full">
                                     <Select
@@ -401,20 +563,20 @@ export function HeroSection() {
                                 </div>
                             </div>
 
-                            {/* Search Button */}
+                            {/* Desktop Search Button (hidden on mobile — mobile has inline button) */}
                             <Button
                                 onClick={handleSearch}
-                                className="w-full h-14 bg-linear-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
+                                className="hidden md:flex w-full h-14 bg-linear-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all rounded-xl group"
                                 disabled={isLoading}
                             >
                                 <Search className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                                 {t('searchWord')} <span className="font-black mx-1">{availableOptions.programCount > 0 ? `${availableOptions.programCount}+` : '500+'}</span> {t('programsWord')}
                             </Button>
 
-                            {/* Quick Search Tags */}
+                            {/* Quick Search Tags — horizontal scroll on mobile */}
                             <div className="flex flex-col items-center gap-4 mt-6 pt-6 border-t border-slate-200">
                                 <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{t('browseByCategory')}</span>
-                                <div className="flex flex-wrap justify-center gap-3">
+                                <div className="flex gap-3 overflow-x-auto w-full md:flex-wrap md:justify-center md:overflow-visible pb-2 md:pb-0 scroll-strip">
                                     <button
                                         onClick={() => router.push('/programs?field=business&degree=master')}
                                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"

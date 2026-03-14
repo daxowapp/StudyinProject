@@ -9,7 +9,7 @@ export function CscaCtaSection() {
     const t = useTranslations('CscaCta');
 
     return (
-        <section className="py-16 bg-gradient-to-br from-primary/5 via-background to-primary/5 border-t border-b border-border/50 relative overflow-hidden">
+        <section className="py-10 md:py-16 bg-gradient-to-br from-primary/5 via-background to-primary/5 border-t border-b border-border/50 relative overflow-hidden">
             {/* Decorative patterns */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -37,7 +37,7 @@ export function CscaCtaSection() {
                             whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground"
+                            className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground"
                         >
                             <div dangerouslySetInnerHTML={{ __html: t.raw('title') }} />
                         </motion.h2>
@@ -47,7 +47,7 @@ export function CscaCtaSection() {
                             whileInView={{ y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                            className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
                         >
                             {t('description')}
                         </motion.p>
@@ -61,14 +61,14 @@ export function CscaCtaSection() {
                         >
                             <Link
                                 href="/articles/csca-guide"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/30 transform hover:-translate-y-1"
+                                className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/30 transform hover:-translate-y-1"
                             >
                                 <BookOpen className="w-5 h-5" />
                                 {t('readGuide')}
                             </Link>
                             <Link
                                 href="/programs"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-card text-foreground font-semibold rounded-xl border border-border hover:bg-accent/50 transition-all duration-300 transform hover:-translate-y-1"
+                                className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-card text-foreground font-semibold rounded-xl border border-border hover:bg-accent/50 transition-all duration-300 transform hover:-translate-y-1"
                             >
                                 <GraduationCap className="w-5 h-5" />
                                 {t('findPrograms')}

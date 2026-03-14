@@ -77,13 +77,13 @@ export function ScholarshipsSection() {
                     </p>
                 </motion.div>
 
-                {/* Scholarships Grid */}
+                {/* Scholarships — horizontal scroll on mobile, grid on desktop */}
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="grid gap-8 md:grid-cols-3 mb-12"
+                    className="flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 mb-12"
                 >
                     {scholarships.map((scholarship, index) => (
                         <motion.div
@@ -91,16 +91,17 @@ export function ScholarshipsSection() {
                             variants={item}
                             whileHover={{ y: -8 }}
                             transition={{ duration: 0.2 }}
+                            className="min-w-[280px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1"
                         >
                             <Card className="group h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white overflow-hidden">
-                                <CardContent className="p-8">
+                                <CardContent className="p-6 md:p-8">
                                     {/* Icon */}
-                                    <div className={`relative h-16 w-16 rounded-2xl ${scholarship.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                                        <scholarship.icon className={`h-8 w-8 ${scholarship.iconColor}`} />
+                                    <div className={`relative h-14 w-14 md:h-16 md:w-16 rounded-2xl ${scholarship.bgColor} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                        <scholarship.icon className={`h-7 w-7 md:h-8 md:w-8 ${scholarship.iconColor}`} />
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                    <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors">
                                         {t(`items.${scholarship.key}.title`)}
                                     </h3>
 
@@ -122,7 +123,7 @@ export function ScholarshipsSection() {
                                                 <Button
                                                     size="sm"
                                                     variant="ghost"
-                                                    className="text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg"
+                                                    className="text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg h-11 md:h-9 px-4"
                                                 >
                                                     {t('learnMore')}
                                                     <ArrowRight className="ml-1 h-4 w-4" />
@@ -142,9 +143,9 @@ export function ScholarshipsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 p-8 md:p-10 text-white mb-12"
+                    className="rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 p-6 md:p-10 text-white mb-12"
                 >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
                         {[
                             { value: "$2M+", label: t('stats.awarded') },
                             { value: "85%", label: t('stats.funding') },
@@ -152,8 +153,8 @@ export function ScholarshipsSection() {
                             { value: "500+", label: t('stats.eligible') }
                         ].map((stat, index) => (
                             <div key={index}>
-                                <div className="text-3xl md:text-4xl font-black mb-2">{stat.value}</div>
-                                <div className="text-sm text-white/90">{stat.label}</div>
+                                <div className="text-2xl md:text-4xl font-black mb-1 md:mb-2">{stat.value}</div>
+                                <div className="text-xs md:text-sm text-white/90">{stat.label}</div>
                             </div>
                         ))}
                     </div>

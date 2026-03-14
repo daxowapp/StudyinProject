@@ -101,8 +101,9 @@ export default async function ApplicationDetailPage({
                                 application.status === 'submitted' ? 'bg-blue-600' :
                                     application.status === 'pending_payment' ? 'bg-orange-600' :
                                         application.status === 'pending_documents' ? 'bg-purple-600' :
-                                            application.status === 'payment_verification' ? 'bg-yellow-500' :
-                                                application.status === 'document_verification' ? 'bg-purple-500' : 'bg-gray-600'
+                                            application.status === 'contacted' ? 'bg-teal-600' :
+                                                application.status === 'payment_verification' ? 'bg-yellow-500' :
+                                                    application.status === 'document_verification' ? 'bg-purple-500' : 'bg-gray-600'
                 }>
                     {application.status?.replace(/_/g, ' ').toUpperCase()}
                 </Badge>
@@ -137,6 +138,12 @@ export default async function ApplicationDetailPage({
                                 <Label className="text-muted-foreground">Nationality</Label>
                                 <p className="font-medium">{application.student_country}</p>
                             </div>
+                            {application.contacted_at && (
+                                <div className="space-y-1">
+                                    <Label className="text-muted-foreground">Contacted At</Label>
+                                    <p className="font-medium text-teal-600">{new Date(application.contacted_at).toLocaleString()}</p>
+                                </div>
+                            )}
                         </CardContent>
                     </Card>
 

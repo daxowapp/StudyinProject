@@ -17,6 +17,7 @@ export default async function ApplicationsPage() {
             case "submitted": return "bg-blue-600";
             case "pending_payment": return "bg-orange-600";
             case "pending_documents": return "bg-purple-600";
+            case "contacted": return "bg-teal-600";
             default: return "bg-gray-600";
         }
     };

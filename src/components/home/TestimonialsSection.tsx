@@ -73,13 +73,13 @@ export function TestimonialsSection() {
                     </p>
                 </motion.div>
 
-                {/* Testimonials Grid */}
+                {/* Testimonials — horizontal scroll on mobile, grid on desktop */}
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="grid gap-8 md:grid-cols-3"
+                    className="flex gap-6 overflow-x-auto pb-4 scroll-strip md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
                 >
                     {testimonials.map((testimonial, index) => (
                         <motion.div
@@ -87,6 +87,7 @@ export function TestimonialsSection() {
                             variants={item}
                             whileHover={{ y: -8 }}
                             transition={{ duration: 0.2 }}
+                            className="min-w-[300px] w-[85vw] flex-shrink-0 snap-start md:min-w-0 md:w-auto md:flex-shrink-1"
                         >
                             <Card className="group h-full border-0 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white relative overflow-hidden">
                                 {/* Quote Icon Background */}

@@ -75,7 +75,7 @@ export function WhyStudySection() {
     ];
 
     return (
-        <section className="py-16 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
+        <section className="py-10 md:py-16 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
             {/* Decorative Elements - Static, no animation */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -83,12 +83,12 @@ export function WhyStudySection() {
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="text-center mb-20 animate-fade-in-up">
+                <div className="text-center mb-10 md:mb-20 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6">
                         <Sparkles className="h-4 w-4" />
                         <span>{t('badge')}</span>
                     </div>
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter font-heading mb-6">
+                    <h2 className="text-2xl md:text-6xl lg:text-7xl font-black tracking-tighter font-heading mb-4 md:mb-6">
                         {t.rich('title', {
                             gradient: (chunks) => (
                                 <>
@@ -100,29 +100,29 @@ export function WhyStudySection() {
                             )
                         })}
                     </h2>
-                    <p className="mt-6 text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                    <p className="mt-4 md:mt-6 text-muted-foreground text-base md:text-xl max-w-3xl mx-auto leading-relaxed">
                         {t('description')}
                     </p>
                 </div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+                <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
                     {features.map((feature, index) => (
                         <div
                             key={index}
                             className="group relative animate-fade-in-up hover:-translate-y-2 transition-transform duration-300"
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            <div className="relative h-full rounded-3xl bg-card border border-border p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                            <div className="relative h-full rounded-3xl bg-card border border-border p-5 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                                 {/* Gradient Overlay on Hover */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
                                 {/* Icon */}
-                                <div className={`relative h-16 w-16 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                                    <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
+                                <div className={`relative h-12 w-12 md:h-16 md:w-16 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                    <feature.icon className={`h-6 w-6 md:h-8 md:w-8 ${feature.iconColor}`} />
                                 </div>
 
                                 {/* Content */}
-                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors">
                                     {feature.title}
                                 </h3>
                                 <p className="text-muted-foreground text-sm leading-relaxed">
@@ -137,15 +137,15 @@ export function WhyStudySection() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="mt-20 text-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+                <div className="mt-10 md:mt-20 text-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
                     <div className="inline-flex flex-col sm:flex-row gap-4">
                         <Link href="/programs">
-                            <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                            <button className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-primary to-red-600 text-white font-bold text-base md:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                                 {t('cta.explore')}
                             </button>
                         </Link>
                         <Link href="/download-guide">
-                            <button className="px-8 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all">
+                            <button className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-primary text-primary font-bold text-base md:text-lg hover:bg-primary hover:text-white transition-all">
                                 {t('cta.download')}
                             </button>
                         </Link>

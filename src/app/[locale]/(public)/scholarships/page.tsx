@@ -151,8 +151,6 @@ export default async function ScholarshipsPage() {
     }
     const popularScholarships = Array.from(popularScholarshipsMAP.values()).slice(0, 4);
 
-    console.log("TOTAL RAW:", formattedPrograms.length, "POPULAR RAW:", popularScholarshipsRaw.length, "POPULAR FINAL:", popularScholarships.length);
-
 
     return (
         <div className="min-h-screen bg-linear-to-b from-background to-muted/20">

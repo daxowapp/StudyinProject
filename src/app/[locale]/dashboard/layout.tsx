@@ -4,6 +4,7 @@ import { User, Settings, FileText, CreditCard, LayoutDashboard, Mail } from "luc
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "@/components/dashboard/LogoutButton";
+import { BottomNavBar } from "@/components/dashboard/BottomNavBar";
 import { getTranslations } from "next-intl/server";
 import { NotificationBell } from "@/components/notifications/NotificationBell";
 
@@ -149,16 +150,31 @@ export default async function DashboardLayout({
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col">
-                <header className="flex h-16 items-center justify-end gap-4 border-b bg-background px-6">
-                    <LanguageSwitcher />
-                    {user && <NotificationBell userId={user.id} />}
+                <header className="flex h-14 md:h-16 items-center justify-between md:justify-end gap-4 border-b bg-background px-4 md:px-6">
+                    {/* Mobile: Show brand */}
+                    <Link href="/dashboard" className="flex items-center gap-2 font-bold text-base md:hidden">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm">
+                            S
+                        </div>
+                        Dashboard
+                    </Link>
+                    <div className="flex items-center gap-3">
+                        <LanguageSwitcher />
+                        {user && <NotificationBell userId={user.id} />}
+                    </div>
                 </header>
-                <div className="flex-1 p-4 md:p-8">
+                <div className="flex-1 p-4 md:p-8 pb-24 md:pb-8">
                     {children}
                 </div>
             </main>
 
-
+            {/* Mobile Bottom Navigation */}
+            <BottomNavBar
+                unreadMessages={unreadCount}
+                pendingPayments={pendingPayments}
+                pendingDocuments={pendingDocuments}
+                hasUnreadDocuments={hasUnreadDocuments}
+            />
         </div>
     );
 }

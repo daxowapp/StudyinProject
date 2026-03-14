@@ -46,10 +46,8 @@ export default async function StudentApplicationsPage() {
         .eq('student_email', user.email)
         .order('created_at', { ascending: false });
 
-    console.log('Found applications:', applications?.length, 'Error:', error);
-    console.log('User email:', user.email);
     if (error) {
-        console.error('Full error:', JSON.stringify(error, null, 2));
+        console.error('Failed to fetch applications:', error.message);
     }
 
     // Fetch pending payments count for each application
