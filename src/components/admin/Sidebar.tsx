@@ -138,6 +138,7 @@ export function Sidebar({ className }: SidebarProps) {
             items: [
                 { icon: Upload, label: "Data Import", href: "/admin/data-import", permissions: ["settings.view"] },
                 { icon: MessageSquareText, label: "FAQ Generator", href: "/admin/faq-generator", permissions: ["settings.view"] },
+                { icon: FileText, label: "Program Content", href: "/admin/program-content", permissions: ["settings.view"] },
             ]
         },
         {

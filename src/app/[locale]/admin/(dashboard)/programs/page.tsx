@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ProgramDialog } from "./components/ProgramDialog";
 import { BulkTranslateButton } from "./components/BulkTranslateButton";
 import { format } from "date-fns";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Languages } from "lucide-react";
 
 interface Program {

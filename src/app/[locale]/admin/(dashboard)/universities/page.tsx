@@ -10,7 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { UniversityFilters } from "./filters";
 import { UniversityActions } from "./components/UniversityActions";
 import { Pagination } from "@/components/ui/pagination";
@@ -41,7 +41,7 @@ export default async function AdminUniversitiesPage({
     // Build query - only select needed columns for performance
     let query = supabase
         .from("universities")
-        .select("id, name, city, created_at, university_programs(count)", { count: 'exact' })
+        .select("id, name, city, is_active, created_at, university_programs(count)", { count: 'exact' })
         .eq("portal_key", PORTAL_KEY);
 
     if (search) {
@@ -87,6 +87,7 @@ export default async function AdminUniversitiesPage({
         id: string;
         name: string;
         city: string;
+        is_active: boolean;
         created_at: string;
         university_programs: { count: number }[];
     }
@@ -130,7 +131,9 @@ export default async function AdminUniversitiesPage({
                                 <TableCell>{uni.city}</TableCell>
                                 <TableCell>{uni.university_programs?.[0]?.count || 0}</TableCell>
                                 <TableCell>
-                                    <Badge variant="default">Active</Badge>
+                                    <Badge variant={uni.is_active ? "default" : "secondary"}>
+                                        {uni.is_active ? "Active" : "Inactive"}
+                                    </Badge>
                                 </TableCell>
                                 <TableCell>{new Date(uni.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">

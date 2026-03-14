@@ -199,10 +199,10 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         csca_exam_require: programOverrides?.csca_exam_require || false,
         totalInitial: "~260 USD",
         badges: [program.language_name, program.level].filter(Boolean),
-        overview: programDescription,
-        curriculum: [
-            t('overview.curriculumPlaceholder'),
-        ],
+        overview: translation?.overview || programDescription,
+        curriculum: (Array.isArray(translation?.curriculum) && translation.curriculum.length > 0)
+            ? translation.curriculum
+            : [t('overview.curriculumPlaceholder')],
         requirements: {
             academic: groupedRequirements.academic || [],
             language: groupedRequirements.language || [],

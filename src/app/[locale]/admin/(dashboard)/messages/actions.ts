@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { requireAdminRole } from '@/lib/auth/admin-guard';
 
 export async function sendAdminReply(
     applicationId: string,
@@ -11,11 +12,8 @@ export async function sendAdminReply(
     requiresAction: boolean = false,
     parentMessageId: string | null = null
 ) {
+    const { user } = await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     // Get application details for email
     const { data: application, error: appError } = await supabase
@@ -68,8 +66,7 @@ export async function sendAdminReply(
                 email_sent_at: new Date().toISOString()
             })
             .eq("id", messageData.id);
-    } catch (emailError) {
-        console.error("Error sending email:", emailError);
+    } catch {
         // Don't fail the whole operation if email fails
     }
 
@@ -79,11 +76,8 @@ export async function sendAdminReply(
 }
 
 export async function sendAdminReplyWithAttachments(formData: FormData) {
+    const { user } = await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const applicationId = formData.get('applicationId') as string;
     const subject = formData.get('subject') as string;
@@ -137,8 +131,8 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
         try {
             const { createAdminClient } = await import('@/lib/supabase/server');
             adminClient = await createAdminClient();
-        } catch (error) {
-            console.log("createAdminClient not found, using regular client", error);
+        } catch {
+            // createAdminClient not available, use regular client
         }
 
         for (const file of files) {
@@ -152,7 +146,6 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
                 .upload(filePath, file);
 
             if (uploadError) {
-                console.error('File upload error:', uploadError);
                 continue;
             }
 
@@ -197,8 +190,8 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
                 email_sent_at: new Date().toISOString()
             })
             .eq("id", messageData.id);
-    } catch (emailError) {
-        console.error("Error sending email:", emailError);
+    } catch {
+        // Email send failure is non-critical
     }
 
     revalidatePath("/admin/messages");
@@ -207,6 +200,7 @@ export async function sendAdminReplyWithAttachments(formData: FormData) {
 }
 
 export async function markMessageAsRead(messageId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
 
     const { error } = await supabase

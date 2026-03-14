@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { Eye } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default async function ApplicationsPage() {
     const applications = await getApplications();

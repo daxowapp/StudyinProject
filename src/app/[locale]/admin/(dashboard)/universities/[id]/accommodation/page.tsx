@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 
 import { ArrowLeft, Plus, Edit, Trash2, Home, X, Save } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
 import { AccommodationDialog } from "../../components/AccommodationDialog";

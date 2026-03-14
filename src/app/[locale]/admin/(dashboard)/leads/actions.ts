@@ -3,8 +3,10 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { requireAdminRole } from "@/lib/auth/admin-guard";
 
 export async function getLeads() {
+    await requireAdminRole();
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("leads")
@@ -17,6 +19,7 @@ export async function getLeads() {
 }
 
 export async function updateLeadStatus(id: string, status: string) {
+    await requireAdminRole();
     const supabase = await createClient();
     const { error } = await supabase
         .from("leads")
@@ -29,6 +32,7 @@ export async function updateLeadStatus(id: string, status: string) {
 }
 
 export async function deleteLead(id: string) {
+    await requireAdminRole();
     const supabase = await createClient();
     const { error } = await supabase.from("leads").delete().eq("id", id);
 

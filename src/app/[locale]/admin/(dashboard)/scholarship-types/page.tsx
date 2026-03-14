@@ -10,7 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, DollarSign, Award } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 interface ScholarshipType {
     id: string;

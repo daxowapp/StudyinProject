@@ -3,7 +3,7 @@ import { Building2, FileText, Users, DollarSign, TrendingUp, Calendar, ArrowRigh
 import { createAdminClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 
 interface DashboardApplication {

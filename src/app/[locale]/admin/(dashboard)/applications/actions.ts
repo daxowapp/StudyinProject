@@ -3,8 +3,10 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { requireAdminRole } from "@/lib/auth/admin-guard";
 
 export async function getApplications() {
+    await requireAdminRole();
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("applications")
@@ -28,14 +30,13 @@ export async function getApplications() {
         .order("created_at", { ascending: false });
 
     if (error) {
-        console.error("Error fetching applications:", error);
         throw new Error(error.message);
     }
-    console.log("Fetched applications:", data?.length);
     return data;
 }
 
 export async function updateApplicationStatus(id: string, status: string) {
+    await requireAdminRole();
     const supabase = await createClient();
     const { error } = await supabase
         .from("applications")
@@ -82,7 +83,6 @@ export async function updateApplicationStatus(id: string, status: string) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             emailResult = result as any;
         } catch (e) {
-            console.error('Error sending status email:', e);
             emailResult.error = `${(e as Error).message} [Key: ${maskedKey}]`;
         }
     }
@@ -92,11 +92,8 @@ export async function updateApplicationStatus(id: string, status: string) {
 }
 
 export async function addAdminNote(id: string, note: string) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     // Update admin_notes field
     const { error } = await supabase
@@ -120,11 +117,8 @@ export async function sendMessageToStudent(
     requiresAction: boolean = false,
     skipEmail: boolean = false
 ) {
+    const { user } = await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     // Get application details for email
     const { data: application, error: appError } = await supabase
@@ -177,8 +171,7 @@ export async function sendMessageToStudent(
                     email_sent_at: new Date().toISOString()
                 })
                 .eq("id", messageData.id);
-        } catch (emailError) {
-            console.error("Error sending email:", emailError);
+        } catch {
             // Don't fail the whole operation if email fails
         }
     }
@@ -196,11 +189,8 @@ export async function requestPayment(
     currency: string = 'USD',
     description: string
 ) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     // 1. Update application table (for Admin UI compatibility)
     const { error: updateError } = await supabase
@@ -224,10 +214,6 @@ export async function requestPayment(
         .single();
 
     if (!app?.student_id) {
-        console.error('Application missing student_id:', applicationId);
-        // If student_id is missing, we can't create the transaction due to NOT NULL constraint
-        // But we can try to proceed if the schema allows it, but user said it's NOT NULL.
-        // Let's return an error for now.
         return { error: "Cannot create payment request: Application is not linked to a student account (missing student_id)" };
     }
 
@@ -242,7 +228,6 @@ export async function requestPayment(
     });
 
     if (insertError) {
-        console.error('Failed to insert payment transaction:', insertError);
         return { error: `Failed to create payment transaction: ${insertError.message}` };
     }
 
@@ -263,8 +248,8 @@ export async function requestPayment(
             deadline: 'Immediate', // Or handle specific deadline
             paymentId: undefined
         });
-    } catch (e) {
-        console.error("Error sending payment email:", e);
+    } catch {
+        // Payment email failure is non-critical
     }
 
     await sendMessageToStudent(
@@ -288,11 +273,8 @@ export async function requestDocuments(
     documents: string[],
     additionalInstructions?: string
 ) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     // 1. Update application table (for Admin UI compatibility)
     const { error: updateError } = await supabase
@@ -319,7 +301,6 @@ export async function requestDocuments(
     const { error: insertError } = await supabase.from("document_requests").insert(requests);
 
     if (insertError) {
-        console.error('Failed to insert document requests:', insertError);
         return { error: `Failed to create document requests: ${insertError.message}` };
     }
 
@@ -348,8 +329,8 @@ export async function requestDocuments(
                 deadline: 'ASAP',
                 applicationId: applicationId
             });
-        } catch (e) {
-            console.error("Error sending document email:", e);
+        } catch {
+            // Document email failure is non-critical
         }
     }
 
@@ -373,11 +354,8 @@ export async function uploadConditionalLetter(
     applicationId: string,
     formData: FormData
 ) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const file = formData.get('file') as File;
     if (!file) return { error: "No file provided" };
@@ -437,9 +415,8 @@ export async function uploadConditionalLetter(
                 letter_url: publicUrl,
                 issued_at: new Date().toISOString()
             });
-        } catch (e) {
+        } catch {
             // Ignore if table doesn't exist or other error, as column update is primary
-            console.log("Could not insert into acceptance_letters table", e);
         }
 
         // Send specialized email
@@ -455,8 +432,8 @@ export async function uploadConditionalLetter(
                 letterUrl: publicUrl,
                 applicationId: applicationId
             });
-        } catch (e) {
-            console.error("Error sending acceptance email:", e);
+        } catch {
+            // Acceptance email failure is non-critical
         }
     }
 
@@ -480,11 +457,8 @@ export async function uploadConditionalLetter(
  * Verify a payment transaction
  */
 export async function verifyPayment(transactionId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const { data: transaction, error } = await supabase
         .from('payment_transactions')
@@ -497,7 +471,6 @@ export async function verifyPayment(transactionId: string) {
         .single();
 
     if (error) {
-        console.error('Failed to verify payment:', error);
         return { error: error.message };
     }
 
@@ -532,11 +505,8 @@ export async function verifyPayment(transactionId: string) {
  * Approve a document
  */
 export async function approveDocument(requestId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const { data: docRequest, error } = await supabase
         .from('document_requests')
@@ -549,7 +519,6 @@ export async function approveDocument(requestId: string) {
         .single();
 
     if (error) {
-        console.error('Failed to approve document:', error);
         return { error: error.message };
     }
 
@@ -583,11 +552,8 @@ export async function approveDocument(requestId: string) {
  * Reject a payment transaction
  */
 export async function rejectPayment(transactionId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const { data: transaction, error } = await supabase
         .from('payment_transactions')
@@ -600,7 +566,6 @@ export async function rejectPayment(transactionId: string) {
         .single();
 
     if (error) {
-        console.error('Failed to reject payment:', error);
         return { error: error.message };
     }
 
@@ -624,11 +589,8 @@ export async function rejectPayment(transactionId: string) {
  * Reject a document
  */
 export async function rejectDocument(requestId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
-
-    // Get current user (admin)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Not authenticated" };
 
     const { data: docRequest, error } = await supabase
         .from('document_requests')
@@ -641,7 +603,6 @@ export async function rejectDocument(requestId: string) {
         .single();
 
     if (error) {
-        console.error('Failed to reject document:', error);
         return { error: error.message };
     }
 

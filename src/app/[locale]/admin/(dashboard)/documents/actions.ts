@@ -2,8 +2,10 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { requireAdminRole } from "@/lib/auth/admin-guard";
 
 export async function getAllDocuments() {
+    await requireAdminRole();
     const supabase = await createClient();
 
     const { data, error } = await supabase
@@ -23,8 +25,6 @@ export async function getAllDocuments() {
         return { error: error.message };
     }
 
-    if (!data || data.length === 0) {
-    }
 
     // Transform data to handle missing profiles or split names
     const documents = data.map(doc => ({
@@ -38,6 +38,7 @@ export async function getAllDocuments() {
 }
 
 export async function verifyDocument(documentId: string) {
+    await requireAdminRole();
     const supabase = await createClient();
 
     const { error } = await supabase
@@ -52,6 +53,7 @@ export async function verifyDocument(documentId: string) {
 }
 
 export async function deleteDocument(documentId: string, fileUrl: string) {
+    await requireAdminRole();
     const supabase = await createClient();
 
     try {
@@ -65,7 +67,7 @@ export async function deleteDocument(documentId: string, fileUrl: string) {
                 .from('application-documents')
                 .remove([filePath]);
 
-            if (storageError) console.error("Storage delete error:", storageError);
+            // Storage delete errors are non-critical, continue with DB delete
         }
 
         const { error } = await supabase

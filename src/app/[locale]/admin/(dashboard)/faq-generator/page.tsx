@@ -584,6 +584,7 @@ export default function FAQGeneratorPage() {
                     <Building2 className="h-4 w-4" />
                     University FAQs
                 </button>
+
             </div>
 
             {/* Tab Content */}
@@ -608,6 +609,8 @@ export default function FAQGeneratorPage() {
                     entityCountTable="universities"
                 />
             )}
+
+
         </div>
     );
 }

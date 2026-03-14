@@ -2,6 +2,7 @@
 
 import { createAdminClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { requireStrictAdminRole } from "@/lib/auth/admin-guard";
 
 // Define return type for actions
 type ActionResponse = {
@@ -19,6 +20,7 @@ export async function createUser(data: {
     phone?: string;
 }): Promise<ActionResponse> {
     try {
+        await requireStrictAdminRole();
         const supabase = await createAdminClient();
         const { email, password, first_name, last_name, role, role_id, phone } = data;
 
@@ -37,7 +39,6 @@ export async function createUser(data: {
         });
 
         if (authError) {
-            console.error("Auth creation error:", authError);
             return { success: false, error: authError.message };
         }
 
@@ -73,7 +74,6 @@ export async function createUser(data: {
                 .eq('id', authUser.user.id);
 
             if (profileError) {
-                console.error("Profile update error:", profileError);
                 // Try to cleanup auth user if profile fails? 
                 // For now, return error but user exists in auth.
                 return { success: false, error: "User created but profile update failed: " + profileError.message };
@@ -94,7 +94,6 @@ export async function createUser(data: {
                 });
 
             if (profileError) {
-                console.error("Profile creation error:", profileError);
                 return { success: false, error: "User created but profile creation failed: " + profileError.message };
             }
         }
@@ -102,8 +101,7 @@ export async function createUser(data: {
         revalidatePath("/admin/users");
         return { success: true };
 
-    } catch (error) {
-        console.error("Create user unexpected error:", error);
+    } catch {
         return { success: false, error: "An unexpected error occurred" };
     }
 }
@@ -118,6 +116,7 @@ export async function updateUser(userId: string, data: {
     password?: string;
 }): Promise<ActionResponse> {
     try {
+        await requireStrictAdminRole();
         const supabase = await createAdminClient();
         const { first_name, last_name, role, role_id, phone, email, password } = data;
 
@@ -172,6 +171,7 @@ export async function updateUser(userId: string, data: {
 
 export async function deleteUser(userId: string): Promise<ActionResponse> {
     try {
+        await requireStrictAdminRole();
         const supabase = await createAdminClient();
 
         // Delete from Auth (cascades to profile usually if setup correctly)

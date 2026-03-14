@@ -31,7 +31,7 @@ import {
     Award,
     CheckCircle2
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { toast } from "sonner";
 import { ProgramDialog } from "../../programs/components/ProgramDialog";
 import { AiGeneratorButton } from "@/components/admin/AiGeneratorButton";

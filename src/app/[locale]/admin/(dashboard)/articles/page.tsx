@@ -22,7 +22,7 @@ import {
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Plus, Search, Eye, Edit, Trash2, FileText, TrendingUp } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { toast } from "sonner";
 import { PORTAL_KEY } from "@/lib/constants/portal";

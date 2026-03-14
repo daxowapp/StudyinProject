@@ -77,7 +77,7 @@ export function StatsSection() {
         {
             key: 'programs',
             icon: BookOpen,
-            value: 1000,
+            value: 17000,
             suffix: "+",
             color: "from-purple-500 to-pink-500",
             bgColor: "bg-purple-500/10"

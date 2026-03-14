@@ -104,7 +104,7 @@ export default async function ApplicationDetailPage({
                                             application.status === 'payment_verification' ? 'bg-yellow-500' :
                                                 application.status === 'document_verification' ? 'bg-purple-500' : 'bg-gray-600'
                 }>
-                    {application.status?.replace('_', ' ').toUpperCase()}
+                    {application.status?.replace(/_/g, ' ').toUpperCase()}
                 </Badge>
             </div>
 

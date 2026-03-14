@@ -10,7 +10,7 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Loader2 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 
 export default function NewUniversityPage() {

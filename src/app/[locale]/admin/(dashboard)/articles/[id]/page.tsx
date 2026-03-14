@@ -19,7 +19,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter, useParams } from "next/navigation";
 import { toast } from "sonner";
 import { ArrowLeft, Loader2, Upload, X, Eye, Save } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { PORTAL_KEY } from "@/lib/constants/portal";
 

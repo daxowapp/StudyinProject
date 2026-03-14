@@ -4807,7 +4807,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 - 8 key statistics with count-up animations:
   - 500+ Partner Universities
   - 50,000+ International Students
-  - 1,000+ Programs Available
+  - 17,000+ Programs Available
   - 98% Success Rate
   - 200+ Countries Represented
   - $2M+ Scholarships Awarded
@@ -5007,7 +5007,7 @@ FILE: ./docs/HOME_PAGE_STRUCTURE.md
 │  • 8 animated statistics in 4-column grid:                   │
 │    - 500+ Partner Universities                               │
 │    - 50,000+ International Students                          │
-│    - 1,000+ Programs Available                               │
+│    - 17,000+ Programs Available                              │
 │    - 98% Success Rate                                        │
 │    - 200+ Countries Represented                              │
 │    - $2M+ Scholarships Awarded                               │
@@ -16944,7 +16944,7 @@ The home page has been completely redesigned and enhanced with modern, premium c
 - 8 key statistics with count-up animations:
   - 500+ Partner Universities
   - 50,000+ International Students
-  - 1,000+ Programs Available
+  - 17,000+ Programs Available
   - 98% Success Rate
   - 200+ Countries Represented
   - $2M+ Scholarships Awarded
@@ -17144,7 +17144,7 @@ FILE: ./docs/guides/HOME_PAGE_STRUCTURE.md
 │  • 8 animated statistics in 4-column grid:                   │
 │    - 500+ Partner Universities                               │
 │    - 50,000+ International Students                          │
-│    - 1,000+ Programs Available                               │
+│    - 17,000+ Programs Available                              │
 │    - 98% Success Rate                                        │
 │    - 200+ Countries Represented                              │
 │    - $2M+ Scholarships Awarded                               │

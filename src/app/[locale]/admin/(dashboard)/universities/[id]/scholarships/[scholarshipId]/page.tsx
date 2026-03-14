@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Save, Loader2, Languages } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { ScholarshipFormContent, ScholarshipFormData } from "../../../components/ScholarshipFormContent";

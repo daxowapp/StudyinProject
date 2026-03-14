@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Award, Home, Edit, Trash2 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";

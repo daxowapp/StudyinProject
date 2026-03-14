@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Save, Plus, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function EditScholarshipTypePage() {
     const router = useRouter();
