@@ -153,6 +153,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       console.error("Error fetching programs:", programsError);
     }
 
+    // Helper to filter out base64 data: URLs (shared across programs + universities)
+    const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
+      if (!url) return undefined;
+      if (url.startsWith('data:')) return id ? `/api/university-cover/${id}` : undefined;
+      return url;
+    };
+
     // Process Programs
     let randomPrograms = programs ? [...programs] : [];
     if (randomPrograms.length > 0) {
@@ -170,13 +177,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         .from("universities")
         .select("id, name, city, cover_photo_url, logo_url, has_fast_track")
         .in("id", universityIds);
-
-      // Helper to filter out base64
-      const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
-        if (!url) return undefined;
-        if (url.startsWith('data:')) return id ? `/api/university-cover/${id}` : undefined;
-        return url;
-      };
 
       const universityMap = new Map(programUniversities?.map((uni) => [uni.id, uni]) || []);
 
@@ -196,7 +196,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             name: university?.name || p.university_name,
             city: university?.city || p.city,
             cover_photo_url: sanitizeImageUrl(university?.cover_photo_url, university?.id),
-            logo_url: university?.logo_url,
+            logo_url: sanitizeImageUrl(university?.logo_url, university?.id),
             has_fast_track: university?.has_fast_track
           }
         };
@@ -208,8 +208,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       // Fetch stats and translations in parallel
       const uniIds = universitiesData.map(u => u.id);
       const [statsResult, translationsResult] = await Promise.all([
-        supabase.from("v_university_stats").select("*").in("university_id", uniIds),
-        supabase.from("university_translations").select("*").in("university_id", uniIds)
+        supabase.from("v_university_stats").select("university_id, program_count, min_tuition_fee, currency").in("university_id", uniIds),
+        supabase.from("university_translations").select("university_id, locale, name, description").in("university_id", uniIds).eq("locale", locale)
       ]);
 
       const stats = statsResult.data;
@@ -222,11 +222,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       const statsMap = new Map((stats as unknown as UniStat[] || []).map((s) => [s.university_id, s]));
       const translationsMap = new Map((translations as unknown as UniTranslation[] || []).map((t) => [`${t.university_id}_${locale}`, t]));
 
-      const sanitizeImageUrl = (url: string | undefined | null, id?: string): string | undefined => {
-        if (!url) return undefined;
-        if (url.startsWith('data:')) return id ? `/api/university-cover/${id}` : undefined;
-        return url;
-      };
+      // sanitizeImageUrl is defined above (shared)
 
       universitiesWithStats = universitiesData.map((uni) => {
         const stat = statsMap.get(uni.id);
@@ -267,7 +263,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <FeaturedProgramsSection programs={formattedPrograms} />
       <FeaturedUniversitiesSection universities={universitiesWithStats} />
       <CscaCtaSection />
-      <LazyHomeSections universities={universitiesWithStats} />
+      <LazyHomeSections universities={universitiesWithStats.map(u => ({ id: u.id, name: u.name, slug: u.slug, logo_url: u.logo_url }))} />
     </main>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Award, CheckCircle, Shield, Building2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -22,18 +21,9 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
     const displayUniversities = universities.slice(0, 6);
 
     const recognitions = [
-        {
-            key: 'unesco',
-            icon: Award
-        },
-        {
-            key: 'government',
-            icon: Shield
-        },
-        {
-            key: 'accredited',
-            icon: CheckCircle
-        },
+        { key: 'unesco', icon: Award },
+        { key: 'government', icon: Shield },
+        { key: 'accredited', icon: CheckCircle },
     ];
 
     return (
@@ -46,12 +36,7 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
+                <div className="text-center mb-12 animate-fade-in">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 font-semibold text-sm mb-4">
                         <Award className="h-4 w-4 text-primary" />
                         <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{t('badge')}</span>
@@ -62,36 +47,25 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                     <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* University Logos */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="mb-16"
-                >
+                <div className="mb-16">
                     <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
-                        {displayUniversities.map((university, index) => (
+                        {displayUniversities.map((university) => (
                             <Link href={`/universities/${university.slug}`} key={university.id} className="block">
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.05 }}
-                                    className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 group aspect-square h-full"
+                                <div
+                                    className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 group aspect-square h-full"
                                 >
                                     <div className="w-full h-20 mb-3 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        {university.logo_url ? (
+                                        {university.logo_url && !university.logo_url.startsWith('data:') ? (
                                             <Image
                                                 src={university.logo_url}
                                                 alt={university.name}
                                                 width={80}
                                                 height={80}
                                                 className="max-w-full max-h-full object-contain"
-                                                unoptimized
+                                                unoptimized={university.logo_url.startsWith('http')}
                                             />
                                         ) : (
                                             <Building2 className="h-12 w-12 text-primary" />
@@ -100,39 +74,29 @@ export function PartnersSection({ universities = [] }: PartnersSectionProps) {
                                     <div className="text-xs text-center font-semibold text-muted-foreground group-hover:text-primary transition-colors line-clamp-2">
                                         {university.name}
                                     </div>
-                                </motion.div>
+                                </div>
                             </Link>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Recognition Badges */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="grid md:grid-cols-3 gap-6"
-                >
+                <div className="grid md:grid-cols-3 gap-6">
                     {recognitions.map((recognition, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 + index * 0.1 }}
                             className="flex items-start gap-4 p-6 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300"
                         >
-                            <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <div className="shrink-0 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center">
                                 <recognition.icon className="h-6 w-6 text-primary" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-foreground mb-1">{t(`recognitions.${recognition.key}.title`)}</h3>
                                 <p className="text-sm text-muted-foreground">{t(`recognitions.${recognition.key}.description`)}</p>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

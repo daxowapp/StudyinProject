@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, MapPin, ArrowRight, Star, GraduationCap, Globe, Zap } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
@@ -27,28 +26,12 @@ interface Program {
         cover_photo_url?: string;
         logo_url?: string;
         has_fast_track?: boolean;
-        [key: string]: unknown;
     };
 }
 
 interface FeaturedProgramsSectionProps {
     programs?: Program[];
 }
-
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-};
 
 export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSectionProps) {
     const t = useTranslations('FeaturedPrograms');
@@ -99,12 +82,7 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-8 md:mb-14 max-w-2xl mx-auto"
-                >
+                <div className="text-center mb-8 md:mb-14 max-w-2xl mx-auto animate-fade-in">
                     <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                         <Star className="h-3 w-3 mr-1 fill-primary" />
                         {t('badge')}
@@ -115,21 +93,14 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                     <p className="text-muted-foreground">
                         {t('description')}
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Programs Grid — horizontal scroll on mobile, grid on desktop */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="scroll-strip-container md:!overflow-visible"
-                >
+                <div className="scroll-strip-container md:!overflow-visible">
                     <div className="scroll-strip gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:!overflow-visible md:!flex-wrap">
                     {displayPrograms.map((program) => (
-                        <motion.div
+                        <div
                             key={program.id}
-                            variants={item}
                             className="group min-w-[280px] w-[85vw] md:min-w-0 md:w-auto snap-start shrink-0 md:shrink"
                         >
                             <Link href={`/programs/${program.slug || program.id}`}>
@@ -137,13 +108,14 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                     <CardContent className="p-6">
                                         {/* University Header */}
                                         <div className="flex items-start gap-4 mb-5">
-                                            {program.university?.logo_url ? (
+                                            {program.university?.logo_url && !program.university.logo_url.startsWith('data:') ? (
                                                 <div className="relative w-14 h-14 rounded-xl border border-gray-100 bg-white shadow-sm shrink-0 overflow-hidden group-hover:shadow-md transition-shadow">
                                                     <Image
                                                         src={program.university.logo_url}
                                                         alt={program.university.name}
                                                         fill
                                                         className="object-contain p-1.5"
+                                                        unoptimized={program.university.logo_url.startsWith('http')}
                                                     />
                                                 </div>
                                             ) : (
@@ -218,26 +190,20 @@ export function FeaturedProgramsSection({ programs = [] }: FeaturedProgramsSecti
                                     </CardContent>
                                 </Card>
                             </Link>
-                        </motion.div>
+                        </div>
                     ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-8 md:mt-12 text-center"
-                >
+                <div className="mt-8 md:mt-12 text-center">
                     <Link href="/programs">
                         <Button size="lg" variant="outline" className="border-2 font-medium w-full sm:w-auto">
                             {t('viewAll')}
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
