@@ -608,45 +608,45 @@ export function HeroSection() {
                             {/* Quick Search Tags — horizontal scroll on mobile */}
                             <div className="flex flex-col items-center gap-4 mt-6 pt-6 border-t border-slate-200">
                                 <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{t('browseByCategory')}</span>
-                                <div className="flex gap-3 overflow-x-auto w-full md:flex-wrap md:justify-center md:overflow-visible pb-2 md:pb-0 scroll-strip">
+                                <div className="flex gap-3 overflow-x-auto w-full md:flex-wrap md:justify-center md:overflow-visible pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                                     <button
                                         onClick={() => router.push('/programs?field=business&degree=master')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <TrendingUp className="w-4 h-4" />
                                         {t('categories.mba')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=engineering&degree=bachelor')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Zap className="w-4 h-4" />
                                         {t('categories.engineering')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=medicine&degree=bachelor')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <HeartPulse className="w-4 h-4" />
                                         {t('categories.medicine')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?field=cs&degree=bachelor')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Code className="w-4 h-4" />
                                         {t('categories.cs')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?scholarship=full')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Award className="w-4 h-4" />
                                         {t('categories.fullScholarship')}
                                     </button>
                                     <button
                                         onClick={() => router.push('/programs?language=english')}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
+                                        className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-700 text-sm font-medium transition-all hover:scale-105 border border-slate-200 hover:border-red-200"
                                     >
                                         <Globe className="w-4 h-4" />
                                         {t('categories.englishTaught')}
