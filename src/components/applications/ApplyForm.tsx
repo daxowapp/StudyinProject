@@ -469,6 +469,20 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
         }
       }
 
+      // Send email notifications (student confirmation + admin notification)
+      try {
+        const { sendApplicationEmails } = await import('@/app/[locale]/(public)/apply/actions');
+        await sendApplicationEmails({
+          applicationId: newApplicationId,
+          studentName: studentFullName,
+          programTitle: program.program_catalog?.title || program.title || 'Program',
+          universityName: program.university.name,
+        });
+      } catch (emailError) {
+        console.error('Error sending application emails:', emailError);
+        // Don't fail the submission, just log
+      }
+
       // Show success state
       setApplicationId(newApplicationId);
       setSuccess(true);

@@ -11,8 +11,15 @@ const resend = new Resend(process.env.RESEND_API_KEY || '');
 const getAdminEmail = () => process.env.ADMIN_EMAIL || 'admin@studyatchina.com';
 const getSenderEmail = () => process.env.EMAIL_FROM || 'Studyatchina <noreply@studyatchina.com>';
 
+// Notification recipients for new applications & student replies
+const getNotificationRecipients = () => ({
+  to: process.env.NOTIFICATION_EMAIL || getAdminEmail(),
+  cc: process.env.NOTIFICATION_CC ? process.env.NOTIFICATION_CC.split(',').map(e => e.trim()) : undefined,
+});
+
 export interface SendEmailParams {
   to: string;
+  cc?: string[];
   subject: string;
   html: string;
   text?: string; // Auto-generated if not provided? For now, optional
@@ -34,6 +41,7 @@ export async function sendEmail(params: SendEmailParams) {
     const { data: resendData, error: resendError } = await resend.emails.send({
       from: getSenderEmail(),
       to: params.to,
+      ...(params.cc && params.cc.length > 0 ? { cc: params.cc } : {}),
       subject: params.subject,
       html: params.html,
       text: params.text || '', // Resend likes text version too
@@ -258,12 +266,13 @@ export async function sendAdminNewApplicationEmail(data: {
   applicationId: string;
 }) {
   const template = emailTemplates.adminNewApplication(data);
+  const recipients = getNotificationRecipients();
   return sendEmail({
-    to: getAdminEmail(),
+    to: recipients.to,
+    cc: recipients.cc,
     subject: template.subject,
     html: template.html,
     text: template.text,
-    // recipientId: undefined, // Admins might not have ID or we don't want to log them as 'recipient' in same table logic
     applicationId: data.applicationId,
     emailType: 'admin_new_application',
   });
@@ -293,8 +302,10 @@ export async function sendAdminNewMessageEmail(data: {
   messageId: string;
 }) {
   const template = emailTemplates.adminNewMessage(data);
+  const recipients = getNotificationRecipients();
   return sendEmail({
-    to: getAdminEmail(),
+    to: recipients.to,
+    cc: recipients.cc,
     subject: template.subject,
     html: template.html,
     text: template.text,
