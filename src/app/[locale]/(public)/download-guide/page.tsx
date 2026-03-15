@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { submitLead } from './actions';
 import { toast } from 'sonner';
 import { Loader2, CheckCircle2, Download, ArrowRight, Star, GraduationCap } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 
 export default function DownloadGuidePage() {
     const [isLoading, setIsLoading] = useState(false);
@@ -44,11 +44,8 @@ export default function DownloadGuidePage() {
             <div className="lg:w-1/2 bg-gradient-to-br from-slate-900 to-slate-800 p-8 lg:p-16 xl:p-24 flex flex-col justify-center relative overflow-hidden text-white">
                 <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative z-10 flex flex-col items-center"
+                <div
+                    className="relative z-10 flex flex-col items-center animate-[fadeInScale_0.8s_ease-out_both]"
                 >
                     {/* 3D Book Container */}
                     <div className="relative w-64 h-80 md:w-80 md:h-[480px] perspective-1000 mb-12 group">
@@ -103,16 +100,14 @@ export default function DownloadGuidePage() {
                         <p className="text-slate-300 italic">&quot;The most comprehensive resource I found. Helped me get a full scholarship!&quot;</p>
                         <p className="text-slate-400 text-sm mt-2 font-bold">- Sarah J., Medical Student</p>
                     </div>
-                </motion.div>
+                </div>
             </div>
 
             {/* Right Side - Form */}
             <div className="lg:w-1/2 p-8 lg:p-16 xl:p-24 flex flex-col justify-center bg-white">
                 {!isSuccess ? (
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="max-w-md mx-auto w-full"
+                    <div
+                        className="max-w-md mx-auto w-full animate-[fadeInRight_0.5s_ease-out_both]"
                     >
                         <div className="mb-8">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider mb-4">
@@ -184,12 +179,10 @@ export default function DownloadGuidePage() {
                                 By downloading, you agree to receive helpful tips about studying in China. No spam, ever.
                             </p>
                         </form>
-                    </motion.div>
+                    </div>
                 ) : (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="max-w-md mx-auto w-full text-center"
+                    <div
+                        className="max-w-md mx-auto w-full text-center animate-[fadeInScale_0.5s_ease-out_both]"
                     >
                         <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
                             <CheckCircle2 className="w-12 h-12 text-green-600" />
@@ -209,7 +202,7 @@ export default function DownloadGuidePage() {
                         <Button variant="ghost" className="mt-6" onClick={() => window.location.href = '/programs'}>
                             Browse Programs
                         </Button>
-                    </motion.div>
+                    </div>
                 )}
             </div>
         </div>

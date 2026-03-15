@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { useTranslations } from "next-intl";
 
 interface MobileFilterActionsProps {
@@ -25,25 +25,19 @@ export function MobileFilterActions({
     if (!isOpen) return null;
 
     return (
-        <AnimatePresence>
-            <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 100, opacity: 0 }}
-                className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background/95 backdrop-blur-sm border-t shadow-lg lg:hidden"
+        <>
+            <div
+                className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background/95 backdrop-blur-sm border-t shadow-lg lg:hidden animate-[slideUp_0.3s_ease-out_both]"
             >
                 <div className="container mx-auto">
                     {/* Result count */}
                     <div className="text-center mb-3">
-                        <motion.span
-                            key={matchingCount}
-                            initial={{ scale: 1.2, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
+                        <span
                             className="text-sm font-medium"
                         >
                             <span className="text-primary font-bold">{matchingCount}</span>{" "}
                             {t("matchingPrograms")}
-                        </motion.span>
+                        </span>
                     </div>
 
                     {/* Action buttons */}
@@ -71,7 +65,7 @@ export function MobileFilterActions({
                         </Button>
                     </div>
                 </div>
-            </motion.div>
-        </AnimatePresence>
+            </div>
+        </>
     );
 }

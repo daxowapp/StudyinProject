@@ -26,6 +26,9 @@ const nextConfig = {
       'lucide-react',
       '@radix-ui/react-icons',
       'date-fns',
+      '@supabase/supabase-js',
+      'react-day-picker',
+      'sonner',
     ],
   },
 

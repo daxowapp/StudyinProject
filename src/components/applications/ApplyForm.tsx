@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import {
   FileText,
   CheckCircle2,
@@ -497,27 +497,22 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
   // Show success screen
   if (success) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-2xl mx-auto"
+      <div
+        className="max-w-2xl mx-auto animate-[fadeInScale_0.5s_ease-out_both]"
       >
         <GlassCard className="p-8 md:p-12 text-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-24 h-24 bg-linear-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-emerald-500/30"
+          <div
+            className="w-24 h-24 bg-linear-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-emerald-500/30 animate-[bounceIn_0.5s_ease-out_0.2s_both]"
           >
             <CheckCircle2 className="w-14 h-14 text-white" />
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <div className="animate-[fadeInUp_0.5s_ease-out_0.4s_both]">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
               {t('review.success')} 🎉
             </h2>
             <p className="text-gray-500 mb-8">{t('review.successMessage')}</p>
-          </motion.div>
+          </div>
 
           <div className="bg-white/80 rounded-xl p-6 mb-6 border border-gray-100">
             <div className="flex items-center justify-between mb-3">
@@ -557,7 +552,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </GlassCard>
-      </motion.div>
+      </div>
     );
   }
 
@@ -581,15 +576,15 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
         <div>
             {/* Error Alert */}
             {error && (
-              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+              <div className="mb-6 animate-[fadeInUp_0.3s_ease-out_both]">
                 <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700">
                   <AlertCircle className="w-5 h-5 shrink-0" />
                   <p className="text-sm">{error}</p>
                 </div>
-              </motion.div>
+              </div>
             )}
 
-            <AnimatePresence mode="wait">
+            <div>
               {/* ═══ STEP 1: Personal Information (Sub-Step Wizard) ═══ */}
               {step === 1 && (() => {
                 const currentDef = subStepDefs[subStep];
@@ -616,7 +611,7 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                 };
 
                 return (
-                  <motion.div key={`step1-sub${subStep}`} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                  <div className="animate-[fadeInRight_0.3s_ease-out_both]">
                     <GlassCard className="p-6 md:p-8">
                       {/* Sub-step indicator */}
                       <SubStepIndicator
@@ -633,8 +628,8 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                       />
 
                       {/* ── Section content based on sectionId ── */}
-                      <AnimatePresence mode="wait">
-                        <motion.div key={currentDef.sectionId} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.2 }}>
+                      <div>
+                        <div className="animate-[fadeIn_0.2s_ease-out_both]">
 
                           {currentDef.sectionId === 'identity' && (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -847,8 +842,8 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                             </div>
                           )}
 
-                        </motion.div>
-                      </AnimatePresence>
+                        </div>
+                      </div>
 
                       {/* Sub-step navigation */}
                       <StepNavigation
@@ -866,13 +861,13 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                         subStepLabel={`${subStep + 1} / ${subStepDefs.length}`}
                       />
                     </GlassCard>
-                  </motion.div>
+                  </div>
                 );
               })()}
 
               {/* ═══ STEP 2: Documents ═══ */}
               {step === 2 && (
-                <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <div className="animate-[fadeInRight_0.3s_ease-out_both]">
                   <GlassCard className="p-6 md:p-8">
                     <SectionHeader icon={FileText} title={t('documents.title')} subtitle={t('documents.description')} />
 
@@ -1057,12 +1052,12 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                       nextDisabled={!allRequiredDocumentsUploaded() && requirements.length > 0}
                     />
                   </GlassCard>
-                </motion.div>
+                </div>
               )}
 
               {/* ═══ STEP 3: Payment (if required) ═══ */}
               {step === 3 && requiresPayment && (
-                <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <div className="animate-[fadeInRight_0.3s_ease-out_both]">
                   <GlassCard className="p-6 md:p-8">
                     <SectionHeader icon={CreditCard} title={t('payment.title')} subtitle="This program requires payment before submission" />
 
@@ -1088,12 +1083,12 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                       nextLabel={t('buttons.continueToReview')}
                     />
                   </GlassCard>
-                </motion.div>
+                </div>
               )}
 
               {/* ═══ FINAL STEP: Review & Submit ═══ */}
               {step === reviewStep && (
-                <motion.div key="stepReview" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <div className="animate-[fadeInRight_0.3s_ease-out_both]">
                   <GlassCard className="p-6 md:p-8">
                     <SectionHeader icon={FileCheck} title={t('review.title')} subtitle="Please review your application before submitting" />
 
@@ -1190,9 +1185,9 @@ export function ApplyForm({ program, requirements, user, profile, intakes = [] }
                       isSubmit
                     />
                   </GlassCard>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

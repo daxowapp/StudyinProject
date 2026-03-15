@@ -47,7 +47,6 @@
     "dotenv": "^17.2.3",
     "embla-carousel-react": "^8.6.0",
     "eslint-config-next": "16.0.10",
-    "framer-motion": "^12.23.26",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",

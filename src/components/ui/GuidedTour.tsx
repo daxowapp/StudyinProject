@@ -9,7 +9,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { useTranslations } from "next-intl";
 
 interface WelcomeTourProps {
@@ -79,15 +79,12 @@ export function WelcomeTour({ storageKey = "welcomeTourComplete", onComplete }: 
             <DialogContent className="max-w-md p-0 overflow-hidden border-0">
                 {/* Top gradient */}
                 <div className={`h-32 bg-gradient-to-r ${slide.color} flex items-center justify-center relative`}>
-                    <motion.div
+                    <div
                         key={currentSlide}
-                        initial={{ scale: 0, rotate: -20 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ type: "spring", bounce: 0.4 }}
-                        className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center"
+                        className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center animate-[bounceIn_0.4s_ease-out_both]"
                     >
                         <slide.icon className="h-8 w-8 text-white" />
-                    </motion.div>
+                    </div>
 
                     {/* Decorative sparkles */}
                     <Sparkles className="absolute top-4 left-4 h-5 w-5 text-white/50" />
@@ -98,30 +95,21 @@ export function WelcomeTour({ storageKey = "welcomeTourComplete", onComplete }: 
                 <div className="p-6">
                     <DialogHeader className="mb-4">
                         <DialogTitle className="text-xl text-center">
-                            <AnimatePresence mode="wait">
-                                <motion.span
+                                <span
                                     key={currentSlide}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
+                                    className="inline-block animate-[fadeInUp_0.3s_ease-out_both]"
                                 >
                                     {slide.title}
-                                </motion.span>
-                            </AnimatePresence>
+                                </span>
                         </DialogTitle>
                     </DialogHeader>
 
-                    <AnimatePresence mode="wait">
-                        <motion.p
+                        <p
                             key={currentSlide}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="text-muted-foreground text-center mb-6"
+                            className="text-muted-foreground text-center mb-6 animate-[fadeInUp_0.3s_ease-out_both]"
                         >
                             {slide.content}
-                        </motion.p>
-                    </AnimatePresence>
+                        </p>
 
                     {/* Progress dots */}
                     <div className="flex justify-center gap-2 mb-6">

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight, GraduationCap, MapPin, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+
 
 export function RecentlyViewedSection() {
     const t = useTranslations("Programs.recentlyViewed");
@@ -47,14 +47,11 @@ export function RecentlyViewedSection() {
             </CardHeader>
             <CardContent>
                 <div className="flex gap-3 overflow-x-auto pb-2 -mb-2 scrollbar-thin">
-                    <AnimatePresence mode="popLayout">
-                        {recentPrograms.slice(0, 5).map((program, index) => (
-                            <motion.div
+                    {recentPrograms.slice(0, 5).map((program, index) => (
+                            <div
                                 key={program.id}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
-                                transition={{ delay: index * 0.05 }}
+                                className="animate-[fadeInRight_0.3s_ease-out_both]"
+                                style={{ animationDelay: `${index * 50}ms` }}
                             >
                                 <Link href={`/programs/${program.slug}`}>
                                     <div className="flex-shrink-0 w-64 p-3 rounded-lg border bg-card hover:border-primary/50 hover:shadow-md transition-all group cursor-pointer">
@@ -85,9 +82,8 @@ export function RecentlyViewedSection() {
                                         </div>
                                     </div>
                                 </Link>
-                            </motion.div>
+                            </div>
                         ))}
-                    </AnimatePresence>
                 </div>
             </CardContent>
         </Card>

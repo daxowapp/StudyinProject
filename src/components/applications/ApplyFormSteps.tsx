@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+
 import {
   CheckCircle2,
   AlertCircle,
@@ -291,10 +291,8 @@ export function DocumentUploadZone({
   const done = isUploaded || isReused;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`rounded-xl overflow-hidden border-2 transition-all duration-300 ${done ? 'border-emerald-200 bg-emerald-50/30' : isDragging ? 'border-blue-400 bg-blue-50/50 scale-[1.01]' : 'border-gray-200 bg-white/60 hover:border-gray-300'}`}
+    <div
+      className={`rounded-xl overflow-hidden border-2 transition-all duration-300 animate-[fadeInUp_0.3s_ease-out_both] ${done ? 'border-emerald-200 bg-emerald-50/30' : isDragging ? 'border-blue-400 bg-blue-50/50 scale-[1.01]' : 'border-gray-200 bg-white/60 hover:border-gray-300'}`}
     >
       {/* Orange ribbon header */}
       <div className={`flex items-center justify-between px-4 py-2.5 ${
@@ -368,7 +366,7 @@ export function DocumentUploadZone({
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -442,11 +440,8 @@ export function ProgressTopBar({
                   <div className="flex-1 mx-2 md:mx-3">
                     <div className="h-0.5 rounded-full bg-gray-100 relative overflow-hidden">
                       {isCompleted && (
-                        <motion.div
-                          className="absolute inset-y-0 left-0 bg-emerald-400 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: '100%' }}
-                          transition={{ duration: 0.4, ease: 'easeOut' }}
+                        <div
+                          className="absolute inset-y-0 left-0 bg-emerald-400 rounded-full animate-[expandWidth_0.4s_ease-out_both]"
                         />
                       )}
                     </div>
@@ -524,15 +519,11 @@ export function ConditionalDocumentSection({
 
       {/* Collapsible doc list */}
       {expanded && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="space-y-3 pl-1"
+        <div
+          className="space-y-3 pl-1 animate-[fadeIn_0.3s_ease-out_both]"
         >
           {children}
-        </motion.div>
+        </div>
       )}
     </div>
   );
@@ -680,14 +671,11 @@ export function ReviewSection({
         {expanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
       </button>
       {expanded && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          className="px-5 pb-4"
+        <div
+          className="px-5 pb-4 animate-[fadeIn_0.2s_ease-out_both]"
         >
           {children}
-        </motion.div>
+        </div>
       )}
     </div>
   );
@@ -732,7 +720,7 @@ export function StepNavigation({
         >
           {loading ? (
             <span className="flex items-center gap-2">
-              <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full" />
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               Submitting...
             </span>
           ) : nextLabel}
@@ -756,8 +744,7 @@ export function SubStepIndicator({
         return (
           <div key={i} className="flex items-center gap-2">
             {/* Dot */}
-            <motion.div
-              layout
+            <div
               className={`flex items-center gap-1.5 rounded-full transition-all duration-300 ${
                 isActive
                   ? 'bg-blue-100 border border-blue-300 px-3 py-1'
@@ -776,7 +763,7 @@ export function SubStepIndicator({
                   {labels[i]}
                 </span>
               )}
-            </motion.div>
+            </div>
             {/* Connector line */}
             {i < total - 1 && (
               <div className={`w-3 h-px ${isCompleted ? 'bg-emerald-300' : 'bg-gray-200'}`} />

@@ -7,7 +7,6 @@ import { X, GitCompareArrows, Trash2, ArrowRight, ArrowLeft } from "lucide-react
 import { Price } from "@/components/currency/PriceDisplay";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 export function CompareBar() {
@@ -20,13 +19,10 @@ export function CompareBar() {
     return (
         <>
             {/* Floating Compare Bar */}
-            <AnimatePresence>
+            <>
                 {!isFullPageOpen && (
-                    <motion.div
-                        initial={{ y: 100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 100, opacity: 0 }}
-                        className="fixed bottom-0 left-0 right-0 z-50 pb-safe"
+                    <div
+                        className="fixed bottom-0 left-0 right-0 z-50 pb-safe animate-[slideUp_0.3s_ease-out_both]"
                     >
                         <div className="container mx-auto px-4 pb-4">
                             <div className="bg-card/95 backdrop-blur-xl border shadow-2xl rounded-2xl p-4">
@@ -83,18 +79,15 @@ export function CompareBar() {
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 )}
-            </AnimatePresence>
+            </>
 
             {/* Full Page Compare View */}
-            <AnimatePresence>
+            <>
                 {isFullPageOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-background overflow-y-auto"
+                    <div
+                        className="fixed inset-0 z-[100] bg-background overflow-y-auto animate-[fadeIn_0.2s_ease-out_both]"
                     >
                         {/* Header */}
                         <div className="sticky top-0 bg-background/95 backdrop-blur-xl border-b z-10">
@@ -130,9 +123,9 @@ export function CompareBar() {
                         <div className="w-full px-4 md:px-8 py-8">
                             <CompareTable programs={selectedPrograms} />
                         </div>
-                    </motion.div>
+                    </div>
                 )}
-            </AnimatePresence>
+            </>
         </>
     );
 }

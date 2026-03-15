@@ -17,7 +17,7 @@ import {
     HelpCircle
 } from "lucide-react";
 import { Price } from "@/components/currency/PriceDisplay";
-import { motion } from "framer-motion";
+
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { RequestInformationDialog } from "./RequestInformationDialog";
@@ -188,10 +188,8 @@ export function UniversityContent({ university }: UniversityContentProps) {
                 {/* Main Content - 8 columns */}
                 <div className="lg:col-span-8 space-y-8">
                     {/* About Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100"
+                    <div
+                        className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100 animate-[fadeInUp_0.4s_ease-out_both]"
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-12 w-1.5 bg-primary rounded-full" />
@@ -200,15 +198,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
                             <ExpandableText text={university.overview} maxLength={500} />
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* Why Choose Section */}
                     {university.highlights && university.highlights.length > 0 && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="bg-gradient-to-br from-primary to-primary/90 rounded-3xl shadow-xl p-8 md:p-12 text-white relative overflow-hidden"
+                        <div
+                            className="bg-gradient-to-br from-primary to-primary/90 rounded-3xl shadow-xl p-8 md:p-12 text-white relative overflow-hidden animate-[fadeInUp_0.4s_ease-out_0.1s_both]"
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32 blur-3xl" />
                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24 blur-3xl" />
@@ -220,41 +215,33 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {university.highlights.map((highlight: string, index: number) => (
-                                        <motion.div
+                                        <div
                                             key={index}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 0.2 + index * 0.1 }}
-                                            className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all group"
+                                            className="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all group animate-[fadeInRight_0.3s_ease-out_both]"
+                                            style={{ animationDelay: `${200 + index * 100}ms` }}
                                         >
                                             <div className="h-10 w-10 rounded-lg bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                                                 <CheckCircle2 className="h-5 w-5 text-white" />
                                             </div>
                                             <p className="font-medium">{highlight}</p>
-                                        </motion.div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     )}
 
                     {/* Scholarship CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 }}
+                    <div className="animate-[fadeInUp_0.4s_ease-out_0.15s_both]"
                     >
                         <ScholarshipCTA />
-                    </motion.div>
+                    </div>
 
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
-                        <motion.div
+                        <div
                             id="programs-section"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="scroll-mt-32"
+                            className="scroll-mt-32 animate-[fadeInUp_0.4s_ease-out_0.2s_both]"
                         >
                             <div className="flex items-center justify-between mb-8">
                                 <div className="flex items-center gap-3">
@@ -309,12 +296,10 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             <div className="space-y-4">
                                 {paginatedPrograms && paginatedPrograms.length > 0 ? (
                                     paginatedPrograms.map((program, index) => (
-                                        <motion.div
+                                        <div
                                             key={program.id}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 0.1 + index * 0.05 }}
-                                            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 border border-gray-100 hover:border-red-200"
+                                            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 border border-gray-100 hover:border-red-200 animate-[fadeInRight_0.3s_ease-out_both]"
+                                            style={{ animationDelay: `${100 + index * 50}ms` }}
                                         >
                                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                                 <div className="flex-1">
@@ -360,7 +345,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                     </Link>
                                                 </div>
                                             </div>
-                                        </motion.div>
+                                        </div>
                                     ))
                                 ) : (
                                     <div className="text-center py-12 bg-gray-50 rounded-2xl">
@@ -403,16 +388,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     </div>
                                 </div>
                             )}
-                        </motion.div>
+                        </div>
                     )}
 
                     {/* Scholarship Types Section */}
-                    <motion.div
+                    <div
                         id="scholarships-section"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.25 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32 animate-[fadeInUp_0.4s_ease-out_0.25s_both]"
                     >
                         <UniversityScholarshipsSection
                             universityId={university.id}
@@ -421,15 +403,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             description={t('scholarships.description')}
                             showHeader={false}
                         />
-                    </motion.div>
+                    </div>
 
                     {/* Accommodation Section */}
-                    <motion.div
+                    <div
                         id="accommodation-section"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32 animate-[fadeInUp_0.4s_ease-out_0.3s_both]"
                     >
                         <AccommodationSection
                             accommodationAvailable={university.accommodation_available ?? true}
@@ -438,16 +417,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                             accommodationFeatures={university.accommodation_features}
                             accommodationTypes={accommodations}
                         />
-                    </motion.div>
+                    </div>
 
                     {/* Location Map Section */}
                     {university.latitude && university.longitude && (
-                        <motion.div
+                        <div
                             id="location-section"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.35 }}
-                            className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32"
+                            className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 scroll-mt-32 animate-[fadeInUp_0.4s_ease-out_0.35s_both]"
                         >
                             <UniversityMap
                                 latitude={Number(university.latitude)}
@@ -455,16 +431,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 name={university.name}
                                 address={university.address}
                             />
-                        </motion.div>
+                        </div>
                     )}
 
                     {/* Video Section */}
                     {university.video_url && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+                        <div
+                            className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 animate-[fadeInUp_0.4s_ease-out_0.3s_both]"
                         >
                             <div className="p-8">
                                 <div className="flex items-center gap-3 mb-6">
@@ -488,16 +461,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     ></iframe>
                                 ) : null}
                             </div>
-                        </motion.div>
+                        </div>
                     )}
 
                     {/* Gallery Section */}
                     {university.gallery_images && university.gallery_images.length > 0 && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100"
+                        <div
+                            className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 animate-[fadeInUp_0.4s_ease-out_0.4s_both]"
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
@@ -518,15 +488,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     </div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
                     )}
 
                     {/* Admission Requirements */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100"
+                    <div
+                        className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 animate-[fadeInUp_0.4s_ease-out_0.5s_both]"
                     >
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-12 w-1.5 bg-gradient-to-b from-red-600 to-yellow-600 rounded-full" />
@@ -574,15 +541,12 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 </ul>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* University FAQ Section */}
                     {university.faqs && university.faqs.length > 0 && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.45 }}
-                            className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100"
+                        <div
+                            className="bg-white rounded-3xl shadow-sm p-8 md:p-12 border border-gray-100 animate-[fadeInUp_0.4s_ease-out_0.45s_both]"
                         >
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="h-12 w-1.5 bg-primary rounded-full" />
@@ -611,7 +575,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     </details>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
                     )}
                 </div>
 
@@ -620,10 +584,8 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     {/* Apply CTA - Sticky */}
                     <div className="sticky top-24 space-y-6">
                         {/* Main CTA */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="bg-gradient-to-br from-red-600 via-red-700 to-yellow-600 rounded-3xl shadow-2xl p-8 text-white relative overflow-hidden"
+                        <div
+                            className="bg-gradient-to-br from-red-600 via-red-700 to-yellow-600 rounded-3xl shadow-2xl p-8 text-white relative overflow-hidden animate-[fadeInScale_0.4s_ease-out_both]"
                         >
                             <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-20 translate-x-20" />
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-16 -translate-x-16" />
@@ -661,7 +623,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                     )}
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Quick Actions */}
                         <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
