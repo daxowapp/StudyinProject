@@ -1,11 +1,9 @@
-"use client";
-
 import { Link } from "@/i18n/routing";
 import { GraduationCap, Globe, TrendingUp, ShieldCheck, Sparkles, Users, BookOpen, Trophy } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function WhyStudySection() {
-    const t = useTranslations('WhyStudy');
+export async function WhyStudySection() {
+    const t = await getTranslations('WhyStudy');
 
     const features = [
         {

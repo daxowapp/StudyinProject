@@ -68,6 +68,9 @@ export function HeroSection() {
 
     // Debounce filter updating
     const [debouncedFilters, setDebouncedFilters] = useState(filters);
+    
+    // Active Tab State
+    const [activeTab, setActiveTab] = useState('programs');
 
     // Helper to map DB values to translation keys
     const getLevelKey = (level: string): string | null => {
@@ -168,6 +171,15 @@ export function HeroSection() {
 
 
     const handleSearch = () => {
+        if (activeTab === 'universities') {
+            router.push(`/universities`);
+            return;
+        }
+        if (activeTab === 'scholarships') {
+            router.push(`/scholarships`);
+            return;
+        }
+        // Default: Programs search
         const params = new URLSearchParams();
         Object.entries(filters).forEach(([key, value]) => {
             if (value && value !== "any" && value !== "all") {
@@ -233,12 +245,21 @@ export function HeroSection() {
                         <div className="rounded-3xl bg-white/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl border border-white/50" dir={isRTL ? 'rtl' : 'ltr'}>
                             {/* Search Tabs */}
                             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-                                {[t('tabs.programs'), t('tabs.universities'), t('tabs.scholarships')].map((tab) => (
+                                {[
+                                    { id: 'programs', label: t('tabs.programs') },
+                                    { id: 'universities', label: t('tabs.universities') },
+                                    { id: 'scholarships', label: t('tabs.scholarships') }
+                                ].map((tab) => (
                                     <button
-                                        key={tab}
-                                        className="px-4 py-2 rounded-xl bg-red-600 text-white font-semibold text-sm whitespace-nowrap first:bg-red-600 hover:bg-red-700 transition-colors"
+                                        key={tab.id}
+                                        onClick={() => setActiveTab(tab.id)}
+                                        className={`px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all shadow-sm border ${
+                                            activeTab === tab.id 
+                                                ? 'bg-red-600 text-white border-red-600 hover:bg-red-700' 
+                                                : 'bg-white text-slate-600 hover:bg-slate-50 border-slate-200'
+                                        }`}
                                     >
-                                        {tab}
+                                        {tab.label}
                                     </button>
                                 ))}
                             </div>

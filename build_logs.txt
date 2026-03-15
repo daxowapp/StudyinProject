@@ -1,0 +1,128 @@
+
+> study-at-china@0.1.0 build
+> next build
+
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Environments: .env
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.4s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+   Generating static pages using 7 workers (0/25) ...
+   Generating static pages using 7 workers (6/25) 
+   Generating static pages using 7 workers (12/25) 
+   Generating static pages using 7 workers (18/25) 
+ ✓ Generating static pages using 7 workers (25/25) in 746.4ms
+   Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/admin
+├ ƒ /[locale]/admin/academic-years
+├ ƒ /[locale]/admin/admission-requirements
+├ ƒ /[locale]/admin/analytics
+├ ƒ /[locale]/admin/applications
+├ ƒ /[locale]/admin/applications/[id]
+├ ƒ /[locale]/admin/articles
+├ ƒ /[locale]/admin/articles/[id]
+├ ƒ /[locale]/admin/data-import
+├ ƒ /[locale]/admin/documents
+├ ƒ /[locale]/admin/faq-generator
+├ ƒ /[locale]/admin/languages
+├ ƒ /[locale]/admin/leads
+├ ƒ /[locale]/admin/login
+├ ƒ /[locale]/admin/messages
+├ ƒ /[locale]/admin/messages/[applicationId]
+├ ƒ /[locale]/admin/program-catalog
+├ ƒ /[locale]/admin/program-content
+├ ƒ /[locale]/admin/programs
+├ ƒ /[locale]/admin/programs/[id]
+├ ƒ /[locale]/admin/programs/[id]/requirements
+├ ƒ /[locale]/admin/refunds
+├ ƒ /[locale]/admin/roles
+├ ƒ /[locale]/admin/scholarship-types
+├ ƒ /[locale]/admin/scholarship-types/[id]
+├ ƒ /[locale]/admin/scholarships
+├ ƒ /[locale]/admin/settings
+├ ƒ /[locale]/admin/universities
+├ ƒ /[locale]/admin/universities/[id]
+├ ƒ /[locale]/admin/universities/[id]/accommodation
+├ ƒ /[locale]/admin/universities/[id]/scholarships
+├ ƒ /[locale]/admin/universities/[id]/scholarships/[scholarshipId]
+├ ƒ /[locale]/admin/universities/new
+├ ƒ /[locale]/admin/users
+├ ƒ /[locale]/applications/[id]
+├ ƒ /[locale]/applications/[id]/status
+├ ƒ /[locale]/apply/[programSlug]
+├ ƒ /[locale]/articles
+├ ƒ /[locale]/articles/[slug]
+├ ƒ /[locale]/articles/csca-guide
+├ ƒ /[locale]/auth-error
+├ ƒ /[locale]/callback
+├ ƒ /[locale]/contact
+├ ƒ /[locale]/cookie-policy
+├ ƒ /[locale]/dashboard
+├ ƒ /[locale]/dashboard/applications
+├ ƒ /[locale]/dashboard/applications/[id]
+├ ƒ /[locale]/dashboard/documents
+├ ƒ /[locale]/dashboard/messages
+├ ƒ /[locale]/dashboard/payments
+├ ƒ /[locale]/dashboard/profile
+├ ƒ /[locale]/dashboard/settings
+├ ƒ /[locale]/debug-db
+├ ƒ /[locale]/destinations
+├ ƒ /[locale]/download-guide
+├ ƒ /[locale]/faq
+├ ƒ /[locale]/forgot-password
+├ ƒ /[locale]/how-to-apply
+├ ƒ /[locale]/login
+├ ƒ /[locale]/payment/cancelled
+├ ƒ /[locale]/payment/success
+├ ƒ /[locale]/privacy-policy
+├ ƒ /[locale]/profile/onboarding
+├ ƒ /[locale]/programs
+├ ƒ /[locale]/programs/[slug]
+├ ƒ /[locale]/qs-rankings
+├ ƒ /[locale]/register
+├ ƒ /[locale]/scholarships
+├ ƒ /[locale]/scholarships/[slug]
+├ ƒ /[locale]/scholarships/filter
+├ ƒ /[locale]/terms-of-service
+├ ƒ /[locale]/universities
+├ ƒ /[locale]/universities/[slug]
+├ ƒ /api/admin/reset-password
+├ ƒ /api/ai/bulk-autofill
+├ ƒ /api/ai/bulk-generate-address
+├ ƒ /api/ai/bulk-generate-faqs
+├ ƒ /api/ai/bulk-generate-program-content
+├ ƒ /api/ai/bulk-generate-university-faqs
+├ ƒ /api/ai/bulk-media-import
+├ ƒ /api/ai/expand-search
+├ ƒ /api/ai/generate
+├ ƒ /api/ai/generate-address
+├ ƒ /api/ai/generate-faqs
+├ ƒ /api/ai/generate-university-faqs
+├ ƒ /api/checkout
+├ ƒ /api/debug-popular
+├ ƒ /api/import/backfill-requirements
+├ ƒ /api/import/bulk-fix-requirements
+├ ƒ /api/import/parse
+├ ƒ /api/import/programs
+├ ƒ /api/import/universities
+├ ƒ /api/translations/bulk-programs
+├ ƒ /api/university-cover/[id]
+├ ○ /icon.png
+├ ○ /profile/onboarding
+├ ○ /robots.txt
+└ ƒ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

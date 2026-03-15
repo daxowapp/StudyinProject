@@ -1,15 +1,13 @@
-"use client";
-
 import { Link } from "@/i18n/routing";
 import { Search, UserPlus, Upload, Award, CheckCircle, Plane, ArrowRight, Zap } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 interface HowItWorksSectionProps {
     isLoggedIn?: boolean;
 }
 
-export function HowItWorksSection({ isLoggedIn = false }: HowItWorksSectionProps) {
-    const t = useTranslations('HowItWorks');
+export async function HowItWorksSection({ isLoggedIn = false }: HowItWorksSectionProps) {
+    const t = await getTranslations('HowItWorks');
 
     const steps = [
         {

@@ -25,8 +25,21 @@ const FeaturedUniversitiesSection = dynamic(
   { ssr: true }
 );
 
+// Lazy load below-fold client sections
+const StatsSection = dynamic(
+  () => import("@/components/home/StatsSection").then(mod => ({ default: mod.StatsSection }))
+);
+const ScholarshipsSection = dynamic(
+  () => import("@/components/home/ScholarshipsSection").then(mod => ({ default: mod.ScholarshipsSection }))
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/home/TestimonialsSection").then(mod => ({ default: mod.TestimonialsSection }))
+);
+const FAQPreviewSection = dynamic(
+  () => import("@/components/home/FAQPreviewSection").then(mod => ({ default: mod.FAQPreviewSection }))
+);
 
-import { LazyHomeSections } from '@/components/home/LazyHomeSections';
+import { PartnersSection } from "@/components/home/PartnersSection";
 
 // Enable ISR with 5 minute revalidation
 export const revalidate = 300;
@@ -268,7 +281,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <FeaturedProgramsSection programs={formattedPrograms} />
       <FeaturedUniversitiesSection universities={universitiesWithStats} />
       <CscaCtaSection />
-      <LazyHomeSections universities={universitiesWithStats.map(u => ({ id: u.id, name: u.name, slug: u.slug, logo_url: u.logo_url }))} />
+      
+      <StatsSection />
+      <ScholarshipsSection />
+      <TestimonialsSection />
+      <PartnersSection universities={universitiesWithStats.map(u => ({ id: u.id, name: u.name, slug: u.slug, logo_url: u.logo_url }))} />
+      <FAQPreviewSection />
     </main>
   );
 }

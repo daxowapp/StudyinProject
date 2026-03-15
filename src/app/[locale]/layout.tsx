@@ -9,6 +9,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "../globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
@@ -203,24 +204,7 @@ export default async function LocaleLayout({
                     defer
                 />
 
-                {/* Google tag (gtag.js) */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-47QZWWTPZ1"
-                    strategy="lazyOnload"
-                />
-                <Script
-                    id="google-analytics"
-                    strategy="lazyOnload"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-
-                            gtag('config', 'G-47QZWWTPZ1');
-                        `,
-                    }}
-                />
+                <GoogleAnalytics gaId="G-47QZWWTPZ1" />
             </body>
         </html>
     );

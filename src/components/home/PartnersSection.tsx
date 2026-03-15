@@ -1,8 +1,6 @@
-"use client";
-
 import { Award, CheckCircle, Shield, Building2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 interface University {
@@ -16,8 +14,8 @@ interface PartnersSectionProps {
     universities?: University[];
 }
 
-export function PartnersSection({ universities = [] }: PartnersSectionProps) {
-    const t = useTranslations('Partners');
+export async function PartnersSection({ universities = [] }: PartnersSectionProps) {
+    const t = await getTranslations('Partners');
     const displayUniversities = universities.slice(0, 6);
 
     const recognitions = [
