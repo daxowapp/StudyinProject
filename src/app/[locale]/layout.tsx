@@ -9,7 +9,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
-import { GoogleAnalytics } from '@next/third-parties/google';
+
 import "../globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
@@ -140,9 +140,6 @@ export default async function LocaleLayout({
                 <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
                 {/* DNS-prefetch for third-party script domains */}
-                <link rel="dns-prefetch" href="https://cdn.pagesense.io" />
-                <link rel="dns-prefetch" href="https://connect.facebook.net" />
-                <link rel="dns-prefetch" href="https://salesiq.zohopublic.com" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
             </head>
@@ -201,7 +198,14 @@ export default async function LocaleLayout({
                     defer
                 />
 
-                <GoogleAnalytics gaId="G-47QZWWTPZ1" />
+                <Script
+                    id="google-analytics"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-47QZWWTPZ1"
+                    strategy="afterInteractive"
+                />
+                <Script id="ga-init" strategy="afterInteractive">
+                    {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-47QZWWTPZ1');`}
+                </Script>
             </body>
         </html>
     );

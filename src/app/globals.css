@@ -625,3 +625,29 @@ html {
   from { width: 0; }
   to   { width: 100%; }
 }
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-orb-float,
+  .animate-orb-float-delayed,
+  .animate-orb-float-slow,
+  .animate-logo-pulse,
+  .animate-ping-slow,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-up {
+    animation-duration: 0.01ms !important;
+    animation-fill-mode: forwards !important;
+  }
+}
+
+/* Skip rendering of off-screen sections until scrolled into view */
+main > section:nth-child(n+3) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

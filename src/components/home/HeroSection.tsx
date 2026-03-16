@@ -200,22 +200,21 @@ export function HeroSection() {
 
                 {/* Hero Background Image */}
                 <Image
-                    src="/hero-bg.png"
+                    src="/hero-bg.webp"
                     alt="Study in China"
                     fill
                     className="object-cover mix-blend-soft-light opacity-20"
-                    priority
-                    fetchPriority="high"
+                    loading="eager"
                     sizes="100vw"
                 />
 
                 {/* Subtle Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[100px_100px]" />
 
-                {/* Floating Orbs - CSS Animations (no framer-motion) */}
-                <div className="absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-orb-float" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-orb-float-delayed" />
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-orb-float-slow" />
+                {/* Floating Orbs - CSS Animations (hidden on mobile for performance) */}
+                <div className="hidden md:block absolute top-20 left-10 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-orb-float" />
+                <div className="hidden md:block absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-orb-float-delayed" />
+                <div className="hidden md:block absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-orb-float-slow" />
             </div>
 
             <div className="container relative z-10 mx-auto px-4 md:px-6 pt-24 pb-12">
