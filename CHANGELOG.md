@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-03-16] - Fix: University Program Count Showing 0
+
+- **universities/page.tsx** [UPDATED]: Fixed program counts showing "0 Programs" for all universities on the listing page. Root cause: (1) Direct queries on `university_programs` table hit PostgREST's hard 1000-row limit per request, silently truncating results; (2) University IDs from the `universities` table (filtered by `portal_key`) didn't match `university_id` in the raw table for most records. Solution: Switched to paginated `.range()` queries on `v_university_programs_full` view (which correctly JOINs universities to programs) and loops until all rows are fetched. Also fixed field references to use view's flat columns (`level`, `language_name`) instead of nested join references.
+
+## [2026-03-16] - Performance: PageSpeed Insights Fixes
+
+- **layout.tsx** [UPDATED]: Removed redundant Google Fonts `<link rel="preconnect">` tags (fonts are self-hosted via `next/font/google`). Fixed canonical URL to include `/en` locale path.
+- **next.config.mjs** [UPDATED]: Added `studyatchina.b-cdn.net` to `images.remotePatterns` for Bunny CDN image optimization. Added `framer-motion` and `recharts` to `optimizePackageImports` for better tree-shaking.
+- **HeroSection.tsx** [UPDATED]: Added `fetchPriority="high"` to LCP hero background image for faster paint.
+- **ScholarshipTypesSection.tsx** [UPDATED]: Added `aria-label` to "Learn more" link for accessibility and SEO crawlability.
+- **page.tsx** [UPDATED]: Switched HeroSection from `dynamic()` import to static import — eliminates extra chunk download for the LCP element, reducing ~4.5s render delay on mobile.
+- **.browserslistrc** [NEW]: Added modern browser targets to eliminate legacy JavaScript polyfills (~35 KiB savings).
+
 ## [2026-03-14] - i18n: Sync Turkish translations with English (219 keys)
 
 - **messages/tr.json** [UPDATED]: Added 219 missing Turkish translation keys — Navbar destinations (8 cities), Hero budget/scholarship/duration/categories, Programs filters/cards/compare/emptyState/quickChips/aiSearch/view, GuidedTour, UniversitiesCard, ProgramDetail (badges/deadline/highlights), UniversityDetail (programs/faq), Profile, and full Apply form section (sections/options/labels/placeholders/buttons).

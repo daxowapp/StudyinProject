@@ -13,6 +13,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**.supabase.co' },
+      { protocol: 'https', hostname: 'studyatchina.b-cdn.net' },
     ],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400, // 24 hours
@@ -33,6 +34,8 @@ const nextConfig = {
       '@supabase/supabase-js',
       'react-day-picker',
       'sonner',
+      'framer-motion',
+      'recharts',
     ],
   },
 

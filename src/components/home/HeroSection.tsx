@@ -205,6 +205,7 @@ export function HeroSection() {
                     fill
                     className="object-cover mix-blend-soft-light opacity-20"
                     priority
+                    fetchPriority="high"
                     sizes="100vw"
                 />
 

@@ -1,14 +1,9 @@
+import { HeroSection } from "@/components/home/HeroSection";
 import { WhyStudySection } from "@/components/home/WhyStudySection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { PORTAL_KEY } from "@/lib/constants/portal";
-
-// Dynamic import HeroSection to reduce initial JS bundle size
-const HeroSection = dynamic(
-  () => import("@/components/home/HeroSection").then(mod => ({ default: mod.HeroSection })),
-  { ssr: true }
-);
 
 // Lazy load below-fold sections for faster initial page load
 const CscaCtaSection = dynamic(

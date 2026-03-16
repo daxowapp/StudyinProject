@@ -205,7 +205,7 @@ export function ScholarshipTypesSection({
                                 The scholarship covers a percentage of your tuition fees. You pay the remaining tuition to the university + the one-time service fee for application support, visa assistance, and guidance.
                             </p>
                             <Link href="/scholarships" className="inline-block mt-2">
-                                <Button variant="link" size="sm" className="h-auto p-0 text-xs">
+                                <Button variant="link" size="sm" className="h-auto p-0 text-xs" aria-label="Learn more about scholarship types and eligibility">
                                     Learn more about scholarships →
                                 </Button>
                             </Link>

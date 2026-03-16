@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         // yandex: 'your-yandex-verification-code',
     },
     alternates: {
-        canonical: baseUrl,
+        canonical: `${baseUrl}/en`,
         languages: {
             'en': `${baseUrl}/en`,
             'ar': `${baseUrl}/ar`,
@@ -136,9 +136,6 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} dir={dir} suppressHydrationWarning>
             <head>
-                {/* Preconnect to critical origins */}
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 {/* Preconnect to Supabase for faster API calls */}
                 <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />

@@ -49,49 +49,53 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // Two parallel fast queries instead of one slow aggregation view
-    const [uniResult, programResult] = await Promise.all([
-        // 1. University metadata — simple filtered scan, no joins
-        supabase
-            .from("universities")
-            .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key")
-            .eq("portal_key", PORTAL_KEY)
-            .order("name")
-            .limit(1000),
-        // 2. Program stats — lightweight join for aggregation
-        supabase
-            .from("university_programs")
-            .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, program_catalog(level), languages:language_id(name)")
-            .limit(50000),
-    ]);
+    // 1. University metadata — simple filtered scan, no joins
+    const uniResult = await supabase
+        .from("universities")
+        .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key")
+        .eq("portal_key", PORTAL_KEY)
+        .order("name")
+        .limit(1000);
 
-    const error = uniResult.error || programResult.error;
-    if (error) {
-        console.error("Error fetching universities:", {
-            message: error.message,
-            details: error.details,
-            hint: error.hint,
-            code: error.code
-        });
+    if (uniResult.error) {
+        console.error("Error fetching universities:", uniResult.error);
         return (
             <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
                 <div className="text-center max-w-lg mx-auto p-6">
                     <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h1 className="text-2xl font-bold mb-4">{t('error.title')}</h1>
-                    <p className="text-muted-foreground mb-2">{error.message}</p>
-                    {error.details && (
-                        <p className="text-sm text-muted-foreground">{error.details}</p>
-                    )}
-                    {error.hint && (
-                        <p className="text-sm text-muted-foreground mt-2">{t('error.hint', { hint: error.hint })}</p>
-                    )}
+                    <p className="text-muted-foreground mb-2">{uniResult.error.message}</p>
                 </div>
             </div>
         );
     }
 
+    // 2. Fetch ALL active programs using pagination (PostgREST max 1000 rows/request)
+    const allPrograms: unknown[] = [];
+    const PAGE_SIZE = 1000;
+    let from = 0;
+    let hasMore = true;
+    while (hasMore) {
+        const { data, error: pageError } = await supabase
+            .from("v_university_programs_full")
+            .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, level, language_name")
+            .eq("is_active", true)
+            .range(from, from + PAGE_SIZE - 1);
+
+        if (pageError) {
+            console.error("Error fetching programs page:", pageError.message);
+            break;
+        }
+        if (data && data.length > 0) {
+            allPrograms.push(...data);
+            from += data.length;
+            hasMore = data.length === PAGE_SIZE;
+        } else {
+            hasMore = false;
+        }
+    }
+
     // Aggregate program stats per university in JS (fast in-memory)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const programsByUni = new Map<string, {
         count: number;
         minFee: number;
@@ -103,7 +107,7 @@ export default async function UniversitiesPage() {
     }>();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    for (const prog of (programResult.data || []) as any[]) {
+    for (const prog of allPrograms as any[]) {
         const uid = prog.university_id;
         let stats = programsByUni.get(uid);
         if (!stats) {
@@ -115,10 +119,9 @@ export default async function UniversitiesPage() {
             stats.minFee = prog.tuition_fee;
             stats.minCurrency = prog.currency || 'CNY';
         }
-        const level = prog.program_catalog?.level;
-        if (level) stats.levels.add(level);
-        const lang = prog.languages?.name;
-        if (lang) stats.languages.add(lang);
+        // View returns flat columns: level, language_name (not nested objects)
+        if (prog.level) stats.levels.add(prog.level);
+        if (prog.language_name) stats.languages.add(prog.language_name);
         if (prog.scholarship_chance && prog.scholarship_chance !== '' && prog.scholarship_chance !== 'None') {
             stats.hasScholarship = true;
         }
@@ -155,6 +158,7 @@ export default async function UniversitiesPage() {
             hasCscaExam: stats?.hasCsca || false,
         };
     });
+
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
