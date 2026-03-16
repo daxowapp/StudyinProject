@@ -1,8 +1,7 @@
 "use client";
 
-import { useCurrency, useConvertPrice } from "@/contexts/CurrencyContext";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { getCurrencyInfo } from "@/lib/constants/currencies";
-import { useEffect, useState } from "react";
 
 interface PriceProps {
     amount: number;
@@ -21,16 +20,15 @@ function normalizeCurrency(currency: string): string {
 
 export function Price({ amount, currency = 'CNY', className = '', showCurrency = true }: PriceProps) {
     const { currency: selectedCurrency, exchangeRates } = useCurrency();
-    const convertPrice = useConvertPrice();
-    const [convertedAmount, setConvertedAmount] = useState(amount);
 
     // Normalize the source currency
     const normalizedCurrency = normalizeCurrency(currency);
 
-    useEffect(() => {
-        const converted = convertPrice(amount, normalizedCurrency);
-        setConvertedAmount(converted);
-    }, [amount, currency, normalizedCurrency, selectedCurrency, exchangeRates, convertPrice]);
+    // Convert: source → CNY → target
+    const sourceRate = exchangeRates[normalizedCurrency as keyof typeof exchangeRates] || 1;
+    const targetRate = exchangeRates[selectedCurrency] || 1;
+    const amountInCNY = amount / sourceRate;
+    const convertedAmount = Math.round(amountInCNY * targetRate);
 
     const currencyInfo = getCurrencyInfo(selectedCurrency);
 

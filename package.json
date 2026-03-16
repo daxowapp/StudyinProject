@@ -37,6 +37,7 @@
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.86.0",
     "@swc/helpers": "^0.5.17",
+    "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-table": "^8.21.3",
     "@types/leaflet": "^1.9.21",
     "@types/nprogress": "^0.2.3",

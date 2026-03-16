@@ -20,6 +20,7 @@ import { Search, Sparkles, GraduationCap, Globe, Award, TrendingUp, ChevronDown,
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslations, useLocale } from "next-intl";
 
 
@@ -63,11 +64,7 @@ export function HeroSection() {
     });
 
     const [isLoading] = useState(false);
-    const [isLoadingOptions, setIsLoadingOptions] = useState(false);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
-    // Debounce filter updating
-    const [debouncedFilters, setDebouncedFilters] = useState(filters);
     
     // Active Tab State
     const [activeTab, setActiveTab] = useState('programs');
@@ -119,41 +116,49 @@ export function HeroSection() {
 
     // Function to fetch options - defined outside useEffect to be callable
     const [hasFetchedOptions, setHasFetchedOptions] = useState(false);
+    const [debouncedFilters, setDebouncedFilters] = useState<Partial<typeof filters>>({});
 
-    const fetchOptions = useCallback(async (currentFilters: Partial<typeof filters>) => {
-        setIsLoadingOptions(true);
-        try {
-            const { getFilterOptions } = await import('@/app/actions/getFilterOptions');
-            const options = await getFilterOptions(currentFilters);
-            setAvailableOptions(options);
-            setHasFetchedOptions(true);
-        } catch (error) {
-            console.error("Failed to fetch filter options", error);
-        } finally {
-            setIsLoadingOptions(false);
-        }
-    }, []);
+    // Cached program count — fetched once, reused across visits
+    const { data: programCountData } = useQuery({
+        queryKey: ['program-count'],
+        queryFn: async () => {
+            const { getProgramCount } = await import('@/app/actions/getProgramCount');
+            return getProgramCount();
+        },
+        staleTime: 10 * 60 * 1000, // 10 min
+    });
 
-    // Eagerly fetch just the program count on mount
+    // Update availableOptions when program count arrives
     useEffect(() => {
-        const fetchCount = async () => {
-            try {
-                const { getProgramCount } = await import('@/app/actions/getProgramCount');
-                const count = await getProgramCount();
-                setAvailableOptions(prev => ({ ...prev, programCount: count }));
-            } catch (error) {
-                console.error("Failed to fetch program count", error);
-            }
-        };
-        fetchCount();
-    }, []);
+        if (programCountData !== undefined) {
+            setAvailableOptions(prev => ({ ...prev, programCount: programCountData }));
+        }
+    }, [programCountData]);
+
+    // Cached filter options — per filter combination, only when user interacts
+    const { data: filterOptionsData, isFetching: isLoadingOptions } = useQuery({
+        queryKey: ['filter-options', debouncedFilters],
+        queryFn: async () => {
+            const { getFilterOptions } = await import('@/app/actions/getFilterOptions');
+            return getFilterOptions(debouncedFilters);
+        },
+        enabled: hasFetchedOptions,
+        staleTime: 5 * 60 * 1000, // 5 min
+    });
+
+    // Update availableOptions when filter options arrive
+    useEffect(() => {
+        if (filterOptionsData) {
+            setAvailableOptions(filterOptionsData);
+        }
+    }, [filterOptionsData]);
 
     // Lazy fetch - only when user interacts with filters
     const handleDropdownOpen = useCallback(() => {
         if (!hasFetchedOptions) {
-            fetchOptions({});
+            setHasFetchedOptions(true);
         }
-    }, [hasFetchedOptions, fetchOptions]);
+    }, [hasFetchedOptions]);
 
     // Update options when filters change (debounced) - only if already fetched
     useEffect(() => {
@@ -163,11 +168,6 @@ export function HeroSection() {
         }, 500);
         return () => clearTimeout(timer);
     }, [filters, hasFetchedOptions]);
-
-    useEffect(() => {
-        if (!hasFetchedOptions) return;
-        fetchOptions(debouncedFilters);
-    }, [debouncedFilters, fetchOptions, hasFetchedOptions]);
 
 
     const handleSearch = () => {
@@ -283,7 +283,7 @@ export function HeroSection() {
                                         <Button
                                             variant="outline"
                                             className="flex-1 h-12 rounded-xl border-2 border-slate-200 font-medium text-sm gap-2"
-                                            onClick={() => { if (!hasFetchedOptions) fetchOptions({}); }}
+                                            onClick={() => { if (!hasFetchedOptions) setHasFetchedOptions(true); }}
                                         >
                                             <SlidersHorizontal className="h-4 w-4" />
                                             {t('placeholders.degree') || 'Filters'}

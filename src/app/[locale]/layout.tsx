@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingBar } from "@/components/ui/loading-bar";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
+import { QueryProvider } from "@/providers/QueryProvider";
 import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
@@ -150,13 +151,15 @@ export default async function LocaleLayout({
                     strategy="lazyOnload"
                 />
                 <OrganizationJsonLd />
-                <NextIntlClientProvider messages={messages}>
-                    <CurrencyProvider>
-                        <LoadingBar />
-                        {children}
-                        <Toaster />
-                    </CurrencyProvider>
-                </NextIntlClientProvider>
+                <QueryProvider>
+                    <NextIntlClientProvider messages={messages}>
+                        <CurrencyProvider>
+                            <LoadingBar />
+                            {children}
+                            <Toaster />
+                        </CurrencyProvider>
+                    </NextIntlClientProvider>
+                </QueryProvider>
                 <Script
                     id="fb-pixel"
                     strategy="lazyOnload"

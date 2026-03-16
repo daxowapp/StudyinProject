@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -172,55 +173,43 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         }
     }, [searchParams, universitySlug, programs, universityMap]);
 
-    const [expandedTerms, setExpandedTerms] = useState<string[]>([]);
-    const [isSearching, setIsSearching] = useState(false);
     const debouncedSearch = useDebounce(filters.search, 600);
 
-    // AI Search Expansion Effect
-    useEffect(() => {
-        const expandSearch = async () => {
-            if (!debouncedSearch || debouncedSearch.length < 3) {
-                setExpandedTerms([]);
-                return;
-            }
+    // AI Search Expansion — cached per search term
+    const searchSynonyms: Record<string, string[]> = {
+        'medicine': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery', 'dentistry'],
+        'med': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery', 'dentistry'],
+        'engineering': ['engineering', 'engineer', 'mechanical', 'civil', 'electrical', 'industrial', 'automation', 'robotics'],
+        'eng': ['engineering', 'engineer', 'mechanical', 'civil', 'electrical', 'industrial', 'automation', 'robotics'],
+        'business': ['business', 'management', 'mba', 'marketing', 'finance', 'accounting', 'economics', 'commerce'],
+        'cs': ['computer science', 'software engineering', 'artificial intelligence', 'information technology', 'cyber security', 'data science'],
+        'computer': ['computer science', 'software engineering', 'artificial intelligence', 'information technology', 'cyber security', 'data science'],
+        'arts': ['arts', 'design', 'music', 'painting', 'media', 'journalism', 'communication'],
+        'language': ['language', 'chinese', 'mandarin', 'english', 'translation', 'interpreting']
+    };
 
-            const searchSynonyms: Record<string, string[]> = {
-                'medicine': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery', 'dentistry'],
-                'med': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery', 'dentistry'],
-                'engineering': ['engineering', 'engineer', 'mechanical', 'civil', 'electrical', 'industrial', 'automation', 'robotics'],
-                'eng': ['engineering', 'engineer', 'mechanical', 'civil', 'electrical', 'industrial', 'automation', 'robotics'],
-                'business': ['business', 'management', 'mba', 'marketing', 'finance', 'accounting', 'economics', 'commerce'],
-                'cs': ['computer science', 'software engineering', 'artificial intelligence', 'information technology', 'cyber security', 'data science'],
-                'computer': ['computer science', 'software engineering', 'artificial intelligence', 'information technology', 'cyber security', 'data science'],
-                'arts': ['arts', 'design', 'music', 'painting', 'media', 'journalism', 'communication'],
-                'language': ['language', 'chinese', 'mandarin', 'english', 'translation', 'interpreting']
-            };
-
+    const { data: expandedTerms = [], isFetching: isSearching } = useQuery({
+        queryKey: ['search-expand', debouncedSearch],
+        queryFn: async () => {
             const searchLower = debouncedSearch.toLowerCase();
-            const localSynonyms = Object.keys(searchSynonyms).find(key => searchLower.includes(key));
 
-            if (localSynonyms) {
-                setExpandedTerms(searchSynonyms[localSynonyms]);
-                return;
+            // Check local synonyms first
+            const localMatch = Object.keys(searchSynonyms).find(key => searchLower.includes(key));
+            if (localMatch) {
+                return searchSynonyms[localMatch];
             }
 
-            setIsSearching(true);
-            try {
-                const response = await fetch(`/api/ai/expand-search?q=${encodeURIComponent(debouncedSearch)}`);
-                const data = await response.json();
-                if (data.terms && Array.isArray(data.terms)) {
-                    setExpandedTerms(data.terms.map((t: string) => t.toLowerCase()));
-                }
-            } catch (error) {
-                console.error("AI Search failed", error);
-                setExpandedTerms([searchLower]);
-            } finally {
-                setIsSearching(false);
+            // Fall back to API
+            const response = await fetch(`/api/ai/expand-search?q=${encodeURIComponent(debouncedSearch)}`);
+            const data = await response.json();
+            if (data.terms && Array.isArray(data.terms)) {
+                return data.terms.map((t: string) => t.toLowerCase());
             }
-        };
-
-        expandSearch();
-    }, [debouncedSearch]);
+            return [searchLower];
+        },
+        enabled: !!debouncedSearch && debouncedSearch.length >= 3,
+        staleTime: 10 * 60 * 1000, // 10 min — same search term reuses cache
+    });
 
     // Filter programs based on current filters, then rank by relevance
     const filteredPrograms = useMemo(() => {
