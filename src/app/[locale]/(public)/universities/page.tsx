@@ -49,18 +49,51 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // 1. University metadata — simple filtered scan, no joins
-    const uniResult = await supabase
+    // 1. Define promises for universities and programs to fetch them in parallel
+    const uniPromise = supabase
         .from("universities")
         .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key")
         .eq("portal_key", PORTAL_KEY)
         .order("name")
         .limit(1000);
 
+    const fetchAllPrograms = async () => {
+        const programs: unknown[] = [];
+        const PAGE_SIZE = 1000;
+        let from = 0;
+        let hasMore = true;
+        while (hasMore) {
+            const { data, error: pageError } = await supabase
+                .from("v_university_programs_full")
+                .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, level, language_name")
+                .eq("is_active", true)
+                .range(from, from + PAGE_SIZE - 1);
+
+            if (pageError) {
+                console.error("Error fetching programs page:", pageError.message);
+                break;
+            }
+            if (data && data.length > 0) {
+                programs.push(...data);
+                from += data.length;
+                hasMore = data.length === PAGE_SIZE;
+            } else {
+                hasMore = false;
+            }
+        }
+        return programs;
+    };
+
+    // Execute fetches in parallel
+    const [uniResult, allPrograms] = await Promise.all([
+        uniPromise,
+        fetchAllPrograms()
+    ]);
+
     if (uniResult.error) {
         console.error("Error fetching universities:", uniResult.error);
         return (
-            <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+            <div className="min-h-screen bg-linear-to-b from-background to-muted/20 flex items-center justify-center">
                 <div className="text-center max-w-lg mx-auto p-6">
                     <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h1 className="text-2xl font-bold mb-4">{t('error.title')}</h1>
@@ -68,31 +101,6 @@ export default async function UniversitiesPage() {
                 </div>
             </div>
         );
-    }
-
-    // 2. Fetch ALL active programs using pagination (PostgREST max 1000 rows/request)
-    const allPrograms: unknown[] = [];
-    const PAGE_SIZE = 1000;
-    let from = 0;
-    let hasMore = true;
-    while (hasMore) {
-        const { data, error: pageError } = await supabase
-            .from("v_university_programs_full")
-            .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, level, language_name")
-            .eq("is_active", true)
-            .range(from, from + PAGE_SIZE - 1);
-
-        if (pageError) {
-            console.error("Error fetching programs page:", pageError.message);
-            break;
-        }
-        if (data && data.length > 0) {
-            allPrograms.push(...data);
-            from += data.length;
-            hasMore = data.length === PAGE_SIZE;
-        } else {
-            hasMore = false;
-        }
     }
 
     // Aggregate program stats per university in JS (fast in-memory)
@@ -161,7 +169,7 @@ export default async function UniversitiesPage() {
 
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+        <div className="min-h-screen bg-linear-to-b from-background to-muted/20">
             <BreadcrumbJsonLd
                 items={[
                     { name: 'Home', url: baseUrl },
@@ -172,7 +180,7 @@ export default async function UniversitiesPage() {
                 universities={formattedUniversities}
                 heroContent={
                     <>
-                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                        <h1 className="text-4xl md:text-5xl font-bold font-heading mb-4 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             {t('title')}
                         </h1>
                         <p className="text-lg text-muted-foreground mb-8">

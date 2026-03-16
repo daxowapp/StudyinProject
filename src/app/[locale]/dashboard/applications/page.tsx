@@ -50,20 +50,26 @@ export default async function StudentApplicationsPage() {
         console.error('Failed to fetch applications:', error.message);
     }
 
-    // Fetch pending payments count for each application
+    // Fetch pending payments and documents concurrently
     const applicationIds = applications?.map(app => app.id) || [];
-    const { data: pendingPayments } = await supabase
-        .from('payment_transactions')
-        .select('id, application_id')
-        .in('application_id', applicationIds)
-        .in('status', ['pending', 'pending_verification']);
+    
+    const [paymentsRes, docsRes] = applicationIds.length > 0 
+        ? await Promise.all([
+            supabase
+                .from('payment_transactions')
+                .select('id, application_id')
+                .in('application_id', applicationIds)
+                .in('status', ['pending', 'pending_verification']),
+            supabase
+                .from('document_requests')
+                .select('id, application_id')
+                .in('application_id', applicationIds)
+                .in('status', ['pending'])
+        ])
+        : [{ data: null }, { data: null }];
 
-    // Fetch pending documents count for each application
-    const { data: pendingDocuments } = await supabase
-        .from('document_requests')
-        .select('id, application_id')
-        .in('application_id', applicationIds)
-        .in('status', ['pending']);
+    const pendingPayments = paymentsRes.data;
+    const pendingDocuments = docsRes.data;
 
     const getStatusColor = (status: string) => {
         switch (status) {

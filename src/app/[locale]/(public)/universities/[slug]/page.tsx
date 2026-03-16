@@ -188,7 +188,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-50">
             <UniversityJsonLd
                 name={universityData.name}
                 url={`${baseUrl}/en/universities/${universityData.slug}`}

@@ -34,63 +34,52 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
     redirect('/login?returnUrl=/dashboard/applications/' + id);
   }
 
-  // Fetch application details
-  const { data: application, error: appError } = await supabase
-    .from('applications')
-    .select(`
-      *,
-      university_program:university_program_id (
-        id,
-        tuition_fee,
-        duration,
-        program_catalog:program_catalog_id (
-          title,
-          level,
-          description
-        ),
-        university:university_id (
-          name,
-          logo_url
+  // Fetch application details and related data in parallel
+  const [
+    appResult,
+    refundResult,
+    paymentsResult,
+    docsResult,
+    messagesResult
+  ] = await Promise.all([
+    supabase
+      .from('applications')
+      .select(`
+        *,
+        university_program:university_program_id (
+          id,
+          tuition_fee,
+          duration,
+          program_catalog:program_catalog_id (
+            title,
+            level,
+            description
+          ),
+          university:university_id (
+            name,
+            logo_url
+          )
         )
-      )
-    `)
-    .eq('id', id)
-    .single();
+      `)
+      .eq('id', id)
+      .single(),
+    supabase.from('refund_requests').select('*').eq('application_id', id).single(),
+    adminSupabase.from('payment_transactions').select('*').eq('application_id', id).order('created_at', { ascending: false }),
+    adminSupabase.from('document_requests').select('*').eq('application_id', id).order('created_at', { ascending: false }),
+    supabase.from('application_messages').select('id, subject, created_at, is_read, sender_type').eq('application_id', id).order('created_at', { ascending: false }).limit(5)
+  ]);
+
+  const { data: application, error: appError } = appResult;
+  const { data: refundRequest } = refundResult;
+  const { data: paymentTransactions, error: paymentError } = paymentsResult;
+  const { data: documentRequests, error: docError } = docsResult;
+  const { data: messages } = messagesResult;
 
   if (!application) {
     console.error('Application not found:', id);
     console.error('Error details:', appError);
     redirect('/dashboard/applications');
   }
-
-  // Fetch refund request
-  const { data: refundRequest } = await supabase
-    .from('refund_requests')
-    .select('*')
-    .eq('application_id', id)
-    .single();
-
-  // Fetch ALL payment transactions for this application (temporarily remove status filter)
-  const { data: paymentTransactions, error: paymentError } = await adminSupabase
-    .from('payment_transactions')
-    .select('*')
-    .eq('application_id', id)
-    .order('created_at', { ascending: false });
-
-  // Fetch ALL document requests (temporarily remove status filter)
-  const { data: documentRequests, error: docError } = await adminSupabase
-    .from('document_requests')
-    .select('*')
-    .eq('application_id', id)
-    .order('created_at', { ascending: false });
-
-  // Fetch messages for this application
-  const { data: messages } = await supabase
-    .from('application_messages')
-    .select('id, subject, created_at, is_read, sender_type')
-    .eq('application_id', id)
-    .order('created_at', { ascending: false })
-    .limit(5);
 
   const getStatusColor = (status: string) => {
     switch (status) {
