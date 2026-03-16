@@ -86,12 +86,39 @@ export default async function UniversityDetailPage({ params }: { params: Promise
         notFound();
     }
 
-    // Fetch programs using the new view
-    const { data: programs } = await supabase
-        .from("v_university_programs_full")
-        .select("*")
-        .eq("university_id", university.id)
-        .eq("is_active", true);
+    const { locale } = await params;
+
+    // Fetch programs and translations in parallel for better performance
+    const [programsResult, translationResult, accommodationResult, universityFaqsResult] = await Promise.all([
+        supabase
+            .from("v_university_programs_full")
+            .select("*")
+            .eq("university_id", university.id)
+            .eq("is_active", true),
+        supabase
+            .from("university_translations")
+            .select("*")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .single(),
+        supabase
+            .from("accommodation_translations")
+            .select("*")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .single(),
+        supabase
+            .from("university_faqs")
+            .select("question, answer")
+            .eq("university_id", university.id)
+            .eq("locale", locale)
+            .order("display_order")
+    ]);
+
+    const programs = programsResult.data;
+    const translation = translationResult.data;
+    const accommodationTranslation = accommodationResult.data;
+    const universityFaqs = universityFaqsResult.data || [];
 
     const formattedPrograms = programs?.map((p: unknown) => {
         const prog = p as {
@@ -119,33 +146,6 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             intake: prog.intake || "Contact university",
         };
     }) || [];
-
-    // Fetch translations in parallel for better performance
-    const { locale } = await params;
-    const [translationResult, accommodationResult, universityFaqsResult] = await Promise.all([
-        supabase
-            .from("university_translations")
-            .select("*")
-            .eq("university_id", university.id)
-            .eq("locale", locale)
-            .single(),
-        supabase
-            .from("accommodation_translations")
-            .select("*")
-            .eq("university_id", university.id)
-            .eq("locale", locale)
-            .single(),
-        supabase
-            .from("university_faqs")
-            .select("question, answer")
-            .eq("university_id", university.id)
-            .eq("locale", locale)
-            .order("display_order")
-    ]);
-
-    const translation = translationResult.data;
-    const accommodationTranslation = accommodationResult.data;
-    const universityFaqs = universityFaqsResult.data || [];
 
     const universityData = {
         id: university.id,

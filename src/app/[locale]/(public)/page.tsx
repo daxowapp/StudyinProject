@@ -130,7 +130,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     const universitiesError = universitiesResult.error;
     user = userResult.data.user;
 
-    // 4. Process Fast Track Programs if IDs exist
+    // 4. Parallelize secondary data fetching
     interface Program {
       id: string;
       slug: string;
@@ -146,21 +146,39 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       university_name: string;
       city: string;
     }
+    interface UniStat { university_id: string; program_count: number; min_tuition_fee: number; currency: string; }
+    interface UniTranslation { university_id: string; locale: string; name: string; description: string; }
+
     const fastTrackIds = fastTrackUnis?.map(u => u.id) || [];
-    let programs: Program[] | null = null;
-    let programsError = null;
+    const uniIds = universitiesData?.map(u => u.id) || [];
 
-    if (fastTrackIds.length > 0) {
-      const { data, error } = await supabase
-        .from("v_university_programs_full")
-        .select("id, slug, display_title, program_title, level, duration, tuition_fee, currency, language_name, intake, university_id, university_name, city")
-        .eq("portal_key", PORTAL_KEY)
-        .in('university_id', fastTrackIds)
-        .limit(80);
+    const programsPromise = fastTrackIds.length > 0
+      ? supabase
+          .from("v_university_programs_full")
+          .select("id, slug, display_title, program_title, level, duration, tuition_fee, currency, language_name, intake, university_id, university_name, city")
+          .eq("portal_key", PORTAL_KEY)
+          .in('university_id', fastTrackIds)
+          .limit(80)
+      : Promise.resolve({ data: null, error: null });
 
-      programs = data as unknown as Program[];
-      programsError = error;
-    }
+    const statsPromise = uniIds.length > 0
+      ? supabase.from("v_university_stats").select("university_id, program_count, min_tuition_fee, currency").in("university_id", uniIds)
+      : Promise.resolve({ data: null, error: null });
+
+    const translationsPromise = uniIds.length > 0
+      ? supabase.from("university_translations").select("university_id, locale, name, description").in("university_id", uniIds).eq("locale", locale)
+      : Promise.resolve({ data: null, error: null });
+
+    const [programsResult, statsResult, translationsResult] = await Promise.all([
+      programsPromise,
+      statsPromise,
+      translationsPromise
+    ]);
+
+    const programs = programsResult.data as unknown as Program[];
+    const programsError = programsResult.error;
+    const stats = statsResult.data;
+    const translations = translationsResult.data;
 
     if (programsError) {
       console.error("Error fetching programs:", programsError);
@@ -218,24 +236,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
     // Process Universities (with Stats & Translations)
     if (universitiesData) {
-      // Fetch stats and translations in parallel
-      const uniIds = universitiesData.map(u => u.id);
-      const [statsResult, translationsResult] = await Promise.all([
-        supabase.from("v_university_stats").select("university_id, program_count, min_tuition_fee, currency").in("university_id", uniIds),
-        supabase.from("university_translations").select("university_id, locale, name, description").in("university_id", uniIds).eq("locale", locale)
-      ]);
-
-      const stats = statsResult.data;
-      const translations = translationsResult.data;
-
-      // Define interfaces for stats and translations to avoid 'any'
-      interface UniStat { university_id: string; program_count: number; min_tuition_fee: number; currency: string; }
-      interface UniTranslation { university_id: string; locale: string; name: string; description: string; }
-
       const statsMap = new Map((stats as unknown as UniStat[] || []).map((s) => [s.university_id, s]));
       const translationsMap = new Map((translations as unknown as UniTranslation[] || []).map((t) => [`${t.university_id}_${locale}`, t]));
-
-      // sanitizeImageUrl is defined above (shared)
 
       universitiesWithStats = universitiesData.map((uni) => {
         const stat = statsMap.get(uni.id);

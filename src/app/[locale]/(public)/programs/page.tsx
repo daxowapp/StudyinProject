@@ -66,6 +66,12 @@ export default async function ProgramsPage({
     const params = await searchParams;
     const universitySlug = params.university;
 
+    // Start fetching universities for slug mapping (Non-blocking)
+    const universitiesPromise = supabase
+        .from("universities")
+        .select("name, slug, has_fast_track")
+        .eq("portal_key", PORTAL_KEY);
+
     // Fetch ALL programs using pagination to bypass Supabase's 1000-row default limit
     const PAGE_SIZE = 1000;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,11 +118,8 @@ export default async function ProgramsPage({
         console.error("Error fetching programs:", error);
     }
 
-    // Fetch universities for slug mapping
-    const { data: universities } = await supabase
-        .from("universities")
-        .select("name, slug, has_fast_track")
-        .eq("portal_key", PORTAL_KEY);
+    // Await the universities fetch
+    const { data: universities } = await universitiesPromise;
 
     const universityMap = universities?.reduce((acc: Record<string, string>, uni: { slug: string; name: string }) => {
         acc[uni.slug] = uni.name;
