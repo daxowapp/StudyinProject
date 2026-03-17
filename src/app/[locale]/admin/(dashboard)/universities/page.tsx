@@ -41,7 +41,7 @@ export default async function AdminUniversitiesPage({
     // Build query - only select needed columns for performance
     let query = supabase
         .from("universities")
-        .select("id, name, city, is_active, created_at, university_programs(count)", { count: 'exact' })
+        .select("id, name, city, created_at, university_programs(count)", { count: 'exact' })
         .eq("portal_key", PORTAL_KEY);
 
     if (search) {
@@ -87,7 +87,6 @@ export default async function AdminUniversitiesPage({
         id: string;
         name: string;
         city: string;
-        is_active: boolean;
         created_at: string;
         university_programs: { count: number }[];
     }
@@ -119,7 +118,6 @@ export default async function AdminUniversitiesPage({
                             <TableHead>Name</TableHead>
                             <TableHead>City</TableHead>
                             <TableHead>Programs</TableHead>
-                            <TableHead>Status</TableHead>
                             <TableHead>Created At</TableHead>
                             <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
@@ -130,11 +128,6 @@ export default async function AdminUniversitiesPage({
                                 <TableCell className="font-medium">{uni.name}</TableCell>
                                 <TableCell>{uni.city}</TableCell>
                                 <TableCell>{uni.university_programs?.[0]?.count || 0}</TableCell>
-                                <TableCell>
-                                    <Badge variant={uni.is_active ? "default" : "secondary"}>
-                                        {uni.is_active ? "Active" : "Inactive"}
-                                    </Badge>
-                                </TableCell>
                                 <TableCell>{new Date(uni.created_at).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
                                     <UniversityActions id={uni.id} />
@@ -144,7 +137,7 @@ export default async function AdminUniversitiesPage({
 
                         {(!universities || universities.length === 0) && (
                             <TableRow>
-                                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                                <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                                     No universities found.
                                 </TableCell>
                             </TableRow>
