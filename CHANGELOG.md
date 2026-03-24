@@ -1,5 +1,17 @@
 # Changelog
 
+## [2026-03-24] - Performance: Third-Party Script Deferral & Font Optimization
+
+- **layout.tsx** [UPDATED]: Migrated Google Analytics from manual `<Script>` tags to `@next/third-parties/google` `<GoogleAnalytics>` component for optimized loading. Moved Zoho PageSense + SalesIQ scripts to new `DeferredScripts` component. Set Playfair Display font `preload: false` (heading font, not FCP-critical). Added `preconnect` / `dns-prefetch` for Bunny CDN (`studyatchina.b-cdn.net`).
+- **DeferredScripts.tsx** [NEW]: Client component that loads Zoho PageSense and SalesIQ scripts via `requestIdleCallback` (with `setTimeout` fallback for Safari), deferring injection until the browser is fully idle — reduces TBT further than `lazyOnload`.
+
+## [2026-03-23] - Performance: PageSpeed Script & LCP Optimizations
+
+- **layout.tsx** [UPDATED]: Deferred Google Analytics scripts from `afterInteractive` to `lazyOnload` strategy to reduce main-thread blocking. Added `preconnect` hints for `googletagmanager.com` and `connect.facebook.net` CDNs.
+- **HeroSection.tsx** [UPDATED]: Replaced `loading="eager"` with `priority` on hero background `<Image>` — enables `<link rel="preload">` injection and `fetchPriority="high"` for improved LCP.
+- **globals.css** [UPDATED]: Added `will-change: transform, opacity` to orb animation classes for GPU layer promotion. Removed duplicate `prefers-reduced-motion` block (already handled at line 534).
+
+
 ## [2026-03-16] - Fix: University Program Count Showing 0
 
 - **universities/page.tsx** [UPDATED]: Fixed program counts showing "0 Programs" for all universities on the listing page. Root cause: (1) Direct queries on `university_programs` table hit PostgREST's hard 1000-row limit per request, silently truncating results; (2) University IDs from the `universities` table (filtered by `portal_key`) didn't match `university_id` in the raw table for most records. Solution: Switched to paginated `.range()` queries on `v_university_programs_full` view (which correctly JOINs universities to programs) and loops until all rows are fetched. Also fixed field references to use view's flat columns (`level`, `language_name`) instead of nested join references.

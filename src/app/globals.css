@@ -432,14 +432,17 @@ html {
 
 .animate-orb-float {
   animation: orb-float 8s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .animate-orb-float-delayed {
   animation: orb-float 10s ease-in-out infinite 1s;
+  will-change: transform, opacity;
 }
 
 .animate-orb-float-slow {
   animation: orb-float 12s ease-in-out infinite 2s;
+  will-change: transform, opacity;
 }
 
 /* Zoho Chat Widget Customization */
@@ -626,25 +629,7 @@ html {
   to   { width: 100%; }
 }
 
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
 
-/* Respect user preference for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-orb-float,
-  .animate-orb-float-delayed,
-  .animate-orb-float-slow,
-  .animate-logo-pulse,
-  .animate-ping-slow,
-  .animate-bounce {
-    animation: none !important;
-  }
-
-  .animate-fade-in,
-  .animate-fade-in-up {
-    animation-duration: 0.01ms !important;
-    animation-fill-mode: forwards !important;
-  }
-}
 
 /* Skip rendering of off-screen sections until scrolled into view */
 main > section:nth-child(n+3) {

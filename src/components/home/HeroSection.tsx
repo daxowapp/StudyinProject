@@ -204,7 +204,7 @@ export function HeroSection() {
                     alt="Study in China"
                     fill
                     className="object-cover mix-blend-soft-light opacity-20"
-                    loading="eager"
+                    priority
                     sizes="100vw"
                 />
 

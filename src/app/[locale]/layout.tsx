@@ -2,11 +2,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingBar } from "@/components/ui/loading-bar";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { QueryProvider } from "@/providers/QueryProvider";
+import { DeferredScripts } from "@/components/layout/DeferredScripts";
 import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
@@ -96,7 +98,7 @@ const playfair = Playfair_Display({
     subsets: ['latin'],
     variable: '--font-heading',
     display: 'swap',
-    preload: true,
+    preload: false, // Heading font — not FCP-critical, loaded on demand
 });
 
 const jakarta = Plus_Jakarta_Sans({
@@ -137,19 +139,20 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} dir={dir} suppressHydrationWarning>
             <head>
+                {/* Preconnect to CDN for static assets */}
+                <link rel="preconnect" href="https://studyatchina.b-cdn.net" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://studyatchina.b-cdn.net" />
                 {/* Preconnect to Supabase for faster API calls */}
                 <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
-                {/* DNS-prefetch for third-party script domains */}
+                {/* Preconnect & DNS-prefetch for third-party script domains */}
+                <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
+                <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://connect.facebook.net" />
             </head>
             <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
-                <Script
-                    id="zoho-pagesense-script"
-                    src="https://cdn.pagesense.io/js/daxowportal/643005dce2df4eb1810be296f6a79272.js"
-                    strategy="lazyOnload"
-                />
+                <DeferredScripts />
                 <OrganizationJsonLd />
                 <QueryProvider>
                     <NextIntlClientProvider messages={messages}>
@@ -187,28 +190,7 @@ export default async function LocaleLayout({
                         alt=""
                     />
                 </noscript>
-                <Script
-                    id="zoho-salesiq-init"
-                    strategy="lazyOnload"
-                    dangerouslySetInnerHTML={{
-                        __html: `window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`
-                    }}
-                />
-                <Script
-                    id="zsiqscript"
-                    src="https://salesiq.zohopublic.com/widget?wc=siqc671c2f53632c30a591a902bec55f9bdcfc7670e7f9cbdd86f64bdc1d326a19a"
-                    strategy="lazyOnload"
-                    defer
-                />
-
-                <Script
-                    id="google-analytics"
-                    src="https://www.googletagmanager.com/gtag/js?id=G-47QZWWTPZ1"
-                    strategy="afterInteractive"
-                />
-                <Script id="ga-init" strategy="afterInteractive">
-                    {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-47QZWWTPZ1');`}
-                </Script>
+                <GoogleAnalytics gaId="G-47QZWWTPZ1" />
             </body>
         </html>
     );
