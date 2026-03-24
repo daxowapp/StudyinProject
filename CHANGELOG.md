@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-24] - Fix: 404 Page Layout
+
+- **404-page-not-found.tsx** [UPDATED]: Replaced oversized SVG illustration (1136px tall, overflowing viewport) with a clean, properly constrained layout — giant transparent "404" text, warning icon, message, and Return Home button, all fitting within viewport.
+
 ## [2026-03-24] - Performance: Third-Party Script Deferral & Font Optimization
 
 - **layout.tsx** [UPDATED]: Migrated Google Analytics from manual `<Script>` tags to `@next/third-parties/google` `<GoogleAnalytics>` component for optimized loading. Moved Zoho PageSense + SalesIQ scripts to new `DeferredScripts` component. Set Playfair Display font `preload: false` (heading font, not FCP-critical). Added `preconnect` / `dns-prefetch` for Bunny CDN (`studyatchina.b-cdn.net`).
