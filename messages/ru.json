@@ -1,1901 +1,1983 @@
 {
-    "Navbar": {
-        "home": "Главная",
-        "programs": "Программы",
-        "universities": "Университеты",
-        "about": "О нас",
-        "contact": "Контакты",
-        "login": "Войти",
-        "dashboard": "Панель",
-        "admin": "Админ",
-        "categories": {
-            "topRanked": {
-                "title": "Лучшие по рейтингу",
-                "description": "Откройте для себя лучшие университеты Китая."
-            },
-            "medical": {
-                "title": "Медицинские школы",
-                "description": "Ведущие учреждения в области медицины и здравоохранения."
-            },
-            "engineering": {
-                "title": "Инженерия",
-                "description": "Лучшие технические университеты по инженерии."
-            },
-            "business": {
-                "title": "Бизнес и Экономика",
-                "description": "Ведущие бизнес-школы и экономические институты."
-            },
-            "arts": {
-                "title": "Искусство и Гуманитарные науки",
-                "description": "Центры искусства, культуры и гуманитарных наук."
-            },
-            "all": {
-                "title": "Все университеты",
-                "description": "Просмотрите наш полный список университетов-партнеров."
-            }
-        },
-        "levels": {
-            "bachelor": {
-                "title": "Бакалавриат",
-                "description": "Программы для выпускников средней школы."
-            },
-            "master": {
-                "title": "Магистратура",
-                "description": "Программы для обладателей степени бакалавра."
-            },
-            "phd": {
-                "title": "Докторантура",
-                "description": "Докторские исследовательские программы."
-            },
-            "nonDegree": {
-                "title": "Курсы китайского языка",
-                "description": "Изучение китайского языка и культуры."
-            },
-            "diploma": {
-                "title": "Диплом",
-                "description": "Профессиональные и технические программы."
-            },
-            "language": {
-                "title": "Языковой курс",
-                "description": "Изучайте китайский язык."
-            },
-            "viewAll": "Смотреть все программы"
-        },
-        "viewAllUniversities": "Смотреть все университеты",
-        "resources": {
-            "title": "Ресурсы",
-            "scholarships": "Стипендии",
-            "howToApply": "Как подать заявку",
-            "articles": "Информация и ресурсы",
-            "contact": "Связаться с нами",
-            "scholarshipFilter": "Фильтр стипендий",
-            "scholarshipFilterDesc": "Фильтровать университеты по стипендиальным преимуществам",
-            "qsRankings": "QS Rankings 2026",
-            "qsRankingsDesc": "Chinese universities in QS World Rankings"
-        },
-        "user": {
-            "myApplications": "Мои заявки",
-            "logout": "Выйти",
-            "signIn": "Войти",
-            "getStarted": "Начать",
-            "myAccount": "Мой аккаунт",
-            "account": "Аккаунт"
-        },
-        "destinations": {
-            "title": "Направления",
-            "viewAll": "Все направления",
-            "beijing": {
-                "title": "Пекин",
-                "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
-            },
-            "shanghai": {
-                "title": "Шанхай",
-                "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
-            },
-            "guangzhou": {
-                "title": "Гуанчжоу",
-                "description": "Southern metropolis with leading medical and engineering schools."
-            },
-            "wuhan": {
-                "title": "Ухань",
-                "description": "Historic education center with Wuhan University and HUST."
-            },
-            "hangzhou": {
-                "title": "Ханчжоу",
-                "description": "Tech hub and scenic city home to Zhejiang University."
-            },
-            "nanjing": {
-                "title": "Нанкин",
-                "description": "Ancient capital with Nanjing University and Southeast University."
-            },
-            "chengdu": {
-                "title": "Чэнду",
-                "description": "Western China gateway with Sichuan University and affordable living."
-            },
-            "xian": {
-                "title": "Сиань",
-                "description": "Historic Silk Road city with Xi'an Jiaotong University."
-            }
-        }
+  "Navbar": {
+    "home": "Главная",
+    "programs": "Программы",
+    "universities": "Университеты",
+    "about": "О нас",
+    "contact": "Контакты",
+    "login": "Войти",
+    "dashboard": "Панель",
+    "admin": "Админ",
+    "categories": {
+      "topRanked": {
+        "title": "Лучшие по рейтингу",
+        "description": "Откройте для себя лучшие университеты Китая."
+      },
+      "medical": {
+        "title": "Медицинские школы",
+        "description": "Ведущие учреждения в области медицины и здравоохранения."
+      },
+      "engineering": {
+        "title": "Инженерия",
+        "description": "Лучшие технические университеты по инженерии."
+      },
+      "business": {
+        "title": "Бизнес и Экономика",
+        "description": "Ведущие бизнес-школы и экономические институты."
+      },
+      "arts": {
+        "title": "Искусство и Гуманитарные науки",
+        "description": "Центры искусства, культуры и гуманитарных наук."
+      },
+      "all": {
+        "title": "Все университеты",
+        "description": "Просмотрите наш полный список университетов-партнеров."
+      }
     },
-    "Common": {
-        "loading": "Загрузка...",
-        "error": "Произошла ошибка",
-        "submit": "Отправить",
-        "cancel": "Отмена",
-        "save": "Сохранить",
-        "delete": "Удалить",
-        "edit": "Редактировать",
-        "view": "Просмотр",
-        "back": "Назад"
+    "levels": {
+      "bachelor": {
+        "title": "Бакалавриат",
+        "description": "Программы для выпускников средней школы."
+      },
+      "master": {
+        "title": "Магистратура",
+        "description": "Программы для обладателей степени бакалавра."
+      },
+      "phd": {
+        "title": "Докторантура",
+        "description": "Докторские исследовательские программы."
+      },
+      "nonDegree": {
+        "title": "Курсы китайского языка",
+        "description": "Изучение китайского языка и культуры."
+      },
+      "diploma": {
+        "title": "Диплом",
+        "description": "Профессиональные и технические программы."
+      },
+      "language": {
+        "title": "Языковой курс",
+        "description": "Изучайте китайский язык."
+      },
+      "viewAll": "Смотреть все программы"
     },
-    "Footer": {
-        "stayUpdated": "Будьте в курсе",
-        "getLatestUpdates": "Подпишитесь на последние обновления",
-        "subscribeText": "Подпишитесь, чтобы получать новости о программах, стипендиях и сроках подачи заявок.",
-        "description": "Ваш надежный партнер в поиске и поступлении в лучшие университеты Китая. Присоединяйтесь к тысячам студентов, которые успешно начали свой академический путь вместе с нами.",
-        "explore": "Изучить",
-        "programs": "Программы",
-        "universities": "Университеты",
-        "scholarships": "Стипендии",
-        "howToApply": "Как подать заявку",
-        "faq": "FAQ",
-        "forStudents": "Для студентов",
-        "createAccount": "Создать аккаунт",
-        "trackApplication": "Отследить заявку",
-        "documentChecklist": "Список документов",
-        "studentPortal": "Студенческий портал",
-        "contact": "Контакты",
-        "rightsReserved": "Все права защищены.",
-        "designedBy": "Разработано и поддерживается",
-        "termsOfService": "Условия использования",
-        "privacyPolicy": "Политика конфиденциальности",
-        "cookiePolicy": "Политика Cookie"
+    "viewAllUniversities": "Смотреть все университеты",
+    "resources": {
+      "title": "Ресурсы",
+      "scholarships": "Стипендии",
+      "howToApply": "Как подать заявку",
+      "articles": "Информация и ресурсы",
+      "contact": "Связаться с нами",
+      "scholarshipFilter": "Фильтр стипендий",
+      "scholarshipFilterDesc": "Фильтровать университеты по стипендиальным преимуществам",
+      "qsRankings": "QS Rankings 2026",
+      "qsRankingsDesc": "Chinese universities in QS World Rankings"
     },
-    "ScholarshipCTA": {
-        "badge": "Откройте больше возможностей",
-        "title": "Изучите все варианты стипендий",
-        "description": "Не знаете, какая стипендия вам подходит? Просмотрите наш полный справочник по стипендиям, чтобы сравнить все варианты, понять требования и найти идеальный вариант для вашего академического пути.",
-        "viewAll": "Смотреть все стипендии",
-        "getAdvice": "Получить консультацию"
+    "user": {
+      "myApplications": "Мои заявки",
+      "logout": "Выйти",
+      "signIn": "Войти",
+      "getStarted": "Начать",
+      "myAccount": "Мой аккаунт",
+      "account": "Аккаунт"
     },
-    "CscaCta": {
-        "badge": "Обязательно с 2026 года",
-        "title": "Готовитесь к экзамену <span class=\"text-primary\">CSCA?</span>",
-        "titlePlain": "Готовитесь к экзамену CSCA?",
-        "description": "Оценка академической компетенции Китая теперь является требованием для лучших стипендий. Получите полную информацию о предметах, системе оценок и стратегиях подготовки в нашем новом руководстве.",
-        "readGuide": "Прочитать Руководство",
-        "findPrograms": "Найти Программы",
-        "proTip1": {
-            "title": "Совет #1",
-            "text": "Специализированный китайский требует академической лексики, а не только HSK."
-        },
-        "proTip2": {
-            "title": "Совет #2",
-            "text": "Разделы математики сосредоточены на геометрии. Повторите конические сечения."
-        }
-    },
-    "Hero": {
-        "admissionsOpen": "Прием заявок на 2026 год открыт",
-        "searchPlaceholder": "Что вы хотите изучать? (например, Информатика, Медицина)",
-        "title": "Ваше будущее в КИТАЕ начинается здесь",
-        "subtitle": "Присоединяйтесь к <bold>50 000+ студентам</bold> в лучших университетах Китая",
-        "searchButton": "Искать <bold>500+</bold> программ",
-        "searchWord": "Искать",
-        "programsWord": "Программы",
-        "browseByCategory": "Просмотр по категориям",
-        "scrollToExplore": "Прокрутите, чтобы узнать больше",
-        "stats": {
-            "universities": "Университеты",
-            "students": "Студенты",
-            "success": "Успех",
-            "scholarships": "Стипендии"
-        },
-        "tabs": {
-            "programs": "Программы",
-            "universities": "Университеты",
-            "scholarships": "Стипендии"
-        },
-        "placeholders": {
-            "degree": "Уровень образования",
-            "field": "Область обучения",
-            "city": "Город",
-            "language": "Язык",
-            "budget": "Бюджет (USD/год)",
-            "scholarship": "Стипендия",
-            "duration": "Длительность"
-        },
-        "options": {
-            "any": "Любой",
-            "all": "Все"
-        },
-        "budget": {
-            "under3k": "Under $3,000",
-            "3kTo5k": "$3,000 - $5,000",
-            "5kTo8k": "$5,000 - $8,000",
-            "above8k": "Above $8,000"
-        },
-        "scholarship": {
-            "allPrograms": "All Programs",
-            "available": "Scholarship Available",
-            "full": "Full Scholarship",
-            "partial": "Partial Scholarship"
-        },
-        "duration": {
-            "1year": "1 Year",
-            "2years": "2 Years",
-            "3years": "3 Years",
-            "4years": "4 Years",
-            "5plus": "5+ Years"
-        },
-        "categories": {
-            "mba": "MBA Programs",
-            "engineering": "Engineering",
-            "medicine": "Medicine (MBBS)",
-            "cs": "Computer Science",
-            "fullScholarship": "Full Scholarship",
-            "englishTaught": "English Taught"
-        }
-    },
-    "WhyStudy": {
-        "badge": "Почему выбирают Китай",
-        "title": "Ваш путь к <gradient>мировому успеху</gradient>",
-        "description": "Китай сочетает давние образовательные традиции с современными технологиями, предлагая иностранным студентам уникальную учебную среду в качестве ведущего мирового экономического центра.",
-        "cta": {
-            "explore": "Изучить программы",
-            "download": "Скачать руководство"
-        },
-        "features": {
-            "worldClass": {
-                "title": "Университеты мирового класса",
-                "description": "Учитесь в учреждениях мирового рейтинга с передовыми исследовательскими центрами и известным преподавательским составом."
-            },
-            "affordable": {
-                "title": "Доступное качество",
-                "description": "Качественное образование по конкурентным ценам с щедрыми стипендиальными возможностями до 100%."
-            },
-            "career": {
-                "title": "Карьерный трамплин",
-                "description": "Доступ к крупнейшей экономике Азии с непревзойденными возможностями стажировки и трудоустройства."
-            },
-            "safe": {
-                "title": "Безопасно и динамично",
-                "description": "Испытайте одну из самых безопасных стран мира с процветающим международным сообществом."
-            },
-            "culture": {
-                "title": "Культурное погружение",
-                "description": "Откройте для себя 5000 лет истории, живя в ультрасовременных, динамичных городах."
-            },
-            "network": {
-                "title": "Глобальная сеть",
-                "description": "Присоединяйтесь к сообществу из более чем 500 000 иностранных студентов из более чем 200 стран."
-            },
-            "english": {
-                "title": "Программы на английском",
-                "description": "Выбирайте из более чем 1000 программ, преподаваемых полностью на английском языке по всем дисциплинам."
-            },
-            "recognition": {
-                "title": "Мировое признание",
-                "description": "Получайте дипломы, признанные ЮНЕСКО, ВОЗ и профессиональными организациями по всему миру."
-            }
-        }
-    },
-    "HowItWorks": {
-        "badge": "Молниеносный процесс",
-        "title": "От заявки до <gradient>зачисления</gradient>",
-        "description": "Оптимизированный 6-этапный путь, разработанный для того, чтобы вы перешли от просмотра программ к получению письма о зачислении в рекордные сроки.",
-        "cta": {
-            "button": "Начать подачу заявки сейчас",
-            "time": "Среднее время заполнения: <bold>15 минут</bold>"
-        },
-        "steps": {
-            "discover": {
-                "title": "Изучите программы",
-                "description": "Просмотрите более 500 программ лучших китайских университетов, адаптированных под ваши цели."
-            },
-            "profile": {
-                "title": "Создайте профиль",
-                "description": "Настройте свой аккаунт и заполните академический профиль за несколько минут."
-            },
-            "upload": {
-                "title": "Загрузите документы",
-                "description": "Безопасно отправьте сертификаты, транскрипты и необходимые документы."
-            },
-            "scholarship": {
-                "title": "Выберите тип стипендии",
-                "description": "Каждый университет предлагает типы стипендий. Выберите одну и подайте заявку."
-            },
-            "pay": {
-                "title": "Оплатите сборы",
-                "description": "Безопасно оплатите сбор за подачу заявки."
-            },
-            "track": {
-                "title": "Отслеживайте прогресс",
-                "description": "Следите за статусом вашей заявки с обновлениями и уведомлениями в реальном времени."
-            },
-            "admission": {
-                "title": "Получите зачисление",
-                "description": "Получите письмо о зачислении, визовые документы и начните свое путешествие!"
-            }
-        }
-    },
-    "Stats": {
-        "badge": "Наше влияние",
-        "title": "Доверие тысяч по всему миру",
-        "description": "Присоединяйтесь к глобальному сообществу успешных студентов, которые осуществили свои мечты через нашу платформу",
-        "items": {
-            "universities": {
-                "label": "Университеты-партнеры",
-                "description": "Учреждения высшего ранга"
-            },
-            "students": {
-                "label": "Иностранные студенты",
-                "description": "Из более чем 200 стран"
-            },
-            "programs": {
-                "label": "Доступные программы",
-                "description": "Все области обучения"
-            },
-            "success": {
-                "label": "Показатель успеха",
-                "description": "Одобрение зачисления"
-            },
-            "countries": {
-                "label": "Представленные страны",
-                "description": "Глобальное сообщество"
-            },
-            "scholarships": {
-                "label": "Присуждено стипендий",
-                "description": "Финансовая поддержка"
-            },
-            "time": {
-                "label": "Время подачи заявки",
-                "description": "Быстрый и простой процесс"
-            },
-            "employment": {
-                "label": "Трудоустройство выпускников",
-                "description": "В течение 6 месяцев"
-            }
-        }
-    },
-    "FeaturedPrograms": {
-        "badge": "Избранные программы",
-        "title": "Ускоренные программы",
-        "description": "Изучите наши самые востребованные программы в лучших университетах Китая",
-        "duration": "Длительность",
-        "tuition": "Плата/год",
-        "explore": "Изучить программу",
-        "viewAll": "Смотреть все программы",
-        "fastTrack": "Ускоренная"
-    },
-    "FeaturedUniversities": {
-        "badge": "Лучшие университеты",
-        "title": "Элитные университеты",
-        "description": "Учитесь в самых престижных учреждениях Китая",
-        "fastTrack": "Ускоренный",
-        "programs": "Программы",
-        "tuitionFrom": "Плата от",
-        "students": "Студенты",
-        "viewDetails": "Подробнее",
-        "viewAll": "Смотреть все университеты"
-    },
-    "Scholarships": {
-        "badge": "Финансовая поддержка",
-        "title": "Стипендии и финансовая помощь",
-        "description": "Обучение в Китае доступно. Изучите различные стипендиальные возможности для иностранных студентов.",
-        "items": {
-            "csc": {
-                "title": "Правительственная стипендия Китая (CSC)",
-                "description": "Полная или частичная стипендия для иностранных студентов. Покрывает обучение, проживание и зарплату.",
-                "amount": "До $10 000/год"
-            },
-            "university": {
-                "title": "Университетские стипендии",
-                "description": "Стипендии за заслуги, предлагаемые университетами для выдающихся кандидатов.",
-                "amount": "До $8 000/год"
-            },
-            "provincial": {
-                "title": "Провинциальные стипендии",
-                "description": "Стипендии, финансируемые местными правительствами для привлечения международных талантов в определенные регионы.",
-                "amount": "До $6 000/год"
-            }
-        },
-        "awardAmount": "Сумма стипендии",
-        "learnMore": "Узнать больше",
-        "stats": {
-            "scholarshipOptions": "Scholarship Options",
-            "universities": "Universities",
-            "programs": "Programs",
-            "awarded": "Присуждается ежегодно",
-            "funding": "Получают финансирование",
-            "full": "Полные стипендии",
-            "eligible": "Подходящие программы"
-        },
-        "viewAll": "Смотреть все стипендии",
-        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-        "popular": {
-            "title": "Featured & Popular Scholarships"
-        },
-        "tabs": {
-            "search": "Search Scholarships",
-            "about": "About Scholarships"
-        },
-        "search": {
-            "filter": "Filters",
-            "clearAll": "Clear All",
-            "searchPlaceholder": "Search program or university...",
-            "category": "Category",
-            "all": "All",
-            "fullScholarship": "Full Scholarship (100%)",
-            "partialScholarship": "Partial Scholarship",
-            "city": "City",
-            "university": "University",
-            "degree": "Degree Level",
-            "language": "Language",
-            "semester": "Semester",
-            "spring": "Spring",
-            "autumn": "Autumn",
-            "freeAccommodation": "Free Accommodation",
-            "monthlyStipend": "Monthly Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "scholarshipOptions": "scholarship options at",
-            "universities": "universities",
-            "noResults": "No scholarships found",
-            "noResultsDescription": "Try adjusting your filters to see more results.",
-            "programsAvailable": "Programs",
-            "upTo": "Up to",
-            "accommodation": "Accommodation",
-            "stipend": "Stipend",
-            "insurance": "Insurance",
-            "program": "Program",
-            "teachingLanguage": "Language",
-            "startingDate": "Intake",
-            "scholarshipCoverage": "Original Tuition",
-            "youNeedToPay": "You Need To Pay",
-            "tuition": "Tuition",
-            "free": "Free",
-            "moreOptions": "More Options",
-            "learnMore": "Learn More"
-        },
-        "detail": {
-            "backToSearch": "Back to Search",
-            "scholarshipAvailable": "Scholarship Available",
-            "programDetails": "Program Details",
-            "degree": "Degree",
-            "duration": "Duration",
-            "language": "Language",
-            "intake": "Intake",
-            "availableScholarships": "Available Scholarships",
-            "noScholarships": "No scholarships are currently available for this program.",
-            "tuitionCoverage": "Tuition Coverage",
-            "freeAccommodation": "Free Accommodation",
-            "stipend": "Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "originalTuition": "Original Tuition",
-            "youPay": "You Need to Pay",
-            "serviceFee": "Service Fee",
-            "applyNow": "Apply for this Scholarship",
-            "university": "University",
-            "viewUniversity": "View University Profile",
-            "viewProgram": "View Program Details"
-        },
-        "about": {
-            "howItWorks": "How Scholarships Work",
-            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-            "scholarshipCoverage": "Scholarship Coverage",
-            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-            "serviceFees": "Service & Processing Fees",
-            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-            "scholarshipTypes": "Common Scholarship Types",
-            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-            "searchPrograms": "Search Eligible Programs",
-            "requiredDocuments": "Required Documents",
-            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-            "faq": "Frequently Asked Questions",
-            "faq1Question": "Do I need to know Chinese to get a scholarship?",
-            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-            "faq2Question": "Can I work while studying?",
-            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-            "faq3Question": "What happens if I fail my classes?",
-            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-            "faq4Question": "How long does the application process take?",
-            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-        }
-    },
-    "Testimonials": {
-        "badge": "Истории успеха",
-        "title": "Что говорят наши студенты",
-        "description": "Послушайте студентов, которые успешно подали заявки через нашу платформу и теперь процветают в Китае.",
-        "testimonials": {
-            "sarah": {
-                "quote": "Учеба в Цинхуа изменила мою жизнь. Кампус красивый, а профессора — мирового класса. Я выросла как академически, так и личностно.",
-                "program": "Информатика",
-                "university": "Университет Цинхуа",
-                "country": "США"
-            },
-            "ahmed": {
-                "quote": "Процесс подачи заявки прошел гладко благодаря Studyatchina. Сейчас я получаю степень магистра в области гражданского строительства и наслаждаюсь каждым моментом.",
-                "program": "Гражданское строительство",
-                "university": "Чжэцзянский университет",
-                "country": "Египет"
-            },
-            "maria": {
-                "quote": "Шанхай — удивительный город! Мне нравится культура, еда и друзья, которых я здесь нашла. Стипендия, которую я получила, сделала все это возможным.",
-                "program": "Международный бизнес",
-                "university": "Фуданьский университет",
-                "country": "Испания"
-            }
-        },
-        "averageRating": "Средний рейтинг",
-        "reviews": "Отзывы",
-        "satisfaction": "Удовлетворенность"
-    },
-    "Partners": {
-        "badge": "Надежные партнеры",
-        "title": "Университеты-партнеры",
-        "description": "Мы сотрудничаем с самыми престижными учреждениями Китая, чтобы предоставить вам лучшие образовательные возможности",
-        "recognitions": {
-            "unesco": {
-                "title": "Признание ЮНЕСКО",
-                "description": "Все университеты-партнеры признаны ЮНЕСКО"
-            },
-            "government": {
-                "title": "Одобрено правительством",
-                "description": "Официально одобрено Министерством образования Китая"
-            },
-            "accredited": {
-                "title": "Глобальная аккредитация",
-                "description": "Дипломы признаются в более чем 180 странах"
-            }
-        }
-    },
-    "FAQ": {
-        "badge": "Вопросы?",
-        "title": "Часто задаваемые вопросы",
-        "description": "Найдите ответы на распространенные вопросы об обучении в Китае",
-        "items": {
-            "deadline": {
-                "question": "Когда крайний срок подачи заявки?",
-                "answer": "Сроки варьируются в зависимости от университета и программы. Как правило, для сентябрьского набора заявки закрываются с марта по июнь. Проверяйте страницы конкретных программ для точных дат."
-            },
-            "language": {
-                "question": "Нужно ли мне знать китайский, чтобы учиться в Китае?",
-                "answer": "Не обязательно! Существуют тысячи программ на английском языке для бакалавриата, магистратуры и докторантуры. Однако изучение базового китайского рекомендуется для повседневной жизни."
-            },
-            "work": {
-                "question": "Могу ли я работать во время учебы?",
-                "answer": "Иностранные студенты могут работать неполный рабочий день или проходить стажировку с разрешения университета и иммиграционной службы. Политика стала более гибкой в последние годы."
-            },
-            "scholarships": {
-                "question": "Как подать заявку на стипендию?",
-                "answer": "Вы можете подать заявку на стипендию непосредственно через нашу платформу при отправке заявки. Мы поможем вам с необходимыми документами для стипендий CSC и университетских."
-            },
-            "visa": {
-                "question": "Какие требования к визе?",
-                "answer": "Вам понадобится действующий паспорт, письмо о зачислении и форма JW202 от вашего университета. Мы предоставляем полное сопровождение по визе на протяжении всего процесса."
-            },
-            "process": {
-                "question": "Сколько времени занимает процесс подачи заявки?",
-                "answer": "Типичный процесс подачи заявки занимает 2-4 недели. После подачи университеты обычно отвечают в течение 4-8 недель. Мы держим вас в курсе на каждом этапе."
-            }
-        },
-        "seeAll": "Смотреть все вопросы",
-        "contactSupport": "Связаться с поддержкой",
-        "footer": "Остались вопросы? Наша служба поддержки доступна 24/7, чтобы помочь вам."
-    },
-    "Destinations": {
-        "pageTitle": "Учебные направления",
-        "badge": "Учебные направления в Китае",
-        "heroTitle": "Откройте лучшие",
-        "heroSubtitle": "учебные города Китая",
-        "heroDescription": "От исторической столицы Пекина до современного горизонта Шанхая — исследуйте самые яркие города Китая и найдите идеальное место для вашего академического путешествия.",
-        "statCities": "Доступных городов",
-        "statUniversities": "Всего университетов",
-        "statTopCity": "Университетов в {city}",
-        "featuredTitle": "Избранные направления",
-        "featuredSubtitle": "Самые популярные города для иностранных студентов в Китае",
-        "allCitiesTitle": "Ещё города",
-        "allCitiesSubtitle": "Откройте для себя университеты в других городах Китая",
-        "university": "Университет",
-        "universities": "Университетов",
-        "explorePrograms": "Изучить программы"
-    },
-    "Universities": {
-        "title": "Изучите лучшие университеты Китая",
-        "subtitle": "Откройте для себя {count}+ престижных учреждений по всему Китаю. От проекта 985 до университетов Лиги C9.",
-        "error": {
-            "title": "Не удалось загрузить университеты",
-            "hint": "Подсказка: {hint}"
-        },
-        "search": {
-            "placeholder": "Поиск по названию университета, городу или рейтингу...",
-            "label": "Поиск",
-            "universityPlaceholder": "Название университета...",
-            "searching": "Поиск..."
-        },
-        "filters": {
-            "title": "Фильтры",
-            "description": "Уточните поиск университетов",
-            "clear": "Очистить фильтры",
-            "clearAll": "Очистить все фильтры",
-            "city": "Город",
-            "allCities": "Все города",
-            "institutionType": "Тип учреждения",
-            "allTypes": "Все типы",
-            "universityCategory": "Категория университета",
-            "allCategories": "Все категории",
-            "rankingRecognition": "Рейтинг и признание",
-            "specialFeatures": "Особенности",
-            "institutionTypes": {
-                "university": "Университет",
-                "college": "Колледж",
-                "languageInstitute": "Языковой институт",
-                "vocationalSchool": "Профессиональная школа",
-                "technicalInstitute": "Технический институт"
-            },
-            "categories": {
-                "public": "Государственный",
-                "private": "Частный",
-                "research": "Исследовательский",
-                "comprehensive": "Комплексный",
-                "specialized": "Специализированный",
-                "vocational": "Профессиональный"
-            },
-            "rankings": {
-                "project985": "Проект 985",
-                "project211": "Проект 211",
-                "doubleFirstClass": "Двойной первый класс"
-            },
-            "features": {
-                "fastTrack": "Ускоренное зачисление",
-                "scholarships": "Доступны стипендии",
-                "englishPrograms": "Программы на английском"
-            }
-        },
-        "stats": {
-            "title": "Быстрая статистика",
-            "total": "Всего университетов",
-            "showing": "Показано",
-            "cities": "Города"
-        },
-        "sort": {
-            "label": "Сортировать по",
-            "name": "Название: А-Я",
-            "programs": "Больше программ",
-            "city": "Город",
-            "tuitionLow": "Tuition: Low to High",
-            "tuitionHigh": "Tuition: High to Low",
-            "ranking": "Best Ranking"
-        },
-        "noResults": {
-            "title": "Университеты не найдены",
-            "description": "Попробуйте изменить фильтры или критерии поиска"
-        },
-        "results": {
-            "universities": "universities",
-            "showMore": "Show {count} more",
-            "showingOf": "Showing {visible} of {total}"
-        },
-        "compare": {
-            "title": "Compare Universities",
-            "criteria": "Criteria",
-            "location": "Location",
-            "ranking": "Ranking",
-            "programs": "Programs",
-            "tuition": "Tuition",
-            "levels": "Study Levels",
-            "languages": "Languages",
-            "scholarship": "Scholarship",
-            "fastTrack": "Fast Track",
-            "cscaExam": "CSCA Exam",
-            "badges": "Accreditations",
-            "clearAll": "Clear All",
-            "selected": "{count} selected",
-            "compareNow": "Compare Now"
-        }
-    },
-    "Programs": {
-        "title": "Найдите вашу идеальную программу",
-        "subtitle": "Просмотрите более {count}+ программ лучших китайских университетов. Найдите идеальное соответствие для вашего академического пути.",
-        "filters": {
-            "title": "Фильтры",
-            "active": "Активные фильтры:",
-            "clear": "Очистить фильтры",
-            "clearAll": "Очистить все фильтры",
-            "search": "Поиск",
-            "searchPlaceholder": "Программа или специальность...",
-            "studyLevel": "Уровень обучения",
-            "fieldOfStudy": "Область обучения",
-            "allFields": "Все области",
-            "maxTuition": "Макс. плата",
-            "language": "Язык",
-            "city": "Город",
-            "allCities": "Все города",
-            "university": "Университет",
-            "allUniversities": "Все университеты",
-            "duration": "Длительность",
-            "allDurations": "Все длительности",
-            "scholarshipAvailable": "Доступна стипендия",
-            "levels": {
-                "bachelor": "Бакалавриат",
-                "master": "Магистратура",
-                "phd": "Докторантура",
-                "diploma": "Диплом",
-                "language": "Языковой курс",
-                "nonDegree": "Non-Degree"
-            },
-            "fields": {
-                "business": "Бизнес и управление",
-                "engineering": "Инженерия и технологии",
-                "medicine": "Медицина и науки о здоровье",
-                "arts": "Искусство и гуманитарные науки",
-                "science": "Естественные науки",
-                "education": "Образование",
-                "cs": "Информатика",
-                "law": "Право"
-            },
-            "languages": {
-                "english": "Английский",
-                "chinese": "Китайский"
-            },
-            "durations": {
-                "2years": "2 года",
-                "3years": "3 года",
-                "4years": "4 года",
-                "5years": "5 лет",
-                "6years": "6 лет"
-            },
-            "matchingPrograms": "программ соответствует",
-            "applyFilters": "Применить фильтры",
-            "scholarshipDesc": "Show programs with funding",
-            "cscaLabel": "Без экзамена CSCA",
-            "cscaDesc": "Показать программы без экзамена CSCA",
-            "cscaBadge": "No CSCA",
-            "academicRequirements": "Academic Requirements",
-            "myAge": "My Age",
-            "agePlaceholder": "e.g. 21",
-            "minGpa": "Min GPA",
-            "gpaPlaceholder": "e.g. 3.0"
-        },
-        "stats": {
-            "total": "Всего программ",
-            "showing": "Показано"
-        },
-        "sort": {
-            "label": "Сортировать по",
-            "relevance": "Наиболее релевантные",
-            "tuitionLow": "Плата: от низкой к высокой",
-            "tuitionHigh": "Плата: от высокой к низкой",
-            "deadline": "Срок: ближайший",
-            "popular": "Самые популярные"
-        },
-        "noResults": {
-            "title": "Программы не найдены",
-            "description": "Попробуйте изменить фильтры или критерии поиска"
-        },
-        "card": {
-            "duration": "Длительность",
-            "intake": "Набор",
-            "tuitionFee": "Плата за обучение",
-            "viewProgram": "Смотреть программу",
-            "contact": "Контакт",
-            "scholarship": "Стипендия",
-            "addToCompare": "Добавить к сравнению",
-            "removeFromCompare": "Убрать из сравнения",
-            "level": "Уровень",
-            "features": "Особенности",
-            "viewFullDetails": "Все подробности",
-            "applyNow": "Подать заявку",
-            "fastTrack": "Fast Track"
-        },
-        "compare": {
-            "title": "Сравнить программы",
-            "comparing": "Сравнение",
-            "more": "еще",
-            "clear": "Очистить",
-            "compareNow": "Сравнить сейчас",
-            "university": "Университет",
-            "location": "Местоположение",
-            "level": "Уровень",
-            "duration": "Длительность",
-            "tuition": "Плата",
-            "intake": "Набор",
-            "language": "Язык",
-            "viewDetails": "Подробности",
-            "apply": "Подать заявку"
-        },
-        "emptyState": {
-            "title": "Программы не найдены",
-            "description": "Мы не смогли найти программы. Попробуйте просмотреть наш полный каталог.",
-            "filteredDescription": "Ни одна программа не соответствует вашим текущим фильтрам. Попробуйте изменить критерии поиска.",
-            "currentFilters": "Ваши текущие фильтры:",
-            "scholarship": "Стипендия",
-            "clearFilters": "Очистить все фильтры",
-            "tryInstead": "Популярные запросы:",
-            "browseAll": "Просмотреть все программы",
-            "exploreUniversities": "Изучить университеты"
-        },
-        "recentlyViewed": {
-            "title": "Недавно просмотренные",
-            "clear": "Очистить",
-            "viewAgain": "Просмотреть снова",
-            "justNow": "Только что",
-            "minutesAgo": "{count}м назад",
-            "hoursAgo": "{count}ч назад",
-            "daysAgo": "{count}д назад"
-        },
-        "quickAccess": "Быстрый доступ",
-        "quickChips": {
-            "cs": "Информатика",
-            "business": "Бизнес",
-            "engineering": "Инженерия",
-            "medicine": "Медицина",
-            "arts": "Искусство",
-            "economics": "Экономика"
-        },
-        "aiSearch": {
-            "thinking": "AI is thinking... finding related fields for \"{query}\"",
-            "active": "Smart Search Active",
-            "found": "Found programs related to: {terms}",
-            "working": "AI is working on it...",
-            "looking": "Looking for programs related to \"{query}\""
-        },
-        "view": {
-            "grid": "Сетка",
-            "map": "Карта"
-        }
-    },
-    "Login": {
-        "title": "С возвращением",
-        "description": "Войдите в свой аккаунт",
-        "email": "Электронная почта",
-        "password": "Пароль",
-        "rememberMe": "Запомнить меня",
-        "forgotPassword": "Забыли пароль?",
-        "signIn": "Войти",
-        "noAccount": "Нет аккаунта?",
-        "signUp": "Зарегистрироваться",
-        "orContinueWith": "Или продолжить с",
-        "google": "Продолжить с Google",
-        "success": "Вход выполнен успешно!",
-        "error": "Произошла ошибка при входе"
-    },
-    "Register": {
-        "title": "Создать аккаунт",
-        "description": "Начните свой путь к образованию в Китае",
-        "firstName": "Имя",
-        "lastName": "Фамилия",
-        "email": "Электронная почта",
-        "password": "Пароль",
-        "confirmPassword": "Подтвердите пароль",
-        "agreeToTerms": "Я принимаю Условия использования и Политику конфиденциальности",
-        "signUp": "Зарегистрироваться",
-        "haveAccount": "Уже есть аккаунт?",
-        "signIn": "Войти",
-        "orContinueWith": "Или продолжить с",
-        "google": "Продолжить с Google"
-    },
-    "Dashboard": {
-        "welcome": "Добро пожаловать",
-        "overview": "Обзор",
-        "applications": "Заявки",
-        "documents": "Документы",
-        "messages": "Сообщения",
-        "settings": "Настройки",
-        "recentActivity": "Недавняя активность",
-        "notifications": "Уведомления",
-        "profile": "Профиль",
-        "sidebar": {
-            "myApplications": "My Applications",
-            "profile": "Profile",
-            "messages": "Messages",
-            "payments": "Payments",
-            "documents": "Documents",
-            "settings": "Settings",
-            "logout": "Log out"
-        },
-        "title": "Dashboard",
-        "subtitle": "Welcome back! Here's your application overview.",
-        "newApplication": "New Application",
-        "stats": {
-            "totalApplications": "Total Applications",
-            "submitted": "{count} submitted",
-            "pendingActions": "Pending Actions",
-            "requiresAttention": "Requires your attention",
-            "offersReceived": "Offers Received",
-            "congratulations": "Congratulations!",
-            "successRate": "Success Rate",
-            "acceptanceRate": "Acceptance rate"
-        },
-        "recentApplications": "My Applications",
-        "appliedOn": "Applied on {date}",
-        "viewDetails": "View Details",
-        "noApplications": {
-            "title": "No Applications Yet",
-            "description": "Start your journey by browsing programs and submitting your first application."
-        },
-        "browsePrograms": "Browse Programs"
-    },
-    "Application": {
-        "status": {
-            "draft": "Черновик",
-            "submitted": "Отправлено",
-            "underReview": "На рассмотрении",
-            "accepted": "Принято",
-            "rejected": "Отклонено",
-            "waitlisted": "В списке ожидания"
-        },
-        "actions": {
-            "continue": "Продолжить",
-            "view": "Просмотр",
-            "withdraw": "Отозвать",
-            "submit": "Отправить"
-        }
-    },
-    "UniversitiesCard": {
-        "programs": "Программы",
-        "tuitionFrom": "Плата от",
-        "viewUniversity": "Смотреть университет",
-        "viewPrograms": "Смотреть программы",
-        "tuition": "Tuition",
-        "fastTrack": "Fast Track",
-        "scholarship": "Scholarship",
-        "contactForPricing": "Contact for pricing",
-        "cscaExam": "CSCA Exam",
-        "addToCompare": "Add to compare",
-        "removeFromCompare": "Remove from compare"
-    },
-    "DestinationsSection": {
-        "badge": "Популярные направления",
-        "title": "Откройте лучшие <gradient>университетские города</gradient>",
-        "description": "Исследуйте динамичные мегаполисы Китая, каждый из которых предлагает уникальные академические возможности и богатый культурный опыт.",
-        "universityIn": "университетов в",
-        "exploreCity": "Исследовать",
-        "viewAllCities": "Смотреть все города"
-    },
-    "AdminPanel": {
-        "branding": "Studyatchina",
-        "navigation": {
-            "overview": "Обзор",
-            "universities": "Университеты",
-            "programs": "Программы",
-            "applications": "Заявки",
-            "users": "Пользователи",
-            "scholarships": "Стипендии",
-            "intakes": "Наборы",
-            "settings": "Настройки"
-        },
-        "copyright": "© 2024 Studyatchina. Все права защищены."
-    },
-    "ProgramDetail": {
-        "highlights": {
-            "title": "Основные Характеристики Программы",
-            "tuition": "Стоимость Обучения",
-            "duration": "Продолжительность",
-            "language": "Язык",
-            "level": "Уровень Образования",
-            "gpaRequirement": "Минимальный GPA",
-            "languageRequirements": "Language Score"
-        },
-        "deadline": {
-            "daysRemaining": "Осталось {days} дн.",
-            "endingToday": "Прием заявок заканчивается сегодня!",
-            "closed": "Прием заявок закрыт",
-            "deadline": "Крайний срок"
-        },
-        "breadcrumb": {
-            "home": "Home",
-            "programs": "Programs"
-        },
-        "badges": {
-            "intake": "Intake: {intake}",
-            "contactUniversity": "Contact University",
-            "fastTrack": "Fast Track Acceptance",
-            "specialRequirements": "Special Requirements"
-        },
-        "buttons": {
-            "apply": "Apply Now",
-            "downloadBrochure": "Download Brochure",
-            "viewUniversity": "View University",
-            "startApplication": "Start Application",
-            "contactAdvisor": "Contact Advisor"
-        },
-        "overview": {
-            "title": "Program Overview",
-            "noDescription": "No description available for this program.",
-            "curriculum": "Core Curriculum",
-            "curriculumPlaceholder": "Core courses information will be updated soon"
-        },
-        "requirements": {
-            "title": "Admission Requirements"
-        },
-        "scholarships": {
-            "title": "Scholarship Options for This Program",
-            "description": "Choose the scholarship type that best fits your budget"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions",
-            "deadline": "The application deadline is {deadline}.",
-            "accommodationQ": "Is accommodation provided?",
-            "accommodationA": "Yes, on-campus accommodation is available for international students.",
-            "workQ": "Can I work part-time?",
-            "workA": "Yes, international students can apply for work-study programs or internships with proper permits.",
-            "deadlineQ": "What is the application deadline?"
-        },
-        "sidebar": {
-            "ready": "Ready to Apply?",
-            "free": "Free Application",
-            "fast": "Fast Processing",
-            "expert": "Expert Support",
-            "cost": "Cost Breakdown",
-            "applicationFee": "Application Fee",
-            "serviceFee": "Service Fee",
-            "disclaimer": "* Additional costs may include accommodation, visa, and living expenses",
-            "why": "Why Choose This Program?",
-            "reasons": {
-                "degree": "Internationally recognized degree",
-                "faculty": "Experienced faculty members",
-                "facilities": "Modern facilities & resources",
-                "career": "Career development support"
-            }
-        },
-        "accommodation": {
-            "title": "Accommodation Options"
-        }
-    },
-    "CSCAGuide": {
-        "meta": {
-            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-        },
-        "backHome": "Back to Home",
-        "newRequirement": "New Requirement for 2026",
-        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-        "sections": {
-            "overview": {
-                "title": "Overview",
-                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-                "keyDates": {
-                    "title": "Key Dates",
-                    "launch": "2025: Official Launch",
-                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-                    "full": "2028: Full Implementation across all Universities"
-                }
-            },
-            "structure": {
-                "title": "Exam Structure",
-                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-                "table": {
-                    "subject": "Subject",
-                    "duration": "Duration",
-                    "questions": "Questions",
-                    "requirement": "Requirement",
-                    "chinese": {
-                        "name": "Specialized Chinese",
-                        "req": "Humanities/Science"
-                    },
-                    "math": {
-                        "name": "Mathematics",
-                        "req": "Mandatory"
-                    },
-                    "physics": {
-                        "name": "Physics",
-                        "req": "Optional / Major-dependent"
-                    },
-                    "chemistry": {
-                        "name": "Chemistry",
-                        "req": "Optional / Major-dependent"
-                    }
-                }
-            },
-            "subjects": {
-                "title": "Subject Details & Syllabus",
-                "chinese": {
-                    "title": "Specialized Chinese",
-                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-                    "char": {
-                        "title": "Character Recognition",
-                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-                    },
-                    "reading": {
-                        "title": "Reading Comprehension",
-                        "desc": "Highest weight. Sci/Tech/Social essays."
-                    },
-                    "words": {
-                        "title": "Word Distinction",
-                        "desc": "Synonyms, academic vocabulary."
-                    },
-                    "sentences": {
-                        "title": "Sentence/Paragraph",
-                        "desc": "Ordering sentences, completing logic."
-                    }
-                },
-                "math": {
-                    "title": "Mathematics",
-                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-                    "note": "Both Chinese and English versions available.",
-                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-                },
-                "chem": {
-                    "title": "Chemistry",
-                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-                },
-                "phys": {
-                    "title": "Physics",
-                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
-                }
-            },
-            "fees_and_process": {
-                "title": "Application Process & Fees",
-                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-            },
-            "formats": {
-                "title": "Test Modes",
-                "online": {
-                    "title": "Online Proctored",
-                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
-                },
-                "computer": {
-                    "title": "Computer-Based",
-                    "desc": "At official test centers (classrooms). Better stability."
-                },
-                "paper": {
-                    "title": "Paper-Based",
-                    "desc": "Traditional format. Limited regions."
-                }
-            },
-            "faq": {
-                "title": "Frequently Asked Questions",
-                "q1": {
-                    "q": "Does the CSCA replace the HSK?",
-                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
-                },
-                "q2": {
-                    "q": "Can I take it in English?",
-                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-                },
-                "q3": {
-                    "q": "How long is the score valid?",
-                    "a": "CSCA results are valid for <strong>2 years</strong>."
-                },
-                "q4": {
-                    "q": "Who is exempt from the CSCA?",
-                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-                },
-                "q5": {
-                    "q": "Are scores required for 2026 intake?",
-                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-                },
-                "comparison": {
-                    "title": "CSCA vs. HSK",
-                    "feature": "Feature",
-                    "hsk": "HSK",
-                    "csca": "CSCA",
-                    "focus": "Focus",
-                    "focusHsk": "Daily Communication",
-                    "focusCsca": "Academic Readiness",
-                    "vocab": "Vocabulary",
-                    "vocabHsk": "Life/Everyday",
-                    "vocabCsca": "Technical/Academic",
-                    "req": "Requirement",
-                    "reqHsk": "Language Cert",
-                    "reqCsca": "Academic Entrance"
-                }
-            },
-            "sidebar": {
-                "title": "Important Details",
-                "dates": {
-                    "title": "Dates",
-                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
-                },
-                "prep": {
-                    "title": "Preparation",
-                    "desc": "Difficulty level: Junior/Senior High"
-                },
-                "passing": {
-                    "title": "Fees",
-                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-                },
-                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-                "register": "Official Registration Site",
-                "tutor": {
-                    "title": "Fast-Track with Study at China",
-                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-                    "button": "Apply With Us"
-                }
-            }
-        }
-    },
-    "UniversityScholarships": {
-        "loading": "Loading scholarships...",
-        "noScholarships": "No scholarships available for this university yet.",
-        "options": "Scholarship Options",
-        "discover": "Discover More Opportunities",
-        "explore": "Explore All Scholarship Options",
-        "description": "Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.",
-        "viewAll": "View All Scholarships",
-        "advice": "Get Personalized Advice",
-        "mostPopular": "Most Popular",
-        "defaultDescription": "Great option for international students.",
-        "tuitionCoverage": "Tuition Coverage",
-        "serviceFee": "Service Fee",
-        "whatsIncluded": "What's Included",
-        "applyNow": "Apply Now",
-        "howItWorks": {
-            "title": "How Scholarships Work",
-            "description": "The scholarship covers a percentage of your tuition fees. You pay the remaining tuition to the university + the one-time service fee for application support, visa assistance, and guidance.",
-            "learnMore": "Learn more about scholarships →"
-        },
-        "benefits": {
-            "tuitionCoverage": "{percentage}% tuition fee coverage",
-            "noScholarship": "No scholarship (0% coverage)",
-            "support": "Application support & guidance",
-            "visa": "Visa assistance",
-            "orientation": "Pre-departure orientation",
-            "accommodation": "Accommodation arrangement support"
-        },
-        "action": "Action",
-        "scholarshipType": "Scholarship Type"
-    },
-    "GuidedTour": {
-        "skip": "Пропустить",
-        "next": "Далее",
-        "finish": "Понятно!",
-        "programs": {
-            "search": {
-                "title": "Find Your Program",
-                "content": "Use the search bar to find programs by name, field of study, or keywords."
-            },
-            "filters": {
-                "title": "Refine Your Search",
-                "content": "Use filters to narrow down by degree level, location, language, and budget."
-            },
-            "card": {
-                "title": "Program Details",
-                "content": "Click on any program card to see full details, requirements, and how to apply."
-            },
-            "compare": {
-                "title": "Compare Programs",
-                "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
-            }
-        }
-    },
-    "UniversityDetail": {
-        "quickLinks": {
-            "exploreCourses": "Explore Courses",
-            "getFunded": "Get Funded",
-            "findHousing": "Find Housing",
-            "findLocation": "Location"
-        },
-        "location": {
-            "title": "Campus Location",
-            "viewOnMap": "View on Google Maps"
-        },
-        "about": "About",
-        "whyChooseUs": "Why Choose Us",
-        "programs": {
-            "title": "Programs",
-            "allPrograms": "All Programs",
-            "noPrograms": "No programs found for this level.",
-            "viewProgram": "View Program",
-            "tuitionFee": "Tuition Fee",
-            "perYear": "per year",
-            "allLanguages": "All Languages",
-            "filterByLanguage": "Language",
-            "showing": "Showing {start}-{end} of {total} programs",
-            "previousPage": "Previous",
-            "nextPage": "Next",
-            "pageOf": "Page {current} of {total}"
-        },
-        "scholarships": {
-            "title": "Available Scholarship Options",
-            "description": "Choose the scholarship type that best fits your budget for programs at this university"
-        },
-        "campus": {
-            "tour": "Campus Tour",
-            "gallery": "Campus Gallery",
-            "viewImage": "View Image"
-        },
-        "admission": {
-            "title": "Admission Requirements",
-            "academic": "Academic Requirements",
-            "language": "Language Requirements",
-            "highSchool": "High school diploma or equivalent",
-            "gpa": "Minimum GPA of 3.0/4.0",
-            "transcripts": "Academic transcripts",
-            "ielts": "IELTS 6.0 or TOEFL 80+",
-            "hsk": "HSK 4 for Chinese programs",
-            "english": "English proficiency certificate"
-        },
-        "sidebar": {
-            "ready": "Ready to Apply?",
-            "startJourney": "Start your journey at {university}",
-            "applyNow": "Apply Now",
-            "downloadBrochure": "Download Brochure",
-            "quickActions": "Quick Actions",
-            "requestInfo": "Request Information",
-            "chatAdvisor": "Chat with Advisor",
-            "virtualTour": "Virtual Campus Tour",
-            "scheduleCall": "Schedule a Call",
-            "quickFacts": "Quick Facts",
-            "location": "Location",
-            "founded": "Founded",
-            "students": "Students",
-            "international": "International",
-            "ranking": "Ranking",
-            "officialWebsite": "Official Website"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions"
-        }
-    },
-    "RequestInformation": {
-        "title": "Request Information",
-        "description": "Get more details about {university}. Fill out the form below.",
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "phone": "Phone Number",
-        "interest": "Interest",
-        "selectInterest": "Select your interest",
-        "interests": {
-            "admission": "Admission Requirements",
-            "programs": "Available Programs",
-            "scholarships": "Scholarship Opportunities",
-            "campus": "Campus Life",
-            "other": "Other"
-        },
-        "message": "Message",
-        "messagePlaceholder": "I am interested in studying at {university}...",
-        "submit": "Send Request",
-        "sending": "Sending...",
-        "success": "Request sent successfully! We will contact you soon.",
-        "error": "Failed to send request. Please try again."
-    },
-    "Accommodation": {
-        "notAvailable": "Accommodation information not available",
-        "badge": "Student Accommodation",
-        "title": "On-Campus Housing Options",
-        "priceRange": "Price Range",
-        "generalFacilities": "General Facilities",
-        "availableRoomTypes": "Available Room Types",
-        "defaultTitle": "Accommodation",
-        "priceOnRequest": "Price on request",
-        "month": "month",
-        "roomFeatures": "Room Features:",
-        "importantInfo": {
-            "title": "Important Information",
-            "fees": "Accommodation fees are paid per semester or academic year",
-            "availability": "Room allocation is subject to availability",
-            "prices": "Prices may vary and should be confirmed with the university",
-            "deposit": "Deposit may be required upon check-in"
-        }
-    },
-    "UniversityHeader": {
-        "fastTrack": "Fast Track Acceptance",
-        "est": "Est. {founded}",
-        "studentsCount": "{students} Students",
-        "website": "Website",
-        "applyNow": "Apply Now",
-        "requestInfo": "Request Info",
-        "brochure": "Brochure",
-        "virtualTour": "Virtual Tour",
-        "scheduleCall": "Schedule Call",
-        "chatAdvisor": "Chat Advisor",
-        "save": "Save",
-        "saved": "Saved",
-        "share": "Share",
-        "founded": "Founded",
-        "students": "Students",
-        "ranking": "Ranking",
-        "international": "International"
-    },
-    "Profile": {
-        "title": "My Profile",
-        "subtitle": "Manage your personal information and preferences",
-        "completion": "Profile Completion",
-        "completeProfile": "Complete your profile to speed up future applications",
-        "photo": {
-            "title": "Profile Photo",
-            "description": "Upload a professional photo",
-            "upload": "Upload Photo",
-            "uploading": "Uploading...",
-            "hint": "JPG, PNG or GIF. Max 5MB."
-        },
-        "personalInfo": {
-            "title": "Personal Information",
-            "description": "Your basic details for applications"
-        },
-        "fullName": "Full Name *",
-        "email": "Email",
-        "dob": "Date of Birth",
-        "phone": "Phone Number",
-        "nationality": "Nationality",
-        "passportNumber": "Passport Number",
-        "address": {
-            "title": "Address",
-            "description": "Your current residential address",
-            "street": "Street Address",
-            "city": "City",
-            "postalCode": "Postal Code"
-        },
-        "emergency": {
-            "title": "Emergency Contact",
-            "description": "Person to contact in case of emergency",
-            "name": "Name",
-            "phone": "Phone",
-            "relationship": "Relationship"
-        },
-        "save": "Save Profile",
-        "saving": "Saving...",
-        "success": "Успешно",
-        "error": "Ошибка"
-    },
-    "Documents": {
-        "title": "My Documents",
-        "subtitle": "Manage your documents for university applications",
-        "stats": {
-            "total": "Total Documents",
-            "uploaded": "Uploaded files",
-            "verified": "Verified",
-            "approved": "Approved by admin",
-            "pending": "Pending Review",
-            "awaiting": "Awaiting verification"
-        },
-        "yourDocuments": "Your Documents",
-        "manageDocuments": "Upload and manage your application documents",
-        "uploadDocument": "Upload Document",
-        "noDocuments": "No documents yet",
-        "uploadFirst": "Upload your first document to get started",
-        "size": "Size",
-        "uploaded": "Uploaded",
-        "download": "Download",
-        "delete": "Delete",
-        "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
-        "uploadDialog": {
-            "title": "Upload Document",
-            "description": "Select the document type and upload your file",
-            "type": "Document Type *",
-            "selectType": "Select document type",
-            "alreadyUploaded": "(Already Uploaded)",
-            "file": "File *",
-            "selected": "Selected",
-            "formats": "Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max 10MB.",
-            "cancel": "Cancel",
-            "uploading": "Uploading...",
-            "upload": "Upload"
-        },
-        "error": {
-            "fileSize": "File must be less than 10MB",
-            "selectFile": "Please select a document type and file",
-            "fileType": "Please upload an image file",
-            "imageSize": "Image must be less than 5MB"
-        },
-        "success": {
-            "uploaded": "Document uploaded successfully!",
-            "deleted": "Document deleted"
-        },
-        "types": {
-            "passport": "Passport",
-            "transcript": "Academic Transcript",
-            "diploma": "Diploma/Certificate",
-            "recommendation_letter": "Recommendation Letter",
-            "personal_statement": "Personal Statement",
-            "cv": "CV/Resume",
-            "language_certificate": "Language Certificate (IELTS/TOEFL)",
-            "photo": "Passport Photo",
-            "bank_statement": "Bank Statement",
-            "health_certificate": "Health Certificate",
-            "police_clearance": "Police Clearance",
-            "other": "Other Document"
-        },
-        "documentRequest": {
-            "title": "Document Request",
-            "description": "Please upload the following documents:\n1. Passport Copy\n2. Degree Certificate\n3. Personal Statement",
-            "note": "make sure everything is translated to all languages"
-        }
-    },
-    "Status": {
-        "pending_documents": "Pending Documents",
-        "pending_payment": "Pending Payment",
-        "payment_verification": "Payment Verification",
-        "submitted": "Submitted",
-        "under_review": "Under Review",
-        "accepted": "Accepted",
-        "rejected": "Rejected",
-        "unknown": "Unknown"
-    },
-    "Auth": {
-        "login": {
-            "title": "Sign in",
-            "description": "Enter your email and password to access your account",
-            "emailLabel": "Email",
-            "emailPlaceholder": "m@example.com",
-            "passwordLabel": "Password",
-            "forgotPassword": "Forgot password?",
-            "submit": "Sign In",
-            "orContinueWith": "Or continue with",
-            "continueWithGoogle": "Continue with Google",
-            "connecting": "Connecting...",
-            "noAccount": "Don't have an account?",
-            "signUp": "Sign up",
-            "success": "Login successful! Redirecting...",
-            "error": "Something went wrong",
-            "googleError": "Failed to login with Google"
-        },
-        "layout": {
-            "branding": "Studyatchina",
-            "heroTitle": "Your Gateway to Chinese Universities",
-            "heroDescription": "Join thousands of international students pursuing their dreams in China's top universities.",
-            "programsTitle": "500+ Programs",
-            "programsDescription": "Access programs from top Chinese universities",
-            "guidanceTitle": "Expert Guidance",
-            "guidanceDescription": "Get support throughout your application journey",
-            "scholarshipsTitle": "Scholarship Opportunities",
-            "scholarshipsDescription": "Explore various scholarship options available",
-            "copyright": "© 2024 Studyatchina. All rights reserved."
-        }
-    },
-    "Notifications": {
-        "title": "Notifications",
-        "markAllRead": "Mark all read",
-        "noNotifications": "No notifications yet",
-        "viewAll": "View all notifications",
-        "loading": "Loading notifications...",
-        "types": {
-            "statusChange": "Application Status Update",
-            "documentRequested": "Document Requested",
-            "paymentRequested": "Payment Required",
-            "messageReceived": "New Message",
-            "newApplication": "New Application",
-            "newLead": "New Lead",
-            "documentUploaded": "Document Uploaded",
-            "acceptanceLetter": "Acceptance Letter"
-        },
-        "messages": {
-            "statusChange": "Your application status has changed to {status}"
-        }
-    },
-    "Apply": {
-        "title": "Apply for Program",
-        "steps": {
-            "info": "Info",
-            "documents": "Docs",
-            "payment": "Pay",
-            "review": "Review",
-            "personalInfo": "Personal Information",
-            "requiredDocuments": "Required Documents",
-            "paymentInfo": "Payment",
-            "reviewSubmit": "Review & Submit"
-        },
-        "sections": {
-            "identity": "Identity & Personal Details",
-            "identitySubtitle": "Please provide your details as shown on your passport",
-            "contact": "Contact Information",
-            "address": "Home Address",
-            "education": "Education Background",
-            "educationSubtitle": "Your most recent academic qualification",
-            "language": "Language Proficiency",
-            "languageSubtitle": "Chinese and English levels for admission purposes",
-            "emergency": "Emergency Contact",
-            "emergencySubtitle": "Required for your safety abroad"
-        },
-        "options": {
-            "male": "Male",
-            "female": "Female",
-            "islam": "Islam",
-            "christianity": "Christianity",
-            "buddhism": "Buddhism",
-            "hinduism": "Hinduism",
-            "noReligion": "No Religion",
-            "other": "Other",
-            "single": "Single",
-            "married": "Married",
-            "divorced": "Divorced",
-            "highSchool": "High School",
-            "diploma": "Diploma",
-            "bachelor": "Bachelor's Degree",
-            "master": "Master's Degree",
-            "doctorate": "Doctorate / PhD",
-            "noProficiency": "No Proficiency",
-            "basic": "Basic",
-            "intermediate": "Intermediate",
-            "advanced": "Advanced",
-            "native": "Native Speaker"
-        },
-        "labels": {
-            "firstName": "First Name",
-            "lastName": "Last Name",
-            "fullName": "Full Name (as in passport)",
-            "email": "Email Address",
-            "phone": "Mobile Phone Number",
-            "country": "Nationality",
-            "passport": "Passport Number",
-            "gender": "Gender",
-            "dateOfBirth": "Date of Birth",
-            "religion": "Religion",
-            "maritalStatus": "Marital Status",
-            "wechatId": "WeChat ID",
-            "address": "Home Address",
-            "city": "City",
-            "postalCode": "Postal Code",
-            "highestEducation": "Highest Education",
-            "schoolName": "School / University Name",
-            "majorField": "Major / Field of Study",
-            "graduationYear": "Graduation Year",
-            "gpaScore": "GPA / Score",
-            "chineseProficiency": "Chinese (HSK Level)",
-            "englishProficiency": "English Proficiency",
-            "testScore": "Test Score (IELTS/TOEFL)",
-            "preferredIntake": "Preferred Intake",
-            "emergencyContactName": "Emergency Contact Name",
-            "emergencyContactPhone": "Emergency Contact Phone",
-            "emergencyContactRelationship": "Relationship"
-        },
-        "placeholders": {
-            "firstName": "e.g. John",
-            "lastName": "e.g. Smith",
-            "fullName": "e.g. John Smith",
-            "email": "e.g. john@example.com",
-            "phone": "e.g. 555 123 4567",
-            "passport": "e.g. AB1234567",
-            "selectGender": "Select gender",
-            "selectReligion": "Select religion",
-            "selectMaritalStatus": "Select marital status",
-            "wechatId": "e.g. wxid_abc123",
-            "address": "e.g. 123 Main Street, Apt 4B",
-            "city": "e.g. Cairo",
-            "postalCode": "e.g. 11511",
-            "selectEducation": "Select highest education",
-            "schoolName": "e.g. Cairo University",
-            "majorField": "e.g. Computer Science",
-            "graduationYear": "e.g. 2024",
-            "gpaScore": "e.g. 3.5 / 4.0",
-            "selectChinese": "Select HSK level",
-            "selectEnglish": "Select proficiency",
-            "testScore": "e.g. IELTS 6.5",
-            "emergencyName": "e.g. Parent or Guardian name",
-            "emergencyPhone": "e.g. 555 123 4567",
-            "relationship": "e.g. Parent, Spouse"
-        },
-        "hints": {
-            "phoneHint": "Enter your phone number without country code",
-            "passportHint": "Enter your passport number exactly as shown"
-        },
-        "buttons": {
-            "next": "Next",
-            "continueToDocuments": "Continue to Documents",
-            "continueToPayment": "Continue to Payment",
-            "continueToReview": "Continue to Review",
-            "submitApplication": "Submit Application",
-            "back": "Back",
-            "uploadDocument": "Upload",
-            "selectFile": "Select File"
-        },
-        "validation": {
-            "missingFieldsTitle": "Please fill in the following required fields:",
-            "required": "This field is required"
-        },
-        "documents": {
-            "title": "Required Documents",
-            "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
-            "mandatory": "Required",
-            "optional": "Optional",
-            "uploaded": "Uploaded",
-            "pending": "Pending"
-        },
-        "payment": {
-            "title": "Application Fee",
-            "applicationFee": "Application Fee",
-            "serviceFee": "Service Fee",
-            "total": "Total",
-            "payNow": "Pay Now",
-            "payLater": "Pay Later"
-        },
-        "review": {
-            "title": "Review Your Application",
-            "personalDetails": "Personal Details",
-            "uploadedDocuments": "Uploaded Documents",
-            "confirmSubmit": "I confirm that all information provided is accurate",
-            "submitting": "Submitting...",
-            "success": "Application Submitted Successfully!",
-            "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
-        },
-        "errors": {
-            "generic": "An error occurred. Please try again.",
-            "uploadFailed": "Failed to upload document. Please try again.",
-            "paymentFailed": "Payment failed. Please try again."
-        }
-    },
-    "AISearch": {
-        "placeholder": "Try: 'Master's in Engineering under 30000 RMB in Beijing'",
-        "search": "Search",
-        "filters": "AI understood",
-        "error": "Something went wrong. Please try again."
-    },
-    "AIChat": {
-        "title": "Chen Wei 陈伟",
-        "subtitle": "Your Study Advisor",
-        "typing": "Typing...",
-        "greeting": "Hi there! 👋 I'm Chen Wei (陈伟), your personal study advisor. I'm here to help you find the perfect program in China, answer your questions, and even guide you through the application process. What brings you here today?",
-        "inputPlaceholder": "Type your message...",
-        "thinking": "Thinking...",
-        "error": "Sorry, I encountered an error. Please try again.",
-        "quickStart": "Quick start:",
-        "quickFind": "🎓 Find Programs",
-        "quickScholarship": "💰 Scholarships",
-        "quickApply": "📝 Start Application",
-        "chatHistory": "Chat History",
-        "newChat": "New Chat",
-        "noHistory": "No previous conversations",
-        "backToChat": "Back to Chat",
-        "loginPrompt": "🔐 Log in to save your chat history and track applications",
-        "login": "Log In",
-        "register": "Register"
-    },
-    "PaymentDashboard": {
-        "title": "Payments",
-        "subtitle": "Manage your application payments",
-        "totalAmount": "Total Amount",
-        "totalPaid": "Total Paid",
-        "pending": "Pending",
-        "rest": "Rest Amount",
-        "totalTransactions": "Total Transactions",
-        "successfullyProcessed": "Successfully processed",
-        "paymentDue": "payment(s) due",
-        "allTime": "All time",
-        "amount": "Amount",
-        "status": "Status",
-        "created": "Created",
-        "method": "Method",
-        "payNow": "Pay Now",
-        "viewApplication": "View Application",
-        "paymentProof": "Payment Proof",
-        "paymentRequest": {
-            "title": "Payment Request",
-            "amount": "USD 200",
-            "description": "make this payment",
-            "note": "Please complete the payment to proceed with your application."
-        },
-        "paymentStatuses": {
-            "completed": "Completed",
-            "pending": "Pending",
-            "processing": "Processing",
-            "failed": "Failed",
-            "refunded": "Refunded"
-        },
-        "types": {
-            "application_fee": "Application Fee",
-            "service_fee": "Service Fee",
-            "tuition_deposit": "Tuition Deposit",
-            "full_tuition": "Full Tuition",
-            "accommodation": "Accommodation",
-            "other": "Other"
-        },
-        "assistance": {
-            "title": "Payment Assistance",
-            "description": "You have {count} pending payment(s). If you need help with payments or have questions:",
-            "point1": "Contact our support team for payment assistance",
-            "point2": "Check if you're eligible for payment plans",
-            "point3": "Verify your payment method is supported"
-        },
-        "paidOn": "Paid On",
-        "reference": "Reference",
-        "verifiedByAdmin": "Verified by admin",
-        "expires": "Expires:",
-        "adminNote": "Admin Note:",
-        "paymentLinkExpired": "Payment Link Expired",
-        "document": "Document:",
-        "noPayments": "No Payments",
-        "noPaymentsDesc": "You don't have any pending payments.",
-        "contactSupport": "Contact Support"
-    },
-    "Refunds": {
-        "title": "Refund Requests",
-        "statusTitle": "Refund Status",
-        "requestButton": "Request Refund",
-        "submittedTitle": "Refund Request Submitted",
-        "submittedOn": "Submitted on {date}",
-        "reasonLabel": "Reason",
-        "adminResponseLabel": "Admin Response",
-        "rejectedTitle": "Application Rejected",
-        "rejectedMessage": "You may be eligible for a refund. Click the button to submit a request.",
-        "modalTitle": "Request Refund",
-        "modalDescription": "Submit a request for a refund. Please explain why you are requesting this refund.",
-        "modalReasonLabel": "Reason for Refund",
-        "modalPlaceholder": "I was rejected because...",
-        "submitButton": "Submit Request",
-        "cancelButton": "Cancel",
-        "successMessage": "Refund request submitted successfully",
-        "errorMessage": "Failed to submit request",
-        "table": {
-            "student": "Student",
-            "program": "University / Program",
-            "reason": "Reason",
-            "status": "Status",
-            "date": "Date",
-            "actions": "Actions",
-            "approve": "Approve",
-            "reject": "Reject",
-            "noRequests": "No refund requests found",
-            "approveTitle": "Approve Refund Request",
-            "rejectTitle": "Reject Refund Request",
-            "approveDescription": "This will mark the request as approved and update the application payment status to refunded.",
-            "rejectDescription": "This will mark the request as rejected.",
-            "adminResponsePlaceholder": "Add a note to the student..."
-        }
-    },
-    "Messages": {
-        "title": "Messages",
-        "subtitle": "Communication with admissions team",
-        "conversations": "Conversations",
-        "unreadMessages": "Unread Messages",
-        "actionRequired": "Action Required",
-        "actionCompleted": "Completed",
-        "noMessages": "No messages yet",
-        "noMessagesDesc": "Messages from the admissions team will appear here",
-        "reply": "Reply",
-        "replyingTo": "Replying to {name}",
-        "typeReply": "Type your reply...",
-        "sendReply": "Send Reply",
-        "sending": "Sending...",
-        "cancel": "Cancel",
-        "you": "You",
-        "admin": "Admissions Team",
-        "replyTooltip": "Reply to this message",
-        "actionRequiredMessage": "Please respond to this message or complete the requested action.",
-        "takeAction": "Take Action",
-        "attachment": "attachment",
-        "attachments": "attachments"
-    },
-    "QSRankings": {
-        "meta": {
-            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
-            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
-        },
-        "hero": {
-            "badge": "QS World University Rankings 2026",
-            "titleHighlight": "Chinese Universities",
-            "titleRest": "in Global Rankings",
-            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
-            "breadcrumb": "QS Rankings 2026",
-            "statRanked": "Ranked Universities",
-            "statHighest": "Highest Global Rank",
-            "statTop50": "In Global Top 50",
-            "statCities": "Cities Represented"
-        },
-        "content": {
-            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
-            "browseAllTitle": "Browse All Rankings",
-            "searchPlaceholder": "Search universities...",
-            "allCities": "All Cities",
-            "showing": "Showing",
-            "of": "of",
-            "universities": "universities",
-            "university": "university",
-            "inCity": "in",
-            "matching": "matching",
-            "noResults": "No universities found",
-            "noResultsHint": "Try adjusting your search or filters",
-            "overallScore": "Overall Score",
-            "score": "Score",
-            "world": "World",
-            "china": "China",
-            "ctaTitle": "Ready to Study at a Top-Ranked University?",
-            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
-            "browseUniversities": "Browse Universities",
-            "explorePrograms": "Explore Programs",
-            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
-            "visitSite": "topuniversities.com",
-            "viewProfile": "View Profile",
-            "tierTop50": "Top 50 Globally",
-            "tierTop200": "Top 51–200",
-            "tierTop500": "Top 201–500",
-            "tierRemaining": "501+"
-        }
+    "destinations": {
+      "title": "Направления",
+      "viewAll": "Все направления",
+      "beijing": {
+        "title": "Пекин",
+        "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
+      },
+      "shanghai": {
+        "title": "Шанхай",
+        "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
+      },
+      "guangzhou": {
+        "title": "Гуанчжоу",
+        "description": "Southern metropolis with leading medical and engineering schools."
+      },
+      "wuhan": {
+        "title": "Ухань",
+        "description": "Historic education center with Wuhan University and HUST."
+      },
+      "hangzhou": {
+        "title": "Ханчжоу",
+        "description": "Tech hub and scenic city home to Zhejiang University."
+      },
+      "nanjing": {
+        "title": "Нанкин",
+        "description": "Ancient capital with Nanjing University and Southeast University."
+      },
+      "chengdu": {
+        "title": "Чэнду",
+        "description": "Western China gateway with Sichuan University and affordable living."
+      },
+      "xian": {
+        "title": "Сиань",
+        "description": "Historic Silk Road city with Xi'an Jiaotong University."
+      }
     }
+  },
+  "Common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "view": "Просмотр",
+    "back": "Назад"
+  },
+  "Footer": {
+    "stayUpdated": "Будьте в курсе",
+    "getLatestUpdates": "Подпишитесь на последние обновления",
+    "subscribeText": "Подпишитесь, чтобы получать новости о программах, стипендиях и сроках подачи заявок.",
+    "description": "Ваш надежный партнер в поиске и поступлении в лучшие университеты Китая. Присоединяйтесь к тысячам студентов, которые успешно начали свой академический путь вместе с нами.",
+    "explore": "Изучить",
+    "programs": "Программы",
+    "universities": "Университеты",
+    "scholarships": "Стипендии",
+    "howToApply": "Как подать заявку",
+    "faq": "FAQ",
+    "forStudents": "Для студентов",
+    "createAccount": "Создать аккаунт",
+    "trackApplication": "Отследить заявку",
+    "documentChecklist": "Список документов",
+    "studentPortal": "Студенческий портал",
+    "contact": "Контакты",
+    "rightsReserved": "Все права защищены.",
+    "designedBy": "Разработано и поддерживается",
+    "termsOfService": "Условия использования",
+    "privacyPolicy": "Политика конфиденциальности",
+    "cookiePolicy": "Политика Cookie"
+  },
+  "ScholarshipCTA": {
+    "badge": "Откройте больше возможностей",
+    "title": "Изучите все варианты стипендий",
+    "description": "Не знаете, какая стипендия вам подходит? Просмотрите наш полный справочник по стипендиям, чтобы сравнить все варианты, понять требования и найти идеальный вариант для вашего академического пути.",
+    "viewAll": "Смотреть все стипендии",
+    "getAdvice": "Получить консультацию"
+  },
+  "CscaCta": {
+    "badge": "Обязательно с 2026 года",
+    "title": "Готовитесь к экзамену <span class=\"text-primary\">CSCA?</span>",
+    "titlePlain": "Готовитесь к экзамену CSCA?",
+    "description": "Оценка академической компетенции Китая теперь является требованием для лучших стипендий. Получите полную информацию о предметах, системе оценок и стратегиях подготовки в нашем новом руководстве.",
+    "readGuide": "Прочитать Руководство",
+    "findPrograms": "Найти Программы",
+    "proTip1": {
+      "title": "Совет #1",
+      "text": "Специализированный китайский требует академической лексики, а не только HSK."
+    },
+    "proTip2": {
+      "title": "Совет #2",
+      "text": "Разделы математики сосредоточены на геометрии. Повторите конические сечения."
+    }
+  },
+  "Hero": {
+    "admissionsOpen": "Прием заявок на 2026 год открыт",
+    "searchPlaceholder": "Что вы хотите изучать? (например, Информатика, Медицина)",
+    "title": "Ваше будущее в КИТАЕ начинается здесь",
+    "subtitle": "Присоединяйтесь к <bold>50 000+ студентам</bold> в лучших университетах Китая",
+    "searchButton": "Искать <bold>500+</bold> программ",
+    "searchWord": "Искать",
+    "programsWord": "Программы",
+    "browseByCategory": "Просмотр по категориям",
+    "scrollToExplore": "Прокрутите, чтобы узнать больше",
+    "stats": {
+      "universities": "Университеты",
+      "students": "Студенты",
+      "success": "Успех",
+      "scholarships": "Стипендии"
+    },
+    "tabs": {
+      "programs": "Программы",
+      "universities": "Университеты",
+      "scholarships": "Стипендии"
+    },
+    "placeholders": {
+      "degree": "Уровень образования",
+      "field": "Область обучения",
+      "city": "Город",
+      "language": "Язык",
+      "budget": "Бюджет (USD/год)",
+      "scholarship": "Стипендия",
+      "duration": "Длительность"
+    },
+    "options": {
+      "any": "Любой",
+      "all": "Все"
+    },
+    "budget": {
+      "under3k": "Under $3,000",
+      "3kTo5k": "$3,000 - $5,000",
+      "5kTo8k": "$5,000 - $8,000",
+      "above8k": "Above $8,000"
+    },
+    "scholarship": {
+      "allPrograms": "All Programs",
+      "available": "Scholarship Available",
+      "full": "Full Scholarship",
+      "partial": "Partial Scholarship"
+    },
+    "duration": {
+      "1year": "1 Year",
+      "2years": "2 Years",
+      "3years": "3 Years",
+      "4years": "4 Years",
+      "5plus": "5+ Years"
+    },
+    "categories": {
+      "mba": "MBA Programs",
+      "engineering": "Engineering",
+      "medicine": "Medicine (MBBS)",
+      "cs": "Computer Science",
+      "fullScholarship": "Full Scholarship",
+      "englishTaught": "English Taught"
+    }
+  },
+  "WhyStudy": {
+    "badge": "Почему выбирают Китай",
+    "title": "Ваш путь к <gradient>мировому успеху</gradient>",
+    "description": "Китай сочетает давние образовательные традиции с современными технологиями, предлагая иностранным студентам уникальную учебную среду в качестве ведущего мирового экономического центра.",
+    "cta": {
+      "explore": "Изучить программы",
+      "download": "Скачать руководство"
+    },
+    "features": {
+      "worldClass": {
+        "title": "Университеты мирового класса",
+        "description": "Учитесь в учреждениях мирового рейтинга с передовыми исследовательскими центрами и известным преподавательским составом."
+      },
+      "affordable": {
+        "title": "Доступное качество",
+        "description": "Качественное образование по конкурентным ценам с щедрыми стипендиальными возможностями до 100%."
+      },
+      "career": {
+        "title": "Карьерный трамплин",
+        "description": "Доступ к крупнейшей экономике Азии с непревзойденными возможностями стажировки и трудоустройства."
+      },
+      "safe": {
+        "title": "Безопасно и динамично",
+        "description": "Испытайте одну из самых безопасных стран мира с процветающим международным сообществом."
+      },
+      "culture": {
+        "title": "Культурное погружение",
+        "description": "Откройте для себя 5000 лет истории, живя в ультрасовременных, динамичных городах."
+      },
+      "network": {
+        "title": "Глобальная сеть",
+        "description": "Присоединяйтесь к сообществу из более чем 500 000 иностранных студентов из более чем 200 стран."
+      },
+      "english": {
+        "title": "Программы на английском",
+        "description": "Выбирайте из более чем 1000 программ, преподаваемых полностью на английском языке по всем дисциплинам."
+      },
+      "recognition": {
+        "title": "Мировое признание",
+        "description": "Получайте дипломы, признанные ЮНЕСКО, ВОЗ и профессиональными организациями по всему миру."
+      }
+    }
+  },
+  "HowItWorks": {
+    "badge": "Молниеносный процесс",
+    "title": "От заявки до <gradient>зачисления</gradient>",
+    "description": "Оптимизированный 6-этапный путь, разработанный для того, чтобы вы перешли от просмотра программ к получению письма о зачислении в рекордные сроки.",
+    "cta": {
+      "button": "Начать подачу заявки сейчас",
+      "time": "Среднее время заполнения: <bold>15 минут</bold>"
+    },
+    "steps": {
+      "discover": {
+        "title": "Изучите программы",
+        "description": "Просмотрите более 500 программ лучших китайских университетов, адаптированных под ваши цели."
+      },
+      "profile": {
+        "title": "Создайте профиль",
+        "description": "Настройте свой аккаунт и заполните академический профиль за несколько минут."
+      },
+      "upload": {
+        "title": "Загрузите документы",
+        "description": "Безопасно отправьте сертификаты, транскрипты и необходимые документы."
+      },
+      "scholarship": {
+        "title": "Выберите тип стипендии",
+        "description": "Каждый университет предлагает типы стипендий. Выберите одну и подайте заявку."
+      },
+      "pay": {
+        "title": "Оплатите сборы",
+        "description": "Безопасно оплатите сбор за подачу заявки."
+      },
+      "track": {
+        "title": "Отслеживайте прогресс",
+        "description": "Следите за статусом вашей заявки с обновлениями и уведомлениями в реальном времени."
+      },
+      "admission": {
+        "title": "Получите зачисление",
+        "description": "Получите письмо о зачислении, визовые документы и начните свое путешествие!"
+      }
+    }
+  },
+  "Stats": {
+    "badge": "Наше влияние",
+    "title": "Доверие тысяч по всему миру",
+    "description": "Присоединяйтесь к глобальному сообществу успешных студентов, которые осуществили свои мечты через нашу платформу",
+    "items": {
+      "universities": {
+        "label": "Университеты-партнеры",
+        "description": "Учреждения высшего ранга"
+      },
+      "students": {
+        "label": "Иностранные студенты",
+        "description": "Из более чем 200 стран"
+      },
+      "programs": {
+        "label": "Доступные программы",
+        "description": "Все области обучения"
+      },
+      "success": {
+        "label": "Показатель успеха",
+        "description": "Одобрение зачисления"
+      },
+      "countries": {
+        "label": "Представленные страны",
+        "description": "Глобальное сообщество"
+      },
+      "scholarships": {
+        "label": "Присуждено стипендий",
+        "description": "Финансовая поддержка"
+      },
+      "time": {
+        "label": "Время подачи заявки",
+        "description": "Быстрый и простой процесс"
+      },
+      "employment": {
+        "label": "Трудоустройство выпускников",
+        "description": "В течение 6 месяцев"
+      }
+    }
+  },
+  "FeaturedPrograms": {
+    "badge": "Избранные программы",
+    "title": "Ускоренные программы",
+    "description": "Изучите наши самые востребованные программы в лучших университетах Китая",
+    "duration": "Длительность",
+    "tuition": "Плата/год",
+    "explore": "Изучить программу",
+    "viewAll": "Смотреть все программы",
+    "fastTrack": "Ускоренная"
+  },
+  "FeaturedUniversities": {
+    "badge": "Лучшие университеты",
+    "title": "Элитные университеты",
+    "description": "Учитесь в самых престижных учреждениях Китая",
+    "fastTrack": "Ускоренный",
+    "programs": "Программы",
+    "tuitionFrom": "Плата от",
+    "students": "Студенты",
+    "viewDetails": "Подробнее",
+    "viewAll": "Смотреть все университеты"
+  },
+  "Scholarships": {
+    "badge": "Финансовая поддержка",
+    "title": "Стипендии и финансовая помощь",
+    "description": "Обучение в Китае доступно. Изучите различные стипендиальные возможности для иностранных студентов.",
+    "items": {
+      "csc": {
+        "title": "Правительственная стипендия Китая (CSC)",
+        "description": "Полная или частичная стипендия для иностранных студентов. Покрывает обучение, проживание и зарплату.",
+        "amount": "До $10 000/год"
+      },
+      "university": {
+        "title": "Университетские стипендии",
+        "description": "Стипендии за заслуги, предлагаемые университетами для выдающихся кандидатов.",
+        "amount": "До $8 000/год"
+      },
+      "provincial": {
+        "title": "Провинциальные стипендии",
+        "description": "Стипендии, финансируемые местными правительствами для привлечения международных талантов в определенные регионы.",
+        "amount": "До $6 000/год"
+      }
+    },
+    "awardAmount": "Сумма стипендии",
+    "learnMore": "Узнать больше",
+    "stats": {
+      "scholarshipOptions": "Scholarship Options",
+      "universities": "Universities",
+      "programs": "Programs",
+      "awarded": "Присуждается ежегодно",
+      "funding": "Получают финансирование",
+      "full": "Полные стипендии",
+      "eligible": "Подходящие программы"
+    },
+    "viewAll": "Смотреть все стипендии",
+    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+    "popular": {
+      "title": "Featured & Popular Scholarships"
+    },
+    "tabs": {
+      "search": "Search Scholarships",
+      "about": "About Scholarships"
+    },
+    "search": {
+      "filter": "Filters",
+      "clearAll": "Clear All",
+      "searchPlaceholder": "Search program or university...",
+      "category": "Category",
+      "all": "All",
+      "fullScholarship": "Full Scholarship (100%)",
+      "partialScholarship": "Partial Scholarship",
+      "city": "City",
+      "university": "University",
+      "degree": "Degree Level",
+      "language": "Language",
+      "semester": "Semester",
+      "spring": "Spring",
+      "autumn": "Autumn",
+      "freeAccommodation": "Free Accommodation",
+      "monthlyStipend": "Monthly Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "scholarshipOptions": "scholarship options at",
+      "universities": "universities",
+      "noResults": "No scholarships found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "programsAvailable": "Programs",
+      "upTo": "Up to",
+      "accommodation": "Accommodation",
+      "stipend": "Stipend",
+      "insurance": "Insurance",
+      "program": "Program",
+      "teachingLanguage": "Language",
+      "startingDate": "Intake",
+      "scholarshipCoverage": "Original Tuition",
+      "youNeedToPay": "You Need To Pay",
+      "tuition": "Tuition",
+      "free": "Free",
+      "moreOptions": "More Options",
+      "learnMore": "Learn More"
+    },
+    "detail": {
+      "backToSearch": "Back to Search",
+      "scholarshipAvailable": "Scholarship Available",
+      "programDetails": "Program Details",
+      "degree": "Degree",
+      "duration": "Duration",
+      "language": "Language",
+      "intake": "Intake",
+      "availableScholarships": "Available Scholarships",
+      "noScholarships": "No scholarships are currently available for this program.",
+      "tuitionCoverage": "Tuition Coverage",
+      "freeAccommodation": "Free Accommodation",
+      "stipend": "Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "originalTuition": "Original Tuition",
+      "youPay": "You Need to Pay",
+      "serviceFee": "Service Fee",
+      "applyNow": "Apply for this Scholarship",
+      "university": "University",
+      "viewUniversity": "View University Profile",
+      "viewProgram": "View Program Details"
+    },
+    "about": {
+      "howItWorks": "How Scholarships Work",
+      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+      "scholarshipCoverage": "Scholarship Coverage",
+      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+      "serviceFees": "Service & Processing Fees",
+      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+      "scholarshipTypes": "Common Scholarship Types",
+      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+      "searchPrograms": "Search Eligible Programs",
+      "requiredDocuments": "Required Documents",
+      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+      "faq": "Frequently Asked Questions",
+      "faq1Question": "Do I need to know Chinese to get a scholarship?",
+      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+      "faq2Question": "Can I work while studying?",
+      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+      "faq3Question": "What happens if I fail my classes?",
+      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+      "faq4Question": "How long does the application process take?",
+      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+    }
+  },
+  "Testimonials": {
+    "badge": "Истории успеха",
+    "title": "Что говорят наши студенты",
+    "description": "Послушайте студентов, которые успешно подали заявки через нашу платформу и теперь процветают в Китае.",
+    "testimonials": {
+      "sarah": {
+        "quote": "Учеба в Цинхуа изменила мою жизнь. Кампус красивый, а профессора — мирового класса. Я выросла как академически, так и личностно.",
+        "program": "Информатика",
+        "university": "Университет Цинхуа",
+        "country": "США"
+      },
+      "ahmed": {
+        "quote": "Процесс подачи заявки прошел гладко благодаря Studyatchina. Сейчас я получаю степень магистра в области гражданского строительства и наслаждаюсь каждым моментом.",
+        "program": "Гражданское строительство",
+        "university": "Чжэцзянский университет",
+        "country": "Египет"
+      },
+      "maria": {
+        "quote": "Шанхай — удивительный город! Мне нравится культура, еда и друзья, которых я здесь нашла. Стипендия, которую я получила, сделала все это возможным.",
+        "program": "Международный бизнес",
+        "university": "Фуданьский университет",
+        "country": "Испания"
+      }
+    },
+    "averageRating": "Средний рейтинг",
+    "reviews": "Отзывы",
+    "satisfaction": "Удовлетворенность"
+  },
+  "Partners": {
+    "badge": "Надежные партнеры",
+    "title": "Университеты-партнеры",
+    "description": "Мы сотрудничаем с самыми престижными учреждениями Китая, чтобы предоставить вам лучшие образовательные возможности",
+    "recognitions": {
+      "unesco": {
+        "title": "Признание ЮНЕСКО",
+        "description": "Все университеты-партнеры признаны ЮНЕСКО"
+      },
+      "government": {
+        "title": "Одобрено правительством",
+        "description": "Официально одобрено Министерством образования Китая"
+      },
+      "accredited": {
+        "title": "Глобальная аккредитация",
+        "description": "Дипломы признаются в более чем 180 странах"
+      }
+    }
+  },
+  "FAQ": {
+    "badge": "Вопросы?",
+    "title": "Часто задаваемые вопросы",
+    "description": "Найдите ответы на распространенные вопросы об обучении в Китае",
+    "items": {
+      "deadline": {
+        "question": "Когда крайний срок подачи заявки?",
+        "answer": "Сроки варьируются в зависимости от университета и программы. Как правило, для сентябрьского набора заявки закрываются с марта по июнь. Проверяйте страницы конкретных программ для точных дат."
+      },
+      "language": {
+        "question": "Нужно ли мне знать китайский, чтобы учиться в Китае?",
+        "answer": "Не обязательно! Существуют тысячи программ на английском языке для бакалавриата, магистратуры и докторантуры. Однако изучение базового китайского рекомендуется для повседневной жизни."
+      },
+      "work": {
+        "question": "Могу ли я работать во время учебы?",
+        "answer": "Иностранные студенты могут работать неполный рабочий день или проходить стажировку с разрешения университета и иммиграционной службы. Политика стала более гибкой в последние годы."
+      },
+      "scholarships": {
+        "question": "Как подать заявку на стипендию?",
+        "answer": "Вы можете подать заявку на стипендию непосредственно через нашу платформу при отправке заявки. Мы поможем вам с необходимыми документами для стипендий CSC и университетских."
+      },
+      "visa": {
+        "question": "Какие требования к визе?",
+        "answer": "Вам понадобится действующий паспорт, письмо о зачислении и форма JW202 от вашего университета. Мы предоставляем полное сопровождение по визе на протяжении всего процесса."
+      },
+      "process": {
+        "question": "Сколько времени занимает процесс подачи заявки?",
+        "answer": "Типичный процесс подачи заявки занимает 2-4 недели. После подачи университеты обычно отвечают в течение 4-8 недель. Мы держим вас в курсе на каждом этапе."
+      }
+    },
+    "seeAll": "Смотреть все вопросы",
+    "contactSupport": "Связаться с поддержкой",
+    "footer": "Остались вопросы? Наша служба поддержки доступна 24/7, чтобы помочь вам."
+  },
+  "Destinations": {
+    "pageTitle": "Учебные направления",
+    "badge": "Учебные направления в Китае",
+    "heroTitle": "Откройте лучшие",
+    "heroSubtitle": "учебные города Китая",
+    "heroDescription": "От исторической столицы Пекина до современного горизонта Шанхая — исследуйте самые яркие города Китая и найдите идеальное место для вашего академического путешествия.",
+    "statCities": "Доступных городов",
+    "statUniversities": "Всего университетов",
+    "statTopCity": "Университетов в {city}",
+    "featuredTitle": "Избранные направления",
+    "featuredSubtitle": "Самые популярные города для иностранных студентов в Китае",
+    "allCitiesTitle": "Ещё города",
+    "allCitiesSubtitle": "Откройте для себя университеты в других городах Китая",
+    "university": "Университет",
+    "universities": "Университетов",
+    "explorePrograms": "Изучить программы"
+  },
+  "Universities": {
+    "title": "Изучите лучшие университеты Китая",
+    "subtitle": "Откройте для себя {count}+ престижных учреждений по всему Китаю. От проекта 985 до университетов Лиги C9.",
+    "error": {
+      "title": "Не удалось загрузить университеты",
+      "hint": "Подсказка: {hint}"
+    },
+    "search": {
+      "placeholder": "Поиск по названию университета, городу или рейтингу...",
+      "label": "Поиск",
+      "universityPlaceholder": "Название университета...",
+      "searching": "Поиск..."
+    },
+    "filters": {
+      "title": "Фильтры",
+      "description": "Уточните поиск университетов",
+      "clear": "Очистить фильтры",
+      "clearAll": "Очистить все фильтры",
+      "city": "Город",
+      "allCities": "Все города",
+      "institutionType": "Тип учреждения",
+      "allTypes": "Все типы",
+      "universityCategory": "Категория университета",
+      "allCategories": "Все категории",
+      "rankingRecognition": "Рейтинг и признание",
+      "specialFeatures": "Особенности",
+      "institutionTypes": {
+        "university": "Университет",
+        "college": "Колледж",
+        "languageInstitute": "Языковой институт",
+        "vocationalSchool": "Профессиональная школа",
+        "technicalInstitute": "Технический институт"
+      },
+      "categories": {
+        "public": "Государственный",
+        "private": "Частный",
+        "research": "Исследовательский",
+        "comprehensive": "Комплексный",
+        "specialized": "Специализированный",
+        "vocational": "Профессиональный"
+      },
+      "rankings": {
+        "project985": "Проект 985",
+        "project211": "Проект 211",
+        "doubleFirstClass": "Двойной первый класс"
+      },
+      "features": {
+        "fastTrack": "Ускоренное зачисление",
+        "scholarships": "Доступны стипендии",
+        "englishPrograms": "Программы на английском"
+      }
+    },
+    "stats": {
+      "title": "Быстрая статистика",
+      "total": "Всего университетов",
+      "showing": "Показано",
+      "cities": "Города"
+    },
+    "sort": {
+      "label": "Сортировать по",
+      "name": "Название: А-Я",
+      "programs": "Больше программ",
+      "city": "Город",
+      "tuitionLow": "Tuition: Low to High",
+      "tuitionHigh": "Tuition: High to Low",
+      "ranking": "Best Ranking"
+    },
+    "noResults": {
+      "title": "Университеты не найдены",
+      "description": "Попробуйте изменить фильтры или критерии поиска"
+    },
+    "results": {
+      "universities": "universities",
+      "showMore": "Show {count} more",
+      "showingOf": "Showing {visible} of {total}"
+    },
+    "compare": {
+      "title": "Compare Universities",
+      "criteria": "Criteria",
+      "location": "Location",
+      "ranking": "Ranking",
+      "programs": "Programs",
+      "tuition": "Tuition",
+      "levels": "Study Levels",
+      "languages": "Languages",
+      "scholarship": "Scholarship",
+      "fastTrack": "Fast Track",
+      "cscaExam": "CSCA Exam",
+      "badges": "Accreditations",
+      "clearAll": "Clear All",
+      "selected": "{count} selected",
+      "compareNow": "Compare Now"
+    }
+  },
+  "Programs": {
+    "title": "Найдите вашу идеальную программу",
+    "subtitle": "Просмотрите более {count}+ программ лучших китайских университетов. Найдите идеальное соответствие для вашего академического пути.",
+    "filters": {
+      "title": "Фильтры",
+      "active": "Активные фильтры:",
+      "clear": "Очистить фильтры",
+      "clearAll": "Очистить все фильтры",
+      "search": "Поиск",
+      "searchPlaceholder": "Программа или специальность...",
+      "studyLevel": "Уровень обучения",
+      "fieldOfStudy": "Область обучения",
+      "allFields": "Все области",
+      "maxTuition": "Макс. плата",
+      "language": "Язык",
+      "city": "Город",
+      "allCities": "Все города",
+      "university": "Университет",
+      "allUniversities": "Все университеты",
+      "duration": "Длительность",
+      "allDurations": "Все длительности",
+      "scholarshipAvailable": "Доступна стипендия",
+      "levels": {
+        "bachelor": "Бакалавриат",
+        "master": "Магистратура",
+        "phd": "Докторантура",
+        "diploma": "Диплом",
+        "language": "Языковой курс",
+        "nonDegree": "Non-Degree"
+      },
+      "fields": {
+        "business": "Бизнес и управление",
+        "engineering": "Инженерия и технологии",
+        "medicine": "Медицина и науки о здоровье",
+        "arts": "Искусство и гуманитарные науки",
+        "science": "Естественные науки",
+        "education": "Образование",
+        "cs": "Информатика",
+        "law": "Право"
+      },
+      "languages": {
+        "english": "Английский",
+        "chinese": "Китайский"
+      },
+      "durations": {
+        "2years": "2 года",
+        "3years": "3 года",
+        "4years": "4 года",
+        "5years": "5 лет",
+        "6years": "6 лет"
+      },
+      "matchingPrograms": "программ соответствует",
+      "applyFilters": "Применить фильтры",
+      "scholarshipDesc": "Show programs with funding",
+      "cscaLabel": "Без экзамена CSCA",
+      "cscaDesc": "Показать программы без экзамена CSCA",
+      "cscaBadge": "No CSCA",
+      "academicRequirements": "Academic Requirements",
+      "myAge": "My Age",
+      "agePlaceholder": "e.g. 21",
+      "minGpa": "Min GPA",
+      "gpaPlaceholder": "e.g. 3.0",
+      "autoFilterHint": "Фильтры применяются автоматически после прекращения ввода",
+      "searchUniversity": "Поиск университета...",
+      "noUniversityFound": "Университет не найден."
+    },
+    "stats": {
+      "total": "Всего программ",
+      "showing": "Показано"
+    },
+    "sort": {
+      "label": "Сортировать по",
+      "relevance": "Наиболее релевантные",
+      "tuitionLow": "Плата: от низкой к высокой",
+      "tuitionHigh": "Плата: от высокой к низкой",
+      "deadline": "Срок: ближайший",
+      "popular": "Самые популярные"
+    },
+    "noResults": {
+      "title": "Программы не найдены",
+      "description": "Попробуйте изменить фильтры или критерии поиска"
+    },
+    "card": {
+      "duration": "Длительность",
+      "intake": "Набор",
+      "tuitionFee": "Плата за обучение",
+      "viewProgram": "Смотреть программу",
+      "contact": "Контакт",
+      "scholarship": "Стипендия",
+      "addToCompare": "Добавить к сравнению",
+      "removeFromCompare": "Убрать из сравнения",
+      "level": "Уровень",
+      "features": "Особенности",
+      "viewFullDetails": "Все подробности",
+      "applyNow": "Подать заявку",
+      "fastTrack": "Fast Track",
+      "deadlineClosed": "Закрыто",
+      "deadlineToday": "Дедлайн сегодня!",
+      "deadlineDaysLeft": "{days}д осталось",
+      "deadlineDate": "Дедлайн: {date}"
+    },
+    "compare": {
+      "title": "Сравнить программы",
+      "comparing": "Сравнение",
+      "more": "еще",
+      "clear": "Очистить",
+      "compareNow": "Сравнить сейчас",
+      "university": "Университет",
+      "location": "Местоположение",
+      "level": "Уровень",
+      "duration": "Длительность",
+      "tuition": "Плата",
+      "intake": "Набор",
+      "language": "Язык",
+      "viewDetails": "Подробности",
+      "apply": "Подать заявку"
+    },
+    "emptyState": {
+      "title": "Программы не найдены",
+      "description": "Мы не смогли найти программы. Попробуйте просмотреть наш полный каталог.",
+      "filteredDescription": "Ни одна программа не соответствует вашим текущим фильтрам. Попробуйте изменить критерии поиска.",
+      "currentFilters": "Ваши текущие фильтры:",
+      "scholarship": "Стипендия",
+      "clearFilters": "Очистить все фильтры",
+      "tryInstead": "Популярные запросы:",
+      "browseAll": "Просмотреть все программы",
+      "exploreUniversities": "Изучить университеты"
+    },
+    "recentlyViewed": {
+      "title": "Недавно просмотренные",
+      "clear": "Очистить",
+      "viewAgain": "Просмотреть снова",
+      "justNow": "Только что",
+      "minutesAgo": "{count}м назад",
+      "hoursAgo": "{count}ч назад",
+      "daysAgo": "{count}д назад"
+    },
+    "quickAccess": "Быстрый доступ",
+    "quickChips": {
+      "cs": "Информатика",
+      "business": "Бизнес",
+      "engineering": "Инженерия",
+      "medicine": "Медицина",
+      "arts": "Искусство",
+      "economics": "Экономика"
+    },
+    "aiSearch": {
+      "thinking": "AI is thinking... finding related fields for \"{query}\"",
+      "active": "Smart Search Active",
+      "found": "Found programs related to: {terms}",
+      "working": "AI is working on it...",
+      "looking": "Looking for programs related to \"{query}\""
+    },
+    "view": {
+      "grid": "Сетка",
+      "map": "Карта"
+    }
+  },
+  "Login": {
+    "title": "С возвращением",
+    "description": "Войдите в свой аккаунт",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "rememberMe": "Запомнить меня",
+    "forgotPassword": "Забыли пароль?",
+    "signIn": "Войти",
+    "noAccount": "Нет аккаунта?",
+    "signUp": "Зарегистрироваться",
+    "orContinueWith": "Или продолжить с",
+    "google": "Продолжить с Google",
+    "success": "Вход выполнен успешно!",
+    "error": "Произошла ошибка при входе"
+  },
+  "Register": {
+    "title": "Создать аккаунт",
+    "description": "Начните свой путь к образованию в Китае",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "agreeToTerms": "Я принимаю Условия использования и Политику конфиденциальности",
+    "signUp": "Зарегистрироваться",
+    "haveAccount": "Уже есть аккаунт?",
+    "signIn": "Войти",
+    "orContinueWith": "Или продолжить с",
+    "google": "Продолжить с Google"
+  },
+  "Dashboard": {
+    "welcome": "Добро пожаловать",
+    "overview": "Обзор",
+    "applications": "Заявки",
+    "documents": "Документы",
+    "messages": "Сообщения",
+    "settings": "Настройки",
+    "recentActivity": "Недавняя активность",
+    "notifications": "Уведомления",
+    "profile": "Профиль",
+    "sidebar": {
+      "myApplications": "My Applications",
+      "profile": "Profile",
+      "messages": "Messages",
+      "payments": "Payments",
+      "documents": "Documents",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+    "title": "Dashboard",
+    "subtitle": "Welcome back! Here's your application overview.",
+    "newApplication": "New Application",
+    "stats": {
+      "totalApplications": "Total Applications",
+      "submitted": "{count} submitted",
+      "pendingActions": "Pending Actions",
+      "requiresAttention": "Requires your attention",
+      "offersReceived": "Offers Received",
+      "congratulations": "Congratulations!",
+      "successRate": "Success Rate",
+      "acceptanceRate": "Acceptance rate"
+    },
+    "recentApplications": "My Applications",
+    "appliedOn": "Applied on {date}",
+    "viewDetails": "View Details",
+    "noApplications": {
+      "title": "No Applications Yet",
+      "description": "Start your journey by browsing programs and submitting your first application."
+    },
+    "browsePrograms": "Browse Programs"
+  },
+  "Application": {
+    "status": {
+      "draft": "Черновик",
+      "submitted": "Отправлено",
+      "underReview": "На рассмотрении",
+      "accepted": "Принято",
+      "rejected": "Отклонено",
+      "waitlisted": "В списке ожидания"
+    },
+    "actions": {
+      "continue": "Продолжить",
+      "view": "Просмотр",
+      "withdraw": "Отозвать",
+      "submit": "Отправить"
+    }
+  },
+  "UniversitiesCard": {
+    "programs": "Программы",
+    "tuitionFrom": "Плата от",
+    "viewUniversity": "Смотреть университет",
+    "viewPrograms": "Смотреть программы",
+    "tuition": "Tuition",
+    "fastTrack": "Fast Track",
+    "scholarship": "Scholarship",
+    "contactForPricing": "Contact for pricing",
+    "cscaExam": "CSCA Exam",
+    "addToCompare": "Add to compare",
+    "removeFromCompare": "Remove from compare"
+  },
+  "DestinationsSection": {
+    "badge": "Популярные направления",
+    "title": "Откройте лучшие <gradient>университетские города</gradient>",
+    "description": "Исследуйте динамичные мегаполисы Китая, каждый из которых предлагает уникальные академические возможности и богатый культурный опыт.",
+    "universityIn": "университетов в",
+    "exploreCity": "Исследовать",
+    "viewAllCities": "Смотреть все города"
+  },
+  "AdminPanel": {
+    "branding": "Studyatchina",
+    "navigation": {
+      "overview": "Обзор",
+      "universities": "Университеты",
+      "programs": "Программы",
+      "applications": "Заявки",
+      "users": "Пользователи",
+      "scholarships": "Стипендии",
+      "intakes": "Наборы",
+      "settings": "Настройки"
+    },
+    "copyright": "© 2024 Studyatchina. Все права защищены."
+  },
+  "ProgramDetail": {
+    "highlights": {
+      "title": "Основные Характеристики Программы",
+      "tuition": "Стоимость Обучения",
+      "duration": "Продолжительность",
+      "language": "Язык",
+      "level": "Уровень Образования",
+      "gpaRequirement": "Минимальный GPA",
+      "maxAge": "Максимальный возраст",
+      "languageRequirements": "Language Score"
+    },
+    "deadline": {
+      "daysRemaining": "Осталось {days} дн.",
+      "endingToday": "Прием заявок заканчивается сегодня!",
+      "closed": "Прием заявок закрыт",
+      "deadline": "Крайний срок"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "programs": "Programs"
+    },
+    "badges": {
+      "intake": "Intake: {intake}",
+      "contactUniversity": "Contact University",
+      "fastTrack": "Fast Track Acceptance",
+      "specialRequirements": "Special Requirements"
+    },
+    "buttons": {
+      "apply": "Apply Now",
+      "downloadBrochure": "Download Brochure",
+      "viewUniversity": "View University",
+      "startApplication": "Start Application",
+      "contactAdvisor": "Contact Advisor"
+    },
+    "overview": {
+      "title": "Program Overview",
+      "noDescription": "No description available for this program.",
+      "curriculum": "Core Curriculum",
+      "curriculumPlaceholder": "Core courses information will be updated soon"
+    },
+    "requirements": {
+      "title": "Admission Requirements"
+    },
+    "scholarships": {
+      "title": "Scholarship Options for This Program",
+      "description": "Choose the scholarship type that best fits your budget"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "deadline": "The application deadline is {deadline}.",
+      "accommodationQ": "Is accommodation provided?",
+      "accommodationA": "Yes, on-campus accommodation is available for international students.",
+      "workQ": "Can I work part-time?",
+      "workA": "Yes, international students can apply for work-study programs or internships with proper permits.",
+      "deadlineQ": "What is the application deadline?"
+    },
+    "sidebar": {
+      "ready": "Ready to Apply?",
+      "free": "Free Application",
+      "fast": "Fast Processing",
+      "expert": "Expert Support",
+      "cost": "Cost Breakdown",
+      "applicationFee": "Application Fee",
+      "serviceFee": "Service Fee",
+      "disclaimer": "* Additional costs may include accommodation, visa, and living expenses",
+      "why": "Why Choose This Program?",
+      "reasons": {
+        "degree": "Internationally recognized degree",
+        "faculty": "Experienced faculty members",
+        "facilities": "Modern facilities & resources",
+        "career": "Career development support"
+      }
+    },
+    "accommodation": {
+      "title": "Accommodation Options"
+    }
+  },
+  "CSCAGuide": {
+    "meta": {
+      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+    },
+    "backHome": "Back to Home",
+    "newRequirement": "New Requirement for 2026",
+    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+        "keyDates": {
+          "title": "Key Dates",
+          "launch": "2025: Official Launch",
+          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+          "full": "2028: Full Implementation across all Universities"
+        }
+      },
+      "structure": {
+        "title": "Exam Structure",
+        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+        "table": {
+          "subject": "Subject",
+          "duration": "Duration",
+          "questions": "Questions",
+          "requirement": "Requirement",
+          "chinese": {
+            "name": "Specialized Chinese",
+            "req": "Humanities/Science"
+          },
+          "math": {
+            "name": "Mathematics",
+            "req": "Mandatory"
+          },
+          "physics": {
+            "name": "Physics",
+            "req": "Optional / Major-dependent"
+          },
+          "chemistry": {
+            "name": "Chemistry",
+            "req": "Optional / Major-dependent"
+          }
+        }
+      },
+      "subjects": {
+        "title": "Subject Details & Syllabus",
+        "chinese": {
+          "title": "Specialized Chinese",
+          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+          "char": {
+            "title": "Character Recognition",
+            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+          },
+          "reading": {
+            "title": "Reading Comprehension",
+            "desc": "Highest weight. Sci/Tech/Social essays."
+          },
+          "words": {
+            "title": "Word Distinction",
+            "desc": "Synonyms, academic vocabulary."
+          },
+          "sentences": {
+            "title": "Sentence/Paragraph",
+            "desc": "Ordering sentences, completing logic."
+          }
+        },
+        "math": {
+          "title": "Mathematics",
+          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+          "note": "Both Chinese and English versions available.",
+          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+        },
+        "chem": {
+          "title": "Chemistry",
+          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+        },
+        "phys": {
+          "title": "Physics",
+          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        }
+      },
+      "fees_and_process": {
+        "title": "Application Process & Fees",
+        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+      },
+      "formats": {
+        "title": "Test Modes",
+        "online": {
+          "title": "Online Proctored",
+          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+        },
+        "computer": {
+          "title": "Computer-Based",
+          "desc": "At official test centers (classrooms). Better stability."
+        },
+        "paper": {
+          "title": "Paper-Based",
+          "desc": "Traditional format. Limited regions."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "q": "Does the CSCA replace the HSK?",
+          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+        },
+        "q2": {
+          "q": "Can I take it in English?",
+          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+        },
+        "q3": {
+          "q": "How long is the score valid?",
+          "a": "CSCA results are valid for <strong>2 years</strong>."
+        },
+        "q4": {
+          "q": "Who is exempt from the CSCA?",
+          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+        },
+        "q5": {
+          "q": "Are scores required for 2026 intake?",
+          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+        },
+        "comparison": {
+          "title": "CSCA vs. HSK",
+          "feature": "Feature",
+          "hsk": "HSK",
+          "csca": "CSCA",
+          "focus": "Focus",
+          "focusHsk": "Daily Communication",
+          "focusCsca": "Academic Readiness",
+          "vocab": "Vocabulary",
+          "vocabHsk": "Life/Everyday",
+          "vocabCsca": "Technical/Academic",
+          "req": "Requirement",
+          "reqHsk": "Language Cert",
+          "reqCsca": "Academic Entrance"
+        }
+      },
+      "sidebar": {
+        "title": "Important Details",
+        "dates": {
+          "title": "Dates",
+          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+        },
+        "prep": {
+          "title": "Preparation",
+          "desc": "Difficulty level: Junior/Senior High"
+        },
+        "passing": {
+          "title": "Fees",
+          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+        },
+        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+        "register": "Official Registration Site",
+        "tutor": {
+          "title": "Fast-Track with Study at China",
+          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+          "button": "Apply With Us"
+        }
+      }
+    }
+  },
+  "UniversityScholarships": {
+    "loading": "Loading scholarships...",
+    "noScholarships": "No scholarships available for this university yet.",
+    "options": "Scholarship Options",
+    "discover": "Discover More Opportunities",
+    "explore": "Explore All Scholarship Options",
+    "description": "Not sure which scholarship is right for you? Browse our complete scholarship guide to compare all options, understand eligibility requirements, and find the perfect fit for your academic journey.",
+    "viewAll": "View All Scholarships",
+    "advice": "Get Personalized Advice",
+    "mostPopular": "Most Popular",
+    "defaultDescription": "Great option for international students.",
+    "tuitionCoverage": "Tuition Coverage",
+    "serviceFee": "Service Fee",
+    "whatsIncluded": "What's Included",
+    "applyNow": "Apply Now",
+    "howItWorks": {
+      "title": "How Scholarships Work",
+      "description": "The scholarship covers a percentage of your tuition fees. You pay the remaining tuition to the university + the one-time service fee for application support, visa assistance, and guidance.",
+      "learnMore": "Learn more about scholarships →"
+    },
+    "benefits": {
+      "tuitionCoverage": "{percentage}% tuition fee coverage",
+      "noScholarship": "No scholarship (0% coverage)",
+      "support": "Application support & guidance",
+      "visa": "Visa assistance",
+      "orientation": "Pre-departure orientation",
+      "accommodation": "Accommodation arrangement support"
+    },
+    "action": "Action",
+    "scholarshipType": "Scholarship Type"
+  },
+  "GuidedTour": {
+    "skip": "Пропустить",
+    "next": "Далее",
+    "finish": "Понятно!",
+    "programs": {
+      "search": {
+        "title": "Find Your Program",
+        "content": "Use the search bar to find programs by name, field of study, or keywords."
+      },
+      "filters": {
+        "title": "Refine Your Search",
+        "content": "Use filters to narrow down by degree level, location, language, and budget."
+      },
+      "card": {
+        "title": "Program Details",
+        "content": "Click on any program card to see full details, requirements, and how to apply."
+      },
+      "compare": {
+        "title": "Compare Programs",
+        "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
+      }
+    }
+  },
+  "UniversityDetail": {
+    "quickLinks": {
+      "exploreCourses": "Explore Courses",
+      "getFunded": "Get Funded",
+      "findHousing": "Find Housing",
+      "findLocation": "Location"
+    },
+    "location": {
+      "title": "Campus Location",
+      "viewOnMap": "View on Google Maps"
+    },
+    "about": "About",
+    "whyChooseUs": "Why Choose Us",
+    "programs": {
+      "title": "Programs",
+      "allPrograms": "All Programs",
+      "noPrograms": "No programs found for this level.",
+      "viewProgram": "View Program",
+      "tuitionFee": "Tuition Fee",
+      "perYear": "per year",
+      "allLanguages": "All Languages",
+      "filterByLanguage": "Language",
+      "showing": "Showing {start}-{end} of {total} programs",
+      "previousPage": "Previous",
+      "nextPage": "Next",
+      "pageOf": "Page {current} of {total}",
+      "deadlineClosed": "Закрыто",
+      "deadlineLabel": "Крайний срок: {date}"
+    },
+    "deadlines": {
+      "title": "Ближайшие Сроки Подачи",
+      "noDeadlines": "Нет ближайших сроков подачи",
+      "daysLeft": "Осталось {days} дней",
+      "today": "Заканчивается сегодня!",
+      "closed": "Закрыто",
+      "deadline": "Крайний Срок",
+      "viewProgram": "Смотреть Программу",
+      "urgent": "Срочно",
+      "quickJump": "Сроки Подачи"
+    },
+    "scholarships": {
+      "title": "Available Scholarship Options",
+      "description": "Choose the scholarship type that best fits your budget for programs at this university"
+    },
+    "campus": {
+      "tour": "Campus Tour",
+      "gallery": "Campus Gallery",
+      "viewImage": "View Image"
+    },
+    "admission": {
+      "title": "Admission Requirements",
+      "academic": "Academic Requirements",
+      "language": "Language Requirements",
+      "highSchool": "High school diploma or equivalent",
+      "gpa": "Minimum GPA of 3.0/4.0",
+      "transcripts": "Academic transcripts",
+      "ielts": "IELTS 6.0 or TOEFL 80+",
+      "hsk": "HSK 4 for Chinese programs",
+      "english": "English proficiency certificate"
+    },
+    "sidebar": {
+      "ready": "Ready to Apply?",
+      "startJourney": "Start your journey at {university}",
+      "applyNow": "Apply Now",
+      "downloadBrochure": "Download Brochure",
+      "quickActions": "Quick Actions",
+      "requestInfo": "Request Information",
+      "chatAdvisor": "Chat with Advisor",
+      "virtualTour": "Virtual Campus Tour",
+      "scheduleCall": "Schedule a Call",
+      "quickFacts": "Quick Facts",
+      "location": "Location",
+      "founded": "Founded",
+      "students": "Students",
+      "international": "International",
+      "ranking": "Ranking",
+      "officialWebsite": "Official Website"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "RequestInformation": {
+    "title": "Request Information",
+    "description": "Get more details about {university}. Fill out the form below.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "interest": "Interest",
+    "selectInterest": "Select your interest",
+    "interests": {
+      "admission": "Admission Requirements",
+      "programs": "Available Programs",
+      "scholarships": "Scholarship Opportunities",
+      "campus": "Campus Life",
+      "other": "Other"
+    },
+    "message": "Message",
+    "messagePlaceholder": "I am interested in studying at {university}...",
+    "submit": "Send Request",
+    "sending": "Sending...",
+    "success": "Request sent successfully! We will contact you soon.",
+    "error": "Failed to send request. Please try again."
+  },
+  "Accommodation": {
+    "notAvailable": "Accommodation information not available",
+    "badge": "Student Accommodation",
+    "title": "On-Campus Housing Options",
+    "priceRange": "Price Range",
+    "generalFacilities": "General Facilities",
+    "availableRoomTypes": "Available Room Types",
+    "defaultTitle": "Accommodation",
+    "priceOnRequest": "Price on request",
+    "month": "month",
+    "roomFeatures": "Room Features:",
+    "importantInfo": {
+      "title": "Important Information",
+      "fees": "Accommodation fees are paid per semester or academic year",
+      "availability": "Room allocation is subject to availability",
+      "prices": "Prices may vary and should be confirmed with the university",
+      "deposit": "Deposit may be required upon check-in"
+    }
+  },
+  "UniversityHeader": {
+    "fastTrack": "Fast Track Acceptance",
+    "est": "Est. {founded}",
+    "studentsCount": "{students} Students",
+    "website": "Website",
+    "applyNow": "Apply Now",
+    "requestInfo": "Request Info",
+    "brochure": "Brochure",
+    "virtualTour": "Virtual Tour",
+    "scheduleCall": "Schedule Call",
+    "chatAdvisor": "Chat Advisor",
+    "save": "Save",
+    "saved": "Saved",
+    "share": "Share",
+    "founded": "Founded",
+    "students": "Students",
+    "ranking": "Ranking",
+    "international": "International"
+  },
+  "Profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal information and preferences",
+    "completion": "Profile Completion",
+    "completeProfile": "Complete your profile to speed up future applications",
+    "photo": {
+      "title": "Profile Photo",
+      "description": "Upload a professional photo",
+      "upload": "Upload Photo",
+      "uploading": "Uploading...",
+      "hint": "JPG, PNG or GIF. Max 5MB."
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "description": "Your basic details for applications"
+    },
+    "fullName": "Full Name *",
+    "email": "Email",
+    "dob": "Date of Birth",
+    "phone": "Phone Number",
+    "nationality": "Nationality",
+    "passportNumber": "Passport Number",
+    "address": {
+      "title": "Address",
+      "description": "Your current residential address",
+      "street": "Street Address",
+      "city": "City",
+      "postalCode": "Postal Code"
+    },
+    "emergency": {
+      "title": "Emergency Contact",
+      "description": "Person to contact in case of emergency",
+      "name": "Name",
+      "phone": "Phone",
+      "relationship": "Relationship"
+    },
+    "save": "Save Profile",
+    "saving": "Saving...",
+    "success": "Успешно",
+    "error": "Ошибка"
+  },
+  "Documents": {
+    "title": "My Documents",
+    "subtitle": "Manage your documents for university applications",
+    "stats": {
+      "total": "Total Documents",
+      "uploaded": "Uploaded files",
+      "verified": "Verified",
+      "approved": "Approved by admin",
+      "pending": "Pending Review",
+      "awaiting": "Awaiting verification"
+    },
+    "yourDocuments": "Your Documents",
+    "manageDocuments": "Upload and manage your application documents",
+    "uploadDocument": "Upload Document",
+    "noDocuments": "No documents yet",
+    "uploadFirst": "Upload your first document to get started",
+    "size": "Size",
+    "uploaded": "Uploaded",
+    "download": "Download",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete \"{name}\"?",
+    "uploadDialog": {
+      "title": "Upload Document",
+      "description": "Select the document type and upload your file",
+      "type": "Document Type *",
+      "selectType": "Select document type",
+      "alreadyUploaded": "(Already Uploaded)",
+      "file": "File *",
+      "selected": "Selected",
+      "formats": "Accepted formats: PDF, JPG, PNG, DOC, DOCX. Max 10MB.",
+      "cancel": "Cancel",
+      "uploading": "Uploading...",
+      "upload": "Upload"
+    },
+    "error": {
+      "fileSize": "File must be less than 10MB",
+      "selectFile": "Please select a document type and file",
+      "fileType": "Please upload an image file",
+      "imageSize": "Image must be less than 5MB"
+    },
+    "success": {
+      "uploaded": "Document uploaded successfully!",
+      "deleted": "Document deleted"
+    },
+    "types": {
+      "passport": "Passport",
+      "transcript": "Academic Transcript",
+      "diploma": "Diploma/Certificate",
+      "recommendation_letter": "Recommendation Letter",
+      "personal_statement": "Personal Statement",
+      "cv": "CV/Resume",
+      "language_certificate": "Language Certificate (IELTS/TOEFL)",
+      "photo": "Passport Photo",
+      "bank_statement": "Bank Statement",
+      "health_certificate": "Health Certificate",
+      "police_clearance": "Police Clearance",
+      "other": "Other Document"
+    },
+    "documentRequest": {
+      "title": "Document Request",
+      "description": "Please upload the following documents:\n1. Passport Copy\n2. Degree Certificate\n3. Personal Statement",
+      "note": "make sure everything is translated to all languages"
+    }
+  },
+  "Status": {
+    "pending_documents": "Pending Documents",
+    "pending_payment": "Pending Payment",
+    "payment_verification": "Payment Verification",
+    "submitted": "Submitted",
+    "under_review": "Under Review",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "unknown": "Unknown"
+  },
+  "Auth": {
+    "login": {
+      "title": "Sign in",
+      "description": "Enter your email and password to access your account",
+      "emailLabel": "Email",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "orContinueWith": "Or continue with",
+      "continueWithGoogle": "Continue with Google",
+      "connecting": "Connecting...",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "success": "Login successful! Redirecting...",
+      "error": "Something went wrong",
+      "googleError": "Failed to login with Google"
+    },
+    "layout": {
+      "branding": "Studyatchina",
+      "heroTitle": "Your Gateway to Chinese Universities",
+      "heroDescription": "Join thousands of international students pursuing their dreams in China's top universities.",
+      "programsTitle": "500+ Programs",
+      "programsDescription": "Access programs from top Chinese universities",
+      "guidanceTitle": "Expert Guidance",
+      "guidanceDescription": "Get support throughout your application journey",
+      "scholarshipsTitle": "Scholarship Opportunities",
+      "scholarshipsDescription": "Explore various scholarship options available",
+      "copyright": "© 2024 Studyatchina. All rights reserved."
+    }
+  },
+  "Notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "noNotifications": "No notifications yet",
+    "viewAll": "View all notifications",
+    "loading": "Loading notifications...",
+    "types": {
+      "statusChange": "Application Status Update",
+      "documentRequested": "Document Requested",
+      "paymentRequested": "Payment Required",
+      "messageReceived": "New Message",
+      "newApplication": "New Application",
+      "newLead": "New Lead",
+      "documentUploaded": "Document Uploaded",
+      "acceptanceLetter": "Acceptance Letter"
+    },
+    "messages": {
+      "statusChange": "Your application status has changed to {status}"
+    }
+  },
+  "Apply": {
+    "title": "Apply for Program",
+    "steps": {
+      "info": "Info",
+      "documents": "Docs",
+      "payment": "Pay",
+      "review": "Review",
+      "personalInfo": "Personal Information",
+      "requiredDocuments": "Required Documents",
+      "paymentInfo": "Payment",
+      "reviewSubmit": "Review & Submit"
+    },
+    "sections": {
+      "identity": "Identity & Personal Details",
+      "identitySubtitle": "Please provide your details as shown on your passport",
+      "contact": "Contact Information",
+      "address": "Home Address",
+      "education": "Education Background",
+      "educationSubtitle": "Your most recent academic qualification",
+      "language": "Language Proficiency",
+      "languageSubtitle": "Chinese and English levels for admission purposes",
+      "emergency": "Emergency Contact",
+      "emergencySubtitle": "Required for your safety abroad"
+    },
+    "options": {
+      "male": "Male",
+      "female": "Female",
+      "islam": "Islam",
+      "christianity": "Christianity",
+      "buddhism": "Buddhism",
+      "hinduism": "Hinduism",
+      "noReligion": "No Religion",
+      "other": "Other",
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "highSchool": "High School",
+      "diploma": "Diploma",
+      "bachelor": "Bachelor's Degree",
+      "master": "Master's Degree",
+      "doctorate": "Doctorate / PhD",
+      "noProficiency": "No Proficiency",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "native": "Native Speaker"
+    },
+    "labels": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "fullName": "Full Name (as in passport)",
+      "email": "Email Address",
+      "phone": "Mobile Phone Number",
+      "country": "Nationality",
+      "passport": "Passport Number",
+      "gender": "Gender",
+      "dateOfBirth": "Date of Birth",
+      "religion": "Religion",
+      "maritalStatus": "Marital Status",
+      "wechatId": "WeChat ID",
+      "address": "Home Address",
+      "city": "City",
+      "postalCode": "Postal Code",
+      "highestEducation": "Highest Education",
+      "schoolName": "School / University Name",
+      "majorField": "Major / Field of Study",
+      "graduationYear": "Graduation Year",
+      "gpaScore": "GPA / Score",
+      "chineseProficiency": "Chinese (HSK Level)",
+      "englishProficiency": "English Proficiency",
+      "testScore": "Test Score (IELTS/TOEFL)",
+      "preferredIntake": "Preferred Intake",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "emergencyContactRelationship": "Relationship"
+    },
+    "placeholders": {
+      "firstName": "e.g. John",
+      "lastName": "e.g. Smith",
+      "fullName": "e.g. John Smith",
+      "email": "e.g. john@example.com",
+      "phone": "e.g. 555 123 4567",
+      "passport": "e.g. AB1234567",
+      "selectGender": "Select gender",
+      "selectReligion": "Select religion",
+      "selectMaritalStatus": "Select marital status",
+      "wechatId": "e.g. wxid_abc123",
+      "address": "e.g. 123 Main Street, Apt 4B",
+      "city": "e.g. Cairo",
+      "postalCode": "e.g. 11511",
+      "selectEducation": "Select highest education",
+      "schoolName": "e.g. Cairo University",
+      "majorField": "e.g. Computer Science",
+      "graduationYear": "e.g. 2024",
+      "gpaScore": "e.g. 3.5 / 4.0",
+      "selectChinese": "Select HSK level",
+      "selectEnglish": "Select proficiency",
+      "testScore": "e.g. IELTS 6.5",
+      "emergencyName": "e.g. Parent or Guardian name",
+      "emergencyPhone": "e.g. 555 123 4567",
+      "relationship": "e.g. Parent, Spouse"
+    },
+    "hints": {
+      "phoneHint": "Enter your phone number without country code",
+      "passportHint": "Enter your passport number exactly as shown"
+    },
+    "buttons": {
+      "next": "Next",
+      "continueToDocuments": "Continue to Documents",
+      "continueToPayment": "Continue to Payment",
+      "continueToReview": "Continue to Review",
+      "submitApplication": "Submit Application",
+      "back": "Back",
+      "uploadDocument": "Upload",
+      "selectFile": "Select File"
+    },
+    "validation": {
+      "missingFieldsTitle": "Please fill in the following required fields:",
+      "required": "This field is required"
+    },
+    "documents": {
+      "title": "Required Documents",
+      "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
+      "mandatory": "Required",
+      "optional": "Optional",
+      "uploaded": "Uploaded",
+      "pending": "Pending"
+    },
+    "payment": {
+      "title": "Application Fee",
+      "applicationFee": "Application Fee",
+      "serviceFee": "Service Fee",
+      "total": "Total",
+      "payNow": "Pay Now",
+      "payLater": "Pay Later"
+    },
+    "review": {
+      "title": "Review Your Application",
+      "personalDetails": "Personal Details",
+      "uploadedDocuments": "Uploaded Documents",
+      "confirmSubmit": "I confirm that all information provided is accurate",
+      "submitting": "Submitting...",
+      "success": "Application Submitted Successfully!",
+      "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "uploadFailed": "Failed to upload document. Please try again.",
+      "paymentFailed": "Payment failed. Please try again."
+    }
+  },
+  "AISearch": {
+    "placeholder": "Try: 'Master's in Engineering under 30000 RMB in Beijing'",
+    "search": "Search",
+    "filters": "AI understood",
+    "error": "Something went wrong. Please try again."
+  },
+  "AIChat": {
+    "title": "Chen Wei 陈伟",
+    "subtitle": "Your Study Advisor",
+    "typing": "Typing...",
+    "greeting": "Hi there! 👋 I'm Chen Wei (陈伟), your personal study advisor. I'm here to help you find the perfect program in China, answer your questions, and even guide you through the application process. What brings you here today?",
+    "inputPlaceholder": "Type your message...",
+    "thinking": "Thinking...",
+    "error": "Sorry, I encountered an error. Please try again.",
+    "quickStart": "Quick start:",
+    "quickFind": "🎓 Find Programs",
+    "quickScholarship": "💰 Scholarships",
+    "quickApply": "📝 Start Application",
+    "chatHistory": "Chat History",
+    "newChat": "New Chat",
+    "noHistory": "No previous conversations",
+    "backToChat": "Back to Chat",
+    "loginPrompt": "🔐 Log in to save your chat history and track applications",
+    "login": "Log In",
+    "register": "Register"
+  },
+  "PaymentDashboard": {
+    "title": "Payments",
+    "subtitle": "Manage your application payments",
+    "totalAmount": "Total Amount",
+    "totalPaid": "Total Paid",
+    "pending": "Pending",
+    "rest": "Rest Amount",
+    "totalTransactions": "Total Transactions",
+    "successfullyProcessed": "Successfully processed",
+    "paymentDue": "payment(s) due",
+    "allTime": "All time",
+    "amount": "Amount",
+    "status": "Status",
+    "created": "Created",
+    "method": "Method",
+    "payNow": "Pay Now",
+    "viewApplication": "View Application",
+    "paymentProof": "Payment Proof",
+    "paymentRequest": {
+      "title": "Payment Request",
+      "amount": "USD 200",
+      "description": "make this payment",
+      "note": "Please complete the payment to proceed with your application."
+    },
+    "paymentStatuses": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "processing": "Processing",
+      "failed": "Failed",
+      "refunded": "Refunded"
+    },
+    "types": {
+      "application_fee": "Application Fee",
+      "service_fee": "Service Fee",
+      "tuition_deposit": "Tuition Deposit",
+      "full_tuition": "Full Tuition",
+      "accommodation": "Accommodation",
+      "other": "Other"
+    },
+    "assistance": {
+      "title": "Payment Assistance",
+      "description": "You have {count} pending payment(s). If you need help with payments or have questions:",
+      "point1": "Contact our support team for payment assistance",
+      "point2": "Check if you're eligible for payment plans",
+      "point3": "Verify your payment method is supported"
+    },
+    "paidOn": "Paid On",
+    "reference": "Reference",
+    "verifiedByAdmin": "Verified by admin",
+    "expires": "Expires:",
+    "adminNote": "Admin Note:",
+    "paymentLinkExpired": "Payment Link Expired",
+    "document": "Document:",
+    "noPayments": "No Payments",
+    "noPaymentsDesc": "You don't have any pending payments.",
+    "contactSupport": "Contact Support"
+  },
+  "Refunds": {
+    "title": "Refund Requests",
+    "statusTitle": "Refund Status",
+    "requestButton": "Request Refund",
+    "submittedTitle": "Refund Request Submitted",
+    "submittedOn": "Submitted on {date}",
+    "reasonLabel": "Reason",
+    "adminResponseLabel": "Admin Response",
+    "rejectedTitle": "Application Rejected",
+    "rejectedMessage": "You may be eligible for a refund. Click the button to submit a request.",
+    "modalTitle": "Request Refund",
+    "modalDescription": "Submit a request for a refund. Please explain why you are requesting this refund.",
+    "modalReasonLabel": "Reason for Refund",
+    "modalPlaceholder": "I was rejected because...",
+    "submitButton": "Submit Request",
+    "cancelButton": "Cancel",
+    "successMessage": "Refund request submitted successfully",
+    "errorMessage": "Failed to submit request",
+    "table": {
+      "student": "Student",
+      "program": "University / Program",
+      "reason": "Reason",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions",
+      "approve": "Approve",
+      "reject": "Reject",
+      "noRequests": "No refund requests found",
+      "approveTitle": "Approve Refund Request",
+      "rejectTitle": "Reject Refund Request",
+      "approveDescription": "This will mark the request as approved and update the application payment status to refunded.",
+      "rejectDescription": "This will mark the request as rejected.",
+      "adminResponsePlaceholder": "Add a note to the student..."
+    }
+  },
+  "Messages": {
+    "title": "Messages",
+    "subtitle": "Communication with admissions team",
+    "conversations": "Conversations",
+    "unreadMessages": "Unread Messages",
+    "actionRequired": "Action Required",
+    "actionCompleted": "Completed",
+    "noMessages": "No messages yet",
+    "noMessagesDesc": "Messages from the admissions team will appear here",
+    "reply": "Reply",
+    "replyingTo": "Replying to {name}",
+    "typeReply": "Type your reply...",
+    "sendReply": "Send Reply",
+    "sending": "Sending...",
+    "cancel": "Cancel",
+    "you": "You",
+    "admin": "Admissions Team",
+    "replyTooltip": "Reply to this message",
+    "actionRequiredMessage": "Please respond to this message or complete the requested action.",
+    "takeAction": "Take Action",
+    "attachment": "attachment",
+    "attachments": "attachments"
+  },
+  "QSRankings": {
+    "meta": {
+      "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+      "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+    },
+    "hero": {
+      "badge": "QS World University Rankings 2026",
+      "titleHighlight": "Chinese Universities",
+      "titleRest": "in Global Rankings",
+      "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+      "breadcrumb": "QS Rankings 2026",
+      "statRanked": "Ranked Universities",
+      "statHighest": "Highest Global Rank",
+      "statTop50": "In Global Top 50",
+      "statCities": "Cities Represented"
+    },
+    "content": {
+      "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+      "browseAllTitle": "Browse All Rankings",
+      "searchPlaceholder": "Search universities...",
+      "allCities": "All Cities",
+      "showing": "Showing",
+      "of": "of",
+      "universities": "universities",
+      "university": "university",
+      "inCity": "in",
+      "matching": "matching",
+      "noResults": "No universities found",
+      "noResultsHint": "Try adjusting your search or filters",
+      "overallScore": "Overall Score",
+      "score": "Score",
+      "world": "World",
+      "china": "China",
+      "ctaTitle": "Ready to Study at a Top-Ranked University?",
+      "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+      "browseUniversities": "Browse Universities",
+      "explorePrograms": "Explore Programs",
+      "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+      "visitSite": "topuniversities.com",
+      "viewProfile": "View Profile",
+      "tierTop50": "Top 50 Globally",
+      "tierTop200": "Top 51–200",
+      "tierTop500": "Top 201–500",
+      "tierRemaining": "501+"
+    }
+  },
+  "ApplyForm": {
+    "badge": "Начните свой путь",
+    "title": "Подайте заявку на обучение в Китае",
+    "subtitle": "Заполните форму ниже, и наша команда свяжется с вами, чтобы помочь с процессом поступления.",
+    "firstName": "Имя",
+    "firstNamePlaceholder": "Введите ваше имя",
+    "lastName": "Фамилия",
+    "lastNamePlaceholder": "Введите вашу фамилию",
+    "email": "Электронная почта",
+    "emailPlaceholder": "your.email@example.com",
+    "whatsapp": "Номер WhatsApp",
+    "whatsappPlaceholder": "Введите номер WhatsApp",
+    "englishLevel": "Уровень английского",
+    "englishLevelPlaceholder": "Выберите уровень английского",
+    "englishLevels": {
+      "beginner": "Начальный",
+      "intermediate": "Средний",
+      "upper_intermediate": "Выше среднего",
+      "advanced": "Продвинутый",
+      "native": "Носитель языка"
+    },
+    "department": "Желаемый факультет",
+    "departmentPlaceholder": "Выберите факультет",
+    "departments": {
+      "medicine": "Медицина",
+      "engineering": "Инженерия",
+      "computer_science": "Информатика",
+      "business": "Бизнес и экономика",
+      "arts": "Искусство и дизайн",
+      "law": "Юриспруденция",
+      "language": "Языковые исследования",
+      "other": "Другое"
+    },
+    "startSemester": "Когда вы хотите начать?",
+    "startSemesterPlaceholder": "Выберите семестр",
+    "semesters": {
+      "fall_2026": "Осень 2026",
+      "spring_2026": "Весна 2026",
+      "fall_2027": "Осень 2027"
+    },
+    "submit": "Отправить заявку",
+    "submitting": "Отправка...",
+    "successTitle": "Заявка отправлена!",
+    "successMessage": "Спасибо! Наша команда свяжется с вами в ближайшее время для помощи на следующих этапах.",
+    "successNewForm": "Отправить ещё одну заявку",
+    "errorMessage": "Что-то пошло не так. Попробуйте ещё раз.",
+    "required": "Обязательно",
+    "emailSubject": "Мы получили вашу заявку — Обучение в Китае",
+    "emailGreeting": "Уважаемый(ая)",
+    "emailBody": "Спасибо за интерес к обучению в Китае! Мы получили вашу заявку, и наша команда свяжется с вами в ближайшее время, чтобы помочь с процессом поступления.",
+    "emailReceived": "Ваша заявка получена",
+    "emailTeamContact": "Наша приёмная комиссия свяжется с вами в течение 24 часов",
+    "emailNextSteps": "Что будет дальше?",
+    "emailStep1": "Наша команда рассмотрит детали вашей заявки",
+    "emailStep2": "С вами свяжутся по WhatsApp или электронной почте в течение 24 часов",
+    "emailStep3": "Мы поможем вам с выбором университета и процессом поступления",
+    "emailUrgent": "По срочным вопросам вы можете связаться с нами по телефону",
+    "emailRegards": "С уважением,",
+    "emailTeamName": "Команда «Обучение в Китае»",
+    "emailVisitWebsite": "Посетите наш сайт"
+  }
 }

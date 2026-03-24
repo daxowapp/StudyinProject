@@ -1,1824 +1,1906 @@
 {
-    "Navbar": {
-        "home": "首页",
-        "programs": "课程项目",
-        "universities": "院校库",
-        "about": "关于我们",
-        "contact": "联系我们",
-        "login": "登录",
-        "dashboard": "仪表盘",
-        "admin": "管理后台",
-        "categories": {
-            "topRanked": {
-                "title": "顶尖排名",
-                "description": "探索中国排名最高的大学。"
-            },
-            "medical": {
-                "title": "医学院校",
-                "description": "医学和医疗保健领域的领先机构。"
-            },
-            "engineering": {
-                "title": "工程技术",
-                "description": "顶尖的工程技术大学。"
-            },
-            "business": {
-                "title": "商业与经济",
-                "description": "一流的商学院和经济研究机构。"
-            },
-            "arts": {
-                "title": "人文艺术",
-                "description": "艺术、文化和人文中心。"
-            },
-            "all": {
-                "title": "所有大学",
-                "description": "浏览我们完整的合作大学列表。"
-            }
-        },
-        "levels": {
-            "bachelor": {
-                "title": "学士学位",
-                "description": "面向高中毕业生的本科课程。"
-            },
-            "master": {
-                "title": "硕士学位",
-                "description": "面向学士学位持有者的研究生课程。"
-            },
-            "phd": {
-                "title": "博士课程",
-                "description": "博士研究课程。"
-            },
-            "nonDegree": {
-                "title": "汉语课程",
-                "description": "学习汉语语言和文化。"
-            },
-            "diploma": {
-                "title": "文凭课程",
-                "description": "职业和技术课程。"
-            },
-            "language": {
-                "title": "语言课程",
-                "description": "学习中文。"
-            },
-            "viewAll": "查看所有课程"
-        },
-        "viewAllUniversities": "查看所有大学",
-        "destinations": {
-            "title": "留学目的地",
-            "viewAll": "查看所有目的地",
-            "beijing": {
-                "title": "北京",
-                "description": "首都城市，拥有清华大学和北京大学等顶尖院校。"
-            },
-            "shanghai": {
-                "title": "上海",
-                "description": "全球金融中心，复旦大学和上海交通大学所在地。"
-            },
-            "guangzhou": {
-                "title": "广州",
-                "description": "南方大都市，拥有领先的医学和工程院校。"
-            },
-            "wuhan": {
-                "title": "武汉",
-                "description": "历史教育中心，武汉大学和华中科技大学所在地。"
-            },
-            "hangzhou": {
-                "title": "杭州",
-                "description": "科技中心和风景名城，浙江大学所在地。"
-            },
-            "nanjing": {
-                "title": "南京",
-                "description": "古都，拥有南京大学和东南大学。"
-            },
-            "chengdu": {
-                "title": "成都",
-                "description": "西部门户城市，四川大学所在地，生活成本低廉。"
-            },
-            "xian": {
-                "title": "西安",
-                "description": "丝绸之路历史名城，西安交通大学所在地。"
-            }
-        },
-        "resources": {
-            "title": "资源",
-            "scholarships": "奖学金",
-            "howToApply": "如何申请",
-            "articles": "信息与资源",
-            "contact": "联系我们",
-            "scholarshipFilter": "奖学金筛选",
-            "scholarshipFilterDesc": "按奖学金福利筛选大学",
-            "qsRankings": "QS排名",
-            "qsRankingsDesc": "探索QS世界大学排名"
-        },
-        "user": {
-            "myApplications": "我的申请",
-            "logout": "退出登录",
-            "signIn": "登录",
-            "getStarted": "开始申请",
-            "myAccount": "我的账户",
-            "account": "账户"
-        }
+  "Navbar": {
+    "home": "首页",
+    "programs": "课程项目",
+    "universities": "院校库",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "login": "登录",
+    "dashboard": "仪表盘",
+    "admin": "管理后台",
+    "categories": {
+      "topRanked": {
+        "title": "顶尖排名",
+        "description": "探索中国排名最高的大学。"
+      },
+      "medical": {
+        "title": "医学院校",
+        "description": "医学和医疗保健领域的领先机构。"
+      },
+      "engineering": {
+        "title": "工程技术",
+        "description": "顶尖的工程技术大学。"
+      },
+      "business": {
+        "title": "商业与经济",
+        "description": "一流的商学院和经济研究机构。"
+      },
+      "arts": {
+        "title": "人文艺术",
+        "description": "艺术、文化和人文中心。"
+      },
+      "all": {
+        "title": "所有大学",
+        "description": "浏览我们完整的合作大学列表。"
+      }
     },
-    "Common": {
-        "loading": "加载中...",
-        "error": "发生错误",
-        "submit": "提交",
-        "cancel": "取消",
-        "save": "保存",
-        "delete": "删除",
-        "edit": "编辑",
-        "view": "查看",
-        "back": "返回"
+    "levels": {
+      "bachelor": {
+        "title": "学士学位",
+        "description": "面向高中毕业生的本科课程。"
+      },
+      "master": {
+        "title": "硕士学位",
+        "description": "面向学士学位持有者的研究生课程。"
+      },
+      "phd": {
+        "title": "博士课程",
+        "description": "博士研究课程。"
+      },
+      "nonDegree": {
+        "title": "汉语课程",
+        "description": "学习汉语语言和文化。"
+      },
+      "diploma": {
+        "title": "文凭课程",
+        "description": "职业和技术课程。"
+      },
+      "language": {
+        "title": "语言课程",
+        "description": "学习中文。"
+      },
+      "viewAll": "查看所有课程"
     },
-    "Footer": {
-        "stayUpdated": "保持更新",
-        "getLatestUpdates": "订阅获取最新动态",
-        "subscribeText": "订阅以接收有关课程、奖学金和申请截止日期的消息。",
-        "description": "您探索和申请中国顶尖大学的值得信赖的伙伴。加入成千上万通过我们成功开启学术之旅的学生。",
-        "explore": "探索",
-        "programs": "课程项目",
-        "universities": "院校库",
-        "scholarships": "奖学金",
-        "howToApply": "如何申请",
-        "faq": "常见问题",
-        "forStudents": "学生服务",
-        "createAccount": "创建账户",
-        "trackApplication": "追踪申请",
-        "documentChecklist": "文件清单",
-        "studentPortal": "学生门户",
-        "contact": "联系方式",
-        "rightsReserved": "版权所有。",
-        "designedBy": "设计与技术支持",
-        "termsOfService": "服务条款",
-        "privacyPolicy": "隐私政策",
-        "cookiePolicy": "Cookie 政策"
+    "viewAllUniversities": "查看所有大学",
+    "destinations": {
+      "title": "留学目的地",
+      "viewAll": "查看所有目的地",
+      "beijing": {
+        "title": "北京",
+        "description": "首都城市，拥有清华大学和北京大学等顶尖院校。"
+      },
+      "shanghai": {
+        "title": "上海",
+        "description": "全球金融中心，复旦大学和上海交通大学所在地。"
+      },
+      "guangzhou": {
+        "title": "广州",
+        "description": "南方大都市，拥有领先的医学和工程院校。"
+      },
+      "wuhan": {
+        "title": "武汉",
+        "description": "历史教育中心，武汉大学和华中科技大学所在地。"
+      },
+      "hangzhou": {
+        "title": "杭州",
+        "description": "科技中心和风景名城，浙江大学所在地。"
+      },
+      "nanjing": {
+        "title": "南京",
+        "description": "古都，拥有南京大学和东南大学。"
+      },
+      "chengdu": {
+        "title": "成都",
+        "description": "西部门户城市，四川大学所在地，生活成本低廉。"
+      },
+      "xian": {
+        "title": "西安",
+        "description": "丝绸之路历史名城，西安交通大学所在地。"
+      }
     },
-    "ScholarshipCTA": {
-        "badge": "发现更多机会",
-        "title": "探索所有奖学金选项",
-        "description": "不确定哪种奖学金适合您？浏览我们完整的奖学金指南，比较所有选项，了解资格要求，找到最适合您学术之旅的奖学金。",
-        "viewAll": "查看所有奖学金",
-        "getAdvice": "获取个性化建议"
+    "resources": {
+      "title": "资源",
+      "scholarships": "奖学金",
+      "howToApply": "如何申请",
+      "articles": "信息与资源",
+      "contact": "联系我们",
+      "scholarshipFilter": "奖学金筛选",
+      "scholarshipFilterDesc": "按奖学金福利筛选大学",
+      "qsRankings": "QS排名",
+      "qsRankingsDesc": "探索QS世界大学排名"
     },
-    "CscaCta": {
-        "badge": "2026年起强制要求",
-        "title": "准备 <span class=\"text-primary\">CSCA 考试？</span>",
-        "titlePlain": "准备 CSCA 考试？",
-        "description": "中国学术能力评估 (CSCA) 现已成为顶尖奖学金的要求。在我们的新综合指南中获取学科、评分和备考策略的完整分类。",
-        "readGuide": "阅读指南",
-        "findPrograms": "查找课程",
-        "proTip1": {
-            "title": "专家提示 #1",
-            "text": "专业汉语需要学术词汇，不仅仅是 HSK。"
-        },
-        "proTip2": {
-            "title": "专家提示 #2",
-            "text": "数学部分偏重几何。复习圆锥曲线。"
-        }
-    },
-    "CSCAGuide": {
-        "meta": {
-            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-        },
-        "backHome": "Back to Home",
-        "newRequirement": "New Requirement for 2026",
-        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-        "sections": {
-            "overview": {
-                "title": "Overview",
-                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-                "keyDates": {
-                    "title": "Key Dates",
-                    "launch": "2025: Official Launch",
-                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-                    "full": "2028: Full Implementation across all Universities"
-                }
-            },
-            "structure": {
-                "title": "Exam Structure",
-                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-                "table": {
-                    "subject": "Subject",
-                    "duration": "Duration",
-                    "questions": "Questions",
-                    "requirement": "Requirement",
-                    "chinese": {
-                        "name": "Specialized Chinese",
-                        "req": "Humanities/Science"
-                    },
-                    "math": {
-                        "name": "Mathematics",
-                        "req": "Mandatory"
-                    },
-                    "physics": {
-                        "name": "Physics",
-                        "req": "Optional / Major-dependent"
-                    },
-                    "chemistry": {
-                        "name": "Chemistry",
-                        "req": "Optional / Major-dependent"
-                    }
-                }
-            },
-            "subjects": {
-                "title": "Subject Details & Syllabus",
-                "chinese": {
-                    "title": "Specialized Chinese",
-                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-                    "char": {
-                        "title": "Character Recognition",
-                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-                    },
-                    "reading": {
-                        "title": "Reading Comprehension",
-                        "desc": "Highest weight. Sci/Tech/Social essays."
-                    },
-                    "words": {
-                        "title": "Word Distinction",
-                        "desc": "Synonyms, academic vocabulary."
-                    },
-                    "sentences": {
-                        "title": "Sentence/Paragraph",
-                        "desc": "Ordering sentences, completing logic."
-                    }
-                },
-                "math": {
-                    "title": "Mathematics",
-                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-                    "note": "Both Chinese and English versions available.",
-                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-                },
-                "chem": {
-                    "title": "Chemistry",
-                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-                },
-                "phys": {
-                    "title": "Physics",
-                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
-                }
-            },
-            "fees_and_process": {
-                "title": "Application Process & Fees",
-                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-            },
-            "formats": {
-                "title": "Test Modes",
-                "online": {
-                    "title": "Online Proctored",
-                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
-                },
-                "computer": {
-                    "title": "Computer-Based",
-                    "desc": "At official test centers (classrooms). Better stability."
-                },
-                "paper": {
-                    "title": "Paper-Based",
-                    "desc": "Traditional format. Limited regions."
-                }
-            },
-            "faq": {
-                "title": "Frequently Asked Questions",
-                "q1": {
-                    "q": "Does the CSCA replace the HSK?",
-                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
-                },
-                "q2": {
-                    "q": "Can I take it in English?",
-                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-                },
-                "q3": {
-                    "q": "How long is the score valid?",
-                    "a": "CSCA results are valid for <strong>2 years</strong>."
-                },
-                "q4": {
-                    "q": "Who is exempt from the CSCA?",
-                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-                },
-                "q5": {
-                    "q": "Are scores required for 2026 intake?",
-                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-                },
-                "comparison": {
-                    "title": "CSCA vs. HSK",
-                    "feature": "Feature",
-                    "hsk": "HSK",
-                    "csca": "CSCA",
-                    "focus": "Focus",
-                    "focusHsk": "Daily Communication",
-                    "focusCsca": "Academic Readiness",
-                    "vocab": "Vocabulary",
-                    "vocabHsk": "Life/Everyday",
-                    "vocabCsca": "Technical/Academic",
-                    "req": "Requirement",
-                    "reqHsk": "Language Cert",
-                    "reqCsca": "Academic Entrance"
-                }
-            },
-            "sidebar": {
-                "title": "Important Details",
-                "dates": {
-                    "title": "Dates",
-                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
-                },
-                "prep": {
-                    "title": "Preparation",
-                    "desc": "Difficulty level: Junior/Senior High"
-                },
-                "passing": {
-                    "title": "Fees",
-                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-                },
-                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-                "register": "Official Registration Site",
-                "tutor": {
-                    "title": "Fast-Track with Study at China",
-                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-                    "button": "Apply With Us"
-                }
-            }
-        }
-    },
-    "Hero": {
-        "admissionsOpen": "2026 年招生开启",
-        "searchPlaceholder": "你想学什么？（例如：计算机科学，医学）",
-        "title": "你在中国的未来从这里开始",
-        "subtitle": "加入 <bold>50,000+</bold> 名学生，在中国顶尖大学学习",
-        "searchButton": "搜索 <bold>500+</bold> 个课程",
-        "searchWord": "搜索",
-        "programsWord": "课程",
-        "browseByCategory": "按类别浏览",
-        "scrollToExplore": "滚动探索",
-        "stats": {
-            "universities": "合作院校",
-            "students": "在读学生",
-            "success": "成功案例",
-            "scholarships": "奖学金"
-        },
-        "tabs": {
-            "programs": "课程",
-            "universities": "大学",
-            "scholarships": "奖学金"
-        },
-        "placeholders": {
-            "degree": "学位等级",
-            "field": "学习领域",
-            "city": "城市",
-            "language": "授课语言",
-            "budget": "预算 (美元/年)",
-            "scholarship": "奖学金",
-            "duration": "学制"
-        },
-        "options": {
-            "any": "不限",
-            "all": "全部"
-        },
-        "budget": {
-            "under3k": "Under $3,000",
-            "3kTo5k": "$3,000 - $5,000",
-            "5kTo8k": "$5,000 - $8,000",
-            "above8k": "Above $8,000"
-        },
-        "scholarship": {
-            "allPrograms": "All Programs",
-            "available": "Scholarship Available",
-            "full": "Full Scholarship",
-            "partial": "Partial Scholarship"
-        },
-        "duration": {
-            "1year": "1 Year",
-            "2years": "2 Years",
-            "3years": "3 Years",
-            "4years": "4 Years",
-            "5plus": "5+ Years"
-        },
-        "categories": {
-            "mba": "MBA Programs",
-            "engineering": "Engineering",
-            "medicine": "Medicine (MBBS)",
-            "cs": "Computer Science",
-            "fullScholarship": "Full Scholarship",
-            "englishTaught": "English Taught"
-        }
-    },
-    "WhyStudy": {
-        "badge": "为什么选择中国",
-        "title": "通往 <gradient>全球成功</gradient> 的门户",
-        "description": "中国将古老的智慧与尖端的创新相结合，为国际学生提供位于亚洲经济强国中心的无与伦比的教育体验。",
-        "cta": {
-            "explore": "探索课程",
-            "download": "下载指南"
-        },
-        "features": {
-            "worldClass": {
-                "title": "世界级大学",
-                "description": "在拥有尖端研究设施和知名师资的全球排名机构学习。"
-            },
-            "affordable": {
-                "title": "性价比高",
-                "description": "具有竞争力的费用提供优质教育，并有高达 100% 的慷慨奖学金机会。"
-            },
-            "career": {
-                "title": "职业起飞",
-                "description": "接触亚洲最大的经济体，拥有无与伦比的实习和工作机会。"
-            },
-            "safe": {
-                "title": "安全与活力",
-                "description": "体验世界上最安全的国家之一，这里有着繁荣的国际社区。"
-            },
-            "culture": {
-                "title": "文化沉浸",
-                "description": "在超现代、充满活力的城市生活中探索五千年的历史。"
-            },
-            "network": {
-                "title": "全球网络",
-                "description": "加入来自 200 多个国家的 500,000 多名国际学生社区。"
-            },
-            "english": {
-                "title": "英语课程",
-                "description": "从涵盖所有学科的 17000 多个全英文授课课程中进行选择。"
-            },
-            "recognition": {
-                "title": "全球认可",
-                "description": "获得 UNESCO、WHO 和全球专业机构认可的学位。"
-            }
-        }
-    },
-    "HowItWorks": {
-        "badge": "闪电般的流程",
-        "title": "从申请到 <gradient>录取</gradient>",
-        "description": "简化的 6 步旅程，旨在让您在创纪录的时间内从浏览课程到收到录取通知书。",
-        "cta": {
-            "button": "立即开始申请",
-            "time": "平均完成时间：<bold>15 分钟</bold>"
-        },
-        "steps": {
-            "discover": {
-                "title": "发现课程",
-                "description": "浏览来自中国顶尖大学的 500 多个为您量身定制的课程。"
-            },
-            "profile": {
-                "title": "创建档案",
-                "description": "几分钟内设置您的帐户并完成您的学术档案。"
-            },
-            "upload": {
-                "title": "上传文件",
-                "description": "安全提交证书、成绩单和所需文件。"
-            },
-            "scholarship": {
-                "title": "选择奖学金类型",
-                "description": "每所大学都有可用的奖学金类型。选择一个并申请。"
-            },
-            "pay": {
-                "title": "支付费用",
-                "description": "安全地支付申请和处理费用。"
-            },
-            "track": {
-                "title": "追踪进度",
-                "description": "通过实时更新和通知监控您的申请状态。"
-            },
-            "admission": {
-                "title": "获得录取",
-                "description": "接收您的录取通知书、签证文件，开始您的旅程！"
-            }
-        }
-    },
-    "Stats": {
-        "badge": "我们的影响力",
-        "title": "值得全球成千上万人的信赖",
-        "description": "加入一个由成功学生组成的全球社区，他们通过我们的平台实现了梦想",
-        "items": {
-            "universities": {
-                "label": "合作院校",
-                "description": "顶尖排名机构"
-            },
-            "students": {
-                "label": "国际学生",
-                "description": "来自 200+ 国家"
-            },
-            "programs": {
-                "label": "可用课程",
-                "description": "涵盖所有学科"
-            },
-            "success": {
-                "label": "成功率",
-                "description": "录取批准"
-            },
-            "countries": {
-                "label": "代表国家",
-                "description": "全球社区"
-            },
-            "scholarships": {
-                "label": "颁发奖学金",
-                "description": "财政支持"
-            },
-            "time": {
-                "label": "申请时间",
-                "description": "快速简便的流程"
-            },
-            "employment": {
-                "label": "毕业生就业",
-                "description": "6个月内"
-            }
-        }
-    },
-    "FeaturedPrograms": {
-        "badge": "精选课程",
-        "title": "快速通道课程",
-        "description": "探索中国顶尖大学最受欢迎的课程",
-        "duration": "学制",
-        "tuition": "学费/年",
-        "explore": "探索课程",
-        "viewAll": "查看所有课程",
-        "fastTrack": "快速通道"
-    },
-    "FeaturedUniversities": {
-        "badge": "顶尖大学",
-        "title": "精英大学",
-        "description": "在中国最负盛名的机构学习",
-        "fastTrack": "快速通道",
-        "programs": "课程",
-        "tuitionFrom": "学费起",
-        "students": "学生",
-        "viewDetails": "查看详情",
-        "viewAll": "查看所有大学"
-    },
-    "Scholarships": {
-        "badge": "财政支持",
-        "title": "奖学金与助学金",
-        "description": "在中国留学是负担得起的。探索为国际学生提供的各种奖学金机会。",
-        "items": {
-            "csc": {
-                "title": "中国政府奖学金 (CSC)",
-                "description": "全额或部分奖学金。涵盖学费、住宿和生活费。",
-                "amount": "最高 $10,000/年"
-            },
-            "university": {
-                "title": "大学奖学金",
-                "description": "大学直接向优秀申请者提供的择优奖学金。",
-                "amount": "最高 $8,000/年"
-            },
-            "provincial": {
-                "title": "省政府奖学金",
-                "description": "地方政府资助的奖学金，旨在吸引国际人才到特定地区。",
-                "amount": "最高 $6,000/年"
-            }
-        },
-        "awardAmount": "奖励金额",
-        "learnMore": "了解更多",
-        "stats": {
-            "scholarshipOptions": "Scholarship Options",
-            "universities": "Universities",
-            "programs": "Programs",
-            "awarded": "每年颁发",
-            "funding": "获得资助",
-            "full": "全额奖学金",
-            "eligible": "符合条件的课程"
-        },
-        "viewAll": "查看所有奖学金",
-        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-        "popular": {
-            "title": "Featured & Popular Scholarships"
-        },
-        "tabs": {
-            "search": "Search Scholarships",
-            "about": "About Scholarships"
-        },
-        "search": {
-            "filter": "Filters",
-            "clearAll": "Clear All",
-            "searchPlaceholder": "Search program or university...",
-            "category": "Category",
-            "all": "All",
-            "fullScholarship": "Full Scholarship (100%)",
-            "partialScholarship": "Partial Scholarship",
-            "city": "City",
-            "university": "University",
-            "degree": "Degree Level",
-            "language": "Language",
-            "semester": "Semester",
-            "spring": "Spring",
-            "autumn": "Autumn",
-            "freeAccommodation": "Free Accommodation",
-            "monthlyStipend": "Monthly Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "scholarshipOptions": "scholarship options at",
-            "universities": "universities",
-            "noResults": "No scholarships found",
-            "noResultsDescription": "Try adjusting your filters to see more results.",
-            "programsAvailable": "Programs",
-            "upTo": "Up to",
-            "accommodation": "Accommodation",
-            "stipend": "Stipend",
-            "insurance": "Insurance",
-            "program": "Program",
-            "teachingLanguage": "Language",
-            "startingDate": "Intake",
-            "scholarshipCoverage": "Original Tuition",
-            "youNeedToPay": "You Need To Pay",
-            "tuition": "Tuition",
-            "free": "Free",
-            "moreOptions": "More Options",
-            "learnMore": "Learn More"
-        },
-        "detail": {
-            "backToSearch": "Back to Search",
-            "scholarshipAvailable": "Scholarship Available",
-            "programDetails": "Program Details",
-            "degree": "Degree",
-            "duration": "Duration",
-            "language": "Language",
-            "intake": "Intake",
-            "availableScholarships": "Available Scholarships",
-            "noScholarships": "No scholarships are currently available for this program.",
-            "tuitionCoverage": "Tuition Coverage",
-            "freeAccommodation": "Free Accommodation",
-            "stipend": "Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "originalTuition": "Original Tuition",
-            "youPay": "You Need to Pay",
-            "serviceFee": "Service Fee",
-            "applyNow": "Apply for this Scholarship",
-            "university": "University",
-            "viewUniversity": "View University Profile",
-            "viewProgram": "View Program Details"
-        },
-        "about": {
-            "howItWorks": "How Scholarships Work",
-            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-            "scholarshipCoverage": "Scholarship Coverage",
-            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-            "serviceFees": "Service & Processing Fees",
-            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-            "scholarshipTypes": "Common Scholarship Types",
-            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-            "searchPrograms": "Search Eligible Programs",
-            "requiredDocuments": "Required Documents",
-            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-            "faq": "Frequently Asked Questions",
-            "faq1Question": "Do I need to know Chinese to get a scholarship?",
-            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-            "faq2Question": "Can I work while studying?",
-            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-            "faq3Question": "What happens if I fail my classes?",
-            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-            "faq4Question": "How long does the application process take?",
-            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-        }
-    },
-    "Testimonials": {
-        "badge": "成功故事",
-        "title": "学生感言",
-        "description": "听听那些通过我们的平台成功申请并正在中国茁壮成长的学生怎么说。",
-        "testimonials": {
-            "sarah": {
-                "quote": "在清华大学学习是一次改变人生的经历。校园很美，教授是世界级的。我在学术和个人方面都成长了很多。",
-                "program": "计算机科学",
-                "university": "清华大学",
-                "country": "美国"
-            },
-            "ahmed": {
-                "quote": "多亏了 Studyatchina，申请过程非常顺利。我现在正在攻读土木工程硕士学位，非常享受这里的每一刻。",
-                "program": "土木工程",
-                "university": "浙江大学",
-                "country": "埃及"
-            },
-            "maria": {
-                "quote": "上海是一座了不起的城市！我喜欢这里的文化、食物以及交到的朋友。我获得的奖学金使这一切成为可能。",
-                "program": "国际商务",
-                "university": "复旦大学",
-                "country": "西班牙"
-            }
-        },
-        "averageRating": "平均评分",
-        "reviews": "评论",
-        "satisfaction": "满意度"
-    },
-    "Partners": {
-        "badge": "值得信赖的合作伙伴",
-        "title": "合作大学",
-        "description": "我们与中国最负盛名的机构合作，为您带来最好的教育机会",
-        "recognitions": {
-            "unesco": {
-                "title": "UNESCO 认可",
-                "description": "所有合作大学均获 UNESCO 认可"
-            },
-            "government": {
-                "title": "政府批准",
-                "description": "中国教育部正式批准"
-            },
-            "accredited": {
-                "title": "全球认证",
-                "description": "学位在全球 180 多个国家获得认可"
-            }
-        }
-    },
-    "FAQ": {
-        "badge": "有疑问？",
-        "title": "常见问题",
-        "description": "查找关于在中国留学的常见问题解答",
-        "items": {
-            "deadline": {
-                "question": "申请截止日期是什么时候？",
-                "answer": "截止日期因大学和课程而异。通常，对于 9 月入学，申请在 3 月至 6 月之间截止。请查看具体课程页面以获取确切日期。"
-            },
-            "language": {
-                "question": "我需要懂中文才能在中国学习吗？",
-                "answer": "不一定！有数千个全英文授课的学士、硕士和博士课程。但是，建议学习一些基础中文以便日常生活。"
-            },
-            "work": {
-                "question": "我可以在学习期间工作吗？",
-                "answer": "经大学和移民局许可，国际学生可以兼职工作或实习。近年来政策变得更加灵活。"
-            },
-            "scholarships": {
-                "question": "如何申请奖学金？",
-                "answer": "您可以在提交申请时通过我们的平台直接申请奖学金。我们将指导您准备 CSC 和大学奖学金所需的文件。"
-            },
-            "visa": {
-                "question": "签证要求是什么？",
-                "answer": "您需要有效护照、录取通知书和大学提供的 JW202 表格。我们在整个过程中提供全面的签证指导和支持。"
-            },
-            "process": {
-                "question": "申请过程需要多长时间？",
-                "answer": "典型的申请过程需要 2-4 周。一旦提交，大学通常在 4-8 周内回复。我们会随时向您通报每一步的最新情况。"
-            }
-        },
-        "seeAll": "查看所有常见问题",
-        "contactSupport": "联系支持",
-        "footer": "还有问题？我们的支持团队 24/7 全天候为您提供帮助。"
-    },
-    "Destinations": {
-        "pageTitle": "留学目的地",
-        "badge": "中国留学目的地",
-        "heroTitle": "探索中国",
-        "heroSubtitle": "最佳留学城市",
-        "heroDescription": "从历史悠久的首都北京到现代化的上海天际线——探索中国最具活力的城市，找到最适合您学术之旅的地方。",
-        "statCities": "可选城市",
-        "statUniversities": "大学总数",
-        "statTopCity": "{city}的大学数量",
-        "featuredTitle": "热门目的地",
-        "featuredSubtitle": "最受国际学生欢迎的中国城市",
-        "allCitiesTitle": "更多城市",
-        "allCitiesSubtitle": "探索中国更多城市的大学",
-        "university": "所大学",
-        "universities": "所大学",
-        "explorePrograms": "探索课程"
-    },
-    "Universities": {
-        "title": "探索中国顶尖大学",
-        "subtitle": "发现 {count}+ 所著名的中国院校。从 985 工程到 C9 联盟大学。",
-        "error": {
-            "title": "无法加载大学",
-            "hint": "提示: {hint}"
-        },
-        "search": {
-            "placeholder": "按大学名称、城市或排名搜索...",
-            "label": "搜索",
-            "universityPlaceholder": "大学名称...",
-            "searching": "搜索中..."
-        },
-        "filters": {
-            "title": "筛选",
-            "description": "缩小大学搜索范围",
-            "clear": "清除筛选",
-            "clearAll": "清除所有筛选",
-            "city": "城市",
-            "allCities": "所有城市",
-            "institutionType": "院校类型",
-            "allTypes": "所有类型",
-            "universityCategory": "大学类别",
-            "allCategories": "所有类别",
-            "rankingRecognition": "排名与认可",
-            "specialFeatures": "特色功能",
-            "institutionTypes": {
-                "university": "大学",
-                "college": "学院",
-                "languageInstitute": "语言学院",
-                "vocationalSchool": "职业学校",
-                "technicalInstitute": "技术学院"
-            },
-            "categories": {
-                "public": "公立",
-                "private": "私立",
-                "research": "研究型",
-                "comprehensive": "综合型",
-                "specialized": "专业型",
-                "vocational": "职业型"
-            },
-            "rankings": {
-                "project985": "985 工程",
-                "project211": "211 工程",
-                "doubleFirstClass": "双一流"
-            },
-            "features": {
-                "fastTrack": "快速录取",
-                "scholarships": "提供奖学金",
-                "englishPrograms": "英语课程"
-            }
-        },
-        "stats": {
-            "title": "快速统计",
-            "total": "大学总数",
-            "showing": "显示",
-            "cities": "城市"
-        },
-        "sort": {
-            "label": "排序",
-            "name": "名称: A-Z",
-            "programs": "课程数量",
-            "city": "城市",
-            "tuitionLow": "Tuition: Low to High",
-            "tuitionHigh": "Tuition: High to Low",
-            "ranking": "Best Ranking"
-        },
-        "noResults": {
-            "title": "未找到大学",
-            "description": "尝试调整您的筛选或搜索条件"
-        },
-        "results": {
-            "universities": "universities",
-            "showMore": "Show {count} more",
-            "showingOf": "Showing {visible} of {total}"
-        },
-        "compare": {
-            "title": "Compare Universities",
-            "criteria": "Criteria",
-            "location": "Location",
-            "ranking": "Ranking",
-            "programs": "Programs",
-            "tuition": "Tuition",
-            "levels": "Study Levels",
-            "languages": "Languages",
-            "scholarship": "Scholarship",
-            "fastTrack": "Fast Track",
-            "cscaExam": "CSCA Exam",
-            "badges": "Accreditations",
-            "clearAll": "Clear All",
-            "selected": "{count} selected",
-            "compareNow": "Compare Now"
-        }
-    },
-    "Programs": {
-        "title": "发现完美课程",
-        "subtitle": "浏览来自中国顶尖大学的 {count}+ 课程。找到最适合您学术之旅的课程。",
-        "filters": {
-            "title": "筛选",
-            "active": "当前筛选:",
-            "clear": "清除筛选",
-            "clearAll": "清除所有筛选",
-            "search": "搜索",
-            "searchPlaceholder": "课程或专业...",
-            "studyLevel": "学习层次",
-            "fieldOfStudy": "学习领域",
-            "allFields": "所有领域",
-            "maxTuition": "最高学费",
-            "language": "授课语言",
-            "city": "城市",
-            "allCities": "所有城市",
-            "university": "大学",
-            "allUniversities": "所有大学",
-            "duration": "学制",
-            "allDurations": "所有学制",
-            "scholarshipAvailable": "提供奖学金",
-            "levels": {
-                "bachelor": "学士",
-                "master": "硕士",
-                "phd": "博士",
-                "diploma": "文凭",
-                "language": "语言课程",
-                "nonDegree": "Non-Degree"
-            },
-            "fields": {
-                "business": "商业与管理",
-                "engineering": "工程与技术",
-                "medicine": "医学与健康科学",
-                "arts": "艺术与人文",
-                "science": "自然科学",
-                "education": "教育",
-                "cs": "计算机科学",
-                "law": "法律"
-            },
-            "languages": {
-                "english": "英语",
-                "chinese": "汉语"
-            },
-            "durations": {
-                "2years": "2 年",
-                "3years": "3 年",
-                "4years": "4 年",
-                "5years": "5 年",
-                "6years": "6 年"
-            },
-            "matchingPrograms": "个课程匹配",
-            "applyFilters": "应用筛选",
-            "scholarshipDesc": "Show programs with funding",
-            "cscaLabel": "无需CSCA考试",
-            "cscaDesc": "显示不需要CSCA考试的项目",
-            "cscaBadge": "No CSCA",
-            "academicRequirements": "Academic Requirements",
-            "myAge": "My Age",
-            "agePlaceholder": "e.g. 21",
-            "minGpa": "Min GPA",
-            "gpaPlaceholder": "e.g. 3.0"
-        },
-        "stats": {
-            "total": "课程总数",
-            "showing": "显示"
-        },
-        "sort": {
-            "label": "排序",
-            "relevance": "最相关",
-            "tuitionLow": "学费: 从低到高",
-            "tuitionHigh": "学费: 从高到低",
-            "deadline": "截止日期: 最近",
-            "popular": "最受欢迎"
-        },
-        "noResults": {
-            "title": "未找到课程",
-            "description": "尝试调整您的筛选或搜索条件"
-        },
-        "card": {
-            "duration": "学制",
-            "intake": "入学时间",
-            "tuitionFee": "学费",
-            "viewProgram": "查看课程",
-            "contact": "联系",
-            "scholarship": "奖学金",
-            "addToCompare": "加入对比",
-            "removeFromCompare": "移除对比",
-            "level": "层次",
-            "features": "特色",
-            "viewFullDetails": "查看完整详情",
-            "applyNow": "立即申请",
-            "fastTrack": "Fast Track"
-        },
-        "compare": {
-            "title": "对比课程",
-            "comparing": "正在对比",
-            "more": "更多",
-            "clear": "清除",
-            "compareNow": "立即对比",
-            "university": "大学",
-            "location": "地点",
-            "level": "层次",
-            "duration": "学制",
-            "tuition": "学费",
-            "intake": "入学",
-            "language": "语言",
-            "viewDetails": "查看详情",
-            "apply": "申请"
-        },
-        "emptyState": {
-            "title": "未找到课程",
-            "description": "我们找不到任何课程。尝试浏览我们的完整目录。",
-            "filteredDescription": "没有课程符合您当前的筛选条件。尝试调整您的搜索条件。",
-            "currentFilters": "您当前的筛选:",
-            "scholarship": "奖学金",
-            "clearFilters": "清除所有筛选",
-            "tryInstead": "尝试热门搜索:",
-            "browseAll": "浏览所有课程",
-            "exploreUniversities": "探索大学"
-        },
-        "recentlyViewed": {
-            "title": "最近浏览",
-            "clear": "清除",
-            "viewAgain": "再次查看",
-            "justNow": "刚刚",
-            "minutesAgo": "{count}分钟前",
-            "hoursAgo": "{count}小时前",
-            "daysAgo": "{count}天前"
-        },
-        "quickAccess": "快速访问",
-        "quickChips": {
-            "cs": "计算机科学",
-            "business": "商科",
-            "engineering": "工程学",
-            "medicine": "医学",
-            "arts": "艺术",
-            "economics": "经济学"
-        },
-        "aiSearch": {
-            "thinking": "AI is thinking... finding related fields for \"{query}\"",
-            "active": "Smart Search Active",
-            "found": "Found programs related to: {terms}",
-            "working": "AI is working on it...",
-            "looking": "Looking for programs related to \"{query}\""
-        },
-        "view": {
-            "grid": "网格",
-            "map": "地图"
-        }
-    },
-    "GuidedTour": {
-        "skip": "跳过导览",
-        "next": "下一步",
-        "finish": "知道了！",
-        "programs": {
-            "search": {
-                "title": "查找您的课程",
-                "content": "使用搜索栏按名称、学习领域或关键字查找课程。"
-            },
-            "filters": {
-                "title": "优化您的搜索",
-                "content": "使用筛选器按学位等级、地点、语言和预算缩小范围。"
-            },
-            "card": {
-                "title": "课程详情",
-                "content": "点击任何课程卡片以查看完整详情、要求和申请方法。"
-            },
-            "compare": {
-                "title": "对比课程",
-                "content": "最多选择 3 个课程进行并排对比，做出最佳选择。"
-            }
-        }
-    },
-    "UniversitiesCard": {
-        "programs": "课程",
-        "tuitionFrom": "学费起",
-        "tuition": "学费",
-        "viewUniversity": "查看大学",
-        "viewPrograms": "查看课程",
-        "fastTrack": "Fast Track",
-        "scholarship": "Scholarship",
-        "contactForPricing": "Contact for pricing",
-        "cscaExam": "CSCA Exam",
-        "addToCompare": "Add to compare",
-        "removeFromCompare": "Remove from compare"
-    },
-    "ProgramDetail": {
-        "breadcrumb": {
-            "home": "首页",
-            "programs": "课程"
-        },
-        "badges": {
-            "intake": "入学: {intake}",
-            "contactUniversity": "联系大学",
-            "fastTrack": "快速录取通道",
-            "specialRequirements": "特殊要求"
-        },
-        "deadline": {
-            "daysRemaining": "剩余 {days} 天",
-            "endingToday": "申请今日截止！",
-            "closed": "申请已截止",
-            "deadline": "截止日期"
-        },
-        "buttons": {
-            "apply": "立即申请",
-            "downloadBrochure": "下载简章",
-            "viewUniversity": "查看大学",
-            "startApplication": "开始申请",
-            "contactAdvisor": "联系顾问"
-        },
-        "highlights": {
-            "title": "课程亮点",
-            "tuition": "学费",
-            "duration": "学制",
-            "language": "语言",
-            "level": "学位等级",
-            "gpaRequirement": "最低GPA要求",
-            "languageRequirements": "Language Score"
-        },
-        "overview": {
-            "title": "课程概览",
-            "noDescription": "此课程暂无描述。",
-            "curriculum": "核心课程",
-            "curriculumPlaceholder": "核心课程信息即将更新"
-        },
-        "requirements": {
-            "title": "入学要求"
-        },
-        "scholarships": {
-            "title": "此课程的奖学金选项",
-            "description": "选择最适合您预算的奖学金类型"
-        },
-        "faq": {
-            "title": "常见问题",
-            "deadline": "申请截止日期为 {deadline}。",
-            "accommodationQ": "提供住宿吗？",
-            "accommodationA": "是的，校内住宿适用于国际学生。",
-            "workQ": "我可以兼职工作吗？",
-            "workA": "是的，国际学生可以在获得适当许可的情况下申请勤工助学或实习。",
-            "deadlineQ": "申请截止日期是什么时候？"
-        },
-        "sidebar": {
-            "ready": "准备好申请了吗？",
-            "free": "免费申请",
-            "fast": "快速处理",
-            "expert": "专家支持",
-            "cost": "费用明细",
-            "applicationFee": "申请费",
-            "serviceFee": "服务费",
-            "disclaimer": "*额外费用可能包括住宿、签证和生活费",
-            "why": "为什么选择此课程？",
-            "reasons": {
-                "degree": "国际认可学位",
-                "faculty": "经验丰富的教职员工",
-                "facilities": "现代化设施与资源",
-                "career": "职业发展支持"
-            }
-        },
-        "accommodation": {
-            "title": "住宿选项"
-        }
-    },
-    "UniversityDetail": {
-        "quickLinks": {
-            "exploreCourses": "探索课程",
-            "getFunded": "获得资助",
-            "findHousing": "寻找住房",
-            "findLocation": "位置"
-        },
-        "location": {
-            "title": "校园位置",
-            "viewOnMap": "在谷歌地图上查看"
-        },
-        "about": "关于",
-        "whyChooseUs": "为什么选择我们",
-        "programs": {
-            "title": "课程",
-            "allPrograms": "所有课程",
-            "noPrograms": "未找到此级别的课程。",
-            "viewProgram": "查看课程",
-            "tuitionFee": "学费",
-            "perYear": "每年",
-            "allLanguages": "所有语言",
-            "filterByLanguage": "语言",
-            "showing": "Showing {start}-{end} of {total} programs",
-            "previousPage": "Previous",
-            "nextPage": "Next",
-            "pageOf": "Page {current} of {total}"
-        },
-        "scholarships": {
-            "title": "可用奖学金选项",
-            "description": "为这所大学的课程选择最适合您预算的奖学金类型"
-        },
-        "campus": {
-            "tour": "校园导览",
-            "gallery": "校园图库",
-            "viewImage": "查看图片"
-        },
-        "admission": {
-            "title": "入学要求",
-            "academic": "学术要求",
-            "language": "语言要求",
-            "highSchool": "高中毕业证书或同等学历",
-            "gpa": "最低 GPA 3.0/4.0",
-            "transcripts": "学术成绩单",
-            "ielts": "雅思 6.0 或托福 80+",
-            "hsk": "中文课程要求 HSK 4",
-            "english": "英语水平证书"
-        },
-        "sidebar": {
-            "ready": "准备好申请了吗？",
-            "startJourney": "在 {university} 开始您的旅程",
-            "applyNow": "立即申请",
-            "downloadBrochure": "下载简章",
-            "quickActions": "快速操作",
-            "requestInfo": "索取信息",
-            "chatAdvisor": "联系顾问",
-            "virtualTour": "虚拟校园导览",
-            "scheduleCall": "预约通话",
-            "quickFacts": "概况",
-            "location": "地点",
-            "founded": "成立时间",
-            "students": "学生",
-            "international": "国际",
-            "ranking": "排名",
-            "officialWebsite": "官方网站"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions"
-        }
-    },
-    "RequestInformation": {
-        "title": "索取信息",
-        "description": "获取有关 {university} 的更多详细信息。请填写下表。",
-        "firstName": "名字",
-        "lastName": "姓氏",
-        "email": "电子邮件",
-        "phone": "电话号码",
-        "interest": "兴趣",
-        "selectInterest": "选择您的兴趣",
-        "interests": {
-            "admission": "入学要求",
-            "programs": "可用课程",
-            "scholarships": "奖学金机会",
-            "campus": "校园生活",
-            "other": "其他"
-        },
-        "message": "留言",
-        "messagePlaceholder": "我对在 {university} 学习感兴趣...",
-        "submit": "发送请求",
-        "sending": "发送中...",
-        "success": "请求发送成功！我们会尽快联系您。",
-        "error": "发送请求失败。请重试。"
-    },
-    "UniversityScholarships": {
-        "loading": "加载奖学金中...",
-        "noScholarships": "此大学暂无可用奖学金。",
-        "options": "奖学金选项",
-        "discover": "发现更多机会",
-        "explore": "探索所有奖学金选项",
-        "description": "不确定哪种奖学金适合您？浏览我们完整的奖学金指南，比较所有选项，了解资格要求，找到最适合您学术之旅的奖学金。",
-        "viewAll": "查看所有奖学金",
-        "advice": "获取个性化建议",
-        "mostPopular": "最受欢迎",
-        "defaultDescription": "国际学生的绝佳选择。",
-        "tuitionCoverage": "学费覆盖",
-        "serviceFee": "服务费",
-        "whatsIncluded": "包含内容",
-        "applyNow": "立即申请",
-        "howItWorks": {
-            "title": "奖学金如何运作",
-            "description": "奖学金覆盖您学费的一定比例。您向大学支付剩余学费，并支付一次性服务费以获得申请支持、签证协助和指导。",
-            "learnMore": "了解更多关于奖学金的信息 →"
-        },
-        "benefits": {
-            "tuitionCoverage": "{percentage}% 学费覆盖",
-            "noScholarship": "无奖学金 (0% 覆盖)",
-            "support": "申请支持与指导",
-            "visa": "签证协助",
-            "orientation": "行前指导",
-            "accommodation": "住宿安排支持"
-        },
-        "action": "Action",
-        "scholarshipType": "Scholarship Type"
-    },
-    "Accommodation": {
-        "notAvailable": "暂无住宿信息",
-        "badge": "学生住宿",
-        "title": "校内住宿选项",
-        "priceRange": "价格范围",
-        "generalFacilities": "一般设施",
-        "availableRoomTypes": "可用房型",
-        "defaultTitle": "住宿",
-        "priceOnRequest": "价格详询",
-        "month": "月",
-        "roomFeatures": "房间设施:",
-        "importantInfo": {
-            "title": "重要信息",
-            "fees": "住宿费按学期或学年支付",
-            "availability": "房间分配视供应情况而定",
-            "prices": "价格可能会有所变化，请与大学确认",
-            "deposit": "入住时可能需要押金"
-        }
-    },
-    "UniversityHeader": {
-        "fastTrack": "快速录取通道",
-        "est": "成立时间 {founded}",
-        "studentsCount": "{students} 名学生",
-        "website": "网站",
-        "applyNow": "立即申请",
-        "requestInfo": "索取信息",
-        "brochure": "简章",
-        "virtualTour": "虚拟导览",
-        "scheduleCall": "预约通话",
-        "chatAdvisor": "联系顾问",
-        "save": "保存",
-        "saved": "已保存",
-        "share": "分享",
-        "founded": "成立时间",
-        "students": "学生",
-        "ranking": "排名",
-        "international": "国际"
-    },
-    "Dashboard": {
-        "sidebar": {
-            "myApplications": "我的申请",
-            "profile": "个人资料",
-            "messages": "消息",
-            "payments": "付款",
-            "documents": "文件",
-            "settings": "设置",
-            "logout": "退出"
-        },
-        "title": "仪表盘",
-        "subtitle": "欢迎回来！这是您的申请概览。",
-        "newApplication": "新申请",
-        "stats": {
-            "totalApplications": "总申请数",
-            "submitted": "{count} 已提交",
-            "pendingActions": "待处理事项",
-            "requiresAttention": "需要您关注",
-            "offersReceived": "已收到 Offer",
-            "congratulations": "恭喜！",
-            "successRate": "成功率",
-            "acceptanceRate": "录取率"
-        },
-        "recentApplications": "我的申请",
-        "appliedOn": "申请于 {date}",
-        "viewDetails": "查看详情",
-        "noApplications": {
-            "title": "暂无申请",
-            "description": "通过浏览课程并提交您的第一份申请来开始您的旅程。"
-        },
-        "browsePrograms": "浏览课程"
-    },
-    "Profile": {
-        "title": "我的个人资料",
-        "subtitle": "管理您的个人信息和偏好",
-        "completion": "资料完整度",
-        "completeProfile": "完善您的个人资料以加快未来的申请",
-        "photo": {
-            "title": "个人照片",
-            "description": "上传一张专业照片",
-            "upload": "上传照片",
-            "uploading": "上传中...",
-            "hint": "JPG, PNG 或 GIF。最大 5MB。"
-        },
-        "personalInfo": {
-            "title": "个人信息",
-            "description": "您的申请基本信息"
-        },
-        "fullName": "全名 *",
-        "email": "电子邮件",
-        "dob": "出生日期",
-        "phone": "电话号码",
-        "nationality": "国籍",
-        "passportNumber": "护照号码",
-        "address": {
-            "title": "地址",
-            "description": "您当前的居住地址",
-            "street": "街道地址",
-            "city": "城市",
-            "postalCode": "邮政编码"
-        },
-        "emergency": {
-            "title": "紧急联系人",
-            "description": "紧急情况下联系的人",
-            "name": "姓名",
-            "phone": "电话",
-            "relationship": "关系"
-        },
-        "save": "保存个人资料",
-        "saving": "保存中...",
-        "success": "个人资料更新成功！",
-        "error": "更新个人资料时发生错误"
-    },
-    "Documents": {
-        "title": "我的文件",
-        "subtitle": "管理您的大学申请文件",
-        "stats": {
-            "total": "文件总数",
-            "uploaded": "已上传文件",
-            "verified": "已验证",
-            "approved": "管理员已批准",
-            "pending": "待审核",
-            "awaiting": "等待验证"
-        },
-        "yourDocuments": "您的文件",
-        "manageDocuments": "上传并管理您的申请文件",
-        "uploadDocument": "上传文件",
-        "noDocuments": "暂无文件",
-        "uploadFirst": "上传您的第一个文件以开始",
-        "size": "大小",
-        "uploaded": "已上传",
-        "download": "下载",
-        "delete": "删除",
-        "deleteConfirm": "您确定要删除“{name}”吗？",
-        "uploadDialog": {
-            "title": "上传文件",
-            "description": "选择文件类型并上传您的文件",
-            "type": "文件类型 *",
-            "selectType": "选择文件类型",
-            "alreadyUploaded": "(已上传)",
-            "file": "文件 *",
-            "selected": "已选择",
-            "formats": "接受的格式: PDF, JPG, PNG, DOC, DOCX。最大 10MB。",
-            "cancel": "取消",
-            "uploading": "上传中...",
-            "upload": "上传"
-        },
-        "error": {
-            "fileSize": "文件必须小于 10MB",
-            "selectFile": "请选择文件类型和文件",
-            "fileType": "请上传图像文件",
-            "imageSize": "图像必须小于 5MB"
-        },
-        "success": {
-            "uploaded": "文件上传成功！",
-            "deleted": "文件已删除"
-        },
-        "types": {
-            "passport": "护照",
-            "transcript": "学术成绩单",
-            "diploma": "文凭/证书",
-            "recommendation_letter": "推荐信",
-            "personal_statement": "个人陈述",
-            "cv": "简历",
-            "language_certificate": "语言证书 (IELTS/TOEFL)",
-            "photo": "护照照片",
-            "bank_statement": "银行结单",
-            "health_certificate": "健康证明",
-            "police_clearance": "无犯罪记录证明",
-            "other": "其他文件"
-        },
-        "documentRequest": {
-            "title": "文件要求",
-            "description": "请上传以下文件：\n1. 护照复印件\n2. 学位证书\n3. 个人陈述",
-            "note": "请确保所有文件都已翻译成相应语言"
-        }
-    },
-    "Status": {
-        "pending_documents": "待提交文件",
-        "pending_payment": "待付款",
-        "payment_verification": "付款验证中",
-        "submitted": "已提交",
-        "under_review": "审核中",
-        "accepted": "已录取",
-        "rejected": "已拒绝",
-        "unknown": "未知"
-    },
-    "Auth": {
-        "login": {
-            "title": "登录",
-            "description": "输入您的电子邮件和密码访问您的账户",
-            "emailLabel": "电子邮件",
-            "emailPlaceholder": "m@example.com",
-            "passwordLabel": "密码",
-            "forgotPassword": "忘记密码？",
-            "submit": "登录",
-            "orContinueWith": "或通过以下方式继续",
-            "continueWithGoogle": "通过 Google 继续",
-            "connecting": "连接中...",
-            "noAccount": "还没有账户？",
-            "signUp": "注册",
-            "success": "登录成功！正在重定向...",
-            "error": "出错了",
-            "googleError": "Google 登录失败"
-        },
-        "layout": {
-            "branding": "Studyatchina",
-            "heroTitle": "通往中国大学的门户",
-            "heroDescription": "加入成千上万在顶尖中国大学追逐梦想的国际学生。",
-            "programsTitle": "500+ 课程",
-            "programsDescription": "访问来自中国顶尖大学的课程",
-            "guidanceTitle": "专家指导",
-            "guidanceDescription": "在您的申请旅程中获得支持",
-            "scholarshipsTitle": "奖学金机会",
-            "scholarshipsDescription": "探索各种可用的奖学金选项",
-            "copyright": "© 2024 Studyatchina. 保留所有权利。"
-        }
-    },
-    "Notifications": {
-        "title": "通知",
-        "markAllRead": "全部标记为已读",
-        "noNotifications": "暂无通知",
-        "viewAll": "查看所有通知",
-        "loading": "加载通知中...",
-        "types": {
-            "statusChange": "申请状态更新",
-            "documentRequested": "文件请求",
-            "paymentRequested": "需要付款",
-            "messageReceived": "新消息",
-            "newApplication": "新申请",
-            "newLead": "新线索",
-            "documentUploaded": "文件已上传",
-            "acceptanceLetter": "录取通知书"
-        },
-        "messages": {
-            "statusChange": "您的申请状态已更改为 {status}"
-        }
-    },
-    "Apply": {
-        "title": "申请课程",
-        "steps": {
-            "info": "信息",
-            "documents": "文件",
-            "payment": "支付",
-            "review": "审查",
-            "personalInfo": "个人信息",
-            "requiredDocuments": "所需文件",
-            "paymentInfo": "支付信息",
-            "reviewSubmit": "审查并提交"
-        },
-        "sections": {
-            "identity": "身份与个人信息",
-            "identitySubtitle": "请按照护照上的信息填写",
-            "contact": "联系方式",
-            "address": "家庭住址",
-            "education": "教育背景",
-            "educationSubtitle": "您最近的学历信息",
-            "language": "语言水平",
-            "languageSubtitle": "中文和英文水平（用于录取评估）",
-            "emergency": "紧急联系人",
-            "emergencySubtitle": "出国安全必需"
-        },
-        "options": {
-            "male": "男",
-            "female": "女",
-            "islam": "伊斯兰教",
-            "christianity": "基督教",
-            "buddhism": "佛教",
-            "hinduism": "印度教",
-            "noReligion": "无宗教",
-            "other": "其他",
-            "single": "未婚",
-            "married": "已婚",
-            "divorced": "离异",
-            "highSchool": "高中",
-            "diploma": "大专",
-            "bachelor": "本科",
-            "master": "硕士",
-            "doctorate": "博士",
-            "noProficiency": "无基础",
-            "basic": "初级",
-            "intermediate": "中级",
-            "advanced": "高级",
-            "native": "母语"
-        },
-        "labels": {
-            "firstName": "名",
-            "lastName": "姓",
-            "fullName": "全名 (与护照一致)",
-            "email": "电子邮件",
-            "phone": "手机号码",
-            "country": "国籍",
-            "passport": "护照号码",
-            "gender": "性别",
-            "dateOfBirth": "出生日期",
-            "religion": "宗教信仰",
-            "maritalStatus": "婚姻状况",
-            "wechatId": "微信号",
-            "address": "家庭住址",
-            "city": "城市",
-            "postalCode": "邮政编码",
-            "highestEducation": "最高学历",
-            "schoolName": "学校/大学名称",
-            "majorField": "专业/学科",
-            "graduationYear": "毕业年份",
-            "gpaScore": "GPA / 成绩",
-            "chineseProficiency": "中文水平 (HSK等级)",
-            "englishProficiency": "英语水平",
-            "testScore": "考试成绩 (IELTS/TOEFL)",
-            "preferredIntake": "首选入学时间",
-            "emergencyContactName": "紧急联系人姓名",
-            "emergencyContactPhone": "紧急联系人电话",
-            "emergencyContactRelationship": "关系"
-        },
-        "placeholders": {
-            "firstName": "例如 Wei",
-            "lastName": "例如 Zhang",
-            "fullName": "例如 Zhang Wei",
-            "email": "例如 john@example.com",
-            "phone": "例如 555 123 4567",
-            "passport": "例如 AB1234567",
-            "selectGender": "选择性别",
-            "selectReligion": "选择宗教",
-            "selectMaritalStatus": "选择婚姻状况",
-            "wechatId": "例如 wxid_abc123",
-            "address": "例如 XX路123号4号楼",
-            "city": "例如 北京",
-            "postalCode": "例如 100000",
-            "selectEducation": "选择最高学历",
-            "schoolName": "例如 北京大学",
-            "majorField": "例如 计算机科学",
-            "graduationYear": "例如 2024",
-            "gpaScore": "例如 3.5 / 4.0",
-            "selectChinese": "选择HSK等级",
-            "selectEnglish": "选择水平",
-            "testScore": "例如 IELTS 6.5",
-            "emergencyName": "例如 父母或监护人姓名",
-            "emergencyPhone": "例如 555 123 4567",
-            "relationship": "例如 父母，配偶"
-        },
-        "hints": {
-            "phoneHint": "输入您的电话号码，不带国家代码",
-            "passportHint": "准确输入您的护照号码"
-        },
-        "buttons": {
-            "continueToDocuments": "继续上传文件",
-            "continueToPayment": "继续支付",
-            "continueToReview": "继续审查",
-            "submitApplication": "提交申请",
-            "back": "返回",
-            "uploadDocument": "上传",
-            "selectFile": "选择文件",
-            "next": "Next"
-        },
-        "validation": {
-            "missingFieldsTitle": "请填写以下必填字段：",
-            "required": "此字段为必填项"
-        },
-        "documents": {
-            "title": "所需文件",
-            "description": "请上传以下文件。接受格式：PDF, JPG, PNG (最大 10MB)",
-            "mandatory": "必填",
-            "optional": "选填",
-            "uploaded": "已上传",
-            "pending": "待处理"
-        },
-        "payment": {
-            "title": "申请费",
-            "applicationFee": "申请费",
-            "serviceFee": "服务费",
-            "total": "总计",
-            "payNow": "立即支付",
-            "payLater": "稍后支付"
-        },
-        "review": {
-            "title": "审查您的申请",
-            "personalDetails": "个人详情",
-            "uploadedDocuments": "已上传文件",
-            "confirmSubmit": "我确认提供的所有信息均准确无误",
-            "submitting": "提交中...",
-            "success": "申请提交成功！",
-            "successMessage": "您的申请已提交。您很快就会收到一封确认电子邮件。"
-        },
-        "errors": {
-            "generic": "发生错误。请重试。",
-            "uploadFailed": "上传文件失败。请重试。",
-            "paymentFailed": "支付失败。请重试。"
-        }
-    },
-    "AISearch": {
-        "placeholder": "尝试：'在北京 30000 人民币以下的工程硕士'",
-        "search": "搜索",
-        "filters": "AI 理解",
-        "error": "出错了。请重试。"
-    },
-    "AIChat": {
-        "title": "Chen Wei 陈伟",
-        "subtitle": "您的留学顾问",
-        "typing": "输入中...",
-        "greeting": "您好！👋 我是陈伟，您的个人留学顾问。我在这里帮助您找到中国完美的课程，回答您的问题，甚至指导您完成申请流程。今天有什么能帮您的？",
-        "inputPlaceholder": "输入您的消息...",
-        "thinking": "思考中...",
-        "error": "抱歉，我遇到了错误。请重试。",
-        "quickStart": "快速开始:",
-        "quickFind": "🎓 查找课程",
-        "quickScholarship": "💰 奖学金",
-        "quickApply": "📝 开始申请",
-        "chatHistory": "聊天记录",
-        "newChat": "新对话",
-        "noHistory": "暂无历史对话",
-        "backToChat": "返回聊天",
-        "loginPrompt": "🔐 登录以保存您的聊天记录并追踪申请",
-        "login": "登录",
-        "register": "注册"
-    },
-    "PaymentDashboard": {
-        "title": "付款",
-        "subtitle": "管理您的申请付款",
-        "totalAmount": "总金额",
-        "totalPaid": "总已付",
-        "pending": "待支付",
-        "rest": "剩余金额",
-        "totalTransactions": "总交易数",
-        "successfullyProcessed": "成功处理",
-        "paymentDue": "笔待付",
-        "allTime": "所有时间",
-        "amount": "金额",
-        "status": "状态",
-        "created": "创建于",
-        "method": "方式",
-        "payNow": "立即支付",
-        "viewApplication": "查看申请",
-        "paymentProof": "付款证明",
-        "paymentRequest": {
-            "title": "付款请求",
-            "amount": "USD 200",
-            "description": "进行此付款",
-            "note": "请完成付款以继续您的申请。"
-        },
-        "paymentStatuses": {
-            "completed": "已完成",
-            "pending": "待处理",
-            "processing": "处理中",
-            "failed": "失败",
-            "refunded": "已退款"
-        },
-        "types": {
-            "application_fee": "申请费",
-            "service_fee": "服务费",
-            "tuition_deposit": "学费押金",
-            "full_tuition": "全额学费",
-            "accommodation": "住宿费",
-            "other": "其他"
-        },
-        "assistance": {
-            "title": "付款协助",
-            "description": "您有 {count} 笔待处理付款。如果您需要付款帮助或有疑问：",
-            "point1": "联系我们的支持团队获取付款协助",
-            "point2": "检查您是否符合付款计划的条件",
-            "point3": "验证您的付款方式是否受支持"
-        },
-        "paidOn": "支付于",
-        "reference": "参考号",
-        "verifiedByAdmin": "由管理员验证",
-        "expires": "过期时间:",
-        "adminNote": "管理员备注:",
-        "paymentLinkExpired": "付款链接已过期",
-        "document": "文件:",
-        "noPayments": "无付款",
-        "noPaymentsDesc": "您没有任何待处理的付款。",
-        "contactSupport": "联系支持"
-    },
-    "Refunds": {
-        "title": "退款请求",
-        "statusTitle": "退款状态",
-        "requestButton": "申请退款",
-        "submittedTitle": "退款请求已提交",
-        "submittedOn": "提交于 {date}",
-        "reasonLabel": "原因",
-        "adminResponseLabel": "管理员回复",
-        "rejectedTitle": "申请被拒绝",
-        "rejectedMessage": "您可能有资格获得退款。点击按钮提交请求。",
-        "modalTitle": "申请退款",
-        "modalDescription": "提交退款请求。请解释您申请退款的原因。",
-        "modalReasonLabel": "退款原因",
-        "modalPlaceholder": "我在被拒绝，因为...",
-        "submitButton": "提交请求",
-        "cancelButton": "取消",
-        "successMessage": "退款请求提交成功",
-        "errorMessage": "提交请求失败",
-        "table": {
-            "student": "学生",
-            "program": "大学 / 课程",
-            "reason": "原因",
-            "status": "状态",
-            "date": "日期",
-            "actions": "操作",
-            "approve": "批准",
-            "reject": "拒绝",
-            "noRequests": "未找到退款请求",
-            "approveTitle": "批准退款请求",
-            "rejectTitle": "拒绝退款请求",
-            "approveDescription": "这将标记请求为由已批准，并将申请付款状态更新为已退款。",
-            "rejectDescription": "这将标记请求为已拒绝。",
-            "adminResponsePlaceholder": "给学生添加备注..."
-        }
-    },
-    "Messages": {
-        "title": "消息",
-        "subtitle": "与招生团队的沟通",
-        "conversations": "对话",
-        "unreadMessages": "未读消息",
-        "actionRequired": "需要操作",
-        "actionCompleted": "已完成",
-        "noMessages": "暂无消息",
-        "noMessagesDesc": "来自招生团队的消息将显示在这里",
-        "reply": "回复",
-        "replyingTo": "回复 {name}",
-        "typeReply": "输入您的回复...",
-        "sendReply": "发送回复",
-        "sending": "发送中...",
-        "cancel": "取消",
-        "you": "您",
-        "admin": "招生团队",
-        "replyTooltip": "回复此消息",
-        "actionRequiredMessage": "请回复此消息或完成请求的操作。",
-        "takeAction": "采取行动",
-        "attachment": "附件",
-        "attachments": "附件"
-    },
-    "QSRankings": {
-        "meta": {
-            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
-            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
-        },
-        "hero": {
-            "badge": "QS World University Rankings 2026",
-            "titleHighlight": "Chinese Universities",
-            "titleRest": "in Global Rankings",
-            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
-            "breadcrumb": "QS Rankings 2026",
-            "statRanked": "Ranked Universities",
-            "statHighest": "Highest Global Rank",
-            "statTop50": "In Global Top 50",
-            "statCities": "Cities Represented"
-        },
-        "content": {
-            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
-            "browseAllTitle": "Browse All Rankings",
-            "searchPlaceholder": "Search universities...",
-            "allCities": "All Cities",
-            "showing": "Showing",
-            "of": "of",
-            "universities": "universities",
-            "university": "university",
-            "inCity": "in",
-            "matching": "matching",
-            "noResults": "No universities found",
-            "noResultsHint": "Try adjusting your search or filters",
-            "overallScore": "Overall Score",
-            "score": "Score",
-            "world": "World",
-            "china": "China",
-            "ctaTitle": "Ready to Study at a Top-Ranked University?",
-            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
-            "browseUniversities": "Browse Universities",
-            "explorePrograms": "Explore Programs",
-            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
-            "visitSite": "topuniversities.com",
-            "viewProfile": "View Profile",
-            "tierTop50": "Top 50 Globally",
-            "tierTop200": "Top 51–200",
-            "tierTop500": "Top 201–500",
-            "tierRemaining": "501+"
-        }
+    "user": {
+      "myApplications": "我的申请",
+      "logout": "退出登录",
+      "signIn": "登录",
+      "getStarted": "开始申请",
+      "myAccount": "我的账户",
+      "account": "账户"
     }
+  },
+  "Common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "view": "查看",
+    "back": "返回"
+  },
+  "Footer": {
+    "stayUpdated": "保持更新",
+    "getLatestUpdates": "订阅获取最新动态",
+    "subscribeText": "订阅以接收有关课程、奖学金和申请截止日期的消息。",
+    "description": "您探索和申请中国顶尖大学的值得信赖的伙伴。加入成千上万通过我们成功开启学术之旅的学生。",
+    "explore": "探索",
+    "programs": "课程项目",
+    "universities": "院校库",
+    "scholarships": "奖学金",
+    "howToApply": "如何申请",
+    "faq": "常见问题",
+    "forStudents": "学生服务",
+    "createAccount": "创建账户",
+    "trackApplication": "追踪申请",
+    "documentChecklist": "文件清单",
+    "studentPortal": "学生门户",
+    "contact": "联系方式",
+    "rightsReserved": "版权所有。",
+    "designedBy": "设计与技术支持",
+    "termsOfService": "服务条款",
+    "privacyPolicy": "隐私政策",
+    "cookiePolicy": "Cookie 政策"
+  },
+  "ScholarshipCTA": {
+    "badge": "发现更多机会",
+    "title": "探索所有奖学金选项",
+    "description": "不确定哪种奖学金适合您？浏览我们完整的奖学金指南，比较所有选项，了解资格要求，找到最适合您学术之旅的奖学金。",
+    "viewAll": "查看所有奖学金",
+    "getAdvice": "获取个性化建议"
+  },
+  "CscaCta": {
+    "badge": "2026年起强制要求",
+    "title": "准备 <span class=\"text-primary\">CSCA 考试？</span>",
+    "titlePlain": "准备 CSCA 考试？",
+    "description": "中国学术能力评估 (CSCA) 现已成为顶尖奖学金的要求。在我们的新综合指南中获取学科、评分和备考策略的完整分类。",
+    "readGuide": "阅读指南",
+    "findPrograms": "查找课程",
+    "proTip1": {
+      "title": "专家提示 #1",
+      "text": "专业汉语需要学术词汇，不仅仅是 HSK。"
+    },
+    "proTip2": {
+      "title": "专家提示 #2",
+      "text": "数学部分偏重几何。复习圆锥曲线。"
+    }
+  },
+  "CSCAGuide": {
+    "meta": {
+      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+    },
+    "backHome": "Back to Home",
+    "newRequirement": "New Requirement for 2026",
+    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+        "keyDates": {
+          "title": "Key Dates",
+          "launch": "2025: Official Launch",
+          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+          "full": "2028: Full Implementation across all Universities"
+        }
+      },
+      "structure": {
+        "title": "Exam Structure",
+        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+        "table": {
+          "subject": "Subject",
+          "duration": "Duration",
+          "questions": "Questions",
+          "requirement": "Requirement",
+          "chinese": {
+            "name": "Specialized Chinese",
+            "req": "Humanities/Science"
+          },
+          "math": {
+            "name": "Mathematics",
+            "req": "Mandatory"
+          },
+          "physics": {
+            "name": "Physics",
+            "req": "Optional / Major-dependent"
+          },
+          "chemistry": {
+            "name": "Chemistry",
+            "req": "Optional / Major-dependent"
+          }
+        }
+      },
+      "subjects": {
+        "title": "Subject Details & Syllabus",
+        "chinese": {
+          "title": "Specialized Chinese",
+          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+          "char": {
+            "title": "Character Recognition",
+            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+          },
+          "reading": {
+            "title": "Reading Comprehension",
+            "desc": "Highest weight. Sci/Tech/Social essays."
+          },
+          "words": {
+            "title": "Word Distinction",
+            "desc": "Synonyms, academic vocabulary."
+          },
+          "sentences": {
+            "title": "Sentence/Paragraph",
+            "desc": "Ordering sentences, completing logic."
+          }
+        },
+        "math": {
+          "title": "Mathematics",
+          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+          "note": "Both Chinese and English versions available.",
+          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+        },
+        "chem": {
+          "title": "Chemistry",
+          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+        },
+        "phys": {
+          "title": "Physics",
+          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        }
+      },
+      "fees_and_process": {
+        "title": "Application Process & Fees",
+        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+      },
+      "formats": {
+        "title": "Test Modes",
+        "online": {
+          "title": "Online Proctored",
+          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+        },
+        "computer": {
+          "title": "Computer-Based",
+          "desc": "At official test centers (classrooms). Better stability."
+        },
+        "paper": {
+          "title": "Paper-Based",
+          "desc": "Traditional format. Limited regions."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "q": "Does the CSCA replace the HSK?",
+          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+        },
+        "q2": {
+          "q": "Can I take it in English?",
+          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+        },
+        "q3": {
+          "q": "How long is the score valid?",
+          "a": "CSCA results are valid for <strong>2 years</strong>."
+        },
+        "q4": {
+          "q": "Who is exempt from the CSCA?",
+          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+        },
+        "q5": {
+          "q": "Are scores required for 2026 intake?",
+          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+        },
+        "comparison": {
+          "title": "CSCA vs. HSK",
+          "feature": "Feature",
+          "hsk": "HSK",
+          "csca": "CSCA",
+          "focus": "Focus",
+          "focusHsk": "Daily Communication",
+          "focusCsca": "Academic Readiness",
+          "vocab": "Vocabulary",
+          "vocabHsk": "Life/Everyday",
+          "vocabCsca": "Technical/Academic",
+          "req": "Requirement",
+          "reqHsk": "Language Cert",
+          "reqCsca": "Academic Entrance"
+        }
+      },
+      "sidebar": {
+        "title": "Important Details",
+        "dates": {
+          "title": "Dates",
+          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+        },
+        "prep": {
+          "title": "Preparation",
+          "desc": "Difficulty level: Junior/Senior High"
+        },
+        "passing": {
+          "title": "Fees",
+          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+        },
+        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+        "register": "Official Registration Site",
+        "tutor": {
+          "title": "Fast-Track with Study at China",
+          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+          "button": "Apply With Us"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "admissionsOpen": "2026 年招生开启",
+    "searchPlaceholder": "你想学什么？（例如：计算机科学，医学）",
+    "title": "你在中国的未来从这里开始",
+    "subtitle": "加入 <bold>50,000+</bold> 名学生，在中国顶尖大学学习",
+    "searchButton": "搜索 <bold>500+</bold> 个课程",
+    "searchWord": "搜索",
+    "programsWord": "课程",
+    "browseByCategory": "按类别浏览",
+    "scrollToExplore": "滚动探索",
+    "stats": {
+      "universities": "合作院校",
+      "students": "在读学生",
+      "success": "成功案例",
+      "scholarships": "奖学金"
+    },
+    "tabs": {
+      "programs": "课程",
+      "universities": "大学",
+      "scholarships": "奖学金"
+    },
+    "placeholders": {
+      "degree": "学位等级",
+      "field": "学习领域",
+      "city": "城市",
+      "language": "授课语言",
+      "budget": "预算 (美元/年)",
+      "scholarship": "奖学金",
+      "duration": "学制"
+    },
+    "options": {
+      "any": "不限",
+      "all": "全部"
+    },
+    "budget": {
+      "under3k": "Under $3,000",
+      "3kTo5k": "$3,000 - $5,000",
+      "5kTo8k": "$5,000 - $8,000",
+      "above8k": "Above $8,000"
+    },
+    "scholarship": {
+      "allPrograms": "All Programs",
+      "available": "Scholarship Available",
+      "full": "Full Scholarship",
+      "partial": "Partial Scholarship"
+    },
+    "duration": {
+      "1year": "1 Year",
+      "2years": "2 Years",
+      "3years": "3 Years",
+      "4years": "4 Years",
+      "5plus": "5+ Years"
+    },
+    "categories": {
+      "mba": "MBA Programs",
+      "engineering": "Engineering",
+      "medicine": "Medicine (MBBS)",
+      "cs": "Computer Science",
+      "fullScholarship": "Full Scholarship",
+      "englishTaught": "English Taught"
+    }
+  },
+  "WhyStudy": {
+    "badge": "为什么选择中国",
+    "title": "通往 <gradient>全球成功</gradient> 的门户",
+    "description": "中国将古老的智慧与尖端的创新相结合，为国际学生提供位于亚洲经济强国中心的无与伦比的教育体验。",
+    "cta": {
+      "explore": "探索课程",
+      "download": "下载指南"
+    },
+    "features": {
+      "worldClass": {
+        "title": "世界级大学",
+        "description": "在拥有尖端研究设施和知名师资的全球排名机构学习。"
+      },
+      "affordable": {
+        "title": "性价比高",
+        "description": "具有竞争力的费用提供优质教育，并有高达 100% 的慷慨奖学金机会。"
+      },
+      "career": {
+        "title": "职业起飞",
+        "description": "接触亚洲最大的经济体，拥有无与伦比的实习和工作机会。"
+      },
+      "safe": {
+        "title": "安全与活力",
+        "description": "体验世界上最安全的国家之一，这里有着繁荣的国际社区。"
+      },
+      "culture": {
+        "title": "文化沉浸",
+        "description": "在超现代、充满活力的城市生活中探索五千年的历史。"
+      },
+      "network": {
+        "title": "全球网络",
+        "description": "加入来自 200 多个国家的 500,000 多名国际学生社区。"
+      },
+      "english": {
+        "title": "英语课程",
+        "description": "从涵盖所有学科的 17000 多个全英文授课课程中进行选择。"
+      },
+      "recognition": {
+        "title": "全球认可",
+        "description": "获得 UNESCO、WHO 和全球专业机构认可的学位。"
+      }
+    }
+  },
+  "HowItWorks": {
+    "badge": "闪电般的流程",
+    "title": "从申请到 <gradient>录取</gradient>",
+    "description": "简化的 6 步旅程，旨在让您在创纪录的时间内从浏览课程到收到录取通知书。",
+    "cta": {
+      "button": "立即开始申请",
+      "time": "平均完成时间：<bold>15 分钟</bold>"
+    },
+    "steps": {
+      "discover": {
+        "title": "发现课程",
+        "description": "浏览来自中国顶尖大学的 500 多个为您量身定制的课程。"
+      },
+      "profile": {
+        "title": "创建档案",
+        "description": "几分钟内设置您的帐户并完成您的学术档案。"
+      },
+      "upload": {
+        "title": "上传文件",
+        "description": "安全提交证书、成绩单和所需文件。"
+      },
+      "scholarship": {
+        "title": "选择奖学金类型",
+        "description": "每所大学都有可用的奖学金类型。选择一个并申请。"
+      },
+      "pay": {
+        "title": "支付费用",
+        "description": "安全地支付申请和处理费用。"
+      },
+      "track": {
+        "title": "追踪进度",
+        "description": "通过实时更新和通知监控您的申请状态。"
+      },
+      "admission": {
+        "title": "获得录取",
+        "description": "接收您的录取通知书、签证文件，开始您的旅程！"
+      }
+    }
+  },
+  "Stats": {
+    "badge": "我们的影响力",
+    "title": "值得全球成千上万人的信赖",
+    "description": "加入一个由成功学生组成的全球社区，他们通过我们的平台实现了梦想",
+    "items": {
+      "universities": {
+        "label": "合作院校",
+        "description": "顶尖排名机构"
+      },
+      "students": {
+        "label": "国际学生",
+        "description": "来自 200+ 国家"
+      },
+      "programs": {
+        "label": "可用课程",
+        "description": "涵盖所有学科"
+      },
+      "success": {
+        "label": "成功率",
+        "description": "录取批准"
+      },
+      "countries": {
+        "label": "代表国家",
+        "description": "全球社区"
+      },
+      "scholarships": {
+        "label": "颁发奖学金",
+        "description": "财政支持"
+      },
+      "time": {
+        "label": "申请时间",
+        "description": "快速简便的流程"
+      },
+      "employment": {
+        "label": "毕业生就业",
+        "description": "6个月内"
+      }
+    }
+  },
+  "FeaturedPrograms": {
+    "badge": "精选课程",
+    "title": "快速通道课程",
+    "description": "探索中国顶尖大学最受欢迎的课程",
+    "duration": "学制",
+    "tuition": "学费/年",
+    "explore": "探索课程",
+    "viewAll": "查看所有课程",
+    "fastTrack": "快速通道"
+  },
+  "FeaturedUniversities": {
+    "badge": "顶尖大学",
+    "title": "精英大学",
+    "description": "在中国最负盛名的机构学习",
+    "fastTrack": "快速通道",
+    "programs": "课程",
+    "tuitionFrom": "学费起",
+    "students": "学生",
+    "viewDetails": "查看详情",
+    "viewAll": "查看所有大学"
+  },
+  "Scholarships": {
+    "badge": "财政支持",
+    "title": "奖学金与助学金",
+    "description": "在中国留学是负担得起的。探索为国际学生提供的各种奖学金机会。",
+    "items": {
+      "csc": {
+        "title": "中国政府奖学金 (CSC)",
+        "description": "全额或部分奖学金。涵盖学费、住宿和生活费。",
+        "amount": "最高 $10,000/年"
+      },
+      "university": {
+        "title": "大学奖学金",
+        "description": "大学直接向优秀申请者提供的择优奖学金。",
+        "amount": "最高 $8,000/年"
+      },
+      "provincial": {
+        "title": "省政府奖学金",
+        "description": "地方政府资助的奖学金，旨在吸引国际人才到特定地区。",
+        "amount": "最高 $6,000/年"
+      }
+    },
+    "awardAmount": "奖励金额",
+    "learnMore": "了解更多",
+    "stats": {
+      "scholarshipOptions": "Scholarship Options",
+      "universities": "Universities",
+      "programs": "Programs",
+      "awarded": "每年颁发",
+      "funding": "获得资助",
+      "full": "全额奖学金",
+      "eligible": "符合条件的课程"
+    },
+    "viewAll": "查看所有奖学金",
+    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+    "popular": {
+      "title": "Featured & Popular Scholarships"
+    },
+    "tabs": {
+      "search": "Search Scholarships",
+      "about": "About Scholarships"
+    },
+    "search": {
+      "filter": "Filters",
+      "clearAll": "Clear All",
+      "searchPlaceholder": "Search program or university...",
+      "category": "Category",
+      "all": "All",
+      "fullScholarship": "Full Scholarship (100%)",
+      "partialScholarship": "Partial Scholarship",
+      "city": "City",
+      "university": "University",
+      "degree": "Degree Level",
+      "language": "Language",
+      "semester": "Semester",
+      "spring": "Spring",
+      "autumn": "Autumn",
+      "freeAccommodation": "Free Accommodation",
+      "monthlyStipend": "Monthly Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "scholarshipOptions": "scholarship options at",
+      "universities": "universities",
+      "noResults": "No scholarships found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "programsAvailable": "Programs",
+      "upTo": "Up to",
+      "accommodation": "Accommodation",
+      "stipend": "Stipend",
+      "insurance": "Insurance",
+      "program": "Program",
+      "teachingLanguage": "Language",
+      "startingDate": "Intake",
+      "scholarshipCoverage": "Original Tuition",
+      "youNeedToPay": "You Need To Pay",
+      "tuition": "Tuition",
+      "free": "Free",
+      "moreOptions": "More Options",
+      "learnMore": "Learn More"
+    },
+    "detail": {
+      "backToSearch": "Back to Search",
+      "scholarshipAvailable": "Scholarship Available",
+      "programDetails": "Program Details",
+      "degree": "Degree",
+      "duration": "Duration",
+      "language": "Language",
+      "intake": "Intake",
+      "availableScholarships": "Available Scholarships",
+      "noScholarships": "No scholarships are currently available for this program.",
+      "tuitionCoverage": "Tuition Coverage",
+      "freeAccommodation": "Free Accommodation",
+      "stipend": "Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "originalTuition": "Original Tuition",
+      "youPay": "You Need to Pay",
+      "serviceFee": "Service Fee",
+      "applyNow": "Apply for this Scholarship",
+      "university": "University",
+      "viewUniversity": "View University Profile",
+      "viewProgram": "View Program Details"
+    },
+    "about": {
+      "howItWorks": "How Scholarships Work",
+      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+      "scholarshipCoverage": "Scholarship Coverage",
+      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+      "serviceFees": "Service & Processing Fees",
+      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+      "scholarshipTypes": "Common Scholarship Types",
+      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+      "searchPrograms": "Search Eligible Programs",
+      "requiredDocuments": "Required Documents",
+      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+      "faq": "Frequently Asked Questions",
+      "faq1Question": "Do I need to know Chinese to get a scholarship?",
+      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+      "faq2Question": "Can I work while studying?",
+      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+      "faq3Question": "What happens if I fail my classes?",
+      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+      "faq4Question": "How long does the application process take?",
+      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+    }
+  },
+  "Testimonials": {
+    "badge": "成功故事",
+    "title": "学生感言",
+    "description": "听听那些通过我们的平台成功申请并正在中国茁壮成长的学生怎么说。",
+    "testimonials": {
+      "sarah": {
+        "quote": "在清华大学学习是一次改变人生的经历。校园很美，教授是世界级的。我在学术和个人方面都成长了很多。",
+        "program": "计算机科学",
+        "university": "清华大学",
+        "country": "美国"
+      },
+      "ahmed": {
+        "quote": "多亏了 Studyatchina，申请过程非常顺利。我现在正在攻读土木工程硕士学位，非常享受这里的每一刻。",
+        "program": "土木工程",
+        "university": "浙江大学",
+        "country": "埃及"
+      },
+      "maria": {
+        "quote": "上海是一座了不起的城市！我喜欢这里的文化、食物以及交到的朋友。我获得的奖学金使这一切成为可能。",
+        "program": "国际商务",
+        "university": "复旦大学",
+        "country": "西班牙"
+      }
+    },
+    "averageRating": "平均评分",
+    "reviews": "评论",
+    "satisfaction": "满意度"
+  },
+  "Partners": {
+    "badge": "值得信赖的合作伙伴",
+    "title": "合作大学",
+    "description": "我们与中国最负盛名的机构合作，为您带来最好的教育机会",
+    "recognitions": {
+      "unesco": {
+        "title": "UNESCO 认可",
+        "description": "所有合作大学均获 UNESCO 认可"
+      },
+      "government": {
+        "title": "政府批准",
+        "description": "中国教育部正式批准"
+      },
+      "accredited": {
+        "title": "全球认证",
+        "description": "学位在全球 180 多个国家获得认可"
+      }
+    }
+  },
+  "FAQ": {
+    "badge": "有疑问？",
+    "title": "常见问题",
+    "description": "查找关于在中国留学的常见问题解答",
+    "items": {
+      "deadline": {
+        "question": "申请截止日期是什么时候？",
+        "answer": "截止日期因大学和课程而异。通常，对于 9 月入学，申请在 3 月至 6 月之间截止。请查看具体课程页面以获取确切日期。"
+      },
+      "language": {
+        "question": "我需要懂中文才能在中国学习吗？",
+        "answer": "不一定！有数千个全英文授课的学士、硕士和博士课程。但是，建议学习一些基础中文以便日常生活。"
+      },
+      "work": {
+        "question": "我可以在学习期间工作吗？",
+        "answer": "经大学和移民局许可，国际学生可以兼职工作或实习。近年来政策变得更加灵活。"
+      },
+      "scholarships": {
+        "question": "如何申请奖学金？",
+        "answer": "您可以在提交申请时通过我们的平台直接申请奖学金。我们将指导您准备 CSC 和大学奖学金所需的文件。"
+      },
+      "visa": {
+        "question": "签证要求是什么？",
+        "answer": "您需要有效护照、录取通知书和大学提供的 JW202 表格。我们在整个过程中提供全面的签证指导和支持。"
+      },
+      "process": {
+        "question": "申请过程需要多长时间？",
+        "answer": "典型的申请过程需要 2-4 周。一旦提交，大学通常在 4-8 周内回复。我们会随时向您通报每一步的最新情况。"
+      }
+    },
+    "seeAll": "查看所有常见问题",
+    "contactSupport": "联系支持",
+    "footer": "还有问题？我们的支持团队 24/7 全天候为您提供帮助。"
+  },
+  "Destinations": {
+    "pageTitle": "留学目的地",
+    "badge": "中国留学目的地",
+    "heroTitle": "探索中国",
+    "heroSubtitle": "最佳留学城市",
+    "heroDescription": "从历史悠久的首都北京到现代化的上海天际线——探索中国最具活力的城市，找到最适合您学术之旅的地方。",
+    "statCities": "可选城市",
+    "statUniversities": "大学总数",
+    "statTopCity": "{city}的大学数量",
+    "featuredTitle": "热门目的地",
+    "featuredSubtitle": "最受国际学生欢迎的中国城市",
+    "allCitiesTitle": "更多城市",
+    "allCitiesSubtitle": "探索中国更多城市的大学",
+    "university": "所大学",
+    "universities": "所大学",
+    "explorePrograms": "探索课程"
+  },
+  "Universities": {
+    "title": "探索中国顶尖大学",
+    "subtitle": "发现 {count}+ 所著名的中国院校。从 985 工程到 C9 联盟大学。",
+    "error": {
+      "title": "无法加载大学",
+      "hint": "提示: {hint}"
+    },
+    "search": {
+      "placeholder": "按大学名称、城市或排名搜索...",
+      "label": "搜索",
+      "universityPlaceholder": "大学名称...",
+      "searching": "搜索中..."
+    },
+    "filters": {
+      "title": "筛选",
+      "description": "缩小大学搜索范围",
+      "clear": "清除筛选",
+      "clearAll": "清除所有筛选",
+      "city": "城市",
+      "allCities": "所有城市",
+      "institutionType": "院校类型",
+      "allTypes": "所有类型",
+      "universityCategory": "大学类别",
+      "allCategories": "所有类别",
+      "rankingRecognition": "排名与认可",
+      "specialFeatures": "特色功能",
+      "institutionTypes": {
+        "university": "大学",
+        "college": "学院",
+        "languageInstitute": "语言学院",
+        "vocationalSchool": "职业学校",
+        "technicalInstitute": "技术学院"
+      },
+      "categories": {
+        "public": "公立",
+        "private": "私立",
+        "research": "研究型",
+        "comprehensive": "综合型",
+        "specialized": "专业型",
+        "vocational": "职业型"
+      },
+      "rankings": {
+        "project985": "985 工程",
+        "project211": "211 工程",
+        "doubleFirstClass": "双一流"
+      },
+      "features": {
+        "fastTrack": "快速录取",
+        "scholarships": "提供奖学金",
+        "englishPrograms": "英语课程"
+      }
+    },
+    "stats": {
+      "title": "快速统计",
+      "total": "大学总数",
+      "showing": "显示",
+      "cities": "城市"
+    },
+    "sort": {
+      "label": "排序",
+      "name": "名称: A-Z",
+      "programs": "课程数量",
+      "city": "城市",
+      "tuitionLow": "Tuition: Low to High",
+      "tuitionHigh": "Tuition: High to Low",
+      "ranking": "Best Ranking"
+    },
+    "noResults": {
+      "title": "未找到大学",
+      "description": "尝试调整您的筛选或搜索条件"
+    },
+    "results": {
+      "universities": "universities",
+      "showMore": "Show {count} more",
+      "showingOf": "Showing {visible} of {total}"
+    },
+    "compare": {
+      "title": "Compare Universities",
+      "criteria": "Criteria",
+      "location": "Location",
+      "ranking": "Ranking",
+      "programs": "Programs",
+      "tuition": "Tuition",
+      "levels": "Study Levels",
+      "languages": "Languages",
+      "scholarship": "Scholarship",
+      "fastTrack": "Fast Track",
+      "cscaExam": "CSCA Exam",
+      "badges": "Accreditations",
+      "clearAll": "Clear All",
+      "selected": "{count} selected",
+      "compareNow": "Compare Now"
+    }
+  },
+  "Programs": {
+    "title": "发现完美课程",
+    "subtitle": "浏览来自中国顶尖大学的 {count}+ 课程。找到最适合您学术之旅的课程。",
+    "filters": {
+      "title": "筛选",
+      "active": "当前筛选:",
+      "clear": "清除筛选",
+      "clearAll": "清除所有筛选",
+      "search": "搜索",
+      "searchPlaceholder": "课程或专业...",
+      "studyLevel": "学习层次",
+      "fieldOfStudy": "学习领域",
+      "allFields": "所有领域",
+      "maxTuition": "最高学费",
+      "language": "授课语言",
+      "city": "城市",
+      "allCities": "所有城市",
+      "university": "大学",
+      "allUniversities": "所有大学",
+      "duration": "学制",
+      "allDurations": "所有学制",
+      "scholarshipAvailable": "提供奖学金",
+      "levels": {
+        "bachelor": "学士",
+        "master": "硕士",
+        "phd": "博士",
+        "diploma": "文凭",
+        "language": "语言课程",
+        "nonDegree": "Non-Degree"
+      },
+      "fields": {
+        "business": "商业与管理",
+        "engineering": "工程与技术",
+        "medicine": "医学与健康科学",
+        "arts": "艺术与人文",
+        "science": "自然科学",
+        "education": "教育",
+        "cs": "计算机科学",
+        "law": "法律"
+      },
+      "languages": {
+        "english": "英语",
+        "chinese": "汉语"
+      },
+      "durations": {
+        "2years": "2 年",
+        "3years": "3 年",
+        "4years": "4 年",
+        "5years": "5 年",
+        "6years": "6 年"
+      },
+      "matchingPrograms": "个课程匹配",
+      "applyFilters": "应用筛选",
+      "scholarshipDesc": "Show programs with funding",
+      "cscaLabel": "无需CSCA考试",
+      "cscaDesc": "显示不需要CSCA考试的项目",
+      "cscaBadge": "No CSCA",
+      "academicRequirements": "Academic Requirements",
+      "myAge": "My Age",
+      "agePlaceholder": "e.g. 21",
+      "minGpa": "Min GPA",
+      "gpaPlaceholder": "e.g. 3.0",
+      "autoFilterHint": "停止输入后自动应用筛选",
+      "searchUniversity": "搜索大学...",
+      "noUniversityFound": "未找到大学。"
+    },
+    "stats": {
+      "total": "课程总数",
+      "showing": "显示"
+    },
+    "sort": {
+      "label": "排序",
+      "relevance": "最相关",
+      "tuitionLow": "学费: 从低到高",
+      "tuitionHigh": "学费: 从高到低",
+      "deadline": "截止日期: 最近",
+      "popular": "最受欢迎"
+    },
+    "noResults": {
+      "title": "未找到课程",
+      "description": "尝试调整您的筛选或搜索条件"
+    },
+    "card": {
+      "duration": "学制",
+      "intake": "入学时间",
+      "tuitionFee": "学费",
+      "viewProgram": "查看课程",
+      "contact": "联系",
+      "scholarship": "奖学金",
+      "addToCompare": "加入对比",
+      "removeFromCompare": "移除对比",
+      "level": "层次",
+      "features": "特色",
+      "viewFullDetails": "查看完整详情",
+      "applyNow": "立即申请",
+      "fastTrack": "Fast Track",
+      "deadlineClosed": "已关闭",
+      "deadlineToday": "今日截止！",
+      "deadlineDaysLeft": "剩余{days}天",
+      "deadlineDate": "截止日期：{date}"
+    },
+    "compare": {
+      "title": "对比课程",
+      "comparing": "正在对比",
+      "more": "更多",
+      "clear": "清除",
+      "compareNow": "立即对比",
+      "university": "大学",
+      "location": "地点",
+      "level": "层次",
+      "duration": "学制",
+      "tuition": "学费",
+      "intake": "入学",
+      "language": "语言",
+      "viewDetails": "查看详情",
+      "apply": "申请"
+    },
+    "emptyState": {
+      "title": "未找到课程",
+      "description": "我们找不到任何课程。尝试浏览我们的完整目录。",
+      "filteredDescription": "没有课程符合您当前的筛选条件。尝试调整您的搜索条件。",
+      "currentFilters": "您当前的筛选:",
+      "scholarship": "奖学金",
+      "clearFilters": "清除所有筛选",
+      "tryInstead": "尝试热门搜索:",
+      "browseAll": "浏览所有课程",
+      "exploreUniversities": "探索大学"
+    },
+    "recentlyViewed": {
+      "title": "最近浏览",
+      "clear": "清除",
+      "viewAgain": "再次查看",
+      "justNow": "刚刚",
+      "minutesAgo": "{count}分钟前",
+      "hoursAgo": "{count}小时前",
+      "daysAgo": "{count}天前"
+    },
+    "quickAccess": "快速访问",
+    "quickChips": {
+      "cs": "计算机科学",
+      "business": "商科",
+      "engineering": "工程学",
+      "medicine": "医学",
+      "arts": "艺术",
+      "economics": "经济学"
+    },
+    "aiSearch": {
+      "thinking": "AI is thinking... finding related fields for \"{query}\"",
+      "active": "Smart Search Active",
+      "found": "Found programs related to: {terms}",
+      "working": "AI is working on it...",
+      "looking": "Looking for programs related to \"{query}\""
+    },
+    "view": {
+      "grid": "网格",
+      "map": "地图"
+    }
+  },
+  "GuidedTour": {
+    "skip": "跳过导览",
+    "next": "下一步",
+    "finish": "知道了！",
+    "programs": {
+      "search": {
+        "title": "查找您的课程",
+        "content": "使用搜索栏按名称、学习领域或关键字查找课程。"
+      },
+      "filters": {
+        "title": "优化您的搜索",
+        "content": "使用筛选器按学位等级、地点、语言和预算缩小范围。"
+      },
+      "card": {
+        "title": "课程详情",
+        "content": "点击任何课程卡片以查看完整详情、要求和申请方法。"
+      },
+      "compare": {
+        "title": "对比课程",
+        "content": "最多选择 3 个课程进行并排对比，做出最佳选择。"
+      }
+    }
+  },
+  "UniversitiesCard": {
+    "programs": "课程",
+    "tuitionFrom": "学费起",
+    "tuition": "学费",
+    "viewUniversity": "查看大学",
+    "viewPrograms": "查看课程",
+    "fastTrack": "Fast Track",
+    "scholarship": "Scholarship",
+    "contactForPricing": "Contact for pricing",
+    "cscaExam": "CSCA Exam",
+    "addToCompare": "Add to compare",
+    "removeFromCompare": "Remove from compare"
+  },
+  "ProgramDetail": {
+    "breadcrumb": {
+      "home": "首页",
+      "programs": "课程"
+    },
+    "badges": {
+      "intake": "入学: {intake}",
+      "contactUniversity": "联系大学",
+      "fastTrack": "快速录取通道",
+      "specialRequirements": "特殊要求"
+    },
+    "deadline": {
+      "daysRemaining": "剩余 {days} 天",
+      "endingToday": "申请今日截止！",
+      "closed": "申请已截止",
+      "deadline": "截止日期"
+    },
+    "buttons": {
+      "apply": "立即申请",
+      "downloadBrochure": "下载简章",
+      "viewUniversity": "查看大学",
+      "startApplication": "开始申请",
+      "contactAdvisor": "联系顾问"
+    },
+    "highlights": {
+      "title": "课程亮点",
+      "tuition": "学费",
+      "duration": "学制",
+      "language": "语言",
+      "level": "学位等级",
+      "gpaRequirement": "最低GPA要求",
+      "maxAge": "最大年龄",
+      "languageRequirements": "Language Score"
+    },
+    "overview": {
+      "title": "课程概览",
+      "noDescription": "此课程暂无描述。",
+      "curriculum": "核心课程",
+      "curriculumPlaceholder": "核心课程信息即将更新"
+    },
+    "requirements": {
+      "title": "入学要求"
+    },
+    "scholarships": {
+      "title": "此课程的奖学金选项",
+      "description": "选择最适合您预算的奖学金类型"
+    },
+    "faq": {
+      "title": "常见问题",
+      "deadline": "申请截止日期为 {deadline}。",
+      "accommodationQ": "提供住宿吗？",
+      "accommodationA": "是的，校内住宿适用于国际学生。",
+      "workQ": "我可以兼职工作吗？",
+      "workA": "是的，国际学生可以在获得适当许可的情况下申请勤工助学或实习。",
+      "deadlineQ": "申请截止日期是什么时候？"
+    },
+    "sidebar": {
+      "ready": "准备好申请了吗？",
+      "free": "免费申请",
+      "fast": "快速处理",
+      "expert": "专家支持",
+      "cost": "费用明细",
+      "applicationFee": "申请费",
+      "serviceFee": "服务费",
+      "disclaimer": "*额外费用可能包括住宿、签证和生活费",
+      "why": "为什么选择此课程？",
+      "reasons": {
+        "degree": "国际认可学位",
+        "faculty": "经验丰富的教职员工",
+        "facilities": "现代化设施与资源",
+        "career": "职业发展支持"
+      }
+    },
+    "accommodation": {
+      "title": "住宿选项"
+    }
+  },
+  "UniversityDetail": {
+    "quickLinks": {
+      "exploreCourses": "探索课程",
+      "getFunded": "获得资助",
+      "findHousing": "寻找住房",
+      "findLocation": "位置"
+    },
+    "location": {
+      "title": "校园位置",
+      "viewOnMap": "在谷歌地图上查看"
+    },
+    "about": "关于",
+    "whyChooseUs": "为什么选择我们",
+    "programs": {
+      "title": "课程",
+      "allPrograms": "所有课程",
+      "noPrograms": "未找到此级别的课程。",
+      "viewProgram": "查看课程",
+      "tuitionFee": "学费",
+      "perYear": "每年",
+      "allLanguages": "所有语言",
+      "filterByLanguage": "语言",
+      "showing": "Showing {start}-{end} of {total} programs",
+      "previousPage": "Previous",
+      "nextPage": "Next",
+      "pageOf": "Page {current} of {total}",
+      "deadlineClosed": "已关闭",
+      "deadlineLabel": "截止日期：{date}"
+    },
+    "deadlines": {
+      "title": "即将到来的截止日期",
+      "noDeadlines": "暂无即将到来的截止日期",
+      "daysLeft": "剩余 {days} 天",
+      "today": "今天截止！",
+      "closed": "已关闭",
+      "deadline": "截止日期",
+      "viewProgram": "查看课程",
+      "urgent": "紧急",
+      "quickJump": "截止日期"
+    },
+    "scholarships": {
+      "title": "可用奖学金选项",
+      "description": "为这所大学的课程选择最适合您预算的奖学金类型"
+    },
+    "campus": {
+      "tour": "校园导览",
+      "gallery": "校园图库",
+      "viewImage": "查看图片"
+    },
+    "admission": {
+      "title": "入学要求",
+      "academic": "学术要求",
+      "language": "语言要求",
+      "highSchool": "高中毕业证书或同等学历",
+      "gpa": "最低 GPA 3.0/4.0",
+      "transcripts": "学术成绩单",
+      "ielts": "雅思 6.0 或托福 80+",
+      "hsk": "中文课程要求 HSK 4",
+      "english": "英语水平证书"
+    },
+    "sidebar": {
+      "ready": "准备好申请了吗？",
+      "startJourney": "在 {university} 开始您的旅程",
+      "applyNow": "立即申请",
+      "downloadBrochure": "下载简章",
+      "quickActions": "快速操作",
+      "requestInfo": "索取信息",
+      "chatAdvisor": "联系顾问",
+      "virtualTour": "虚拟校园导览",
+      "scheduleCall": "预约通话",
+      "quickFacts": "概况",
+      "location": "地点",
+      "founded": "成立时间",
+      "students": "学生",
+      "international": "国际",
+      "ranking": "排名",
+      "officialWebsite": "官方网站"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "RequestInformation": {
+    "title": "索取信息",
+    "description": "获取有关 {university} 的更多详细信息。请填写下表。",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "email": "电子邮件",
+    "phone": "电话号码",
+    "interest": "兴趣",
+    "selectInterest": "选择您的兴趣",
+    "interests": {
+      "admission": "入学要求",
+      "programs": "可用课程",
+      "scholarships": "奖学金机会",
+      "campus": "校园生活",
+      "other": "其他"
+    },
+    "message": "留言",
+    "messagePlaceholder": "我对在 {university} 学习感兴趣...",
+    "submit": "发送请求",
+    "sending": "发送中...",
+    "success": "请求发送成功！我们会尽快联系您。",
+    "error": "发送请求失败。请重试。"
+  },
+  "UniversityScholarships": {
+    "loading": "加载奖学金中...",
+    "noScholarships": "此大学暂无可用奖学金。",
+    "options": "奖学金选项",
+    "discover": "发现更多机会",
+    "explore": "探索所有奖学金选项",
+    "description": "不确定哪种奖学金适合您？浏览我们完整的奖学金指南，比较所有选项，了解资格要求，找到最适合您学术之旅的奖学金。",
+    "viewAll": "查看所有奖学金",
+    "advice": "获取个性化建议",
+    "mostPopular": "最受欢迎",
+    "defaultDescription": "国际学生的绝佳选择。",
+    "tuitionCoverage": "学费覆盖",
+    "serviceFee": "服务费",
+    "whatsIncluded": "包含内容",
+    "applyNow": "立即申请",
+    "howItWorks": {
+      "title": "奖学金如何运作",
+      "description": "奖学金覆盖您学费的一定比例。您向大学支付剩余学费，并支付一次性服务费以获得申请支持、签证协助和指导。",
+      "learnMore": "了解更多关于奖学金的信息 →"
+    },
+    "benefits": {
+      "tuitionCoverage": "{percentage}% 学费覆盖",
+      "noScholarship": "无奖学金 (0% 覆盖)",
+      "support": "申请支持与指导",
+      "visa": "签证协助",
+      "orientation": "行前指导",
+      "accommodation": "住宿安排支持"
+    },
+    "action": "Action",
+    "scholarshipType": "Scholarship Type"
+  },
+  "Accommodation": {
+    "notAvailable": "暂无住宿信息",
+    "badge": "学生住宿",
+    "title": "校内住宿选项",
+    "priceRange": "价格范围",
+    "generalFacilities": "一般设施",
+    "availableRoomTypes": "可用房型",
+    "defaultTitle": "住宿",
+    "priceOnRequest": "价格详询",
+    "month": "月",
+    "roomFeatures": "房间设施:",
+    "importantInfo": {
+      "title": "重要信息",
+      "fees": "住宿费按学期或学年支付",
+      "availability": "房间分配视供应情况而定",
+      "prices": "价格可能会有所变化，请与大学确认",
+      "deposit": "入住时可能需要押金"
+    }
+  },
+  "UniversityHeader": {
+    "fastTrack": "快速录取通道",
+    "est": "成立时间 {founded}",
+    "studentsCount": "{students} 名学生",
+    "website": "网站",
+    "applyNow": "立即申请",
+    "requestInfo": "索取信息",
+    "brochure": "简章",
+    "virtualTour": "虚拟导览",
+    "scheduleCall": "预约通话",
+    "chatAdvisor": "联系顾问",
+    "save": "保存",
+    "saved": "已保存",
+    "share": "分享",
+    "founded": "成立时间",
+    "students": "学生",
+    "ranking": "排名",
+    "international": "国际"
+  },
+  "Dashboard": {
+    "sidebar": {
+      "myApplications": "我的申请",
+      "profile": "个人资料",
+      "messages": "消息",
+      "payments": "付款",
+      "documents": "文件",
+      "settings": "设置",
+      "logout": "退出"
+    },
+    "title": "仪表盘",
+    "subtitle": "欢迎回来！这是您的申请概览。",
+    "newApplication": "新申请",
+    "stats": {
+      "totalApplications": "总申请数",
+      "submitted": "{count} 已提交",
+      "pendingActions": "待处理事项",
+      "requiresAttention": "需要您关注",
+      "offersReceived": "已收到 Offer",
+      "congratulations": "恭喜！",
+      "successRate": "成功率",
+      "acceptanceRate": "录取率"
+    },
+    "recentApplications": "我的申请",
+    "appliedOn": "申请于 {date}",
+    "viewDetails": "查看详情",
+    "noApplications": {
+      "title": "暂无申请",
+      "description": "通过浏览课程并提交您的第一份申请来开始您的旅程。"
+    },
+    "browsePrograms": "浏览课程"
+  },
+  "Profile": {
+    "title": "我的个人资料",
+    "subtitle": "管理您的个人信息和偏好",
+    "completion": "资料完整度",
+    "completeProfile": "完善您的个人资料以加快未来的申请",
+    "photo": {
+      "title": "个人照片",
+      "description": "上传一张专业照片",
+      "upload": "上传照片",
+      "uploading": "上传中...",
+      "hint": "JPG, PNG 或 GIF。最大 5MB。"
+    },
+    "personalInfo": {
+      "title": "个人信息",
+      "description": "您的申请基本信息"
+    },
+    "fullName": "全名 *",
+    "email": "电子邮件",
+    "dob": "出生日期",
+    "phone": "电话号码",
+    "nationality": "国籍",
+    "passportNumber": "护照号码",
+    "address": {
+      "title": "地址",
+      "description": "您当前的居住地址",
+      "street": "街道地址",
+      "city": "城市",
+      "postalCode": "邮政编码"
+    },
+    "emergency": {
+      "title": "紧急联系人",
+      "description": "紧急情况下联系的人",
+      "name": "姓名",
+      "phone": "电话",
+      "relationship": "关系"
+    },
+    "save": "保存个人资料",
+    "saving": "保存中...",
+    "success": "个人资料更新成功！",
+    "error": "更新个人资料时发生错误"
+  },
+  "Documents": {
+    "title": "我的文件",
+    "subtitle": "管理您的大学申请文件",
+    "stats": {
+      "total": "文件总数",
+      "uploaded": "已上传文件",
+      "verified": "已验证",
+      "approved": "管理员已批准",
+      "pending": "待审核",
+      "awaiting": "等待验证"
+    },
+    "yourDocuments": "您的文件",
+    "manageDocuments": "上传并管理您的申请文件",
+    "uploadDocument": "上传文件",
+    "noDocuments": "暂无文件",
+    "uploadFirst": "上传您的第一个文件以开始",
+    "size": "大小",
+    "uploaded": "已上传",
+    "download": "下载",
+    "delete": "删除",
+    "deleteConfirm": "您确定要删除“{name}”吗？",
+    "uploadDialog": {
+      "title": "上传文件",
+      "description": "选择文件类型并上传您的文件",
+      "type": "文件类型 *",
+      "selectType": "选择文件类型",
+      "alreadyUploaded": "(已上传)",
+      "file": "文件 *",
+      "selected": "已选择",
+      "formats": "接受的格式: PDF, JPG, PNG, DOC, DOCX。最大 10MB。",
+      "cancel": "取消",
+      "uploading": "上传中...",
+      "upload": "上传"
+    },
+    "error": {
+      "fileSize": "文件必须小于 10MB",
+      "selectFile": "请选择文件类型和文件",
+      "fileType": "请上传图像文件",
+      "imageSize": "图像必须小于 5MB"
+    },
+    "success": {
+      "uploaded": "文件上传成功！",
+      "deleted": "文件已删除"
+    },
+    "types": {
+      "passport": "护照",
+      "transcript": "学术成绩单",
+      "diploma": "文凭/证书",
+      "recommendation_letter": "推荐信",
+      "personal_statement": "个人陈述",
+      "cv": "简历",
+      "language_certificate": "语言证书 (IELTS/TOEFL)",
+      "photo": "护照照片",
+      "bank_statement": "银行结单",
+      "health_certificate": "健康证明",
+      "police_clearance": "无犯罪记录证明",
+      "other": "其他文件"
+    },
+    "documentRequest": {
+      "title": "文件要求",
+      "description": "请上传以下文件：\n1. 护照复印件\n2. 学位证书\n3. 个人陈述",
+      "note": "请确保所有文件都已翻译成相应语言"
+    }
+  },
+  "Status": {
+    "pending_documents": "待提交文件",
+    "pending_payment": "待付款",
+    "payment_verification": "付款验证中",
+    "submitted": "已提交",
+    "under_review": "审核中",
+    "accepted": "已录取",
+    "rejected": "已拒绝",
+    "unknown": "未知"
+  },
+  "Auth": {
+    "login": {
+      "title": "登录",
+      "description": "输入您的电子邮件和密码访问您的账户",
+      "emailLabel": "电子邮件",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "密码",
+      "forgotPassword": "忘记密码？",
+      "submit": "登录",
+      "orContinueWith": "或通过以下方式继续",
+      "continueWithGoogle": "通过 Google 继续",
+      "connecting": "连接中...",
+      "noAccount": "还没有账户？",
+      "signUp": "注册",
+      "success": "登录成功！正在重定向...",
+      "error": "出错了",
+      "googleError": "Google 登录失败"
+    },
+    "layout": {
+      "branding": "Studyatchina",
+      "heroTitle": "通往中国大学的门户",
+      "heroDescription": "加入成千上万在顶尖中国大学追逐梦想的国际学生。",
+      "programsTitle": "500+ 课程",
+      "programsDescription": "访问来自中国顶尖大学的课程",
+      "guidanceTitle": "专家指导",
+      "guidanceDescription": "在您的申请旅程中获得支持",
+      "scholarshipsTitle": "奖学金机会",
+      "scholarshipsDescription": "探索各种可用的奖学金选项",
+      "copyright": "© 2024 Studyatchina. 保留所有权利。"
+    }
+  },
+  "Notifications": {
+    "title": "通知",
+    "markAllRead": "全部标记为已读",
+    "noNotifications": "暂无通知",
+    "viewAll": "查看所有通知",
+    "loading": "加载通知中...",
+    "types": {
+      "statusChange": "申请状态更新",
+      "documentRequested": "文件请求",
+      "paymentRequested": "需要付款",
+      "messageReceived": "新消息",
+      "newApplication": "新申请",
+      "newLead": "新线索",
+      "documentUploaded": "文件已上传",
+      "acceptanceLetter": "录取通知书"
+    },
+    "messages": {
+      "statusChange": "您的申请状态已更改为 {status}"
+    }
+  },
+  "Apply": {
+    "title": "申请课程",
+    "steps": {
+      "info": "信息",
+      "documents": "文件",
+      "payment": "支付",
+      "review": "审查",
+      "personalInfo": "个人信息",
+      "requiredDocuments": "所需文件",
+      "paymentInfo": "支付信息",
+      "reviewSubmit": "审查并提交"
+    },
+    "sections": {
+      "identity": "身份与个人信息",
+      "identitySubtitle": "请按照护照上的信息填写",
+      "contact": "联系方式",
+      "address": "家庭住址",
+      "education": "教育背景",
+      "educationSubtitle": "您最近的学历信息",
+      "language": "语言水平",
+      "languageSubtitle": "中文和英文水平（用于录取评估）",
+      "emergency": "紧急联系人",
+      "emergencySubtitle": "出国安全必需"
+    },
+    "options": {
+      "male": "男",
+      "female": "女",
+      "islam": "伊斯兰教",
+      "christianity": "基督教",
+      "buddhism": "佛教",
+      "hinduism": "印度教",
+      "noReligion": "无宗教",
+      "other": "其他",
+      "single": "未婚",
+      "married": "已婚",
+      "divorced": "离异",
+      "highSchool": "高中",
+      "diploma": "大专",
+      "bachelor": "本科",
+      "master": "硕士",
+      "doctorate": "博士",
+      "noProficiency": "无基础",
+      "basic": "初级",
+      "intermediate": "中级",
+      "advanced": "高级",
+      "native": "母语"
+    },
+    "labels": {
+      "firstName": "名",
+      "lastName": "姓",
+      "fullName": "全名 (与护照一致)",
+      "email": "电子邮件",
+      "phone": "手机号码",
+      "country": "国籍",
+      "passport": "护照号码",
+      "gender": "性别",
+      "dateOfBirth": "出生日期",
+      "religion": "宗教信仰",
+      "maritalStatus": "婚姻状况",
+      "wechatId": "微信号",
+      "address": "家庭住址",
+      "city": "城市",
+      "postalCode": "邮政编码",
+      "highestEducation": "最高学历",
+      "schoolName": "学校/大学名称",
+      "majorField": "专业/学科",
+      "graduationYear": "毕业年份",
+      "gpaScore": "GPA / 成绩",
+      "chineseProficiency": "中文水平 (HSK等级)",
+      "englishProficiency": "英语水平",
+      "testScore": "考试成绩 (IELTS/TOEFL)",
+      "preferredIntake": "首选入学时间",
+      "emergencyContactName": "紧急联系人姓名",
+      "emergencyContactPhone": "紧急联系人电话",
+      "emergencyContactRelationship": "关系"
+    },
+    "placeholders": {
+      "firstName": "例如 Wei",
+      "lastName": "例如 Zhang",
+      "fullName": "例如 Zhang Wei",
+      "email": "例如 john@example.com",
+      "phone": "例如 555 123 4567",
+      "passport": "例如 AB1234567",
+      "selectGender": "选择性别",
+      "selectReligion": "选择宗教",
+      "selectMaritalStatus": "选择婚姻状况",
+      "wechatId": "例如 wxid_abc123",
+      "address": "例如 XX路123号4号楼",
+      "city": "例如 北京",
+      "postalCode": "例如 100000",
+      "selectEducation": "选择最高学历",
+      "schoolName": "例如 北京大学",
+      "majorField": "例如 计算机科学",
+      "graduationYear": "例如 2024",
+      "gpaScore": "例如 3.5 / 4.0",
+      "selectChinese": "选择HSK等级",
+      "selectEnglish": "选择水平",
+      "testScore": "例如 IELTS 6.5",
+      "emergencyName": "例如 父母或监护人姓名",
+      "emergencyPhone": "例如 555 123 4567",
+      "relationship": "例如 父母，配偶"
+    },
+    "hints": {
+      "phoneHint": "输入您的电话号码，不带国家代码",
+      "passportHint": "准确输入您的护照号码"
+    },
+    "buttons": {
+      "continueToDocuments": "继续上传文件",
+      "continueToPayment": "继续支付",
+      "continueToReview": "继续审查",
+      "submitApplication": "提交申请",
+      "back": "返回",
+      "uploadDocument": "上传",
+      "selectFile": "选择文件",
+      "next": "Next"
+    },
+    "validation": {
+      "missingFieldsTitle": "请填写以下必填字段：",
+      "required": "此字段为必填项"
+    },
+    "documents": {
+      "title": "所需文件",
+      "description": "请上传以下文件。接受格式：PDF, JPG, PNG (最大 10MB)",
+      "mandatory": "必填",
+      "optional": "选填",
+      "uploaded": "已上传",
+      "pending": "待处理"
+    },
+    "payment": {
+      "title": "申请费",
+      "applicationFee": "申请费",
+      "serviceFee": "服务费",
+      "total": "总计",
+      "payNow": "立即支付",
+      "payLater": "稍后支付"
+    },
+    "review": {
+      "title": "审查您的申请",
+      "personalDetails": "个人详情",
+      "uploadedDocuments": "已上传文件",
+      "confirmSubmit": "我确认提供的所有信息均准确无误",
+      "submitting": "提交中...",
+      "success": "申请提交成功！",
+      "successMessage": "您的申请已提交。您很快就会收到一封确认电子邮件。"
+    },
+    "errors": {
+      "generic": "发生错误。请重试。",
+      "uploadFailed": "上传文件失败。请重试。",
+      "paymentFailed": "支付失败。请重试。"
+    }
+  },
+  "AISearch": {
+    "placeholder": "尝试：'在北京 30000 人民币以下的工程硕士'",
+    "search": "搜索",
+    "filters": "AI 理解",
+    "error": "出错了。请重试。"
+  },
+  "AIChat": {
+    "title": "Chen Wei 陈伟",
+    "subtitle": "您的留学顾问",
+    "typing": "输入中...",
+    "greeting": "您好！👋 我是陈伟，您的个人留学顾问。我在这里帮助您找到中国完美的课程，回答您的问题，甚至指导您完成申请流程。今天有什么能帮您的？",
+    "inputPlaceholder": "输入您的消息...",
+    "thinking": "思考中...",
+    "error": "抱歉，我遇到了错误。请重试。",
+    "quickStart": "快速开始:",
+    "quickFind": "🎓 查找课程",
+    "quickScholarship": "💰 奖学金",
+    "quickApply": "📝 开始申请",
+    "chatHistory": "聊天记录",
+    "newChat": "新对话",
+    "noHistory": "暂无历史对话",
+    "backToChat": "返回聊天",
+    "loginPrompt": "🔐 登录以保存您的聊天记录并追踪申请",
+    "login": "登录",
+    "register": "注册"
+  },
+  "PaymentDashboard": {
+    "title": "付款",
+    "subtitle": "管理您的申请付款",
+    "totalAmount": "总金额",
+    "totalPaid": "总已付",
+    "pending": "待支付",
+    "rest": "剩余金额",
+    "totalTransactions": "总交易数",
+    "successfullyProcessed": "成功处理",
+    "paymentDue": "笔待付",
+    "allTime": "所有时间",
+    "amount": "金额",
+    "status": "状态",
+    "created": "创建于",
+    "method": "方式",
+    "payNow": "立即支付",
+    "viewApplication": "查看申请",
+    "paymentProof": "付款证明",
+    "paymentRequest": {
+      "title": "付款请求",
+      "amount": "USD 200",
+      "description": "进行此付款",
+      "note": "请完成付款以继续您的申请。"
+    },
+    "paymentStatuses": {
+      "completed": "已完成",
+      "pending": "待处理",
+      "processing": "处理中",
+      "failed": "失败",
+      "refunded": "已退款"
+    },
+    "types": {
+      "application_fee": "申请费",
+      "service_fee": "服务费",
+      "tuition_deposit": "学费押金",
+      "full_tuition": "全额学费",
+      "accommodation": "住宿费",
+      "other": "其他"
+    },
+    "assistance": {
+      "title": "付款协助",
+      "description": "您有 {count} 笔待处理付款。如果您需要付款帮助或有疑问：",
+      "point1": "联系我们的支持团队获取付款协助",
+      "point2": "检查您是否符合付款计划的条件",
+      "point3": "验证您的付款方式是否受支持"
+    },
+    "paidOn": "支付于",
+    "reference": "参考号",
+    "verifiedByAdmin": "由管理员验证",
+    "expires": "过期时间:",
+    "adminNote": "管理员备注:",
+    "paymentLinkExpired": "付款链接已过期",
+    "document": "文件:",
+    "noPayments": "无付款",
+    "noPaymentsDesc": "您没有任何待处理的付款。",
+    "contactSupport": "联系支持"
+  },
+  "Refunds": {
+    "title": "退款请求",
+    "statusTitle": "退款状态",
+    "requestButton": "申请退款",
+    "submittedTitle": "退款请求已提交",
+    "submittedOn": "提交于 {date}",
+    "reasonLabel": "原因",
+    "adminResponseLabel": "管理员回复",
+    "rejectedTitle": "申请被拒绝",
+    "rejectedMessage": "您可能有资格获得退款。点击按钮提交请求。",
+    "modalTitle": "申请退款",
+    "modalDescription": "提交退款请求。请解释您申请退款的原因。",
+    "modalReasonLabel": "退款原因",
+    "modalPlaceholder": "我在被拒绝，因为...",
+    "submitButton": "提交请求",
+    "cancelButton": "取消",
+    "successMessage": "退款请求提交成功",
+    "errorMessage": "提交请求失败",
+    "table": {
+      "student": "学生",
+      "program": "大学 / 课程",
+      "reason": "原因",
+      "status": "状态",
+      "date": "日期",
+      "actions": "操作",
+      "approve": "批准",
+      "reject": "拒绝",
+      "noRequests": "未找到退款请求",
+      "approveTitle": "批准退款请求",
+      "rejectTitle": "拒绝退款请求",
+      "approveDescription": "这将标记请求为由已批准，并将申请付款状态更新为已退款。",
+      "rejectDescription": "这将标记请求为已拒绝。",
+      "adminResponsePlaceholder": "给学生添加备注..."
+    }
+  },
+  "Messages": {
+    "title": "消息",
+    "subtitle": "与招生团队的沟通",
+    "conversations": "对话",
+    "unreadMessages": "未读消息",
+    "actionRequired": "需要操作",
+    "actionCompleted": "已完成",
+    "noMessages": "暂无消息",
+    "noMessagesDesc": "来自招生团队的消息将显示在这里",
+    "reply": "回复",
+    "replyingTo": "回复 {name}",
+    "typeReply": "输入您的回复...",
+    "sendReply": "发送回复",
+    "sending": "发送中...",
+    "cancel": "取消",
+    "you": "您",
+    "admin": "招生团队",
+    "replyTooltip": "回复此消息",
+    "actionRequiredMessage": "请回复此消息或完成请求的操作。",
+    "takeAction": "采取行动",
+    "attachment": "附件",
+    "attachments": "附件"
+  },
+  "QSRankings": {
+    "meta": {
+      "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+      "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+    },
+    "hero": {
+      "badge": "QS World University Rankings 2026",
+      "titleHighlight": "Chinese Universities",
+      "titleRest": "in Global Rankings",
+      "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+      "breadcrumb": "QS Rankings 2026",
+      "statRanked": "Ranked Universities",
+      "statHighest": "Highest Global Rank",
+      "statTop50": "In Global Top 50",
+      "statCities": "Cities Represented"
+    },
+    "content": {
+      "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+      "browseAllTitle": "Browse All Rankings",
+      "searchPlaceholder": "Search universities...",
+      "allCities": "All Cities",
+      "showing": "Showing",
+      "of": "of",
+      "universities": "universities",
+      "university": "university",
+      "inCity": "in",
+      "matching": "matching",
+      "noResults": "No universities found",
+      "noResultsHint": "Try adjusting your search or filters",
+      "overallScore": "Overall Score",
+      "score": "Score",
+      "world": "World",
+      "china": "China",
+      "ctaTitle": "Ready to Study at a Top-Ranked University?",
+      "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+      "browseUniversities": "Browse Universities",
+      "explorePrograms": "Explore Programs",
+      "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+      "visitSite": "topuniversities.com",
+      "viewProfile": "View Profile",
+      "tierTop50": "Top 50 Globally",
+      "tierTop200": "Top 51–200",
+      "tierTop500": "Top 201–500",
+      "tierRemaining": "501+"
+    }
+  },
+  "ApplyForm": {
+    "badge": "开启您的旅程",
+    "title": "申请到中国留学",
+    "subtitle": "填写以下表格，我们的团队将与您联系，指导您完成录取流程。",
+    "firstName": "名",
+    "firstNamePlaceholder": "请输入您的名",
+    "lastName": "姓",
+    "lastNamePlaceholder": "请输入您的姓",
+    "email": "电子邮箱",
+    "emailPlaceholder": "your.email@example.com",
+    "whatsapp": "WhatsApp 号码",
+    "whatsappPlaceholder": "请输入您的 WhatsApp 号码",
+    "englishLevel": "英语水平",
+    "englishLevelPlaceholder": "请选择您的英语水平",
+    "englishLevels": {
+      "beginner": "初级",
+      "intermediate": "中级",
+      "upper_intermediate": "中高级",
+      "advanced": "高级",
+      "native": "母语"
+    },
+    "department": "期望专业",
+    "departmentPlaceholder": "请选择专业",
+    "departments": {
+      "medicine": "医学",
+      "engineering": "工程",
+      "computer_science": "计算机科学",
+      "business": "商业与经济",
+      "arts": "艺术与设计",
+      "law": "法学",
+      "language": "语言学",
+      "other": "其他"
+    },
+    "startSemester": "您想什么时候开始？",
+    "startSemesterPlaceholder": "请选择学期",
+    "semesters": {
+      "fall_2026": "2026年秋季",
+      "spring_2026": "2026年春季",
+      "fall_2027": "2027年秋季"
+    },
+    "submit": "提交申请",
+    "submitting": "提交中...",
+    "successTitle": "申请已提交！",
+    "successMessage": "感谢您！我们的团队将尽快与您联系，协助您完成后续步骤。",
+    "successNewForm": "提交另一份申请",
+    "errorMessage": "出现了问题，请重试。",
+    "required": "必填",
+    "emailSubject": "我们已收到您的申请 — 留学中国",
+    "emailGreeting": "亲爱的",
+    "emailBody": "感谢您对留学中国的兴趣！我们已收到您的申请，我们的团队将尽快与您联系，指导您完成录取流程。",
+    "emailReceived": "您的申请已收到",
+    "emailTeamContact": "我们的招生团队将在24小时内与您联系",
+    "emailNextSteps": "接下来会怎样？",
+    "emailStep1": "我们的团队将审核您的申请详情",
+    "emailStep2": "24小时内将通过WhatsApp或电子邮件与您联系",
+    "emailStep3": "我们将指导您完成大学选择和录取流程",
+    "emailUrgent": "如有紧急事项，请联系我们：",
+    "emailRegards": "此致敬礼，",
+    "emailTeamName": "留学中国团队",
+    "emailVisitWebsite": "访问我们的网站"
+  }
 }

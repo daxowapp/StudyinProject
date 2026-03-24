@@ -1,1824 +1,1906 @@
 {
-    "Navbar": {
-        "home": "Baş Sahypa",
-        "programs": "Maksatnamalar",
-        "universities": "Uniwersitetler",
-        "about": "Biz Barada",
-        "contact": "Habarlaşmak",
-        "login": "Içeri Girmek",
-        "dashboard": "Dolandyryş Paneli",
-        "admin": "Admin",
-        "categories": {
-            "topRanked": {
-                "title": "Iň Gowy Reýtingli",
-                "description": "Hytaýyň iň ýokary reýtingli uniwersitetlerini öwreniň."
-            },
-            "medical": {
-                "title": "Lukmançylyk Mekdepleri",
-                "description": "Lukmançylyk we saglygy goraýyş boýunça öňdebaryjy edaralar."
-            },
-            "engineering": {
-                "title": "Inženerçilik",
-                "description": "Inženerçilik boýunça iň gowy tehniki uniwersitetler."
-            },
-            "business": {
-                "title": "Biznes we Ykdysadyýet",
-                "description": "Belli biznes mekdepleri we ykdysady institutlar."
-            },
-            "arts": {
-                "title": "Sungat we Gumanitar Ylymlar",
-                "description": "Sungat, medeniýet we gumanitar ylymlar merkezleri."
-            },
-            "all": {
-                "title": "Ähli Uniwersitetler",
-                "description": "Hyzmatdaş uniwersitetlerimiziň doly sanawyny görüň."
-            }
-        },
-        "levels": {
-            "bachelor": {
-                "title": "Bakalawr Derejesi",
-                "description": "Orta mekdebi gutaranlar üçin lisans maksatnamalary."
-            },
-            "master": {
-                "title": "Magistr Derejesi",
-                "description": "Bakalawr derejesi bolanlar üçin aspirantura maksatnamalary."
-            },
-            "phd": {
-                "title": "PhD Maksatnamalary",
-                "description": "Doktorlyk barlag maksatnamalary."
-            },
-            "nonDegree": {
-                "title": "Hytaý dili kurslary",
-                "description": "Hytaý dilini we medeniýetini öwreniň."
-            },
-            "diploma": {
-                "title": "Diplom",
-                "description": "Hünär we tehniki maksatnamalar."
-            },
-            "language": {
-                "title": "Dil Kursy",
-                "description": "Hytaý dilini öwreniň."
-            },
-            "viewAll": "Ähli Maksatnamalary Gör"
-        },
-        "viewAllUniversities": "Ähli Uniwersitetleri Gör",
-        "resources": {
-            "title": "Resurslar",
-            "scholarships": "Talyp Haklary",
-            "howToApply": "Nädip Ýüz Tutmaly",
-            "articles": "Maglumat we Çeşmeler",
-            "contact": "Biz Bilen Habarlaşyň",
-            "scholarshipFilter": "Talyp Haky Süzgüji",
-            "scholarshipFilterDesc": "Uniwersitetleri talyp haky artykmaçlyklaryna görä süzüň",
-            "qsRankings": "QS Rankings 2026",
-            "qsRankingsDesc": "Chinese universities in QS World Rankings"
-        },
-        "user": {
-            "myApplications": "Meniň Ýüz Tutmalarym",
-            "logout": "Çykmak",
-            "signIn": "Içeri Gir",
-            "getStarted": "Başlamak",
-            "myAccount": "Meniň Hasabym",
-            "account": "Hasap"
-        },
-        "destinations": {
-            "title": "Ugurlar",
-            "viewAll": "Ähli Ugurlary Görmek",
-            "beijing": {
-                "title": "Pekin",
-                "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
-            },
-            "shanghai": {
-                "title": "Şanhaý",
-                "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
-            },
-            "guangzhou": {
-                "title": "Guançžou",
-                "description": "Southern metropolis with leading medical and engineering schools."
-            },
-            "wuhan": {
-                "title": "Wuhan",
-                "description": "Historic education center with Wuhan University and HUST."
-            },
-            "hangzhou": {
-                "title": "Hançžou",
-                "description": "Tech hub and scenic city home to Zhejiang University."
-            },
-            "nanjing": {
-                "title": "Nanjing",
-                "description": "Ancient capital with Nanjing University and Southeast University."
-            },
-            "chengdu": {
-                "title": "Çengdu",
-                "description": "Western China gateway with Sichuan University and affordable living."
-            },
-            "xian": {
-                "title": "Sian",
-                "description": "Historic Silk Road city with Xi'an Jiaotong University."
-            }
-        }
+  "Navbar": {
+    "home": "Baş Sahypa",
+    "programs": "Maksatnamalar",
+    "universities": "Uniwersitetler",
+    "about": "Biz Barada",
+    "contact": "Habarlaşmak",
+    "login": "Içeri Girmek",
+    "dashboard": "Dolandyryş Paneli",
+    "admin": "Admin",
+    "categories": {
+      "topRanked": {
+        "title": "Iň Gowy Reýtingli",
+        "description": "Hytaýyň iň ýokary reýtingli uniwersitetlerini öwreniň."
+      },
+      "medical": {
+        "title": "Lukmançylyk Mekdepleri",
+        "description": "Lukmançylyk we saglygy goraýyş boýunça öňdebaryjy edaralar."
+      },
+      "engineering": {
+        "title": "Inženerçilik",
+        "description": "Inženerçilik boýunça iň gowy tehniki uniwersitetler."
+      },
+      "business": {
+        "title": "Biznes we Ykdysadyýet",
+        "description": "Belli biznes mekdepleri we ykdysady institutlar."
+      },
+      "arts": {
+        "title": "Sungat we Gumanitar Ylymlar",
+        "description": "Sungat, medeniýet we gumanitar ylymlar merkezleri."
+      },
+      "all": {
+        "title": "Ähli Uniwersitetler",
+        "description": "Hyzmatdaş uniwersitetlerimiziň doly sanawyny görüň."
+      }
     },
-    "Common": {
-        "loading": "Ýüklenýär...",
-        "error": "Ýalňyşlyk döredi",
-        "submit": "Iber",
-        "cancel": "Ýatyr",
-        "save": "Sakla",
-        "delete": "Poz",
-        "edit": "Üýtget",
-        "view": "Gör",
-        "back": "Yza"
+    "levels": {
+      "bachelor": {
+        "title": "Bakalawr Derejesi",
+        "description": "Orta mekdebi gutaranlar üçin lisans maksatnamalary."
+      },
+      "master": {
+        "title": "Magistr Derejesi",
+        "description": "Bakalawr derejesi bolanlar üçin aspirantura maksatnamalary."
+      },
+      "phd": {
+        "title": "PhD Maksatnamalary",
+        "description": "Doktorlyk barlag maksatnamalary."
+      },
+      "nonDegree": {
+        "title": "Hytaý dili kurslary",
+        "description": "Hytaý dilini we medeniýetini öwreniň."
+      },
+      "diploma": {
+        "title": "Diplom",
+        "description": "Hünär we tehniki maksatnamalar."
+      },
+      "language": {
+        "title": "Dil Kursy",
+        "description": "Hytaý dilini öwreniň."
+      },
+      "viewAll": "Ähli Maksatnamalary Gör"
     },
-    "Footer": {
-        "stayUpdated": "Habardar Boluň",
-        "getLatestUpdates": "Iň soňky täzeliklere ýazylyň",
-        "subscribeText": "Maksatnamalar, talyp haklary we ýüz tutmak möhletleri barada habarlary almak üçin abuna ýazylyň.",
-        "description": "Hytaýyň iň gowy uniwersitetlerini tapmakda we ýüz tutmakda siziň ynamdar hyzmatdaşyňyz. Biz bilen akademiki syýahatyna şowly başlan müňlerçe talyba goşulyň.",
-        "explore": "Öwren",
-        "programs": "Maksatnamalar",
-        "universities": "Uniwersitetler",
-        "scholarships": "Talyp Haklary",
-        "howToApply": "Nädip Ýüz Tutmaly",
-        "faq": "Köp Sorulýan Soraglar",
-        "forStudents": "Talyplar Üçin",
-        "createAccount": "Hasap Döret",
-        "trackApplication": "Kabul Edişligi Yzarla",
-        "documentChecklist": "Resminama Sanawy",
-        "studentPortal": "Talyp Portaly",
-        "contact": "Habarlaşmak",
-        "rightsReserved": "Ähli hukuklar goralan.",
-        "designedBy": "Dizaýn we goldaw:",
-        "termsOfService": "Hyzmat Şertleri",
-        "privacyPolicy": "Gizlinlik Syýasaty",
-        "cookiePolicy": "Kuki Syýasaty"
+    "viewAllUniversities": "Ähli Uniwersitetleri Gör",
+    "resources": {
+      "title": "Resurslar",
+      "scholarships": "Talyp Haklary",
+      "howToApply": "Nädip Ýüz Tutmaly",
+      "articles": "Maglumat we Çeşmeler",
+      "contact": "Biz Bilen Habarlaşyň",
+      "scholarshipFilter": "Talyp Haky Süzgüji",
+      "scholarshipFilterDesc": "Uniwersitetleri talyp haky artykmaçlyklaryna görä süzüň",
+      "qsRankings": "QS Rankings 2026",
+      "qsRankingsDesc": "Chinese universities in QS World Rankings"
     },
-    "ScholarshipCTA": {
-        "badge": "Has Köp Mümkinçilikleri Açyň",
-        "title": "Ähli Talyp Haky Opsiýalaryny Öwreniň",
-        "description": "Haýsy talyp hakynyň size laýyk gelýändigini bileňizokmy? Ähli opsiýalary deňeşdirmek, talaplary düşünmek we akademiki syýahatyňyz üçin iň gowusyny tapmak üçin biziň doly talyp haky gollanmamyz bilen tanyşyň.",
-        "viewAll": "Ähli Talyp Haklaryny Gör",
-        "getAdvice": "Şahsy Maslahat Al"
+    "user": {
+      "myApplications": "Meniň Ýüz Tutmalarym",
+      "logout": "Çykmak",
+      "signIn": "Içeri Gir",
+      "getStarted": "Başlamak",
+      "myAccount": "Meniň Hasabym",
+      "account": "Hasap"
     },
-    "CscaCta": {
-        "badge": "2026-njy ýyldan Hökmany",
-        "title": "<span class=\"text-primary\">CSCA Synawyna</span> Taýýarlanýarsyňyzmy?",
-        "titlePlain": "CSCA Synawyna Taýýarlanýarsyňyzmy?",
-        "description": "Hytaý Akademik Ukyp Bahalandyrmasy (CSCA) indi ýokary talyp haklary üçin talap bolup durýar. Biziň täze gollanmamyzda dersler, bahalandyryş we taýýarlyk strategiýalary barada doly maglumat alyň.",
-        "readGuide": "Gollanmany Oka",
-        "findPrograms": "Maksatnamalary Tap",
-        "proTip1": {
-            "title": "Maslahat #1",
-            "text": "Ýöriteleşdirilen Hytaý dili diňe HSK däl, eýsem akademiki söz baýlygyny talap edýär."
-        },
-        "proTip2": {
-            "title": "Maslahat #2",
-            "text": "Matematika bölümleri geometriýa agyrlyk berýär. Konus kesimlerini gaýtalaň."
-        }
-    },
-    "CSCAGuide": {
-        "meta": {
-            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-        },
-        "backHome": "Back to Home",
-        "newRequirement": "New Requirement for 2026",
-        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-        "sections": {
-            "overview": {
-                "title": "Overview",
-                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-                "keyDates": {
-                    "title": "Key Dates",
-                    "launch": "2025: Official Launch",
-                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-                    "full": "2028: Full Implementation across all Universities"
-                }
-            },
-            "structure": {
-                "title": "Exam Structure",
-                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-                "table": {
-                    "subject": "Subject",
-                    "duration": "Duration",
-                    "questions": "Questions",
-                    "requirement": "Requirement",
-                    "chinese": {
-                        "name": "Specialized Chinese",
-                        "req": "Humanities/Science"
-                    },
-                    "math": {
-                        "name": "Mathematics",
-                        "req": "Mandatory"
-                    },
-                    "physics": {
-                        "name": "Physics",
-                        "req": "Optional / Major-dependent"
-                    },
-                    "chemistry": {
-                        "name": "Chemistry",
-                        "req": "Optional / Major-dependent"
-                    }
-                }
-            },
-            "subjects": {
-                "title": "Subject Details & Syllabus",
-                "chinese": {
-                    "title": "Specialized Chinese",
-                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-                    "char": {
-                        "title": "Character Recognition",
-                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-                    },
-                    "reading": {
-                        "title": "Reading Comprehension",
-                        "desc": "Highest weight. Sci/Tech/Social essays."
-                    },
-                    "words": {
-                        "title": "Word Distinction",
-                        "desc": "Synonyms, academic vocabulary."
-                    },
-                    "sentences": {
-                        "title": "Sentence/Paragraph",
-                        "desc": "Ordering sentences, completing logic."
-                    }
-                },
-                "math": {
-                    "title": "Mathematics",
-                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-                    "note": "Both Chinese and English versions available.",
-                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-                },
-                "chem": {
-                    "title": "Chemistry",
-                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-                },
-                "phys": {
-                    "title": "Physics",
-                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
-                }
-            },
-            "fees_and_process": {
-                "title": "Application Process & Fees",
-                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-            },
-            "formats": {
-                "title": "Test Modes",
-                "online": {
-                    "title": "Online Proctored",
-                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
-                },
-                "computer": {
-                    "title": "Computer-Based",
-                    "desc": "At official test centers (classrooms). Better stability."
-                },
-                "paper": {
-                    "title": "Paper-Based",
-                    "desc": "Traditional format. Limited regions."
-                }
-            },
-            "faq": {
-                "title": "Frequently Asked Questions",
-                "q1": {
-                    "q": "Does the CSCA replace the HSK?",
-                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
-                },
-                "q2": {
-                    "q": "Can I take it in English?",
-                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-                },
-                "q3": {
-                    "q": "How long is the score valid?",
-                    "a": "CSCA results are valid for <strong>2 years</strong>."
-                },
-                "q4": {
-                    "q": "Who is exempt from the CSCA?",
-                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-                },
-                "q5": {
-                    "q": "Are scores required for 2026 intake?",
-                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-                },
-                "comparison": {
-                    "title": "CSCA vs. HSK",
-                    "feature": "Feature",
-                    "hsk": "HSK",
-                    "csca": "CSCA",
-                    "focus": "Focus",
-                    "focusHsk": "Daily Communication",
-                    "focusCsca": "Academic Readiness",
-                    "vocab": "Vocabulary",
-                    "vocabHsk": "Life/Everyday",
-                    "vocabCsca": "Technical/Academic",
-                    "req": "Requirement",
-                    "reqHsk": "Language Cert",
-                    "reqCsca": "Academic Entrance"
-                }
-            },
-            "sidebar": {
-                "title": "Important Details",
-                "dates": {
-                    "title": "Dates",
-                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
-                },
-                "prep": {
-                    "title": "Preparation",
-                    "desc": "Difficulty level: Junior/Senior High"
-                },
-                "passing": {
-                    "title": "Fees",
-                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-                },
-                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-                "register": "Official Registration Site",
-                "tutor": {
-                    "title": "Fast-Track with Study at China",
-                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-                    "button": "Apply With Us"
-                }
-            }
-        }
-    },
-    "Hero": {
-        "admissionsOpen": "2026 Üçin Kabul Edişlik Açyk",
-        "searchPlaceholder": "Näme öwrenmek isleýärsiňiz? (meselem, Kompýuter Ylymlary, Lukmançylyk)",
-        "title": "Hytaýdaky Gelejegiňiz Şu Ýerden Başlanýar",
-        "subtitle": "Hytaýyň iň gowy uniwersitetlerinde <bold>50,000+ talyba</bold> goşulyň",
-        "searchButton": "<bold>500+</bold> Maksatnamany Gözläň",
-        "searchWord": "Gözleg",
-        "programsWord": "Maksatnamalar",
-        "browseByCategory": "Kategoriýa Boýunça Gözle",
-        "scrollToExplore": "Öwrenmek üçin aşak süýşüriň",
-        "stats": {
-            "universities": "Uniwersitetler",
-            "students": "Talyplar",
-            "success": "Üstünlik",
-            "scholarships": "Talyp Haklary"
-        },
-        "tabs": {
-            "programs": "Maksatnamalar",
-            "universities": "Uniwersitetler",
-            "scholarships": "Talyp Haklary"
-        },
-        "placeholders": {
-            "degree": "Dereje",
-            "field": "Okuw Ugry",
-            "city": "Şäher",
-            "language": "Dil",
-            "budget": "Býudjet (USD/Ýyl)",
-            "scholarship": "Talyp Haky",
-            "duration": "Möhleti"
-        },
-        "options": {
-            "any": "Islendik",
-            "all": "Hemmesi"
-        },
-        "budget": {
-            "under3k": "Under $3,000",
-            "3kTo5k": "$3,000 - $5,000",
-            "5kTo8k": "$5,000 - $8,000",
-            "above8k": "Above $8,000"
-        },
-        "scholarship": {
-            "allPrograms": "All Programs",
-            "available": "Scholarship Available",
-            "full": "Full Scholarship",
-            "partial": "Partial Scholarship"
-        },
-        "duration": {
-            "1year": "1 Year",
-            "2years": "2 Years",
-            "3years": "3 Years",
-            "4years": "4 Years",
-            "5plus": "5+ Years"
-        },
-        "categories": {
-            "mba": "MBA Programs",
-            "engineering": "Engineering",
-            "medicine": "Medicine (MBBS)",
-            "cs": "Computer Science",
-            "fullScholarship": "Full Scholarship",
-            "englishTaught": "English Taught"
-        }
-    },
-    "WhyStudy": {
-        "badge": "Näme Üçin Hytaý",
-        "title": "<gradient>Global Üstünlige</gradient> Derwezäňiz",
-        "description": "Hytaý gadymy paýhasy döwrebap innowasiýalar bilen birleşdirip, halkara talyplara Aziýanyň ykdysady güýjüniň merkezinde deňsiz-taýsyz bilim tejribesini hödürleýär.",
-        "cta": {
-            "explore": "Maksatnamalary Öwren",
-            "download": "Gollanmany Ýükle"
-        },
-        "features": {
-            "worldClass": {
-                "title": "Dünýä Derejesindäki Uniwersitetler",
-                "description": "Döwrebap barlag desgalary we belli mugallymlary bolan global reýtingli edaralarda okaň."
-            },
-            "affordable": {
-                "title": "Elýeterli Hil",
-                "description": "Bäsdeşlige ukyply bahalar we 100%-e çenli ýokary talyp haky mümkinçilikleri bilen ýokary hilli bilim."
-            },
-            "career": {
-                "title": "Kariýera Başlangyjy",
-                "description": "Deňsiz-taýsyz tejribe we iş mümkinçilikleri bilen Aziýanyň iň uly ykdysadyýetine elýeterlilik."
-            },
-            "safe": {
-                "title": "Howpsuz we Jonly",
-                "description": "Dünýäniň iň howpsuz ýurtlarynyň birinde, ösen halkara jemgyýetinde ýaşaň."
-            },
-            "culture": {
-                "title": "Medeniýet Bilen Tanyşlyk",
-                "description": "Ultra-döwrebap, dinamiki şäherlerde ýaşap, 5000 ýyllyk taryhy öwreniň."
-            },
-            "network": {
-                "title": "Global Tor",
-                "description": "200-den gowrak ýurtdan 500,000+ halkara talyplaryň jemgyýetine goşulyň."
-            },
-            "english": {
-                "title": "Iňlis Maksatnamalary",
-                "description": "Ähli ugurlar boýunça diňe Iňlis dilinde okadylýan 17000+ maksatnamadan saýlaň."
-            },
-            "recognition": {
-                "title": "Dünýäde Ykrar Edilmegi",
-                "description": "UNESCO, BSGG we global hünär edaralary tarapyndan ykrar edilen derejeleri alyň."
-            }
-        }
-    },
-    "HowItWorks": {
-        "badge": "Çalt Proses",
-        "title": "Ýüz Tutmadan <gradient>Kabul Edişlige</gradient> Çenli",
-        "description": "Maksatnamalary gözlemekden başlap, kabul ediş hatyny alýançaňyz sizi rekort wagtyň içinde eltmek üçin niýetlenen 6 ädimli ýönekeýleşdirilen syýahat.",
-        "cta": {
-            "button": "Ýüz Tutmany Häzir Başlaň",
-            "time": "Ortacha tamamlanma wagty: <bold>15 minut</bold>"
-        },
-        "steps": {
-            "discover": {
-                "title": "Maksatnamalary Tap",
-                "description": "Siziň maksatlaryňyza laýyk gelýän Hytaýyň iň gowy uniwersitetlerinden 500+ maksatnamany gözläň."
-            },
-            "profile": {
-                "title": "Profil Döret",
-                "description": "Hasabyňyzy sazlaň we akademiki profiliňizi birnäçe minutda tamamlaň."
-            },
-            "upload": {
-                "title": "Resminamalary Ýükle",
-                "description": "Sertifikatlary, transkriptleri we zerur resminamalary howpsuz iberiň."
-            },
-            "scholarship": {
-                "title": "Talyp Haky Görnüşini Saýla",
-                "description": "Her uniwersitetde elýeterli talyp haky görnüşleri bar. Birini saýlaň we ýüz tutuň."
-            },
-            "pay": {
-                "title": "Tölegi Amala Aşyr",
-                "description": "Ýüz tutma we işlemek üçin tölegleri howpsuz töläň."
-            },
-            "track": {
-                "title": "Prosesi Yzarla",
-                "description": "Hakyky wagt täzelenmeleri we habarnamalar bilen ýüz tutma ýagdaýyňyza gözegçilik ediň."
-            },
-            "admission": {
-                "title": "Kabul Edilmek",
-                "description": "Teklip hatyňyzy, wiza resminamalaryňyzy alyň we syýahatyňyza başlaň!"
-            }
-        }
-    },
-    "Stats": {
-        "badge": "Biziň Täsirimiz",
-        "title": "Dünýäde Müňlerçe Adam Ynanýar",
-        "description": "Biziň platformamyz arkaly arzuwlaryna ýeten şowly talyplaryň global jemgyýetine goşulyň",
-        "items": {
-            "universities": {
-                "label": "Hyzmatdaş Uniwersitetler",
-                "description": "Ýokary derejeli edaralar"
-            },
-            "students": {
-                "label": "Halkara Talyplar",
-                "description": "200+ ýurtdan"
-            },
-            "programs": {
-                "label": "Elýeterli Maksatnamalar",
-                "description": "Ähli okuw ugurlary"
-            },
-            "success": {
-                "label": "Üstünlik Derejesi",
-                "description": "Kabul ediş tassyklanmasy"
-            },
-            "countries": {
-                "label": "Wekilçilik Edilýän Ýurtlar",
-                "description": "Global jemgyýet"
-            },
-            "scholarships": {
-                "label": "Berlen Talyp Haklary",
-                "description": "Maliýe goldawy"
-            },
-            "time": {
-                "label": "Ýüz Tutma Wagty",
-                "description": "Çalt we aňsat proses"
-            },
-            "employment": {
-                "label": "Uçurymlaryň Iş Üpjünçiligi",
-                "description": "6 aýyň içinde"
-            }
-        }
-    },
-    "FeaturedPrograms": {
-        "badge": "Saýlanan Maksatnamalar",
-        "title": "Tizleşdirilen Maksatnamalar",
-        "description": "Hytaýyň iň gowy uniwersitetlerinde iň köp isleg bildirilýän maksatnamalarymyzy öwreniň",
-        "duration": "Möhlet",
-        "tuition": "Okuw Tölegi/Ýyl",
-        "explore": "Maksatnamany Öwren",
-        "viewAll": "Ähli Maksatnamalary Gör",
-        "fastTrack": "Tizleşdirilen"
-    },
-    "FeaturedUniversities": {
-        "badge": "Iň Gowy Uniwersitetler",
-        "title": "Elita Uniwersitetleri",
-        "description": "Hytaýyň iň abraýly edaralarynda okaň",
-        "fastTrack": "Tizleşdirilen",
-        "programs": "Maksatnamalar",
-        "tuitionFrom": "Okuw Tölegi",
-        "students": "Talyplar",
-        "viewDetails": "Jikme-jiklikleri Gör",
-        "viewAll": "Ähli Uniwersitetleri Gör"
-    },
-    "Scholarships": {
-        "badge": "Maliýe Goldawy",
-        "title": "Talyp Haklary we Maliýe Kömekleri",
-        "description": "Hytaýda okamak elýeterlidir. Halkara talyplar üçin elýeterli dürli talyp haky mümkinçiliklerini öwreniň.",
-        "items": {
-            "csc": {
-                "title": "Hytaý Hökümetiniň Talyp Haky (CSC)",
-                "description": "Halkara talyplar üçin doly ýa-da bölekleýin talyp haky. Okuw tölegini, ýaşaýyş ýerini we aýlyk hakyny öz içine alýar.",
-                "amount": "$10,000/ýyla çenli"
-            },
-            "university": {
-                "title": "Uniwersitet Talyp Haklary",
-                "description": "Zehinli dalaşgärler üçin gönüden-göni uniwersitetler tarapyndan hödürlenýän üstünlik esasly talyp haklary.",
-                "amount": "$8,000/ýyla çenli"
-            },
-            "provincial": {
-                "title": "Welaýat Hökümetiniň Talyp Haklary",
-                "description": "Halkara zehinleri belli sebitlere çekmek üçin ýerli hökümetler tarapyndan maliýeleşdirilýän talyp haklary.",
-                "amount": "$6,000/ýyla çenli"
-            }
-        },
-        "awardAmount": "Sylag Mukdary",
-        "learnMore": "Has Köp Öwren",
-        "stats": {
-            "scholarshipOptions": "Scholarship Options",
-            "universities": "Universities",
-            "programs": "Programs",
-            "awarded": "Her Ýyl Berilýär",
-            "funding": "Maliýe Alyň",
-            "full": "Doly Talyp Haklary",
-            "eligible": "Mümkinçilikli Maksatnamalar"
-        },
-        "viewAll": "Ähli Talyp Haklaryny Gör",
-        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-        "popular": {
-            "title": "Featured & Popular Scholarships"
-        },
-        "tabs": {
-            "search": "Search Scholarships",
-            "about": "About Scholarships"
-        },
-        "search": {
-            "filter": "Filters",
-            "clearAll": "Clear All",
-            "searchPlaceholder": "Search program or university...",
-            "category": "Category",
-            "all": "All",
-            "fullScholarship": "Full Scholarship (100%)",
-            "partialScholarship": "Partial Scholarship",
-            "city": "City",
-            "university": "University",
-            "degree": "Degree Level",
-            "language": "Language",
-            "semester": "Semester",
-            "spring": "Spring",
-            "autumn": "Autumn",
-            "freeAccommodation": "Free Accommodation",
-            "monthlyStipend": "Monthly Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "scholarshipOptions": "scholarship options at",
-            "universities": "universities",
-            "noResults": "No scholarships found",
-            "noResultsDescription": "Try adjusting your filters to see more results.",
-            "programsAvailable": "Programs",
-            "upTo": "Up to",
-            "accommodation": "Accommodation",
-            "stipend": "Stipend",
-            "insurance": "Insurance",
-            "program": "Program",
-            "teachingLanguage": "Language",
-            "startingDate": "Intake",
-            "scholarshipCoverage": "Original Tuition",
-            "youNeedToPay": "You Need To Pay",
-            "tuition": "Tuition",
-            "free": "Free",
-            "moreOptions": "More Options",
-            "learnMore": "Learn More"
-        },
-        "detail": {
-            "backToSearch": "Back to Search",
-            "scholarshipAvailable": "Scholarship Available",
-            "programDetails": "Program Details",
-            "degree": "Degree",
-            "duration": "Duration",
-            "language": "Language",
-            "intake": "Intake",
-            "availableScholarships": "Available Scholarships",
-            "noScholarships": "No scholarships are currently available for this program.",
-            "tuitionCoverage": "Tuition Coverage",
-            "freeAccommodation": "Free Accommodation",
-            "stipend": "Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "originalTuition": "Original Tuition",
-            "youPay": "You Need to Pay",
-            "serviceFee": "Service Fee",
-            "applyNow": "Apply for this Scholarship",
-            "university": "University",
-            "viewUniversity": "View University Profile",
-            "viewProgram": "View Program Details"
-        },
-        "about": {
-            "howItWorks": "How Scholarships Work",
-            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-            "scholarshipCoverage": "Scholarship Coverage",
-            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-            "serviceFees": "Service & Processing Fees",
-            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-            "scholarshipTypes": "Common Scholarship Types",
-            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-            "searchPrograms": "Search Eligible Programs",
-            "requiredDocuments": "Required Documents",
-            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-            "faq": "Frequently Asked Questions",
-            "faq1Question": "Do I need to know Chinese to get a scholarship?",
-            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-            "faq2Question": "Can I work while studying?",
-            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-            "faq3Question": "What happens if I fail my classes?",
-            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-            "faq4Question": "How long does the application process take?",
-            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-        }
-    },
-    "Testimonials": {
-        "badge": "Üstünlik Hekaýalary",
-        "title": "Talyplarymyzyň Aýdýanlary",
-        "description": "Platformamyz arkaly üstünlikli ýüz tutan we häzirki wagtda Hytaýda rowaçlanýan talyplardan eşidiň.",
-        "testimonials": {
-            "sarah": {
-                "quote": "Sinhua uniwersitetinde okamak durmuşymy üýtgeden tejribe boldy. Kampus ajaýyp we professorlar dünýä derejesinde. Men akademiki we şahsy taýdan örän ösdim.",
-                "program": "Kompýuter Ylymlary",
-                "university": "Sinhua Uniwersiteti",
-                "country": "ABŞ"
-            },
-            "ahmed": {
-                "quote": "Studyatchina saýasynda ýüz tutma prosesi örän aňsat boldy. Men häzir gurluşyk inženerçiligi boýunça magistraturada okaýaryn we her pursatdan lezzet alýaryn.",
-                "program": "Gurluşyk Inženerçiligi",
-                "university": "Çžeýsziýan Uniwersiteti",
-                "country": "Müsür"
-            },
-            "maria": {
-                "quote": "Şanhaý ajaýyp şäher! Men bu ýeriň medeniýetini, naharlaryny we edinen dostlarymy gowy görýärin. Alan talyp hakym munuň hemmesini mümkin etdi.",
-                "program": "Halkara Biznes",
-                "university": "Fudan Uniwersiteti",
-                "country": "Ispaniýa"
-            }
-        },
-        "averageRating": "Ortacha Baha",
-        "reviews": "Synlar",
-        "satisfaction": "Kanagatlanma"
-    },
-    "Partners": {
-        "badge": "Ynamdar Hyzmatdaşlar",
-        "title": "Hyzmatdaş Uniwersitetler",
-        "description": "Size iň gowy bilim mümkinçiliklerini hödürlemek üçin Hytaýyň iň abraýly edaralary bilen hyzmatdaşlyk edýäris",
-        "recognitions": {
-            "unesco": {
-                "title": "UNESCO Tassyklan",
-                "description": "Ähli hyzmatdaş uniwersitetler UNESCO tarapyndan ykrar edilen"
-            },
-            "government": {
-                "title": "Hökümet Tassyklan",
-                "description": "Hytaýyň Bilim Ministrligi tarapyndan resmi taýdan tassyklanan"
-            },
-            "accredited": {
-                "title": "Global Akkreditirlenen",
-                "description": "Derejeler dünýäniň 180+ ýurdunda ykrar edilen"
-            }
-        }
-    },
-    "FAQ": {
-        "badge": "Soraglaryňyz Barmy?",
-        "title": "Köp Sorulýan Soraglar",
-        "description": "Hytaýda okamak barada umumy soraglara jogaplary tapyň",
-        "items": {
-            "deadline": {
-                "question": "Ýüz tutma möhleti haçan?",
-                "answer": "Möhletler uniwersitete we maksatnama görä üýtgeýär. Umuman, sentýabr kabul edişligi üçin ýüz tutmalar mart we iýun aýlarynyň arasynda ýapylýar. Takyk seneler üçin maksatnama sahypalaryny barlaň."
-            },
-            "language": {
-                "question": "Hytaýda okamak üçin Hytaý dilini bilmelimi?",
-                "answer": "Hökman däl! Bakalawr, Magistr we PhD derejeleri üçin müňlerçe Iňlis dilinde okadylýan maksatnamalar bar. Şeýle-de bolsa, gündelik durmuş üçin käbir esas Hytaý dilini öwrenmek maslahat berilýär."
-            },
-            "work": {
-                "question": "Okýarkam işläp bilerinmi?",
-                "answer": "Halkara talyplar uniwersitetden we immigrasiýa ofisinden rugsat alyp, ýarym wagtlaýyn işläp ýa-da tejribe geçip bilerler. Soňky ýyllarda syýasatlar has çeýeleşdi."
-            },
-            "scholarships": {
-                "question": "Talyp haklaryna nädip ýüz tutmaly?",
-                "answer": "Ýüz tutmaňyzy ibereniňizde platformamyz arkaly gönüden-göni talyp haklaryna ýüz tutyp bilersiňiz. Biz size CSC we uniwersitet talyp haklary üçin zerur resminamalar boýunça ýol görkezeris."
-            },
-            "visa": {
-                "question": "Wiza talaplary nähili?",
-                "answer": "Size güýçli pasport, kabul ediş haty we uniwersitetiňizden JW202 formasy gerek bolar. Biz prosesiň dowamynda doly wiza goldawyny we kömegini hödürleýäris."
-            },
-            "process": {
-                "question": "Ýüz tutma prosesi näçe wagt alýar?",
-                "answer": "Adaty ýüz tutma prosesi 2-4 hepde alýar.iberilenden soň, uniwersitetler adatça 4-8 hepdäniň içinde jogap berýärler. Biz her ädimde sizi habardar edýäris."
-            }
-        },
-        "seeAll": "Ähli Sorag-Jogaplary Gör",
-        "contactSupport": "Goldaw Bilen Habarlaş",
-        "footer": "Ýene soraglaryňyz barmy? Goldaw toparymyz size kömek etmek üçin 24/7 elýeterli."
-    },
-    "Destinations": {
-        "pageTitle": "Okuw ýerleri",
-        "badge": "Hytaýda okuw ýerleri",
-        "heroTitle": "Hytaýyň iň gowy",
-        "heroSubtitle": "okuw şäherlerini tapyň",
-        "heroDescription": "Taryhy paýtagt Pekinden häzirki zaman Şanhaýa çenli — Hytaýyň iň janly şäherlerini öwreniň we okuw saparyňyz üçin iň oňat ýeri tapyň.",
-        "statCities": "Şäher",
-        "statUniversities": "Jemi uniwersitet",
-        "statTopCity": "{city} uniwersitetleri",
-        "featuredTitle": "Saýlanan ýerler",
-        "featuredSubtitle": "Hytaýda halkara talyplar üçin iň meşhur şäherler",
-        "allCitiesTitle": "Has köp şäher",
-        "allCitiesSubtitle": "Hytaýda has köp şäherlerdäki uniwersitetleri tapyň",
-        "university": "Uniwersitet",
-        "universities": "Uniwersitet",
-        "explorePrograms": "Programmalary öwreniň"
-    },
-    "Universities": {
-        "title": "Hytaýyň Iň Gowy Uniwersitetlerini Öwreniň",
-        "subtitle": "Hytaý boýunça {count}+ abraýly edaralary tapyň. Proýekt 985-den C9 Ligasy uniwersitetlerine çenli.",
-        "error": {
-            "title": "Uniwersitetleri ýükläp bolmady",
-            "hint": "Maslahat: {hint}"
-        },
-        "search": {
-            "placeholder": "Uniwersitet ady, şäher ýa-da reýting boýunça gözläň...",
-            "label": "Gözleg",
-            "universityPlaceholder": "Uniwersitet ady...",
-            "searching": "Gözlenýär..."
-        },
-        "filters": {
-            "title": "Süzgüçler",
-            "description": "Uniwersitet gözlegiňizi daraldyň",
-            "clear": "Süzgüçleri Arassala",
-            "clearAll": "Ähli Süzgüçleri Arassala",
-            "city": "Şäher",
-            "allCities": "Ähli Şäherler",
-            "institutionType": "Edara Görnüşi",
-            "allTypes": "Ähli Görnüşler",
-            "universityCategory": "Uniwersitet Kategoriýasy",
-            "allCategories": "Ähli Kategoriýalar",
-            "rankingRecognition": "Reýting we Ykrar",
-            "specialFeatures": "Ýörite Aýratynlyklar",
-            "institutionTypes": {
-                "university": "Uniwersitet",
-                "college": "Kollej",
-                "languageInstitute": "Dil Instituty",
-                "vocationalSchool": "Hünär Mekdebi",
-                "technicalInstitute": "Tehniki Institut"
-            },
-            "categories": {
-                "public": "Döwlet",
-                "private": "Hususy",
-                "research": "Ylmy-barlag",
-                "comprehensive": "Giňişleýin",
-                "specialized": "Ýöriteleşdirilen",
-                "vocational": "Hünär"
-            },
-            "rankings": {
-                "project985": "Proýekt 985",
-                "project211": "Proýekt 211",
-                "doubleFirstClass": "Goşa Birinji Dereje"
-            },
-            "features": {
-                "fastTrack": "Tizleşdirilen Kabul Ediş",
-                "scholarships": "Talyp Haky Bar",
-                "englishPrograms": "Iňlis Maksatnamalary"
-            }
-        },
-        "stats": {
-            "title": "Gysga Statistika",
-            "total": "Jemi Uniwersitet",
-            "showing": "Görkezilýär",
-            "cities": "Şäherler"
-        },
-        "sort": {
-            "label": "Tertiple",
-            "name": "Ady: A-Z",
-            "programs": "Iň Köp Maksatnama",
-            "city": "Şäher",
-            "tuitionLow": "Tuition: Low to High",
-            "tuitionHigh": "Tuition: High to Low",
-            "ranking": "Best Ranking"
-        },
-        "noResults": {
-            "title": "Uniwersitet tapylmady",
-            "description": "Süzgüçleriňizi ýa-da gözleg kriteriýalaryňyzy üýtgedip görüň"
-        },
-        "results": {
-            "universities": "universities",
-            "showMore": "Show {count} more",
-            "showingOf": "Showing {visible} of {total}"
-        },
-        "compare": {
-            "title": "Compare Universities",
-            "criteria": "Criteria",
-            "location": "Location",
-            "ranking": "Ranking",
-            "programs": "Programs",
-            "tuition": "Tuition",
-            "levels": "Study Levels",
-            "languages": "Languages",
-            "scholarship": "Scholarship",
-            "fastTrack": "Fast Track",
-            "cscaExam": "CSCA Exam",
-            "badges": "Accreditations",
-            "clearAll": "Clear All",
-            "selected": "{count} selected",
-            "compareNow": "Compare Now"
-        }
-    },
-    "Programs": {
-        "title": "Kämil Maksatnamaňyzy Tapyň",
-        "subtitle": "Hytaýyň iň gowy uniwersitetlerinden {count}+ maksatnamany gözden geçiriň. Akademiki syýahatyňyz üçin iň gowusyny tapyň.",
-        "filters": {
-            "title": "Süzgüçler",
-            "active": "Aktiw Süzgüçler:",
-            "clear": "Süzgüçleri Arassala",
-            "clearAll": "Ähli Süzgüçleri Arassala",
-            "search": "Gözleg",
-            "searchPlaceholder": "Maksatnama ýa-da ugur...",
-            "studyLevel": "Okuw Derejesi",
-            "fieldOfStudy": "Okuw Ugry",
-            "allFields": "Ähli Ugurlar",
-            "maxTuition": "Maksimum Okuw Tölegi",
-            "language": "Dil",
-            "city": "Şäher",
-            "allCities": "Ähli Şäherler",
-            "university": "Uniwersitet",
-            "allUniversities": "Ähli Uniwersitetler",
-            "duration": "Möhlet",
-            "allDurations": "Ähli Möhletler",
-            "scholarshipAvailable": "Talyp Haky Bar",
-            "levels": {
-                "bachelor": "Bakalawr",
-                "master": "Magistr",
-                "phd": "PhD",
-                "diploma": "Diplom",
-                "language": "Dil Kursy",
-                "nonDegree": "Non-Degree"
-            },
-            "fields": {
-                "business": "Biznes we Dolandyryş",
-                "engineering": "Inženerçilik we Tehnologiýa",
-                "medicine": "Lukmançylyk we Saglygy Goraýyş",
-                "arts": "Sungat we Gumanitar Ylymlar",
-                "science": "Tebigy Ylymlar",
-                "education": "Bilim",
-                "cs": "Kompýuter Ylymlary",
-                "law": "Hukuk"
-            },
-            "languages": {
-                "english": "Iňlisçe",
-                "chinese": "Hytaýça"
-            },
-            "durations": {
-                "2years": "2 Ýyl",
-                "3years": "3 Ýyl",
-                "4years": "4 Ýyl",
-                "5years": "5 Ýyl",
-                "6years": "6 Ýyl"
-            },
-            "matchingPrograms": "maksatnama gabat gelýär",
-            "applyFilters": "Süzgüçleri Ullan",
-            "scholarshipDesc": "Show programs with funding",
-            "cscaLabel": "CSCA Synagy Gerek Däl",
-            "cscaDesc": "CSCA synagy bolmadyk programmalary görkez",
-            "cscaBadge": "No CSCA",
-            "academicRequirements": "Academic Requirements",
-            "myAge": "My Age",
-            "agePlaceholder": "e.g. 21",
-            "minGpa": "Min GPA",
-            "gpaPlaceholder": "e.g. 3.0"
-        },
-        "stats": {
-            "total": "Jemi Maksatnama",
-            "showing": "Görkezilýär"
-        },
-        "sort": {
-            "label": "Tertiple",
-            "relevance": "Iň Wajyp",
-            "tuitionLow": "Okuw Tölegi: Arazandan Gymmada",
-            "tuitionHigh": "Okuw Tölegi: Gymmatdan Arzana",
-            "deadline": "Möhlet: Iň Ýakyn",
-            "popular": "Iň Meşhur"
-        },
-        "noResults": {
-            "title": "Maksatnama tapylmady",
-            "description": "Süzgüçleriňizi ýa-da gözleg kriteriýalaryňyzy üýtgedip görüň"
-        },
-        "card": {
-            "duration": "Möhlet",
-            "intake": "Kabul Ediş",
-            "tuitionFee": "Okuw Tölegi",
-            "viewProgram": "Maksatnamany Gör",
-            "contact": "Habarlaş",
-            "scholarship": "Talyp Haky",
-            "addToCompare": "Deňeşdirmä Goş",
-            "removeFromCompare": "Deňeşdirmeden Aýyr",
-            "level": "Dereje",
-            "features": "Aýratynlyklar",
-            "viewFullDetails": "Doly Jikme-jiklikleri Gör",
-            "applyNow": "Häzir Ýüz Tut",
-            "fastTrack": "Fast Track"
-        },
-        "compare": {
-            "title": "Maksatnamalary Deňeşdir",
-            "comparing": "Deňeşdirilýär",
-            "more": "köp",
-            "clear": "Arassala",
-            "compareNow": "Häzir Deňeşdir",
-            "university": "Uniwersitet",
-            "location": "Ýerleşiş",
-            "level": "Dereje",
-            "duration": "Möhlet",
-            "tuition": "Okuw Tölegi",
-            "intake": "Kabul Ediş",
-            "language": "Dil",
-            "viewDetails": "Jikme-jiklikleri Gör",
-            "apply": "Ýüz Tut"
-        },
-        "emptyState": {
-            "title": "Maksatnama Tapylmady",
-            "description": "Hiç hili maksatnama tapyp bilmedik. Biziň doly katalogymyzy görmäge synanyşyň.",
-            "filteredDescription": "Häzirki süzgüçleriňize gabat gelýän maksatnama ýok. Gözleg kriteriýalaryňyzy üýtgedip görüň.",
-            "currentFilters": "Siziň häzirki süzgüçleriňiz:",
-            "scholarship": "Talyp Haky",
-            "clearFilters": "Ähli Süzgüçleri Arassala",
-            "tryInstead": "Synap görmek üçin meşhur gözlegler:",
-            "browseAll": "Ähli Maksatnamalary Gör",
-            "exploreUniversities": "Uniwersitetleri Öwren"
-        },
-        "recentlyViewed": {
-            "title": "Ýaňy-ýakynda Görülen",
-            "clear": "Arassala",
-            "viewAgain": "Ýene Gör",
-            "justNow": "Edil häzir",
-            "minutesAgo": "{count}m öň",
-            "hoursAgo": "{count}s öň",
-            "daysAgo": "{count}g öň"
-        },
-        "quickAccess": "Çalt Giriş",
-        "quickChips": {
-            "cs": "Kompýuter Ylmy",
-            "business": "Işewürlik",
-            "engineering": "Inženerçilik",
-            "medicine": "Lukmançylyk",
-            "arts": "Sungat",
-            "economics": "Ykdysadyýet"
-        },
-        "aiSearch": {
-            "thinking": "AI is thinking... finding related fields for \"{query}\"",
-            "active": "Smart Search Active",
-            "found": "Found programs related to: {terms}",
-            "working": "AI is working on it...",
-            "looking": "Looking for programs related to \"{query}\""
-        },
-        "view": {
-            "grid": "Tor",
-            "map": "Karta"
-        }
-    },
-    "GuidedTour": {
-        "skip": "Gezelenji Geç",
-        "next": "Indiki",
-        "finish": "Düşündim!",
-        "programs": {
-            "search": {
-                "title": "Maksatnamaňyzy Tapyň",
-                "content": "Ady, okuw ugry ýa-da açar sözler boýunça maksatnamalary tapmak üçin gözleg panelini ulanyň."
-            },
-            "filters": {
-                "title": "Gözlegiňizi Kämilleşdiriň",
-                "content": "Dereje, ýerleşiş, dil we býudjet boýunça daraltmak üçin süzgüçleri ulanyň."
-            },
-            "card": {
-                "title": "Maksatnama Jikme-jiklikleri",
-                "content": "Doly jikme-jiklikleri, talaplary we nädip ýüz tutmalydygyny görmek üçin islendik maksatnama kartyna basyň."
-            },
-            "compare": {
-                "title": "Maksatnamalary Deňeşdir",
-                "content": "Iň gowy saýlawy etmek üçin 3 maksatnama çenli saýlap, olary deňeşdiriň."
-            }
-        }
-    },
-    "UniversitiesCard": {
-        "programs": "Maksatnamalar",
-        "tuitionFrom": "Okuw Tölegi -dan",
-        "tuition": "Okuw Tölegi",
-        "viewUniversity": "Uniwersiteti Gör",
-        "viewPrograms": "Maksatnamalary Gör",
-        "fastTrack": "Fast Track",
-        "scholarship": "Scholarship",
-        "contactForPricing": "Contact for pricing",
-        "cscaExam": "CSCA Exam",
-        "addToCompare": "Add to compare",
-        "removeFromCompare": "Remove from compare"
-    },
-    "ProgramDetail": {
-        "breadcrumb": {
-            "home": "Baş Sahypa",
-            "programs": "Maksatnamalar"
-        },
-        "badges": {
-            "intake": "Kabul Ediş: {intake}",
-            "contactUniversity": "Uniwersitet Bilen Habarlaş",
-            "fastTrack": "Tizleşdirilen Kabul Ediş",
-            "specialRequirements": "Ýörite Talaplar"
-        },
-        "deadline": {
-            "daysRemaining": "{days} gün galdy",
-            "endingToday": "Kabul ediş şu gün ýapylýar!",
-            "closed": "Kabul Ediş Ýapyk",
-            "deadline": "Möhlet"
-        },
-        "buttons": {
-            "apply": "Häzir Ýüz Tut",
-            "downloadBrochure": "Broşýurany Ýükle",
-            "viewUniversity": "Uniwersiteti Gör",
-            "startApplication": "Ýüz Tutmany Başla",
-            "contactAdvisor": "Maslahatçy Bilen Habarlaş"
-        },
-        "highlights": {
-            "title": "Maksatnama Aýratynlyklary",
-            "tuition": "Okuw Tölegi",
-            "duration": "Möhlet",
-            "language": "Dil",
-            "level": "Dereje",
-            "gpaRequirement": "Minimum GPA",
-            "languageRequirements": "Language Score"
-        },
-        "overview": {
-            "title": "Maksatnama Umumy Syn",
-            "noDescription": "Bu maksatnama üçin düşündiriş ýok.",
-            "curriculum": "Esasy Okuw Meýilnamasy",
-            "curriculumPlaceholder": "Esasy kurs maglumatlary tizara täzelener"
-        },
-        "requirements": {
-            "title": "Kabul Ediş Talaplary"
-        },
-        "scholarships": {
-            "title": "Bu Maksatnama Üçin Talyp Haky Opsiýalary",
-            "description": "Býudjetiňize iň laýyk gelýän talyp haky görnüşini saýlaň"
-        },
-        "faq": {
-            "title": "Köp Sorulýan Soraglar",
-            "deadline": "Ýüz tutma möhleti {deadline}.",
-            "accommodationQ": "Ýaşaýyş ýeri üpjün edilýärmi?",
-            "accommodationA": "Hawa, halkara talyplar üçin kampusda ýaşaýyş ýeri elýeterli.",
-            "workQ": "Ýarym wagtlaýyn işläp bilerinmi?",
-            "workA": "Hawa, halkara talyplar degişli rugsatlar bilen iş-okuw maksatnamalaryna ýa-da tejribelere ýüz tutup bilerler.",
-            "deadlineQ": "Ýüz tutma möhleti haçan?"
-        },
-        "sidebar": {
-            "ready": "Ýüz Tutmaga Taýýarmy?",
-            "free": "Mugt Ýüz Tutma",
-            "fast": "Çalt Işleme",
-            "expert": "Ekspert Goldawy",
-            "cost": "Çykdajy Hasabaty",
-            "applicationFee": "Ýüz Tutma Tölegi",
-            "serviceFee": "Hyzmat Tölegi",
-            "disclaimer": "* Goşmaça çykdajylar ýaşaýyş ýeri, wiza we gündelik çykdajylary öz içine alyp biler",
-            "why": "Näme Üçin Bu Maksatnamany Saýlamaly?",
-            "reasons": {
-                "degree": "Halkara ykrar edilen dereje",
-                "faculty": "Tejribeli mugallymlar",
-                "facilities": "Döwrebap desgalar we resurslar",
-                "career": "Kariýera ösüş goldawy"
-            }
-        },
-        "accommodation": {
-            "title": "Ýaşaýyş Ýeri Opsiýalary"
-        }
-    },
-    "UniversityDetail": {
-        "quickLinks": {
-            "exploreCourses": "Kurslary Öwren",
-            "getFunded": "Maliýe Al",
-            "findHousing": "Ýaşaýyş Ýeri Tap",
-            "findLocation": "Ýerleşýän Ýeri"
-        },
-        "location": {
-            "title": "Kampusyň Ýerleşýän Ýeri",
-            "viewOnMap": "Google Kartada Gör"
-        },
-        "about": "Barada",
-        "whyChooseUs": "Näme Üçin Biz",
-        "programs": {
-            "title": "Maksatnamalar",
-            "allPrograms": "Ähli Maksatnamalar",
-            "noPrograms": "Bu dereje üçin maksatnama tapylmady.",
-            "viewProgram": "Maksatnamany Gör",
-            "tuitionFee": "Okuw Tölegi",
-            "perYear": "ýylda",
-            "allLanguages": "Ähli diller",
-            "filterByLanguage": "Dil",
-            "showing": "Showing {start}-{end} of {total} programs",
-            "previousPage": "Previous",
-            "nextPage": "Next",
-            "pageOf": "Page {current} of {total}"
-        },
-        "scholarships": {
-            "title": "Elýeterli Talyp Haky Opsiýalary",
-            "description": "Bu uniwersitetdäki maksatnamalar üçin býudjetiňize iň laýyk gelýän talyp haky görnüşini saýlaň"
-        },
-        "campus": {
-            "tour": "Kampus Gezelenji",
-            "gallery": "Kampus Galereýasy",
-            "viewImage": "Suraty Gör"
-        },
-        "admission": {
-            "title": "Kabul Ediş Talaplary",
-            "academic": "Akademiki Talaplar",
-            "language": "Dil Talaplary",
-            "highSchool": "Orta mekdep şahadatnamasy ýa-da deňeşdirilýän",
-            "gpa": "Minimum GPA 3.0/4.0",
-            "transcripts": "Akademiki transkriptler",
-            "ielts": "IELTS 6.0 ýa-da TOEFL 80+",
-            "hsk": "Hytaý dili maksatnamalary üçin HSK 4",
-            "english": "Iňlis dili sertifikaty"
-        },
-        "sidebar": {
-            "ready": "Ýüz Tutmaga Taýýarmy?",
-            "startJourney": "{university}-da syýahatyňyza başlaň",
-            "applyNow": "Häzir Ýüz Tut",
-            "downloadBrochure": "Broşýurany Ýükle",
-            "quickActions": "Çalt Hereketler",
-            "requestInfo": "Maglumat Sora",
-            "chatAdvisor": "Maslahatçy Bilen Söhbetdeş Bol",
-            "virtualTour": "Wirtual Kampus Gezelenji",
-            "scheduleCall": "Jaň Meýilleşdir",
-            "quickFacts": "Gysga Maglumat",
-            "location": "Ýerleşiş",
-            "founded": "Gurlan",
-            "students": "Talyplar",
-            "international": "Halkara",
-            "ranking": "Reýting",
-            "officialWebsite": "Resmi Web Saýty"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions"
-        }
-    },
-    "RequestInformation": {
-        "title": "Maglumat Sora",
-        "description": "{university} barada has giňişleýin maglumat alyň. Aşakdaky formany dolduryň.",
-        "firstName": "Ady",
-        "lastName": "Familiýasy",
-        "email": "E-poçta",
-        "phone": "Telefon Belgi",
-        "interest": "Gyzyklanma",
-        "selectInterest": "Gyzyklanmaňyzy saýlaň",
-        "interests": {
-            "admission": "Kabul Ediş Talaplary",
-            "programs": "Elýeterli Maksatnamalar",
-            "scholarships": "Talyp Haky Mümkinçilikleri",
-            "campus": "Kampus Durmuşy",
-            "other": "Başga"
-        },
-        "message": "Habar",
-        "messagePlaceholder": "Men {university}-da okamak isleýärin...",
-        "submit": "Soragy Iber",
-        "sending": "Iberilýär...",
-        "success": "Sorgu üstünlikli iberildi! Biz tizara siziň bilen habarlaşarys.",
-        "error": "Soragy iberip bolmady. Gaýtadan synanyşyň."
-    },
-    "UniversityScholarships": {
-        "loading": "Talyp haklary ýüklenýär...",
-        "noScholarships": "Bu uniwersitet üçin entek elýeterli talyp haky ýok.",
-        "options": "Talyp Haky Opsiýalary",
-        "discover": "Has Köp Mümkinçilikleri Açyň",
-        "explore": "Ähli Talyp Haky Opsiýalaryny Öwreniň",
-        "description": "Haýsy talyp hakynyň size laýyk gelýändigini bileňizokmy? Ähli opsiýalary deňeşdirmek, talaplary düşünmek we akademiki syýahatyňyz üçin iň gowusyny tapmak üçin biziň doly talyp haky gollanmamyz bilen tanyşyň.",
-        "viewAll": "Ähli Talyp Haklaryny Gör",
-        "advice": "Şahsy Maslahat Al",
-        "mostPopular": "Iň Meşhur",
-        "defaultDescription": "Halkara talyplar üçin ajaýyp opsiýa.",
-        "tuitionCoverage": "Okuw Tölegini Ýapmak",
-        "serviceFee": "Hyzmat Tölegi",
-        "whatsIncluded": "Içine Girýän Zat",
-        "applyNow": "Häzir Ýüz Tut",
-        "howItWorks": {
-            "title": "Talyp Haklary Nähili Işleýär",
-            "description": "Talyp haky okuw tölegleriňiziň bir bölegini ýapýar. Siz galan okuw tölegini uniwersitete töleýärsiňiz + ýüz tutma goldawy, wiza kömegi we görkezme üçin bir gezeklik hyzmat tölegi.",
-            "learnMore": "Learn more about scholarships →"
-        },
-        "benefits": {
-            "tuitionCoverage": "{percentage}% okuw tölegini ýapmak",
-            "noScholarship": "Talyp haky ýok (0% ýapmak)",
-            "support": "Ýüz tutma goldawy we görkezme",
-            "visa": "Wiza kömegi",
-            "orientation": "Ugramazdan öňki gönükdirme",
-            "accommodation": "Ýaşaýyş ýerini tertipleşdirmek goldawy"
-        },
-        "action": "Action",
-        "scholarshipType": "Scholarship Type"
-    },
-    "Accommodation": {
-        "notAvailable": "Ýaşaýyş ýeri maglumaty elýeterli däl",
-        "badge": "Talyp Ýaşaýyş Ýeri",
-        "title": "Kampusda Ýaşaýyş Opsiýalary",
-        "priceRange": "Baha Aralygy",
-        "generalFacilities": "Umumy Amatlyklar",
-        "availableRoomTypes": "Elýeterli Otag Görnüşleri",
-        "defaultTitle": "Ýaşaýyş Ýeri",
-        "priceOnRequest": "Baha soralanda",
-        "month": "aý",
-        "roomFeatures": "Otag Aýratynlyklary:",
-        "importantInfo": {
-            "title": "Möhüm Maglumat",
-            "fees": "Ýaşaýyş tölegleri semestr ýa-da akademiki ýyl üçin tölenýär",
-            "availability": "Otag paýlanyşy elýeterlilige baglydyr",
-            "prices": "Bahalar üýtgäp biler we uniwersitet bilen tassyklanmalydyr",
-            "deposit": "Gireniňizde depozit talap edilip bilner"
-        }
-    },
-    "UniversityHeader": {
-        "fastTrack": "Tizleşdirilen Kabul Ediş",
-        "est": "Gurlan {founded}",
-        "studentsCount": "{students} Talyp",
-        "website": "Web Saýty",
-        "applyNow": "Häzir Ýüz Tut",
-        "requestInfo": "Maglumat Sora",
-        "brochure": "Broşýura",
-        "virtualTour": "Wirtual Gezelenç",
-        "scheduleCall": "Jaň Meýilleşdir",
-        "chatAdvisor": "Maslahatçy",
-        "save": "Sakla",
-        "saved": "Saklandy",
-        "share": "Paýlaş",
-        "founded": "Gurlan",
-        "students": "Talyplar",
-        "ranking": "Reýting",
-        "international": "Halkara"
-    },
-    "Dashboard": {
-        "sidebar": {
-            "myApplications": "Meniň Ýüz Tutmalarym",
-            "profile": "Profil",
-            "messages": "Habarlar",
-            "payments": "Tölegler",
-            "documents": "Resminamalar",
-            "settings": "Sazlamalar",
-            "logout": "Çykmak"
-        },
-        "title": "Dolandyryş Paneli",
-        "subtitle": "Hoş geldiňiz! Ine siziň ýüz tutma synyňyz.",
-        "newApplication": "Täze Ýüz Tutma",
-        "stats": {
-            "totalApplications": "Jemi Ýüz Tutmalar",
-            "submitted": "{count} iberildi",
-            "pendingActions": "Garaşylýan Hereketler",
-            "requiresAttention": "Ünsüňizi talap edýär",
-            "offersReceived": "Alnan Teklipler",
-            "congratulations": "Gutlaýarys!",
-            "successRate": "Üstünlik Derejesi",
-            "acceptanceRate": "Kabul ediş derejesi"
-        },
-        "recentApplications": "Meniň Ýüz Tutmalarym",
-        "appliedOn": "{date} senesinde ýüz tutuldy",
-        "viewDetails": "Jikme-jiklikleri Gör",
-        "noApplications": {
-            "title": "Entek Ýüz Tutma Ýok",
-            "description": "Maksatnamalary gözläp we ilkinji ýüz tutmaňyzy iberip, syýahatyňyza başlaň."
-        },
-        "browsePrograms": "Maksatnamalary Gözle"
-    },
-    "Profile": {
-        "title": "Meniň Profilim",
-        "subtitle": "Şahsy maglumatlaryňyzy we islegleriňizi dolandyryň",
-        "completion": "Profil Tamamlanmagy",
-        "completeProfile": "Gelejekdäki ýüz tutmalary çaltlaşdyrmak üçin profiliňizi tamamlaň",
-        "photo": {
-            "title": "Profil Suraty",
-            "description": "Profesional surat ýükläň",
-            "upload": "Surat Ýükle",
-            "uploading": "Ýüklenýär...",
-            "hint": "JPG, PNG ýa-da GIF. Maksimum 5MB."
-        },
-        "personalInfo": {
-            "title": "Şahsy Maglumat",
-            "description": "Ýüz tutmalar üçin esasy maglumatlaryňyz"
-        },
-        "fullName": "Doly Ady *",
-        "email": "E-poçta",
-        "dob": "Doglan Senesi",
-        "phone": "Telefon Belgi",
-        "nationality": "Milleti",
-        "passportNumber": "Pasport Belgisi",
-        "address": {
-            "title": "Salgy",
-            "description": "Häzirki ýaşaýan salgyňyz",
-            "street": "Köçe Salgysy",
-            "city": "Şäher",
-            "postalCode": "Poçta Indeksi"
-        },
-        "emergency": {
-            "title": "Gyssagly Habarlaşylmaly Adam",
-            "description": "Gyssagly ýagdaýda habarlaşylmaly adam",
-            "name": "Ady",
-            "phone": "Telefon",
-            "relationship": "Gatnaşyk"
-        },
-        "save": "Profili Sakla",
-        "saving": "Saklanýar...",
-        "success": "Profil üstünlikli täzelendi!",
-        "error": "Profil täzelenende ýalňyşlyk döredi"
-    },
-    "Documents": {
-        "title": "Meniň Resminamalarym",
-        "subtitle": "Uniwersitet ýüz tutmalary üçin resminamalaryňyzy dolandyryň",
-        "stats": {
-            "total": "Jemi Resminama",
-            "uploaded": "Ýüklenen faýllar",
-            "verified": "Tassyklanan",
-            "approved": "Admin tarapyndan tassyklanan",
-            "pending": "Gözden geçirilýär",
-            "awaiting": "Tassyklama garaşylýar"
-        },
-        "yourDocuments": "Siziň Resminamalaryňyz",
-        "manageDocuments": "Ýüz tutma resminamalaryňyzy ýükläň we dolandyryň",
-        "uploadDocument": "Resminama Ýükle",
-        "noDocuments": "Entek resminama ýok",
-        "uploadFirst": "Başlamak üçin ilkinji resminamaňyzy ýükläň",
-        "size": "Ölçeg",
-        "uploaded": "Ýüklendi",
-        "download": "Ýükle",
-        "delete": "Poz",
-        "deleteConfirm": "\"{name}\" pozmak isleýändigiňize ynanýarsyňyzmy?",
-        "uploadDialog": {
-            "title": "Resminama Ýükle",
-            "description": "Resminama görnüşini saýlaň we faýlyňyzy ýükläň",
-            "type": "Resminama Görnüşi *",
-            "selectType": "Resminama görnüşini saýlaň",
-            "alreadyUploaded": "(Eýýäm Ýüklenen)",
-            "file": "Faýl *",
-            "selected": "Saýlanan",
-            "formats": "Kabul edilýän formatlar: PDF, JPG, PNG, DOC, DOCX. Maksimum 10MB.",
-            "cancel": "Ýatyr",
-            "uploading": "Ýüklenýär...",
-            "upload": "Ýükle"
-        },
-        "error": {
-            "fileSize": "Faýl 10MB-dan kiçi bolmaly",
-            "selectFile": "Resminama görnüşini we faýly saýlaň",
-            "fileType": "Surat faýlyny ýükläň",
-            "imageSize": "Surat 5MB-dan kiçi bolmaly"
-        },
-        "success": {
-            "uploaded": "Resminama üstünlikli ýüklendi!",
-            "deleted": "Resminama pozuldy"
-        },
-        "types": {
-            "passport": "Pasport",
-            "transcript": "Akademiki Transkript",
-            "diploma": "Diplom/Sertifikat",
-            "recommendation_letter": "Maslahat Haty",
-            "personal_statement": "Şahsy Beýanat",
-            "cv": "CV/Rezýume",
-            "language_certificate": "Dil Sertifikaty (IELTS/TOEFL)",
-            "photo": "Pasport Suraty",
-            "bank_statement": "Bank Hasabaty",
-            "health_certificate": "Saglyk Hat",
-            "police_clearance": "Jenaýat Jogapkärçiligine Çekilmedigi Barada Güwänama",
-            "other": "Başga Resminama"
-        },
-        "documentRequest": {
-            "title": "Resminama Talaby",
-            "description": "Aşakdaky resminamalary ýükläň:\n1. Pasport Göçürmesi\n2. Dereje Şahadatnamasy\n3. Şahsy Beýanat",
-            "note": "ähli zatlaryň degişli dillere terjime edilendigine göz ýetiriň"
-        }
-    },
-    "Status": {
-        "pending_documents": "Resminamalara Garaşylýar",
-        "pending_payment": "Tölege Garaşylýar",
-        "payment_verification": "Töleg Tassyklanmasy",
-        "submitted": "Iberildi",
-        "under_review": "Gözden Geçirilýär",
-        "accepted": "Kabul Edildi",
-        "rejected": "Red Edildi",
-        "unknown": "Näbelli"
-    },
-    "Auth": {
-        "login": {
-            "title": "Içeri Gir",
-            "description": "Hasabyňyza girmek üçin e-poçta we parolyňyzy giriziň",
-            "emailLabel": "E-poçta",
-            "emailPlaceholder": "m@example.com",
-            "passwordLabel": "Parol",
-            "forgotPassword": "Paroly ýatdan çykardyňyzmy?",
-            "submit": "Içeri Gir",
-            "orContinueWith": "Ýa-da dowam et",
-            "continueWithGoogle": "Google bilen dowam et",
-            "connecting": "Birigýär...",
-            "noAccount": "Hasabyňyz ýokmy?",
-            "signUp": "Hasaba alyn",
-            "success": "Içeri girildi! Ugrukdyrylýar...",
-            "error": "Bir zat ýalňyş boldy",
-            "googleError": "Google bilen girip bolmady"
-        },
-        "layout": {
-            "branding": "Studyatchina",
-            "heroTitle": "Hytaý Uniwersitetlerine Derwezäňiz",
-            "heroDescription": "Hytaýyň iň gowy uniwersitetlerinde arzuwlaryny amala aşyrýan müňlerçe halkara talyba goşulyň.",
-            "programsTitle": "500+ Maksatnama",
-            "programsDescription": "Hytaýyň iň gowy uniwersitetlerinden maksatnamalara elýeterlilik",
-            "guidanceTitle": "Ekspert Görkezmesi",
-            "guidanceDescription": "Ýüz tutma syýahatyňyzda goldaw alyň",
-            "scholarshipsTitle": "Talyp Haky Mümkinçilikleri",
-            "scholarshipsDescription": "Elýeterli dürli talyp haky opsiýalaryny öwreniň",
-            "copyright": "© 2024 Studyatchina. Ähli hukuklar goralan."
-        }
-    },
-    "Notifications": {
-        "title": "Habarnamalar",
-        "markAllRead": "Hemmesini okalan diýip belle",
-        "noNotifications": "Entek habarnama ýok",
-        "viewAll": "Ähli habarnamalary gör",
-        "loading": "Habarnamalar ýüklenýär...",
-        "types": {
-            "statusChange": "Ýüz Tutma Ýagdaýynyň Täzelenmegi",
-            "documentRequested": "Resminama Talap Edildi",
-            "paymentRequested": "Töleg Talap Edilýär",
-            "messageReceived": "Täze Habar",
-            "newApplication": "Täze Ýüz Tutma",
-            "newLead": "Täze Müşderi",
-            "documentUploaded": "Resminama Ýüklendi",
-            "acceptanceLetter": "Kabul Ediş Haty"
-        },
-        "messages": {
-            "statusChange": "Ýüz tutma ýagdaýyňyz {status} ýagdaýyna üýtgedildi"
-        }
-    },
-    "Apply": {
-        "title": "Maksatnama Ýüz Tut",
-        "steps": {
-            "info": "Maglumat",
-            "documents": "Resminamalar",
-            "payment": "Töleg",
-            "review": "Gözden Geçir",
-            "personalInfo": "Şahsy Maglumat",
-            "requiredDocuments": "Zerur Resminamalar",
-            "paymentInfo": "Töleg Maglumaty",
-            "reviewSubmit": "Gözden Geçir we Iber"
-        },
-        "labels": {
-            "fullName": "Doly Ady (pasportdaky ýaly)",
-            "email": "E-poçta Salgysy",
-            "phone": "Mobil Telefon Belgisi",
-            "country": "Ýurt",
-            "passport": "Pasport Belgisi",
-            "preferredIntake": "Islenýän Kabul Ediş",
-            "emergencyContactName": "Gyssagly Habarlaşylmaly Ady",
-            "emergencyContactPhone": "Gyssagly Habarlaşylmaly Telefon",
-            "emergencyContactRelationship": "Gatnaşyk",
-            "firstName": "First Name",
-            "lastName": "Last Name",
-            "gender": "Gender",
-            "dateOfBirth": "Date of Birth",
-            "religion": "Religion",
-            "maritalStatus": "Marital Status",
-            "wechatId": "WeChat ID",
-            "address": "Home Address",
-            "city": "City",
-            "postalCode": "Postal Code",
-            "highestEducation": "Highest Education",
-            "schoolName": "School / University Name",
-            "majorField": "Major / Field of Study",
-            "graduationYear": "Graduation Year",
-            "gpaScore": "GPA / Score",
-            "chineseProficiency": "Chinese (HSK Level)",
-            "englishProficiency": "English Proficiency",
-            "testScore": "Test Score (IELTS/TOEFL)"
-        },
-        "placeholders": {
-            "fullName": "meselem, John Smith",
-            "email": "meselem, john@example.com",
-            "phone": "meselem, 555 123 4567",
-            "passport": "meselem, AB1234567",
-            "emergencyName": "meselem, Ene-ata ýa-da HOSSar ady",
-            "emergencyPhone": "meselem, 555 123 4567",
-            "relationship": "meselem, Ene-ata, Ýanýoldaş",
-            "firstName": "e.g. John",
-            "lastName": "e.g. Smith",
-            "selectGender": "Select gender",
-            "selectReligion": "Select religion",
-            "selectMaritalStatus": "Select marital status",
-            "wechatId": "e.g. wxid_abc123",
-            "address": "e.g. 123 Main Street, Apt 4B",
-            "city": "e.g. Cairo",
-            "postalCode": "e.g. 11511",
-            "selectEducation": "Select highest education",
-            "schoolName": "e.g. Cairo University",
-            "majorField": "e.g. Computer Science",
-            "graduationYear": "e.g. 2024",
-            "gpaScore": "e.g. 3.5 / 4.0",
-            "selectChinese": "Select HSK level",
-            "selectEnglish": "Select proficiency",
-            "testScore": "e.g. IELTS 6.5"
-        },
-        "hints": {
-            "phoneHint": "Telefon belgiňizi ýurt kody bolmazdan giriziň",
-            "passportHint": "Pasport belgiňizi edil görkezilişi ýaly giriziň"
-        },
-        "buttons": {
-            "continueToDocuments": "Resminamalara Dowam Et",
-            "continueToPayment": "Tölege Dowam Et",
-            "continueToReview": "Gözden Geçirmäge Dowam Et",
-            "submitApplication": "Ýüz Tutmany Iber",
-            "back": "Yza",
-            "uploadDocument": "Ýükle",
-            "selectFile": "Faýl Saýla",
-            "next": "Next"
-        },
-        "validation": {
-            "missingFieldsTitle": "Aşakdaky zerur öýjükleri dolduryň:",
-            "required": "Bu öýjük zerur"
-        },
-        "documents": {
-            "title": "Zerur Resminamalar",
-            "description": "Aşakdaky resminamalary ýükläň. Kabul edilýän formatlar: PDF, JPG, PNG (maksimum 10MB)",
-            "mandatory": "Hökmany",
-            "optional": "Meýletin",
-            "uploaded": "Ýüklendi",
-            "pending": "Garaşylýar"
-        },
-        "payment": {
-            "title": "Ýüz Tutma Tölegi",
-            "applicationFee": "Ýüz Tutma Tölegi",
-            "serviceFee": "Hyzmat Tölegi",
-            "total": "Jemi",
-            "payNow": "Häzir Töläň",
-            "payLater": "Soň Töläň"
-        },
-        "review": {
-            "title": "Ýüz Tutmaňyzy Gözden Geçiriň",
-            "personalDetails": "Şahsy Jikme-jiklikler",
-            "uploadedDocuments": "Ýüklener Resminamalar",
-            "confirmSubmit": "Berlen ähli maglumatlaryň dogrudygyny tassyklaýaryn",
-            "submitting": "Iberilýär...",
-            "success": "Ýüz Tutma Üstünlikli Iberildi!",
-            "successMessage": "Ýüz tutmaňyz iberildi. Tizara tassyklama e-poçtasyny alarsyňyz."
-        },
-        "errors": {
-            "generic": "Ýalňyşlyk döredi. Gaýtadan synanyşyň.",
-            "uploadFailed": "Resminama ýükläp bolmady. Gaýtadan synanyşyň.",
-            "paymentFailed": "Töleg şowsuz boldy. Gaýtadan synanyşyň."
-        },
-        "sections": {
-            "identity": "Identity & Personal Details",
-            "identitySubtitle": "Please provide your details as shown on your passport",
-            "contact": "Contact Information",
-            "address": "Home Address",
-            "education": "Education Background",
-            "educationSubtitle": "Your most recent academic qualification",
-            "language": "Language Proficiency",
-            "languageSubtitle": "Chinese and English levels for admission purposes",
-            "emergency": "Emergency Contact",
-            "emergencySubtitle": "Required for your safety abroad"
-        },
-        "options": {
-            "male": "Male",
-            "female": "Female",
-            "islam": "Islam",
-            "christianity": "Christianity",
-            "buddhism": "Buddhism",
-            "hinduism": "Hinduism",
-            "noReligion": "No Religion",
-            "other": "Other",
-            "single": "Single",
-            "married": "Married",
-            "divorced": "Divorced",
-            "highSchool": "High School",
-            "diploma": "Diploma",
-            "bachelor": "Bachelor's Degree",
-            "master": "Master's Degree",
-            "doctorate": "Doctorate / PhD",
-            "noProficiency": "No Proficiency",
-            "basic": "Basic",
-            "intermediate": "Intermediate",
-            "advanced": "Advanced",
-            "native": "Native Speaker"
-        }
-    },
-    "AISearch": {
-        "placeholder": "Synap görüň: 'Pekinde 30000 RMB aşagynda Inženerçilik Magistri'",
-        "search": "Gözleg",
-        "filters": "AI düşündi",
-        "error": "Bir zat ýalňyş boldy. Gaýtadan synanyşyň."
-    },
-    "AIChat": {
-        "title": "Chen Wei",
-        "subtitle": "Siziň Okuw Maslahatçyňyz",
-        "typing": "Ýazýar...",
-        "greeting": "Salam! 👋 Men Chen Wei, siziň şahsy okuw maslahatçyňyz. Men size Hytaýda kämil maksatnamany tapmaga, soraglaryňyza jogap bermäge we hatda ýüz tutma prosesi boýunça ýol görkezmäge kömek etmek üçin şu ýerde. Bu gün size näme kömek edip bilerin?",
-        "inputPlaceholder": "Habaryňyzy ýazyň...",
-        "thinking": "Pikirlenýär...",
-        "error": "Bagyşlaň, men ýalňyşlyk bilen ýüzbe-ýüz boldum. Gaýtadan synanyşyň.",
-        "quickStart": "Çalt Başlangyç:",
-        "quickFind": "🎓 Maksatnamalary Tap",
-        "quickScholarship": "💰 Talyp Haklary",
-        "quickApply": "📝 Ýüz Tutmany Başla",
-        "chatHistory": "Söhbetdeşlik Taryhy",
-        "newChat": "Täze Söhbetdeşlik",
-        "noHistory": "Öňki söhbetdeşlik ýok",
-        "backToChat": "Söhbetdeşlige Dolan",
-        "loginPrompt": "🔐 Söhbetdeşlik taryhyňyzy saklamak we ýüz tutmalary yzarlamak üçin içeri giriň",
-        "login": "Içeri Gir",
-        "register": "Hasaba Alyş"
-    },
-    "PaymentDashboard": {
-        "title": "Tölegler",
-        "subtitle": "Ýüz tutma tölegleriňizi dolandyryň",
-        "totalAmount": "Jemi Mukdar",
-        "totalPaid": "Jemi Tölenen",
-        "pending": "Garaşylýar",
-        "rest": "Galan Mukdar",
-        "totalTransactions": "Jemi Transaksiýalar",
-        "successfullyProcessed": "Üstünlikli işlenildi",
-        "paymentDue": "töleg möhleti ýetdi",
-        "allTime": "Ähli wagt",
-        "amount": "Mukdar",
-        "status": "Ýagdaý",
-        "created": "Döredildi",
-        "method": "Usul",
-        "payNow": "Häzir Töläň",
-        "viewApplication": "Ýüz Tutmany Gör",
-        "paymentProof": "Töleg Subutnamasy",
-        "paymentRequest": {
-            "title": "Töleg Talaby",
-            "amount": "USD 200",
-            "description": "bu tölegi amala aşyryň",
-            "note": "Ýüz tutmaňyzy dowam etdirmek üçin tölegi tamamlaň."
-        },
-        "paymentStatuses": {
-            "completed": "Tamamlandy",
-            "pending": "Garaşylýar",
-            "processing": "Işlenilýär",
-            "failed": "Şowsuz",
-            "refunded": "Yzyna gaýtaryldy"
-        },
-        "types": {
-            "application_fee": "Ýüz Tutma Tölegi",
-            "service_fee": "Hyzmat Tölegi",
-            "tuition_deposit": "Okuw Tölegi Depoziti",
-            "full_tuition": "Doly Okuw Tölegi",
-            "accommodation": "Ýaşaýyş Ýeri",
-            "other": "Başga"
-        },
-        "assistance": {
-            "title": "Töleg Kömegi",
-            "description": "Sizde {count} sany garaşylýan töleg bar. Eger töleg kömegine mätäç bolsaňyz ýa-da soraglaryňyz bolsa:",
-            "point1": "Töleg kömegi üçin goldaw toparymyz bilen habarlaşyň",
-            "point2": "Töleg meýilnamalaryna laýyk gelýändigiňizi barlaň",
-            "point3": "Töleg usulyňyzyň goldanýandygyny tassyklaň"
-        },
-        "paidOn": "Tölendi",
-        "reference": "Salgylanma",
-        "verifiedByAdmin": "Admin tarapyndan tassyklanan",
-        "expires": "Möhleti gutarýar:",
-        "adminNote": "Admin Belligi:",
-        "paymentLinkExpired": "Töleg şiltemesiniň möhleti gutardy",
-        "document": "Resminama:",
-        "noPayments": "Töleg Ýok",
-        "noPaymentsDesc": "Sizde hiç hili garaşylýan töleg ýok.",
-        "contactSupport": "Goldaw Bilen Habarlaş"
-    },
-    "Refunds": {
-        "title": "Yzyna Gaýtarma Talaplary",
-        "statusTitle": "Yzyna Gaýtarma Ýagdaýy",
-        "requestButton": "Yzyna Gaýtarma Talap Et",
-        "submittedTitle": "Yzyna Gaýtarma Talaby Iberildi",
-        "submittedOn": "{date} senesinde iberildi",
-        "reasonLabel": "Sebäp",
-        "adminResponseLabel": "Admin Jogaby",
-        "rejectedTitle": "Ýüz Tutma Red Edildi",
-        "rejectedMessage": "Siz yzyna gaýtarmaga hukukly bolup bilersiňiz. Talap ibermek üçin düwmä basyň.",
-        "modalTitle": "Yzyna Gaýtarma Talap Et",
-        "modalDescription": "Yzyna gaýtarma talabyny iberiň. Näme üçin yzyna gaýtarma talap edýändigiňizi düşündiriň.",
-        "modalReasonLabel": "Yzyna Gaýtarma Sebäbi",
-        "modalPlaceholder": "Men red edildim, sebäbi...",
-        "submitButton": "Talaby Iber",
-        "cancelButton": "Ýatyr",
-        "successMessage": "Yzyna gaýtarma talaby üstünlikli iberildi",
-        "errorMessage": "Talaby iberip bolmady",
-        "table": {
-            "student": "Talyp",
-            "program": "Uniwersitet / Maksatnama",
-            "reason": "Sebäp",
-            "status": "Ýagdaý",
-            "date": "Sene",
-            "actions": "Hereketler",
-            "approve": "Tassykla",
-            "reject": "Red Et",
-            "noRequests": "Yzyna gaýtarma talaby tapylmady",
-            "approveTitle": "Yzyna Gaýtarma Talabyny Tassykla",
-            "rejectTitle": "Yzyna Gaýtarma Talabyny Red Et",
-            "approveDescription": "Bu talaby tassyklanan hökmünde bellär we ýüz tutma töleg ýagdaýyny yzyna gaýtarylan diýip täzelär.",
-            "rejectDescription": "Bu talaby red edilen hökmünde bellär.",
-            "adminResponsePlaceholder": "Talyba bellik goş..."
-        }
-    },
-    "Messages": {
-        "title": "Habarlar",
-        "subtitle": "Kabul ediş topary bilen aragatnaşyk",
-        "conversations": "Söhbetdeşlikler",
-        "unreadMessages": "Okalmadyk Habarlar",
-        "actionRequired": "Hereket Talap Edilýär",
-        "actionCompleted": "Tamamlandy",
-        "noMessages": "Entek habar ýok",
-        "noMessagesDesc": "Kabul ediş toparyndan gelen habarlar şu ýerde görner",
-        "reply": "Jogap Ber",
-        "replyingTo": "{name} -a jogap berilýär",
-        "typeReply": "Jogabyňyzy ýazyň...",
-        "sendReply": "Jogaby Iber",
-        "sending": "Iberilýär...",
-        "cancel": "Ýatyr",
-        "you": "Siz",
-        "admin": "Kabul Ediş Topary",
-        "replyTooltip": "Bu habara jogap ber",
-        "actionRequiredMessage": "Bu habara jogapberiň ýa-da talap edilýän hereketi tamamlaň.",
-        "takeAction": "Hereket Et",
-        "attachment": "birikme",
-        "attachments": "birikmeler"
-    },
-    "QSRankings": {
-        "meta": {
-            "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
-            "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
-        },
-        "hero": {
-            "badge": "QS World University Rankings 2026",
-            "titleHighlight": "Chinese Universities",
-            "titleRest": "in Global Rankings",
-            "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
-            "breadcrumb": "QS Rankings 2026",
-            "statRanked": "Ranked Universities",
-            "statHighest": "Highest Global Rank",
-            "statTop50": "In Global Top 50",
-            "statCities": "Cities Represented"
-        },
-        "content": {
-            "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
-            "browseAllTitle": "Browse All Rankings",
-            "searchPlaceholder": "Search universities...",
-            "allCities": "All Cities",
-            "showing": "Showing",
-            "of": "of",
-            "universities": "universities",
-            "university": "university",
-            "inCity": "in",
-            "matching": "matching",
-            "noResults": "No universities found",
-            "noResultsHint": "Try adjusting your search or filters",
-            "overallScore": "Overall Score",
-            "score": "Score",
-            "world": "World",
-            "china": "China",
-            "ctaTitle": "Ready to Study at a Top-Ranked University?",
-            "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
-            "browseUniversities": "Browse Universities",
-            "explorePrograms": "Explore Programs",
-            "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
-            "visitSite": "topuniversities.com",
-            "viewProfile": "View Profile",
-            "tierTop50": "Top 50 Globally",
-            "tierTop200": "Top 51–200",
-            "tierTop500": "Top 201–500",
-            "tierRemaining": "501+"
-        }
+    "destinations": {
+      "title": "Ugurlar",
+      "viewAll": "Ähli Ugurlary Görmek",
+      "beijing": {
+        "title": "Pekin",
+        "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
+      },
+      "shanghai": {
+        "title": "Şanhaý",
+        "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
+      },
+      "guangzhou": {
+        "title": "Guançžou",
+        "description": "Southern metropolis with leading medical and engineering schools."
+      },
+      "wuhan": {
+        "title": "Wuhan",
+        "description": "Historic education center with Wuhan University and HUST."
+      },
+      "hangzhou": {
+        "title": "Hançžou",
+        "description": "Tech hub and scenic city home to Zhejiang University."
+      },
+      "nanjing": {
+        "title": "Nanjing",
+        "description": "Ancient capital with Nanjing University and Southeast University."
+      },
+      "chengdu": {
+        "title": "Çengdu",
+        "description": "Western China gateway with Sichuan University and affordable living."
+      },
+      "xian": {
+        "title": "Sian",
+        "description": "Historic Silk Road city with Xi'an Jiaotong University."
+      }
     }
+  },
+  "Common": {
+    "loading": "Ýüklenýär...",
+    "error": "Ýalňyşlyk döredi",
+    "submit": "Iber",
+    "cancel": "Ýatyr",
+    "save": "Sakla",
+    "delete": "Poz",
+    "edit": "Üýtget",
+    "view": "Gör",
+    "back": "Yza"
+  },
+  "Footer": {
+    "stayUpdated": "Habardar Boluň",
+    "getLatestUpdates": "Iň soňky täzeliklere ýazylyň",
+    "subscribeText": "Maksatnamalar, talyp haklary we ýüz tutmak möhletleri barada habarlary almak üçin abuna ýazylyň.",
+    "description": "Hytaýyň iň gowy uniwersitetlerini tapmakda we ýüz tutmakda siziň ynamdar hyzmatdaşyňyz. Biz bilen akademiki syýahatyna şowly başlan müňlerçe talyba goşulyň.",
+    "explore": "Öwren",
+    "programs": "Maksatnamalar",
+    "universities": "Uniwersitetler",
+    "scholarships": "Talyp Haklary",
+    "howToApply": "Nädip Ýüz Tutmaly",
+    "faq": "Köp Sorulýan Soraglar",
+    "forStudents": "Talyplar Üçin",
+    "createAccount": "Hasap Döret",
+    "trackApplication": "Kabul Edişligi Yzarla",
+    "documentChecklist": "Resminama Sanawy",
+    "studentPortal": "Talyp Portaly",
+    "contact": "Habarlaşmak",
+    "rightsReserved": "Ähli hukuklar goralan.",
+    "designedBy": "Dizaýn we goldaw:",
+    "termsOfService": "Hyzmat Şertleri",
+    "privacyPolicy": "Gizlinlik Syýasaty",
+    "cookiePolicy": "Kuki Syýasaty"
+  },
+  "ScholarshipCTA": {
+    "badge": "Has Köp Mümkinçilikleri Açyň",
+    "title": "Ähli Talyp Haky Opsiýalaryny Öwreniň",
+    "description": "Haýsy talyp hakynyň size laýyk gelýändigini bileňizokmy? Ähli opsiýalary deňeşdirmek, talaplary düşünmek we akademiki syýahatyňyz üçin iň gowusyny tapmak üçin biziň doly talyp haky gollanmamyz bilen tanyşyň.",
+    "viewAll": "Ähli Talyp Haklaryny Gör",
+    "getAdvice": "Şahsy Maslahat Al"
+  },
+  "CscaCta": {
+    "badge": "2026-njy ýyldan Hökmany",
+    "title": "<span class=\"text-primary\">CSCA Synawyna</span> Taýýarlanýarsyňyzmy?",
+    "titlePlain": "CSCA Synawyna Taýýarlanýarsyňyzmy?",
+    "description": "Hytaý Akademik Ukyp Bahalandyrmasy (CSCA) indi ýokary talyp haklary üçin talap bolup durýar. Biziň täze gollanmamyzda dersler, bahalandyryş we taýýarlyk strategiýalary barada doly maglumat alyň.",
+    "readGuide": "Gollanmany Oka",
+    "findPrograms": "Maksatnamalary Tap",
+    "proTip1": {
+      "title": "Maslahat #1",
+      "text": "Ýöriteleşdirilen Hytaý dili diňe HSK däl, eýsem akademiki söz baýlygyny talap edýär."
+    },
+    "proTip2": {
+      "title": "Maslahat #2",
+      "text": "Matematika bölümleri geometriýa agyrlyk berýär. Konus kesimlerini gaýtalaň."
+    }
+  },
+  "CSCAGuide": {
+    "meta": {
+      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+    },
+    "backHome": "Back to Home",
+    "newRequirement": "New Requirement for 2026",
+    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+        "keyDates": {
+          "title": "Key Dates",
+          "launch": "2025: Official Launch",
+          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+          "full": "2028: Full Implementation across all Universities"
+        }
+      },
+      "structure": {
+        "title": "Exam Structure",
+        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+        "table": {
+          "subject": "Subject",
+          "duration": "Duration",
+          "questions": "Questions",
+          "requirement": "Requirement",
+          "chinese": {
+            "name": "Specialized Chinese",
+            "req": "Humanities/Science"
+          },
+          "math": {
+            "name": "Mathematics",
+            "req": "Mandatory"
+          },
+          "physics": {
+            "name": "Physics",
+            "req": "Optional / Major-dependent"
+          },
+          "chemistry": {
+            "name": "Chemistry",
+            "req": "Optional / Major-dependent"
+          }
+        }
+      },
+      "subjects": {
+        "title": "Subject Details & Syllabus",
+        "chinese": {
+          "title": "Specialized Chinese",
+          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+          "char": {
+            "title": "Character Recognition",
+            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+          },
+          "reading": {
+            "title": "Reading Comprehension",
+            "desc": "Highest weight. Sci/Tech/Social essays."
+          },
+          "words": {
+            "title": "Word Distinction",
+            "desc": "Synonyms, academic vocabulary."
+          },
+          "sentences": {
+            "title": "Sentence/Paragraph",
+            "desc": "Ordering sentences, completing logic."
+          }
+        },
+        "math": {
+          "title": "Mathematics",
+          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+          "note": "Both Chinese and English versions available.",
+          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+        },
+        "chem": {
+          "title": "Chemistry",
+          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+        },
+        "phys": {
+          "title": "Physics",
+          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        }
+      },
+      "fees_and_process": {
+        "title": "Application Process & Fees",
+        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+      },
+      "formats": {
+        "title": "Test Modes",
+        "online": {
+          "title": "Online Proctored",
+          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+        },
+        "computer": {
+          "title": "Computer-Based",
+          "desc": "At official test centers (classrooms). Better stability."
+        },
+        "paper": {
+          "title": "Paper-Based",
+          "desc": "Traditional format. Limited regions."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "q": "Does the CSCA replace the HSK?",
+          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+        },
+        "q2": {
+          "q": "Can I take it in English?",
+          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+        },
+        "q3": {
+          "q": "How long is the score valid?",
+          "a": "CSCA results are valid for <strong>2 years</strong>."
+        },
+        "q4": {
+          "q": "Who is exempt from the CSCA?",
+          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+        },
+        "q5": {
+          "q": "Are scores required for 2026 intake?",
+          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+        },
+        "comparison": {
+          "title": "CSCA vs. HSK",
+          "feature": "Feature",
+          "hsk": "HSK",
+          "csca": "CSCA",
+          "focus": "Focus",
+          "focusHsk": "Daily Communication",
+          "focusCsca": "Academic Readiness",
+          "vocab": "Vocabulary",
+          "vocabHsk": "Life/Everyday",
+          "vocabCsca": "Technical/Academic",
+          "req": "Requirement",
+          "reqHsk": "Language Cert",
+          "reqCsca": "Academic Entrance"
+        }
+      },
+      "sidebar": {
+        "title": "Important Details",
+        "dates": {
+          "title": "Dates",
+          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+        },
+        "prep": {
+          "title": "Preparation",
+          "desc": "Difficulty level: Junior/Senior High"
+        },
+        "passing": {
+          "title": "Fees",
+          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+        },
+        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+        "register": "Official Registration Site",
+        "tutor": {
+          "title": "Fast-Track with Study at China",
+          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+          "button": "Apply With Us"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "admissionsOpen": "2026 Üçin Kabul Edişlik Açyk",
+    "searchPlaceholder": "Näme öwrenmek isleýärsiňiz? (meselem, Kompýuter Ylymlary, Lukmançylyk)",
+    "title": "Hytaýdaky Gelejegiňiz Şu Ýerden Başlanýar",
+    "subtitle": "Hytaýyň iň gowy uniwersitetlerinde <bold>50,000+ talyba</bold> goşulyň",
+    "searchButton": "<bold>500+</bold> Maksatnamany Gözläň",
+    "searchWord": "Gözleg",
+    "programsWord": "Maksatnamalar",
+    "browseByCategory": "Kategoriýa Boýunça Gözle",
+    "scrollToExplore": "Öwrenmek üçin aşak süýşüriň",
+    "stats": {
+      "universities": "Uniwersitetler",
+      "students": "Talyplar",
+      "success": "Üstünlik",
+      "scholarships": "Talyp Haklary"
+    },
+    "tabs": {
+      "programs": "Maksatnamalar",
+      "universities": "Uniwersitetler",
+      "scholarships": "Talyp Haklary"
+    },
+    "placeholders": {
+      "degree": "Dereje",
+      "field": "Okuw Ugry",
+      "city": "Şäher",
+      "language": "Dil",
+      "budget": "Býudjet (USD/Ýyl)",
+      "scholarship": "Talyp Haky",
+      "duration": "Möhleti"
+    },
+    "options": {
+      "any": "Islendik",
+      "all": "Hemmesi"
+    },
+    "budget": {
+      "under3k": "Under $3,000",
+      "3kTo5k": "$3,000 - $5,000",
+      "5kTo8k": "$5,000 - $8,000",
+      "above8k": "Above $8,000"
+    },
+    "scholarship": {
+      "allPrograms": "All Programs",
+      "available": "Scholarship Available",
+      "full": "Full Scholarship",
+      "partial": "Partial Scholarship"
+    },
+    "duration": {
+      "1year": "1 Year",
+      "2years": "2 Years",
+      "3years": "3 Years",
+      "4years": "4 Years",
+      "5plus": "5+ Years"
+    },
+    "categories": {
+      "mba": "MBA Programs",
+      "engineering": "Engineering",
+      "medicine": "Medicine (MBBS)",
+      "cs": "Computer Science",
+      "fullScholarship": "Full Scholarship",
+      "englishTaught": "English Taught"
+    }
+  },
+  "WhyStudy": {
+    "badge": "Näme Üçin Hytaý",
+    "title": "<gradient>Global Üstünlige</gradient> Derwezäňiz",
+    "description": "Hytaý gadymy paýhasy döwrebap innowasiýalar bilen birleşdirip, halkara talyplara Aziýanyň ykdysady güýjüniň merkezinde deňsiz-taýsyz bilim tejribesini hödürleýär.",
+    "cta": {
+      "explore": "Maksatnamalary Öwren",
+      "download": "Gollanmany Ýükle"
+    },
+    "features": {
+      "worldClass": {
+        "title": "Dünýä Derejesindäki Uniwersitetler",
+        "description": "Döwrebap barlag desgalary we belli mugallymlary bolan global reýtingli edaralarda okaň."
+      },
+      "affordable": {
+        "title": "Elýeterli Hil",
+        "description": "Bäsdeşlige ukyply bahalar we 100%-e çenli ýokary talyp haky mümkinçilikleri bilen ýokary hilli bilim."
+      },
+      "career": {
+        "title": "Kariýera Başlangyjy",
+        "description": "Deňsiz-taýsyz tejribe we iş mümkinçilikleri bilen Aziýanyň iň uly ykdysadyýetine elýeterlilik."
+      },
+      "safe": {
+        "title": "Howpsuz we Jonly",
+        "description": "Dünýäniň iň howpsuz ýurtlarynyň birinde, ösen halkara jemgyýetinde ýaşaň."
+      },
+      "culture": {
+        "title": "Medeniýet Bilen Tanyşlyk",
+        "description": "Ultra-döwrebap, dinamiki şäherlerde ýaşap, 5000 ýyllyk taryhy öwreniň."
+      },
+      "network": {
+        "title": "Global Tor",
+        "description": "200-den gowrak ýurtdan 500,000+ halkara talyplaryň jemgyýetine goşulyň."
+      },
+      "english": {
+        "title": "Iňlis Maksatnamalary",
+        "description": "Ähli ugurlar boýunça diňe Iňlis dilinde okadylýan 17000+ maksatnamadan saýlaň."
+      },
+      "recognition": {
+        "title": "Dünýäde Ykrar Edilmegi",
+        "description": "UNESCO, BSGG we global hünär edaralary tarapyndan ykrar edilen derejeleri alyň."
+      }
+    }
+  },
+  "HowItWorks": {
+    "badge": "Çalt Proses",
+    "title": "Ýüz Tutmadan <gradient>Kabul Edişlige</gradient> Çenli",
+    "description": "Maksatnamalary gözlemekden başlap, kabul ediş hatyny alýançaňyz sizi rekort wagtyň içinde eltmek üçin niýetlenen 6 ädimli ýönekeýleşdirilen syýahat.",
+    "cta": {
+      "button": "Ýüz Tutmany Häzir Başlaň",
+      "time": "Ortacha tamamlanma wagty: <bold>15 minut</bold>"
+    },
+    "steps": {
+      "discover": {
+        "title": "Maksatnamalary Tap",
+        "description": "Siziň maksatlaryňyza laýyk gelýän Hytaýyň iň gowy uniwersitetlerinden 500+ maksatnamany gözläň."
+      },
+      "profile": {
+        "title": "Profil Döret",
+        "description": "Hasabyňyzy sazlaň we akademiki profiliňizi birnäçe minutda tamamlaň."
+      },
+      "upload": {
+        "title": "Resminamalary Ýükle",
+        "description": "Sertifikatlary, transkriptleri we zerur resminamalary howpsuz iberiň."
+      },
+      "scholarship": {
+        "title": "Talyp Haky Görnüşini Saýla",
+        "description": "Her uniwersitetde elýeterli talyp haky görnüşleri bar. Birini saýlaň we ýüz tutuň."
+      },
+      "pay": {
+        "title": "Tölegi Amala Aşyr",
+        "description": "Ýüz tutma we işlemek üçin tölegleri howpsuz töläň."
+      },
+      "track": {
+        "title": "Prosesi Yzarla",
+        "description": "Hakyky wagt täzelenmeleri we habarnamalar bilen ýüz tutma ýagdaýyňyza gözegçilik ediň."
+      },
+      "admission": {
+        "title": "Kabul Edilmek",
+        "description": "Teklip hatyňyzy, wiza resminamalaryňyzy alyň we syýahatyňyza başlaň!"
+      }
+    }
+  },
+  "Stats": {
+    "badge": "Biziň Täsirimiz",
+    "title": "Dünýäde Müňlerçe Adam Ynanýar",
+    "description": "Biziň platformamyz arkaly arzuwlaryna ýeten şowly talyplaryň global jemgyýetine goşulyň",
+    "items": {
+      "universities": {
+        "label": "Hyzmatdaş Uniwersitetler",
+        "description": "Ýokary derejeli edaralar"
+      },
+      "students": {
+        "label": "Halkara Talyplar",
+        "description": "200+ ýurtdan"
+      },
+      "programs": {
+        "label": "Elýeterli Maksatnamalar",
+        "description": "Ähli okuw ugurlary"
+      },
+      "success": {
+        "label": "Üstünlik Derejesi",
+        "description": "Kabul ediş tassyklanmasy"
+      },
+      "countries": {
+        "label": "Wekilçilik Edilýän Ýurtlar",
+        "description": "Global jemgyýet"
+      },
+      "scholarships": {
+        "label": "Berlen Talyp Haklary",
+        "description": "Maliýe goldawy"
+      },
+      "time": {
+        "label": "Ýüz Tutma Wagty",
+        "description": "Çalt we aňsat proses"
+      },
+      "employment": {
+        "label": "Uçurymlaryň Iş Üpjünçiligi",
+        "description": "6 aýyň içinde"
+      }
+    }
+  },
+  "FeaturedPrograms": {
+    "badge": "Saýlanan Maksatnamalar",
+    "title": "Tizleşdirilen Maksatnamalar",
+    "description": "Hytaýyň iň gowy uniwersitetlerinde iň köp isleg bildirilýän maksatnamalarymyzy öwreniň",
+    "duration": "Möhlet",
+    "tuition": "Okuw Tölegi/Ýyl",
+    "explore": "Maksatnamany Öwren",
+    "viewAll": "Ähli Maksatnamalary Gör",
+    "fastTrack": "Tizleşdirilen"
+  },
+  "FeaturedUniversities": {
+    "badge": "Iň Gowy Uniwersitetler",
+    "title": "Elita Uniwersitetleri",
+    "description": "Hytaýyň iň abraýly edaralarynda okaň",
+    "fastTrack": "Tizleşdirilen",
+    "programs": "Maksatnamalar",
+    "tuitionFrom": "Okuw Tölegi",
+    "students": "Talyplar",
+    "viewDetails": "Jikme-jiklikleri Gör",
+    "viewAll": "Ähli Uniwersitetleri Gör"
+  },
+  "Scholarships": {
+    "badge": "Maliýe Goldawy",
+    "title": "Talyp Haklary we Maliýe Kömekleri",
+    "description": "Hytaýda okamak elýeterlidir. Halkara talyplar üçin elýeterli dürli talyp haky mümkinçiliklerini öwreniň.",
+    "items": {
+      "csc": {
+        "title": "Hytaý Hökümetiniň Talyp Haky (CSC)",
+        "description": "Halkara talyplar üçin doly ýa-da bölekleýin talyp haky. Okuw tölegini, ýaşaýyş ýerini we aýlyk hakyny öz içine alýar.",
+        "amount": "$10,000/ýyla çenli"
+      },
+      "university": {
+        "title": "Uniwersitet Talyp Haklary",
+        "description": "Zehinli dalaşgärler üçin gönüden-göni uniwersitetler tarapyndan hödürlenýän üstünlik esasly talyp haklary.",
+        "amount": "$8,000/ýyla çenli"
+      },
+      "provincial": {
+        "title": "Welaýat Hökümetiniň Talyp Haklary",
+        "description": "Halkara zehinleri belli sebitlere çekmek üçin ýerli hökümetler tarapyndan maliýeleşdirilýän talyp haklary.",
+        "amount": "$6,000/ýyla çenli"
+      }
+    },
+    "awardAmount": "Sylag Mukdary",
+    "learnMore": "Has Köp Öwren",
+    "stats": {
+      "scholarshipOptions": "Scholarship Options",
+      "universities": "Universities",
+      "programs": "Programs",
+      "awarded": "Her Ýyl Berilýär",
+      "funding": "Maliýe Alyň",
+      "full": "Doly Talyp Haklary",
+      "eligible": "Mümkinçilikli Maksatnamalar"
+    },
+    "viewAll": "Ähli Talyp Haklaryny Gör",
+    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+    "popular": {
+      "title": "Featured & Popular Scholarships"
+    },
+    "tabs": {
+      "search": "Search Scholarships",
+      "about": "About Scholarships"
+    },
+    "search": {
+      "filter": "Filters",
+      "clearAll": "Clear All",
+      "searchPlaceholder": "Search program or university...",
+      "category": "Category",
+      "all": "All",
+      "fullScholarship": "Full Scholarship (100%)",
+      "partialScholarship": "Partial Scholarship",
+      "city": "City",
+      "university": "University",
+      "degree": "Degree Level",
+      "language": "Language",
+      "semester": "Semester",
+      "spring": "Spring",
+      "autumn": "Autumn",
+      "freeAccommodation": "Free Accommodation",
+      "monthlyStipend": "Monthly Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "scholarshipOptions": "scholarship options at",
+      "universities": "universities",
+      "noResults": "No scholarships found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "programsAvailable": "Programs",
+      "upTo": "Up to",
+      "accommodation": "Accommodation",
+      "stipend": "Stipend",
+      "insurance": "Insurance",
+      "program": "Program",
+      "teachingLanguage": "Language",
+      "startingDate": "Intake",
+      "scholarshipCoverage": "Original Tuition",
+      "youNeedToPay": "You Need To Pay",
+      "tuition": "Tuition",
+      "free": "Free",
+      "moreOptions": "More Options",
+      "learnMore": "Learn More"
+    },
+    "detail": {
+      "backToSearch": "Back to Search",
+      "scholarshipAvailable": "Scholarship Available",
+      "programDetails": "Program Details",
+      "degree": "Degree",
+      "duration": "Duration",
+      "language": "Language",
+      "intake": "Intake",
+      "availableScholarships": "Available Scholarships",
+      "noScholarships": "No scholarships are currently available for this program.",
+      "tuitionCoverage": "Tuition Coverage",
+      "freeAccommodation": "Free Accommodation",
+      "stipend": "Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "originalTuition": "Original Tuition",
+      "youPay": "You Need to Pay",
+      "serviceFee": "Service Fee",
+      "applyNow": "Apply for this Scholarship",
+      "university": "University",
+      "viewUniversity": "View University Profile",
+      "viewProgram": "View Program Details"
+    },
+    "about": {
+      "howItWorks": "How Scholarships Work",
+      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+      "scholarshipCoverage": "Scholarship Coverage",
+      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+      "serviceFees": "Service & Processing Fees",
+      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+      "scholarshipTypes": "Common Scholarship Types",
+      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+      "searchPrograms": "Search Eligible Programs",
+      "requiredDocuments": "Required Documents",
+      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+      "faq": "Frequently Asked Questions",
+      "faq1Question": "Do I need to know Chinese to get a scholarship?",
+      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+      "faq2Question": "Can I work while studying?",
+      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+      "faq3Question": "What happens if I fail my classes?",
+      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+      "faq4Question": "How long does the application process take?",
+      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+    }
+  },
+  "Testimonials": {
+    "badge": "Üstünlik Hekaýalary",
+    "title": "Talyplarymyzyň Aýdýanlary",
+    "description": "Platformamyz arkaly üstünlikli ýüz tutan we häzirki wagtda Hytaýda rowaçlanýan talyplardan eşidiň.",
+    "testimonials": {
+      "sarah": {
+        "quote": "Sinhua uniwersitetinde okamak durmuşymy üýtgeden tejribe boldy. Kampus ajaýyp we professorlar dünýä derejesinde. Men akademiki we şahsy taýdan örän ösdim.",
+        "program": "Kompýuter Ylymlary",
+        "university": "Sinhua Uniwersiteti",
+        "country": "ABŞ"
+      },
+      "ahmed": {
+        "quote": "Studyatchina saýasynda ýüz tutma prosesi örän aňsat boldy. Men häzir gurluşyk inženerçiligi boýunça magistraturada okaýaryn we her pursatdan lezzet alýaryn.",
+        "program": "Gurluşyk Inženerçiligi",
+        "university": "Çžeýsziýan Uniwersiteti",
+        "country": "Müsür"
+      },
+      "maria": {
+        "quote": "Şanhaý ajaýyp şäher! Men bu ýeriň medeniýetini, naharlaryny we edinen dostlarymy gowy görýärin. Alan talyp hakym munuň hemmesini mümkin etdi.",
+        "program": "Halkara Biznes",
+        "university": "Fudan Uniwersiteti",
+        "country": "Ispaniýa"
+      }
+    },
+    "averageRating": "Ortacha Baha",
+    "reviews": "Synlar",
+    "satisfaction": "Kanagatlanma"
+  },
+  "Partners": {
+    "badge": "Ynamdar Hyzmatdaşlar",
+    "title": "Hyzmatdaş Uniwersitetler",
+    "description": "Size iň gowy bilim mümkinçiliklerini hödürlemek üçin Hytaýyň iň abraýly edaralary bilen hyzmatdaşlyk edýäris",
+    "recognitions": {
+      "unesco": {
+        "title": "UNESCO Tassyklan",
+        "description": "Ähli hyzmatdaş uniwersitetler UNESCO tarapyndan ykrar edilen"
+      },
+      "government": {
+        "title": "Hökümet Tassyklan",
+        "description": "Hytaýyň Bilim Ministrligi tarapyndan resmi taýdan tassyklanan"
+      },
+      "accredited": {
+        "title": "Global Akkreditirlenen",
+        "description": "Derejeler dünýäniň 180+ ýurdunda ykrar edilen"
+      }
+    }
+  },
+  "FAQ": {
+    "badge": "Soraglaryňyz Barmy?",
+    "title": "Köp Sorulýan Soraglar",
+    "description": "Hytaýda okamak barada umumy soraglara jogaplary tapyň",
+    "items": {
+      "deadline": {
+        "question": "Ýüz tutma möhleti haçan?",
+        "answer": "Möhletler uniwersitete we maksatnama görä üýtgeýär. Umuman, sentýabr kabul edişligi üçin ýüz tutmalar mart we iýun aýlarynyň arasynda ýapylýar. Takyk seneler üçin maksatnama sahypalaryny barlaň."
+      },
+      "language": {
+        "question": "Hytaýda okamak üçin Hytaý dilini bilmelimi?",
+        "answer": "Hökman däl! Bakalawr, Magistr we PhD derejeleri üçin müňlerçe Iňlis dilinde okadylýan maksatnamalar bar. Şeýle-de bolsa, gündelik durmuş üçin käbir esas Hytaý dilini öwrenmek maslahat berilýär."
+      },
+      "work": {
+        "question": "Okýarkam işläp bilerinmi?",
+        "answer": "Halkara talyplar uniwersitetden we immigrasiýa ofisinden rugsat alyp, ýarym wagtlaýyn işläp ýa-da tejribe geçip bilerler. Soňky ýyllarda syýasatlar has çeýeleşdi."
+      },
+      "scholarships": {
+        "question": "Talyp haklaryna nädip ýüz tutmaly?",
+        "answer": "Ýüz tutmaňyzy ibereniňizde platformamyz arkaly gönüden-göni talyp haklaryna ýüz tutyp bilersiňiz. Biz size CSC we uniwersitet talyp haklary üçin zerur resminamalar boýunça ýol görkezeris."
+      },
+      "visa": {
+        "question": "Wiza talaplary nähili?",
+        "answer": "Size güýçli pasport, kabul ediş haty we uniwersitetiňizden JW202 formasy gerek bolar. Biz prosesiň dowamynda doly wiza goldawyny we kömegini hödürleýäris."
+      },
+      "process": {
+        "question": "Ýüz tutma prosesi näçe wagt alýar?",
+        "answer": "Adaty ýüz tutma prosesi 2-4 hepde alýar.iberilenden soň, uniwersitetler adatça 4-8 hepdäniň içinde jogap berýärler. Biz her ädimde sizi habardar edýäris."
+      }
+    },
+    "seeAll": "Ähli Sorag-Jogaplary Gör",
+    "contactSupport": "Goldaw Bilen Habarlaş",
+    "footer": "Ýene soraglaryňyz barmy? Goldaw toparymyz size kömek etmek üçin 24/7 elýeterli."
+  },
+  "Destinations": {
+    "pageTitle": "Okuw ýerleri",
+    "badge": "Hytaýda okuw ýerleri",
+    "heroTitle": "Hytaýyň iň gowy",
+    "heroSubtitle": "okuw şäherlerini tapyň",
+    "heroDescription": "Taryhy paýtagt Pekinden häzirki zaman Şanhaýa çenli — Hytaýyň iň janly şäherlerini öwreniň we okuw saparyňyz üçin iň oňat ýeri tapyň.",
+    "statCities": "Şäher",
+    "statUniversities": "Jemi uniwersitet",
+    "statTopCity": "{city} uniwersitetleri",
+    "featuredTitle": "Saýlanan ýerler",
+    "featuredSubtitle": "Hytaýda halkara talyplar üçin iň meşhur şäherler",
+    "allCitiesTitle": "Has köp şäher",
+    "allCitiesSubtitle": "Hytaýda has köp şäherlerdäki uniwersitetleri tapyň",
+    "university": "Uniwersitet",
+    "universities": "Uniwersitet",
+    "explorePrograms": "Programmalary öwreniň"
+  },
+  "Universities": {
+    "title": "Hytaýyň Iň Gowy Uniwersitetlerini Öwreniň",
+    "subtitle": "Hytaý boýunça {count}+ abraýly edaralary tapyň. Proýekt 985-den C9 Ligasy uniwersitetlerine çenli.",
+    "error": {
+      "title": "Uniwersitetleri ýükläp bolmady",
+      "hint": "Maslahat: {hint}"
+    },
+    "search": {
+      "placeholder": "Uniwersitet ady, şäher ýa-da reýting boýunça gözläň...",
+      "label": "Gözleg",
+      "universityPlaceholder": "Uniwersitet ady...",
+      "searching": "Gözlenýär..."
+    },
+    "filters": {
+      "title": "Süzgüçler",
+      "description": "Uniwersitet gözlegiňizi daraldyň",
+      "clear": "Süzgüçleri Arassala",
+      "clearAll": "Ähli Süzgüçleri Arassala",
+      "city": "Şäher",
+      "allCities": "Ähli Şäherler",
+      "institutionType": "Edara Görnüşi",
+      "allTypes": "Ähli Görnüşler",
+      "universityCategory": "Uniwersitet Kategoriýasy",
+      "allCategories": "Ähli Kategoriýalar",
+      "rankingRecognition": "Reýting we Ykrar",
+      "specialFeatures": "Ýörite Aýratynlyklar",
+      "institutionTypes": {
+        "university": "Uniwersitet",
+        "college": "Kollej",
+        "languageInstitute": "Dil Instituty",
+        "vocationalSchool": "Hünär Mekdebi",
+        "technicalInstitute": "Tehniki Institut"
+      },
+      "categories": {
+        "public": "Döwlet",
+        "private": "Hususy",
+        "research": "Ylmy-barlag",
+        "comprehensive": "Giňişleýin",
+        "specialized": "Ýöriteleşdirilen",
+        "vocational": "Hünär"
+      },
+      "rankings": {
+        "project985": "Proýekt 985",
+        "project211": "Proýekt 211",
+        "doubleFirstClass": "Goşa Birinji Dereje"
+      },
+      "features": {
+        "fastTrack": "Tizleşdirilen Kabul Ediş",
+        "scholarships": "Talyp Haky Bar",
+        "englishPrograms": "Iňlis Maksatnamalary"
+      }
+    },
+    "stats": {
+      "title": "Gysga Statistika",
+      "total": "Jemi Uniwersitet",
+      "showing": "Görkezilýär",
+      "cities": "Şäherler"
+    },
+    "sort": {
+      "label": "Tertiple",
+      "name": "Ady: A-Z",
+      "programs": "Iň Köp Maksatnama",
+      "city": "Şäher",
+      "tuitionLow": "Tuition: Low to High",
+      "tuitionHigh": "Tuition: High to Low",
+      "ranking": "Best Ranking"
+    },
+    "noResults": {
+      "title": "Uniwersitet tapylmady",
+      "description": "Süzgüçleriňizi ýa-da gözleg kriteriýalaryňyzy üýtgedip görüň"
+    },
+    "results": {
+      "universities": "universities",
+      "showMore": "Show {count} more",
+      "showingOf": "Showing {visible} of {total}"
+    },
+    "compare": {
+      "title": "Compare Universities",
+      "criteria": "Criteria",
+      "location": "Location",
+      "ranking": "Ranking",
+      "programs": "Programs",
+      "tuition": "Tuition",
+      "levels": "Study Levels",
+      "languages": "Languages",
+      "scholarship": "Scholarship",
+      "fastTrack": "Fast Track",
+      "cscaExam": "CSCA Exam",
+      "badges": "Accreditations",
+      "clearAll": "Clear All",
+      "selected": "{count} selected",
+      "compareNow": "Compare Now"
+    }
+  },
+  "Programs": {
+    "title": "Kämil Maksatnamaňyzy Tapyň",
+    "subtitle": "Hytaýyň iň gowy uniwersitetlerinden {count}+ maksatnamany gözden geçiriň. Akademiki syýahatyňyz üçin iň gowusyny tapyň.",
+    "filters": {
+      "title": "Süzgüçler",
+      "active": "Aktiw Süzgüçler:",
+      "clear": "Süzgüçleri Arassala",
+      "clearAll": "Ähli Süzgüçleri Arassala",
+      "search": "Gözleg",
+      "searchPlaceholder": "Maksatnama ýa-da ugur...",
+      "studyLevel": "Okuw Derejesi",
+      "fieldOfStudy": "Okuw Ugry",
+      "allFields": "Ähli Ugurlar",
+      "maxTuition": "Maksimum Okuw Tölegi",
+      "language": "Dil",
+      "city": "Şäher",
+      "allCities": "Ähli Şäherler",
+      "university": "Uniwersitet",
+      "allUniversities": "Ähli Uniwersitetler",
+      "duration": "Möhlet",
+      "allDurations": "Ähli Möhletler",
+      "scholarshipAvailable": "Talyp Haky Bar",
+      "levels": {
+        "bachelor": "Bakalawr",
+        "master": "Magistr",
+        "phd": "PhD",
+        "diploma": "Diplom",
+        "language": "Dil Kursy",
+        "nonDegree": "Non-Degree"
+      },
+      "fields": {
+        "business": "Biznes we Dolandyryş",
+        "engineering": "Inženerçilik we Tehnologiýa",
+        "medicine": "Lukmançylyk we Saglygy Goraýyş",
+        "arts": "Sungat we Gumanitar Ylymlar",
+        "science": "Tebigy Ylymlar",
+        "education": "Bilim",
+        "cs": "Kompýuter Ylymlary",
+        "law": "Hukuk"
+      },
+      "languages": {
+        "english": "Iňlisçe",
+        "chinese": "Hytaýça"
+      },
+      "durations": {
+        "2years": "2 Ýyl",
+        "3years": "3 Ýyl",
+        "4years": "4 Ýyl",
+        "5years": "5 Ýyl",
+        "6years": "6 Ýyl"
+      },
+      "matchingPrograms": "maksatnama gabat gelýär",
+      "applyFilters": "Süzgüçleri Ullan",
+      "scholarshipDesc": "Show programs with funding",
+      "cscaLabel": "CSCA Synagy Gerek Däl",
+      "cscaDesc": "CSCA synagy bolmadyk programmalary görkez",
+      "cscaBadge": "No CSCA",
+      "academicRequirements": "Academic Requirements",
+      "myAge": "My Age",
+      "agePlaceholder": "e.g. 21",
+      "minGpa": "Min GPA",
+      "gpaPlaceholder": "e.g. 3.0",
+      "autoFilterHint": "Süzgüçler ýazmany bes edeniňizden soň awtomatiki ulanylýar",
+      "searchUniversity": "Uniwersitet gözle...",
+      "noUniversityFound": "Uniwersitet tapylmady."
+    },
+    "stats": {
+      "total": "Jemi Maksatnama",
+      "showing": "Görkezilýär"
+    },
+    "sort": {
+      "label": "Tertiple",
+      "relevance": "Iň Wajyp",
+      "tuitionLow": "Okuw Tölegi: Arazandan Gymmada",
+      "tuitionHigh": "Okuw Tölegi: Gymmatdan Arzana",
+      "deadline": "Möhlet: Iň Ýakyn",
+      "popular": "Iň Meşhur"
+    },
+    "noResults": {
+      "title": "Maksatnama tapylmady",
+      "description": "Süzgüçleriňizi ýa-da gözleg kriteriýalaryňyzy üýtgedip görüň"
+    },
+    "card": {
+      "duration": "Möhlet",
+      "intake": "Kabul Ediş",
+      "tuitionFee": "Okuw Tölegi",
+      "viewProgram": "Maksatnamany Gör",
+      "contact": "Habarlaş",
+      "scholarship": "Talyp Haky",
+      "addToCompare": "Deňeşdirmä Goş",
+      "removeFromCompare": "Deňeşdirmeden Aýyr",
+      "level": "Dereje",
+      "features": "Aýratynlyklar",
+      "viewFullDetails": "Doly Jikme-jiklikleri Gör",
+      "applyNow": "Häzir Ýüz Tut",
+      "fastTrack": "Fast Track",
+      "deadlineClosed": "Ýapyk",
+      "deadlineToday": "Möhleti şu gün!",
+      "deadlineDaysLeft": "{days} gün galdy",
+      "deadlineDate": "Möhleti: {date}"
+    },
+    "compare": {
+      "title": "Maksatnamalary Deňeşdir",
+      "comparing": "Deňeşdirilýär",
+      "more": "köp",
+      "clear": "Arassala",
+      "compareNow": "Häzir Deňeşdir",
+      "university": "Uniwersitet",
+      "location": "Ýerleşiş",
+      "level": "Dereje",
+      "duration": "Möhlet",
+      "tuition": "Okuw Tölegi",
+      "intake": "Kabul Ediş",
+      "language": "Dil",
+      "viewDetails": "Jikme-jiklikleri Gör",
+      "apply": "Ýüz Tut"
+    },
+    "emptyState": {
+      "title": "Maksatnama Tapylmady",
+      "description": "Hiç hili maksatnama tapyp bilmedik. Biziň doly katalogymyzy görmäge synanyşyň.",
+      "filteredDescription": "Häzirki süzgüçleriňize gabat gelýän maksatnama ýok. Gözleg kriteriýalaryňyzy üýtgedip görüň.",
+      "currentFilters": "Siziň häzirki süzgüçleriňiz:",
+      "scholarship": "Talyp Haky",
+      "clearFilters": "Ähli Süzgüçleri Arassala",
+      "tryInstead": "Synap görmek üçin meşhur gözlegler:",
+      "browseAll": "Ähli Maksatnamalary Gör",
+      "exploreUniversities": "Uniwersitetleri Öwren"
+    },
+    "recentlyViewed": {
+      "title": "Ýaňy-ýakynda Görülen",
+      "clear": "Arassala",
+      "viewAgain": "Ýene Gör",
+      "justNow": "Edil häzir",
+      "minutesAgo": "{count}m öň",
+      "hoursAgo": "{count}s öň",
+      "daysAgo": "{count}g öň"
+    },
+    "quickAccess": "Çalt Giriş",
+    "quickChips": {
+      "cs": "Kompýuter Ylmy",
+      "business": "Işewürlik",
+      "engineering": "Inženerçilik",
+      "medicine": "Lukmançylyk",
+      "arts": "Sungat",
+      "economics": "Ykdysadyýet"
+    },
+    "aiSearch": {
+      "thinking": "AI is thinking... finding related fields for \"{query}\"",
+      "active": "Smart Search Active",
+      "found": "Found programs related to: {terms}",
+      "working": "AI is working on it...",
+      "looking": "Looking for programs related to \"{query}\""
+    },
+    "view": {
+      "grid": "Tor",
+      "map": "Karta"
+    }
+  },
+  "GuidedTour": {
+    "skip": "Gezelenji Geç",
+    "next": "Indiki",
+    "finish": "Düşündim!",
+    "programs": {
+      "search": {
+        "title": "Maksatnamaňyzy Tapyň",
+        "content": "Ady, okuw ugry ýa-da açar sözler boýunça maksatnamalary tapmak üçin gözleg panelini ulanyň."
+      },
+      "filters": {
+        "title": "Gözlegiňizi Kämilleşdiriň",
+        "content": "Dereje, ýerleşiş, dil we býudjet boýunça daraltmak üçin süzgüçleri ulanyň."
+      },
+      "card": {
+        "title": "Maksatnama Jikme-jiklikleri",
+        "content": "Doly jikme-jiklikleri, talaplary we nädip ýüz tutmalydygyny görmek üçin islendik maksatnama kartyna basyň."
+      },
+      "compare": {
+        "title": "Maksatnamalary Deňeşdir",
+        "content": "Iň gowy saýlawy etmek üçin 3 maksatnama çenli saýlap, olary deňeşdiriň."
+      }
+    }
+  },
+  "UniversitiesCard": {
+    "programs": "Maksatnamalar",
+    "tuitionFrom": "Okuw Tölegi -dan",
+    "tuition": "Okuw Tölegi",
+    "viewUniversity": "Uniwersiteti Gör",
+    "viewPrograms": "Maksatnamalary Gör",
+    "fastTrack": "Fast Track",
+    "scholarship": "Scholarship",
+    "contactForPricing": "Contact for pricing",
+    "cscaExam": "CSCA Exam",
+    "addToCompare": "Add to compare",
+    "removeFromCompare": "Remove from compare"
+  },
+  "ProgramDetail": {
+    "breadcrumb": {
+      "home": "Baş Sahypa",
+      "programs": "Maksatnamalar"
+    },
+    "badges": {
+      "intake": "Kabul Ediş: {intake}",
+      "contactUniversity": "Uniwersitet Bilen Habarlaş",
+      "fastTrack": "Tizleşdirilen Kabul Ediş",
+      "specialRequirements": "Ýörite Talaplar"
+    },
+    "deadline": {
+      "daysRemaining": "{days} gün galdy",
+      "endingToday": "Kabul ediş şu gün ýapylýar!",
+      "closed": "Kabul Ediş Ýapyk",
+      "deadline": "Möhlet"
+    },
+    "buttons": {
+      "apply": "Häzir Ýüz Tut",
+      "downloadBrochure": "Broşýurany Ýükle",
+      "viewUniversity": "Uniwersiteti Gör",
+      "startApplication": "Ýüz Tutmany Başla",
+      "contactAdvisor": "Maslahatçy Bilen Habarlaş"
+    },
+    "highlights": {
+      "title": "Maksatnama Aýratynlyklary",
+      "tuition": "Okuw Tölegi",
+      "duration": "Möhlet",
+      "language": "Dil",
+      "level": "Dereje",
+      "gpaRequirement": "Minimum GPA",
+      "maxAge": "Iň ýokary ýaş",
+      "languageRequirements": "Language Score"
+    },
+    "overview": {
+      "title": "Maksatnama Umumy Syn",
+      "noDescription": "Bu maksatnama üçin düşündiriş ýok.",
+      "curriculum": "Esasy Okuw Meýilnamasy",
+      "curriculumPlaceholder": "Esasy kurs maglumatlary tizara täzelener"
+    },
+    "requirements": {
+      "title": "Kabul Ediş Talaplary"
+    },
+    "scholarships": {
+      "title": "Bu Maksatnama Üçin Talyp Haky Opsiýalary",
+      "description": "Býudjetiňize iň laýyk gelýän talyp haky görnüşini saýlaň"
+    },
+    "faq": {
+      "title": "Köp Sorulýan Soraglar",
+      "deadline": "Ýüz tutma möhleti {deadline}.",
+      "accommodationQ": "Ýaşaýyş ýeri üpjün edilýärmi?",
+      "accommodationA": "Hawa, halkara talyplar üçin kampusda ýaşaýyş ýeri elýeterli.",
+      "workQ": "Ýarym wagtlaýyn işläp bilerinmi?",
+      "workA": "Hawa, halkara talyplar degişli rugsatlar bilen iş-okuw maksatnamalaryna ýa-da tejribelere ýüz tutup bilerler.",
+      "deadlineQ": "Ýüz tutma möhleti haçan?"
+    },
+    "sidebar": {
+      "ready": "Ýüz Tutmaga Taýýarmy?",
+      "free": "Mugt Ýüz Tutma",
+      "fast": "Çalt Işleme",
+      "expert": "Ekspert Goldawy",
+      "cost": "Çykdajy Hasabaty",
+      "applicationFee": "Ýüz Tutma Tölegi",
+      "serviceFee": "Hyzmat Tölegi",
+      "disclaimer": "* Goşmaça çykdajylar ýaşaýyş ýeri, wiza we gündelik çykdajylary öz içine alyp biler",
+      "why": "Näme Üçin Bu Maksatnamany Saýlamaly?",
+      "reasons": {
+        "degree": "Halkara ykrar edilen dereje",
+        "faculty": "Tejribeli mugallymlar",
+        "facilities": "Döwrebap desgalar we resurslar",
+        "career": "Kariýera ösüş goldawy"
+      }
+    },
+    "accommodation": {
+      "title": "Ýaşaýyş Ýeri Opsiýalary"
+    }
+  },
+  "UniversityDetail": {
+    "quickLinks": {
+      "exploreCourses": "Kurslary Öwren",
+      "getFunded": "Maliýe Al",
+      "findHousing": "Ýaşaýyş Ýeri Tap",
+      "findLocation": "Ýerleşýän Ýeri"
+    },
+    "location": {
+      "title": "Kampusyň Ýerleşýän Ýeri",
+      "viewOnMap": "Google Kartada Gör"
+    },
+    "about": "Barada",
+    "whyChooseUs": "Näme Üçin Biz",
+    "programs": {
+      "title": "Maksatnamalar",
+      "allPrograms": "Ähli Maksatnamalar",
+      "noPrograms": "Bu dereje üçin maksatnama tapylmady.",
+      "viewProgram": "Maksatnamany Gör",
+      "tuitionFee": "Okuw Tölegi",
+      "perYear": "ýylda",
+      "allLanguages": "Ähli diller",
+      "filterByLanguage": "Dil",
+      "showing": "Showing {start}-{end} of {total} programs",
+      "previousPage": "Previous",
+      "nextPage": "Next",
+      "pageOf": "Page {current} of {total}",
+      "deadlineClosed": "Ýapyk",
+      "deadlineLabel": "Möhlet: {date}"
+    },
+    "deadlines": {
+      "title": "Ýakynlaşýan Möhletler",
+      "noDeadlines": "Ýakynlaşýan möhlet ýok",
+      "daysLeft": "{days} gün galdy",
+      "today": "Şu gün gutarýar!",
+      "closed": "Ýapyk",
+      "deadline": "Möhlet",
+      "viewProgram": "Maksatnamany Gör",
+      "urgent": "Gyssagly",
+      "quickJump": "Möhletler"
+    },
+    "scholarships": {
+      "title": "Elýeterli Talyp Haky Opsiýalary",
+      "description": "Bu uniwersitetdäki maksatnamalar üçin býudjetiňize iň laýyk gelýän talyp haky görnüşini saýlaň"
+    },
+    "campus": {
+      "tour": "Kampus Gezelenji",
+      "gallery": "Kampus Galereýasy",
+      "viewImage": "Suraty Gör"
+    },
+    "admission": {
+      "title": "Kabul Ediş Talaplary",
+      "academic": "Akademiki Talaplar",
+      "language": "Dil Talaplary",
+      "highSchool": "Orta mekdep şahadatnamasy ýa-da deňeşdirilýän",
+      "gpa": "Minimum GPA 3.0/4.0",
+      "transcripts": "Akademiki transkriptler",
+      "ielts": "IELTS 6.0 ýa-da TOEFL 80+",
+      "hsk": "Hytaý dili maksatnamalary üçin HSK 4",
+      "english": "Iňlis dili sertifikaty"
+    },
+    "sidebar": {
+      "ready": "Ýüz Tutmaga Taýýarmy?",
+      "startJourney": "{university}-da syýahatyňyza başlaň",
+      "applyNow": "Häzir Ýüz Tut",
+      "downloadBrochure": "Broşýurany Ýükle",
+      "quickActions": "Çalt Hereketler",
+      "requestInfo": "Maglumat Sora",
+      "chatAdvisor": "Maslahatçy Bilen Söhbetdeş Bol",
+      "virtualTour": "Wirtual Kampus Gezelenji",
+      "scheduleCall": "Jaň Meýilleşdir",
+      "quickFacts": "Gysga Maglumat",
+      "location": "Ýerleşiş",
+      "founded": "Gurlan",
+      "students": "Talyplar",
+      "international": "Halkara",
+      "ranking": "Reýting",
+      "officialWebsite": "Resmi Web Saýty"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "RequestInformation": {
+    "title": "Maglumat Sora",
+    "description": "{university} barada has giňişleýin maglumat alyň. Aşakdaky formany dolduryň.",
+    "firstName": "Ady",
+    "lastName": "Familiýasy",
+    "email": "E-poçta",
+    "phone": "Telefon Belgi",
+    "interest": "Gyzyklanma",
+    "selectInterest": "Gyzyklanmaňyzy saýlaň",
+    "interests": {
+      "admission": "Kabul Ediş Talaplary",
+      "programs": "Elýeterli Maksatnamalar",
+      "scholarships": "Talyp Haky Mümkinçilikleri",
+      "campus": "Kampus Durmuşy",
+      "other": "Başga"
+    },
+    "message": "Habar",
+    "messagePlaceholder": "Men {university}-da okamak isleýärin...",
+    "submit": "Soragy Iber",
+    "sending": "Iberilýär...",
+    "success": "Sorgu üstünlikli iberildi! Biz tizara siziň bilen habarlaşarys.",
+    "error": "Soragy iberip bolmady. Gaýtadan synanyşyň."
+  },
+  "UniversityScholarships": {
+    "loading": "Talyp haklary ýüklenýär...",
+    "noScholarships": "Bu uniwersitet üçin entek elýeterli talyp haky ýok.",
+    "options": "Talyp Haky Opsiýalary",
+    "discover": "Has Köp Mümkinçilikleri Açyň",
+    "explore": "Ähli Talyp Haky Opsiýalaryny Öwreniň",
+    "description": "Haýsy talyp hakynyň size laýyk gelýändigini bileňizokmy? Ähli opsiýalary deňeşdirmek, talaplary düşünmek we akademiki syýahatyňyz üçin iň gowusyny tapmak üçin biziň doly talyp haky gollanmamyz bilen tanyşyň.",
+    "viewAll": "Ähli Talyp Haklaryny Gör",
+    "advice": "Şahsy Maslahat Al",
+    "mostPopular": "Iň Meşhur",
+    "defaultDescription": "Halkara talyplar üçin ajaýyp opsiýa.",
+    "tuitionCoverage": "Okuw Tölegini Ýapmak",
+    "serviceFee": "Hyzmat Tölegi",
+    "whatsIncluded": "Içine Girýän Zat",
+    "applyNow": "Häzir Ýüz Tut",
+    "howItWorks": {
+      "title": "Talyp Haklary Nähili Işleýär",
+      "description": "Talyp haky okuw tölegleriňiziň bir bölegini ýapýar. Siz galan okuw tölegini uniwersitete töleýärsiňiz + ýüz tutma goldawy, wiza kömegi we görkezme üçin bir gezeklik hyzmat tölegi.",
+      "learnMore": "Learn more about scholarships →"
+    },
+    "benefits": {
+      "tuitionCoverage": "{percentage}% okuw tölegini ýapmak",
+      "noScholarship": "Talyp haky ýok (0% ýapmak)",
+      "support": "Ýüz tutma goldawy we görkezme",
+      "visa": "Wiza kömegi",
+      "orientation": "Ugramazdan öňki gönükdirme",
+      "accommodation": "Ýaşaýyş ýerini tertipleşdirmek goldawy"
+    },
+    "action": "Action",
+    "scholarshipType": "Scholarship Type"
+  },
+  "Accommodation": {
+    "notAvailable": "Ýaşaýyş ýeri maglumaty elýeterli däl",
+    "badge": "Talyp Ýaşaýyş Ýeri",
+    "title": "Kampusda Ýaşaýyş Opsiýalary",
+    "priceRange": "Baha Aralygy",
+    "generalFacilities": "Umumy Amatlyklar",
+    "availableRoomTypes": "Elýeterli Otag Görnüşleri",
+    "defaultTitle": "Ýaşaýyş Ýeri",
+    "priceOnRequest": "Baha soralanda",
+    "month": "aý",
+    "roomFeatures": "Otag Aýratynlyklary:",
+    "importantInfo": {
+      "title": "Möhüm Maglumat",
+      "fees": "Ýaşaýyş tölegleri semestr ýa-da akademiki ýyl üçin tölenýär",
+      "availability": "Otag paýlanyşy elýeterlilige baglydyr",
+      "prices": "Bahalar üýtgäp biler we uniwersitet bilen tassyklanmalydyr",
+      "deposit": "Gireniňizde depozit talap edilip bilner"
+    }
+  },
+  "UniversityHeader": {
+    "fastTrack": "Tizleşdirilen Kabul Ediş",
+    "est": "Gurlan {founded}",
+    "studentsCount": "{students} Talyp",
+    "website": "Web Saýty",
+    "applyNow": "Häzir Ýüz Tut",
+    "requestInfo": "Maglumat Sora",
+    "brochure": "Broşýura",
+    "virtualTour": "Wirtual Gezelenç",
+    "scheduleCall": "Jaň Meýilleşdir",
+    "chatAdvisor": "Maslahatçy",
+    "save": "Sakla",
+    "saved": "Saklandy",
+    "share": "Paýlaş",
+    "founded": "Gurlan",
+    "students": "Talyplar",
+    "ranking": "Reýting",
+    "international": "Halkara"
+  },
+  "Dashboard": {
+    "sidebar": {
+      "myApplications": "Meniň Ýüz Tutmalarym",
+      "profile": "Profil",
+      "messages": "Habarlar",
+      "payments": "Tölegler",
+      "documents": "Resminamalar",
+      "settings": "Sazlamalar",
+      "logout": "Çykmak"
+    },
+    "title": "Dolandyryş Paneli",
+    "subtitle": "Hoş geldiňiz! Ine siziň ýüz tutma synyňyz.",
+    "newApplication": "Täze Ýüz Tutma",
+    "stats": {
+      "totalApplications": "Jemi Ýüz Tutmalar",
+      "submitted": "{count} iberildi",
+      "pendingActions": "Garaşylýan Hereketler",
+      "requiresAttention": "Ünsüňizi talap edýär",
+      "offersReceived": "Alnan Teklipler",
+      "congratulations": "Gutlaýarys!",
+      "successRate": "Üstünlik Derejesi",
+      "acceptanceRate": "Kabul ediş derejesi"
+    },
+    "recentApplications": "Meniň Ýüz Tutmalarym",
+    "appliedOn": "{date} senesinde ýüz tutuldy",
+    "viewDetails": "Jikme-jiklikleri Gör",
+    "noApplications": {
+      "title": "Entek Ýüz Tutma Ýok",
+      "description": "Maksatnamalary gözläp we ilkinji ýüz tutmaňyzy iberip, syýahatyňyza başlaň."
+    },
+    "browsePrograms": "Maksatnamalary Gözle"
+  },
+  "Profile": {
+    "title": "Meniň Profilim",
+    "subtitle": "Şahsy maglumatlaryňyzy we islegleriňizi dolandyryň",
+    "completion": "Profil Tamamlanmagy",
+    "completeProfile": "Gelejekdäki ýüz tutmalary çaltlaşdyrmak üçin profiliňizi tamamlaň",
+    "photo": {
+      "title": "Profil Suraty",
+      "description": "Profesional surat ýükläň",
+      "upload": "Surat Ýükle",
+      "uploading": "Ýüklenýär...",
+      "hint": "JPG, PNG ýa-da GIF. Maksimum 5MB."
+    },
+    "personalInfo": {
+      "title": "Şahsy Maglumat",
+      "description": "Ýüz tutmalar üçin esasy maglumatlaryňyz"
+    },
+    "fullName": "Doly Ady *",
+    "email": "E-poçta",
+    "dob": "Doglan Senesi",
+    "phone": "Telefon Belgi",
+    "nationality": "Milleti",
+    "passportNumber": "Pasport Belgisi",
+    "address": {
+      "title": "Salgy",
+      "description": "Häzirki ýaşaýan salgyňyz",
+      "street": "Köçe Salgysy",
+      "city": "Şäher",
+      "postalCode": "Poçta Indeksi"
+    },
+    "emergency": {
+      "title": "Gyssagly Habarlaşylmaly Adam",
+      "description": "Gyssagly ýagdaýda habarlaşylmaly adam",
+      "name": "Ady",
+      "phone": "Telefon",
+      "relationship": "Gatnaşyk"
+    },
+    "save": "Profili Sakla",
+    "saving": "Saklanýar...",
+    "success": "Profil üstünlikli täzelendi!",
+    "error": "Profil täzelenende ýalňyşlyk döredi"
+  },
+  "Documents": {
+    "title": "Meniň Resminamalarym",
+    "subtitle": "Uniwersitet ýüz tutmalary üçin resminamalaryňyzy dolandyryň",
+    "stats": {
+      "total": "Jemi Resminama",
+      "uploaded": "Ýüklenen faýllar",
+      "verified": "Tassyklanan",
+      "approved": "Admin tarapyndan tassyklanan",
+      "pending": "Gözden geçirilýär",
+      "awaiting": "Tassyklama garaşylýar"
+    },
+    "yourDocuments": "Siziň Resminamalaryňyz",
+    "manageDocuments": "Ýüz tutma resminamalaryňyzy ýükläň we dolandyryň",
+    "uploadDocument": "Resminama Ýükle",
+    "noDocuments": "Entek resminama ýok",
+    "uploadFirst": "Başlamak üçin ilkinji resminamaňyzy ýükläň",
+    "size": "Ölçeg",
+    "uploaded": "Ýüklendi",
+    "download": "Ýükle",
+    "delete": "Poz",
+    "deleteConfirm": "\"{name}\" pozmak isleýändigiňize ynanýarsyňyzmy?",
+    "uploadDialog": {
+      "title": "Resminama Ýükle",
+      "description": "Resminama görnüşini saýlaň we faýlyňyzy ýükläň",
+      "type": "Resminama Görnüşi *",
+      "selectType": "Resminama görnüşini saýlaň",
+      "alreadyUploaded": "(Eýýäm Ýüklenen)",
+      "file": "Faýl *",
+      "selected": "Saýlanan",
+      "formats": "Kabul edilýän formatlar: PDF, JPG, PNG, DOC, DOCX. Maksimum 10MB.",
+      "cancel": "Ýatyr",
+      "uploading": "Ýüklenýär...",
+      "upload": "Ýükle"
+    },
+    "error": {
+      "fileSize": "Faýl 10MB-dan kiçi bolmaly",
+      "selectFile": "Resminama görnüşini we faýly saýlaň",
+      "fileType": "Surat faýlyny ýükläň",
+      "imageSize": "Surat 5MB-dan kiçi bolmaly"
+    },
+    "success": {
+      "uploaded": "Resminama üstünlikli ýüklendi!",
+      "deleted": "Resminama pozuldy"
+    },
+    "types": {
+      "passport": "Pasport",
+      "transcript": "Akademiki Transkript",
+      "diploma": "Diplom/Sertifikat",
+      "recommendation_letter": "Maslahat Haty",
+      "personal_statement": "Şahsy Beýanat",
+      "cv": "CV/Rezýume",
+      "language_certificate": "Dil Sertifikaty (IELTS/TOEFL)",
+      "photo": "Pasport Suraty",
+      "bank_statement": "Bank Hasabaty",
+      "health_certificate": "Saglyk Hat",
+      "police_clearance": "Jenaýat Jogapkärçiligine Çekilmedigi Barada Güwänama",
+      "other": "Başga Resminama"
+    },
+    "documentRequest": {
+      "title": "Resminama Talaby",
+      "description": "Aşakdaky resminamalary ýükläň:\n1. Pasport Göçürmesi\n2. Dereje Şahadatnamasy\n3. Şahsy Beýanat",
+      "note": "ähli zatlaryň degişli dillere terjime edilendigine göz ýetiriň"
+    }
+  },
+  "Status": {
+    "pending_documents": "Resminamalara Garaşylýar",
+    "pending_payment": "Tölege Garaşylýar",
+    "payment_verification": "Töleg Tassyklanmasy",
+    "submitted": "Iberildi",
+    "under_review": "Gözden Geçirilýär",
+    "accepted": "Kabul Edildi",
+    "rejected": "Red Edildi",
+    "unknown": "Näbelli"
+  },
+  "Auth": {
+    "login": {
+      "title": "Içeri Gir",
+      "description": "Hasabyňyza girmek üçin e-poçta we parolyňyzy giriziň",
+      "emailLabel": "E-poçta",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "Parol",
+      "forgotPassword": "Paroly ýatdan çykardyňyzmy?",
+      "submit": "Içeri Gir",
+      "orContinueWith": "Ýa-da dowam et",
+      "continueWithGoogle": "Google bilen dowam et",
+      "connecting": "Birigýär...",
+      "noAccount": "Hasabyňyz ýokmy?",
+      "signUp": "Hasaba alyn",
+      "success": "Içeri girildi! Ugrukdyrylýar...",
+      "error": "Bir zat ýalňyş boldy",
+      "googleError": "Google bilen girip bolmady"
+    },
+    "layout": {
+      "branding": "Studyatchina",
+      "heroTitle": "Hytaý Uniwersitetlerine Derwezäňiz",
+      "heroDescription": "Hytaýyň iň gowy uniwersitetlerinde arzuwlaryny amala aşyrýan müňlerçe halkara talyba goşulyň.",
+      "programsTitle": "500+ Maksatnama",
+      "programsDescription": "Hytaýyň iň gowy uniwersitetlerinden maksatnamalara elýeterlilik",
+      "guidanceTitle": "Ekspert Görkezmesi",
+      "guidanceDescription": "Ýüz tutma syýahatyňyzda goldaw alyň",
+      "scholarshipsTitle": "Talyp Haky Mümkinçilikleri",
+      "scholarshipsDescription": "Elýeterli dürli talyp haky opsiýalaryny öwreniň",
+      "copyright": "© 2024 Studyatchina. Ähli hukuklar goralan."
+    }
+  },
+  "Notifications": {
+    "title": "Habarnamalar",
+    "markAllRead": "Hemmesini okalan diýip belle",
+    "noNotifications": "Entek habarnama ýok",
+    "viewAll": "Ähli habarnamalary gör",
+    "loading": "Habarnamalar ýüklenýär...",
+    "types": {
+      "statusChange": "Ýüz Tutma Ýagdaýynyň Täzelenmegi",
+      "documentRequested": "Resminama Talap Edildi",
+      "paymentRequested": "Töleg Talap Edilýär",
+      "messageReceived": "Täze Habar",
+      "newApplication": "Täze Ýüz Tutma",
+      "newLead": "Täze Müşderi",
+      "documentUploaded": "Resminama Ýüklendi",
+      "acceptanceLetter": "Kabul Ediş Haty"
+    },
+    "messages": {
+      "statusChange": "Ýüz tutma ýagdaýyňyz {status} ýagdaýyna üýtgedildi"
+    }
+  },
+  "Apply": {
+    "title": "Maksatnama Ýüz Tut",
+    "steps": {
+      "info": "Maglumat",
+      "documents": "Resminamalar",
+      "payment": "Töleg",
+      "review": "Gözden Geçir",
+      "personalInfo": "Şahsy Maglumat",
+      "requiredDocuments": "Zerur Resminamalar",
+      "paymentInfo": "Töleg Maglumaty",
+      "reviewSubmit": "Gözden Geçir we Iber"
+    },
+    "labels": {
+      "fullName": "Doly Ady (pasportdaky ýaly)",
+      "email": "E-poçta Salgysy",
+      "phone": "Mobil Telefon Belgisi",
+      "country": "Ýurt",
+      "passport": "Pasport Belgisi",
+      "preferredIntake": "Islenýän Kabul Ediş",
+      "emergencyContactName": "Gyssagly Habarlaşylmaly Ady",
+      "emergencyContactPhone": "Gyssagly Habarlaşylmaly Telefon",
+      "emergencyContactRelationship": "Gatnaşyk",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "dateOfBirth": "Date of Birth",
+      "religion": "Religion",
+      "maritalStatus": "Marital Status",
+      "wechatId": "WeChat ID",
+      "address": "Home Address",
+      "city": "City",
+      "postalCode": "Postal Code",
+      "highestEducation": "Highest Education",
+      "schoolName": "School / University Name",
+      "majorField": "Major / Field of Study",
+      "graduationYear": "Graduation Year",
+      "gpaScore": "GPA / Score",
+      "chineseProficiency": "Chinese (HSK Level)",
+      "englishProficiency": "English Proficiency",
+      "testScore": "Test Score (IELTS/TOEFL)"
+    },
+    "placeholders": {
+      "fullName": "meselem, John Smith",
+      "email": "meselem, john@example.com",
+      "phone": "meselem, 555 123 4567",
+      "passport": "meselem, AB1234567",
+      "emergencyName": "meselem, Ene-ata ýa-da HOSSar ady",
+      "emergencyPhone": "meselem, 555 123 4567",
+      "relationship": "meselem, Ene-ata, Ýanýoldaş",
+      "firstName": "e.g. John",
+      "lastName": "e.g. Smith",
+      "selectGender": "Select gender",
+      "selectReligion": "Select religion",
+      "selectMaritalStatus": "Select marital status",
+      "wechatId": "e.g. wxid_abc123",
+      "address": "e.g. 123 Main Street, Apt 4B",
+      "city": "e.g. Cairo",
+      "postalCode": "e.g. 11511",
+      "selectEducation": "Select highest education",
+      "schoolName": "e.g. Cairo University",
+      "majorField": "e.g. Computer Science",
+      "graduationYear": "e.g. 2024",
+      "gpaScore": "e.g. 3.5 / 4.0",
+      "selectChinese": "Select HSK level",
+      "selectEnglish": "Select proficiency",
+      "testScore": "e.g. IELTS 6.5"
+    },
+    "hints": {
+      "phoneHint": "Telefon belgiňizi ýurt kody bolmazdan giriziň",
+      "passportHint": "Pasport belgiňizi edil görkezilişi ýaly giriziň"
+    },
+    "buttons": {
+      "continueToDocuments": "Resminamalara Dowam Et",
+      "continueToPayment": "Tölege Dowam Et",
+      "continueToReview": "Gözden Geçirmäge Dowam Et",
+      "submitApplication": "Ýüz Tutmany Iber",
+      "back": "Yza",
+      "uploadDocument": "Ýükle",
+      "selectFile": "Faýl Saýla",
+      "next": "Next"
+    },
+    "validation": {
+      "missingFieldsTitle": "Aşakdaky zerur öýjükleri dolduryň:",
+      "required": "Bu öýjük zerur"
+    },
+    "documents": {
+      "title": "Zerur Resminamalar",
+      "description": "Aşakdaky resminamalary ýükläň. Kabul edilýän formatlar: PDF, JPG, PNG (maksimum 10MB)",
+      "mandatory": "Hökmany",
+      "optional": "Meýletin",
+      "uploaded": "Ýüklendi",
+      "pending": "Garaşylýar"
+    },
+    "payment": {
+      "title": "Ýüz Tutma Tölegi",
+      "applicationFee": "Ýüz Tutma Tölegi",
+      "serviceFee": "Hyzmat Tölegi",
+      "total": "Jemi",
+      "payNow": "Häzir Töläň",
+      "payLater": "Soň Töläň"
+    },
+    "review": {
+      "title": "Ýüz Tutmaňyzy Gözden Geçiriň",
+      "personalDetails": "Şahsy Jikme-jiklikler",
+      "uploadedDocuments": "Ýüklener Resminamalar",
+      "confirmSubmit": "Berlen ähli maglumatlaryň dogrudygyny tassyklaýaryn",
+      "submitting": "Iberilýär...",
+      "success": "Ýüz Tutma Üstünlikli Iberildi!",
+      "successMessage": "Ýüz tutmaňyz iberildi. Tizara tassyklama e-poçtasyny alarsyňyz."
+    },
+    "errors": {
+      "generic": "Ýalňyşlyk döredi. Gaýtadan synanyşyň.",
+      "uploadFailed": "Resminama ýükläp bolmady. Gaýtadan synanyşyň.",
+      "paymentFailed": "Töleg şowsuz boldy. Gaýtadan synanyşyň."
+    },
+    "sections": {
+      "identity": "Identity & Personal Details",
+      "identitySubtitle": "Please provide your details as shown on your passport",
+      "contact": "Contact Information",
+      "address": "Home Address",
+      "education": "Education Background",
+      "educationSubtitle": "Your most recent academic qualification",
+      "language": "Language Proficiency",
+      "languageSubtitle": "Chinese and English levels for admission purposes",
+      "emergency": "Emergency Contact",
+      "emergencySubtitle": "Required for your safety abroad"
+    },
+    "options": {
+      "male": "Male",
+      "female": "Female",
+      "islam": "Islam",
+      "christianity": "Christianity",
+      "buddhism": "Buddhism",
+      "hinduism": "Hinduism",
+      "noReligion": "No Religion",
+      "other": "Other",
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "highSchool": "High School",
+      "diploma": "Diploma",
+      "bachelor": "Bachelor's Degree",
+      "master": "Master's Degree",
+      "doctorate": "Doctorate / PhD",
+      "noProficiency": "No Proficiency",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "native": "Native Speaker"
+    }
+  },
+  "AISearch": {
+    "placeholder": "Synap görüň: 'Pekinde 30000 RMB aşagynda Inženerçilik Magistri'",
+    "search": "Gözleg",
+    "filters": "AI düşündi",
+    "error": "Bir zat ýalňyş boldy. Gaýtadan synanyşyň."
+  },
+  "AIChat": {
+    "title": "Chen Wei",
+    "subtitle": "Siziň Okuw Maslahatçyňyz",
+    "typing": "Ýazýar...",
+    "greeting": "Salam! 👋 Men Chen Wei, siziň şahsy okuw maslahatçyňyz. Men size Hytaýda kämil maksatnamany tapmaga, soraglaryňyza jogap bermäge we hatda ýüz tutma prosesi boýunça ýol görkezmäge kömek etmek üçin şu ýerde. Bu gün size näme kömek edip bilerin?",
+    "inputPlaceholder": "Habaryňyzy ýazyň...",
+    "thinking": "Pikirlenýär...",
+    "error": "Bagyşlaň, men ýalňyşlyk bilen ýüzbe-ýüz boldum. Gaýtadan synanyşyň.",
+    "quickStart": "Çalt Başlangyç:",
+    "quickFind": "🎓 Maksatnamalary Tap",
+    "quickScholarship": "💰 Talyp Haklary",
+    "quickApply": "📝 Ýüz Tutmany Başla",
+    "chatHistory": "Söhbetdeşlik Taryhy",
+    "newChat": "Täze Söhbetdeşlik",
+    "noHistory": "Öňki söhbetdeşlik ýok",
+    "backToChat": "Söhbetdeşlige Dolan",
+    "loginPrompt": "🔐 Söhbetdeşlik taryhyňyzy saklamak we ýüz tutmalary yzarlamak üçin içeri giriň",
+    "login": "Içeri Gir",
+    "register": "Hasaba Alyş"
+  },
+  "PaymentDashboard": {
+    "title": "Tölegler",
+    "subtitle": "Ýüz tutma tölegleriňizi dolandyryň",
+    "totalAmount": "Jemi Mukdar",
+    "totalPaid": "Jemi Tölenen",
+    "pending": "Garaşylýar",
+    "rest": "Galan Mukdar",
+    "totalTransactions": "Jemi Transaksiýalar",
+    "successfullyProcessed": "Üstünlikli işlenildi",
+    "paymentDue": "töleg möhleti ýetdi",
+    "allTime": "Ähli wagt",
+    "amount": "Mukdar",
+    "status": "Ýagdaý",
+    "created": "Döredildi",
+    "method": "Usul",
+    "payNow": "Häzir Töläň",
+    "viewApplication": "Ýüz Tutmany Gör",
+    "paymentProof": "Töleg Subutnamasy",
+    "paymentRequest": {
+      "title": "Töleg Talaby",
+      "amount": "USD 200",
+      "description": "bu tölegi amala aşyryň",
+      "note": "Ýüz tutmaňyzy dowam etdirmek üçin tölegi tamamlaň."
+    },
+    "paymentStatuses": {
+      "completed": "Tamamlandy",
+      "pending": "Garaşylýar",
+      "processing": "Işlenilýär",
+      "failed": "Şowsuz",
+      "refunded": "Yzyna gaýtaryldy"
+    },
+    "types": {
+      "application_fee": "Ýüz Tutma Tölegi",
+      "service_fee": "Hyzmat Tölegi",
+      "tuition_deposit": "Okuw Tölegi Depoziti",
+      "full_tuition": "Doly Okuw Tölegi",
+      "accommodation": "Ýaşaýyş Ýeri",
+      "other": "Başga"
+    },
+    "assistance": {
+      "title": "Töleg Kömegi",
+      "description": "Sizde {count} sany garaşylýan töleg bar. Eger töleg kömegine mätäç bolsaňyz ýa-da soraglaryňyz bolsa:",
+      "point1": "Töleg kömegi üçin goldaw toparymyz bilen habarlaşyň",
+      "point2": "Töleg meýilnamalaryna laýyk gelýändigiňizi barlaň",
+      "point3": "Töleg usulyňyzyň goldanýandygyny tassyklaň"
+    },
+    "paidOn": "Tölendi",
+    "reference": "Salgylanma",
+    "verifiedByAdmin": "Admin tarapyndan tassyklanan",
+    "expires": "Möhleti gutarýar:",
+    "adminNote": "Admin Belligi:",
+    "paymentLinkExpired": "Töleg şiltemesiniň möhleti gutardy",
+    "document": "Resminama:",
+    "noPayments": "Töleg Ýok",
+    "noPaymentsDesc": "Sizde hiç hili garaşylýan töleg ýok.",
+    "contactSupport": "Goldaw Bilen Habarlaş"
+  },
+  "Refunds": {
+    "title": "Yzyna Gaýtarma Talaplary",
+    "statusTitle": "Yzyna Gaýtarma Ýagdaýy",
+    "requestButton": "Yzyna Gaýtarma Talap Et",
+    "submittedTitle": "Yzyna Gaýtarma Talaby Iberildi",
+    "submittedOn": "{date} senesinde iberildi",
+    "reasonLabel": "Sebäp",
+    "adminResponseLabel": "Admin Jogaby",
+    "rejectedTitle": "Ýüz Tutma Red Edildi",
+    "rejectedMessage": "Siz yzyna gaýtarmaga hukukly bolup bilersiňiz. Talap ibermek üçin düwmä basyň.",
+    "modalTitle": "Yzyna Gaýtarma Talap Et",
+    "modalDescription": "Yzyna gaýtarma talabyny iberiň. Näme üçin yzyna gaýtarma talap edýändigiňizi düşündiriň.",
+    "modalReasonLabel": "Yzyna Gaýtarma Sebäbi",
+    "modalPlaceholder": "Men red edildim, sebäbi...",
+    "submitButton": "Talaby Iber",
+    "cancelButton": "Ýatyr",
+    "successMessage": "Yzyna gaýtarma talaby üstünlikli iberildi",
+    "errorMessage": "Talaby iberip bolmady",
+    "table": {
+      "student": "Talyp",
+      "program": "Uniwersitet / Maksatnama",
+      "reason": "Sebäp",
+      "status": "Ýagdaý",
+      "date": "Sene",
+      "actions": "Hereketler",
+      "approve": "Tassykla",
+      "reject": "Red Et",
+      "noRequests": "Yzyna gaýtarma talaby tapylmady",
+      "approveTitle": "Yzyna Gaýtarma Talabyny Tassykla",
+      "rejectTitle": "Yzyna Gaýtarma Talabyny Red Et",
+      "approveDescription": "Bu talaby tassyklanan hökmünde bellär we ýüz tutma töleg ýagdaýyny yzyna gaýtarylan diýip täzelär.",
+      "rejectDescription": "Bu talaby red edilen hökmünde bellär.",
+      "adminResponsePlaceholder": "Talyba bellik goş..."
+    }
+  },
+  "Messages": {
+    "title": "Habarlar",
+    "subtitle": "Kabul ediş topary bilen aragatnaşyk",
+    "conversations": "Söhbetdeşlikler",
+    "unreadMessages": "Okalmadyk Habarlar",
+    "actionRequired": "Hereket Talap Edilýär",
+    "actionCompleted": "Tamamlandy",
+    "noMessages": "Entek habar ýok",
+    "noMessagesDesc": "Kabul ediş toparyndan gelen habarlar şu ýerde görner",
+    "reply": "Jogap Ber",
+    "replyingTo": "{name} -a jogap berilýär",
+    "typeReply": "Jogabyňyzy ýazyň...",
+    "sendReply": "Jogaby Iber",
+    "sending": "Iberilýär...",
+    "cancel": "Ýatyr",
+    "you": "Siz",
+    "admin": "Kabul Ediş Topary",
+    "replyTooltip": "Bu habara jogap ber",
+    "actionRequiredMessage": "Bu habara jogapberiň ýa-da talap edilýän hereketi tamamlaň.",
+    "takeAction": "Hereket Et",
+    "attachment": "birikme",
+    "attachments": "birikmeler"
+  },
+  "QSRankings": {
+    "meta": {
+      "title": "QS World University Rankings 2026 — Chinese Universities | Study at China",
+      "description": "Explore the QS World University Rankings 2026 for China. See how 72 Chinese universities rank globally, from Peking University (#14) to emerging research institutions. Find your ideal university in China."
+    },
+    "hero": {
+      "badge": "QS World University Rankings 2026",
+      "titleHighlight": "Chinese Universities",
+      "titleRest": "in Global Rankings",
+      "subtitle": "Discover where China's top universities stand in the QS World University Rankings 2026. From Peking University at #14 to emerging research powerhouses — find the perfect institution for your studies.",
+      "breadcrumb": "QS Rankings 2026",
+      "statRanked": "Ranked Universities",
+      "statHighest": "Highest Global Rank",
+      "statTop50": "In Global Top 50",
+      "statCities": "Cities Represented"
+    },
+    "content": {
+      "topUniversitiesTitle": "China's Top Globally-Ranked Universities",
+      "browseAllTitle": "Browse All Rankings",
+      "searchPlaceholder": "Search universities...",
+      "allCities": "All Cities",
+      "showing": "Showing",
+      "of": "of",
+      "universities": "universities",
+      "university": "university",
+      "inCity": "in",
+      "matching": "matching",
+      "noResults": "No universities found",
+      "noResultsHint": "Try adjusting your search or filters",
+      "overallScore": "Overall Score",
+      "score": "Score",
+      "world": "World",
+      "china": "China",
+      "ctaTitle": "Ready to Study at a Top-Ranked University?",
+      "ctaDescription": "Browse programs at China's QS-ranked universities. Find scholarships, compare tuition fees, and start your application today.",
+      "browseUniversities": "Browse Universities",
+      "explorePrograms": "Explore Programs",
+      "disclaimer": "Rankings data sourced from the QS World University Rankings 2026 published by Quacquarelli Symonds. For official and most up-to-date rankings, visit",
+      "visitSite": "topuniversities.com",
+      "viewProfile": "View Profile",
+      "tierTop50": "Top 50 Globally",
+      "tierTop200": "Top 51–200",
+      "tierTop500": "Top 201–500",
+      "tierRemaining": "501+"
+    }
+  },
+  "ApplyForm": {
+    "badge": "Syýahatyňyzy başlaň",
+    "title": "Hytaýda okamak üçin ýüz tutuň",
+    "subtitle": "Aşakdaky formany dolduryň, toparymyz kabul ediş prosesinde size ýol görkezmek üçin siz bilen habarlaşar.",
+    "firstName": "Ady",
+    "firstNamePlaceholder": "Adyňyzy giriziň",
+    "lastName": "Familiýasy",
+    "lastNamePlaceholder": "Familiýaňyzy giriziň",
+    "email": "E-poçta salgysy",
+    "emailPlaceholder": "your.email@example.com",
+    "whatsapp": "WhatsApp belgisi",
+    "whatsappPlaceholder": "WhatsApp belgiňizi giriziň",
+    "englishLevel": "Iňlis dili derejesi",
+    "englishLevelPlaceholder": "Iňlis dili derejeňizi saýlaň",
+    "englishLevels": {
+      "beginner": "Başlangyç",
+      "intermediate": "Orta",
+      "upper_intermediate": "Orta-ýokary",
+      "advanced": "Ýokary",
+      "native": "Ene dili"
+    },
+    "department": "Isleýän bölümiňiz",
+    "departmentPlaceholder": "Bölüm saýlaň",
+    "departments": {
+      "medicine": "Lukmançylyk",
+      "engineering": "Inženerçilik",
+      "computer_science": "Kompýuter ylymlary",
+      "business": "Işewürlik we ykdysadyýet",
+      "arts": "Sungat we dizaýn",
+      "law": "Hukuk",
+      "language": "Dil öwreniş",
+      "other": "Beýleki"
+    },
+    "startSemester": "Haçan başlamak isleýärsiňiz?",
+    "startSemesterPlaceholder": "Semestr saýlaň",
+    "semesters": {
+      "fall_2026": "Güýz 2026",
+      "spring_2026": "Ýaz 2026",
+      "fall_2027": "Güýz 2027"
+    },
+    "submit": "Ýüz tutmany ibermek",
+    "submitting": "Iberilýär...",
+    "successTitle": "Ýüz tutma iberildi!",
+    "successMessage": "Sag boluň! Toparymyz indiki ädimlerde size kömek etmek üçin ýakyn wagtda siz bilen habarlaşar.",
+    "successNewForm": "Täze ýüz tutma ibermek",
+    "errorMessage": "Ýalňyşlyk ýüze çykdy. Gaýtadan synanyşyň.",
+    "required": "Hökmany",
+    "emailSubject": "Ýüz tutmaňyz kabul edildi — Hytaýda okamak",
+    "emailGreeting": "Hormatly",
+    "emailBody": "Hytaýda okamaga bolan gyzyklanmanyňyz üçin sag boluň! Ýüz tutmanyňyzy aldyk we toparymyz kabul ediş prosesinde size ýol görkezmek üçin ýakyn wagtda siz bilen habarlaşar.",
+    "emailReceived": "Ýüz tutmanyňyz kabul edildi",
+    "emailTeamContact": "Kabul ediş toparymyz 24 sagadyň içinde siz bilen habarlaşar",
+    "emailNextSteps": "Indiki ädimler näme?",
+    "emailStep1": "Toparymyz ýüz tutma jikme-jiklikleňizi gözden geçirer",
+    "emailStep2": "24 sagadyň içinde WhatsApp ýa-da e-poçta arkaly siz bilen habarlaşylar",
+    "emailStep3": "Uniwersitet saýlamagy we kabul ediş prosesinde size ýol görkezeris",
+    "emailUrgent": "Gyssagly ýagdaýlar üçin bize ýüz tutuň:",
+    "emailRegards": "Hormat bilen,",
+    "emailTeamName": "Hytaýda Okamak Topary",
+    "emailVisitWebsite": "Web sahypamyza giriň"
+  }
 }

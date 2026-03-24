@@ -351,3 +351,48 @@ export async function sendAdminContactNotificationEmail(data: {
     emailType: 'admin_contact_notification',
   });
 }
+
+// --- LEAD FORM EMAIL SERVICE ---
+
+export async function sendApplicationLeadConfirmationEmail(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  department: string;
+  locale: string;
+}) {
+  const template = emailTemplates.applicationLeadConfirmation(data);
+  return sendEmail({
+    to: data.email,
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    emailType: 'lead_confirmation',
+  });
+}
+
+export async function sendAdminApplicationLeadEmail(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  englishLevel: string;
+  department: string;
+  startSemester: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+}) {
+  const recipients = getNotificationRecipients();
+  const template = emailTemplates.adminApplicationLeadNotification(data);
+  return sendEmail({
+    to: recipients.to,
+    cc: recipients.cc,
+    subject: template.subject,
+    html: template.html,
+    text: template.text,
+    emailType: 'admin_lead_notification',
+  });
+}

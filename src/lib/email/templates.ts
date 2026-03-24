@@ -505,6 +505,137 @@ export const emailTemplates = {
     }),
     text: `New Contact Form Submission\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'Not provided'}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`
   }),
+
+  // --- LEAD FORM TEMPLATES ---
+
+  // LEAD: Student Confirmation (Localized)
+  applicationLeadConfirmation: (data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    department: string;
+    locale: string;
+  }) => {
+    // Inline translations for email (server-side rendered, can't use next-intl)
+    const t: Record<string, Record<string, string>> = {
+      en: { subject: 'We Received Your Application — Study at China', greeting: 'Dear', body: 'Thank you for your interest in studying in China! We have received your application and our team will contact you shortly to guide you through the admission process.', received: 'Your application has been received', contact: 'Our admissions team will contact you within 24 hours', next: 'What happens next?', step1: 'Our team will review your application details', step2: 'You will be contacted via WhatsApp or email within 24 hours', step3: 'We will guide you through university selection and admission', urgent: 'For urgent matters, you can reach us at', regards: 'Best regards,', team: 'Study at China Team', visit: 'Visit Our Website' },
+      ar: { subject: 'استلمنا طلبك — الدراسة في الصين', greeting: 'عزيزي/عزيزتي', body: 'شكراً لاهتمامك بالدراسة في الصين! لقد استلمنا طلبك وسيتواصل معك فريقنا قريباً لإرشادك خلال عملية القبول.', received: 'تم استلام طلبك', contact: 'سيتواصل معك فريق القبول خلال 24 ساعة', next: 'ماذا يحدث بعد ذلك؟', step1: 'سيقوم فريقنا بمراجعة تفاصيل طلبك', step2: 'سيتم التواصل معك عبر واتساب أو البريد الإلكتروني خلال 24 ساعة', step3: 'سنرشدك في اختيار الجامعة وعملية القبول', urgent: 'للأمور العاجلة، يمكنك التواصل معنا على', regards: 'مع أطيب التحيات،', team: 'فريق الدراسة في الصين', visit: 'زيارة موقعنا' },
+      tr: { subject: 'Başvurunuzu Aldık — Çin\'de Eğitim', greeting: 'Sayın', body: 'Çin\'de eğitim almaya olan ilginiz için teşekkür ederiz! Başvurunuzu aldık ve ekibimiz kabul süreci boyunca size rehberlik etmek için en kısa sürede sizinle iletişime geçecektir.', received: 'Başvurunuz alındı', contact: 'Kabul ekibimiz 24 saat içinde sizinle iletişime geçecektir', next: 'Bundan sonra ne olacak?', step1: 'Ekibimiz başvuru detaylarınızı inceleyecek', step2: '24 saat içinde WhatsApp veya e-posta ile sizinle iletişime geçilecek', step3: 'Üniversite seçimi ve kabul sürecinde size rehberlik edeceğiz', urgent: 'Acil durumlar için bize ulaşabilirsiniz:', regards: 'Saygılarımla,', team: 'Çin\'de Eğitim Ekibi', visit: 'Web Sitemizi Ziyaret Edin' },
+      fa: { subject: 'درخواست شما دریافت شد — تحصیل در چین', greeting: 'با سلام', body: 'از علاقه شما به تحصیل در چین متشکریم! درخواست شما دریافت شده و تیم ما به زودی برای راهنمایی در فرآیند پذیرش با شما تماس خواهد گرفت.', received: 'درخواست شما دریافت شده است', contact: 'تیم پذیرش ما ظرف ۲۴ ساعت با شما تماس خواهد گرفت', next: 'مراحل بعدی چیست؟', step1: 'تیم ما جزئیات درخواست شما را بررسی خواهد کرد', step2: 'ظرف ۲۴ ساعت از طریق واتساپ یا ایمیل با شما تماس گرفته خواهد شد', step3: 'ما شما را در انتخاب دانشگاه و فرآیند پذیرش راهنمایی خواهیم کرد', urgent: 'برای موارد فوری، با ما تماس بگیرید:', regards: 'با احترام،', team: 'تیم تحصیل در چین', visit: 'بازدید از وبسایت ما' },
+      tk: { subject: 'Ýüz tutmanyňyz kabul edildi — Hytaýda okamak', greeting: 'Hormatly', body: 'Hytaýda okamaga bolan gyzyklanmanyňyz üçin sag boluň! Ýüz tutmanyňyzy aldyk we toparymyz kabul ediş prosesinde size ýol görkezmek üçin ýakyn wagtda siz bilen habarlaşar.', received: 'Ýüz tutmanyňyz kabul edildi', contact: 'Kabul ediş toparymyz 24 sagadyň içinde siz bilen habarlaşar', next: 'Indiki ädimler näme?', step1: 'Toparymyz ýüz tutma jikme-jiklikleňizi gözden geçirer', step2: '24 sagadyň içinde WhatsApp ýa-da e-poçta arkaly siz bilen habarlaşylar', step3: 'Uniwersitet saýlamagy we kabul ediş prosesinde size ýol görkezeris', urgent: 'Gyssagly ýagdaýlar üçin bize ýüz tutuň:', regards: 'Hormat bilen,', team: 'Hytaýda Okamak Topary', visit: 'Web sahypamyza giriň' },
+      zh: { subject: '我们已收到您的申请 — 留学中国', greeting: '亲爱的', body: '感谢您对留学中国的兴趣！我们已收到您的申请，我们的团队将尽快与您联系，指导您完成录取流程。', received: '您的申请已收到', contact: '我们的招生团队将在24小时内与您联系', next: '接下来会怎样？', step1: '我们的团队将审核您的申请详情', step2: '24小时内将通过WhatsApp或电子邮件与您联系', step3: '我们将指导您完成大学选择和录取流程', urgent: '如有紧急事项，请联系我们：', regards: '此致敬礼，', team: '留学中国团队', visit: '访问我们的网站' },
+      fr: { subject: 'Nous avons reçu votre candidature — Étudier en Chine', greeting: 'Cher(e)', body: 'Merci pour votre intérêt pour les études en Chine ! Nous avons reçu votre candidature et notre équipe vous contactera prochainement pour vous guider dans le processus d\'admission.', received: 'Votre candidature a été reçue', contact: 'Notre équipe d\'admission vous contactera dans les 24 heures', next: 'Que se passe-t-il ensuite ?', step1: 'Notre équipe examinera les détails de votre candidature', step2: 'Vous serez contacté(e) par WhatsApp ou e-mail dans les 24 heures', step3: 'Nous vous guiderons dans le choix de l\'université et l\'admission', urgent: 'Pour les urgences, vous pouvez nous joindre au', regards: 'Cordialement,', team: 'L\'équipe Étudier en Chine', visit: 'Visiter notre site web' },
+      es: { subject: 'Recibimos tu solicitud — Estudiar en China', greeting: 'Estimado/a', body: '¡Gracias por tu interés en estudiar en China! Hemos recibido tu solicitud y nuestro equipo te contactará pronto para guiarte en el proceso de admisión.', received: 'Tu solicitud ha sido recibida', contact: 'Nuestro equipo de admisiones te contactará en 24 horas', next: '¿Qué sucede después?', step1: 'Nuestro equipo revisará los detalles de tu solicitud', step2: 'Te contactaremos por WhatsApp o correo electrónico en 24 horas', step3: 'Te guiaremos en la selección de universidad y el proceso de admisión', urgent: 'Para asuntos urgentes, puedes contactarnos al', regards: 'Saludos cordiales,', team: 'Equipo de Estudiar en China', visit: 'Visita nuestro sitio web' },
+      ru: { subject: 'Мы получили вашу заявку — Обучение в Китае', greeting: 'Уважаемый(ая)', body: 'Спасибо за интерес к обучению в Китае! Мы получили вашу заявку, и наша команда свяжется с вами в ближайшее время, чтобы помочь с процессом поступления.', received: 'Ваша заявка получена', contact: 'Наша приёмная комиссия свяжется с вами в течение 24 часов', next: 'Что будет дальше?', step1: 'Наша команда рассмотрит детали вашей заявки', step2: 'С вами свяжутся по WhatsApp или электронной почте в течение 24 часов', step3: 'Мы поможем вам с выбором университета и процессом поступления', urgent: 'По срочным вопросам вы можете связаться с нами по телефону', regards: 'С уважением,', team: 'Команда «Обучение в Китае»', visit: 'Посетите наш сайт' },
+    };
+
+    const isRTL = ['ar', 'fa'].includes(data.locale);
+    const l = t[data.locale] || t.en;
+    const dir = isRTL ? 'rtl' : 'ltr';
+
+    return {
+      subject: l.subject,
+      html: EmailLayout({
+        title: l.received,
+        subtitle: l.contact,
+        previewText: l.body,
+        content: `
+          <div style="direction: ${dir}; text-align: ${isRTL ? 'right' : 'left'};">
+            <p>${l.greeting} ${data.firstName} ${data.lastName},</p>
+            <p>${l.body}</p>
+            
+            <div style="${STYLES.infoBox}; border-left: 4px solid ${COLORS.success};">
+              <p style="margin: 0; color: ${COLORS.success}; font-weight: 600;">✅ ${l.received}</p>
+              <p style="margin: 8px 0 0 0; color: ${COLORS.textLight};">${l.contact}</p>
+            </div>
+
+            <p><strong>${l.next}</strong></p>
+            <ul style="padding-left: 20px; color: ${COLORS.textLight};">
+              <li style="margin-bottom: 8px;">${l.step1}</li>
+              <li style="margin-bottom: 8px;">${l.step2}</li>
+              <li style="margin-bottom: 8px;">${l.step3}</li>
+            </ul>
+
+            <p style="color: ${COLORS.textLight}; font-size: 14px;">
+              ${l.urgent} <a href="tel:+905543081000" style="${STYLES.link}">+90 554 308 10 00</a>
+            </p>
+
+            <div style="text-align: center; margin-top: 32px;">
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com'}" style="${STYLES.button}">${l.visit}</a>
+            </div>
+
+            <p style="margin-top: 24px; color: ${COLORS.textLight}; font-size: 14px;">
+              ${l.regards}<br/>
+              <strong>${l.team}</strong>
+            </p>
+          </div>
+        `
+      }),
+      text: `${l.greeting} ${data.firstName},\n\n${l.body}\n\n${l.regards}\n${l.team}`
+    };
+  },
+
+  // ADMIN: New Lead from Application Form
+  adminApplicationLeadNotification: (data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    englishLevel: string;
+    department: string;
+    startSemester: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmContent?: string;
+    utmTerm?: string;
+  }) => ({
+    subject: `[New Lead] ${data.firstName} ${data.lastName} — ${data.department}`,
+    html: EmailLayout({
+      title: 'New Lead from Website',
+      subtitle: 'Application Form Submission',
+      previewText: `New lead: ${data.firstName} ${data.lastName} wants to study ${data.department}`,
+      content: `
+        <p>A new lead has been submitted via the website application form.</p>
+        
+        <div style="${STYLES.infoBox}">
+          <div style="${STYLES.infoLabel}">Name</div>
+          <div style="${STYLES.infoValue}">${data.firstName} ${data.lastName}</div>
+          
+          <div style="${STYLES.infoLabel}">Email</div>
+          <div style="${STYLES.infoValue}"><a href="mailto:${data.email}" style="${STYLES.link}">${data.email}</a></div>
+          
+          <div style="${STYLES.infoLabel}">WhatsApp</div>
+          <div style="${STYLES.infoValue}"><a href="https://wa.me/${data.phone.replace(/[^0-9]/g, '')}" style="${STYLES.link}">${data.phone}</a></div>
+          
+          <div style="${STYLES.infoLabel}">English Level</div>
+          <div style="${STYLES.infoValue}">${data.englishLevel}</div>
+          
+          <div style="${STYLES.infoLabel}">Department</div>
+          <div style="${STYLES.infoValue}">${data.department}</div>
+          
+          <div style="${STYLES.infoLabel}">Start Semester</div>
+          <div style="${STYLES.infoValue}" style="margin-bottom: 0;">${data.startSemester}</div>
+        </div>
+
+        ${(data.utmSource || data.utmMedium || data.utmCampaign) ? `
+        <div style="${STYLES.infoBox}; border-left: 4px solid ${COLORS.primary};">
+          <div style="${STYLES.infoLabel}">Marketing Attribution</div>
+          ${data.utmSource ? `<div style="font-size: 13px; color: ${COLORS.textLight}; margin-bottom: 4px;">Source: <strong>${data.utmSource}</strong></div>` : ''}
+          ${data.utmMedium ? `<div style="font-size: 13px; color: ${COLORS.textLight}; margin-bottom: 4px;">Medium: <strong>${data.utmMedium}</strong></div>` : ''}
+          ${data.utmCampaign ? `<div style="font-size: 13px; color: ${COLORS.textLight}; margin-bottom: 4px;">Campaign: <strong>${data.utmCampaign}</strong></div>` : ''}
+          ${data.utmContent ? `<div style="font-size: 13px; color: ${COLORS.textLight}; margin-bottom: 4px;">Content: <strong>${data.utmContent}</strong></div>` : ''}
+          ${data.utmTerm ? `<div style="font-size: 13px; color: ${COLORS.textLight}; margin-bottom: 4px;">Term: <strong>${data.utmTerm}</strong></div>` : ''}
+        </div>
+        ` : ''}
+
+        <div style="text-align: center; margin-top: 32px;">
+          <a href="https://wa.me/${data.phone.replace(/[^0-9]/g, '')}" style="${STYLES.button}">Contact on WhatsApp</a>
+        </div>
+      `
+    }),
+    text: `New Lead: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nPhone: ${data.phone}\nDepartment: ${data.department}\nEnglish: ${data.englishLevel}\nSemester: ${data.startSemester}${data.utmSource ? `\nUTM Source: ${data.utmSource}` : ''}${data.utmMedium ? `\nUTM Medium: ${data.utmMedium}` : ''}${data.utmCampaign ? `\nUTM Campaign: ${data.utmCampaign}` : ''}`
+  }),
 };
 
 export type EmailTemplate = keyof typeof emailTemplates;

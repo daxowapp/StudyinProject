@@ -1,1824 +1,1906 @@
 {
-    "Navbar": {
-        "home": "خانه",
-        "programs": "برنامه‌ها",
-        "universities": "دانشگاه‌ها",
-        "about": "درباره ما",
-        "contact": "تماس با ما",
-        "login": "ورود",
-        "dashboard": "داشبورد",
-        "admin": "مدیر",
-        "categories": {
-            "topRanked": {
-                "title": "برتر رتبه‌بندی شده",
-                "description": "دانشگاه‌های با بالاترین رتبه در چین را کاوش کنید."
-            },
-            "medical": {
-                "title": "دانشکده‌های پزشکی",
-                "description": "موسسات پیشرو در پزشکی و مراقبت‌های بهداشتی."
-            },
-            "engineering": {
-                "title": "مهندسی",
-                "description": "برترین دانشگاه‌های فنی برای مهندسی."
-            },
-            "business": {
-                "title": "تجارت و اقتصاد",
-                "description": "دانشکده‌های تجاری و موسسات اقتصادی برتر."
-            },
-            "arts": {
-                "title": "هنر و علوم انسانی",
-                "description": "مراکز هنر، فرهنگ و علوم انسانی."
-            },
-            "all": {
-                "title": "همه دانشگاه‌ها",
-                "description": "لیست کامل دانشگاه‌های شریک ما را مرور کنید."
-            }
-        },
-        "levels": {
-            "bachelor": {
-                "title": "مدرک کارشناسی",
-                "description": "برنامه‌های کارشناسی برای فارغ‌التحصیلان دبیرستان."
-            },
-            "master": {
-                "title": "مدرک کارشناسی ارشد",
-                "description": "برنامه‌های تحصیلات تکمیلی برای دارندگان مدرک کارشناسی."
-            },
-            "phd": {
-                "title": "برنامه‌های دکترا",
-                "description": "برنامه‌های تحقیقاتی دکترا."
-            },
-            "nonDegree": {
-                "title": "دوره‌های زبان چینی",
-                "description": "یادگیری زبان و فرهنگ چینی."
-            },
-            "diploma": {
-                "title": "دیپلم",
-                "description": "برنامه‌های فنی و حرفه‌ای."
-            },
-            "language": {
-                "title": "دوره زبان",
-                "description": "یادگیری زبان چینی."
-            },
-            "viewAll": "مشاهده همه برنامه‌ها"
-        },
-        "viewAllUniversities": "مشاهده همه دانشگاه‌ها",
-        "resources": {
-            "title": "منابع",
-            "scholarships": "بورسیه‌ها",
-            "howToApply": "نحوه درخواست",
-            "articles": "اطلاعات و منابع",
-            "contact": "تماس با ما",
-            "scholarshipFilter": "فیلتر بورسیه",
-            "scholarshipFilterDesc": "فیلتر دانشگاه‌ها بر اساس مزایای بورسیه",
-            "qsRankings": "رتبه‌بندی QS 2026",
-            "qsRankingsDesc": "دانشگاه‌های چینی در رتبه‌بندی جهانی QS"
-        },
-        "user": {
-            "myApplications": "درخواست‌های من",
-            "logout": "خروج",
-            "signIn": "ورود",
-            "getStarted": "شروع کنید",
-            "myAccount": "حساب من",
-            "account": "حساب"
-        },
-        "destinations": {
-            "title": "مقاصد",
-            "viewAll": "مشاهده همه مقاصد",
-            "beijing": {
-                "title": "پکن",
-                "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
-            },
-            "shanghai": {
-                "title": "شانگهای",
-                "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
-            },
-            "guangzhou": {
-                "title": "گوانگژو",
-                "description": "Southern metropolis with leading medical and engineering schools."
-            },
-            "wuhan": {
-                "title": "ووهان",
-                "description": "Historic education center with Wuhan University and HUST."
-            },
-            "hangzhou": {
-                "title": "هانگژو",
-                "description": "Tech hub and scenic city home to Zhejiang University."
-            },
-            "nanjing": {
-                "title": "نانجینگ",
-                "description": "Ancient capital with Nanjing University and Southeast University."
-            },
-            "chengdu": {
-                "title": "چنگدو",
-                "description": "Western China gateway with Sichuan University and affordable living."
-            },
-            "xian": {
-                "title": "شیان",
-                "description": "Historic Silk Road city with Xi'an Jiaotong University."
-            }
-        }
+  "Navbar": {
+    "home": "خانه",
+    "programs": "برنامه‌ها",
+    "universities": "دانشگاه‌ها",
+    "about": "درباره ما",
+    "contact": "تماس با ما",
+    "login": "ورود",
+    "dashboard": "داشبورد",
+    "admin": "مدیر",
+    "categories": {
+      "topRanked": {
+        "title": "برتر رتبه‌بندی شده",
+        "description": "دانشگاه‌های با بالاترین رتبه در چین را کاوش کنید."
+      },
+      "medical": {
+        "title": "دانشکده‌های پزشکی",
+        "description": "موسسات پیشرو در پزشکی و مراقبت‌های بهداشتی."
+      },
+      "engineering": {
+        "title": "مهندسی",
+        "description": "برترین دانشگاه‌های فنی برای مهندسی."
+      },
+      "business": {
+        "title": "تجارت و اقتصاد",
+        "description": "دانشکده‌های تجاری و موسسات اقتصادی برتر."
+      },
+      "arts": {
+        "title": "هنر و علوم انسانی",
+        "description": "مراکز هنر، فرهنگ و علوم انسانی."
+      },
+      "all": {
+        "title": "همه دانشگاه‌ها",
+        "description": "لیست کامل دانشگاه‌های شریک ما را مرور کنید."
+      }
     },
-    "Common": {
-        "loading": "در حال بارگذاری...",
-        "error": "خطایی رخ داد",
-        "submit": "ارسال",
-        "cancel": "لغو",
-        "save": "ذخیره",
-        "delete": "حذف",
-        "edit": "ویرایش",
-        "view": "مشاهده",
-        "back": "بازگشت"
+    "levels": {
+      "bachelor": {
+        "title": "مدرک کارشناسی",
+        "description": "برنامه‌های کارشناسی برای فارغ‌التحصیلان دبیرستان."
+      },
+      "master": {
+        "title": "مدرک کارشناسی ارشد",
+        "description": "برنامه‌های تحصیلات تکمیلی برای دارندگان مدرک کارشناسی."
+      },
+      "phd": {
+        "title": "برنامه‌های دکترا",
+        "description": "برنامه‌های تحقیقاتی دکترا."
+      },
+      "nonDegree": {
+        "title": "دوره‌های زبان چینی",
+        "description": "یادگیری زبان و فرهنگ چینی."
+      },
+      "diploma": {
+        "title": "دیپلم",
+        "description": "برنامه‌های فنی و حرفه‌ای."
+      },
+      "language": {
+        "title": "دوره زبان",
+        "description": "یادگیری زبان چینی."
+      },
+      "viewAll": "مشاهده همه برنامه‌ها"
     },
-    "Footer": {
-        "stayUpdated": "به‌روز باشید",
-        "getLatestUpdates": "برای آخرین اخبار مشترک شوید",
-        "subscribeText": "برای دریافت اخبار برنامه‌ها، بورسیه‌ها و مهلت‌های ثبت‌نام مشترک شوید.",
-        "description": "شریک مورد اعتماد شما برای کشف و درخواست پذیرش در دانشگاه‌های برتر چین.",
-        "explore": "کاوش",
-        "programs": "برنامه‌ها",
-        "universities": "دانشگاه‌ها",
-        "scholarships": "بورسیه‌ها",
-        "howToApply": "نحوه درخواست",
-        "faq": "سوالات متداول",
-        "forStudents": "برای دانشجویان",
-        "createAccount": "ایجاد حساب کاربری",
-        "trackApplication": "پیگیری درخواست",
-        "documentChecklist": "لیست مدارک",
-        "studentPortal": "پرتال دانشجویی",
-        "contact": "تماس با ما",
-        "rightsReserved": "تمامی حقوق محفوظ است.",
-        "designedBy": "طراحی و اجرا توسط",
-        "termsOfService": "شرایط خدمات",
-        "privacyPolicy": "سیاست حفظ حریم خصوصی",
-        "cookiePolicy": "سیاست کوکی‌ها"
+    "viewAllUniversities": "مشاهده همه دانشگاه‌ها",
+    "resources": {
+      "title": "منابع",
+      "scholarships": "بورسیه‌ها",
+      "howToApply": "نحوه درخواست",
+      "articles": "اطلاعات و منابع",
+      "contact": "تماس با ما",
+      "scholarshipFilter": "فیلتر بورسیه",
+      "scholarshipFilterDesc": "فیلتر دانشگاه‌ها بر اساس مزایای بورسیه",
+      "qsRankings": "رتبه‌بندی QS 2026",
+      "qsRankingsDesc": "دانشگاه‌های چینی در رتبه‌بندی جهانی QS"
     },
-    "ScholarshipCTA": {
-        "badge": "فرصت‌های بیشتری کشف کنید",
-        "title": "تمام گزینه‌های بورسیه را بررسی کنید",
-        "description": "مطمئن نیستید کدام بورسیه برای شما مناسب است؟ راهنمای کامل بورسیه ما را مرور کنید تا همه گزینه‌ها را مقایسه کنید، شرایط واجد شرایط بودن را درک کنید و مناسب‌ترین گزینه را برای سفر تحصیلی خود پیدا کنید.",
-        "viewAll": "مشاهده همه بورسیه‌ها",
-        "getAdvice": "مشاوره تخصصی دریافت کنید"
+    "user": {
+      "myApplications": "درخواست‌های من",
+      "logout": "خروج",
+      "signIn": "ورود",
+      "getStarted": "شروع کنید",
+      "myAccount": "حساب من",
+      "account": "حساب"
     },
-    "CscaCta": {
-        "badge": "اجباری از سال ۲۰۲۶",
-        "title": "آیا برای آزمون <span class=\"text-primary\">CSCA</span> آماده می‌شوید؟",
-        "titlePlain": "آیا برای آزمون CSCA آماده می‌شوید؟",
-        "description": "ارزیابی شایستگی تحصیلی چین (CSCA) اکنون یک شرط برای دریافت بورسیه‌های برتر است. در راهنمای جامع جدید ما، جزئیات کامل موضوعات، نمره‌دهی و استراتژی‌های آمادگی را دریافت کنید.",
-        "readGuide": "مطالعه راهنما",
-        "findPrograms": "یافتن برنامه‌ها",
-        "proTip1": {
-            "title": "نکته حرفه‌ای #1",
-            "text": "زبان چینی تخصصی نیاز به دایره لغات آکادمیک دارد، نه فقط HSK."
-        },
-        "proTip2": {
-            "title": "نکته حرفه‌ای #2",
-            "text": "بخش‌های ریاضی تمرکز زیادی بر هندسه دارند. مقاطع مخروطی را مرور کنید."
-        }
-    },
-    "CSCAGuide": {
-        "meta": {
-            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-        },
-        "backHome": "Back to Home",
-        "newRequirement": "New Requirement for 2026",
-        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-        "sections": {
-            "overview": {
-                "title": "Overview",
-                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-                "keyDates": {
-                    "title": "Key Dates",
-                    "launch": "2025: Official Launch",
-                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-                    "full": "2028: Full Implementation across all Universities"
-                }
-            },
-            "structure": {
-                "title": "Exam Structure",
-                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-                "table": {
-                    "subject": "Subject",
-                    "duration": "Duration",
-                    "questions": "Questions",
-                    "requirement": "Requirement",
-                    "chinese": {
-                        "name": "Specialized Chinese",
-                        "req": "Humanities/Science"
-                    },
-                    "math": {
-                        "name": "Mathematics",
-                        "req": "Mandatory"
-                    },
-                    "physics": {
-                        "name": "Physics",
-                        "req": "Optional / Major-dependent"
-                    },
-                    "chemistry": {
-                        "name": "Chemistry",
-                        "req": "Optional / Major-dependent"
-                    }
-                }
-            },
-            "subjects": {
-                "title": "Subject Details & Syllabus",
-                "chinese": {
-                    "title": "Specialized Chinese",
-                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-                    "char": {
-                        "title": "Character Recognition",
-                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-                    },
-                    "reading": {
-                        "title": "Reading Comprehension",
-                        "desc": "Highest weight. Sci/Tech/Social essays."
-                    },
-                    "words": {
-                        "title": "Word Distinction",
-                        "desc": "Synonyms, academic vocabulary."
-                    },
-                    "sentences": {
-                        "title": "Sentence/Paragraph",
-                        "desc": "Ordering sentences, completing logic."
-                    }
-                },
-                "math": {
-                    "title": "Mathematics",
-                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-                    "note": "Both Chinese and English versions available.",
-                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-                },
-                "chem": {
-                    "title": "Chemistry",
-                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-                },
-                "phys": {
-                    "title": "Physics",
-                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
-                }
-            },
-            "fees_and_process": {
-                "title": "Application Process & Fees",
-                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-            },
-            "formats": {
-                "title": "Test Modes",
-                "online": {
-                    "title": "Online Proctored",
-                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
-                },
-                "computer": {
-                    "title": "Computer-Based",
-                    "desc": "At official test centers (classrooms). Better stability."
-                },
-                "paper": {
-                    "title": "Paper-Based",
-                    "desc": "Traditional format. Limited regions."
-                }
-            },
-            "faq": {
-                "title": "Frequently Asked Questions",
-                "q1": {
-                    "q": "Does the CSCA replace the HSK?",
-                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
-                },
-                "q2": {
-                    "q": "Can I take it in English?",
-                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-                },
-                "q3": {
-                    "q": "How long is the score valid?",
-                    "a": "CSCA results are valid for <strong>2 years</strong>."
-                },
-                "q4": {
-                    "q": "Who is exempt from the CSCA?",
-                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-                },
-                "q5": {
-                    "q": "Are scores required for 2026 intake?",
-                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-                },
-                "comparison": {
-                    "title": "CSCA vs. HSK",
-                    "feature": "Feature",
-                    "hsk": "HSK",
-                    "csca": "CSCA",
-                    "focus": "Focus",
-                    "focusHsk": "Daily Communication",
-                    "focusCsca": "Academic Readiness",
-                    "vocab": "Vocabulary",
-                    "vocabHsk": "Life/Everyday",
-                    "vocabCsca": "Technical/Academic",
-                    "req": "Requirement",
-                    "reqHsk": "Language Cert",
-                    "reqCsca": "Academic Entrance"
-                }
-            },
-            "sidebar": {
-                "title": "Important Details",
-                "dates": {
-                    "title": "Dates",
-                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
-                },
-                "prep": {
-                    "title": "Preparation",
-                    "desc": "Difficulty level: Junior/Senior High"
-                },
-                "passing": {
-                    "title": "Fees",
-                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-                },
-                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-                "register": "Official Registration Site",
-                "tutor": {
-                    "title": "Fast-Track with Study at China",
-                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-                    "button": "Apply With Us"
-                }
-            }
-        }
-    },
-    "Hero": {
-        "admissionsOpen": "پذیرش برای سال ۲۰۲۶ باز است",
-        "searchPlaceholder": "چه چیزی می‌خواهید مطالعه کنید؟ (به عنوان مثال، علوم کامپیوتر، پزشکی)",
-        "title": "آینده شما در چین از اینجا شروع می‌شود",
-        "subtitle": "به <bold>۵۰,۰۰۰+ دانشجو</bold> در دانشگاه‌های برتر چین بپیوندید",
-        "searchButton": "جستجو در <bold>۵۰۰+</bold> برنامه",
-        "searchWord": "جستجو در",
-        "programsWord": "برنامه",
-        "browseByCategory": "مرور بر اساس دسته‌بندی",
-        "scrollToExplore": "برای کاوش اسکرول کنید",
-        "stats": {
-            "universities": "دانشگاه",
-            "students": "دانشجو",
-            "success": "موفقیت",
-            "scholarships": "بورسیه"
-        },
-        "tabs": {
-            "programs": "برنامه‌ها",
-            "universities": "دانشگاه‌ها",
-            "scholarships": "بورسیه‌ها"
-        },
-        "placeholders": {
-            "degree": "مقطع تحصیلی",
-            "field": "رشته تحصیلی",
-            "city": "شهر",
-            "language": "زبان",
-            "budget": "بودجه (دلار/سال)",
-            "scholarship": "بورسیه",
-            "duration": "مدت زمان"
-        },
-        "options": {
-            "any": "هر کدام",
-            "all": "همه"
-        },
-        "budget": {
-            "under3k": "Under $3,000",
-            "3kTo5k": "$3,000 - $5,000",
-            "5kTo8k": "$5,000 - $8,000",
-            "above8k": "Above $8,000"
-        },
-        "scholarship": {
-            "allPrograms": "All Programs",
-            "available": "Scholarship Available",
-            "full": "Full Scholarship",
-            "partial": "Partial Scholarship"
-        },
-        "duration": {
-            "1year": "1 Year",
-            "2years": "2 Years",
-            "3years": "3 Years",
-            "4years": "4 Years",
-            "5plus": "5+ Years"
-        },
-        "categories": {
-            "mba": "MBA Programs",
-            "engineering": "Engineering",
-            "medicine": "Medicine (MBBS)",
-            "cs": "Computer Science",
-            "fullScholarship": "Full Scholarship",
-            "englishTaught": "English Taught"
-        }
-    },
-    "WhyStudy": {
-        "badge": "چرا چین را انتخاب کنید",
-        "title": "دروازه شما به سوی <gradient>موفقیت جهانی</gradient>",
-        "description": "چین خرد باستانی را با نوآوری‌های پیشرفته ترکیب می‌کند و تجربه‌ای آموزشی بی‌نظیر را در قلب قدرت اقتصادی آسیا به دانشجویان بین‌المللی ارائه می‌دهد.",
-        "cta": {
-            "explore": "کاوش برنامه‌ها",
-            "download": "دانلود راهنما"
-        },
-        "features": {
-            "worldClass": {
-                "title": "دانشگاه‌های در کلاس جهانی",
-                "description": "در موسسات با رتبه جهانی با امکانات تحقیقاتی پیشرفته و اساتید مشهور تحصیل کنید."
-            },
-            "affordable": {
-                "title": "کیفیت عالی با هزینه مناسب",
-                "description": "آموزش عالی با هزینه‌های رقابتی و فرصت‌های بورسیه سخاوتمندانه تا ۱۰۰٪."
-            },
-            "career": {
-                "title": "سکوی پرتاب شغلی",
-                "description": "دسترسی به بزرگترین اقتصاد آسیا با فرصت‌های کارآموزی و شغلی بی‌نظیر."
-            },
-            "safe": {
-                "title": "امن و پرجنب‌وجوش",
-                "description": "یکی از امن‌ترین کشورهای جهان را با یک جامعه بین‌المللی پررونق تجربه کنید."
-            },
-            "culture": {
-                "title": "غوطه‌وری فرهنگی",
-                "description": "در حالی که در شهرهای فوق‌مدرن و پویا زندگی می‌کنید، ۵۰۰۰ سال تاریخ را کشف کنید."
-            },
-            "network": {
-                "title": "شبکه جهانی",
-                "description": "به جامعه‌ای متشکل از ۵۰۰,۰۰۰+ دانشجوی بین‌المللی از ۲۰۰+ کشور بپیوندید."
-            },
-            "english": {
-                "title": "برنامه‌های انگلیسی",
-                "description": "از بین ۱,۰۰۰+ برنامه که کاملاً به زبان انگلیسی در تمام رشته‌ها تدریس می‌شوند، انتخاب کنید."
-            },
-            "recognition": {
-                "title": "به رسمیت شناخته شده در سراسر جهان",
-                "description": "مدرک‌هایی کسب کنید که توسط یونسکو، سازمان بهداشت جهانی و نهادهای حرفه‌ای در سطح جهانی به رسمیت شناخته شده‌اند."
-            }
-        }
-    },
-    "HowItWorks": {
-        "badge": "فرآیند سریع برق‌آسا",
-        "title": "از درخواست تا <gradient>پذیرش</gradient>",
-        "description": "یک سفر ۶ مرحله‌ای ساده که طراحی شده تا شما را از مرور برنامه‌ها تا دریافت نامه پذیرش در کمترین زمان ممکن برساند.",
-        "cta": {
-            "button": "درخواست خود را همین حالا شروع کنید",
-            "time": "میانگین زمان تکمیل: <bold>۱۵ دقیقه</bold>"
-        },
-        "steps": {
-            "discover": {
-                "title": "کشف برنامه‌ها",
-                "description": "مرور ۵۰۰+ برنامه از دانشگاه‌های برتر چین که متناسب با اهداف شما هستند."
-            },
-            "profile": {
-                "title": "ایجاد پروفایل",
-                "description": "حساب خود را تنظیم کنید و پروفایل تحصیلی خود را در چند دقیقه تکمیل کنید."
-            },
-            "upload": {
-                "title": "آپلود مدارک",
-                "description": "گواهینامه‌ها، ریزنمرات و مدارک مورد نیاز را به صورت امن ارسال کنید."
-            },
-            "scholarship": {
-                "title": "انتخاب نوع بورسیه",
-                "description": "هر دانشگاه انواع بورسیه‌هایی دارد. یکی را انتخاب کنید و درخواست دهید."
-            },
-            "pay": {
-                "title": "انتخاب نوع بورسیه",
-                "description": "هر دانشگاه انواع بورسیه‌هایی دارد. یکی را انتخاب کنید و درخواست دهید."
-            },
-            "track": {
-                "title": "پیگیری پیشرفت",
-                "description": "وضعیت درخواست خود را با به‌روزرسانی‌ها و اعلان‌های بی‌درنگ نظارت کنید."
-            },
-            "admission": {
-                "title": "دریافت پذیرش",
-                "description": "نامه پیشنهاد، مدارک ویزا را دریافت کنید و سفر خود را آغاز کنید!"
-            }
-        }
-    },
-    "Stats": {
-        "badge": "تأثیر ما",
-        "title": "مورد اعتماد هزاران نفر در سراسر جهان",
-        "description": "به جامعه جهانی دانشجویان موفقی بپیوندید که از طریق پلتفرم ما به رویاهای خود دست یافته‌اند",
-        "items": {
-            "universities": {
-                "label": "دانشگاه‌های همکار",
-                "description": "موسسات با رتبه برتر"
-            },
-            "students": {
-                "label": "دانشجویان بین‌المللی",
-                "description": "از ۲۰۰+ کشور"
-            },
-            "programs": {
-                "label": "برنامه‌های موجود",
-                "description": "تمام رشته‌های تحصیلی"
-            },
-            "success": {
-                "label": "نرخ موفقیت",
-                "description": "تایید پذیرش"
-            },
-            "countries": {
-                "label": "کشورهای نمایندگی شده",
-                "description": "جامعه جهانی"
-            },
-            "scholarships": {
-                "label": "بورسیه‌های اعطا شده",
-                "description": "حمایت مالی"
-            },
-            "time": {
-                "label": "زمان درخواست",
-                "description": "فرآیند سریع و آسان"
-            },
-            "employment": {
-                "label": "اشتغال فارغ‌التحصیلان",
-                "description": "در عرض ۶ ماه"
-            }
-        }
-    },
-    "FeaturedPrograms": {
-        "badge": "برنامه‌های ویژه",
-        "title": "برنامه‌های محبوب",
-        "description": "محبوب‌ترین برنامه‌های ما را در برترین دانشگاه‌های چین کاوش کنید",
-        "duration": "مدت دوره",
-        "tuition": "شهریه/سال",
-        "explore": "بررسی برنامه",
-        "viewAll": "مشاهده همه برنامه‌ها",
-        "fastTrack": "مسیر سریع"
-    },
-    "FeaturedUniversities": {
-        "badge": "دانشگاه‌های برتر",
-        "title": "دانشگاه‌های ممتاز",
-        "description": "در معتبرترین موسسات چین تحصیل کنید",
-        "fastTrack": "مسیر سریع",
-        "programs": "برنامه‌ها",
-        "tuitionFrom": "شهریه از",
-        "students": "دانشجویان",
-        "viewDetails": "مشاهده جزئیات",
-        "viewAll": "مشاهده همه دانشگاه‌ها"
-    },
-    "Scholarships": {
-        "badge": "حمایت مالی",
-        "title": "بورسیه‌ها و کمک‌های مالی",
-        "description": "تحصیل در چین مقرون به صرفه است. فرصت‌های مختلف بورسیه تحصیلی موجود برای دانشجویان بین‌المللی را کاوش کنید.",
-        "items": {
-            "csc": {
-                "title": "بورسیه دولت چین (CSC)",
-                "description": "بورسیه کامل یا جزئی برای دانشجویان بین‌المللی. شامل شهریه، اسکان و کمک هزینه.",
-                "amount": "تا ۱۰,۰۰۰ دلار/سال"
-            },
-            "university": {
-                "title": "بورسیه‌های دانشگاهی",
-                "description": "بورسیه‌های مبتنی بر شایستگی که مستقیماً توسط دانشگاه‌ها برای متقاضیان برجسته ارائه می‌شود.",
-                "amount": "تا ۸,۰۰۰ دلار/سال"
-            },
-            "provincial": {
-                "title": "بورسیه‌های دولت استانی",
-                "description": "بورسیه‌هایی که توسط دولت‌های محلی برای جذب استعدادهای بین‌المللی به مناطق خاص تأمین می‌شود.",
-                "amount": "تا ۶,۰۰۰ دلار/سال"
-            }
-        },
-        "awardAmount": "مبلغ بورسیه",
-        "learnMore": "بیشتر بدانید",
-        "stats": {
-            "scholarshipOptions": "Scholarship Options",
-            "universities": "Universities",
-            "programs": "Programs",
-            "awarded": "اعطا شده سالانه",
-            "funding": "دریافت بودجه",
-            "full": "بورسیه‌های کامل",
-            "eligible": "برنامه‌های واجد شرایط"
-        },
-        "viewAll": "مشاهده همه بورسیه‌ها",
-        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-        "popular": {
-            "title": "Featured & Popular Scholarships"
-        },
-        "tabs": {
-            "search": "Search Scholarships",
-            "about": "About Scholarships"
-        },
-        "search": {
-            "filter": "Filters",
-            "clearAll": "Clear All",
-            "searchPlaceholder": "Search program or university...",
-            "category": "Category",
-            "all": "All",
-            "fullScholarship": "Full Scholarship (100%)",
-            "partialScholarship": "Partial Scholarship",
-            "city": "City",
-            "university": "University",
-            "degree": "Degree Level",
-            "language": "Language",
-            "semester": "Semester",
-            "spring": "Spring",
-            "autumn": "Autumn",
-            "freeAccommodation": "Free Accommodation",
-            "monthlyStipend": "Monthly Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "scholarshipOptions": "scholarship options at",
-            "universities": "universities",
-            "noResults": "No scholarships found",
-            "noResultsDescription": "Try adjusting your filters to see more results.",
-            "programsAvailable": "Programs",
-            "upTo": "Up to",
-            "accommodation": "Accommodation",
-            "stipend": "Stipend",
-            "insurance": "Insurance",
-            "program": "Program",
-            "teachingLanguage": "Language",
-            "startingDate": "Intake",
-            "scholarshipCoverage": "Original Tuition",
-            "youNeedToPay": "You Need To Pay",
-            "tuition": "Tuition",
-            "free": "Free",
-            "moreOptions": "More Options",
-            "learnMore": "Learn More"
-        },
-        "detail": {
-            "backToSearch": "Back to Search",
-            "scholarshipAvailable": "Scholarship Available",
-            "programDetails": "Program Details",
-            "degree": "Degree",
-            "duration": "Duration",
-            "language": "Language",
-            "intake": "Intake",
-            "availableScholarships": "Available Scholarships",
-            "noScholarships": "No scholarships are currently available for this program.",
-            "tuitionCoverage": "Tuition Coverage",
-            "freeAccommodation": "Free Accommodation",
-            "stipend": "Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "originalTuition": "Original Tuition",
-            "youPay": "You Need to Pay",
-            "serviceFee": "Service Fee",
-            "applyNow": "Apply for this Scholarship",
-            "university": "University",
-            "viewUniversity": "View University Profile",
-            "viewProgram": "View Program Details"
-        },
-        "about": {
-            "howItWorks": "How Scholarships Work",
-            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-            "scholarshipCoverage": "Scholarship Coverage",
-            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-            "serviceFees": "Service & Processing Fees",
-            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-            "scholarshipTypes": "Common Scholarship Types",
-            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-            "searchPrograms": "Search Eligible Programs",
-            "requiredDocuments": "Required Documents",
-            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-            "faq": "Frequently Asked Questions",
-            "faq1Question": "Do I need to know Chinese to get a scholarship?",
-            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-            "faq2Question": "Can I work while studying?",
-            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-            "faq3Question": "What happens if I fail my classes?",
-            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-            "faq4Question": "How long does the application process take?",
-            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-        }
-    },
-    "Testimonials": {
-        "badge": "داستان‌های موفقیت",
-        "title": "آنچه دانشجویان ما می‌گویند",
-        "description": "از دانشجویانی بشنوید که با موفقیت از طریق پلتفرم ما درخواست داده‌اند و اکنون در چین در حال پیشرفت هستند.",
-        "testimonials": {
-            "sarah": {
-                "quote": "تحصیل در تسینگهوا تجربه‌ای بود که زندگی‌ام را تغییر داد. پردیس زیباست و اساتید در سطح جهانی هستند. من هم از نظر علمی و هم شخصی رشد کرده‌ام.",
-                "program": "علوم کامپیوتر",
-                "university": "دانشگاه تسینگهوا",
-                "country": "ایالات متحده آمریکا"
-            },
-            "ahmed": {
-                "quote": "فرآیند درخواست به لطف Studyatchina روان بود. من اکنون در حال تحصیل در مقطع کارشناسی ارشد مهندسی عمران هستم و از هر لحظه آن لذت می‌برم.",
-                "program": "مهندسی عمران",
-                "university": "دانشگاه ججیانگ",
-                "country": "مصر"
-            },
-            "maria": {
-                "quote": "شانگهای شهری شگفت‌انگیز است! من عاشق فرهنگ، غذا و دوستانی هستم که اینجا پیدا کرده‌ام. بورسیه‌ای که دریافت کردم همه چیز را ممکن کرد.",
-                "program": "تجارت بین‌الملل",
-                "university": "دانشگاه فودان",
-                "country": "اسپانیا"
-            }
-        },
-        "averageRating": "میانگین امتیاز",
-        "reviews": "نظرات",
-        "satisfaction": "رضایت"
-    },
-    "Partners": {
-        "badge": "شرکای مورد اعتماد",
-        "title": "دانشگاه‌های همکار",
-        "description": "ما با معتبرترین موسسات چین همکاری می‌کنیم تا بهترین فرصت‌های آموزشی را برای شما فراهم کنیم",
-        "recognitions": {
-            "unesco": {
-                "title": "به رسمیت شناخته شده توسط یونسکو",
-                "description": "تمام دانشگاه‌های همکار توسط یونسکو به رسمیت شناخته شده‌اند"
-            },
-            "government": {
-                "title": "تایید شده توسط دولت",
-                "description": "به طور رسمی توسط وزارت آموزش چین تایید شده است"
-            },
-            "accredited": {
-                "title": "دارای اعتبار جهانی",
-                "description": "مدارک تحصیلی در بیش از ۱۸۰ کشور جهان به رسمیت شناخته می‌شود"
-            }
-        }
-    },
-    "FAQ": {
-        "badge": "سوالی دارید؟",
-        "title": "سوالات متداول",
-        "description": "پاسخ سوالات رایج در مورد تحصیل در چین را بیابید",
-        "items": {
-            "deadline": {
-                "question": "مهلت درخواست چه زمانی است؟",
-                "answer": "مهلت‌ها بسته به دانشگاه و برنامه متفاوت است. به طور کلی، برای ورودی سپتامبر، درخواست‌ها بین مارس و ژوئن بسته می‌شوند. برای تاریخ‌های دقیق به صفحات برنامه خاص مراجعه کنید."
-            },
-            "language": {
-                "question": "آیا برای تحصیل در چین باید چینی بلد باشم؟",
-                "answer": "لزوماً نه! هزاران برنامه به زبان انگلیسی برای مقاطع کارشناسی، کارشناسی ارشد و دکترا وجود دارد. با این حال، یادگیری مقداری چینی پایه برای زندگی روزمره توصیه می‌شود."
-            },
-            "work": {
-                "question": "آیا می‌توانم در حین تحصیل کار کنم؟",
-                "answer": "دانشجویان بین‌المللی می‌توانند با اجازه دانشگاه و اداره مهاجرت به صورت پاره‌وقت کار کنند یا دوره کارآموزی بگذرانند. سیاست‌ها در سال‌های اخیر انعطاف‌پذیرتر شده‌اند."
-            },
-            "scholarships": {
-                "question": "چگونه برای بورسیه تحصیلی اقدام کنم؟",
-                "answer": "شما می‌توانید هنگام ارسال درخواست خود، مستقیماً از طریق پلتفرم ما برای بورسیه تحصیلی اقدام کنید. ما شما را در مورد مدارک مورد نیاز برای بورسیه‌های CSC و دانشگاهی راهنمایی خواهیم کرد."
-            },
-            "visa": {
-                "question": "شرایط ویزا چیست؟",
-                "answer": "شما به یک پاسپورت معتبر، نامه پذیرش و فرم JW202 از دانشگاه خود نیاز دارید. ما راهنمایی و پشتیبانی جامع ویزا را در طول فرآیند ارائه می‌دهیم."
-            },
-            "process": {
-                "question": "فرآیند درخواست چقدر طول می‌کشد؟",
-                "answer": "فرآیند درخواست معمولاً ۲-۴ هفته طول می‌کشد. پس از ارسال، دانشگاه‌ها معمولاً در عرض ۴-۸ هفته پاسخ می‌دهند. ما شما را در هر مرحله در جریان قرار می‌دهیم."
-            }
-        },
-        "seeAll": "مشاهده همه سوالات متداول",
-        "contactSupport": "تماس با پشتیبانی",
-        "footer": "هنوز سوالی دارید؟ تیم پشتیبانی ما ۲۴ ساعته در ۷ روز هفته آماده کمک به شماست."
-    },
-    "Destinations": {
-        "pageTitle": "مقاصد تحصیلی",
-        "badge": "مقاصد تحصیلی در چین",
-        "heroTitle": "شهرهای چین را",
-        "heroSubtitle": "کشف کنید",
-        "heroDescription": "از پایتخت تاریخی پکن تا آسمان‌خراش‌های مدرن شانگهای — پویاترین شهرهای چین را کشف کنید و مکان مناسب سفر تحصیلی خود را بیابید.",
-        "statCities": "شهر موجود",
-        "statUniversities": "مجموع دانشگاه‌ها",
-        "statTopCity": "دانشگاه در {city}",
-        "featuredTitle": "مقاصد برجسته",
-        "featuredSubtitle": "محبوب‌ترین شهرها برای دانشجویان بین‌المللی در چین",
-        "allCitiesTitle": "شهرهای بیشتر",
-        "allCitiesSubtitle": "دانشگاه‌های شهرهای بیشتر چین را کشف کنید",
-        "university": "دانشگاه",
-        "universities": "دانشگاه",
-        "explorePrograms": "مشاهده برنامه‌ها"
-    },
-    "Universities": {
-        "title": "دانشگاه‌های برتر چین را کاوش کنید",
-        "subtitle": "بیش از {count}+ مؤسسه معتبر در سراسر چین را کشف کنید. از پروژه ۹۸۵ تا دانشگاه‌های لیگ C9.",
-        "error": {
-            "title": "بارگذاری دانشگاه‌ها ممکن نیست",
-            "hint": "راهنما: {hint}"
-        },
-        "search": {
-            "placeholder": "جستجو بر اساس نام دانشگاه، شهر یا رتبه...",
-            "label": "جستجو",
-            "universityPlaceholder": "نام دانشگاه...",
-            "searching": "در حال جستجو..."
-        },
-        "filters": {
-            "title": "فیلترها",
-            "description": "محدود کردن جستجوی دانشگاه",
-            "clear": "پاک کردن فیلترها",
-            "clearAll": "پاک کردن همه فیلترها",
-            "city": "شهر",
-            "allCities": "همه شهرها",
-            "institutionType": "نوع مؤسسه",
-            "allTypes": "همه انواع",
-            "universityCategory": "دسته‌بندی دانشگاه",
-            "allCategories": "همه دسته‌ها",
-            "rankingRecognition": "رتبه‌بندی و اعتبار",
-            "specialFeatures": "ویژگی‌های خاص",
-            "institutionTypes": {
-                "university": "دانشگاه",
-                "college": "کالج",
-                "languageInstitute": "مؤسسه زبان",
-                "vocationalSchool": "مدرسه حرفه‌ای",
-                "technicalInstitute": "مؤسسه فنی"
-            },
-            "categories": {
-                "public": "دولتی",
-                "private": "خصوصی",
-                "research": "تحقیقاتی",
-                "comprehensive": "جامع",
-                "specialized": "تخصصی",
-                "vocational": "حرفه‌ای"
-            },
-            "rankings": {
-                "project985": "پروژه ۹۸۵",
-                "project211": "پروژه ۲۱۱",
-                "doubleFirstClass": "کلاس اول دوگانه"
-            },
-            "features": {
-                "fastTrack": "پذیرش سریع",
-                "scholarships": "بورسیه موجود",
-                "englishPrograms": "برنامه‌های انگلیسی"
-            }
-        },
-        "stats": {
-            "title": "آمار سریع",
-            "total": "کل دانشگاه‌ها",
-            "showing": "نمایش",
-            "cities": "شهرها"
-        },
-        "sort": {
-            "label": "مرتب‌سازی بر اساس",
-            "name": "نام: الف-ی",
-            "programs": "بیشترین برنامه‌ها",
-            "city": "شهر",
-            "tuitionLow": "Tuition: Low to High",
-            "tuitionHigh": "Tuition: High to Low",
-            "ranking": "Best Ranking"
-        },
-        "noResults": {
-            "title": "دانشگاهی یافت نشد",
-            "description": "فیلترها یا معیارهای جستجو را تنظیم کنید"
-        },
-        "results": {
-            "universities": "universities",
-            "showMore": "Show {count} more",
-            "showingOf": "Showing {visible} of {total}"
-        },
-        "compare": {
-            "title": "Compare Universities",
-            "criteria": "Criteria",
-            "location": "Location",
-            "ranking": "Ranking",
-            "programs": "Programs",
-            "tuition": "Tuition",
-            "levels": "Study Levels",
-            "languages": "Languages",
-            "scholarship": "Scholarship",
-            "fastTrack": "Fast Track",
-            "cscaExam": "CSCA Exam",
-            "badges": "Accreditations",
-            "clearAll": "Clear All",
-            "selected": "{count} selected",
-            "compareNow": "Compare Now"
-        }
-    },
-    "Programs": {
-        "title": "برنامه ایده‌آل خود را کشف کنید",
-        "subtitle": "بیش از {count}+ برنامه از دانشگاه‌های برتر چین را مرور کنید. بهترین تطابق را برای سفر تحصیلی خود پیدا کنید.",
-        "filters": {
-            "title": "فیلترها",
-            "active": "فیلترهای فعال:",
-            "clear": "پاک کردن فیلترها",
-            "clearAll": "پاک کردن همه فیلترها",
-            "search": "جستجو",
-            "searchPlaceholder": "برنامه یا رشته...",
-            "studyLevel": "مقطع تحصیلی",
-            "fieldOfStudy": "رشته تحصیلی",
-            "allFields": "همه رشته‌ها",
-            "maxTuition": "حداکثر شهریه",
-            "language": "زبان",
-            "city": "شهر",
-            "allCities": "همه شهرها",
-            "university": "دانشگاه",
-            "allUniversities": "همه دانشگاه‌ها",
-            "duration": "مدت زمان",
-            "allDurations": "همه مدت‌ها",
-            "scholarshipAvailable": "بورسیه موجود",
-            "levels": {
-                "bachelor": "کارشناسی",
-                "master": "کارشناسی ارشد",
-                "phd": "دکترا",
-                "diploma": "دیپلم",
-                "language": "دوره زبان",
-                "nonDegree": "Non-Degree"
-            },
-            "fields": {
-                "business": "تجارت و مدیریت",
-                "engineering": "مهندسی و فناوری",
-                "medicine": "پزشکی و علوم بهداشتی",
-                "arts": "هنر و علوم انسانی",
-                "science": "علوم طبیعی",
-                "education": "آموزش",
-                "cs": "علوم کامپیوتر",
-                "law": "حقوق"
-            },
-            "languages": {
-                "english": "انگلیسی",
-                "chinese": "چینی"
-            },
-            "durations": {
-                "2years": "۲ سال",
-                "3years": "۳ سال",
-                "4years": "۴ سال",
-                "5years": "۵ سال",
-                "6years": "۶ سال"
-            },
-            "matchingPrograms": "programs match",
-            "applyFilters": "Apply Filters",
-            "scholarshipDesc": "Show programs with funding",
-            "cscaLabel": "بدون آزمون CSCA",
-            "cscaDesc": "نمایش برنامه‌های بدون آزمون CSCA",
-            "cscaBadge": "No CSCA",
-            "academicRequirements": "Academic Requirements",
-            "myAge": "My Age",
-            "agePlaceholder": "e.g. 21",
-            "minGpa": "Min GPA",
-            "gpaPlaceholder": "e.g. 3.0"
-        },
-        "stats": {
-            "total": "کل برنامه‌ها",
-            "showing": "نمایش"
-        },
-        "sort": {
-            "label": "مرتب‌سازی بر اساس",
-            "relevance": "مرتبط‌ترین",
-            "tuitionLow": "شهریه: کم به زیاد",
-            "tuitionHigh": "شهریه: زیاد به کم",
-            "deadline": "مهلت: نزدیک‌ترین",
-            "popular": "محبوب‌ترین"
-        },
-        "noResults": {
-            "title": "برنامه‌ای یافت نشد",
-            "description": "فیلترها یا معیارهای جستجو را تنظیم کنید"
-        },
-        "card": {
-            "duration": "مدت زمان",
-            "intake": "دوره پذیرش",
-            "tuitionFee": "شهریه",
-            "viewProgram": "مشاهده برنامه",
-            "contact": "تماس",
-            "scholarship": "Scholarship",
-            "addToCompare": "Add to compare",
-            "removeFromCompare": "Remove from compare",
-            "level": "Level",
-            "features": "Features",
-            "viewFullDetails": "View Full Details",
-            "applyNow": "Apply Now",
-            "fastTrack": "Fast Track"
-        },
-        "compare": {
-            "title": "Compare Programs",
-            "comparing": "Comparing",
-            "more": "more",
-            "clear": "Clear",
-            "compareNow": "Compare Now",
-            "university": "University",
-            "location": "Location",
-            "level": "Level",
-            "duration": "Duration",
-            "tuition": "Tuition",
-            "intake": "Intake",
-            "language": "Language",
-            "viewDetails": "View Details",
-            "apply": "Apply"
-        },
-        "emptyState": {
-            "title": "No Programs Found",
-            "description": "We couldn't find any programs. Try browsing our full catalog.",
-            "filteredDescription": "No programs match your current filters. Try adjusting your search criteria.",
-            "currentFilters": "Your current filters:",
-            "scholarship": "Scholarship",
-            "clearFilters": "Clear All Filters",
-            "tryInstead": "Popular searches to try:",
-            "browseAll": "Browse All Programs",
-            "exploreUniversities": "Explore Universities"
-        },
-        "recentlyViewed": {
-            "title": "Recently Viewed",
-            "clear": "Clear",
-            "viewAgain": "View again",
-            "justNow": "Just now",
-            "minutesAgo": "{count}m ago",
-            "hoursAgo": "{count}h ago",
-            "daysAgo": "{count}d ago"
-        },
-        "quickAccess": "دسترسی سریع",
-        "quickChips": {
-            "cs": "علوم کامپیوتر",
-            "business": "بازرگانی",
-            "engineering": "مهندسی",
-            "medicine": "پزشکی",
-            "arts": "هنر",
-            "economics": "اقتصاد"
-        },
-        "aiSearch": {
-            "thinking": "AI is thinking... finding related fields for \"{query}\"",
-            "active": "Smart Search Active",
-            "found": "Found programs related to: {terms}",
-            "working": "AI is working on it...",
-            "looking": "Looking for programs related to \"{query}\""
-        },
-        "view": {
-            "grid": "شبکه‌ای",
-            "map": "نقشه"
-        }
-    },
-    "UniversitiesCard": {
-        "programs": "برنامه‌ها",
-        "tuitionFrom": "شهریه از",
-        "tuition": "شهریه",
-        "viewUniversity": "مشاهده دانشگاه",
-        "viewPrograms": "مشاهده برنامه‌ها",
-        "fastTrack": "Fast Track",
-        "scholarship": "Scholarship",
-        "contactForPricing": "Contact for pricing",
-        "cscaExam": "CSCA Exam",
-        "addToCompare": "Add to compare",
-        "removeFromCompare": "Remove from compare"
-    },
-    "ProgramDetail": {
-        "breadcrumb": {
-            "home": "صفحه اصلی",
-            "programs": "برنامه‌ها"
-        },
-        "badges": {
-            "intake": "دوره پذیرش: {intake}",
-            "contactUniversity": "تماس با دانشگاه",
-            "specialRequirements": "الزامات ویژه",
-            "fastTrack": "Fast Track Acceptance"
-        },
-        "deadline": {
-            "daysRemaining": "{days} روز باقی مانده",
-            "endingToday": "برنامه امروز بسته می‌شود!",
-            "closed": "برنامه بسته شده است",
-            "deadline": "مهلت"
-        },
-        "buttons": {
-            "apply": "همین حالا درخواست دهید",
-            "downloadBrochure": "دانلود بروشور",
-            "viewUniversity": "مشاهده دانشگاه",
-            "startApplication": "شروع درخواست",
-            "contactAdvisor": "تماس با مشاور"
-        },
-        "highlights": {
-            "title": "ویژگی‌های برنامه",
-            "tuition": "شهریه",
-            "duration": "مدت زمان",
-            "language": "زبان",
-            "level": "مقطع تحصیلی",
-            "gpaRequirement": "حداقل معدل",
-            "languageRequirements": "Language Score"
-        },
-        "overview": {
-            "title": "نمای کلی برنامه",
-            "noDescription": "توضیحی برای این برنامه موجود نیست.",
-            "curriculum": "برنامه درسی اصلی",
-            "curriculumPlaceholder": "اطلاعات دروس اصلی به زودی به‌روزرسانی می‌شود"
-        },
-        "requirements": {
-            "title": "شرایط پذیرش"
-        },
-        "scholarships": {
-            "title": "گزینه‌های بورسیه برای این برنامه",
-            "description": "نوع بورسیه‌ای که با بودجه شما متناسب است را انتخاب کنید"
-        },
-        "faq": {
-            "title": "سوالات متداول",
-            "deadline": "مهلت درخواست {deadline} است.",
-            "accommodationQ": "آیا اسکان فراهم می‌شود؟",
-            "accommodationA": "بله، اسکان در پردیس برای دانشجویان بین‌المللی در دسترس است.",
-            "workQ": "آیا می‌توانم پاره‌وقت کار کنم؟",
-            "workA": "بله، دانشجویان بین‌المللی می‌توانند با مجوزهای مناسب برای برنامه‌های کار-تحصیل یا کارآموزی درخواست دهند.",
-            "deadlineQ": "مهلت درخواست چه زمانی است؟"
-        },
-        "sidebar": {
-            "ready": "آماده درخواست هستید؟",
-            "free": "درخواست رایگان",
-            "fast": "پردازش سریع",
-            "expert": "پشتیبانی تخصصی",
-            "cost": "جزئیات هزینه",
-            "applicationFee": "هزینه درخواست",
-            "serviceFee": "هزینه خدمات",
-            "disclaimer": "* هزینه‌های اضافی ممکن است شامل اسکان، ویزا و هزینه‌های زندگی باشد",
-            "why": "چرا این برنامه را انتخاب کنید؟",
-            "reasons": {
-                "degree": "مدرک بین‌المللی معتبر",
-                "faculty": "اعضای هیئت علمی با تجربه",
-                "facilities": "امکانات و منابع مدرن",
-                "career": "پشتیبانی توسعه شغلی"
-            }
-        },
-        "accommodation": {
-            "title": "گزینه‌های اسکان"
-        }
-    },
-    "UniversityDetail": {
-        "quickLinks": {
-            "exploreCourses": "کشف دوره‌ها",
-            "getFunded": "دریافت بودجه",
-            "findHousing": "یافتن مسکن",
-            "findLocation": "موقعیت"
-        },
-        "location": {
-            "title": "موقعیت دانشگاه",
-            "viewOnMap": "مشاهده در نقشه گوگل"
-        },
-        "about": "درباره دانشگاه",
-        "whyChooseUs": "چرا ما را انتخاب کنید",
-        "programs": {
-            "title": "برنامه‌ها",
-            "allPrograms": "همه برنامه‌ها",
-            "noPrograms": "هیچ برنامه‌ای برای این سطح یافت نشد.",
-            "viewProgram": "مشاهده برنامه",
-            "tuitionFee": "شهریه",
-            "perYear": "در سال",
-            "allLanguages": "همه زبان‌ها",
-            "filterByLanguage": "زبان",
-            "showing": "Showing {start}-{end} of {total} programs",
-            "previousPage": "Previous",
-            "nextPage": "Next",
-            "pageOf": "Page {current} of {total}"
-        },
-        "scholarships": {
-            "title": "گزینه‌های بورسیه موجود",
-            "description": "نوع بورسیه‌ای که با بودجه شما برای برنامه‌های این دانشگاه متناسب است را انتخاب کنید"
-        },
-        "campus": {
-            "tour": "تور پردیس",
-            "gallery": "گالری تصاویر",
-            "viewImage": "مشاهده تصویر"
-        },
-        "admission": {
-            "title": "شرایط پذیرش",
-            "academic": "شرایط تحصیلی",
-            "language": "شرایط زبان",
-            "highSchool": "دیپلم دبیرستان یا معادل آن",
-            "gpa": "حداقل معدل ۳.۰/۴.۰",
-            "transcripts": "ریزنمرات تحصیلی",
-            "ielts": "آیلتس ۶.۰ یا تافل ۸۰+",
-            "hsk": "HSK ۴ برای برنامه‌های چینی",
-            "english": "مدرک تسلط به زبان انگلیسی"
-        },
-        "sidebar": {
-            "ready": "آماده درخواست هستید؟",
-            "startJourney": "سفر خود را در {university} آغاز کنید",
-            "applyNow": "همین حالا درخواست دهید",
-            "downloadBrochure": "دانلود بروشور",
-            "quickActions": "اقدامات سریع",
-            "requestInfo": "درخواست اطلاعات",
-            "chatAdvisor": "گفتگو با مشاور",
-            "virtualTour": "تور مجازی",
-            "scheduleCall": "رزرو تماس",
-            "quickFacts": "حقائق سریع",
-            "location": "مکان",
-            "founded": "تأسیس",
-            "students": "دانشجویان",
-            "international": "بین‌المللی",
-            "ranking": "رتبه‌بندی",
-            "officialWebsite": "وب‌سایت رسمی"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions"
-        }
-    },
-    "RequestInformation": {
-        "title": "درخواست اطلاعات",
-        "description": "جزئیات بیشتری درباره {university} دریافت کنید. فرم زیر را پر کنید.",
-        "firstName": "نام",
-        "lastName": "نام خانوادگی",
-        "email": "ایمیل",
-        "phone": "شماره تلفن",
-        "interest": "علاقه",
-        "selectInterest": "علاقه خود را انتخاب کنید",
-        "interests": {
-            "admission": "شرایط پذیرش",
-            "programs": "برنامه‌های موجود",
-            "scholarships": "فرصت‌های بورسیه",
-            "campus": "زندگی در پردیس",
-            "other": "سایر"
-        },
-        "message": "پیام",
-        "messagePlaceholder": "من علاقه‌مند به تحصیل در {university} هستم...",
-        "submit": "ارسال درخواست",
-        "sending": "در حال ارسال...",
-        "success": "درخواست با موفقیت ارسال شد! به زودی با شما تماس خواهیم گرفت.",
-        "error": "ارسال درخواست ناموفق بود. لطفاً دوباره تلاش کنید."
-    },
-    "UniversityScholarships": {
-        "loading": "در حال بارگذاری بورسیه‌ها...",
-        "noScholarships": "هنوز هیچ بورسیه‌ای برای این دانشگاه موجود نیست.",
-        "options": "گزینه‌های بورسیه",
-        "discover": "کشف فرصت‌های بیشتر",
-        "explore": "کاوش همه گزینه‌های بورسیه",
-        "description": "مطمئن نیستید کدام بورسیه برای شما مناسب است؟ راهنمای کامل بورسیه ما را مرور کنید تا همه گزینه‌ها را مقایسه کنید، شرایط واجد شرایط بودن را درک کنید و بهترین گزینه را برای سفر تحصیلی خود پیدا کنید.",
-        "viewAll": "مشاهده همه بورسیه‌ها",
-        "advice": "دریافت مشاوره شخصی",
-        "mostPopular": "محبوب‌ترین",
-        "defaultDescription": "گزینه‌ای عالی برای دانشجویان بین‌المللی.",
-        "tuitionCoverage": "پوشش شهریه",
-        "serviceFee": "هزینه خدمات",
-        "whatsIncluded": "چه چیزی شامل می‌شود",
-        "applyNow": "همین حالا درخواست دهید",
-        "howItWorks": {
-            "title": "بورسیه‌ها چگونه کار می‌کنند",
-            "description": "بورسیه درصدی از شهریه شما را پوشش می‌دهد. شما مابقی شهریه را به دانشگاه + هزینه خدمات یک‌بار پرداخت برای پشتیبانی درخواست، کمک ویزا و راهنمایی پرداخت می‌کنید.",
-            "learnMore": "بیشتر بدانید درباره بورسیه‌ها ←"
-        },
-        "benefits": {
-            "tuitionCoverage": "پوشش {percentage}٪ شهریه",
-            "noScholarship": "بدون بورسیه (۰٪ پوشش)",
-            "support": "پشتیبانی و راهنمایی درخواست",
-            "visa": "کمک ویزا",
-            "orientation": "توجیه پیش از عزیمت",
-            "accommodation": "پشتیبانی هماهنگی اسکان"
-        },
-        "action": "Action",
-        "scholarshipType": "Scholarship Type"
-    },
-    "Accommodation": {
-        "notAvailable": "اطلاعات اسکان در دسترس نیست",
-        "badge": "اسکان دانشجویی",
-        "title": "گزینه‌های مسکن در پردیس",
-        "priceRange": "محدوده قیمت",
-        "generalFacilities": "امکانات عمومی",
-        "availableRoomTypes": "انواع اتاق‌های موجود",
-        "defaultTitle": "اسکان",
-        "priceOnRequest": "قیمت در صورت درخواست",
-        "month": "ماه",
-        "roomFeatures": "ویژگی‌های اتاق:",
-        "importantInfo": {
-            "title": "اطلاعات مهم",
-            "fees": "هزینه‌های اسکان در هر ترم یا سال تحصیلی پرداخت می‌شود",
-            "availability": "تخصیص اتاق منوط به در دسترس بودن است",
-            "prices": "قیمت‌ها ممکن است متفاوت باشد و باید با دانشگاه تأیید شود",
-            "deposit": "ممکن است هنگام ورود سپرده لازم باشد"
-        }
-    },
-    "UniversityHeader": {
-        "fastTrack": "پذیرش سریع",
-        "est": "تأسیس {founded}",
-        "studentsCount": "{students} دانشجو",
-        "website": "وب‌سایت",
-        "applyNow": "همین حالا درخواست دهید",
-        "requestInfo": "درخواست اطلاعات",
-        "brochure": "بروشور",
-        "virtualTour": "تور مجازی",
-        "scheduleCall": "رزرو تماس",
-        "chatAdvisor": "گفتگو با مشاور",
-        "save": "ذخیره",
-        "saved": "ذخیره شده",
-        "share": "اشتراک‌گذاری",
-        "founded": "تأسیس",
-        "students": "دانشجویان",
-        "ranking": "رتبه‌بندی",
-        "international": "بین‌المللی"
-    },
-    "Dashboard": {
-        "sidebar": {
-            "myApplications": "درخواست‌های من",
-            "profile": "پروفایل",
-            "messages": "پیام‌ها",
-            "payments": "پرداخت‌ها",
-            "documents": "مدارک",
-            "settings": "تنظیمات",
-            "logout": "خروج"
-        },
-        "title": "داشبورد",
-        "subtitle": "خوش آمدید! در اینجا مروری بر درخواست‌های شما وجود دارد.",
-        "newApplication": "درخواست جدید",
-        "stats": {
-            "totalApplications": "کل درخواست‌ها",
-            "submitted": "{count} ارسال شده",
-            "pendingActions": "اقدامات معوق",
-            "requiresAttention": "نیاز به توجه",
-            "offersReceived": "پیشنهادات دریافتی",
-            "congratulations": "تبریک!",
-            "successRate": "نرخ موفقیت",
-            "acceptanceRate": "نرخ پذیرش"
-        },
-        "recentApplications": "درخواست‌های اخیر",
-        "appliedOn": "درخواست شده در {date}",
-        "viewDetails": "مشاهده جزئیات",
-        "noApplications": {
-            "title": "هنوز درخواستی وجود ندارد",
-            "description": "سفر خود را با مرور برنامه‌ها و ارسال اولین درخواست خود آغاز کنید."
-        },
-        "browsePrograms": "مرور برنامه‌ها"
-    },
-    "Profile": {
-        "title": "پروفایل من",
-        "subtitle": "اطلاعات شخصی و تنظیمات خود را مدیریت کنید",
-        "completion": "تکمیل پروفایل",
-        "completeProfile": "پروفایل خود را تکمیل کنید تا درخواست‌های آینده سریع‌تر انجام شود",
-        "photo": {
-            "title": "عکس پروفایل",
-            "description": "آپلود عکس حرفه‌ای",
-            "upload": "آپلود عکس",
-            "uploading": "در حال آپلود...",
-            "hint": "JPG، PNG یا GIF. حداکثر ۵ مگابایت."
-        },
-        "personalInfo": {
-            "title": "اطلاعات شخصی",
-            "description": "جزئیات اصلی شما برای درخواست‌ها"
-        },
-        "fullName": "نام کامل *",
-        "email": "ایمیل",
-        "dob": "تاریخ تولد",
-        "phone": "شماره تلفن",
-        "nationality": "ملیت",
-        "passportNumber": "شماره پاسپورت",
-        "address": {
-            "title": "آدرس",
-            "description": "آدرس محل سکونت فعلی شما",
-            "street": "آدرس خیابان",
-            "city": "شهر",
-            "postalCode": "کد پستی"
-        },
-        "emergency": {
-            "title": "تماس اضطراری",
-            "description": "شخصی که در مواقع اضطراری باید با او تماس گرفته شود",
-            "name": "نام",
-            "phone": "تلفن",
-            "relationship": "رابطه"
-        },
-        "save": "ذخیره پروفایل",
-        "saving": "در حال ذخیره...",
-        "success": "پروفایل با موفقیت به‌روزرسانی شد!",
-        "error": "خطایی در هنگام به‌روزرسانی پروفایل رخ داد"
-    },
-    "Documents": {
-        "title": "مدارک من",
-        "subtitle": "مدیریت مدارک شما برای درخواست‌های دانشگاه",
-        "stats": {
-            "total": "کل مدارک",
-            "uploaded": "فایل‌های آپلود شده",
-            "verified": "تایید شده",
-            "approved": "تایید شده توسط مدیر",
-            "pending": "در انتظار بررسی",
-            "awaiting": "در انتظار تایید"
-        },
-        "yourDocuments": "مدارک شما",
-        "manageDocuments": "آپلود و مدیریت مدارک درخواست",
-        "uploadDocument": "آپلود مدرک",
-        "noDocuments": "هنوز مدرکی وجود ندارد",
-        "uploadFirst": "اولین مدرک خود را برای شروع آپلود کنید",
-        "size": "اندازه",
-        "uploaded": "آپلود شده",
-        "download": "دانلود",
-        "delete": "حذف",
-        "deleteConfirm": "آیا مطمئن هستید که می‌خواهید \"{name}\" را حذف کنید؟",
-        "uploadDialog": {
-            "title": "آپلود مدرک",
-            "description": "نوع مدرک را انتخاب کنید و فایل خود را آپلود کنید",
-            "type": "نوع مدرک *",
-            "selectType": "انتخاب نوع مدرک",
-            "alreadyUploaded": "(قبلاً آپلود شده)",
-            "file": "فایل *",
-            "selected": "انتخاب شده",
-            "formats": "فرمت‌های پذیرفته شده: PDF, JPG, PNG, DOC, DOCX. حداکثر ۱۰ مگابایت.",
-            "cancel": "لغو",
-            "uploading": "در حال آپلود...",
-            "upload": "آپلود"
-        },
-        "error": {
-            "fileSize": "فایل باید کمتر از ۱۰ مگابایت باشد",
-            "selectFile": "لطفاً نوع مدرک و فایل را انتخاب کنید",
-            "fileType": "لطفاً یک فایل تصویری آپلود کنید",
-            "imageSize": "تصویر باید کمتر از ۵ مگابایت باشد"
-        },
-        "success": {
-            "uploaded": "مدرک با موفقیت آپلود شد!",
-            "deleted": "مدرک حذف شد"
-        },
-        "types": {
-            "passport": "پاسپورت",
-            "transcript": "ریزنمرات تحصیلی",
-            "diploma": "مدرک/گواهینامه",
-            "recommendation_letter": "توصیه‌نامه",
-            "personal_statement": "انگیزه‌نامه",
-            "cv": "رزومه/CV",
-            "language_certificate": "مدرک زبان (IELTS/TOEFL)",
-            "photo": "عکس پاسپورت",
-            "bank_statement": "صورت‌حساب بانکی",
-            "health_certificate": "گواهی سلامت",
-            "police_clearance": "گواهی عدم سوءپیشینه",
-            "other": "سایر مدارک"
-        },
-        "documentRequest": {
-            "title": "درخواست مدارک",
-            "description": "لطفاً مدارک زیر را آپلود کنید:\n1. کپی پاسپورت\n2. مدرک تحصیلی\n3. بیانیه شخصی",
-            "note": "اطمینان حاصل کنید که همه چیز به همه زبان‌ها ترجمه شده است"
-        }
-    },
-    "Status": {
-        "pending_documents": "در انتظار مدارک",
-        "pending_payment": "در انتظار پرداخت",
-        "payment_verification": "تایید پرداخت",
-        "submitted": "ارسال شده",
-        "under_review": "در حال بررسی",
-        "accepted": "پذیرفته شده",
-        "rejected": "رد شده",
-        "unknown": "ناشناخته"
-    },
-    "Auth": {
-        "login": {
-            "title": "ورود",
-            "description": "برای دسترسی به حساب خود، ایمیل و رمز عبور خود را وارد کنید",
-            "emailLabel": "ایمیل",
-            "emailPlaceholder": "m@example.com",
-            "passwordLabel": "رمز عبور",
-            "forgotPassword": "رمز عبور را فراموش کرده‌اید؟",
-            "submit": "ورود",
-            "orContinueWith": "یا ادامه دهید با",
-            "continueWithGoogle": "ادامه با گوگل",
-            "connecting": "در حال اتصال...",
-            "noAccount": "حساب کاربری ندارید؟",
-            "signUp": "ثبت نام",
-            "success": "ورود با موفقیت انجام شد! در حال تغییر مسیر...",
-            "error": "مشکلی پیش آمد",
-            "googleError": "ورود با گوگل ناموفق بود"
-        },
-        "layout": {
-            "branding": "Studyatchina",
-            "heroTitle": "دروازه شما به دانشگاه‌های چین",
-            "heroDescription": "به هزاران دانشجوی بین‌المللی بپیوندید که رویاهای خود را در دانشگاه‌های برتر چین دنبال می‌کنند.",
-            "programsTitle": "۵۰۰+ برنامه",
-            "programsDescription": "دسترسی به برنامه‌های دانشگاه‌های برتر چین",
-            "guidanceTitle": "راهنمایی تخصصی",
-            "guidanceDescription": "در طول سفر درخواست خود پشتیبانی دریافت کنید",
-            "scholarshipsTitle": "فرصت‌های بورسیه",
-            "scholarshipsDescription": "گزینه‌های مختلف بورسیه موجود را بررسی کنید",
-            "copyright": "© ۲۰۲۴ Studyatchina. تمامی حقوق محفوظ است."
-        }
-    },
-    "Notifications": {
-        "title": "اعلان‌ها",
-        "markAllRead": "علامت‌گذاری همه به عنوان خوانده شده",
-        "noNotifications": "هنوز اعلانی وجود ندارد",
-        "viewAll": "مشاهده همه اعلان‌ها",
-        "loading": "در حال بارگذاری اعلان‌ها...",
-        "types": {
-            "statusChange": "به‌روزرسانی وضعیت درخواست",
-            "documentRequested": "مدرک درخواست شده",
-            "paymentRequested": "پرداخت مورد نیاز",
-            "messageReceived": "پیام جدید",
-            "newApplication": "درخواست جدید",
-            "newLead": "سرنخ جدید",
-            "documentUploaded": "مدرک بارگذاری شد",
-            "acceptanceLetter": "نامه پذیرش"
-        },
-        "messages": {
-            "statusChange": "وضعیت درخواست شما به {status} تغییر یافت"
-        }
-    },
-    "AISearch": {
-        "placeholder": "امتحان کنید: 'کارشناسی ارشد مهندسی با کمتر از 30000 یوان در پکن'",
-        "search": "جستجو",
-        "filters": "هوش مصنوعی متوجه شد",
-        "error": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
-    },
-    "AIChat": {
-        "title": "چن وی 陈伟",
-        "subtitle": "مشاور تحصیلی شما",
-        "typing": "در حال تایپ...",
-        "greeting": "سلام! 👋 من چن وی (陈伟) هستم، مشاور شخصی تحصیلی شما. من اینجا هستم تا به شما کمک کنم برنامه مناسب را در چین پیدا کنید، به سوالاتتان پاسخ دهم و حتی شما را در فرآیند درخواست راهنمایی کنم. امروز چه کاری می‌توانم برایتان انجام دهم؟",
-        "inputPlaceholder": "پیام خود را بنویسید...",
-        "thinking": "در حال فکر کردن...",
-        "error": "متأسفانه مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
-        "quickStart": "شروع سریع:",
-        "quickFind": "🎓 جستجوی برنامه",
-        "quickScholarship": "💰 بورسیه‌ها",
-        "quickApply": "📝 شروع درخواست",
-        "chatHistory": "سابقه گفتگو",
-        "newChat": "گفتگوی جدید",
-        "noHistory": "گفتگوی قبلی وجود ندارد",
-        "backToChat": "بازگشت به گفتگو",
-        "loginPrompt": "🔐 برای ذخیره سابقه گفتگو و پیگیری درخواست‌ها وارد شوید",
-        "login": "ورود",
-        "register": "ثبت‌نام"
-    },
-    "PaymentDashboard": {
-        "title": "پرداخت‌ها",
-        "subtitle": "مدیریت پرداخت‌های درخواست شما",
-        "totalAmount": "مبلغ کل",
-        "totalPaid": "مجموع پرداخت شده",
-        "pending": "در انتظار",
-        "rest": "مبلغ باقی‌مانده",
-        "totalTransactions": "تعداد تراکنش‌ها",
-        "successfullyProcessed": "با موفقیت پردازش شد",
-        "paymentDue": "پرداخت سررسید شده",
-        "allTime": "کل زمان",
-        "amount": "مبلغ",
-        "status": "وضعیت",
-        "created": "تاریخ ایجاد",
-        "method": "روش پرداخت",
-        "payNow": "پرداخت کنید",
-        "viewApplication": "مشاهده درخواست",
-        "paymentProof": "رسید پرداخت",
-        "paymentRequest": {
-            "title": "درخواست پرداخت",
-            "amount": "USD 200",
-            "description": "این پرداخت را انجام دهید",
-            "note": "لطفاً برای ادامه درخواست خود، پرداخت را تکمیل کنید."
-        },
-        "paymentStatuses": {
-            "completed": "تکمیل شده",
-            "pending": "در انتظار",
-            "processing": "در حال پردازش",
-            "failed": "ناموفق",
-            "refunded": "بازپرداخت شده"
-        },
-        "types": {
-            "application_fee": "هزینه درخواست",
-            "service_fee": "هزینه خدمات",
-            "tuition_deposit": "بیعانه شهریه",
-            "full_tuition": "شهریه کامل",
-            "accommodation": "اسکان",
-            "other": "سایر"
-        },
-        "assistance": {
-            "title": "کمک پرداخت",
-            "description": "شما {count} پرداخت در انتظار دارید. اگر در مورد پرداخت‌ها نیاز به کمک دارید یا سوالی دارید:",
-            "point1": "برای دریافت کمک پرداخت با تیم پشتیبانی ما تماس بگیرید",
-            "point2": "بررسی کنید که آیا واجد شرایط برنامه‌های پرداخت هستید",
-            "point3": "بررسی کنید که روش پرداخت شما پشتیبانی می‌شود"
-        },
-        "paidOn": "پرداخت شده در",
-        "reference": "مرجع",
-        "verifiedByAdmin": "تایید شده توسط مدیر",
-        "expires": "انقضا:",
-        "adminNote": "یادداشت مدیر:",
-        "paymentLinkExpired": "لینک پرداخت منقضی شده است",
-        "document": "سند:",
-        "noPayments": "بدون پرداخت",
-        "noPaymentsDesc": "شما هیچ پرداخت معوقه‌ای ندارید.",
-        "contactSupport": "تماس با پشتیبانی"
-    },
-    "Refunds": {
-        "title": "درخواست‌های استرداد وجه",
-        "statusTitle": "وضعیت استرداد وجه",
-        "requestButton": "درخواست استرداد وجه",
-        "submittedTitle": "درخواست استرداد وجه ارسال شد",
-        "submittedOn": "ارسال شده در {date}",
-        "reasonLabel": "دلیل",
-        "adminResponseLabel": "پاسخ مدیر",
-        "rejectedTitle": "درخواست رد شد",
-        "rejectedMessage": "ممکن است شما واجد شرایط دریافت استرداد وجه باشید. برای ارسال درخواست روی دکمه کلیک کنید.",
-        "modalTitle": "درخواست استرداد وجه",
-        "modalDescription": "ارسال درخواست برای استرداد وجه. لطفاً توضیح دهید چرا درخواست این استرداد را دارید.",
-        "modalReasonLabel": "دلیل استرداد وجه",
-        "modalPlaceholder": "من رد شدم زیرا...",
-        "submitButton": "ارسال درخواست",
-        "cancelButton": "لغو",
-        "successMessage": "درخواست استرداد وجه با موفقیت ارسال شد",
-        "errorMessage": "ارسال درخواست ناموفق بود",
-        "table": {
-            "student": "دانشجو",
-            "program": "دانشگاه / رشته",
-            "reason": "دلیل",
-            "status": "وضعیت",
-            "date": "تاریخ",
-            "actions": "عملیات",
-            "approve": "تایید",
-            "reject": "رد",
-            "noRequests": "هیچ درخواست استرداد وجهی یافت نشد",
-            "approveTitle": "تایید درخواست استرداد وجه",
-            "rejectTitle": "رد درخواست استرداد وجه",
-            "approveDescription": "این کار درخواست را به عنوان تایید شده علامت‌گذاری می‌کند و وضعیت پرداخت درخواست را به استرداد شده تغییر می‌دهد.",
-            "rejectDescription": "این کار درخواست را به عنوان رد شده علامت‌گذاری می‌کند.",
-            "adminResponsePlaceholder": "یک یادداشت برای دانشجو اضافه کنید..."
-        }
-    },
-    "Messages": {
-        "title": "پیام‌ها",
-        "actionRequired": "اقدام مورد نیاز",
-        "actionCompleted": "تکمیل شده",
-        "reply": "پاسخ",
-        "replyingTo": "پاسخ به {name}",
-        "typeReply": "پاسخ خود را بنویسید...",
-        "sendReply": "ارسال پاسخ",
-        "sending": "در حال ارسال...",
-        "cancel": "لغو",
-        "you": "شما",
-        "admin": "تیم پذیرش",
-        "replyTooltip": "پاسخ به این پیام",
-        "actionRequiredMessage": "لطفاً به این پیام پاسخ دهید یا اقدام خواسته شده را تکمیل کنید.",
-        "takeAction": "اقدام کنید",
-        "attachment": "پیوست",
-        "attachments": "پیوست‌ها",
-        "subtitle": "Communication with admissions team",
-        "conversations": "Conversations",
-        "unreadMessages": "Unread Messages",
-        "noMessages": "No messages yet",
-        "noMessagesDesc": "Messages from the admissions team will appear here"
-    },
-    "QSRankings": {
-        "meta": {
-            "title": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026 — دانشگاه‌های چینی | تحصیل در چین",
-            "description": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026 برای چین را بررسی کنید. ببینید 72 دانشگاه چینی در سطح جهانی چگونه رتبه‌بندی شده‌اند، از دانشگاه پکن (#14) تا مؤسسات تحقیقاتی نوظهور."
-        },
-        "hero": {
-            "badge": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026",
-            "titleHighlight": "دانشگاه‌های چینی",
-            "titleRest": "در رتبه‌بندی‌های جهانی",
-            "subtitle": "جایگاه برترین دانشگاه‌های چین را در رتبه‌بندی جهانی QS دانشگاه‌ها 2026 کشف کنید. از دانشگاه پکن در رتبه #14 تا قدرت‌های تحقیقاتی نوظهور — مؤسسه ایده‌آل خود را بیابید.",
-            "breadcrumb": "رتبه‌بندی QS 2026",
-            "statRanked": "دانشگاه رتبه‌بندی شده",
-            "statHighest": "بالاترین رتبه جهانی",
-            "statTop50": "در 50 برتر جهان",
-            "statCities": "شهر نمایندگی شده"
-        },
-        "content": {
-            "topUniversitiesTitle": "برترین دانشگاه‌های چین با رتبه جهانی",
-            "browseAllTitle": "مرور تمام رتبه‌بندی‌ها",
-            "searchPlaceholder": "جستجوی دانشگاه‌ها...",
-            "allCities": "تمام شهرها",
-            "showing": "نمایش",
-            "of": "از",
-            "universities": "دانشگاه",
-            "university": "دانشگاه",
-            "inCity": "در",
-            "matching": "مطابق با",
-            "noResults": "دانشگاهی یافت نشد",
-            "noResultsHint": "جستجو یا فیلترهای خود را تنظیم کنید",
-            "overallScore": "امتیاز کلی",
-            "score": "امتیاز",
-            "world": "جهانی",
-            "china": "چین",
-            "ctaTitle": "آماده تحصیل در یک دانشگاه با رتبه برتر هستید؟",
-            "ctaDescription": "برنامه‌های دانشگاه‌های چینی رتبه‌بندی شده QS را مرور کنید. بورس‌های تحصیلی بیابید، هزینه‌های تحصیل را مقایسه کنید و امروز درخواست خود را شروع کنید.",
-            "browseUniversities": "مرور دانشگاه‌ها",
-            "explorePrograms": "بررسی برنامه‌ها",
-            "disclaimer": "داده‌های رتبه‌بندی از رتبه‌بندی جهانی QS دانشگاه‌ها 2026 منتشر شده توسط Quacquarelli Symonds گرفته شده. برای رتبه‌بندی‌های رسمی و به‌روز، بازدید کنید",
-            "visitSite": "topuniversities.com",
-            "viewProfile": "مشاهده پروفایل",
-            "tierTop50": "50 برتر جهان",
-            "tierTop200": "رتبه 51–200",
-            "tierTop500": "رتبه 201–500",
-            "tierRemaining": "+501"
-        }
-    },
-    "GuidedTour": {
-        "skip": "رد شدن",
-        "next": "بعدی",
-        "finish": "متوجه شدم!",
-        "programs": {
-            "search": {
-                "title": "Find Your Program",
-                "content": "Use the search bar to find programs by name, field of study, or keywords."
-            },
-            "filters": {
-                "title": "Refine Your Search",
-                "content": "Use filters to narrow down by degree level, location, language, and budget."
-            },
-            "card": {
-                "title": "Program Details",
-                "content": "Click on any program card to see full details, requirements, and how to apply."
-            },
-            "compare": {
-                "title": "Compare Programs",
-                "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
-            }
-        }
-    },
-    "Apply": {
-        "title": "Apply for Program",
-        "steps": {
-            "info": "Info",
-            "documents": "Docs",
-            "payment": "Pay",
-            "review": "Review",
-            "personalInfo": "Personal Information",
-            "requiredDocuments": "Required Documents",
-            "paymentInfo": "Payment",
-            "reviewSubmit": "Review & Submit"
-        },
-        "sections": {
-            "identity": "Identity & Personal Details",
-            "identitySubtitle": "Please provide your details as shown on your passport",
-            "contact": "Contact Information",
-            "address": "Home Address",
-            "education": "Education Background",
-            "educationSubtitle": "Your most recent academic qualification",
-            "language": "Language Proficiency",
-            "languageSubtitle": "Chinese and English levels for admission purposes",
-            "emergency": "Emergency Contact",
-            "emergencySubtitle": "Required for your safety abroad"
-        },
-        "options": {
-            "male": "Male",
-            "female": "Female",
-            "islam": "Islam",
-            "christianity": "Christianity",
-            "buddhism": "Buddhism",
-            "hinduism": "Hinduism",
-            "noReligion": "No Religion",
-            "other": "Other",
-            "single": "Single",
-            "married": "Married",
-            "divorced": "Divorced",
-            "highSchool": "High School",
-            "diploma": "Diploma",
-            "bachelor": "Bachelor's Degree",
-            "master": "Master's Degree",
-            "doctorate": "Doctorate / PhD",
-            "noProficiency": "No Proficiency",
-            "basic": "Basic",
-            "intermediate": "Intermediate",
-            "advanced": "Advanced",
-            "native": "Native Speaker"
-        },
-        "labels": {
-            "firstName": "First Name",
-            "lastName": "Last Name",
-            "fullName": "Full Name (as in passport)",
-            "email": "Email Address",
-            "phone": "Mobile Phone Number",
-            "country": "Nationality",
-            "passport": "Passport Number",
-            "gender": "Gender",
-            "dateOfBirth": "Date of Birth",
-            "religion": "Religion",
-            "maritalStatus": "Marital Status",
-            "wechatId": "WeChat ID",
-            "address": "Home Address",
-            "city": "City",
-            "postalCode": "Postal Code",
-            "highestEducation": "Highest Education",
-            "schoolName": "School / University Name",
-            "majorField": "Major / Field of Study",
-            "graduationYear": "Graduation Year",
-            "gpaScore": "GPA / Score",
-            "chineseProficiency": "Chinese (HSK Level)",
-            "englishProficiency": "English Proficiency",
-            "testScore": "Test Score (IELTS/TOEFL)",
-            "preferredIntake": "Preferred Intake",
-            "emergencyContactName": "Emergency Contact Name",
-            "emergencyContactPhone": "Emergency Contact Phone",
-            "emergencyContactRelationship": "Relationship"
-        },
-        "placeholders": {
-            "firstName": "e.g. John",
-            "lastName": "e.g. Smith",
-            "fullName": "e.g. John Smith",
-            "email": "e.g. john@example.com",
-            "phone": "e.g. 555 123 4567",
-            "passport": "e.g. AB1234567",
-            "selectGender": "Select gender",
-            "selectReligion": "Select religion",
-            "selectMaritalStatus": "Select marital status",
-            "wechatId": "e.g. wxid_abc123",
-            "address": "e.g. 123 Main Street, Apt 4B",
-            "city": "e.g. Cairo",
-            "postalCode": "e.g. 11511",
-            "selectEducation": "Select highest education",
-            "schoolName": "e.g. Cairo University",
-            "majorField": "e.g. Computer Science",
-            "graduationYear": "e.g. 2024",
-            "gpaScore": "e.g. 3.5 / 4.0",
-            "selectChinese": "Select HSK level",
-            "selectEnglish": "Select proficiency",
-            "testScore": "e.g. IELTS 6.5",
-            "emergencyName": "e.g. Parent or Guardian name",
-            "emergencyPhone": "e.g. 555 123 4567",
-            "relationship": "e.g. Parent, Spouse"
-        },
-        "hints": {
-            "phoneHint": "Enter your phone number without country code",
-            "passportHint": "Enter your passport number exactly as shown"
-        },
-        "buttons": {
-            "next": "Next",
-            "continueToDocuments": "Continue to Documents",
-            "continueToPayment": "Continue to Payment",
-            "continueToReview": "Continue to Review",
-            "submitApplication": "Submit Application",
-            "back": "Back",
-            "uploadDocument": "Upload",
-            "selectFile": "Select File"
-        },
-        "validation": {
-            "missingFieldsTitle": "Please fill in the following required fields:",
-            "required": "This field is required"
-        },
-        "documents": {
-            "title": "Required Documents",
-            "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
-            "mandatory": "Required",
-            "optional": "Optional",
-            "uploaded": "Uploaded",
-            "pending": "Pending"
-        },
-        "payment": {
-            "title": "Application Fee",
-            "applicationFee": "Application Fee",
-            "serviceFee": "Service Fee",
-            "total": "Total",
-            "payNow": "Pay Now",
-            "payLater": "Pay Later"
-        },
-        "review": {
-            "title": "Review Your Application",
-            "personalDetails": "Personal Details",
-            "uploadedDocuments": "Uploaded Documents",
-            "confirmSubmit": "I confirm that all information provided is accurate",
-            "submitting": "Submitting...",
-            "success": "Application Submitted Successfully!",
-            "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
-        },
-        "errors": {
-            "generic": "An error occurred. Please try again.",
-            "uploadFailed": "Failed to upload document. Please try again.",
-            "paymentFailed": "Payment failed. Please try again."
-        }
+    "destinations": {
+      "title": "مقاصد",
+      "viewAll": "مشاهده همه مقاصد",
+      "beijing": {
+        "title": "پکن",
+        "description": "Capital city with top-ranked universities like Tsinghua and Peking University."
+      },
+      "shanghai": {
+        "title": "شانگهای",
+        "description": "Global financial hub home to Fudan and Shanghai Jiao Tong University."
+      },
+      "guangzhou": {
+        "title": "گوانگژو",
+        "description": "Southern metropolis with leading medical and engineering schools."
+      },
+      "wuhan": {
+        "title": "ووهان",
+        "description": "Historic education center with Wuhan University and HUST."
+      },
+      "hangzhou": {
+        "title": "هانگژو",
+        "description": "Tech hub and scenic city home to Zhejiang University."
+      },
+      "nanjing": {
+        "title": "نانجینگ",
+        "description": "Ancient capital with Nanjing University and Southeast University."
+      },
+      "chengdu": {
+        "title": "چنگدو",
+        "description": "Western China gateway with Sichuan University and affordable living."
+      },
+      "xian": {
+        "title": "شیان",
+        "description": "Historic Silk Road city with Xi'an Jiaotong University."
+      }
     }
+  },
+  "Common": {
+    "loading": "در حال بارگذاری...",
+    "error": "خطایی رخ داد",
+    "submit": "ارسال",
+    "cancel": "لغو",
+    "save": "ذخیره",
+    "delete": "حذف",
+    "edit": "ویرایش",
+    "view": "مشاهده",
+    "back": "بازگشت"
+  },
+  "Footer": {
+    "stayUpdated": "به‌روز باشید",
+    "getLatestUpdates": "برای آخرین اخبار مشترک شوید",
+    "subscribeText": "برای دریافت اخبار برنامه‌ها، بورسیه‌ها و مهلت‌های ثبت‌نام مشترک شوید.",
+    "description": "شریک مورد اعتماد شما برای کشف و درخواست پذیرش در دانشگاه‌های برتر چین.",
+    "explore": "کاوش",
+    "programs": "برنامه‌ها",
+    "universities": "دانشگاه‌ها",
+    "scholarships": "بورسیه‌ها",
+    "howToApply": "نحوه درخواست",
+    "faq": "سوالات متداول",
+    "forStudents": "برای دانشجویان",
+    "createAccount": "ایجاد حساب کاربری",
+    "trackApplication": "پیگیری درخواست",
+    "documentChecklist": "لیست مدارک",
+    "studentPortal": "پرتال دانشجویی",
+    "contact": "تماس با ما",
+    "rightsReserved": "تمامی حقوق محفوظ است.",
+    "designedBy": "طراحی و اجرا توسط",
+    "termsOfService": "شرایط خدمات",
+    "privacyPolicy": "سیاست حفظ حریم خصوصی",
+    "cookiePolicy": "سیاست کوکی‌ها"
+  },
+  "ScholarshipCTA": {
+    "badge": "فرصت‌های بیشتری کشف کنید",
+    "title": "تمام گزینه‌های بورسیه را بررسی کنید",
+    "description": "مطمئن نیستید کدام بورسیه برای شما مناسب است؟ راهنمای کامل بورسیه ما را مرور کنید تا همه گزینه‌ها را مقایسه کنید، شرایط واجد شرایط بودن را درک کنید و مناسب‌ترین گزینه را برای سفر تحصیلی خود پیدا کنید.",
+    "viewAll": "مشاهده همه بورسیه‌ها",
+    "getAdvice": "مشاوره تخصصی دریافت کنید"
+  },
+  "CscaCta": {
+    "badge": "اجباری از سال ۲۰۲۶",
+    "title": "آیا برای آزمون <span class=\"text-primary\">CSCA</span> آماده می‌شوید؟",
+    "titlePlain": "آیا برای آزمون CSCA آماده می‌شوید؟",
+    "description": "ارزیابی شایستگی تحصیلی چین (CSCA) اکنون یک شرط برای دریافت بورسیه‌های برتر است. در راهنمای جامع جدید ما، جزئیات کامل موضوعات، نمره‌دهی و استراتژی‌های آمادگی را دریافت کنید.",
+    "readGuide": "مطالعه راهنما",
+    "findPrograms": "یافتن برنامه‌ها",
+    "proTip1": {
+      "title": "نکته حرفه‌ای #1",
+      "text": "زبان چینی تخصصی نیاز به دایره لغات آکادمیک دارد، نه فقط HSK."
+    },
+    "proTip2": {
+      "title": "نکته حرفه‌ای #2",
+      "text": "بخش‌های ریاضی تمرکز زیادی بر هندسه دارند. مقاطع مخروطی را مرور کنید."
+    }
+  },
+  "CSCAGuide": {
+    "meta": {
+      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+    },
+    "backHome": "Back to Home",
+    "newRequirement": "New Requirement for 2026",
+    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+        "keyDates": {
+          "title": "Key Dates",
+          "launch": "2025: Official Launch",
+          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+          "full": "2028: Full Implementation across all Universities"
+        }
+      },
+      "structure": {
+        "title": "Exam Structure",
+        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+        "table": {
+          "subject": "Subject",
+          "duration": "Duration",
+          "questions": "Questions",
+          "requirement": "Requirement",
+          "chinese": {
+            "name": "Specialized Chinese",
+            "req": "Humanities/Science"
+          },
+          "math": {
+            "name": "Mathematics",
+            "req": "Mandatory"
+          },
+          "physics": {
+            "name": "Physics",
+            "req": "Optional / Major-dependent"
+          },
+          "chemistry": {
+            "name": "Chemistry",
+            "req": "Optional / Major-dependent"
+          }
+        }
+      },
+      "subjects": {
+        "title": "Subject Details & Syllabus",
+        "chinese": {
+          "title": "Specialized Chinese",
+          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+          "char": {
+            "title": "Character Recognition",
+            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+          },
+          "reading": {
+            "title": "Reading Comprehension",
+            "desc": "Highest weight. Sci/Tech/Social essays."
+          },
+          "words": {
+            "title": "Word Distinction",
+            "desc": "Synonyms, academic vocabulary."
+          },
+          "sentences": {
+            "title": "Sentence/Paragraph",
+            "desc": "Ordering sentences, completing logic."
+          }
+        },
+        "math": {
+          "title": "Mathematics",
+          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+          "note": "Both Chinese and English versions available.",
+          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+        },
+        "chem": {
+          "title": "Chemistry",
+          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+        },
+        "phys": {
+          "title": "Physics",
+          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        }
+      },
+      "fees_and_process": {
+        "title": "Application Process & Fees",
+        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+      },
+      "formats": {
+        "title": "Test Modes",
+        "online": {
+          "title": "Online Proctored",
+          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+        },
+        "computer": {
+          "title": "Computer-Based",
+          "desc": "At official test centers (classrooms). Better stability."
+        },
+        "paper": {
+          "title": "Paper-Based",
+          "desc": "Traditional format. Limited regions."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "q": "Does the CSCA replace the HSK?",
+          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+        },
+        "q2": {
+          "q": "Can I take it in English?",
+          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+        },
+        "q3": {
+          "q": "How long is the score valid?",
+          "a": "CSCA results are valid for <strong>2 years</strong>."
+        },
+        "q4": {
+          "q": "Who is exempt from the CSCA?",
+          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+        },
+        "q5": {
+          "q": "Are scores required for 2026 intake?",
+          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+        },
+        "comparison": {
+          "title": "CSCA vs. HSK",
+          "feature": "Feature",
+          "hsk": "HSK",
+          "csca": "CSCA",
+          "focus": "Focus",
+          "focusHsk": "Daily Communication",
+          "focusCsca": "Academic Readiness",
+          "vocab": "Vocabulary",
+          "vocabHsk": "Life/Everyday",
+          "vocabCsca": "Technical/Academic",
+          "req": "Requirement",
+          "reqHsk": "Language Cert",
+          "reqCsca": "Academic Entrance"
+        }
+      },
+      "sidebar": {
+        "title": "Important Details",
+        "dates": {
+          "title": "Dates",
+          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+        },
+        "prep": {
+          "title": "Preparation",
+          "desc": "Difficulty level: Junior/Senior High"
+        },
+        "passing": {
+          "title": "Fees",
+          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+        },
+        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+        "register": "Official Registration Site",
+        "tutor": {
+          "title": "Fast-Track with Study at China",
+          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+          "button": "Apply With Us"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "admissionsOpen": "پذیرش برای سال ۲۰۲۶ باز است",
+    "searchPlaceholder": "چه چیزی می‌خواهید مطالعه کنید؟ (به عنوان مثال، علوم کامپیوتر، پزشکی)",
+    "title": "آینده شما در چین از اینجا شروع می‌شود",
+    "subtitle": "به <bold>۵۰,۰۰۰+ دانشجو</bold> در دانشگاه‌های برتر چین بپیوندید",
+    "searchButton": "جستجو در <bold>۵۰۰+</bold> برنامه",
+    "searchWord": "جستجو در",
+    "programsWord": "برنامه",
+    "browseByCategory": "مرور بر اساس دسته‌بندی",
+    "scrollToExplore": "برای کاوش اسکرول کنید",
+    "stats": {
+      "universities": "دانشگاه",
+      "students": "دانشجو",
+      "success": "موفقیت",
+      "scholarships": "بورسیه"
+    },
+    "tabs": {
+      "programs": "برنامه‌ها",
+      "universities": "دانشگاه‌ها",
+      "scholarships": "بورسیه‌ها"
+    },
+    "placeholders": {
+      "degree": "مقطع تحصیلی",
+      "field": "رشته تحصیلی",
+      "city": "شهر",
+      "language": "زبان",
+      "budget": "بودجه (دلار/سال)",
+      "scholarship": "بورسیه",
+      "duration": "مدت زمان"
+    },
+    "options": {
+      "any": "هر کدام",
+      "all": "همه"
+    },
+    "budget": {
+      "under3k": "Under $3,000",
+      "3kTo5k": "$3,000 - $5,000",
+      "5kTo8k": "$5,000 - $8,000",
+      "above8k": "Above $8,000"
+    },
+    "scholarship": {
+      "allPrograms": "All Programs",
+      "available": "Scholarship Available",
+      "full": "Full Scholarship",
+      "partial": "Partial Scholarship"
+    },
+    "duration": {
+      "1year": "1 Year",
+      "2years": "2 Years",
+      "3years": "3 Years",
+      "4years": "4 Years",
+      "5plus": "5+ Years"
+    },
+    "categories": {
+      "mba": "MBA Programs",
+      "engineering": "Engineering",
+      "medicine": "Medicine (MBBS)",
+      "cs": "Computer Science",
+      "fullScholarship": "Full Scholarship",
+      "englishTaught": "English Taught"
+    }
+  },
+  "WhyStudy": {
+    "badge": "چرا چین را انتخاب کنید",
+    "title": "دروازه شما به سوی <gradient>موفقیت جهانی</gradient>",
+    "description": "چین خرد باستانی را با نوآوری‌های پیشرفته ترکیب می‌کند و تجربه‌ای آموزشی بی‌نظیر را در قلب قدرت اقتصادی آسیا به دانشجویان بین‌المللی ارائه می‌دهد.",
+    "cta": {
+      "explore": "کاوش برنامه‌ها",
+      "download": "دانلود راهنما"
+    },
+    "features": {
+      "worldClass": {
+        "title": "دانشگاه‌های در کلاس جهانی",
+        "description": "در موسسات با رتبه جهانی با امکانات تحقیقاتی پیشرفته و اساتید مشهور تحصیل کنید."
+      },
+      "affordable": {
+        "title": "کیفیت عالی با هزینه مناسب",
+        "description": "آموزش عالی با هزینه‌های رقابتی و فرصت‌های بورسیه سخاوتمندانه تا ۱۰۰٪."
+      },
+      "career": {
+        "title": "سکوی پرتاب شغلی",
+        "description": "دسترسی به بزرگترین اقتصاد آسیا با فرصت‌های کارآموزی و شغلی بی‌نظیر."
+      },
+      "safe": {
+        "title": "امن و پرجنب‌وجوش",
+        "description": "یکی از امن‌ترین کشورهای جهان را با یک جامعه بین‌المللی پررونق تجربه کنید."
+      },
+      "culture": {
+        "title": "غوطه‌وری فرهنگی",
+        "description": "در حالی که در شهرهای فوق‌مدرن و پویا زندگی می‌کنید، ۵۰۰۰ سال تاریخ را کشف کنید."
+      },
+      "network": {
+        "title": "شبکه جهانی",
+        "description": "به جامعه‌ای متشکل از ۵۰۰,۰۰۰+ دانشجوی بین‌المللی از ۲۰۰+ کشور بپیوندید."
+      },
+      "english": {
+        "title": "برنامه‌های انگلیسی",
+        "description": "از بین ۱,۰۰۰+ برنامه که کاملاً به زبان انگلیسی در تمام رشته‌ها تدریس می‌شوند، انتخاب کنید."
+      },
+      "recognition": {
+        "title": "به رسمیت شناخته شده در سراسر جهان",
+        "description": "مدرک‌هایی کسب کنید که توسط یونسکو، سازمان بهداشت جهانی و نهادهای حرفه‌ای در سطح جهانی به رسمیت شناخته شده‌اند."
+      }
+    }
+  },
+  "HowItWorks": {
+    "badge": "فرآیند سریع برق‌آسا",
+    "title": "از درخواست تا <gradient>پذیرش</gradient>",
+    "description": "یک سفر ۶ مرحله‌ای ساده که طراحی شده تا شما را از مرور برنامه‌ها تا دریافت نامه پذیرش در کمترین زمان ممکن برساند.",
+    "cta": {
+      "button": "درخواست خود را همین حالا شروع کنید",
+      "time": "میانگین زمان تکمیل: <bold>۱۵ دقیقه</bold>"
+    },
+    "steps": {
+      "discover": {
+        "title": "کشف برنامه‌ها",
+        "description": "مرور ۵۰۰+ برنامه از دانشگاه‌های برتر چین که متناسب با اهداف شما هستند."
+      },
+      "profile": {
+        "title": "ایجاد پروفایل",
+        "description": "حساب خود را تنظیم کنید و پروفایل تحصیلی خود را در چند دقیقه تکمیل کنید."
+      },
+      "upload": {
+        "title": "آپلود مدارک",
+        "description": "گواهینامه‌ها، ریزنمرات و مدارک مورد نیاز را به صورت امن ارسال کنید."
+      },
+      "scholarship": {
+        "title": "انتخاب نوع بورسیه",
+        "description": "هر دانشگاه انواع بورسیه‌هایی دارد. یکی را انتخاب کنید و درخواست دهید."
+      },
+      "pay": {
+        "title": "انتخاب نوع بورسیه",
+        "description": "هر دانشگاه انواع بورسیه‌هایی دارد. یکی را انتخاب کنید و درخواست دهید."
+      },
+      "track": {
+        "title": "پیگیری پیشرفت",
+        "description": "وضعیت درخواست خود را با به‌روزرسانی‌ها و اعلان‌های بی‌درنگ نظارت کنید."
+      },
+      "admission": {
+        "title": "دریافت پذیرش",
+        "description": "نامه پیشنهاد، مدارک ویزا را دریافت کنید و سفر خود را آغاز کنید!"
+      }
+    }
+  },
+  "Stats": {
+    "badge": "تأثیر ما",
+    "title": "مورد اعتماد هزاران نفر در سراسر جهان",
+    "description": "به جامعه جهانی دانشجویان موفقی بپیوندید که از طریق پلتفرم ما به رویاهای خود دست یافته‌اند",
+    "items": {
+      "universities": {
+        "label": "دانشگاه‌های همکار",
+        "description": "موسسات با رتبه برتر"
+      },
+      "students": {
+        "label": "دانشجویان بین‌المللی",
+        "description": "از ۲۰۰+ کشور"
+      },
+      "programs": {
+        "label": "برنامه‌های موجود",
+        "description": "تمام رشته‌های تحصیلی"
+      },
+      "success": {
+        "label": "نرخ موفقیت",
+        "description": "تایید پذیرش"
+      },
+      "countries": {
+        "label": "کشورهای نمایندگی شده",
+        "description": "جامعه جهانی"
+      },
+      "scholarships": {
+        "label": "بورسیه‌های اعطا شده",
+        "description": "حمایت مالی"
+      },
+      "time": {
+        "label": "زمان درخواست",
+        "description": "فرآیند سریع و آسان"
+      },
+      "employment": {
+        "label": "اشتغال فارغ‌التحصیلان",
+        "description": "در عرض ۶ ماه"
+      }
+    }
+  },
+  "FeaturedPrograms": {
+    "badge": "برنامه‌های ویژه",
+    "title": "برنامه‌های محبوب",
+    "description": "محبوب‌ترین برنامه‌های ما را در برترین دانشگاه‌های چین کاوش کنید",
+    "duration": "مدت دوره",
+    "tuition": "شهریه/سال",
+    "explore": "بررسی برنامه",
+    "viewAll": "مشاهده همه برنامه‌ها",
+    "fastTrack": "مسیر سریع"
+  },
+  "FeaturedUniversities": {
+    "badge": "دانشگاه‌های برتر",
+    "title": "دانشگاه‌های ممتاز",
+    "description": "در معتبرترین موسسات چین تحصیل کنید",
+    "fastTrack": "مسیر سریع",
+    "programs": "برنامه‌ها",
+    "tuitionFrom": "شهریه از",
+    "students": "دانشجویان",
+    "viewDetails": "مشاهده جزئیات",
+    "viewAll": "مشاهده همه دانشگاه‌ها"
+  },
+  "Scholarships": {
+    "badge": "حمایت مالی",
+    "title": "بورسیه‌ها و کمک‌های مالی",
+    "description": "تحصیل در چین مقرون به صرفه است. فرصت‌های مختلف بورسیه تحصیلی موجود برای دانشجویان بین‌المللی را کاوش کنید.",
+    "items": {
+      "csc": {
+        "title": "بورسیه دولت چین (CSC)",
+        "description": "بورسیه کامل یا جزئی برای دانشجویان بین‌المللی. شامل شهریه، اسکان و کمک هزینه.",
+        "amount": "تا ۱۰,۰۰۰ دلار/سال"
+      },
+      "university": {
+        "title": "بورسیه‌های دانشگاهی",
+        "description": "بورسیه‌های مبتنی بر شایستگی که مستقیماً توسط دانشگاه‌ها برای متقاضیان برجسته ارائه می‌شود.",
+        "amount": "تا ۸,۰۰۰ دلار/سال"
+      },
+      "provincial": {
+        "title": "بورسیه‌های دولت استانی",
+        "description": "بورسیه‌هایی که توسط دولت‌های محلی برای جذب استعدادهای بین‌المللی به مناطق خاص تأمین می‌شود.",
+        "amount": "تا ۶,۰۰۰ دلار/سال"
+      }
+    },
+    "awardAmount": "مبلغ بورسیه",
+    "learnMore": "بیشتر بدانید",
+    "stats": {
+      "scholarshipOptions": "Scholarship Options",
+      "universities": "Universities",
+      "programs": "Programs",
+      "awarded": "اعطا شده سالانه",
+      "funding": "دریافت بودجه",
+      "full": "بورسیه‌های کامل",
+      "eligible": "برنامه‌های واجد شرایط"
+    },
+    "viewAll": "مشاهده همه بورسیه‌ها",
+    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+    "popular": {
+      "title": "Featured & Popular Scholarships"
+    },
+    "tabs": {
+      "search": "Search Scholarships",
+      "about": "About Scholarships"
+    },
+    "search": {
+      "filter": "Filters",
+      "clearAll": "Clear All",
+      "searchPlaceholder": "Search program or university...",
+      "category": "Category",
+      "all": "All",
+      "fullScholarship": "Full Scholarship (100%)",
+      "partialScholarship": "Partial Scholarship",
+      "city": "City",
+      "university": "University",
+      "degree": "Degree Level",
+      "language": "Language",
+      "semester": "Semester",
+      "spring": "Spring",
+      "autumn": "Autumn",
+      "freeAccommodation": "Free Accommodation",
+      "monthlyStipend": "Monthly Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "scholarshipOptions": "scholarship options at",
+      "universities": "universities",
+      "noResults": "No scholarships found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "programsAvailable": "Programs",
+      "upTo": "Up to",
+      "accommodation": "Accommodation",
+      "stipend": "Stipend",
+      "insurance": "Insurance",
+      "program": "Program",
+      "teachingLanguage": "Language",
+      "startingDate": "Intake",
+      "scholarshipCoverage": "Original Tuition",
+      "youNeedToPay": "You Need To Pay",
+      "tuition": "Tuition",
+      "free": "Free",
+      "moreOptions": "More Options",
+      "learnMore": "Learn More"
+    },
+    "detail": {
+      "backToSearch": "Back to Search",
+      "scholarshipAvailable": "Scholarship Available",
+      "programDetails": "Program Details",
+      "degree": "Degree",
+      "duration": "Duration",
+      "language": "Language",
+      "intake": "Intake",
+      "availableScholarships": "Available Scholarships",
+      "noScholarships": "No scholarships are currently available for this program.",
+      "tuitionCoverage": "Tuition Coverage",
+      "freeAccommodation": "Free Accommodation",
+      "stipend": "Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "originalTuition": "Original Tuition",
+      "youPay": "You Need to Pay",
+      "serviceFee": "Service Fee",
+      "applyNow": "Apply for this Scholarship",
+      "university": "University",
+      "viewUniversity": "View University Profile",
+      "viewProgram": "View Program Details"
+    },
+    "about": {
+      "howItWorks": "How Scholarships Work",
+      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+      "scholarshipCoverage": "Scholarship Coverage",
+      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+      "serviceFees": "Service & Processing Fees",
+      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+      "scholarshipTypes": "Common Scholarship Types",
+      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+      "searchPrograms": "Search Eligible Programs",
+      "requiredDocuments": "Required Documents",
+      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+      "faq": "Frequently Asked Questions",
+      "faq1Question": "Do I need to know Chinese to get a scholarship?",
+      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+      "faq2Question": "Can I work while studying?",
+      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+      "faq3Question": "What happens if I fail my classes?",
+      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+      "faq4Question": "How long does the application process take?",
+      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+    }
+  },
+  "Testimonials": {
+    "badge": "داستان‌های موفقیت",
+    "title": "آنچه دانشجویان ما می‌گویند",
+    "description": "از دانشجویانی بشنوید که با موفقیت از طریق پلتفرم ما درخواست داده‌اند و اکنون در چین در حال پیشرفت هستند.",
+    "testimonials": {
+      "sarah": {
+        "quote": "تحصیل در تسینگهوا تجربه‌ای بود که زندگی‌ام را تغییر داد. پردیس زیباست و اساتید در سطح جهانی هستند. من هم از نظر علمی و هم شخصی رشد کرده‌ام.",
+        "program": "علوم کامپیوتر",
+        "university": "دانشگاه تسینگهوا",
+        "country": "ایالات متحده آمریکا"
+      },
+      "ahmed": {
+        "quote": "فرآیند درخواست به لطف Studyatchina روان بود. من اکنون در حال تحصیل در مقطع کارشناسی ارشد مهندسی عمران هستم و از هر لحظه آن لذت می‌برم.",
+        "program": "مهندسی عمران",
+        "university": "دانشگاه ججیانگ",
+        "country": "مصر"
+      },
+      "maria": {
+        "quote": "شانگهای شهری شگفت‌انگیز است! من عاشق فرهنگ، غذا و دوستانی هستم که اینجا پیدا کرده‌ام. بورسیه‌ای که دریافت کردم همه چیز را ممکن کرد.",
+        "program": "تجارت بین‌الملل",
+        "university": "دانشگاه فودان",
+        "country": "اسپانیا"
+      }
+    },
+    "averageRating": "میانگین امتیاز",
+    "reviews": "نظرات",
+    "satisfaction": "رضایت"
+  },
+  "Partners": {
+    "badge": "شرکای مورد اعتماد",
+    "title": "دانشگاه‌های همکار",
+    "description": "ما با معتبرترین موسسات چین همکاری می‌کنیم تا بهترین فرصت‌های آموزشی را برای شما فراهم کنیم",
+    "recognitions": {
+      "unesco": {
+        "title": "به رسمیت شناخته شده توسط یونسکو",
+        "description": "تمام دانشگاه‌های همکار توسط یونسکو به رسمیت شناخته شده‌اند"
+      },
+      "government": {
+        "title": "تایید شده توسط دولت",
+        "description": "به طور رسمی توسط وزارت آموزش چین تایید شده است"
+      },
+      "accredited": {
+        "title": "دارای اعتبار جهانی",
+        "description": "مدارک تحصیلی در بیش از ۱۸۰ کشور جهان به رسمیت شناخته می‌شود"
+      }
+    }
+  },
+  "FAQ": {
+    "badge": "سوالی دارید؟",
+    "title": "سوالات متداول",
+    "description": "پاسخ سوالات رایج در مورد تحصیل در چین را بیابید",
+    "items": {
+      "deadline": {
+        "question": "مهلت درخواست چه زمانی است؟",
+        "answer": "مهلت‌ها بسته به دانشگاه و برنامه متفاوت است. به طور کلی، برای ورودی سپتامبر، درخواست‌ها بین مارس و ژوئن بسته می‌شوند. برای تاریخ‌های دقیق به صفحات برنامه خاص مراجعه کنید."
+      },
+      "language": {
+        "question": "آیا برای تحصیل در چین باید چینی بلد باشم؟",
+        "answer": "لزوماً نه! هزاران برنامه به زبان انگلیسی برای مقاطع کارشناسی، کارشناسی ارشد و دکترا وجود دارد. با این حال، یادگیری مقداری چینی پایه برای زندگی روزمره توصیه می‌شود."
+      },
+      "work": {
+        "question": "آیا می‌توانم در حین تحصیل کار کنم؟",
+        "answer": "دانشجویان بین‌المللی می‌توانند با اجازه دانشگاه و اداره مهاجرت به صورت پاره‌وقت کار کنند یا دوره کارآموزی بگذرانند. سیاست‌ها در سال‌های اخیر انعطاف‌پذیرتر شده‌اند."
+      },
+      "scholarships": {
+        "question": "چگونه برای بورسیه تحصیلی اقدام کنم؟",
+        "answer": "شما می‌توانید هنگام ارسال درخواست خود، مستقیماً از طریق پلتفرم ما برای بورسیه تحصیلی اقدام کنید. ما شما را در مورد مدارک مورد نیاز برای بورسیه‌های CSC و دانشگاهی راهنمایی خواهیم کرد."
+      },
+      "visa": {
+        "question": "شرایط ویزا چیست؟",
+        "answer": "شما به یک پاسپورت معتبر، نامه پذیرش و فرم JW202 از دانشگاه خود نیاز دارید. ما راهنمایی و پشتیبانی جامع ویزا را در طول فرآیند ارائه می‌دهیم."
+      },
+      "process": {
+        "question": "فرآیند درخواست چقدر طول می‌کشد؟",
+        "answer": "فرآیند درخواست معمولاً ۲-۴ هفته طول می‌کشد. پس از ارسال، دانشگاه‌ها معمولاً در عرض ۴-۸ هفته پاسخ می‌دهند. ما شما را در هر مرحله در جریان قرار می‌دهیم."
+      }
+    },
+    "seeAll": "مشاهده همه سوالات متداول",
+    "contactSupport": "تماس با پشتیبانی",
+    "footer": "هنوز سوالی دارید؟ تیم پشتیبانی ما ۲۴ ساعته در ۷ روز هفته آماده کمک به شماست."
+  },
+  "Destinations": {
+    "pageTitle": "مقاصد تحصیلی",
+    "badge": "مقاصد تحصیلی در چین",
+    "heroTitle": "شهرهای چین را",
+    "heroSubtitle": "کشف کنید",
+    "heroDescription": "از پایتخت تاریخی پکن تا آسمان‌خراش‌های مدرن شانگهای — پویاترین شهرهای چین را کشف کنید و مکان مناسب سفر تحصیلی خود را بیابید.",
+    "statCities": "شهر موجود",
+    "statUniversities": "مجموع دانشگاه‌ها",
+    "statTopCity": "دانشگاه در {city}",
+    "featuredTitle": "مقاصد برجسته",
+    "featuredSubtitle": "محبوب‌ترین شهرها برای دانشجویان بین‌المللی در چین",
+    "allCitiesTitle": "شهرهای بیشتر",
+    "allCitiesSubtitle": "دانشگاه‌های شهرهای بیشتر چین را کشف کنید",
+    "university": "دانشگاه",
+    "universities": "دانشگاه",
+    "explorePrograms": "مشاهده برنامه‌ها"
+  },
+  "Universities": {
+    "title": "دانشگاه‌های برتر چین را کاوش کنید",
+    "subtitle": "بیش از {count}+ مؤسسه معتبر در سراسر چین را کشف کنید. از پروژه ۹۸۵ تا دانشگاه‌های لیگ C9.",
+    "error": {
+      "title": "بارگذاری دانشگاه‌ها ممکن نیست",
+      "hint": "راهنما: {hint}"
+    },
+    "search": {
+      "placeholder": "جستجو بر اساس نام دانشگاه، شهر یا رتبه...",
+      "label": "جستجو",
+      "universityPlaceholder": "نام دانشگاه...",
+      "searching": "در حال جستجو..."
+    },
+    "filters": {
+      "title": "فیلترها",
+      "description": "محدود کردن جستجوی دانشگاه",
+      "clear": "پاک کردن فیلترها",
+      "clearAll": "پاک کردن همه فیلترها",
+      "city": "شهر",
+      "allCities": "همه شهرها",
+      "institutionType": "نوع مؤسسه",
+      "allTypes": "همه انواع",
+      "universityCategory": "دسته‌بندی دانشگاه",
+      "allCategories": "همه دسته‌ها",
+      "rankingRecognition": "رتبه‌بندی و اعتبار",
+      "specialFeatures": "ویژگی‌های خاص",
+      "institutionTypes": {
+        "university": "دانشگاه",
+        "college": "کالج",
+        "languageInstitute": "مؤسسه زبان",
+        "vocationalSchool": "مدرسه حرفه‌ای",
+        "technicalInstitute": "مؤسسه فنی"
+      },
+      "categories": {
+        "public": "دولتی",
+        "private": "خصوصی",
+        "research": "تحقیقاتی",
+        "comprehensive": "جامع",
+        "specialized": "تخصصی",
+        "vocational": "حرفه‌ای"
+      },
+      "rankings": {
+        "project985": "پروژه ۹۸۵",
+        "project211": "پروژه ۲۱۱",
+        "doubleFirstClass": "کلاس اول دوگانه"
+      },
+      "features": {
+        "fastTrack": "پذیرش سریع",
+        "scholarships": "بورسیه موجود",
+        "englishPrograms": "برنامه‌های انگلیسی"
+      }
+    },
+    "stats": {
+      "title": "آمار سریع",
+      "total": "کل دانشگاه‌ها",
+      "showing": "نمایش",
+      "cities": "شهرها"
+    },
+    "sort": {
+      "label": "مرتب‌سازی بر اساس",
+      "name": "نام: الف-ی",
+      "programs": "بیشترین برنامه‌ها",
+      "city": "شهر",
+      "tuitionLow": "Tuition: Low to High",
+      "tuitionHigh": "Tuition: High to Low",
+      "ranking": "Best Ranking"
+    },
+    "noResults": {
+      "title": "دانشگاهی یافت نشد",
+      "description": "فیلترها یا معیارهای جستجو را تنظیم کنید"
+    },
+    "results": {
+      "universities": "universities",
+      "showMore": "Show {count} more",
+      "showingOf": "Showing {visible} of {total}"
+    },
+    "compare": {
+      "title": "Compare Universities",
+      "criteria": "Criteria",
+      "location": "Location",
+      "ranking": "Ranking",
+      "programs": "Programs",
+      "tuition": "Tuition",
+      "levels": "Study Levels",
+      "languages": "Languages",
+      "scholarship": "Scholarship",
+      "fastTrack": "Fast Track",
+      "cscaExam": "CSCA Exam",
+      "badges": "Accreditations",
+      "clearAll": "Clear All",
+      "selected": "{count} selected",
+      "compareNow": "Compare Now"
+    }
+  },
+  "Programs": {
+    "title": "برنامه ایده‌آل خود را کشف کنید",
+    "subtitle": "بیش از {count}+ برنامه از دانشگاه‌های برتر چین را مرور کنید. بهترین تطابق را برای سفر تحصیلی خود پیدا کنید.",
+    "filters": {
+      "title": "فیلترها",
+      "active": "فیلترهای فعال:",
+      "clear": "پاک کردن فیلترها",
+      "clearAll": "پاک کردن همه فیلترها",
+      "search": "جستجو",
+      "searchPlaceholder": "برنامه یا رشته...",
+      "studyLevel": "مقطع تحصیلی",
+      "fieldOfStudy": "رشته تحصیلی",
+      "allFields": "همه رشته‌ها",
+      "maxTuition": "حداکثر شهریه",
+      "language": "زبان",
+      "city": "شهر",
+      "allCities": "همه شهرها",
+      "university": "دانشگاه",
+      "allUniversities": "همه دانشگاه‌ها",
+      "duration": "مدت زمان",
+      "allDurations": "همه مدت‌ها",
+      "scholarshipAvailable": "بورسیه موجود",
+      "levels": {
+        "bachelor": "کارشناسی",
+        "master": "کارشناسی ارشد",
+        "phd": "دکترا",
+        "diploma": "دیپلم",
+        "language": "دوره زبان",
+        "nonDegree": "Non-Degree"
+      },
+      "fields": {
+        "business": "تجارت و مدیریت",
+        "engineering": "مهندسی و فناوری",
+        "medicine": "پزشکی و علوم بهداشتی",
+        "arts": "هنر و علوم انسانی",
+        "science": "علوم طبیعی",
+        "education": "آموزش",
+        "cs": "علوم کامپیوتر",
+        "law": "حقوق"
+      },
+      "languages": {
+        "english": "انگلیسی",
+        "chinese": "چینی"
+      },
+      "durations": {
+        "2years": "۲ سال",
+        "3years": "۳ سال",
+        "4years": "۴ سال",
+        "5years": "۵ سال",
+        "6years": "۶ سال"
+      },
+      "matchingPrograms": "programs match",
+      "applyFilters": "Apply Filters",
+      "scholarshipDesc": "Show programs with funding",
+      "cscaLabel": "بدون آزمون CSCA",
+      "cscaDesc": "نمایش برنامه‌های بدون آزمون CSCA",
+      "cscaBadge": "No CSCA",
+      "academicRequirements": "Academic Requirements",
+      "myAge": "My Age",
+      "agePlaceholder": "e.g. 21",
+      "minGpa": "Min GPA",
+      "gpaPlaceholder": "e.g. 3.0",
+      "autoFilterHint": "فیلترها پس از توقف تایپ به صورت خودکار اعمال می‌شوند",
+      "searchUniversity": "جستجوی دانشگاه...",
+      "noUniversityFound": "دانشگاهی یافت نشد."
+    },
+    "stats": {
+      "total": "کل برنامه‌ها",
+      "showing": "نمایش"
+    },
+    "sort": {
+      "label": "مرتب‌سازی بر اساس",
+      "relevance": "مرتبط‌ترین",
+      "tuitionLow": "شهریه: کم به زیاد",
+      "tuitionHigh": "شهریه: زیاد به کم",
+      "deadline": "مهلت: نزدیک‌ترین",
+      "popular": "محبوب‌ترین"
+    },
+    "noResults": {
+      "title": "برنامه‌ای یافت نشد",
+      "description": "فیلترها یا معیارهای جستجو را تنظیم کنید"
+    },
+    "card": {
+      "duration": "مدت زمان",
+      "intake": "دوره پذیرش",
+      "tuitionFee": "شهریه",
+      "viewProgram": "مشاهده برنامه",
+      "contact": "تماس",
+      "scholarship": "Scholarship",
+      "addToCompare": "Add to compare",
+      "removeFromCompare": "Remove from compare",
+      "level": "Level",
+      "features": "Features",
+      "viewFullDetails": "View Full Details",
+      "applyNow": "Apply Now",
+      "fastTrack": "Fast Track",
+      "deadlineClosed": "بسته شده",
+      "deadlineToday": "مهلت امروز!",
+      "deadlineDaysLeft": "{days} روز باقی مانده",
+      "deadlineDate": "مهلت: {date}"
+    },
+    "compare": {
+      "title": "Compare Programs",
+      "comparing": "Comparing",
+      "more": "more",
+      "clear": "Clear",
+      "compareNow": "Compare Now",
+      "university": "University",
+      "location": "Location",
+      "level": "Level",
+      "duration": "Duration",
+      "tuition": "Tuition",
+      "intake": "Intake",
+      "language": "Language",
+      "viewDetails": "View Details",
+      "apply": "Apply"
+    },
+    "emptyState": {
+      "title": "No Programs Found",
+      "description": "We couldn't find any programs. Try browsing our full catalog.",
+      "filteredDescription": "No programs match your current filters. Try adjusting your search criteria.",
+      "currentFilters": "Your current filters:",
+      "scholarship": "Scholarship",
+      "clearFilters": "Clear All Filters",
+      "tryInstead": "Popular searches to try:",
+      "browseAll": "Browse All Programs",
+      "exploreUniversities": "Explore Universities"
+    },
+    "recentlyViewed": {
+      "title": "Recently Viewed",
+      "clear": "Clear",
+      "viewAgain": "View again",
+      "justNow": "Just now",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago"
+    },
+    "quickAccess": "دسترسی سریع",
+    "quickChips": {
+      "cs": "علوم کامپیوتر",
+      "business": "بازرگانی",
+      "engineering": "مهندسی",
+      "medicine": "پزشکی",
+      "arts": "هنر",
+      "economics": "اقتصاد"
+    },
+    "aiSearch": {
+      "thinking": "AI is thinking... finding related fields for \"{query}\"",
+      "active": "Smart Search Active",
+      "found": "Found programs related to: {terms}",
+      "working": "AI is working on it...",
+      "looking": "Looking for programs related to \"{query}\""
+    },
+    "view": {
+      "grid": "شبکه‌ای",
+      "map": "نقشه"
+    }
+  },
+  "UniversitiesCard": {
+    "programs": "برنامه‌ها",
+    "tuitionFrom": "شهریه از",
+    "tuition": "شهریه",
+    "viewUniversity": "مشاهده دانشگاه",
+    "viewPrograms": "مشاهده برنامه‌ها",
+    "fastTrack": "Fast Track",
+    "scholarship": "Scholarship",
+    "contactForPricing": "Contact for pricing",
+    "cscaExam": "CSCA Exam",
+    "addToCompare": "Add to compare",
+    "removeFromCompare": "Remove from compare"
+  },
+  "ProgramDetail": {
+    "breadcrumb": {
+      "home": "صفحه اصلی",
+      "programs": "برنامه‌ها"
+    },
+    "badges": {
+      "intake": "دوره پذیرش: {intake}",
+      "contactUniversity": "تماس با دانشگاه",
+      "specialRequirements": "الزامات ویژه",
+      "fastTrack": "Fast Track Acceptance"
+    },
+    "deadline": {
+      "daysRemaining": "{days} روز باقی مانده",
+      "endingToday": "برنامه امروز بسته می‌شود!",
+      "closed": "برنامه بسته شده است",
+      "deadline": "مهلت"
+    },
+    "buttons": {
+      "apply": "همین حالا درخواست دهید",
+      "downloadBrochure": "دانلود بروشور",
+      "viewUniversity": "مشاهده دانشگاه",
+      "startApplication": "شروع درخواست",
+      "contactAdvisor": "تماس با مشاور"
+    },
+    "highlights": {
+      "title": "ویژگی‌های برنامه",
+      "tuition": "شهریه",
+      "duration": "مدت زمان",
+      "language": "زبان",
+      "level": "مقطع تحصیلی",
+      "gpaRequirement": "حداقل معدل",
+      "maxAge": "حداکثر سن",
+      "languageRequirements": "Language Score"
+    },
+    "overview": {
+      "title": "نمای کلی برنامه",
+      "noDescription": "توضیحی برای این برنامه موجود نیست.",
+      "curriculum": "برنامه درسی اصلی",
+      "curriculumPlaceholder": "اطلاعات دروس اصلی به زودی به‌روزرسانی می‌شود"
+    },
+    "requirements": {
+      "title": "شرایط پذیرش"
+    },
+    "scholarships": {
+      "title": "گزینه‌های بورسیه برای این برنامه",
+      "description": "نوع بورسیه‌ای که با بودجه شما متناسب است را انتخاب کنید"
+    },
+    "faq": {
+      "title": "سوالات متداول",
+      "deadline": "مهلت درخواست {deadline} است.",
+      "accommodationQ": "آیا اسکان فراهم می‌شود؟",
+      "accommodationA": "بله، اسکان در پردیس برای دانشجویان بین‌المللی در دسترس است.",
+      "workQ": "آیا می‌توانم پاره‌وقت کار کنم؟",
+      "workA": "بله، دانشجویان بین‌المللی می‌توانند با مجوزهای مناسب برای برنامه‌های کار-تحصیل یا کارآموزی درخواست دهند.",
+      "deadlineQ": "مهلت درخواست چه زمانی است؟"
+    },
+    "sidebar": {
+      "ready": "آماده درخواست هستید؟",
+      "free": "درخواست رایگان",
+      "fast": "پردازش سریع",
+      "expert": "پشتیبانی تخصصی",
+      "cost": "جزئیات هزینه",
+      "applicationFee": "هزینه درخواست",
+      "serviceFee": "هزینه خدمات",
+      "disclaimer": "* هزینه‌های اضافی ممکن است شامل اسکان، ویزا و هزینه‌های زندگی باشد",
+      "why": "چرا این برنامه را انتخاب کنید؟",
+      "reasons": {
+        "degree": "مدرک بین‌المللی معتبر",
+        "faculty": "اعضای هیئت علمی با تجربه",
+        "facilities": "امکانات و منابع مدرن",
+        "career": "پشتیبانی توسعه شغلی"
+      }
+    },
+    "accommodation": {
+      "title": "گزینه‌های اسکان"
+    }
+  },
+  "UniversityDetail": {
+    "quickLinks": {
+      "exploreCourses": "کشف دوره‌ها",
+      "getFunded": "دریافت بودجه",
+      "findHousing": "یافتن مسکن",
+      "findLocation": "موقعیت"
+    },
+    "location": {
+      "title": "موقعیت دانشگاه",
+      "viewOnMap": "مشاهده در نقشه گوگل"
+    },
+    "about": "درباره دانشگاه",
+    "whyChooseUs": "چرا ما را انتخاب کنید",
+    "programs": {
+      "title": "برنامه‌ها",
+      "allPrograms": "همه برنامه‌ها",
+      "noPrograms": "هیچ برنامه‌ای برای این سطح یافت نشد.",
+      "viewProgram": "مشاهده برنامه",
+      "tuitionFee": "شهریه",
+      "perYear": "در سال",
+      "allLanguages": "همه زبان‌ها",
+      "filterByLanguage": "زبان",
+      "showing": "Showing {start}-{end} of {total} programs",
+      "previousPage": "Previous",
+      "nextPage": "Next",
+      "pageOf": "Page {current} of {total}",
+      "deadlineClosed": "بسته شده",
+      "deadlineLabel": "مهلت: {date}"
+    },
+    "deadlines": {
+      "title": "مهلت‌های پیش رو",
+      "noDeadlines": "مهلت پیش رویی وجود ندارد",
+      "daysLeft": "{days} روز باقی مانده",
+      "today": "امروز پایان می‌یابد!",
+      "closed": "بسته شده",
+      "deadline": "مهلت",
+      "viewProgram": "مشاهده برنامه",
+      "urgent": "فوری",
+      "quickJump": "مهلت‌ها"
+    },
+    "scholarships": {
+      "title": "گزینه‌های بورسیه موجود",
+      "description": "نوع بورسیه‌ای که با بودجه شما برای برنامه‌های این دانشگاه متناسب است را انتخاب کنید"
+    },
+    "campus": {
+      "tour": "تور پردیس",
+      "gallery": "گالری تصاویر",
+      "viewImage": "مشاهده تصویر"
+    },
+    "admission": {
+      "title": "شرایط پذیرش",
+      "academic": "شرایط تحصیلی",
+      "language": "شرایط زبان",
+      "highSchool": "دیپلم دبیرستان یا معادل آن",
+      "gpa": "حداقل معدل ۳.۰/۴.۰",
+      "transcripts": "ریزنمرات تحصیلی",
+      "ielts": "آیلتس ۶.۰ یا تافل ۸۰+",
+      "hsk": "HSK ۴ برای برنامه‌های چینی",
+      "english": "مدرک تسلط به زبان انگلیسی"
+    },
+    "sidebar": {
+      "ready": "آماده درخواست هستید؟",
+      "startJourney": "سفر خود را در {university} آغاز کنید",
+      "applyNow": "همین حالا درخواست دهید",
+      "downloadBrochure": "دانلود بروشور",
+      "quickActions": "اقدامات سریع",
+      "requestInfo": "درخواست اطلاعات",
+      "chatAdvisor": "گفتگو با مشاور",
+      "virtualTour": "تور مجازی",
+      "scheduleCall": "رزرو تماس",
+      "quickFacts": "حقائق سریع",
+      "location": "مکان",
+      "founded": "تأسیس",
+      "students": "دانشجویان",
+      "international": "بین‌المللی",
+      "ranking": "رتبه‌بندی",
+      "officialWebsite": "وب‌سایت رسمی"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "RequestInformation": {
+    "title": "درخواست اطلاعات",
+    "description": "جزئیات بیشتری درباره {university} دریافت کنید. فرم زیر را پر کنید.",
+    "firstName": "نام",
+    "lastName": "نام خانوادگی",
+    "email": "ایمیل",
+    "phone": "شماره تلفن",
+    "interest": "علاقه",
+    "selectInterest": "علاقه خود را انتخاب کنید",
+    "interests": {
+      "admission": "شرایط پذیرش",
+      "programs": "برنامه‌های موجود",
+      "scholarships": "فرصت‌های بورسیه",
+      "campus": "زندگی در پردیس",
+      "other": "سایر"
+    },
+    "message": "پیام",
+    "messagePlaceholder": "من علاقه‌مند به تحصیل در {university} هستم...",
+    "submit": "ارسال درخواست",
+    "sending": "در حال ارسال...",
+    "success": "درخواست با موفقیت ارسال شد! به زودی با شما تماس خواهیم گرفت.",
+    "error": "ارسال درخواست ناموفق بود. لطفاً دوباره تلاش کنید."
+  },
+  "UniversityScholarships": {
+    "loading": "در حال بارگذاری بورسیه‌ها...",
+    "noScholarships": "هنوز هیچ بورسیه‌ای برای این دانشگاه موجود نیست.",
+    "options": "گزینه‌های بورسیه",
+    "discover": "کشف فرصت‌های بیشتر",
+    "explore": "کاوش همه گزینه‌های بورسیه",
+    "description": "مطمئن نیستید کدام بورسیه برای شما مناسب است؟ راهنمای کامل بورسیه ما را مرور کنید تا همه گزینه‌ها را مقایسه کنید، شرایط واجد شرایط بودن را درک کنید و بهترین گزینه را برای سفر تحصیلی خود پیدا کنید.",
+    "viewAll": "مشاهده همه بورسیه‌ها",
+    "advice": "دریافت مشاوره شخصی",
+    "mostPopular": "محبوب‌ترین",
+    "defaultDescription": "گزینه‌ای عالی برای دانشجویان بین‌المللی.",
+    "tuitionCoverage": "پوشش شهریه",
+    "serviceFee": "هزینه خدمات",
+    "whatsIncluded": "چه چیزی شامل می‌شود",
+    "applyNow": "همین حالا درخواست دهید",
+    "howItWorks": {
+      "title": "بورسیه‌ها چگونه کار می‌کنند",
+      "description": "بورسیه درصدی از شهریه شما را پوشش می‌دهد. شما مابقی شهریه را به دانشگاه + هزینه خدمات یک‌بار پرداخت برای پشتیبانی درخواست، کمک ویزا و راهنمایی پرداخت می‌کنید.",
+      "learnMore": "بیشتر بدانید درباره بورسیه‌ها ←"
+    },
+    "benefits": {
+      "tuitionCoverage": "پوشش {percentage}٪ شهریه",
+      "noScholarship": "بدون بورسیه (۰٪ پوشش)",
+      "support": "پشتیبانی و راهنمایی درخواست",
+      "visa": "کمک ویزا",
+      "orientation": "توجیه پیش از عزیمت",
+      "accommodation": "پشتیبانی هماهنگی اسکان"
+    },
+    "action": "Action",
+    "scholarshipType": "Scholarship Type"
+  },
+  "Accommodation": {
+    "notAvailable": "اطلاعات اسکان در دسترس نیست",
+    "badge": "اسکان دانشجویی",
+    "title": "گزینه‌های مسکن در پردیس",
+    "priceRange": "محدوده قیمت",
+    "generalFacilities": "امکانات عمومی",
+    "availableRoomTypes": "انواع اتاق‌های موجود",
+    "defaultTitle": "اسکان",
+    "priceOnRequest": "قیمت در صورت درخواست",
+    "month": "ماه",
+    "roomFeatures": "ویژگی‌های اتاق:",
+    "importantInfo": {
+      "title": "اطلاعات مهم",
+      "fees": "هزینه‌های اسکان در هر ترم یا سال تحصیلی پرداخت می‌شود",
+      "availability": "تخصیص اتاق منوط به در دسترس بودن است",
+      "prices": "قیمت‌ها ممکن است متفاوت باشد و باید با دانشگاه تأیید شود",
+      "deposit": "ممکن است هنگام ورود سپرده لازم باشد"
+    }
+  },
+  "UniversityHeader": {
+    "fastTrack": "پذیرش سریع",
+    "est": "تأسیس {founded}",
+    "studentsCount": "{students} دانشجو",
+    "website": "وب‌سایت",
+    "applyNow": "همین حالا درخواست دهید",
+    "requestInfo": "درخواست اطلاعات",
+    "brochure": "بروشور",
+    "virtualTour": "تور مجازی",
+    "scheduleCall": "رزرو تماس",
+    "chatAdvisor": "گفتگو با مشاور",
+    "save": "ذخیره",
+    "saved": "ذخیره شده",
+    "share": "اشتراک‌گذاری",
+    "founded": "تأسیس",
+    "students": "دانشجویان",
+    "ranking": "رتبه‌بندی",
+    "international": "بین‌المللی"
+  },
+  "Dashboard": {
+    "sidebar": {
+      "myApplications": "درخواست‌های من",
+      "profile": "پروفایل",
+      "messages": "پیام‌ها",
+      "payments": "پرداخت‌ها",
+      "documents": "مدارک",
+      "settings": "تنظیمات",
+      "logout": "خروج"
+    },
+    "title": "داشبورد",
+    "subtitle": "خوش آمدید! در اینجا مروری بر درخواست‌های شما وجود دارد.",
+    "newApplication": "درخواست جدید",
+    "stats": {
+      "totalApplications": "کل درخواست‌ها",
+      "submitted": "{count} ارسال شده",
+      "pendingActions": "اقدامات معوق",
+      "requiresAttention": "نیاز به توجه",
+      "offersReceived": "پیشنهادات دریافتی",
+      "congratulations": "تبریک!",
+      "successRate": "نرخ موفقیت",
+      "acceptanceRate": "نرخ پذیرش"
+    },
+    "recentApplications": "درخواست‌های اخیر",
+    "appliedOn": "درخواست شده در {date}",
+    "viewDetails": "مشاهده جزئیات",
+    "noApplications": {
+      "title": "هنوز درخواستی وجود ندارد",
+      "description": "سفر خود را با مرور برنامه‌ها و ارسال اولین درخواست خود آغاز کنید."
+    },
+    "browsePrograms": "مرور برنامه‌ها"
+  },
+  "Profile": {
+    "title": "پروفایل من",
+    "subtitle": "اطلاعات شخصی و تنظیمات خود را مدیریت کنید",
+    "completion": "تکمیل پروفایل",
+    "completeProfile": "پروفایل خود را تکمیل کنید تا درخواست‌های آینده سریع‌تر انجام شود",
+    "photo": {
+      "title": "عکس پروفایل",
+      "description": "آپلود عکس حرفه‌ای",
+      "upload": "آپلود عکس",
+      "uploading": "در حال آپلود...",
+      "hint": "JPG، PNG یا GIF. حداکثر ۵ مگابایت."
+    },
+    "personalInfo": {
+      "title": "اطلاعات شخصی",
+      "description": "جزئیات اصلی شما برای درخواست‌ها"
+    },
+    "fullName": "نام کامل *",
+    "email": "ایمیل",
+    "dob": "تاریخ تولد",
+    "phone": "شماره تلفن",
+    "nationality": "ملیت",
+    "passportNumber": "شماره پاسپورت",
+    "address": {
+      "title": "آدرس",
+      "description": "آدرس محل سکونت فعلی شما",
+      "street": "آدرس خیابان",
+      "city": "شهر",
+      "postalCode": "کد پستی"
+    },
+    "emergency": {
+      "title": "تماس اضطراری",
+      "description": "شخصی که در مواقع اضطراری باید با او تماس گرفته شود",
+      "name": "نام",
+      "phone": "تلفن",
+      "relationship": "رابطه"
+    },
+    "save": "ذخیره پروفایل",
+    "saving": "در حال ذخیره...",
+    "success": "پروفایل با موفقیت به‌روزرسانی شد!",
+    "error": "خطایی در هنگام به‌روزرسانی پروفایل رخ داد"
+  },
+  "Documents": {
+    "title": "مدارک من",
+    "subtitle": "مدیریت مدارک شما برای درخواست‌های دانشگاه",
+    "stats": {
+      "total": "کل مدارک",
+      "uploaded": "فایل‌های آپلود شده",
+      "verified": "تایید شده",
+      "approved": "تایید شده توسط مدیر",
+      "pending": "در انتظار بررسی",
+      "awaiting": "در انتظار تایید"
+    },
+    "yourDocuments": "مدارک شما",
+    "manageDocuments": "آپلود و مدیریت مدارک درخواست",
+    "uploadDocument": "آپلود مدرک",
+    "noDocuments": "هنوز مدرکی وجود ندارد",
+    "uploadFirst": "اولین مدرک خود را برای شروع آپلود کنید",
+    "size": "اندازه",
+    "uploaded": "آپلود شده",
+    "download": "دانلود",
+    "delete": "حذف",
+    "deleteConfirm": "آیا مطمئن هستید که می‌خواهید \"{name}\" را حذف کنید؟",
+    "uploadDialog": {
+      "title": "آپلود مدرک",
+      "description": "نوع مدرک را انتخاب کنید و فایل خود را آپلود کنید",
+      "type": "نوع مدرک *",
+      "selectType": "انتخاب نوع مدرک",
+      "alreadyUploaded": "(قبلاً آپلود شده)",
+      "file": "فایل *",
+      "selected": "انتخاب شده",
+      "formats": "فرمت‌های پذیرفته شده: PDF, JPG, PNG, DOC, DOCX. حداکثر ۱۰ مگابایت.",
+      "cancel": "لغو",
+      "uploading": "در حال آپلود...",
+      "upload": "آپلود"
+    },
+    "error": {
+      "fileSize": "فایل باید کمتر از ۱۰ مگابایت باشد",
+      "selectFile": "لطفاً نوع مدرک و فایل را انتخاب کنید",
+      "fileType": "لطفاً یک فایل تصویری آپلود کنید",
+      "imageSize": "تصویر باید کمتر از ۵ مگابایت باشد"
+    },
+    "success": {
+      "uploaded": "مدرک با موفقیت آپلود شد!",
+      "deleted": "مدرک حذف شد"
+    },
+    "types": {
+      "passport": "پاسپورت",
+      "transcript": "ریزنمرات تحصیلی",
+      "diploma": "مدرک/گواهینامه",
+      "recommendation_letter": "توصیه‌نامه",
+      "personal_statement": "انگیزه‌نامه",
+      "cv": "رزومه/CV",
+      "language_certificate": "مدرک زبان (IELTS/TOEFL)",
+      "photo": "عکس پاسپورت",
+      "bank_statement": "صورت‌حساب بانکی",
+      "health_certificate": "گواهی سلامت",
+      "police_clearance": "گواهی عدم سوءپیشینه",
+      "other": "سایر مدارک"
+    },
+    "documentRequest": {
+      "title": "درخواست مدارک",
+      "description": "لطفاً مدارک زیر را آپلود کنید:\n1. کپی پاسپورت\n2. مدرک تحصیلی\n3. بیانیه شخصی",
+      "note": "اطمینان حاصل کنید که همه چیز به همه زبان‌ها ترجمه شده است"
+    }
+  },
+  "Status": {
+    "pending_documents": "در انتظار مدارک",
+    "pending_payment": "در انتظار پرداخت",
+    "payment_verification": "تایید پرداخت",
+    "submitted": "ارسال شده",
+    "under_review": "در حال بررسی",
+    "accepted": "پذیرفته شده",
+    "rejected": "رد شده",
+    "unknown": "ناشناخته"
+  },
+  "Auth": {
+    "login": {
+      "title": "ورود",
+      "description": "برای دسترسی به حساب خود، ایمیل و رمز عبور خود را وارد کنید",
+      "emailLabel": "ایمیل",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "رمز عبور",
+      "forgotPassword": "رمز عبور را فراموش کرده‌اید؟",
+      "submit": "ورود",
+      "orContinueWith": "یا ادامه دهید با",
+      "continueWithGoogle": "ادامه با گوگل",
+      "connecting": "در حال اتصال...",
+      "noAccount": "حساب کاربری ندارید؟",
+      "signUp": "ثبت نام",
+      "success": "ورود با موفقیت انجام شد! در حال تغییر مسیر...",
+      "error": "مشکلی پیش آمد",
+      "googleError": "ورود با گوگل ناموفق بود"
+    },
+    "layout": {
+      "branding": "Studyatchina",
+      "heroTitle": "دروازه شما به دانشگاه‌های چین",
+      "heroDescription": "به هزاران دانشجوی بین‌المللی بپیوندید که رویاهای خود را در دانشگاه‌های برتر چین دنبال می‌کنند.",
+      "programsTitle": "۵۰۰+ برنامه",
+      "programsDescription": "دسترسی به برنامه‌های دانشگاه‌های برتر چین",
+      "guidanceTitle": "راهنمایی تخصصی",
+      "guidanceDescription": "در طول سفر درخواست خود پشتیبانی دریافت کنید",
+      "scholarshipsTitle": "فرصت‌های بورسیه",
+      "scholarshipsDescription": "گزینه‌های مختلف بورسیه موجود را بررسی کنید",
+      "copyright": "© ۲۰۲۴ Studyatchina. تمامی حقوق محفوظ است."
+    }
+  },
+  "Notifications": {
+    "title": "اعلان‌ها",
+    "markAllRead": "علامت‌گذاری همه به عنوان خوانده شده",
+    "noNotifications": "هنوز اعلانی وجود ندارد",
+    "viewAll": "مشاهده همه اعلان‌ها",
+    "loading": "در حال بارگذاری اعلان‌ها...",
+    "types": {
+      "statusChange": "به‌روزرسانی وضعیت درخواست",
+      "documentRequested": "مدرک درخواست شده",
+      "paymentRequested": "پرداخت مورد نیاز",
+      "messageReceived": "پیام جدید",
+      "newApplication": "درخواست جدید",
+      "newLead": "سرنخ جدید",
+      "documentUploaded": "مدرک بارگذاری شد",
+      "acceptanceLetter": "نامه پذیرش"
+    },
+    "messages": {
+      "statusChange": "وضعیت درخواست شما به {status} تغییر یافت"
+    }
+  },
+  "AISearch": {
+    "placeholder": "امتحان کنید: 'کارشناسی ارشد مهندسی با کمتر از 30000 یوان در پکن'",
+    "search": "جستجو",
+    "filters": "هوش مصنوعی متوجه شد",
+    "error": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
+  },
+  "AIChat": {
+    "title": "چن وی 陈伟",
+    "subtitle": "مشاور تحصیلی شما",
+    "typing": "در حال تایپ...",
+    "greeting": "سلام! 👋 من چن وی (陈伟) هستم، مشاور شخصی تحصیلی شما. من اینجا هستم تا به شما کمک کنم برنامه مناسب را در چین پیدا کنید، به سوالاتتان پاسخ دهم و حتی شما را در فرآیند درخواست راهنمایی کنم. امروز چه کاری می‌توانم برایتان انجام دهم؟",
+    "inputPlaceholder": "پیام خود را بنویسید...",
+    "thinking": "در حال فکر کردن...",
+    "error": "متأسفانه مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
+    "quickStart": "شروع سریع:",
+    "quickFind": "🎓 جستجوی برنامه",
+    "quickScholarship": "💰 بورسیه‌ها",
+    "quickApply": "📝 شروع درخواست",
+    "chatHistory": "سابقه گفتگو",
+    "newChat": "گفتگوی جدید",
+    "noHistory": "گفتگوی قبلی وجود ندارد",
+    "backToChat": "بازگشت به گفتگو",
+    "loginPrompt": "🔐 برای ذخیره سابقه گفتگو و پیگیری درخواست‌ها وارد شوید",
+    "login": "ورود",
+    "register": "ثبت‌نام"
+  },
+  "PaymentDashboard": {
+    "title": "پرداخت‌ها",
+    "subtitle": "مدیریت پرداخت‌های درخواست شما",
+    "totalAmount": "مبلغ کل",
+    "totalPaid": "مجموع پرداخت شده",
+    "pending": "در انتظار",
+    "rest": "مبلغ باقی‌مانده",
+    "totalTransactions": "تعداد تراکنش‌ها",
+    "successfullyProcessed": "با موفقیت پردازش شد",
+    "paymentDue": "پرداخت سررسید شده",
+    "allTime": "کل زمان",
+    "amount": "مبلغ",
+    "status": "وضعیت",
+    "created": "تاریخ ایجاد",
+    "method": "روش پرداخت",
+    "payNow": "پرداخت کنید",
+    "viewApplication": "مشاهده درخواست",
+    "paymentProof": "رسید پرداخت",
+    "paymentRequest": {
+      "title": "درخواست پرداخت",
+      "amount": "USD 200",
+      "description": "این پرداخت را انجام دهید",
+      "note": "لطفاً برای ادامه درخواست خود، پرداخت را تکمیل کنید."
+    },
+    "paymentStatuses": {
+      "completed": "تکمیل شده",
+      "pending": "در انتظار",
+      "processing": "در حال پردازش",
+      "failed": "ناموفق",
+      "refunded": "بازپرداخت شده"
+    },
+    "types": {
+      "application_fee": "هزینه درخواست",
+      "service_fee": "هزینه خدمات",
+      "tuition_deposit": "بیعانه شهریه",
+      "full_tuition": "شهریه کامل",
+      "accommodation": "اسکان",
+      "other": "سایر"
+    },
+    "assistance": {
+      "title": "کمک پرداخت",
+      "description": "شما {count} پرداخت در انتظار دارید. اگر در مورد پرداخت‌ها نیاز به کمک دارید یا سوالی دارید:",
+      "point1": "برای دریافت کمک پرداخت با تیم پشتیبانی ما تماس بگیرید",
+      "point2": "بررسی کنید که آیا واجد شرایط برنامه‌های پرداخت هستید",
+      "point3": "بررسی کنید که روش پرداخت شما پشتیبانی می‌شود"
+    },
+    "paidOn": "پرداخت شده در",
+    "reference": "مرجع",
+    "verifiedByAdmin": "تایید شده توسط مدیر",
+    "expires": "انقضا:",
+    "adminNote": "یادداشت مدیر:",
+    "paymentLinkExpired": "لینک پرداخت منقضی شده است",
+    "document": "سند:",
+    "noPayments": "بدون پرداخت",
+    "noPaymentsDesc": "شما هیچ پرداخت معوقه‌ای ندارید.",
+    "contactSupport": "تماس با پشتیبانی"
+  },
+  "Refunds": {
+    "title": "درخواست‌های استرداد وجه",
+    "statusTitle": "وضعیت استرداد وجه",
+    "requestButton": "درخواست استرداد وجه",
+    "submittedTitle": "درخواست استرداد وجه ارسال شد",
+    "submittedOn": "ارسال شده در {date}",
+    "reasonLabel": "دلیل",
+    "adminResponseLabel": "پاسخ مدیر",
+    "rejectedTitle": "درخواست رد شد",
+    "rejectedMessage": "ممکن است شما واجد شرایط دریافت استرداد وجه باشید. برای ارسال درخواست روی دکمه کلیک کنید.",
+    "modalTitle": "درخواست استرداد وجه",
+    "modalDescription": "ارسال درخواست برای استرداد وجه. لطفاً توضیح دهید چرا درخواست این استرداد را دارید.",
+    "modalReasonLabel": "دلیل استرداد وجه",
+    "modalPlaceholder": "من رد شدم زیرا...",
+    "submitButton": "ارسال درخواست",
+    "cancelButton": "لغو",
+    "successMessage": "درخواست استرداد وجه با موفقیت ارسال شد",
+    "errorMessage": "ارسال درخواست ناموفق بود",
+    "table": {
+      "student": "دانشجو",
+      "program": "دانشگاه / رشته",
+      "reason": "دلیل",
+      "status": "وضعیت",
+      "date": "تاریخ",
+      "actions": "عملیات",
+      "approve": "تایید",
+      "reject": "رد",
+      "noRequests": "هیچ درخواست استرداد وجهی یافت نشد",
+      "approveTitle": "تایید درخواست استرداد وجه",
+      "rejectTitle": "رد درخواست استرداد وجه",
+      "approveDescription": "این کار درخواست را به عنوان تایید شده علامت‌گذاری می‌کند و وضعیت پرداخت درخواست را به استرداد شده تغییر می‌دهد.",
+      "rejectDescription": "این کار درخواست را به عنوان رد شده علامت‌گذاری می‌کند.",
+      "adminResponsePlaceholder": "یک یادداشت برای دانشجو اضافه کنید..."
+    }
+  },
+  "Messages": {
+    "title": "پیام‌ها",
+    "actionRequired": "اقدام مورد نیاز",
+    "actionCompleted": "تکمیل شده",
+    "reply": "پاسخ",
+    "replyingTo": "پاسخ به {name}",
+    "typeReply": "پاسخ خود را بنویسید...",
+    "sendReply": "ارسال پاسخ",
+    "sending": "در حال ارسال...",
+    "cancel": "لغو",
+    "you": "شما",
+    "admin": "تیم پذیرش",
+    "replyTooltip": "پاسخ به این پیام",
+    "actionRequiredMessage": "لطفاً به این پیام پاسخ دهید یا اقدام خواسته شده را تکمیل کنید.",
+    "takeAction": "اقدام کنید",
+    "attachment": "پیوست",
+    "attachments": "پیوست‌ها",
+    "subtitle": "Communication with admissions team",
+    "conversations": "Conversations",
+    "unreadMessages": "Unread Messages",
+    "noMessages": "No messages yet",
+    "noMessagesDesc": "Messages from the admissions team will appear here"
+  },
+  "QSRankings": {
+    "meta": {
+      "title": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026 — دانشگاه‌های چینی | تحصیل در چین",
+      "description": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026 برای چین را بررسی کنید. ببینید 72 دانشگاه چینی در سطح جهانی چگونه رتبه‌بندی شده‌اند، از دانشگاه پکن (#14) تا مؤسسات تحقیقاتی نوظهور."
+    },
+    "hero": {
+      "badge": "رتبه‌بندی جهانی QS دانشگاه‌ها 2026",
+      "titleHighlight": "دانشگاه‌های چینی",
+      "titleRest": "در رتبه‌بندی‌های جهانی",
+      "subtitle": "جایگاه برترین دانشگاه‌های چین را در رتبه‌بندی جهانی QS دانشگاه‌ها 2026 کشف کنید. از دانشگاه پکن در رتبه #14 تا قدرت‌های تحقیقاتی نوظهور — مؤسسه ایده‌آل خود را بیابید.",
+      "breadcrumb": "رتبه‌بندی QS 2026",
+      "statRanked": "دانشگاه رتبه‌بندی شده",
+      "statHighest": "بالاترین رتبه جهانی",
+      "statTop50": "در 50 برتر جهان",
+      "statCities": "شهر نمایندگی شده"
+    },
+    "content": {
+      "topUniversitiesTitle": "برترین دانشگاه‌های چین با رتبه جهانی",
+      "browseAllTitle": "مرور تمام رتبه‌بندی‌ها",
+      "searchPlaceholder": "جستجوی دانشگاه‌ها...",
+      "allCities": "تمام شهرها",
+      "showing": "نمایش",
+      "of": "از",
+      "universities": "دانشگاه",
+      "university": "دانشگاه",
+      "inCity": "در",
+      "matching": "مطابق با",
+      "noResults": "دانشگاهی یافت نشد",
+      "noResultsHint": "جستجو یا فیلترهای خود را تنظیم کنید",
+      "overallScore": "امتیاز کلی",
+      "score": "امتیاز",
+      "world": "جهانی",
+      "china": "چین",
+      "ctaTitle": "آماده تحصیل در یک دانشگاه با رتبه برتر هستید؟",
+      "ctaDescription": "برنامه‌های دانشگاه‌های چینی رتبه‌بندی شده QS را مرور کنید. بورس‌های تحصیلی بیابید، هزینه‌های تحصیل را مقایسه کنید و امروز درخواست خود را شروع کنید.",
+      "browseUniversities": "مرور دانشگاه‌ها",
+      "explorePrograms": "بررسی برنامه‌ها",
+      "disclaimer": "داده‌های رتبه‌بندی از رتبه‌بندی جهانی QS دانشگاه‌ها 2026 منتشر شده توسط Quacquarelli Symonds گرفته شده. برای رتبه‌بندی‌های رسمی و به‌روز، بازدید کنید",
+      "visitSite": "topuniversities.com",
+      "viewProfile": "مشاهده پروفایل",
+      "tierTop50": "50 برتر جهان",
+      "tierTop200": "رتبه 51–200",
+      "tierTop500": "رتبه 201–500",
+      "tierRemaining": "+501"
+    }
+  },
+  "GuidedTour": {
+    "skip": "رد شدن",
+    "next": "بعدی",
+    "finish": "متوجه شدم!",
+    "programs": {
+      "search": {
+        "title": "Find Your Program",
+        "content": "Use the search bar to find programs by name, field of study, or keywords."
+      },
+      "filters": {
+        "title": "Refine Your Search",
+        "content": "Use filters to narrow down by degree level, location, language, and budget."
+      },
+      "card": {
+        "title": "Program Details",
+        "content": "Click on any program card to see full details, requirements, and how to apply."
+      },
+      "compare": {
+        "title": "Compare Programs",
+        "content": "Select up to 3 programs to compare them side-by-side and make the best choice."
+      }
+    }
+  },
+  "Apply": {
+    "title": "Apply for Program",
+    "steps": {
+      "info": "Info",
+      "documents": "Docs",
+      "payment": "Pay",
+      "review": "Review",
+      "personalInfo": "Personal Information",
+      "requiredDocuments": "Required Documents",
+      "paymentInfo": "Payment",
+      "reviewSubmit": "Review & Submit"
+    },
+    "sections": {
+      "identity": "Identity & Personal Details",
+      "identitySubtitle": "Please provide your details as shown on your passport",
+      "contact": "Contact Information",
+      "address": "Home Address",
+      "education": "Education Background",
+      "educationSubtitle": "Your most recent academic qualification",
+      "language": "Language Proficiency",
+      "languageSubtitle": "Chinese and English levels for admission purposes",
+      "emergency": "Emergency Contact",
+      "emergencySubtitle": "Required for your safety abroad"
+    },
+    "options": {
+      "male": "Male",
+      "female": "Female",
+      "islam": "Islam",
+      "christianity": "Christianity",
+      "buddhism": "Buddhism",
+      "hinduism": "Hinduism",
+      "noReligion": "No Religion",
+      "other": "Other",
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "highSchool": "High School",
+      "diploma": "Diploma",
+      "bachelor": "Bachelor's Degree",
+      "master": "Master's Degree",
+      "doctorate": "Doctorate / PhD",
+      "noProficiency": "No Proficiency",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "native": "Native Speaker"
+    },
+    "labels": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "fullName": "Full Name (as in passport)",
+      "email": "Email Address",
+      "phone": "Mobile Phone Number",
+      "country": "Nationality",
+      "passport": "Passport Number",
+      "gender": "Gender",
+      "dateOfBirth": "Date of Birth",
+      "religion": "Religion",
+      "maritalStatus": "Marital Status",
+      "wechatId": "WeChat ID",
+      "address": "Home Address",
+      "city": "City",
+      "postalCode": "Postal Code",
+      "highestEducation": "Highest Education",
+      "schoolName": "School / University Name",
+      "majorField": "Major / Field of Study",
+      "graduationYear": "Graduation Year",
+      "gpaScore": "GPA / Score",
+      "chineseProficiency": "Chinese (HSK Level)",
+      "englishProficiency": "English Proficiency",
+      "testScore": "Test Score (IELTS/TOEFL)",
+      "preferredIntake": "Preferred Intake",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "emergencyContactRelationship": "Relationship"
+    },
+    "placeholders": {
+      "firstName": "e.g. John",
+      "lastName": "e.g. Smith",
+      "fullName": "e.g. John Smith",
+      "email": "e.g. john@example.com",
+      "phone": "e.g. 555 123 4567",
+      "passport": "e.g. AB1234567",
+      "selectGender": "Select gender",
+      "selectReligion": "Select religion",
+      "selectMaritalStatus": "Select marital status",
+      "wechatId": "e.g. wxid_abc123",
+      "address": "e.g. 123 Main Street, Apt 4B",
+      "city": "e.g. Cairo",
+      "postalCode": "e.g. 11511",
+      "selectEducation": "Select highest education",
+      "schoolName": "e.g. Cairo University",
+      "majorField": "e.g. Computer Science",
+      "graduationYear": "e.g. 2024",
+      "gpaScore": "e.g. 3.5 / 4.0",
+      "selectChinese": "Select HSK level",
+      "selectEnglish": "Select proficiency",
+      "testScore": "e.g. IELTS 6.5",
+      "emergencyName": "e.g. Parent or Guardian name",
+      "emergencyPhone": "e.g. 555 123 4567",
+      "relationship": "e.g. Parent, Spouse"
+    },
+    "hints": {
+      "phoneHint": "Enter your phone number without country code",
+      "passportHint": "Enter your passport number exactly as shown"
+    },
+    "buttons": {
+      "next": "Next",
+      "continueToDocuments": "Continue to Documents",
+      "continueToPayment": "Continue to Payment",
+      "continueToReview": "Continue to Review",
+      "submitApplication": "Submit Application",
+      "back": "Back",
+      "uploadDocument": "Upload",
+      "selectFile": "Select File"
+    },
+    "validation": {
+      "missingFieldsTitle": "Please fill in the following required fields:",
+      "required": "This field is required"
+    },
+    "documents": {
+      "title": "Required Documents",
+      "description": "Please upload the following documents. Accepted formats: PDF, JPG, PNG (max 10MB)",
+      "mandatory": "Required",
+      "optional": "Optional",
+      "uploaded": "Uploaded",
+      "pending": "Pending"
+    },
+    "payment": {
+      "title": "Application Fee",
+      "applicationFee": "Application Fee",
+      "serviceFee": "Service Fee",
+      "total": "Total",
+      "payNow": "Pay Now",
+      "payLater": "Pay Later"
+    },
+    "review": {
+      "title": "Review Your Application",
+      "personalDetails": "Personal Details",
+      "uploadedDocuments": "Uploaded Documents",
+      "confirmSubmit": "I confirm that all information provided is accurate",
+      "submitting": "Submitting...",
+      "success": "Application Submitted Successfully!",
+      "successMessage": "Your application has been submitted. You will receive a confirmation email shortly."
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "uploadFailed": "Failed to upload document. Please try again.",
+      "paymentFailed": "Payment failed. Please try again."
+    }
+  },
+  "ApplyForm": {
+    "badge": "سفر خود را آغاز کنید",
+    "title": "برای تحصیل در چین اقدام کنید",
+    "subtitle": "فرم زیر را پر کنید و تیم ما برای راهنمایی شما در فرآیند پذیرش با شما تماس خواهد گرفت.",
+    "firstName": "نام",
+    "firstNamePlaceholder": "نام خود را وارد کنید",
+    "lastName": "نام خانوادگی",
+    "lastNamePlaceholder": "نام خانوادگی خود را وارد کنید",
+    "email": "آدرس ایمیل",
+    "emailPlaceholder": "your.email@example.com",
+    "whatsapp": "شماره واتساپ",
+    "whatsappPlaceholder": "شماره واتساپ خود را وارد کنید",
+    "englishLevel": "سطح زبان انگلیسی",
+    "englishLevelPlaceholder": "سطح زبان انگلیسی خود را انتخاب کنید",
+    "englishLevels": {
+      "beginner": "مبتدی",
+      "intermediate": "متوسط",
+      "upper_intermediate": "بالاتر از متوسط",
+      "advanced": "پیشرفته",
+      "native": "زبان مادری"
+    },
+    "department": "رشته مورد نظر",
+    "departmentPlaceholder": "یک رشته انتخاب کنید",
+    "departments": {
+      "medicine": "پزشکی",
+      "engineering": "مهندسی",
+      "computer_science": "علوم کامپیوتر",
+      "business": "مدیریت و اقتصاد",
+      "arts": "هنر و طراحی",
+      "law": "حقوق",
+      "language": "زبان‌شناسی",
+      "other": "سایر"
+    },
+    "startSemester": "چه زمانی می‌خواهید شروع کنید؟",
+    "startSemesterPlaceholder": "یک ترم را انتخاب کنید",
+    "semesters": {
+      "fall_2026": "پاییز ۲۰۲۶",
+      "spring_2026": "بهار ۲۰۲۶",
+      "fall_2027": "پاییز ۲۰۲۷"
+    },
+    "submit": "ارسال درخواست",
+    "submitting": "در حال ارسال...",
+    "successTitle": "درخواست ارسال شد!",
+    "successMessage": "متشکریم! تیم ما به زودی برای راهنمایی در مراحل بعدی با شما تماس خواهد گرفت.",
+    "successNewForm": "ارسال درخواست جدید",
+    "errorMessage": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
+    "required": "الزامی",
+    "emailSubject": "درخواست شما دریافت شد — تحصیل در چین",
+    "emailGreeting": "با سلام",
+    "emailBody": "از علاقه شما به تحصیل در چین متشکریم! درخواست شما دریافت شده و تیم ما به زودی برای راهنمایی در فرآیند پذیرش با شما تماس خواهد گرفت.",
+    "emailReceived": "درخواست شما دریافت شده است",
+    "emailTeamContact": "تیم پذیرش ما ظرف ۲۴ ساعت با شما تماس خواهد گرفت",
+    "emailNextSteps": "مراحل بعدی چیست؟",
+    "emailStep1": "تیم ما جزئیات درخواست شما را بررسی خواهد کرد",
+    "emailStep2": "ظرف ۲۴ ساعت از طریق واتساپ یا ایمیل با شما تماس گرفته خواهد شد",
+    "emailStep3": "ما شما را در انتخاب دانشگاه و فرآیند پذیرش راهنمایی خواهیم کرد",
+    "emailUrgent": "برای موارد فوری، با ما تماس بگیرید:",
+    "emailRegards": "با احترام،",
+    "emailTeamName": "تیم تحصیل در چین",
+    "emailVisitWebsite": "بازدید از وبسایت ما"
+  }
 }

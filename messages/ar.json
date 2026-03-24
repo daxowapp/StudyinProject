@@ -1,1824 +1,1907 @@
 {
-    "Navbar": {
-        "home": "الرئيسية",
-        "programs": "البرامج",
-        "universities": "الجامعات",
-        "about": "من نحن",
-        "contact": "اتصل بنا",
-        "login": "تسجيل الدخول",
-        "dashboard": "لوحة التحكم",
-        "admin": "المسؤول",
-        "categories": {
-            "topRanked": {
-                "title": "الأعلى تصنيفاً",
-                "description": "استكشف الجامعات الأعلى تصنيفاً في الصين."
-            },
-            "medical": {
-                "title": "كليات الطب",
-                "description": "المؤسسات الرائدة في الطب والرعاية الصحية."
-            },
-            "engineering": {
-                "title": "الهندسة",
-                "description": "أفضل الجامعات التقنية للهندسة."
-            },
-            "business": {
-                "title": "الأعمال والاقتصاد",
-                "description": "كليات الأعمال والمعاهد الاقتصادية الرائدة."
-            },
-            "arts": {
-                "title": "الفنون والعلوم الإنسانية",
-                "description": "مراكز الفنون والثقافة والعلوم الإنسانية."
-            },
-            "all": {
-                "title": "جميع الجامعات",
-                "description": "تصفح قائمتنا الكاملة من الجامعات الشريكة."
-            }
-        },
-        "levels": {
-            "bachelor": {
-                "title": "درجة البكالوريوس",
-                "description": "برامج البكالوريوس لخريجي الثانوية العامة."
-            },
-            "master": {
-                "title": "درجة الماجستير",
-                "description": "برامج الدراسات العليا لحاملي درجة البكالوريوس."
-            },
-            "phd": {
-                "title": "برامج الدكتوراه",
-                "description": "برامج البحث الدكتوراه."
-            },
-            "nonDegree": {
-                "title": "دورات اللغة الصينية",
-                "description": "تعلم اللغة والثقافة الصينية."
-            },
-            "diploma": {
-                "title": "دبلوم",
-                "description": "البرامج المهنية والتقنية."
-            },
-            "language": {
-                "title": "دورة لغة",
-                "description": "تعلم اللغة الصينية."
-            },
-            "viewAll": "عرض جميع البرامج"
-        },
-        "viewAllUniversities": "عرض جميع الجامعات",
-        "destinations": {
-            "title": "الوجهات",
-            "viewAll": "عرض جميع الوجهات",
-            "beijing": {
-                "title": "بكين",
-                "description": "العاصمة التي تضم جامعات رائدة مثل تسينغهوا وبكين."
-            },
-            "shanghai": {
-                "title": "شنغهاي",
-                "description": "مركز مالي عالمي يضم جامعة فودان وشنغهاي جياو تونغ."
-            },
-            "guangzhou": {
-                "title": "قوانغتشو",
-                "description": "مدينة جنوبية كبرى تضم كليات طب وهندسة رائدة."
-            },
-            "wuhan": {
-                "title": "ووهان",
-                "description": "مركز تعليمي تاريخي يضم جامعة ووهان وهواتشونغ."
-            },
-            "hangzhou": {
-                "title": "هانغتشو",
-                "description": "مركز تكنولوجي ومدينة خلابة تضم جامعة تشجيانغ."
-            },
-            "nanjing": {
-                "title": "نانجينغ",
-                "description": "عاصمة قديمة تضم جامعة نانجينغ وجامعة جنوب شرق."
-            },
-            "chengdu": {
-                "title": "تشنغدو",
-                "description": "بوابة غرب الصين مع جامعة سيتشوان وتكلفة معيشة معقولة."
-            },
-            "xian": {
-                "title": "شيآن",
-                "description": "مدينة طريق الحرير التاريخية مع جامعة شيآن جياوتونغ."
-            }
-        },
-        "resources": {
-            "title": "الموارد",
-            "scholarships": "المنح الدراسية",
-            "howToApply": "كيفية التقديم",
-            "articles": "المعلومات والموارد",
-            "contact": "اتصل بنا",
-            "scholarshipFilter": "فلتر المنح الدراسية",
-            "scholarshipFilterDesc": "تصفية الجامعات حسب مزايا المنح الدراسية",
-            "qsRankings": "تصنيف QS 2026",
-            "qsRankingsDesc": "الجامعات الصينية في تصنيف QS العالمي"
-        },
-        "user": {
-            "myApplications": "طلباتي",
-            "logout": "تسجيل الخروج",
-            "signIn": "تسجيل الدخول",
-            "getStarted": "ابدأ الآن",
-            "myAccount": "حسابي",
-            "account": "الحساب"
-        }
+  "Navbar": {
+    "home": "الرئيسية",
+    "programs": "البرامج",
+    "universities": "الجامعات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "dashboard": "لوحة التحكم",
+    "admin": "المسؤول",
+    "categories": {
+      "topRanked": {
+        "title": "الأعلى تصنيفاً",
+        "description": "استكشف الجامعات الأعلى تصنيفاً في الصين."
+      },
+      "medical": {
+        "title": "كليات الطب",
+        "description": "المؤسسات الرائدة في الطب والرعاية الصحية."
+      },
+      "engineering": {
+        "title": "الهندسة",
+        "description": "أفضل الجامعات التقنية للهندسة."
+      },
+      "business": {
+        "title": "الأعمال والاقتصاد",
+        "description": "كليات الأعمال والمعاهد الاقتصادية الرائدة."
+      },
+      "arts": {
+        "title": "الفنون والعلوم الإنسانية",
+        "description": "مراكز الفنون والثقافة والعلوم الإنسانية."
+      },
+      "all": {
+        "title": "جميع الجامعات",
+        "description": "تصفح قائمتنا الكاملة من الجامعات الشريكة."
+      }
     },
-    "Common": {
-        "loading": "جاري التحميل...",
-        "error": "حدث خطأ",
-        "submit": "إرسال",
-        "cancel": "إلغاء",
-        "save": "حفظ",
-        "delete": "حذف",
-        "edit": "تعديل",
-        "view": "عرض",
-        "back": "رجوع"
+    "levels": {
+      "bachelor": {
+        "title": "درجة البكالوريوس",
+        "description": "برامج البكالوريوس لخريجي الثانوية العامة."
+      },
+      "master": {
+        "title": "درجة الماجستير",
+        "description": "برامج الدراسات العليا لحاملي درجة البكالوريوس."
+      },
+      "phd": {
+        "title": "برامج الدكتوراه",
+        "description": "برامج البحث الدكتوراه."
+      },
+      "nonDegree": {
+        "title": "دورات اللغة الصينية",
+        "description": "تعلم اللغة والثقافة الصينية."
+      },
+      "diploma": {
+        "title": "دبلوم",
+        "description": "البرامج المهنية والتقنية."
+      },
+      "language": {
+        "title": "دورة لغة",
+        "description": "تعلم اللغة الصينية."
+      },
+      "viewAll": "عرض جميع البرامج"
     },
-    "Footer": {
-        "stayUpdated": "ابقى على اطلاع",
-        "getLatestUpdates": "اشترك للحصول على آخر التحديثات",
-        "subscribeText": "اشترك لتلقي الأخبار حول البرامج والمنح الدراسية ومواعيد التقديم.",
-        "description": "شريكك الموثوق لاكتشاف والتقديم لأفضل الجامعات في الصين.",
-        "explore": "استكشف",
-        "programs": "البرامج",
-        "universities": "الجامعات",
-        "scholarships": "المنح الدراسية",
-        "howToApply": "كيفية التقديم",
-        "faq": "الأسئلة الشائعة",
-        "forStudents": "للطلاب",
-        "createAccount": "إنشاء حساب",
-        "trackApplication": "تتبع الطلب",
-        "documentChecklist": "قائمة المستندات",
-        "studentPortal": "بوابة الطالب",
-        "contact": "اتصل بنا",
-        "rightsReserved": "جميع الحقوق محفوظة.",
-        "designedBy": "تصميم وتشغيل بواسطة",
-        "termsOfService": "شروط الخدمة",
-        "privacyPolicy": "سياسة الخصوصية",
-        "cookiePolicy": "سياسة ملفات تعريف الارتباط"
+    "viewAllUniversities": "عرض جميع الجامعات",
+    "destinations": {
+      "title": "الوجهات",
+      "viewAll": "عرض جميع الوجهات",
+      "beijing": {
+        "title": "بكين",
+        "description": "العاصمة التي تضم جامعات رائدة مثل تسينغهوا وبكين."
+      },
+      "shanghai": {
+        "title": "شنغهاي",
+        "description": "مركز مالي عالمي يضم جامعة فودان وشنغهاي جياو تونغ."
+      },
+      "guangzhou": {
+        "title": "قوانغتشو",
+        "description": "مدينة جنوبية كبرى تضم كليات طب وهندسة رائدة."
+      },
+      "wuhan": {
+        "title": "ووهان",
+        "description": "مركز تعليمي تاريخي يضم جامعة ووهان وهواتشونغ."
+      },
+      "hangzhou": {
+        "title": "هانغتشو",
+        "description": "مركز تكنولوجي ومدينة خلابة تضم جامعة تشجيانغ."
+      },
+      "nanjing": {
+        "title": "نانجينغ",
+        "description": "عاصمة قديمة تضم جامعة نانجينغ وجامعة جنوب شرق."
+      },
+      "chengdu": {
+        "title": "تشنغدو",
+        "description": "بوابة غرب الصين مع جامعة سيتشوان وتكلفة معيشة معقولة."
+      },
+      "xian": {
+        "title": "شيآن",
+        "description": "مدينة طريق الحرير التاريخية مع جامعة شيآن جياوتونغ."
+      }
     },
-    "ScholarshipCTA": {
-        "badge": "اكتشف المزيد من الفرص",
-        "title": "استكشف جميع خيارات المنح الدراسية",
-        "description": "لست متأكداً أي منحة دراسية تناسبك؟ تصفح دليلنا الكامل للمنح الدراسية لمقارنة جميع الخيارات، وفهم متطلبات الأهلية، والعثور على الأنسب لرحلتك الأكاديمية.",
-        "viewAll": "عرض جميع المنح الدراسية",
-        "getAdvice": "احصل على استشارة شخصية"
+    "resources": {
+      "title": "الموارد",
+      "scholarships": "المنح الدراسية",
+      "howToApply": "كيفية التقديم",
+      "articles": "المعلومات والموارد",
+      "contact": "اتصل بنا",
+      "scholarshipFilter": "فلتر المنح الدراسية",
+      "scholarshipFilterDesc": "تصفية الجامعات حسب مزايا المنح الدراسية",
+      "qsRankings": "تصنيف QS 2026",
+      "qsRankingsDesc": "الجامعات الصينية في تصنيف QS العالمي"
     },
-    "CscaCta": {
-        "badge": "⚠️ إلزامي من 2026",
-        "title": "هل تستعد لامتحان <span class=\"text-primary\">CSCA؟</span>",
-        "titlePlain": "هل تستعد لامتحان CSCA؟",
-        "description": "⚠️ هام: امتحان CSCA الآن إلزامي لجميع الطلاب الدوليين المتقدمين لمنح الحكومة الصينية. بدون استثناء! استعد مع دليلنا الشامل.",
-        "readGuide": "اقرأ الدليل",
-        "findPrograms": "ابحث عن البرامج",
-        "proTip1": {
-            "title": "📅 مواعيد الامتحان",
-            "text": "الاختبارات في مارس وسبتمبر كل عام"
-        },
-        "proTip2": {
-            "title": "⏱️ وقت التحضير",
-            "text": "ابدأ التحضير قبل 3 أشهر على الأقل"
-        }
-    },
-    "CSCAGuide": {
-        "meta": {
-            "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
-            "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
-        },
-        "backHome": "Back to Home",
-        "newRequirement": "New Requirement for 2026",
-        "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
-        "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
-        "sections": {
-            "overview": {
-                "title": "Overview",
-                "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
-                "keyDates": {
-                    "title": "Key Dates",
-                    "launch": "2025: Official Launch",
-                    "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
-                    "full": "2028: Full Implementation across all Universities"
-                }
-            },
-            "structure": {
-                "title": "Exam Structure",
-                "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
-                "table": {
-                    "subject": "Subject",
-                    "duration": "Duration",
-                    "questions": "Questions",
-                    "requirement": "Requirement",
-                    "chinese": {
-                        "name": "Specialized Chinese",
-                        "req": "Humanities/Science"
-                    },
-                    "math": {
-                        "name": "Mathematics",
-                        "req": "Mandatory"
-                    },
-                    "physics": {
-                        "name": "Physics",
-                        "req": "Optional / Major-dependent"
-                    },
-                    "chemistry": {
-                        "name": "Chemistry",
-                        "req": "Optional / Major-dependent"
-                    }
-                }
-            },
-            "subjects": {
-                "title": "Subject Details & Syllabus",
-                "chinese": {
-                    "title": "Specialized Chinese",
-                    "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
-                    "char": {
-                        "title": "Character Recognition",
-                        "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
-                    },
-                    "reading": {
-                        "title": "Reading Comprehension",
-                        "desc": "Highest weight. Sci/Tech/Social essays."
-                    },
-                    "words": {
-                        "title": "Word Distinction",
-                        "desc": "Synonyms, academic vocabulary."
-                    },
-                    "sentences": {
-                        "title": "Sentence/Paragraph",
-                        "desc": "Ordering sentences, completing logic."
-                    }
-                },
-                "math": {
-                    "title": "Mathematics",
-                    "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
-                    "note": "Both Chinese and English versions available.",
-                    "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
-                    "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
-                },
-                "chem": {
-                    "title": "Chemistry",
-                    "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
-                },
-                "phys": {
-                    "title": "Physics",
-                    "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
-                    "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
-                }
-            },
-            "fees_and_process": {
-                "title": "Application Process & Fees",
-                "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
-            },
-            "formats": {
-                "title": "Test Modes",
-                "online": {
-                    "title": "Online Proctored",
-                    "desc": "Home-based with a dual-camera setup. Valid worldwide."
-                },
-                "computer": {
-                    "title": "Computer-Based",
-                    "desc": "At official test centers (classrooms). Better stability."
-                },
-                "paper": {
-                    "title": "Paper-Based",
-                    "desc": "Traditional format. Limited regions."
-                }
-            },
-            "faq": {
-                "title": "Frequently Asked Questions",
-                "q1": {
-                    "q": "Does the CSCA replace the HSK?",
-                    "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
-                },
-                "q2": {
-                    "q": "Can I take it in English?",
-                    "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
-                },
-                "q3": {
-                    "q": "How long is the score valid?",
-                    "a": "CSCA results are valid for <strong>2 years</strong>."
-                },
-                "q4": {
-                    "q": "Who is exempt from the CSCA?",
-                    "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
-                },
-                "q5": {
-                    "q": "Are scores required for 2026 intake?",
-                    "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
-                },
-                "comparison": {
-                    "title": "CSCA vs. HSK",
-                    "feature": "Feature",
-                    "hsk": "HSK",
-                    "csca": "CSCA",
-                    "focus": "Focus",
-                    "focusHsk": "Daily Communication",
-                    "focusCsca": "Academic Readiness",
-                    "vocab": "Vocabulary",
-                    "vocabHsk": "Life/Everyday",
-                    "vocabCsca": "Technical/Academic",
-                    "req": "Requirement",
-                    "reqHsk": "Language Cert",
-                    "reqCsca": "Academic Entrance"
-                }
-            },
-            "sidebar": {
-                "title": "Important Details",
-                "dates": {
-                    "title": "Dates",
-                    "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
-                },
-                "prep": {
-                    "title": "Preparation",
-                    "desc": "Difficulty level: Junior/Senior High"
-                },
-                "passing": {
-                    "title": "Fees",
-                    "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
-                },
-                "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
-                "register": "Official Registration Site",
-                "tutor": {
-                    "title": "Fast-Track with Study at China",
-                    "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
-                    "button": "Apply With Us"
-                }
-            }
-        }
-    },
-    "Hero": {
-        "admissionsOpen": "القبول مفتوح لعام 2026",
-        "searchPlaceholder": "ماذا تريد أن تدرس؟ (مثل علوم الكمبيوتر، الطب)",
-        "title": "مستقبلك في الصين يبدأ هنا",
-        "subtitle": "انضم إلى <bold>50,000+ طالب</bold> في أفضل الجامعات الصينية",
-        "searchButton": "ابحث في <bold>500+</bold> برنامج",
-        "searchWord": "ابحث في",
-        "programsWord": "برنامج",
-        "browseByCategory": "تصفح حسب الفئة",
-        "scrollToExplore": "مرر للاستكشاف",
-        "stats": {
-            "universities": "جامعة",
-            "students": "طالب",
-            "success": "نجاح",
-            "scholarships": "منحة"
-        },
-        "tabs": {
-            "programs": "البرامج",
-            "universities": "الجامعات",
-            "scholarships": "المنح الدراسية"
-        },
-        "placeholders": {
-            "degree": "الدرجة العلمية",
-            "field": "مجال الدراسة",
-            "city": "المدينة",
-            "language": "اللغة",
-            "budget": "الميزانية (دولار/سنة)",
-            "scholarship": "المنحة",
-            "duration": "المدة"
-        },
-        "options": {
-            "any": "أي",
-            "all": "الكل"
-        },
-        "budget": {
-            "under3k": "أقل من 3,000$",
-            "3kTo5k": "3,000$ - 5,000$",
-            "5kTo8k": "5,000$ - 8,000$",
-            "above8k": "أكثر من 8,000$"
-        },
-        "scholarship": {
-            "allPrograms": "جميع البرامج",
-            "available": "منحة متاحة",
-            "full": "منحة كاملة",
-            "partial": "منحة جزئية"
-        },
-        "duration": {
-            "1year": "سنة واحدة",
-            "2years": "سنتان",
-            "3years": "3 سنوات",
-            "4years": "4 سنوات",
-            "5plus": "5+ سنوات"
-        },
-        "categories": {
-            "mba": "MBA",
-            "engineering": "الهندسة",
-            "medicine": "الطب",
-            "cs": "علوم الحاسوب",
-            "fullScholarship": "منحة كاملة",
-            "englishTaught": "تدريس بالإنجليزية"
-        }
-    },
-    "WhyStudy": {
-        "badge": "لماذا تختار الصين",
-        "title": "بوابتك إلى <gradient>النجاح العالمي</gradient>",
-        "description": "تجمع الصين بين الحكمة القديمة والابتكار المتطور، وتقدم للطلاب الدوليين تجربة تعليمية لا مثيل لها في قلب القوة الاقتصادية لآسيا.",
-        "cta": {
-            "explore": "استكشف البرامج",
-            "download": "تحميل الدليل"
-        },
-        "features": {
-            "worldClass": {
-                "title": "جامعات عالمية المستوى",
-                "description": "ادرس في مؤسسات مصنفة عالميًا مع مرافق بحثية متطورة وأعضاء هيئة تدريس مشهورين."
-            },
-            "affordable": {
-                "title": "تميز بأسعار معقولة",
-                "description": "تعليم متميز بتكاليف تنافسية مع فرص منح دراسية سخية تصل إلى 100٪."
-            },
-            "career": {
-                "title": "منصة انطلاق مهنية",
-                "description": "الوصول إلى أكبر اقتصاد في آسيا مع فرص تدريب وعمل لا مثيل لها."
-            },
-            "safe": {
-                "title": "آمنة ونابضة بالحياة",
-                "description": "جرب واحدة من أكثر البلدان أمانًا في العالم مع مجتمع دولي مزدهر."
-            },
-            "culture": {
-                "title": "الانغماس الثقافي",
-                "description": "اكتشف 5000 عام من التاريخ أثناء العيش في مدن حديثة وديناميكية للغاية."
-            },
-            "network": {
-                "title": "شبكة عالمية",
-                "description": "انضم إلى مجتمع يضم أكثر من 500,000 طالب دولي من أكثر من 200 دولة."
-            },
-            "english": {
-                "title": "برامج باللغة الإنجليزية",
-                "description": "اختر من بين أكثر من 1000 برنامج يتم تدريسها بالكامل باللغة الإنجليزية في جميع التخصصات."
-            },
-            "recognition": {
-                "title": "اعتراف عالمي",
-                "description": "احصل على درجات معترف بها من قبل اليونسكو ومنظمة الصحة العالمية والهيئات المهنية عالميًا."
-            }
-        }
-    },
-    "HowItWorks": {
-        "badge": "عملية سريعة البرق",
-        "title": "من التقديم إلى <gradient>القبول</gradient>",
-        "description": "رحلة مبسطة من 6 خطوات مصممة لتنقلك من تصفح البرامج إلى استلام خطاب القبول في وقت قياسي.",
-        "cta": {
-            "button": "ابدأ طلبك الآن",
-            "time": "متوسط وقت الإنجاز: <bold>15 دقيقة</bold>"
-        },
-        "steps": {
-            "discover": {
-                "title": "اكتشف البرامج",
-                "description": "تصفح أكثر من 500 برنامج من أفضل الجامعات الصينية المصممة خصيصًا لأهدافك."
-            },
-            "profile": {
-                "title": "إنشاء ملف تعريف",
-                "description": "قم بإعداد حسابك وإكمال ملفك الأكاديمي في دقائق."
-            },
-            "upload": {
-                "title": "تحميل المستندات",
-                "description": "قم بتقديم الشهادات وكشوف الدرجات والمستندات المطلوبة بشكل آمن."
-            },
-            "scholarship": {
-                "title": "اختر نوع المنحة",
-                "description": "كل جامعة لديها أنواع منح دراسية متاحة. اختر واحدة وقدم."
-            },
-            "pay": {
-                "title": "اختر نوع المنحة",
-                "description": "كل جامعة لديها أنواع منح دراسية متاحة. اختر واحدة وقدم."
-            },
-            "track": {
-                "title": "تتبع التقدم",
-                "description": "راقب حالة طلبك من خلال التحديثات والإشعارات في الوقت الفعلي."
-            },
-            "admission": {
-                "title": "الحصول على القبول",
-                "description": "استلم خطاب العرض ومستندات التأشيرة وابدأ رحلتك!"
-            }
-        }
-    },
-    "Stats": {
-        "badge": "تأثيرنا",
-        "title": "موثوق به من قبل الآلاف حول العالم",
-        "description": "انضم إلى مجتمع عالمي من الطلاب الناجحين الذين حققوا أحلامهم من خلال منصتنا",
-        "items": {
-            "universities": {
-                "label": "الجامعات الشريكة",
-                "description": "مؤسسات رفيعة المستوى"
-            },
-            "students": {
-                "label": "الطلاب الدوليين",
-                "description": "من 200+ دولة"
-            },
-            "programs": {
-                "label": "البرامج المتاحة",
-                "description": "جميع مجالات الدراسة"
-            },
-            "success": {
-                "label": "معدل النجاح",
-                "description": "الموافقة على القبول"
-            },
-            "countries": {
-                "label": "البلدان الممثلة",
-                "description": "مجتمع عالمي"
-            },
-            "scholarships": {
-                "label": "المنح الدراسية الممنوحة",
-                "description": "الدعم المالي"
-            },
-            "time": {
-                "label": "وقت التقديم",
-                "description": "عملية سريعة وسهلة"
-            },
-            "employment": {
-                "label": "توظيف الخريجين",
-                "description": "في غضون 6 أشهر"
-            }
-        }
-    },
-    "FeaturedPrograms": {
-        "badge": "برامج مميزة",
-        "title": "البرامج الشائعة",
-        "description": "استكشف برامجنا الأكثر طلبًا في أفضل الجامعات الصينية",
-        "duration": "المدة",
-        "tuition": "الرسوم/السنة",
-        "explore": "استكشاف البرنامج",
-        "viewAll": "عرض جميع البرامج",
-        "fastTrack": "المسار السريع"
-    },
-    "FeaturedUniversities": {
-        "badge": "أفضل الجامعات",
-        "title": "جامعات النخبة",
-        "description": "ادرس في أرقى المؤسسات التعليمية في الصين",
-        "fastTrack": "المسار السريع",
-        "programs": "البرامج",
-        "tuitionFrom": "الرسوم من",
-        "students": "الطلاب",
-        "viewDetails": "عرض التفاصيل",
-        "viewAll": "عرض جميع الجامعات"
-    },
-    "Scholarships": {
-        "badge": "الدعم المالي",
-        "title": "المنح الدراسية والمساعدات المالية",
-        "description": "الدراسة في الصين ميسورة التكلفة. استكشف فرص المنح الدراسية المختلفة المتاحة للطلاب الدوليين.",
-        "items": {
-            "csc": {
-                "title": "منحة الحكومة الصينية (CSC)",
-                "description": "منحة دراسية كاملة أو جزئية للطلاب الدوليين. تغطي الرسوم الدراسية والإقامة والراتب.",
-                "amount": "تصل إلى 10,000 دولار/سنة"
-            },
-            "university": {
-                "title": "منح الجامعات",
-                "description": "منح دراسية قائمة على الجدارة تقدمها الجامعات مباشرة للمتقدمين المتميزين.",
-                "amount": "تصل إلى 8,000 دولار/سنة"
-            },
-            "provincial": {
-                "title": "منح الحكومات المحلية",
-                "description": "منح دراسية تمولها الحكومات المحلية لجذب المواهب الدولية إلى مناطق محددة.",
-                "amount": "تصل إلى 6,000 دولار/سنة"
-            }
-        },
-        "awardAmount": "مبلغ المنحة",
-        "learnMore": "اعرف المزيد",
-        "stats": {
-            "scholarshipOptions": "Scholarship Options",
-            "universities": "Universities",
-            "programs": "Programs",
-            "awarded": "تُمنح سنويًا",
-            "funding": "تلقي التمويل",
-            "full": "منح دراسية كاملة",
-            "eligible": "البرامج المؤهلة"
-        },
-        "viewAll": "عرض جميع المنح الدراسية",
-        "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
-        "popular": {
-            "title": "Featured & Popular Scholarships"
-        },
-        "tabs": {
-            "search": "Search Scholarships",
-            "about": "About Scholarships"
-        },
-        "search": {
-            "filter": "Filters",
-            "clearAll": "Clear All",
-            "searchPlaceholder": "Search program or university...",
-            "category": "Category",
-            "all": "All",
-            "fullScholarship": "Full Scholarship (100%)",
-            "partialScholarship": "Partial Scholarship",
-            "city": "City",
-            "university": "University",
-            "degree": "Degree Level",
-            "language": "Language",
-            "semester": "Semester",
-            "spring": "Spring",
-            "autumn": "Autumn",
-            "freeAccommodation": "Free Accommodation",
-            "monthlyStipend": "Monthly Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "scholarshipOptions": "scholarship options at",
-            "universities": "universities",
-            "noResults": "No scholarships found",
-            "noResultsDescription": "Try adjusting your filters to see more results.",
-            "programsAvailable": "Programs",
-            "upTo": "Up to",
-            "accommodation": "Accommodation",
-            "stipend": "Stipend",
-            "insurance": "Insurance",
-            "program": "Program",
-            "teachingLanguage": "Language",
-            "startingDate": "Intake",
-            "scholarshipCoverage": "Original Tuition",
-            "youNeedToPay": "You Need To Pay",
-            "tuition": "Tuition",
-            "free": "Free",
-            "moreOptions": "More Options",
-            "learnMore": "Learn More"
-        },
-        "detail": {
-            "backToSearch": "Back to Search",
-            "scholarshipAvailable": "Scholarship Available",
-            "programDetails": "Program Details",
-            "degree": "Degree",
-            "duration": "Duration",
-            "language": "Language",
-            "intake": "Intake",
-            "availableScholarships": "Available Scholarships",
-            "noScholarships": "No scholarships are currently available for this program.",
-            "tuitionCoverage": "Tuition Coverage",
-            "freeAccommodation": "Free Accommodation",
-            "stipend": "Stipend",
-            "medicalInsurance": "Medical Insurance",
-            "originalTuition": "Original Tuition",
-            "youPay": "You Need to Pay",
-            "serviceFee": "Service Fee",
-            "applyNow": "Apply for this Scholarship",
-            "university": "University",
-            "viewUniversity": "View University Profile",
-            "viewProgram": "View Program Details"
-        },
-        "about": {
-            "howItWorks": "How Scholarships Work",
-            "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
-            "scholarshipCoverage": "Scholarship Coverage",
-            "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
-            "serviceFees": "Service & Processing Fees",
-            "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
-            "scholarshipTypes": "Common Scholarship Types",
-            "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
-            "searchPrograms": "Search Eligible Programs",
-            "requiredDocuments": "Required Documents",
-            "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
-            "faq": "Frequently Asked Questions",
-            "faq1Question": "Do I need to know Chinese to get a scholarship?",
-            "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
-            "faq2Question": "Can I work while studying?",
-            "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
-            "faq3Question": "What happens if I fail my classes?",
-            "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
-            "faq4Question": "How long does the application process take?",
-            "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
-        }
-    },
-    "Testimonials": {
-        "badge": "قصص نجاح",
-        "title": "ماذا يقول طلابنا",
-        "description": "استمع إلى الطلاب الذين تقدموا بنجاح من خلال منصتنا وهم الآن يزدهرون في الصين.",
-        "testimonials": {
-            "sarah": {
-                "quote": "كانت الدراسة في تسينغهوا تجربة غيرت حياتي. الحرم الجامعي جميل والأساتذة من الطراز العالمي. لقد تطورت أكاديميًا وشخصيًا.",
-                "program": "علوم الكمبيوتر",
-                "university": "جامعة تسينغهوا",
-                "country": "الولايات المتحدة الأمريكية"
-            },
-            "ahmed": {
-                "quote": "كانت عملية التقديم سلسة بفضل Studyatchina. أنا الآن أتابع درجة الماجستير في الهندسة المدنية وأحب كل لحظة فيها.",
-                "program": "الهندسة المدنية",
-                "university": "جامعة تشجيانغ",
-                "country": "مصر"
-            },
-            "maria": {
-                "quote": "شنغهاي مدينة مذهلة! أحب الثقافة والطعام والأصدقاء الذين كونتهم هنا. المنحة التي حصلت عليها جعلت كل شيء ممكنًا.",
-                "program": "الأعمال الدولية",
-                "university": "جامعة فودان",
-                "country": "إسبانيا"
-            }
-        },
-        "averageRating": "متوسط التقييم",
-        "reviews": "المراجعات",
-        "satisfaction": "الرضا"
-    },
-    "Partners": {
-        "badge": "شركاء موثوقون",
-        "title": "الجامعات الشريكة",
-        "description": "نحن نتعاون مع أرقى المؤسسات في الصين لنجلب لك أفضل الفرص التعليمية",
-        "recognitions": {
-            "unesco": {
-                "title": "معترف بها من اليونسكو",
-                "description": "جميع الجامعات الشريكة معترف بها من قبل اليونسكو"
-            },
-            "government": {
-                "title": "معتمدة حكوميًا",
-                "description": "معتمدة رسميًا من قبل وزارة التعليم الصينية"
-            },
-            "accredited": {
-                "title": "اعتماد عالمي",
-                "description": "الدرجات العلمية معترف بها في أكثر من 180 دولة حول العالم"
-            }
-        }
-    },
-    "FAQ": {
-        "badge": "لديك أسئلة؟",
-        "title": "الأسئلة الشائعة",
-        "description": "اعثر على إجابات للأسئلة الشائعة حول الدراسة في الصين",
-        "items": {
-            "deadline": {
-                "question": "متى يكون الموعد النهائي للتقديم؟",
-                "answer": "تختلف المواعيد النهائية حسب الجامعة والبرنامج. بشكل عام، بالنسبة لدفعة سبتمبر، تغلق الطلبات بين مارس ويونيو. تحقق من صفحات البرنامج المحددة لمعرفة التواريخ الدقيقة."
-            },
-            "language": {
-                "question": "هل أحتاج إلى معرفة اللغة الصينية للدراسة في الصين؟",
-                "answer": "ليس بالضرورة! هناك الآلاف من البرامج التي تدرس باللغة الإنجليزية لدرجات البكالوريوس والماجستير والدكتوراه. ومع ذلك، يوصى بتعلم بعض اللغة الصينية الأساسية للحياة اليومية."
-            },
-            "work": {
-                "question": "هل يمكنني العمل أثناء الدراسة؟",
-                "answer": "يمكن للطلاب الدوليين العمل بدوام جزئي أو التدريب بإذن من جامعتهم ومكتب الهجرة. أصبحت السياسات أكثر مرونة في السنوات الأخيرة."
-            },
-            "scholarships": {
-                "question": "كيف أتقدم بطلب للحصول على منح دراسية؟",
-                "answer": "يمكنك التقدم بطلب للحصول على منح دراسية مباشرة من خلال منصتنا عند تقديم طلبك. سنرشدك بشأن المستندات المطلوبة لمنح الحكومة الصينية والجامعات."
-            },
-            "visa": {
-                "question": "ما هي متطلبات التأشيرة؟",
-                "answer": "ستحتاج إلى جواز سفر ساري المفعول، وخطاب قبول، ونموذج JW202 من جامعتك. نحن نقدم توجيهًا ودعمًا شاملين للتأشيرة طوال العملية."
-            },
-            "process": {
-                "question": "كم تستغرق عملية التقديم؟",
-                "answer": "تستغرق عملية التقديم النموذجية 2-4 أسابيع. بمجرد التقديم، تستجيب الجامعات عادةً في غضون 4-8 أسابيع. نبقيك على اطلاع في كل خطوة."
-            }
-        },
-        "seeAll": "عرض جميع الأسئلة الشائعة",
-        "contactSupport": "اتصل بالدعم",
-        "footer": "هل لا تزال لديك أسئلة؟ فريق الدعم لدينا متاح على مدار الساعة طوال أيام الأسبوع لمساعدتك."
-    },
-    "Destinations": {
-        "pageTitle": "وجهات الدراسة",
-        "badge": "وجهات الدراسة في الصين",
-        "heroTitle": "اكتشف مدن الصين",
-        "heroSubtitle": "الأفضل للدراسة",
-        "heroDescription": "من العاصمة التاريخية بكين إلى أفق شانغهاي الحديث — استكشف أكثر مدن الصين حيوية وانطلق في رحلتك الأكاديمية.",
-        "statCities": "مدينة متاحة",
-        "statUniversities": "إجمالي الجامعات",
-        "statTopCity": "جامعة في {city}",
-        "featuredTitle": "الوجهات المميزة",
-        "featuredSubtitle": "المدن الأكثر شعبية للطلاب الدوليين في الصين",
-        "allCitiesTitle": "المزيد من المدن",
-        "allCitiesSubtitle": "اكتشف الجامعات في المزيد من المدن عبر الصين",
-        "university": "جامعة",
-        "universities": "جامعات",
-        "explorePrograms": "استكشف البرامج"
-    },
-    "Universities": {
-        "title": "استكشف أفضل الجامعات الصينية",
-        "subtitle": "اكتشف {count}+ مؤسسة مرموقة عبر الصين. من مشروع 985 إلى جامعات رابطة C9.",
-        "error": {
-            "title": "غير قادر على تحميل الجامعات",
-            "hint": "تلميح: {hint}"
-        },
-        "search": {
-            "placeholder": "البحث باسم الجامعة أو المدينة أو التصنيف...",
-            "label": "بحث",
-            "universityPlaceholder": "اسم الجامعة...",
-            "searching": "جاري البحث..."
-        },
-        "filters": {
-            "title": "الفلاتر",
-            "description": "تضييق نطاق البحث عن الجامعات",
-            "clear": "مسح الفلاتر",
-            "clearAll": "مسح جميع الفلاتر",
-            "city": "المدينة",
-            "allCities": "جميع المدن",
-            "institutionType": "نوع المؤسسة",
-            "allTypes": "جميع الأنواع",
-            "universityCategory": "فئة الجامعة",
-            "allCategories": "جميع الفئات",
-            "rankingRecognition": "التصنيف والاعتراف",
-            "specialFeatures": "ميزات خاصة",
-            "institutionTypes": {
-                "university": "جامعة",
-                "college": "كلية",
-                "languageInstitute": "معهد لغات",
-                "vocationalSchool": "مدرسة مهنية",
-                "technicalInstitute": "معهد تقني"
-            },
-            "categories": {
-                "public": "حكومية",
-                "private": "خاصة",
-                "research": "بحثية",
-                "comprehensive": "شاملة",
-                "specialized": "متخصصة",
-                "vocational": "مهنية"
-            },
-            "rankings": {
-                "project985": "مشروع 985",
-                "project211": "مشروع 211",
-                "doubleFirstClass": "الدرجة الأولى المزدوجة"
-            },
-            "features": {
-                "fastTrack": "قبول سريع",
-                "scholarships": "منح دراسية متاحة",
-                "englishPrograms": "برامج باللغة الإنجليزية"
-            }
-        },
-        "stats": {
-            "title": "إحصائيات سريعة",
-            "total": "إجمالي الجامعات",
-            "showing": "يظهر",
-            "cities": "المدن"
-        },
-        "sort": {
-            "label": "ترتيب حسب",
-            "name": "الاسم: أ-ي",
-            "programs": "أكثر البرامج",
-            "city": "المدينة",
-            "tuitionLow": "الرسوم: من الأقل للأكثر",
-            "tuitionHigh": "الرسوم: من الأكثر للأقل",
-            "ranking": "أفضل تصنيف"
-        },
-        "results": {
-            "universities": "جامعات",
-            "showMore": "عرض {count} المزيد",
-            "showingOf": "عرض {visible} من {total}"
-        },
-        "compare": {
-            "title": "مقارنة الجامعات",
-            "criteria": "المعايير",
-            "location": "الموقع",
-            "ranking": "التصنيف",
-            "programs": "البرامج",
-            "tuition": "الرسوم الدراسية",
-            "levels": "مستويات الدراسة",
-            "languages": "اللغات",
-            "scholarship": "منحة دراسية",
-            "fastTrack": "قبول سريع",
-            "cscaExam": "امتحان CSCA",
-            "badges": "الاعتمادات",
-            "clearAll": "مسح الكل",
-            "selected": "{count} مختارة",
-            "compareNow": "قارن الآن"
-        },
-        "noResults": {
-            "title": "لم يتم العثور على جامعات",
-            "description": "حاول ضبط الفلاتر أو معايير البحث"
-        }
-    },
-    "Programs": {
-        "title": "اكتشف برنامجك المثالي",
-        "subtitle": "تصفح أكثر من {count}+ برنامج من أفضل الجامعات الصينية. اعثر على التطابق المثالي لرحلتك الأكاديمية.",
-        "filters": {
-            "title": "الفلاتر",
-            "active": "الفلاتر النشطة:",
-            "clear": "مسح الفلاتر",
-            "clearAll": "مسح جميع الفلاتر",
-            "search": "بحث",
-            "searchPlaceholder": "البرنامج أو التخصص...",
-            "studyLevel": "مستوى الدراسة",
-            "fieldOfStudy": "مجال الدراسة",
-            "allFields": "جميع المجالات",
-            "maxTuition": "الحد الأقصى للرسوم",
-            "language": "اللغة",
-            "city": "المدينة",
-            "allCities": "جميع المدن",
-            "university": "الجامعة",
-            "allUniversities": "جميع الجامعات",
-            "duration": "المدة",
-            "allDurations": "جميع المدد",
-            "scholarshipAvailable": "منحة دراسية متاحة",
-            "levels": {
-                "bachelor": "البكالوريوس",
-                "master": "الماجستير",
-                "phd": "الدكتوراه",
-                "diploma": "دبلوم",
-                "language": "دورة لغة",
-                "nonDegree": "Non-Degree"
-            },
-            "fields": {
-                "business": "الأعمال والإدارة",
-                "engineering": "الهندسة والتكنولوجيا",
-                "medicine": "الطب والعلوم الصحية",
-                "arts": "الفنون والعلوم الإنسانية",
-                "science": "العلوم الطبيعية",
-                "education": "التعليم",
-                "cs": "علوم الكمبيوتر",
-                "law": "القانون"
-            },
-            "languages": {
-                "english": "الإنجليزية",
-                "chinese": "الصينية"
-            },
-            "durations": {
-                "2years": "سنتان",
-                "3years": "3 سنوات",
-                "4years": "4 سنوات",
-                "5years": "5 سنوات",
-                "6years": "6 سنوات"
-            },
-            "matchingPrograms": "برنامج مطابق",
-            "applyFilters": "تطبيق الفلاتر",
-            "scholarshipDesc": "إظهار البرامج مع التمويل",
-            "cscaLabel": "بدون اختبار CSCA",
-            "cscaDesc": "إظهار البرامج بدون اختبار CSCA",
-            "cscaBadge": "بدون CSCA",
-            "academicRequirements": "Academic Requirements",
-            "myAge": "My Age",
-            "agePlaceholder": "e.g. 21",
-            "minGpa": "Min GPA",
-            "gpaPlaceholder": "e.g. 3.0"
-        },
-        "stats": {
-            "total": "إجمالي البرامج",
-            "showing": "يظهر"
-        },
-        "sort": {
-            "label": "ترتيب حسب",
-            "relevance": "الأكثر صلة",
-            "tuitionLow": "الرسوم: من الأقل إلى الأعلى",
-            "tuitionHigh": "الرسوم: من الأعلى إلى الأقل",
-            "deadline": "الموعد النهائي: الأقرب",
-            "popular": "الأكثر شعبية"
-        },
-        "noResults": {
-            "title": "لم يتم العثور على برامج",
-            "description": "حاول ضبط الفلاتر أو معايير البحث"
-        },
-        "card": {
-            "duration": "المدة",
-            "intake": "الدفعة",
-            "tuitionFee": "الرسوم الدراسية",
-            "viewProgram": "عرض البرنامج",
-            "contact": "تواصل",
-            "scholarship": "منحة دراسية",
-            "addToCompare": "أضف للمقارنة",
-            "removeFromCompare": "إزالة من المقارنة",
-            "level": "المستوى",
-            "features": "المميزات",
-            "viewFullDetails": "عرض التفاصيل الكاملة",
-            "applyNow": "قدم الآن",
-            "fastTrack": "Fast Track"
-        },
-        "compare": {
-            "title": "مقارنة البرامج",
-            "comparing": "تتم المقارنة",
-            "more": "المزيد",
-            "clear": "مسح",
-            "compareNow": "قارن الآن",
-            "university": "الجامعة",
-            "location": "الموقع",
-            "level": "المستوى",
-            "duration": "المدة",
-            "tuition": "الرسوم",
-            "intake": "الدفعة",
-            "language": "اللغة",
-            "viewDetails": "عرض التفاصيل",
-            "apply": "قدم"
-        },
-        "emptyState": {
-            "title": "لم يتم العثور على برامج",
-            "description": "لم نتمكن من العثور على أي برامج. جرب تصفح المحتوى الكامل.",
-            "filteredDescription": "لا توجد برامج تطابق فلاترك الحالية. جرب تعديل معايير البحث.",
-            "currentFilters": "الفلاتر الحالية:",
-            "scholarship": "منحة دراسية",
-            "clearFilters": "مسح جميع الفلاتر",
-            "tryInstead": "عمليات بحث شائعة للتجربة:",
-            "browseAll": "تصفح جميع البرامج",
-            "exploreUniversities": "استكشف الجامعات"
-        },
-        "recentlyViewed": {
-            "title": "شوهد مؤخراً",
-            "clear": "مسح",
-            "viewAgain": "عرض مجدداً",
-            "justNow": "الآن",
-            "minutesAgo": "منذ {count} دقيقة",
-            "hoursAgo": "منذ {count} ساعة",
-            "daysAgo": "منذ {count} يوم"
-        },
-        "quickAccess": "وصول سريع",
-        "quickChips": {
-            "cs": "علوم الحاسوب",
-            "business": "إدارة أعمال",
-            "engineering": "هندسة",
-            "medicine": "طب",
-            "arts": "فنون",
-            "economics": "اقتصاد"
-        },
-        "aiSearch": {
-            "thinking": "AI is thinking... finding related fields for \"{query}\"",
-            "active": "Smart Search Active",
-            "found": "Found programs related to: {terms}",
-            "working": "AI is working on it...",
-            "looking": "Looking for programs related to \"{query}\""
-        },
-        "view": {
-            "grid": "شبكة",
-            "map": "خريطة"
-        }
-    },
-    "GuidedTour": {
-        "skip": "تخطي الجولة",
-        "next": "التالي",
-        "finish": "فهمت!",
-        "programs": {
-            "search": {
-                "title": "ابحث عن برنامجك",
-                "content": "استخدم شريط البحث للعثور على البرامج حسب الاسم أو مجال الدراسة أو الكلمات المفتاحية."
-            },
-            "filters": {
-                "title": "حسّن بحثك",
-                "content": "استخدم الفلاتر للتضييق حسب المستوى الدراسي والموقع واللغة والميزانية."
-            },
-            "card": {
-                "title": "تفاصيل البرنامج",
-                "content": "انقر على أي بطاقة برنامج لرؤية التفاصيل الكاملة والمتطلبات وكيفية التقديم."
-            },
-            "compare": {
-                "title": "قارن البرامج",
-                "content": "اختر حتى 3 برامج لمقارنتها جنباً إلى جنب واتخذ أفضل قرار."
-            }
-        }
-    },
-    "UniversitiesCard": {
-        "programs": "البرامج",
-        "tuitionFrom": "الرسوم من",
-        "tuition": "الرسوم الدراسية",
-        "viewUniversity": "عرض الجامعة",
-        "viewPrograms": "عرض البرامج",
-        "fastTrack": "قبول سريع",
-        "scholarship": "منحة دراسية",
-        "contactForPricing": "تواصل للأسعار",
-        "cscaExam": "امتحان CSCA",
-        "addToCompare": "أضف للمقارنة",
-        "removeFromCompare": "إزالة من المقارنة"
-    },
-    "ProgramDetail": {
-        "breadcrumb": {
-            "home": "الرئيسية",
-            "programs": "البرامج"
-        },
-        "badges": {
-            "intake": "الدفعة: {intake}",
-            "contactUniversity": "تواصل مع الجامعة",
-            "fastTrack": "قبول سريع",
-            "specialRequirements": "متطلبات خاصة"
-        },
-        "deadline": {
-            "daysRemaining": "متبقي {days} يوم",
-            "endingToday": "يغلق التقديم اليوم!",
-            "closed": "التقديم مغلق",
-            "deadline": "الموعد النهائي"
-        },
-        "buttons": {
-            "apply": "قدم الآن",
-            "downloadBrochure": "تحميل الكتيب",
-            "viewUniversity": "عرض الجامعة",
-            "startApplication": "بدء الطلب",
-            "contactAdvisor": "تواصل مع مستشار"
-        },
-        "highlights": {
-            "title": "أبرز ملامح البرنامج",
-            "tuition": "الرسوم الدراسية",
-            "duration": "المدة",
-            "language": "اللغة",
-            "level": "المستوى الدراسي",
-            "gpaRequirement": "الحد الأدنى للمعدل",
-            "languageRequirements": "Language Score"
-        },
-        "overview": {
-            "title": "نظرة عامة على البرنامج",
-            "noDescription": "لا يوجد وصف متاح لهذا البرنامج.",
-            "curriculum": "المنهج الأساسي",
-            "curriculumPlaceholder": "ستتم إضافة معلومات المواد الأساسية قريبًا"
-        },
-        "requirements": {
-            "title": "متطلبات القبول"
-        },
-        "scholarships": {
-            "title": "خيارات المنح الدراسية لهذا البرنامج",
-            "description": "اختر نوع المنحة الذي يناسب ميزانيتك"
-        },
-        "faq": {
-            "title": "الأسئلة الشائعة",
-            "deadline": "الموعد النهائي للتقديم هو {deadline}.",
-            "accommodationQ": "هل السكن متوفر؟",
-            "accommodationA": "نعم، السكن داخل الحرم الجامعي متاح للطلاب الدوليين.",
-            "workQ": "هل يمكنني العمل بدوام جزئي؟",
-            "workA": "نعم، يمكن للطلاب الدوليين التقدم لبرامج العمل والدراسة أو التدريب مع التصاريح المناسبة.",
-            "deadlineQ": "ما هو الموعد النهائي للتقديم؟"
-        },
-        "sidebar": {
-            "ready": "جاهز للتقديم؟",
-            "free": "تقديم مجاني",
-            "fast": "معالجة سريعة",
-            "expert": "دعم الخبراء",
-            "cost": "تفاصيل التكلفة",
-            "applicationFee": "رسوم الطلب",
-            "serviceFee": "رسوم الخدمة",
-            "disclaimer": "* قد تشمل التكاليف الإضافية الإقامة والتأشيرة ونفقات المعيشة",
-            "why": "لماذا تختار هذا البرنامج؟",
-            "reasons": {
-                "degree": "شهادة معترف بها دوليًا",
-                "faculty": "أعضاء هيئة تدريس ذوو خبرة",
-                "facilities": "مرافق وموارد حديثة",
-                "career": "دعم التطوير الوظيفي"
-            }
-        },
-        "accommodation": {
-            "title": "خيارات السكن"
-        }
-    },
-    "UniversityDetail": {
-        "quickLinks": {
-            "exploreCourses": "استكشاف الدورات",
-            "getFunded": "احصل على تمويل",
-            "findHousing": "ابحث عن سكن",
-            "findLocation": "الموقع"
-        },
-        "location": {
-            "title": "موقع الحرم الجامعي",
-            "viewOnMap": "عرض على خرائط جوجل"
-        },
-        "about": "عن الجامعة",
-        "whyChooseUs": "لماذا تختارنا",
-        "programs": {
-            "title": "البرامج",
-            "allPrograms": "جميع البرامج",
-            "noPrograms": "لا توجد برامج متاحة لهذا المستوى.",
-            "viewProgram": "عرض البرنامج",
-            "tuitionFee": "الرسوم الدراسية",
-            "perYear": "سنوياً",
-            "allLanguages": "جميع اللغات",
-            "filterByLanguage": "اللغة",
-            "showing": "عرض {start}-{end} من {total} برنامج",
-            "previousPage": "السابق",
-            "nextPage": "التالي",
-            "pageOf": "صفحة {current} من {total}"
-        },
-        "scholarships": {
-            "title": "خيارات المنح الدراسية المتاحة",
-            "description": "اختر نوع المنحة الذي يناسب ميزانيتك لبرامج هذه الجامعة"
-        },
-        "campus": {
-            "tour": "جولة في الحرم الجامعي",
-            "gallery": "معرض الصور",
-            "viewImage": "عرض الصورة"
-        },
-        "admission": {
-            "title": "متطلبات القبول",
-            "academic": "المتطلبات الأكاديمية",
-            "language": "متطلبات اللغة",
-            "highSchool": "شهادة الثانوية العامة أو ما يعادلها",
-            "gpa": "الحد الأدنى للمعدل التراكمي 3.0/4.0",
-            "transcripts": "كشوف الدرجات الأكاديمية",
-            "ielts": "IELTS 6.0 أو TOEFL 80+",
-            "hsk": "HSK 4 للبرامج الصينية",
-            "english": "شهادة إتقان اللغة الإنجليزية"
-        },
-        "sidebar": {
-            "ready": "جاهز للتقديم؟",
-            "startJourney": "ابدأ رحلتك في {university}",
-            "applyNow": "قدم الآن",
-            "downloadBrochure": "تحميل الكتيب",
-            "quickActions": "إجراءات سريعة",
-            "requestInfo": "طلب معلومات",
-            "chatAdvisor": "تحدث مع مستشار",
-            "virtualTour": "جولة افتراضية",
-            "scheduleCall": "حجز مكالمة",
-            "quickFacts": "حقائق سريعة",
-            "location": "الموقع",
-            "founded": "تأسست",
-            "students": "الطلاب",
-            "international": "الطلاب الدوليين",
-            "ranking": "التصنيف",
-            "officialWebsite": "الموقع الرسمي"
-        },
-        "faq": {
-            "title": "Frequently Asked Questions"
-        }
-    },
-    "RequestInformation": {
-        "title": "طلب معلومات",
-        "description": "احصل على مزيد من التفاصيل حول {university}. املأ النموذج أدناه.",
-        "firstName": "الاسم الأول",
-        "lastName": "اسم العائلة",
-        "email": "البريد الإلكتروني",
-        "phone": "رقم الهاتف",
-        "interest": "الاهتمام",
-        "selectInterest": "اختر اهتمامك",
-        "interests": {
-            "admission": "متطلبات القبول",
-            "programs": "البرامج المتاحة",
-            "scholarships": "فرص المنح الدراسية",
-            "campus": "الحياة الجامعية",
-            "other": "أخرى"
-        },
-        "message": "الرسالة",
-        "messagePlaceholder": "أنا مهتم بالدراسة في {university}...",
-        "submit": "إرسال الطلب",
-        "sending": "جاري الإرسال...",
-        "success": "تم إرسال الطلب بنجاح! سنتصل بك قريباً.",
-        "error": "فشل إرسال الطلب. يرجى المحاولة مرة أخرى."
-    },
-    "UniversityScholarships": {
-        "options": "الخيارات المتاحة",
-        "discover": "اكتشف",
-        "explore": "استكشف المنح الدراسية",
-        "description": "اعثر على خيار المساعدة المالية الذي يناسب احتياجاتك.",
-        "viewAll": "عرض الكل",
-        "advice": "احصل على استشارة",
-        "scholarshipType": "نوع المنحة",
-        "tuitionCoverage": "تغطية الرسوم الدراسية",
-        "serviceFee": "رسوم الخدمة",
-        "whatsIncluded": "ماذا تشمل",
-        "action": "إجراء",
-        "applyNow": "قدم الآن",
-        "mostPopular": "الأكثر شيوعاً",
-        "loading": "جاري تحميل المنح...",
-        "noScholarships": "لا توجد منح دراسية متاحة لهذه الجامعة.",
-        "howItWorks": {
-            "title": "كيف تعمل",
-            "description": "اختر نوع المنحة وتابع التقديم. سيقوم فريقنا بإرشادك خلال العملية.",
-            "learnMore": "اعرف المزيد"
-        },
-        "defaultDescription": "Great option for international students.",
-        "benefits": {
-            "tuitionCoverage": "{percentage}% tuition fee coverage",
-            "noScholarship": "No scholarship (0% coverage)",
-            "support": "Application support & guidance",
-            "visa": "Visa assistance",
-            "orientation": "Pre-departure orientation",
-            "accommodation": "Accommodation arrangement support"
-        }
-    },
-    "Accommodation": {
-        "notAvailable": "معلومات السكن غير متوفرة",
-        "badge": "سكن الطلاب",
-        "title": "خيارات السكن داخل الحرم الجامعي",
-        "priceRange": "نطاق الأسعار",
-        "generalFacilities": "المرافق العامة",
-        "availableRoomTypes": "أنواع الغرف المتاحة",
-        "defaultTitle": "السكن",
-        "priceOnRequest": "السعر عند الطلب",
-        "month": "شهر",
-        "roomFeatures": "ميزات الغرفة:",
-        "importantInfo": {
-            "title": "معلومات مهمة",
-            "fees": "يتم دفع رسوم السكن لكل فصل دراسي أو سنة دراسية",
-            "availability": "تخصيص الغرف يخضع للتوافر",
-            "prices": "قد تختلف الأسعار ويجب تأكيدها مع الجامعة",
-            "deposit": "قد يطلب دفع تأمين عند تسجيل الوصول"
-        }
-    },
-    "UniversityHeader": {
-        "fastTrack": "قبول سريع",
-        "est": "تأسست {founded}",
-        "studentsCount": "{students} طالب",
-        "website": "الموقع الإلكتروني",
-        "applyNow": "قدم الآن",
-        "requestInfo": "طلب معلومات",
-        "brochure": "الكتيب",
-        "virtualTour": "جولة افتراضية",
-        "scheduleCall": "حجز مكالمة",
-        "chatAdvisor": "تحدث مع مستشار",
-        "save": "حفظ",
-        "saved": "محفوظ",
-        "share": "مشاركة",
-        "founded": "تأسست",
-        "students": "الطلاب",
-        "ranking": "التصنيف",
-        "international": "دولي"
-    },
-    "Dashboard": {
-        "sidebar": {
-            "myApplications": "طلباتي",
-            "profile": "الملف الشخصي",
-            "messages": "الرسائل",
-            "payments": "المدفوعات",
-            "documents": "المستندات",
-            "settings": "الإعدادات",
-            "logout": "تسجيل الخروج"
-        },
-        "title": "لوحة التحكم",
-        "subtitle": "مرحباً بعودتك! إليك نظرة عامة على طلباتك.",
-        "newApplication": "طلب جديد",
-        "stats": {
-            "totalApplications": "إجمالي الطلبات",
-            "submitted": "{count} تم إرسالها",
-            "pendingActions": "إجراءات معلقة",
-            "requiresAttention": "يتطلب انتباهك",
-            "offersReceived": "العروض المستلمة",
-            "congratulations": "تهانينا!",
-            "successRate": "معدل النجاح",
-            "acceptanceRate": "معدل القبول"
-        },
-        "recentApplications": "طلباتي",
-        "appliedOn": "تم التقديم في {date}",
-        "viewDetails": "عرض التفاصيل",
-        "noApplications": {
-            "title": "لا توجد طلبات بعد",
-            "description": "ابدأ رحلتك بتصفح البرامج وتقديم طلبك الأول."
-        },
-        "browsePrograms": "تصفح البرامج"
-    },
-    "Profile": {
-        "title": "ملفي الشخصي",
-        "subtitle": "إدارة معلوماتك الشخصية وتفضيلاتك",
-        "completion": "اكتمال الملف الشخصي",
-        "completeProfile": "أكمل ملفك الشخصي لتسريع الطلبات المستقبلية",
-        "photo": {
-            "title": "صورة الملف الشخصي",
-            "description": "تحميل صورة احترافية",
-            "upload": "تحميل صورة",
-            "uploading": "جاري التحميل...",
-            "hint": "JPG أو PNG أو GIF. الحد الأقصى 5 ميجابايت."
-        },
-        "personalInfo": {
-            "title": "المعلومات الشخصية",
-            "description": "تفاصيلك الأساسية للطلبات"
-        },
-        "fullName": "الاسم الكامل *",
-        "email": "البريد الإلكتروني",
-        "dob": "تاريخ الميلاد",
-        "phone": "رقم الهاتف",
-        "nationality": "الجنسية",
-        "passportNumber": "رقم الجواز",
-        "address": {
-            "title": "العنوان",
-            "description": "عنوان إقامتك الحالي",
-            "street": "عنوان الشارع",
-            "city": "المدينة",
-            "postalCode": "الرمز البريدي"
-        },
-        "emergency": {
-            "title": "جهة الاتصال في حالات الطوارئ",
-            "description": "الشخص الذي يمكن الاتصال به في حالة الطوارئ",
-            "name": "الاسم",
-            "phone": "الهاتف",
-            "relationship": "العلاقة"
-        },
-        "save": "حفظ الملف الشخصي",
-        "saving": "جاري الحفظ...",
-        "success": "تم تحديث الملف الشخصي بنجاح!",
-        "error": "حدث خطأ أثناء تحديث الملف الشخصي"
-    },
-    "Documents": {
-        "title": "مستنداتي",
-        "subtitle": "إدارة مستنداتك لطلبات الجامعة",
-        "stats": {
-            "total": "إجمالي المستندات",
-            "uploaded": "الملفات المرفوعة",
-            "verified": "تم التحقق",
-            "approved": "تمت الموافقة من قبل المسؤول",
-            "pending": "قيد المراجعة",
-            "awaiting": "في انتظار التحقق"
-        },
-        "yourDocuments": "مستنداتك",
-        "manageDocuments": "رفع وإدارة مستندات الطلب",
-        "uploadDocument": "رفع مستند",
-        "noDocuments": "لا توجد مستندات بعد",
-        "uploadFirst": "ارفع مستندك الأول للبدء",
-        "size": "الحجم",
-        "uploaded": "تاريخ الرفع",
-        "download": "تحميل",
-        "delete": "حذف",
-        "deleteConfirm": "هل أنت متأكد أنك تريد حذف \"{name}\"؟",
-        "uploadDialog": {
-            "title": "رفع مستند",
-            "description": "اختر نوع المستند وارفع ملفك",
-            "type": "نوع المستند *",
-            "selectType": "اختر نوع المستند",
-            "alreadyUploaded": "(تم الرفع مسبقاً)",
-            "file": "الملف *",
-            "selected": "تم الاختيار",
-            "formats": "الصيغ المقبولة: PDF, JPG, PNG, DOC, DOCX. الحد الأقصى 10 ميجابايت.",
-            "cancel": "إلغاء",
-            "uploading": "جاري الرفع...",
-            "upload": "رفع"
-        },
-        "error": {
-            "fileSize": "يجب أن يكون حجم الملف أقل من 10 ميجابايت",
-            "selectFile": "يرجى اختيار نوع المستند والملف",
-            "fileType": "يرجى رفع ملف صورة",
-            "imageSize": "يجب أن يكون حجم الصورة أقل من 5 ميجابايت"
-        },
-        "success": {
-            "uploaded": "تم رفع المستند بنجاح!",
-            "deleted": "تم حذف المستند"
-        },
-        "types": {
-            "passport": "جواز السفر",
-            "transcript": "كشف الدرجات الأكاديمي",
-            "diploma": "الشهادة/الدبلوم",
-            "recommendation_letter": "خطاب التوصية",
-            "personal_statement": "البيان الشخصي",
-            "cv": "السيرة الذاتية",
-            "language_certificate": "شهادة اللغة (IELTS/TOEFL)",
-            "photo": "صورة جواز السفر",
-            "bank_statement": "كشف حساب بنكي",
-            "health_certificate": "شهادة صحية",
-            "police_clearance": "صحيفة الحالة الجنائية",
-            "other": "وثيقة أخرى"
-        },
-        "documentRequest": {
-            "title": "طلب مستندات",
-            "description": "يرجى تحميل المستندات التالية:\n1. نسخة من جواز السفر\n2. شهادة الدرجة العلمية\n3. البيان الشخصي",
-            "note": "تأكد من ترجمة كل شيء إلى جميع اللغات"
-        }
-    },
-    "Status": {
-        "pending_documents": "بانتظار المستندات",
-        "pending_payment": "بانتظار الدفع",
-        "payment_verification": "التحقق من الدفع",
-        "submitted": "تم الإرسال",
-        "under_review": "قيد المراجعة",
-        "accepted": "مقبول",
-        "rejected": "مرفوض",
-        "unknown": "غير معروف"
-    },
-    "Auth": {
-        "login": {
-            "title": "تسجيل الدخول",
-            "description": "أدخل بريدك الإلكتروني وكلمة المرور للوصول إلى حسابك",
-            "emailLabel": "البريد الإلكتروني",
-            "emailPlaceholder": "m@example.com",
-            "passwordLabel": "كلمة المرور",
-            "forgotPassword": "نسيت كلمة المرور؟",
-            "submit": "تسجيل الدخول",
-            "orContinueWith": "أو تابع باستخدام",
-            "continueWithGoogle": "المتابعة باستخدام Google",
-            "connecting": "جاري الاتصال...",
-            "noAccount": "ليس لديك حساب؟",
-            "signUp": "إنشاء حساب",
-            "success": "تم تسجيل الدخول بنجاح! جاري إعادة التوجيه...",
-            "error": "حدث خطأ ما",
-            "googleError": "فشل تسجيل الدخول باستخدام Google"
-        },
-        "layout": {
-            "branding": "Studyatchina",
-            "heroTitle": "بوابتك إلى الجامعات الصينية",
-            "heroDescription": "انضم إلى آلاف الطلاب الدوليين الذين يسعون لتحقيق أحلامهم في أفضل الجامعات الصينية.",
-            "programsTitle": "500+ برنامج",
-            "programsDescription": "الوصول إلى برامج من أفضل الجامعات الصينية",
-            "guidanceTitle": "توجيه الخبراء",
-            "guidanceDescription": "احصل على الدعم طوال رحلة التقديم الخاصة بك",
-            "scholarshipsTitle": "فرص المنح الدراسية",
-            "scholarshipsDescription": "استكشف خيارات المنح الدراسية المختلفة المتاحة",
-            "copyright": "© 2024 Studyatchina. جميع الحقوق محفوظة."
-        }
-    },
-    "Notifications": {
-        "title": "الإشعارات",
-        "markAllRead": "تعليم الكل كمقروء",
-        "noNotifications": "لا توجد إشعارات بعد",
-        "viewAll": "عرض جميع الإشعارات",
-        "loading": "جاري تحميل الإشعارات...",
-        "types": {
-            "statusChange": "تحديث حالة الطلب",
-            "documentRequested": "مطلوب مستند",
-            "paymentRequested": "مطلوب دفع",
-            "messageReceived": "رسالة جديدة",
-            "newApplication": "طلب جديد",
-            "newLead": "عميل محتمل جديد",
-            "documentUploaded": "تم رفع المستند",
-            "acceptanceLetter": "خطاب القبول"
-        },
-        "messages": {
-            "statusChange": "تغيرت حالة طلبك إلى {status}"
-        }
-    },
-    "Apply": {
-        "title": "التقديم للبرنامج",
-        "steps": {
-            "info": "المعلومات",
-            "documents": "المستندات",
-            "payment": "الدفع",
-            "review": "المراجعة",
-            "personalInfo": "المعلومات الشخصية",
-            "requiredDocuments": "المستندات المطلوبة",
-            "paymentInfo": "الدفع",
-            "reviewSubmit": "المراجعة والتقديم"
-        },
-        "sections": {
-            "identity": "الهوية والبيانات الشخصية",
-            "identitySubtitle": "يرجى إدخال بياناتك كما في جواز السفر",
-            "contact": "معلومات الاتصال",
-            "address": "عنوان السكن",
-            "education": "الخلفية التعليمية",
-            "educationSubtitle": "أحدث مؤهل أكاديمي لديك",
-            "language": "إتقان اللغة",
-            "languageSubtitle": "مستوى اللغة الصينية والإنجليزية لأغراض القبول",
-            "emergency": "جهة الاتصال في الطوارئ",
-            "emergencySubtitle": "مطلوب لسلامتك في الخارج"
-        },
-        "options": {
-            "male": "ذكر",
-            "female": "أنثى",
-            "islam": "الإسلام",
-            "christianity": "المسيحية",
-            "buddhism": "البوذية",
-            "hinduism": "الهندوسية",
-            "noReligion": "بدون ديانة",
-            "other": "أخرى",
-            "single": "أعزب/عزباء",
-            "married": "متزوج/ة",
-            "divorced": "مطلق/ة",
-            "highSchool": "ثانوية عامة",
-            "diploma": "دبلوم",
-            "bachelor": "بكالوريوس",
-            "master": "ماجستير",
-            "doctorate": "دكتوراه",
-            "noProficiency": "لا يوجد",
-            "basic": "مبتدئ",
-            "intermediate": "متوسط",
-            "advanced": "متقدم",
-            "native": "لغة أم"
-        },
-        "labels": {
-            "firstName": "الاسم الأول",
-            "lastName": "اسم العائلة",
-            "fullName": "الاسم الكامل (كما في جواز السفر)",
-            "email": "البريد الإلكتروني",
-            "phone": "رقم الهاتف المحمول",
-            "country": "الجنسية",
-            "passport": "رقم جواز السفر",
-            "gender": "الجنس",
-            "dateOfBirth": "تاريخ الميلاد",
-            "religion": "الديانة",
-            "maritalStatus": "الحالة الاجتماعية",
-            "wechatId": "معرف WeChat",
-            "address": "عنوان السكن",
-            "city": "المدينة",
-            "postalCode": "الرمز البريدي",
-            "highestEducation": "أعلى مؤهل تعليمي",
-            "schoolName": "اسم المدرسة / الجامعة",
-            "majorField": "التخصص / مجال الدراسة",
-            "graduationYear": "سنة التخرج",
-            "gpaScore": "المعدل التراكمي",
-            "chineseProficiency": "اللغة الصينية (مستوى HSK)",
-            "englishProficiency": "إتقان اللغة الإنجليزية",
-            "testScore": "درجة الاختبار (IELTS/TOEFL)",
-            "preferredIntake": "موعد القبول المفضل",
-            "emergencyContactName": "اسم جهة الاتصال في الطوارئ",
-            "emergencyContactPhone": "هاتف جهة الاتصال في الطوارئ",
-            "emergencyContactRelationship": "صلة القرابة"
-        },
-        "placeholders": {
-            "firstName": "مثال: محمد",
-            "lastName": "مثال: أحمد",
-            "fullName": "مثال: محمد أحمد علي",
-            "email": "مثال: mohammed@example.com",
-            "phone": "مثال: 555 123 4567",
-            "passport": "مثال: AB1234567",
-            "selectGender": "اختر الجنس",
-            "selectReligion": "اختر الديانة",
-            "selectMaritalStatus": "اختر الحالة الاجتماعية",
-            "wechatId": "مثال: wxid_abc123",
-            "address": "مثال: 123 شارع الرئيسي، شقة 4ب",
-            "city": "مثال: القاهرة",
-            "postalCode": "مثال: 11511",
-            "selectEducation": "اختر أعلى مؤهل",
-            "schoolName": "مثال: جامعة القاهرة",
-            "majorField": "مثال: علوم الحاسوب",
-            "graduationYear": "مثال: 2024",
-            "gpaScore": "مثال: 3.5 / 4.0",
-            "selectChinese": "اختر مستوى HSK",
-            "selectEnglish": "اختر المستوى",
-            "testScore": "مثال: IELTS 6.5",
-            "emergencyName": "مثال: اسم الوالد أو الوصي",
-            "emergencyPhone": "مثال: 555 123 4567",
-            "relationship": "مثال: والد، زوج/زوجة"
-        },
-        "hints": {
-            "phoneHint": "أدخل رقم هاتفك بدون رمز الدولة",
-            "passportHint": "أدخل رقم جواز السفر كما هو موضح"
-        },
-        "buttons": {
-            "continueToDocuments": "متابعة إلى المستندات",
-            "continueToPayment": "متابعة إلى الدفع",
-            "continueToReview": "متابعة إلى المراجعة",
-            "submitApplication": "تقديم الطلب",
-            "back": "رجوع",
-            "uploadDocument": "رفع",
-            "selectFile": "اختيار ملف",
-            "next": "Next"
-        },
-        "validation": {
-            "missingFieldsTitle": "يرجى ملء الحقول المطلوبة التالية:",
-            "required": "هذا الحقل مطلوب"
-        },
-        "documents": {
-            "title": "المستندات المطلوبة",
-            "description": "يرجى رفع المستندات التالية. الصيغ المقبولة: PDF، JPG، PNG (الحد الأقصى 10 ميغابايت)",
-            "mandatory": "مطلوب",
-            "optional": "اختياري",
-            "uploaded": "تم الرفع",
-            "pending": "قيد الانتظار"
-        },
-        "payment": {
-            "title": "رسوم التقديم",
-            "applicationFee": "رسوم التقديم",
-            "serviceFee": "رسوم الخدمة",
-            "total": "المجموع",
-            "payNow": "ادفع الآن",
-            "payLater": "ادفع لاحقاً"
-        },
-        "review": {
-            "title": "مراجعة طلبك",
-            "personalDetails": "البيانات الشخصية",
-            "uploadedDocuments": "المستندات المرفوعة",
-            "confirmSubmit": "أؤكد أن جميع المعلومات المقدمة صحيحة",
-            "submitting": "جاري التقديم...",
-            "success": "تم تقديم الطلب بنجاح!",
-            "successMessage": "تم تقديم طلبك. ستتلقى رسالة تأكيد بالبريد الإلكتروني قريباً."
-        },
-        "errors": {
-            "generic": "حدث خطأ. يرجى المحاولة مرة أخرى.",
-            "uploadFailed": "فشل رفع المستند. يرجى المحاولة مرة أخرى.",
-            "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
-        }
-    },
-    "AISearch": {
-        "placeholder": "جرب: 'ماجستير في الهندسة بأقل من 30000 يوان في بكين'",
-        "search": "بحث",
-        "filters": "فهم الذكاء الاصطناعي",
-        "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
-    },
-    "AIChat": {
-        "title": "تشن وي 陈伟",
-        "subtitle": "مستشارك الدراسي",
-        "typing": "يكتب...",
-        "greeting": "مرحباً! 👋 أنا تشن وي (陈伟)، مستشارك الشخصي للدراسة. أنا هنا لمساعدتك في العثور على البرنامج المثالي في الصين، والإجابة على أسئلتك، وحتى إرشادك خلال عملية التقديم. ما الذي يجلبك إلى هنا اليوم؟",
-        "inputPlaceholder": "اكتب رسالتك...",
-        "thinking": "يفكر...",
-        "error": "عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.",
-        "quickStart": "بداية سريعة:",
-        "quickFind": "🎓 البحث عن برامج",
-        "quickScholarship": "💰 المنح الدراسية",
-        "quickApply": "📝 بدء التقديم",
-        "chatHistory": "سجل المحادثات",
-        "newChat": "محادثة جديدة",
-        "noHistory": "لا توجد محادثات سابقة",
-        "backToChat": "العودة للمحادثة",
-        "loginPrompt": "🔐 سجّل الدخول لحفظ محادثاتك وتتبع طلباتك",
-        "login": "تسجيل الدخول",
-        "register": "إنشاء حساب"
-    },
-    "PaymentDashboard": {
-        "title": "المدفوعات",
-        "subtitle": "إدارة مدفوعات طلبك",
-        "totalAmount": "المبلغ الإجمالي",
-        "totalPaid": "إجمالي المدفوع",
-        "pending": "معلق",
-        "rest": "المبلغ المتبقي",
-        "totalTransactions": "إجمالي المعاملات",
-        "successfullyProcessed": "تمت المعالجة بنجاح",
-        "paymentDue": "دفعة مستحقة",
-        "allTime": "كل الوقت",
-        "amount": "المبلغ",
-        "status": "الحالة",
-        "created": "تاريخ الإنشاء",
-        "method": "طريقة الدفع",
-        "payNow": "ادفع الآن",
-        "viewApplication": "عرض الطلب",
-        "paymentProof": "إثبات الدفع",
-        "paymentRequest": {
-            "title": "طلب الدفع",
-            "amount": "USD 200",
-            "description": "إجراء هذا الدفع",
-            "note": "يرجى إتمام الدفع للمتابعة في طلبك."
-        },
-        "paymentStatuses": {
-            "completed": "مكتمل",
-            "pending": "قيد الانتظار",
-            "processing": "قيد المعالجة",
-            "failed": "فشل",
-            "refunded": "تم الاسترداد"
-        },
-        "types": {
-            "application_fee": "رسوم الطلب",
-            "service_fee": "رسوم الخدمة",
-            "tuition_deposit": "إيداع الرسوم الدراسية",
-            "full_tuition": "الرسوم الدراسية الكاملة",
-            "accommodation": "إقامة",
-            "other": "آخر"
-        },
-        "assistance": {
-            "title": "مساعدة الدفع",
-            "description": "لديك {count} مدفوعات معلقة. إذا كنت بحاجة إلى مساعدة في المدفوعات أو لديك أسئلة:",
-            "point1": "تواصل مع فريق الدعم للحصول على مساعدة في الدفع",
-            "point2": "تحقق مما إذا كنت مؤهلاً لخطط الدفع",
-            "point3": "تحقق من أن طريقة الدفع الخاصة بك مدعومة"
-        },
-        "paidOn": "دفع في",
-        "reference": "مرجع",
-        "verifiedByAdmin": "تم التحقق من قبل المسؤول",
-        "expires": "ينتهي:",
-        "adminNote": "ملاحظة المسؤول:",
-        "paymentLinkExpired": "انتهاء صلاحية رابط الدفع",
-        "document": "وثيقة:",
-        "noPayments": "لا توجد مدفوعات",
-        "noPaymentsDesc": "ليس لديك أي مدفوعات معلقة.",
-        "contactSupport": "اتصل بالدعم"
-    },
-    "Refunds": {
-        "title": "طلبات استرداد الأموال",
-        "statusTitle": "حالة استرداد الأموال",
-        "requestButton": "طلب استرداد",
-        "submittedTitle": "تم تقديم طلب استرداد الأموال",
-        "submittedOn": "تم التقديم في {date}",
-        "reasonLabel": "السبب",
-        "adminResponseLabel": "رد المسؤول",
-        "rejectedTitle": "تم رفض الطلب",
-        "rejectedMessage": "قد تكون مؤهلاً لاسترداد الأموال. انقر فوق الزر لتقديم طلب.",
-        "modalTitle": "طلب استرداد",
-        "modalDescription": "تقديم طلب لاسترداد الأموال. يرجى توضيح سبب طلبك لهذا الاسترداد.",
-        "modalReasonLabel": "سبب الاسترداد",
-        "modalPlaceholder": "تم رفضي بسبب...",
-        "submitButton": "إرسال الطلب",
-        "cancelButton": "إلغاء",
-        "successMessage": "تم تقديم طلب الاسترداد بنجاح",
-        "errorMessage": "فشل تقديم الطلب",
-        "table": {
-            "student": "الطالب",
-            "program": "الجامعة / البرنامج",
-            "reason": "السبب",
-            "status": "الحالة",
-            "date": "التاريخ",
-            "actions": "الإجراءات",
-            "approve": "موافقة",
-            "reject": "رفض",
-            "noRequests": "لم يتم العثور على طلبات استرداد",
-            "approveTitle": "الموافقة على طلب الاسترداد",
-            "rejectTitle": "رفض طلب الاسترداد",
-            "approveDescription": "سيؤدي هذا إلى تحديد الطلب على أنه مقبول وتحديث حالة دفع الطلب إلى مسترد.",
-            "rejectDescription": "سيؤدي هذا إلى تحديد الطلب على أنه مرفوض.",
-            "adminResponsePlaceholder": "أضف ملاحظة للطالب..."
-        }
-    },
-    "Messages": {
-        "title": "الرسائل",
-        "actionRequired": "إجراء مطلوب",
-        "actionCompleted": "مكتمل",
-        "reply": "رد",
-        "replyingTo": "الرد على {name}",
-        "typeReply": "اكتب ردك...",
-        "sendReply": "إرسال الرد",
-        "sending": "جاري الإرسال...",
-        "cancel": "إلغاء",
-        "you": "أنت",
-        "admin": "فريق القبول",
-        "replyTooltip": "الرد على هذه الرسالة",
-        "actionRequiredMessage": "يرجى الرد على هذه الرسالة أو إكمال الإجراء المطلوب.",
-        "takeAction": "اتخاذ إجراء",
-        "attachment": "مرفق",
-        "attachments": "مرفقات",
-        "subtitle": "Communication with admissions team",
-        "conversations": "Conversations",
-        "unreadMessages": "Unread Messages",
-        "noMessages": "No messages yet",
-        "noMessagesDesc": "Messages from the admissions team will appear here"
-    },
-    "QSRankings": {
-        "meta": {
-            "title": "تصنيف QS العالمي للجامعات 2026 — الجامعات الصينية | ادرس في الصين",
-            "description": "استكشف تصنيف QS العالمي للجامعات 2026 للصين. شاهد كيف تصنف 72 جامعة صينية عالمياً، من جامعة بكين (#14) إلى مؤسسات بحثية ناشئة. اعثر على جامعتك المثالية في الصين."
-        },
-        "hero": {
-            "badge": "تصنيف QS العالمي للجامعات 2026",
-            "titleHighlight": "الجامعات الصينية",
-            "titleRest": "في التصنيفات العالمية",
-            "subtitle": "اكتشف مكانة أفضل الجامعات الصينية في تصنيف QS العالمي للجامعات 2026. من جامعة بكين في المرتبة #14 إلى القوى البحثية الناشئة — اعثر على المؤسسة المثالية لدراستك.",
-            "breadcrumb": "تصنيف QS 2026",
-            "statRanked": "جامعة مصنفة",
-            "statHighest": "أعلى تصنيف عالمي",
-            "statTop50": "ضمن أفضل 50 عالمياً",
-            "statCities": "مدينة ممثلة"
-        },
-        "content": {
-            "topUniversitiesTitle": "أفضل الجامعات الصينية المصنفة عالمياً",
-            "browseAllTitle": "تصفح جميع التصنيفات",
-            "searchPlaceholder": "ابحث عن الجامعات...",
-            "allCities": "جميع المدن",
-            "showing": "عرض",
-            "of": "من",
-            "universities": "جامعة",
-            "university": "جامعة",
-            "inCity": "في",
-            "matching": "مطابق لـ",
-            "noResults": "لم يتم العثور على جامعات",
-            "noResultsHint": "حاول تعديل البحث أو الفلاتر",
-            "overallScore": "الدرجة الإجمالية",
-            "score": "الدرجة",
-            "world": "عالمياً",
-            "china": "الصين",
-            "ctaTitle": "مستعد للدراسة في جامعة مصنفة عالمياً؟",
-            "ctaDescription": "تصفح البرامج في الجامعات الصينية المصنفة في QS. اعثر على المنح الدراسية، قارن الرسوم الدراسية، وابدأ طلبك اليوم.",
-            "browseUniversities": "تصفح الجامعات",
-            "explorePrograms": "استكشف البرامج",
-            "disclaimer": "بيانات التصنيف مصدرها تصنيف QS العالمي للجامعات 2026 الصادر عن Quacquarelli Symonds. للتصنيفات الرسمية والأحدث، قم بزيارة",
-            "visitSite": "topuniversities.com",
-            "viewProfile": "عرض الملف الشخصي",
-            "tierTop50": "أفضل 50 عالمياً",
-            "tierTop200": "المرتبة 51–200",
-            "tierTop500": "المرتبة 201–500",
-            "tierRemaining": "+501"
-        }
+    "user": {
+      "myApplications": "طلباتي",
+      "logout": "تسجيل الخروج",
+      "signIn": "تسجيل الدخول",
+      "getStarted": "ابدأ الآن",
+      "myAccount": "حسابي",
+      "account": "الحساب"
     }
+  },
+  "Common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "view": "عرض",
+    "back": "رجوع"
+  },
+  "Footer": {
+    "stayUpdated": "ابقى على اطلاع",
+    "getLatestUpdates": "اشترك للحصول على آخر التحديثات",
+    "subscribeText": "اشترك لتلقي الأخبار حول البرامج والمنح الدراسية ومواعيد التقديم.",
+    "description": "شريكك الموثوق لاكتشاف والتقديم لأفضل الجامعات في الصين.",
+    "explore": "استكشف",
+    "programs": "البرامج",
+    "universities": "الجامعات",
+    "scholarships": "المنح الدراسية",
+    "howToApply": "كيفية التقديم",
+    "faq": "الأسئلة الشائعة",
+    "forStudents": "للطلاب",
+    "createAccount": "إنشاء حساب",
+    "trackApplication": "تتبع الطلب",
+    "documentChecklist": "قائمة المستندات",
+    "studentPortal": "بوابة الطالب",
+    "contact": "اتصل بنا",
+    "rightsReserved": "جميع الحقوق محفوظة.",
+    "designedBy": "تصميم وتشغيل بواسطة",
+    "termsOfService": "شروط الخدمة",
+    "privacyPolicy": "سياسة الخصوصية",
+    "cookiePolicy": "سياسة ملفات تعريف الارتباط"
+  },
+  "ScholarshipCTA": {
+    "badge": "اكتشف المزيد من الفرص",
+    "title": "استكشف جميع خيارات المنح الدراسية",
+    "description": "لست متأكداً أي منحة دراسية تناسبك؟ تصفح دليلنا الكامل للمنح الدراسية لمقارنة جميع الخيارات، وفهم متطلبات الأهلية، والعثور على الأنسب لرحلتك الأكاديمية.",
+    "viewAll": "عرض جميع المنح الدراسية",
+    "getAdvice": "احصل على استشارة شخصية"
+  },
+  "CscaCta": {
+    "badge": "⚠️ إلزامي من 2026",
+    "title": "هل تستعد لامتحان <span class=\"text-primary\">CSCA؟</span>",
+    "titlePlain": "هل تستعد لامتحان CSCA؟",
+    "description": "⚠️ هام: امتحان CSCA الآن إلزامي لجميع الطلاب الدوليين المتقدمين لمنح الحكومة الصينية. بدون استثناء! استعد مع دليلنا الشامل.",
+    "readGuide": "اقرأ الدليل",
+    "findPrograms": "ابحث عن البرامج",
+    "proTip1": {
+      "title": "📅 مواعيد الامتحان",
+      "text": "الاختبارات في مارس وسبتمبر كل عام"
+    },
+    "proTip2": {
+      "title": "⏱️ وقت التحضير",
+      "text": "ابدأ التحضير قبل 3 أشهر على الأقل"
+    }
+  },
+  "CSCAGuide": {
+    "meta": {
+      "title": "Comprehensive Guide to CSCA Exam in China | Study at China",
+      "description": "Everything you need to know about the China Scholastic Competency Assessment (CSCA) - the standardized entrance exam for international students. Brought to you by Study at China."
+    },
+    "backHome": "Back to Home",
+    "newRequirement": "New Requirement for 2026",
+    "title": "Comprehensive Guide to <span class=\"text-primary\">CSCA Exam</span> in China",
+    "subtitle": "The China Scholastic Competency Assessment is becoming mandatory for international students. As your trusted partner, Study at China provides everything you need to know to prepare and succeed.",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "The <strong>CSCA (China Scholastic Competency Assessment)</strong> is a standardized academic testing system designed specifically for international students applying to bachelor's degree programs in Chinese universities. Developed to create a unified and authoritative admission standard, it assesses capabilities in Chinese, Mathematics, Physics, and Chemistry. At <strong>Study at China</strong>, we strongly advise students aiming for the 141+ Chinese Government Scholarship (CSC) universities to prepare early, as this exam is <strong>mandatory starting in 2026</strong>.",
+        "keyDates": {
+          "title": "Key Dates",
+          "launch": "2025: Official Launch",
+          "mandatory": "2026: Mandatory for CSC Scholarship Applicants",
+          "full": "2028: Full Implementation across all Universities"
+        }
+      },
+      "structure": {
+        "title": "Exam Structure",
+        "description": "The CSCA employs a compulsory plus optional model. All questions are computer-based multiple-choice questions (MCQs). Exams are available in both Chinese and English (except for the Chinese subjects).",
+        "table": {
+          "subject": "Subject",
+          "duration": "Duration",
+          "questions": "Questions",
+          "requirement": "Requirement",
+          "chinese": {
+            "name": "Specialized Chinese",
+            "req": "Humanities/Science"
+          },
+          "math": {
+            "name": "Mathematics",
+            "req": "Mandatory"
+          },
+          "physics": {
+            "name": "Physics",
+            "req": "Optional / Major-dependent"
+          },
+          "chemistry": {
+            "name": "Chemistry",
+            "req": "Optional / Major-dependent"
+          }
+        }
+      },
+      "subjects": {
+        "title": "Subject Details & Syllabus",
+        "chinese": {
+          "title": "Specialized Chinese",
+          "description": "Distinct from HSK. Assesses academic reading and comprehension for Humanities or STEM contexts. <strong>No English version available.</strong>",
+          "char": {
+            "title": "Character Recognition",
+            "desc": "Polyphonic characters, homophones (HSK 4-5 level)"
+          },
+          "reading": {
+            "title": "Reading Comprehension",
+            "desc": "Highest weight. Sci/Tech/Social essays."
+          },
+          "words": {
+            "title": "Word Distinction",
+            "desc": "Synonyms, academic vocabulary."
+          },
+          "sentences": {
+            "title": "Sentence/Paragraph",
+            "desc": "Ordering sentences, completing logic."
+          }
+        },
+        "math": {
+          "title": "Mathematics",
+          "description": "Compulsory for all. Difficulty roughly junior to senior high school levels.",
+          "note": "Both Chinese and English versions available.",
+          "topics": "<strong>Topics:</strong> Arithmetic and geometric sequences, ellipses (slopes, eccentricity), trigonometric functions, inverse functions, standard circle equations.",
+          "style": "<strong>Format:</strong> 60 minutes, 48 MCQs. Graded out of 100."
+        },
+        "chem": {
+          "title": "Chemistry",
+          "desc": "Optional/Major-dependent (e.g., Medical, Agriculture). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Topics include molecular formulas (e.g. calcium chloride), oxides, reaction products, conceptual questions."
+        },
+        "phys": {
+          "title": "Physics",
+          "desc": "Optional/Major-dependent (e.g., STEM). 60 mins, 48 MCQs, Score 0-100.",
+          "items": "Mechanics, Motion, Electromagnetism, Conceptual understanding at high school level."
+        }
+      },
+      "fees_and_process": {
+        "title": "Application Process & Fees",
+        "content": "<p>When applying through <strong>Study at China</strong>, we guide you through this process. Registration is primarily online via <a href=\"http://www.csca.cn\">csca.cn</a>.</p><ul><li class=\"mb-2\"><strong>Fees:</strong> A single subject costs <strong>RMB 450</strong>. Taking two or more subjects costs <strong>RMB 700</strong>.</li><li class=\"mb-2\"><strong>Frequency:</strong> Held 5 times a year (January, March, April, June, December).</li><li><strong>Results & Validity:</strong> Available 10 working days after the test. Scores are valid for <strong>2 years</strong>.</li></ul>"
+      },
+      "formats": {
+        "title": "Test Modes",
+        "online": {
+          "title": "Online Proctored",
+          "desc": "Home-based with a dual-camera setup. Valid worldwide."
+        },
+        "computer": {
+          "title": "Computer-Based",
+          "desc": "At official test centers (classrooms). Better stability."
+        },
+        "paper": {
+          "title": "Paper-Based",
+          "desc": "Traditional format. Limited regions."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "q": "Does the CSCA replace the HSK?",
+          "a": "Currently, no. The CSCA is an academic competency test assessing your knowledge in key subjects, whereas HSK is purely a language proficiency test."
+        },
+        "q2": {
+          "q": "Can I take it in English?",
+          "a": "Yes! The Mathematics, Physics, and Chemistry papers are available in English."
+        },
+        "q3": {
+          "q": "How long is the score valid?",
+          "a": "CSCA results are valid for <strong>2 years</strong>."
+        },
+        "q4": {
+          "q": "Who is exempt from the CSCA?",
+          "a": "Graduates of CSC preparatory programs at 17 designated universities (such as Tianjin University, Nanjing Normal University) may be exempt."
+        },
+        "q5": {
+          "q": "Are scores required for 2026 intake?",
+          "a": "<strong>Important for 2026 Applicants:</strong> Over 141 CSC universities require it. Some universities (like Shanghai Jiao Tong University and Harbin Institute of Technology) allow you to submit your registration screenshot first, and the official score later (e.g., by June 10). Let <strong>Study at China</strong> help you navigate these deadlines securely."
+        },
+        "comparison": {
+          "title": "CSCA vs. HSK",
+          "feature": "Feature",
+          "hsk": "HSK",
+          "csca": "CSCA",
+          "focus": "Focus",
+          "focusHsk": "Daily Communication",
+          "focusCsca": "Academic Readiness",
+          "vocab": "Vocabulary",
+          "vocabHsk": "Life/Everyday",
+          "vocabCsca": "Technical/Academic",
+          "req": "Requirement",
+          "reqHsk": "Language Cert",
+          "reqCsca": "Academic Entrance"
+        }
+      },
+      "sidebar": {
+        "title": "Important Details",
+        "dates": {
+          "title": "Dates",
+          "desc": "5 times/year (Jan, Mar, Apr, Jun, Dec)"
+        },
+        "prep": {
+          "title": "Preparation",
+          "desc": "Difficulty level: Junior/Senior High"
+        },
+        "passing": {
+          "title": "Fees",
+          "desc": "RMB 450 (1 subject) / RMB 700 (2+)"
+        },
+        "warning": "Scores valid for 2 years! The paper is a required document for admission review.",
+        "register": "Official Registration Site",
+        "tutor": {
+          "title": "Fast-Track with Study at China",
+          "desc": "Our team at Study at China provides specialized admission support, guiding you securely through CSCA requirements to your dream university.",
+          "button": "Apply With Us"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "admissionsOpen": "القبول مفتوح لعام 2026",
+    "searchPlaceholder": "ماذا تريد أن تدرس؟ (مثل علوم الكمبيوتر، الطب)",
+    "title": "مستقبلك في الصين يبدأ هنا",
+    "subtitle": "انضم إلى <bold>50,000+ طالب</bold> في أفضل الجامعات الصينية",
+    "searchButton": "ابحث في <bold>500+</bold> برنامج",
+    "searchWord": "ابحث في",
+    "programsWord": "برنامج",
+    "browseByCategory": "تصفح حسب الفئة",
+    "scrollToExplore": "مرر للاستكشاف",
+    "stats": {
+      "universities": "جامعة",
+      "students": "طالب",
+      "success": "نجاح",
+      "scholarships": "منحة"
+    },
+    "tabs": {
+      "programs": "البرامج",
+      "universities": "الجامعات",
+      "scholarships": "المنح الدراسية"
+    },
+    "placeholders": {
+      "degree": "الدرجة العلمية",
+      "field": "مجال الدراسة",
+      "city": "المدينة",
+      "language": "اللغة",
+      "budget": "الميزانية (دولار/سنة)",
+      "scholarship": "المنحة",
+      "duration": "المدة"
+    },
+    "options": {
+      "any": "أي",
+      "all": "الكل"
+    },
+    "budget": {
+      "under3k": "أقل من 3,000$",
+      "3kTo5k": "3,000$ - 5,000$",
+      "5kTo8k": "5,000$ - 8,000$",
+      "above8k": "أكثر من 8,000$"
+    },
+    "scholarship": {
+      "allPrograms": "جميع البرامج",
+      "available": "منحة متاحة",
+      "full": "منحة كاملة",
+      "partial": "منحة جزئية"
+    },
+    "duration": {
+      "1year": "سنة واحدة",
+      "2years": "سنتان",
+      "3years": "3 سنوات",
+      "4years": "4 سنوات",
+      "5plus": "5+ سنوات"
+    },
+    "categories": {
+      "mba": "MBA",
+      "engineering": "الهندسة",
+      "medicine": "الطب",
+      "cs": "علوم الحاسوب",
+      "fullScholarship": "منحة كاملة",
+      "englishTaught": "تدريس بالإنجليزية"
+    }
+  },
+  "WhyStudy": {
+    "badge": "لماذا تختار الصين",
+    "title": "بوابتك إلى <gradient>النجاح العالمي</gradient>",
+    "description": "تجمع الصين بين الحكمة القديمة والابتكار المتطور، وتقدم للطلاب الدوليين تجربة تعليمية لا مثيل لها في قلب القوة الاقتصادية لآسيا.",
+    "cta": {
+      "explore": "استكشف البرامج",
+      "download": "تحميل الدليل"
+    },
+    "features": {
+      "worldClass": {
+        "title": "جامعات عالمية المستوى",
+        "description": "ادرس في مؤسسات مصنفة عالميًا مع مرافق بحثية متطورة وأعضاء هيئة تدريس مشهورين."
+      },
+      "affordable": {
+        "title": "تميز بأسعار معقولة",
+        "description": "تعليم متميز بتكاليف تنافسية مع فرص منح دراسية سخية تصل إلى 100٪."
+      },
+      "career": {
+        "title": "منصة انطلاق مهنية",
+        "description": "الوصول إلى أكبر اقتصاد في آسيا مع فرص تدريب وعمل لا مثيل لها."
+      },
+      "safe": {
+        "title": "آمنة ونابضة بالحياة",
+        "description": "جرب واحدة من أكثر البلدان أمانًا في العالم مع مجتمع دولي مزدهر."
+      },
+      "culture": {
+        "title": "الانغماس الثقافي",
+        "description": "اكتشف 5000 عام من التاريخ أثناء العيش في مدن حديثة وديناميكية للغاية."
+      },
+      "network": {
+        "title": "شبكة عالمية",
+        "description": "انضم إلى مجتمع يضم أكثر من 500,000 طالب دولي من أكثر من 200 دولة."
+      },
+      "english": {
+        "title": "برامج باللغة الإنجليزية",
+        "description": "اختر من بين أكثر من 1000 برنامج يتم تدريسها بالكامل باللغة الإنجليزية في جميع التخصصات."
+      },
+      "recognition": {
+        "title": "اعتراف عالمي",
+        "description": "احصل على درجات معترف بها من قبل اليونسكو ومنظمة الصحة العالمية والهيئات المهنية عالميًا."
+      }
+    }
+  },
+  "HowItWorks": {
+    "badge": "عملية سريعة البرق",
+    "title": "من التقديم إلى <gradient>القبول</gradient>",
+    "description": "رحلة مبسطة من 6 خطوات مصممة لتنقلك من تصفح البرامج إلى استلام خطاب القبول في وقت قياسي.",
+    "cta": {
+      "button": "ابدأ طلبك الآن",
+      "time": "متوسط وقت الإنجاز: <bold>15 دقيقة</bold>"
+    },
+    "steps": {
+      "discover": {
+        "title": "اكتشف البرامج",
+        "description": "تصفح أكثر من 500 برنامج من أفضل الجامعات الصينية المصممة خصيصًا لأهدافك."
+      },
+      "profile": {
+        "title": "إنشاء ملف تعريف",
+        "description": "قم بإعداد حسابك وإكمال ملفك الأكاديمي في دقائق."
+      },
+      "upload": {
+        "title": "تحميل المستندات",
+        "description": "قم بتقديم الشهادات وكشوف الدرجات والمستندات المطلوبة بشكل آمن."
+      },
+      "scholarship": {
+        "title": "اختر نوع المنحة",
+        "description": "كل جامعة لديها أنواع منح دراسية متاحة. اختر واحدة وقدم."
+      },
+      "pay": {
+        "title": "اختر نوع المنحة",
+        "description": "كل جامعة لديها أنواع منح دراسية متاحة. اختر واحدة وقدم."
+      },
+      "track": {
+        "title": "تتبع التقدم",
+        "description": "راقب حالة طلبك من خلال التحديثات والإشعارات في الوقت الفعلي."
+      },
+      "admission": {
+        "title": "الحصول على القبول",
+        "description": "استلم خطاب العرض ومستندات التأشيرة وابدأ رحلتك!"
+      }
+    }
+  },
+  "Stats": {
+    "badge": "تأثيرنا",
+    "title": "موثوق به من قبل الآلاف حول العالم",
+    "description": "انضم إلى مجتمع عالمي من الطلاب الناجحين الذين حققوا أحلامهم من خلال منصتنا",
+    "items": {
+      "universities": {
+        "label": "الجامعات الشريكة",
+        "description": "مؤسسات رفيعة المستوى"
+      },
+      "students": {
+        "label": "الطلاب الدوليين",
+        "description": "من 200+ دولة"
+      },
+      "programs": {
+        "label": "البرامج المتاحة",
+        "description": "جميع مجالات الدراسة"
+      },
+      "success": {
+        "label": "معدل النجاح",
+        "description": "الموافقة على القبول"
+      },
+      "countries": {
+        "label": "البلدان الممثلة",
+        "description": "مجتمع عالمي"
+      },
+      "scholarships": {
+        "label": "المنح الدراسية الممنوحة",
+        "description": "الدعم المالي"
+      },
+      "time": {
+        "label": "وقت التقديم",
+        "description": "عملية سريعة وسهلة"
+      },
+      "employment": {
+        "label": "توظيف الخريجين",
+        "description": "في غضون 6 أشهر"
+      }
+    }
+  },
+  "FeaturedPrograms": {
+    "badge": "برامج مميزة",
+    "title": "البرامج الشائعة",
+    "description": "استكشف برامجنا الأكثر طلبًا في أفضل الجامعات الصينية",
+    "duration": "المدة",
+    "tuition": "الرسوم/السنة",
+    "explore": "استكشاف البرنامج",
+    "viewAll": "عرض جميع البرامج",
+    "fastTrack": "المسار السريع"
+  },
+  "FeaturedUniversities": {
+    "badge": "أفضل الجامعات",
+    "title": "جامعات النخبة",
+    "description": "ادرس في أرقى المؤسسات التعليمية في الصين",
+    "fastTrack": "المسار السريع",
+    "programs": "البرامج",
+    "tuitionFrom": "الرسوم من",
+    "students": "الطلاب",
+    "viewDetails": "عرض التفاصيل",
+    "viewAll": "عرض جميع الجامعات"
+  },
+  "Scholarships": {
+    "badge": "الدعم المالي",
+    "title": "المنح الدراسية والمساعدات المالية",
+    "description": "الدراسة في الصين ميسورة التكلفة. استكشف فرص المنح الدراسية المختلفة المتاحة للطلاب الدوليين.",
+    "items": {
+      "csc": {
+        "title": "منحة الحكومة الصينية (CSC)",
+        "description": "منحة دراسية كاملة أو جزئية للطلاب الدوليين. تغطي الرسوم الدراسية والإقامة والراتب.",
+        "amount": "تصل إلى 10,000 دولار/سنة"
+      },
+      "university": {
+        "title": "منح الجامعات",
+        "description": "منح دراسية قائمة على الجدارة تقدمها الجامعات مباشرة للمتقدمين المتميزين.",
+        "amount": "تصل إلى 8,000 دولار/سنة"
+      },
+      "provincial": {
+        "title": "منح الحكومات المحلية",
+        "description": "منح دراسية تمولها الحكومات المحلية لجذب المواهب الدولية إلى مناطق محددة.",
+        "amount": "تصل إلى 6,000 دولار/سنة"
+      }
+    },
+    "awardAmount": "مبلغ المنحة",
+    "learnMore": "اعرف المزيد",
+    "stats": {
+      "scholarshipOptions": "Scholarship Options",
+      "universities": "Universities",
+      "programs": "Programs",
+      "awarded": "تُمنح سنويًا",
+      "funding": "تلقي التمويل",
+      "full": "منح دراسية كاملة",
+      "eligible": "البرامج المؤهلة"
+    },
+    "viewAll": "عرض جميع المنح الدراسية",
+    "subtitle": "Discover hundreds of funding opportunities at top Chinese universities. Find full and partial scholarships with zero tuition or free accommodation.",
+    "popular": {
+      "title": "Featured & Popular Scholarships"
+    },
+    "tabs": {
+      "search": "Search Scholarships",
+      "about": "About Scholarships"
+    },
+    "search": {
+      "filter": "Filters",
+      "clearAll": "Clear All",
+      "searchPlaceholder": "Search program or university...",
+      "category": "Category",
+      "all": "All",
+      "fullScholarship": "Full Scholarship (100%)",
+      "partialScholarship": "Partial Scholarship",
+      "city": "City",
+      "university": "University",
+      "degree": "Degree Level",
+      "language": "Language",
+      "semester": "Semester",
+      "spring": "Spring",
+      "autumn": "Autumn",
+      "freeAccommodation": "Free Accommodation",
+      "monthlyStipend": "Monthly Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "scholarshipOptions": "scholarship options at",
+      "universities": "universities",
+      "noResults": "No scholarships found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "programsAvailable": "Programs",
+      "upTo": "Up to",
+      "accommodation": "Accommodation",
+      "stipend": "Stipend",
+      "insurance": "Insurance",
+      "program": "Program",
+      "teachingLanguage": "Language",
+      "startingDate": "Intake",
+      "scholarshipCoverage": "Original Tuition",
+      "youNeedToPay": "You Need To Pay",
+      "tuition": "Tuition",
+      "free": "Free",
+      "moreOptions": "More Options",
+      "learnMore": "Learn More"
+    },
+    "detail": {
+      "backToSearch": "Back to Search",
+      "scholarshipAvailable": "Scholarship Available",
+      "programDetails": "Program Details",
+      "degree": "Degree",
+      "duration": "Duration",
+      "language": "Language",
+      "intake": "Intake",
+      "availableScholarships": "Available Scholarships",
+      "noScholarships": "No scholarships are currently available for this program.",
+      "tuitionCoverage": "Tuition Coverage",
+      "freeAccommodation": "Free Accommodation",
+      "stipend": "Stipend",
+      "medicalInsurance": "Medical Insurance",
+      "originalTuition": "Original Tuition",
+      "youPay": "You Need to Pay",
+      "serviceFee": "Service Fee",
+      "applyNow": "Apply for this Scholarship",
+      "university": "University",
+      "viewUniversity": "View University Profile",
+      "viewProgram": "View Program Details"
+    },
+    "about": {
+      "howItWorks": "How Scholarships Work",
+      "howItWorksDescription": "Understanding the costs and benefits of our scholarship programs",
+      "scholarshipCoverage": "Scholarship Coverage",
+      "scholarshipCoverageDescription": "Scholarships primarily cover tuition fees (from 50% to 100%). Some also include free accommodation, a monthly stipend for living expenses, and medical insurance. The exact benefits depend on the specific scholarship type and the university.",
+      "serviceFees": "Service & Processing Fees",
+      "serviceFeesDescription": "While the university covers the tuition, our agency charges a one-time service and processing fee to help you secure the admission and scholarship. This fee varies depending on the scholarship type (higher coverage scholarships usually have higher service fees).",
+      "scholarshipTypes": "Common Scholarship Types",
+      "scholarshipNote": "The following is a general guide. Exact coverage and conditions vary by university.",
+      "searchPrograms": "Search Eligible Programs",
+      "requiredDocuments": "Required Documents",
+      "requiredDocumentsDescription": "Prepare these documents to increase your chances of approval",
+      "faq": "Frequently Asked Questions",
+      "faq1Question": "Do I need to know Chinese to get a scholarship?",
+      "faq1Answer": "No. Many universities offer English-taught programs with full or partial scholarships. However, a basic understanding of Chinese is always helpful for living in China.",
+      "faq2Question": "Can I work while studying?",
+      "faq2Answer": "International students are allowed to work part-time or do internships during their studies, provided they receive approval from their university and the local immigration office.",
+      "faq3Question": "What happens if I fail my classes?",
+      "faq3Answer": "Scholarships are subject to an annual review. You must maintain good academic standing and attendance to keep your scholarship for the following year.",
+      "faq4Question": "How long does the application process take?",
+      "faq4Answer": "The process from applying to receiving the admission and scholarship letter usually takes 1 to 2 months depending on the university and intake season."
+    }
+  },
+  "Testimonials": {
+    "badge": "قصص نجاح",
+    "title": "ماذا يقول طلابنا",
+    "description": "استمع إلى الطلاب الذين تقدموا بنجاح من خلال منصتنا وهم الآن يزدهرون في الصين.",
+    "testimonials": {
+      "sarah": {
+        "quote": "كانت الدراسة في تسينغهوا تجربة غيرت حياتي. الحرم الجامعي جميل والأساتذة من الطراز العالمي. لقد تطورت أكاديميًا وشخصيًا.",
+        "program": "علوم الكمبيوتر",
+        "university": "جامعة تسينغهوا",
+        "country": "الولايات المتحدة الأمريكية"
+      },
+      "ahmed": {
+        "quote": "كانت عملية التقديم سلسة بفضل Studyatchina. أنا الآن أتابع درجة الماجستير في الهندسة المدنية وأحب كل لحظة فيها.",
+        "program": "الهندسة المدنية",
+        "university": "جامعة تشجيانغ",
+        "country": "مصر"
+      },
+      "maria": {
+        "quote": "شنغهاي مدينة مذهلة! أحب الثقافة والطعام والأصدقاء الذين كونتهم هنا. المنحة التي حصلت عليها جعلت كل شيء ممكنًا.",
+        "program": "الأعمال الدولية",
+        "university": "جامعة فودان",
+        "country": "إسبانيا"
+      }
+    },
+    "averageRating": "متوسط التقييم",
+    "reviews": "المراجعات",
+    "satisfaction": "الرضا"
+  },
+  "Partners": {
+    "badge": "شركاء موثوقون",
+    "title": "الجامعات الشريكة",
+    "description": "نحن نتعاون مع أرقى المؤسسات في الصين لنجلب لك أفضل الفرص التعليمية",
+    "recognitions": {
+      "unesco": {
+        "title": "معترف بها من اليونسكو",
+        "description": "جميع الجامعات الشريكة معترف بها من قبل اليونسكو"
+      },
+      "government": {
+        "title": "معتمدة حكوميًا",
+        "description": "معتمدة رسميًا من قبل وزارة التعليم الصينية"
+      },
+      "accredited": {
+        "title": "اعتماد عالمي",
+        "description": "الدرجات العلمية معترف بها في أكثر من 180 دولة حول العالم"
+      }
+    }
+  },
+  "FAQ": {
+    "badge": "لديك أسئلة؟",
+    "title": "الأسئلة الشائعة",
+    "description": "اعثر على إجابات للأسئلة الشائعة حول الدراسة في الصين",
+    "items": {
+      "deadline": {
+        "question": "متى يكون الموعد النهائي للتقديم؟",
+        "answer": "تختلف المواعيد النهائية حسب الجامعة والبرنامج. بشكل عام، بالنسبة لدفعة سبتمبر، تغلق الطلبات بين مارس ويونيو. تحقق من صفحات البرنامج المحددة لمعرفة التواريخ الدقيقة."
+      },
+      "language": {
+        "question": "هل أحتاج إلى معرفة اللغة الصينية للدراسة في الصين؟",
+        "answer": "ليس بالضرورة! هناك الآلاف من البرامج التي تدرس باللغة الإنجليزية لدرجات البكالوريوس والماجستير والدكتوراه. ومع ذلك، يوصى بتعلم بعض اللغة الصينية الأساسية للحياة اليومية."
+      },
+      "work": {
+        "question": "هل يمكنني العمل أثناء الدراسة؟",
+        "answer": "يمكن للطلاب الدوليين العمل بدوام جزئي أو التدريب بإذن من جامعتهم ومكتب الهجرة. أصبحت السياسات أكثر مرونة في السنوات الأخيرة."
+      },
+      "scholarships": {
+        "question": "كيف أتقدم بطلب للحصول على منح دراسية؟",
+        "answer": "يمكنك التقدم بطلب للحصول على منح دراسية مباشرة من خلال منصتنا عند تقديم طلبك. سنرشدك بشأن المستندات المطلوبة لمنح الحكومة الصينية والجامعات."
+      },
+      "visa": {
+        "question": "ما هي متطلبات التأشيرة؟",
+        "answer": "ستحتاج إلى جواز سفر ساري المفعول، وخطاب قبول، ونموذج JW202 من جامعتك. نحن نقدم توجيهًا ودعمًا شاملين للتأشيرة طوال العملية."
+      },
+      "process": {
+        "question": "كم تستغرق عملية التقديم؟",
+        "answer": "تستغرق عملية التقديم النموذجية 2-4 أسابيع. بمجرد التقديم، تستجيب الجامعات عادةً في غضون 4-8 أسابيع. نبقيك على اطلاع في كل خطوة."
+      }
+    },
+    "seeAll": "عرض جميع الأسئلة الشائعة",
+    "contactSupport": "اتصل بالدعم",
+    "footer": "هل لا تزال لديك أسئلة؟ فريق الدعم لدينا متاح على مدار الساعة طوال أيام الأسبوع لمساعدتك."
+  },
+  "Destinations": {
+    "pageTitle": "وجهات الدراسة",
+    "badge": "وجهات الدراسة في الصين",
+    "heroTitle": "اكتشف مدن الصين",
+    "heroSubtitle": "الأفضل للدراسة",
+    "heroDescription": "من العاصمة التاريخية بكين إلى أفق شانغهاي الحديث — استكشف أكثر مدن الصين حيوية وانطلق في رحلتك الأكاديمية.",
+    "statCities": "مدينة متاحة",
+    "statUniversities": "إجمالي الجامعات",
+    "statTopCity": "جامعة في {city}",
+    "featuredTitle": "الوجهات المميزة",
+    "featuredSubtitle": "المدن الأكثر شعبية للطلاب الدوليين في الصين",
+    "allCitiesTitle": "المزيد من المدن",
+    "allCitiesSubtitle": "اكتشف الجامعات في المزيد من المدن عبر الصين",
+    "university": "جامعة",
+    "universities": "جامعات",
+    "explorePrograms": "استكشف البرامج"
+  },
+  "Universities": {
+    "title": "استكشف أفضل الجامعات الصينية",
+    "subtitle": "اكتشف {count}+ مؤسسة مرموقة عبر الصين. من مشروع 985 إلى جامعات رابطة C9.",
+    "error": {
+      "title": "غير قادر على تحميل الجامعات",
+      "hint": "تلميح: {hint}"
+    },
+    "search": {
+      "placeholder": "البحث باسم الجامعة أو المدينة أو التصنيف...",
+      "label": "بحث",
+      "universityPlaceholder": "اسم الجامعة...",
+      "searching": "جاري البحث..."
+    },
+    "filters": {
+      "title": "الفلاتر",
+      "description": "تضييق نطاق البحث عن الجامعات",
+      "clear": "مسح الفلاتر",
+      "clearAll": "مسح جميع الفلاتر",
+      "active": "الفلاتر النشطة:",
+      "city": "المدينة",
+      "allCities": "جميع المدن",
+      "institutionType": "نوع المؤسسة",
+      "allTypes": "جميع الأنواع",
+      "universityCategory": "فئة الجامعة",
+      "allCategories": "جميع الفئات",
+      "rankingRecognition": "التصنيف والاعتراف",
+      "specialFeatures": "ميزات خاصة",
+      "institutionTypes": {
+        "university": "جامعة",
+        "college": "كلية",
+        "languageInstitute": "معهد لغات",
+        "vocationalSchool": "مدرسة مهنية",
+        "technicalInstitute": "معهد تقني"
+      },
+      "categories": {
+        "public": "حكومية",
+        "private": "خاصة",
+        "research": "بحثية",
+        "comprehensive": "شاملة",
+        "specialized": "متخصصة",
+        "vocational": "مهنية"
+      },
+      "rankings": {
+        "project985": "مشروع 985",
+        "project211": "مشروع 211",
+        "doubleFirstClass": "الدرجة الأولى المزدوجة"
+      },
+      "features": {
+        "fastTrack": "قبول سريع",
+        "scholarships": "منح دراسية متاحة",
+        "englishPrograms": "برامج باللغة الإنجليزية"
+      }
+    },
+    "stats": {
+      "title": "إحصائيات سريعة",
+      "total": "إجمالي الجامعات",
+      "showing": "يظهر",
+      "cities": "المدن"
+    },
+    "sort": {
+      "label": "ترتيب حسب",
+      "name": "الاسم: أ-ي",
+      "programs": "أكثر البرامج",
+      "city": "المدينة",
+      "tuitionLow": "الرسوم: من الأقل للأكثر",
+      "tuitionHigh": "الرسوم: من الأكثر للأقل",
+      "ranking": "أفضل تصنيف"
+    },
+    "results": {
+      "universities": "جامعات",
+      "showMore": "عرض {count} المزيد",
+      "showingOf": "عرض {visible} من {total}"
+    },
+    "compare": {
+      "title": "مقارنة الجامعات",
+      "criteria": "المعايير",
+      "location": "الموقع",
+      "ranking": "التصنيف",
+      "programs": "البرامج",
+      "tuition": "الرسوم الدراسية",
+      "levels": "مستويات الدراسة",
+      "languages": "اللغات",
+      "scholarship": "منحة دراسية",
+      "fastTrack": "قبول سريع",
+      "cscaExam": "امتحان CSCA",
+      "badges": "الاعتمادات",
+      "clearAll": "مسح الكل",
+      "selected": "{count} مختارة",
+      "compareNow": "قارن الآن"
+    },
+    "noResults": {
+      "title": "لم يتم العثور على جامعات",
+      "description": "حاول ضبط الفلاتر أو معايير البحث"
+    }
+  },
+  "Programs": {
+    "title": "اكتشف برنامجك المثالي",
+    "subtitle": "تصفح أكثر من {count}+ برنامج من أفضل الجامعات الصينية. اعثر على التطابق المثالي لرحلتك الأكاديمية.",
+    "filters": {
+      "title": "الفلاتر",
+      "active": "الفلاتر النشطة:",
+      "clear": "مسح الفلاتر",
+      "clearAll": "مسح جميع الفلاتر",
+      "search": "بحث",
+      "searchPlaceholder": "البرنامج أو التخصص...",
+      "studyLevel": "مستوى الدراسة",
+      "fieldOfStudy": "مجال الدراسة",
+      "allFields": "جميع المجالات",
+      "maxTuition": "الحد الأقصى للرسوم",
+      "language": "اللغة",
+      "city": "المدينة",
+      "allCities": "جميع المدن",
+      "university": "الجامعة",
+      "allUniversities": "جميع الجامعات",
+      "duration": "المدة",
+      "allDurations": "جميع المدد",
+      "scholarshipAvailable": "منحة دراسية متاحة",
+      "levels": {
+        "bachelor": "البكالوريوس",
+        "master": "الماجستير",
+        "phd": "الدكتوراه",
+        "diploma": "دبلوم",
+        "language": "دورة لغة",
+        "nonDegree": "Non-Degree"
+      },
+      "fields": {
+        "business": "الأعمال والإدارة",
+        "engineering": "الهندسة والتكنولوجيا",
+        "medicine": "الطب والعلوم الصحية",
+        "arts": "الفنون والعلوم الإنسانية",
+        "science": "العلوم الطبيعية",
+        "education": "التعليم",
+        "cs": "علوم الكمبيوتر",
+        "law": "القانون"
+      },
+      "languages": {
+        "english": "الإنجليزية",
+        "chinese": "الصينية"
+      },
+      "durations": {
+        "2years": "سنتان",
+        "3years": "3 سنوات",
+        "4years": "4 سنوات",
+        "5years": "5 سنوات",
+        "6years": "6 سنوات"
+      },
+      "matchingPrograms": "برنامج مطابق",
+      "applyFilters": "تطبيق الفلاتر",
+      "scholarshipDesc": "إظهار البرامج مع التمويل",
+      "cscaLabel": "بدون اختبار CSCA",
+      "cscaDesc": "إظهار البرامج بدون اختبار CSCA",
+      "cscaBadge": "بدون CSCA",
+      "academicRequirements": "Academic Requirements",
+      "myAge": "My Age",
+      "agePlaceholder": "e.g. 21",
+      "minGpa": "Min GPA",
+      "gpaPlaceholder": "e.g. 3.0",
+      "autoFilterHint": "يتم تطبيق الفلاتر تلقائياً بعد التوقف عن الكتابة",
+      "searchUniversity": "ابحث عن جامعة...",
+      "noUniversityFound": "لم يتم العثور على جامعة."
+    },
+    "stats": {
+      "total": "إجمالي البرامج",
+      "showing": "يظهر"
+    },
+    "sort": {
+      "label": "ترتيب حسب",
+      "relevance": "الأكثر صلة",
+      "tuitionLow": "الرسوم: من الأقل إلى الأعلى",
+      "tuitionHigh": "الرسوم: من الأعلى إلى الأقل",
+      "deadline": "الموعد النهائي: الأقرب",
+      "popular": "الأكثر شعبية"
+    },
+    "noResults": {
+      "title": "لم يتم العثور على برامج",
+      "description": "حاول ضبط الفلاتر أو معايير البحث"
+    },
+    "card": {
+      "duration": "المدة",
+      "intake": "الدفعة",
+      "tuitionFee": "الرسوم الدراسية",
+      "viewProgram": "عرض البرنامج",
+      "contact": "تواصل",
+      "scholarship": "منحة دراسية",
+      "addToCompare": "أضف للمقارنة",
+      "removeFromCompare": "إزالة من المقارنة",
+      "level": "المستوى",
+      "features": "المميزات",
+      "viewFullDetails": "عرض التفاصيل الكاملة",
+      "applyNow": "قدم الآن",
+      "fastTrack": "Fast Track",
+      "deadlineClosed": "مغلق",
+      "deadlineToday": "الموعد النهائي اليوم!",
+      "deadlineDaysLeft": "{days} يوم متبقي",
+      "deadlineDate": "الموعد النهائي: {date}"
+    },
+    "compare": {
+      "title": "مقارنة البرامج",
+      "comparing": "تتم المقارنة",
+      "more": "المزيد",
+      "clear": "مسح",
+      "compareNow": "قارن الآن",
+      "university": "الجامعة",
+      "location": "الموقع",
+      "level": "المستوى",
+      "duration": "المدة",
+      "tuition": "الرسوم",
+      "intake": "الدفعة",
+      "language": "اللغة",
+      "viewDetails": "عرض التفاصيل",
+      "apply": "قدم"
+    },
+    "emptyState": {
+      "title": "لم يتم العثور على برامج",
+      "description": "لم نتمكن من العثور على أي برامج. جرب تصفح المحتوى الكامل.",
+      "filteredDescription": "لا توجد برامج تطابق فلاترك الحالية. جرب تعديل معايير البحث.",
+      "currentFilters": "الفلاتر الحالية:",
+      "scholarship": "منحة دراسية",
+      "clearFilters": "مسح جميع الفلاتر",
+      "tryInstead": "عمليات بحث شائعة للتجربة:",
+      "browseAll": "تصفح جميع البرامج",
+      "exploreUniversities": "استكشف الجامعات"
+    },
+    "recentlyViewed": {
+      "title": "شوهد مؤخراً",
+      "clear": "مسح",
+      "viewAgain": "عرض مجدداً",
+      "justNow": "الآن",
+      "minutesAgo": "منذ {count} دقيقة",
+      "hoursAgo": "منذ {count} ساعة",
+      "daysAgo": "منذ {count} يوم"
+    },
+    "quickAccess": "وصول سريع",
+    "quickChips": {
+      "cs": "علوم الحاسوب",
+      "business": "إدارة أعمال",
+      "engineering": "هندسة",
+      "medicine": "طب",
+      "arts": "فنون",
+      "economics": "اقتصاد"
+    },
+    "aiSearch": {
+      "thinking": "AI is thinking... finding related fields for \"{query}\"",
+      "active": "Smart Search Active",
+      "found": "Found programs related to: {terms}",
+      "working": "AI is working on it...",
+      "looking": "Looking for programs related to \"{query}\""
+    },
+    "view": {
+      "grid": "شبكة",
+      "map": "خريطة"
+    }
+  },
+  "GuidedTour": {
+    "skip": "تخطي الجولة",
+    "next": "التالي",
+    "finish": "فهمت!",
+    "programs": {
+      "search": {
+        "title": "ابحث عن برنامجك",
+        "content": "استخدم شريط البحث للعثور على البرامج حسب الاسم أو مجال الدراسة أو الكلمات المفتاحية."
+      },
+      "filters": {
+        "title": "حسّن بحثك",
+        "content": "استخدم الفلاتر للتضييق حسب المستوى الدراسي والموقع واللغة والميزانية."
+      },
+      "card": {
+        "title": "تفاصيل البرنامج",
+        "content": "انقر على أي بطاقة برنامج لرؤية التفاصيل الكاملة والمتطلبات وكيفية التقديم."
+      },
+      "compare": {
+        "title": "قارن البرامج",
+        "content": "اختر حتى 3 برامج لمقارنتها جنباً إلى جنب واتخذ أفضل قرار."
+      }
+    }
+  },
+  "UniversitiesCard": {
+    "programs": "البرامج",
+    "tuitionFrom": "الرسوم من",
+    "tuition": "الرسوم الدراسية",
+    "viewUniversity": "عرض الجامعة",
+    "viewPrograms": "عرض البرامج",
+    "fastTrack": "قبول سريع",
+    "scholarship": "منحة دراسية",
+    "contactForPricing": "تواصل للأسعار",
+    "cscaExam": "امتحان CSCA",
+    "addToCompare": "أضف للمقارنة",
+    "removeFromCompare": "إزالة من المقارنة"
+  },
+  "ProgramDetail": {
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "programs": "البرامج"
+    },
+    "badges": {
+      "intake": "الدفعة: {intake}",
+      "contactUniversity": "تواصل مع الجامعة",
+      "fastTrack": "قبول سريع",
+      "specialRequirements": "متطلبات خاصة"
+    },
+    "deadline": {
+      "daysRemaining": "متبقي {days} يوم",
+      "endingToday": "يغلق التقديم اليوم!",
+      "closed": "التقديم مغلق",
+      "deadline": "الموعد النهائي"
+    },
+    "buttons": {
+      "apply": "قدم الآن",
+      "downloadBrochure": "تحميل الكتيب",
+      "viewUniversity": "عرض الجامعة",
+      "startApplication": "بدء الطلب",
+      "contactAdvisor": "تواصل مع مستشار"
+    },
+    "highlights": {
+      "title": "أبرز ملامح البرنامج",
+      "tuition": "الرسوم الدراسية",
+      "duration": "المدة",
+      "language": "اللغة",
+      "level": "المستوى الدراسي",
+      "gpaRequirement": "الحد الأدنى للمعدل",
+      "maxAge": "الحد الأقصى للعمر",
+      "languageRequirements": "Language Score"
+    },
+    "overview": {
+      "title": "نظرة عامة على البرنامج",
+      "noDescription": "لا يوجد وصف متاح لهذا البرنامج.",
+      "curriculum": "المنهج الأساسي",
+      "curriculumPlaceholder": "ستتم إضافة معلومات المواد الأساسية قريبًا"
+    },
+    "requirements": {
+      "title": "متطلبات القبول"
+    },
+    "scholarships": {
+      "title": "خيارات المنح الدراسية لهذا البرنامج",
+      "description": "اختر نوع المنحة الذي يناسب ميزانيتك"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "deadline": "الموعد النهائي للتقديم هو {deadline}.",
+      "accommodationQ": "هل السكن متوفر؟",
+      "accommodationA": "نعم، السكن داخل الحرم الجامعي متاح للطلاب الدوليين.",
+      "workQ": "هل يمكنني العمل بدوام جزئي؟",
+      "workA": "نعم، يمكن للطلاب الدوليين التقدم لبرامج العمل والدراسة أو التدريب مع التصاريح المناسبة.",
+      "deadlineQ": "ما هو الموعد النهائي للتقديم؟"
+    },
+    "sidebar": {
+      "ready": "جاهز للتقديم؟",
+      "free": "تقديم مجاني",
+      "fast": "معالجة سريعة",
+      "expert": "دعم الخبراء",
+      "cost": "تفاصيل التكلفة",
+      "applicationFee": "رسوم الطلب",
+      "serviceFee": "رسوم الخدمة",
+      "disclaimer": "* قد تشمل التكاليف الإضافية الإقامة والتأشيرة ونفقات المعيشة",
+      "why": "لماذا تختار هذا البرنامج؟",
+      "reasons": {
+        "degree": "شهادة معترف بها دوليًا",
+        "faculty": "أعضاء هيئة تدريس ذوو خبرة",
+        "facilities": "مرافق وموارد حديثة",
+        "career": "دعم التطوير الوظيفي"
+      }
+    },
+    "accommodation": {
+      "title": "خيارات السكن"
+    }
+  },
+  "UniversityDetail": {
+    "quickLinks": {
+      "exploreCourses": "استكشاف الدورات",
+      "getFunded": "احصل على تمويل",
+      "findHousing": "ابحث عن سكن",
+      "findLocation": "الموقع"
+    },
+    "location": {
+      "title": "موقع الحرم الجامعي",
+      "viewOnMap": "عرض على خرائط جوجل"
+    },
+    "about": "عن الجامعة",
+    "whyChooseUs": "لماذا تختارنا",
+    "programs": {
+      "title": "البرامج",
+      "allPrograms": "جميع البرامج",
+      "noPrograms": "لا توجد برامج متاحة لهذا المستوى.",
+      "viewProgram": "عرض البرنامج",
+      "tuitionFee": "الرسوم الدراسية",
+      "perYear": "سنوياً",
+      "allLanguages": "جميع اللغات",
+      "filterByLanguage": "اللغة",
+      "showing": "عرض {start}-{end} من {total} برنامج",
+      "previousPage": "السابق",
+      "nextPage": "التالي",
+      "pageOf": "صفحة {current} من {total}",
+      "deadlineClosed": "مغلق",
+      "deadlineLabel": "الموعد النهائي: {date}"
+    },
+    "deadlines": {
+      "title": "المواعيد النهائية القادمة",
+      "noDeadlines": "لا توجد مواعيد نهائية قادمة",
+      "daysLeft": "{days} يوم متبقي",
+      "today": "ينتهي اليوم!",
+      "closed": "مغلق",
+      "deadline": "الموعد النهائي",
+      "viewProgram": "عرض البرنامج",
+      "urgent": "عاجل",
+      "quickJump": "المواعيد النهائية"
+    },
+    "scholarships": {
+      "title": "خيارات المنح الدراسية المتاحة",
+      "description": "اختر نوع المنحة الذي يناسب ميزانيتك لبرامج هذه الجامعة"
+    },
+    "campus": {
+      "tour": "جولة في الحرم الجامعي",
+      "gallery": "معرض الصور",
+      "viewImage": "عرض الصورة"
+    },
+    "admission": {
+      "title": "متطلبات القبول",
+      "academic": "المتطلبات الأكاديمية",
+      "language": "متطلبات اللغة",
+      "highSchool": "شهادة الثانوية العامة أو ما يعادلها",
+      "gpa": "الحد الأدنى للمعدل التراكمي 3.0/4.0",
+      "transcripts": "كشوف الدرجات الأكاديمية",
+      "ielts": "IELTS 6.0 أو TOEFL 80+",
+      "hsk": "HSK 4 للبرامج الصينية",
+      "english": "شهادة إتقان اللغة الإنجليزية"
+    },
+    "sidebar": {
+      "ready": "جاهز للتقديم؟",
+      "startJourney": "ابدأ رحلتك في {university}",
+      "applyNow": "قدم الآن",
+      "downloadBrochure": "تحميل الكتيب",
+      "quickActions": "إجراءات سريعة",
+      "requestInfo": "طلب معلومات",
+      "chatAdvisor": "تحدث مع مستشار",
+      "virtualTour": "جولة افتراضية",
+      "scheduleCall": "حجز مكالمة",
+      "quickFacts": "حقائق سريعة",
+      "location": "الموقع",
+      "founded": "تأسست",
+      "students": "الطلاب",
+      "international": "الطلاب الدوليين",
+      "ranking": "التصنيف",
+      "officialWebsite": "الموقع الرسمي"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
+  "RequestInformation": {
+    "title": "طلب معلومات",
+    "description": "احصل على مزيد من التفاصيل حول {university}. املأ النموذج أدناه.",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "interest": "الاهتمام",
+    "selectInterest": "اختر اهتمامك",
+    "interests": {
+      "admission": "متطلبات القبول",
+      "programs": "البرامج المتاحة",
+      "scholarships": "فرص المنح الدراسية",
+      "campus": "الحياة الجامعية",
+      "other": "أخرى"
+    },
+    "message": "الرسالة",
+    "messagePlaceholder": "أنا مهتم بالدراسة في {university}...",
+    "submit": "إرسال الطلب",
+    "sending": "جاري الإرسال...",
+    "success": "تم إرسال الطلب بنجاح! سنتصل بك قريباً.",
+    "error": "فشل إرسال الطلب. يرجى المحاولة مرة أخرى."
+  },
+  "UniversityScholarships": {
+    "options": "الخيارات المتاحة",
+    "discover": "اكتشف",
+    "explore": "استكشف المنح الدراسية",
+    "description": "اعثر على خيار المساعدة المالية الذي يناسب احتياجاتك.",
+    "viewAll": "عرض الكل",
+    "advice": "احصل على استشارة",
+    "scholarshipType": "نوع المنحة",
+    "tuitionCoverage": "تغطية الرسوم الدراسية",
+    "serviceFee": "رسوم الخدمة",
+    "whatsIncluded": "ماذا تشمل",
+    "action": "إجراء",
+    "applyNow": "قدم الآن",
+    "mostPopular": "الأكثر شيوعاً",
+    "loading": "جاري تحميل المنح...",
+    "noScholarships": "لا توجد منح دراسية متاحة لهذه الجامعة.",
+    "howItWorks": {
+      "title": "كيف تعمل",
+      "description": "اختر نوع المنحة وتابع التقديم. سيقوم فريقنا بإرشادك خلال العملية.",
+      "learnMore": "اعرف المزيد"
+    },
+    "defaultDescription": "Great option for international students.",
+    "benefits": {
+      "tuitionCoverage": "{percentage}% tuition fee coverage",
+      "noScholarship": "No scholarship (0% coverage)",
+      "support": "Application support & guidance",
+      "visa": "Visa assistance",
+      "orientation": "Pre-departure orientation",
+      "accommodation": "Accommodation arrangement support"
+    }
+  },
+  "Accommodation": {
+    "notAvailable": "معلومات السكن غير متوفرة",
+    "badge": "سكن الطلاب",
+    "title": "خيارات السكن داخل الحرم الجامعي",
+    "priceRange": "نطاق الأسعار",
+    "generalFacilities": "المرافق العامة",
+    "availableRoomTypes": "أنواع الغرف المتاحة",
+    "defaultTitle": "السكن",
+    "priceOnRequest": "السعر عند الطلب",
+    "month": "شهر",
+    "roomFeatures": "ميزات الغرفة:",
+    "importantInfo": {
+      "title": "معلومات مهمة",
+      "fees": "يتم دفع رسوم السكن لكل فصل دراسي أو سنة دراسية",
+      "availability": "تخصيص الغرف يخضع للتوافر",
+      "prices": "قد تختلف الأسعار ويجب تأكيدها مع الجامعة",
+      "deposit": "قد يطلب دفع تأمين عند تسجيل الوصول"
+    }
+  },
+  "UniversityHeader": {
+    "fastTrack": "قبول سريع",
+    "est": "تأسست {founded}",
+    "studentsCount": "{students} طالب",
+    "website": "الموقع الإلكتروني",
+    "applyNow": "قدم الآن",
+    "requestInfo": "طلب معلومات",
+    "brochure": "الكتيب",
+    "virtualTour": "جولة افتراضية",
+    "scheduleCall": "حجز مكالمة",
+    "chatAdvisor": "تحدث مع مستشار",
+    "save": "حفظ",
+    "saved": "محفوظ",
+    "share": "مشاركة",
+    "founded": "تأسست",
+    "students": "الطلاب",
+    "ranking": "التصنيف",
+    "international": "دولي"
+  },
+  "Dashboard": {
+    "sidebar": {
+      "myApplications": "طلباتي",
+      "profile": "الملف الشخصي",
+      "messages": "الرسائل",
+      "payments": "المدفوعات",
+      "documents": "المستندات",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج"
+    },
+    "title": "لوحة التحكم",
+    "subtitle": "مرحباً بعودتك! إليك نظرة عامة على طلباتك.",
+    "newApplication": "طلب جديد",
+    "stats": {
+      "totalApplications": "إجمالي الطلبات",
+      "submitted": "{count} تم إرسالها",
+      "pendingActions": "إجراءات معلقة",
+      "requiresAttention": "يتطلب انتباهك",
+      "offersReceived": "العروض المستلمة",
+      "congratulations": "تهانينا!",
+      "successRate": "معدل النجاح",
+      "acceptanceRate": "معدل القبول"
+    },
+    "recentApplications": "طلباتي",
+    "appliedOn": "تم التقديم في {date}",
+    "viewDetails": "عرض التفاصيل",
+    "noApplications": {
+      "title": "لا توجد طلبات بعد",
+      "description": "ابدأ رحلتك بتصفح البرامج وتقديم طلبك الأول."
+    },
+    "browsePrograms": "تصفح البرامج"
+  },
+  "Profile": {
+    "title": "ملفي الشخصي",
+    "subtitle": "إدارة معلوماتك الشخصية وتفضيلاتك",
+    "completion": "اكتمال الملف الشخصي",
+    "completeProfile": "أكمل ملفك الشخصي لتسريع الطلبات المستقبلية",
+    "photo": {
+      "title": "صورة الملف الشخصي",
+      "description": "تحميل صورة احترافية",
+      "upload": "تحميل صورة",
+      "uploading": "جاري التحميل...",
+      "hint": "JPG أو PNG أو GIF. الحد الأقصى 5 ميجابايت."
+    },
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "description": "تفاصيلك الأساسية للطلبات"
+    },
+    "fullName": "الاسم الكامل *",
+    "email": "البريد الإلكتروني",
+    "dob": "تاريخ الميلاد",
+    "phone": "رقم الهاتف",
+    "nationality": "الجنسية",
+    "passportNumber": "رقم الجواز",
+    "address": {
+      "title": "العنوان",
+      "description": "عنوان إقامتك الحالي",
+      "street": "عنوان الشارع",
+      "city": "المدينة",
+      "postalCode": "الرمز البريدي"
+    },
+    "emergency": {
+      "title": "جهة الاتصال في حالات الطوارئ",
+      "description": "الشخص الذي يمكن الاتصال به في حالة الطوارئ",
+      "name": "الاسم",
+      "phone": "الهاتف",
+      "relationship": "العلاقة"
+    },
+    "save": "حفظ الملف الشخصي",
+    "saving": "جاري الحفظ...",
+    "success": "تم تحديث الملف الشخصي بنجاح!",
+    "error": "حدث خطأ أثناء تحديث الملف الشخصي"
+  },
+  "Documents": {
+    "title": "مستنداتي",
+    "subtitle": "إدارة مستنداتك لطلبات الجامعة",
+    "stats": {
+      "total": "إجمالي المستندات",
+      "uploaded": "الملفات المرفوعة",
+      "verified": "تم التحقق",
+      "approved": "تمت الموافقة من قبل المسؤول",
+      "pending": "قيد المراجعة",
+      "awaiting": "في انتظار التحقق"
+    },
+    "yourDocuments": "مستنداتك",
+    "manageDocuments": "رفع وإدارة مستندات الطلب",
+    "uploadDocument": "رفع مستند",
+    "noDocuments": "لا توجد مستندات بعد",
+    "uploadFirst": "ارفع مستندك الأول للبدء",
+    "size": "الحجم",
+    "uploaded": "تاريخ الرفع",
+    "download": "تحميل",
+    "delete": "حذف",
+    "deleteConfirm": "هل أنت متأكد أنك تريد حذف \"{name}\"؟",
+    "uploadDialog": {
+      "title": "رفع مستند",
+      "description": "اختر نوع المستند وارفع ملفك",
+      "type": "نوع المستند *",
+      "selectType": "اختر نوع المستند",
+      "alreadyUploaded": "(تم الرفع مسبقاً)",
+      "file": "الملف *",
+      "selected": "تم الاختيار",
+      "formats": "الصيغ المقبولة: PDF, JPG, PNG, DOC, DOCX. الحد الأقصى 10 ميجابايت.",
+      "cancel": "إلغاء",
+      "uploading": "جاري الرفع...",
+      "upload": "رفع"
+    },
+    "error": {
+      "fileSize": "يجب أن يكون حجم الملف أقل من 10 ميجابايت",
+      "selectFile": "يرجى اختيار نوع المستند والملف",
+      "fileType": "يرجى رفع ملف صورة",
+      "imageSize": "يجب أن يكون حجم الصورة أقل من 5 ميجابايت"
+    },
+    "success": {
+      "uploaded": "تم رفع المستند بنجاح!",
+      "deleted": "تم حذف المستند"
+    },
+    "types": {
+      "passport": "جواز السفر",
+      "transcript": "كشف الدرجات الأكاديمي",
+      "diploma": "الشهادة/الدبلوم",
+      "recommendation_letter": "خطاب التوصية",
+      "personal_statement": "البيان الشخصي",
+      "cv": "السيرة الذاتية",
+      "language_certificate": "شهادة اللغة (IELTS/TOEFL)",
+      "photo": "صورة جواز السفر",
+      "bank_statement": "كشف حساب بنكي",
+      "health_certificate": "شهادة صحية",
+      "police_clearance": "صحيفة الحالة الجنائية",
+      "other": "وثيقة أخرى"
+    },
+    "documentRequest": {
+      "title": "طلب مستندات",
+      "description": "يرجى تحميل المستندات التالية:\n1. نسخة من جواز السفر\n2. شهادة الدرجة العلمية\n3. البيان الشخصي",
+      "note": "تأكد من ترجمة كل شيء إلى جميع اللغات"
+    }
+  },
+  "Status": {
+    "pending_documents": "بانتظار المستندات",
+    "pending_payment": "بانتظار الدفع",
+    "payment_verification": "التحقق من الدفع",
+    "submitted": "تم الإرسال",
+    "under_review": "قيد المراجعة",
+    "accepted": "مقبول",
+    "rejected": "مرفوض",
+    "unknown": "غير معروف"
+  },
+  "Auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "description": "أدخل بريدك الإلكتروني وكلمة المرور للوصول إلى حسابك",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "m@example.com",
+      "passwordLabel": "كلمة المرور",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "submit": "تسجيل الدخول",
+      "orContinueWith": "أو تابع باستخدام",
+      "continueWithGoogle": "المتابعة باستخدام Google",
+      "connecting": "جاري الاتصال...",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "إنشاء حساب",
+      "success": "تم تسجيل الدخول بنجاح! جاري إعادة التوجيه...",
+      "error": "حدث خطأ ما",
+      "googleError": "فشل تسجيل الدخول باستخدام Google"
+    },
+    "layout": {
+      "branding": "Studyatchina",
+      "heroTitle": "بوابتك إلى الجامعات الصينية",
+      "heroDescription": "انضم إلى آلاف الطلاب الدوليين الذين يسعون لتحقيق أحلامهم في أفضل الجامعات الصينية.",
+      "programsTitle": "500+ برنامج",
+      "programsDescription": "الوصول إلى برامج من أفضل الجامعات الصينية",
+      "guidanceTitle": "توجيه الخبراء",
+      "guidanceDescription": "احصل على الدعم طوال رحلة التقديم الخاصة بك",
+      "scholarshipsTitle": "فرص المنح الدراسية",
+      "scholarshipsDescription": "استكشف خيارات المنح الدراسية المختلفة المتاحة",
+      "copyright": "© 2024 Studyatchina. جميع الحقوق محفوظة."
+    }
+  },
+  "Notifications": {
+    "title": "الإشعارات",
+    "markAllRead": "تعليم الكل كمقروء",
+    "noNotifications": "لا توجد إشعارات بعد",
+    "viewAll": "عرض جميع الإشعارات",
+    "loading": "جاري تحميل الإشعارات...",
+    "types": {
+      "statusChange": "تحديث حالة الطلب",
+      "documentRequested": "مطلوب مستند",
+      "paymentRequested": "مطلوب دفع",
+      "messageReceived": "رسالة جديدة",
+      "newApplication": "طلب جديد",
+      "newLead": "عميل محتمل جديد",
+      "documentUploaded": "تم رفع المستند",
+      "acceptanceLetter": "خطاب القبول"
+    },
+    "messages": {
+      "statusChange": "تغيرت حالة طلبك إلى {status}"
+    }
+  },
+  "Apply": {
+    "title": "التقديم للبرنامج",
+    "steps": {
+      "info": "المعلومات",
+      "documents": "المستندات",
+      "payment": "الدفع",
+      "review": "المراجعة",
+      "personalInfo": "المعلومات الشخصية",
+      "requiredDocuments": "المستندات المطلوبة",
+      "paymentInfo": "الدفع",
+      "reviewSubmit": "المراجعة والتقديم"
+    },
+    "sections": {
+      "identity": "الهوية والبيانات الشخصية",
+      "identitySubtitle": "يرجى إدخال بياناتك كما في جواز السفر",
+      "contact": "معلومات الاتصال",
+      "address": "عنوان السكن",
+      "education": "الخلفية التعليمية",
+      "educationSubtitle": "أحدث مؤهل أكاديمي لديك",
+      "language": "إتقان اللغة",
+      "languageSubtitle": "مستوى اللغة الصينية والإنجليزية لأغراض القبول",
+      "emergency": "جهة الاتصال في الطوارئ",
+      "emergencySubtitle": "مطلوب لسلامتك في الخارج"
+    },
+    "options": {
+      "male": "ذكر",
+      "female": "أنثى",
+      "islam": "الإسلام",
+      "christianity": "المسيحية",
+      "buddhism": "البوذية",
+      "hinduism": "الهندوسية",
+      "noReligion": "بدون ديانة",
+      "other": "أخرى",
+      "single": "أعزب/عزباء",
+      "married": "متزوج/ة",
+      "divorced": "مطلق/ة",
+      "highSchool": "ثانوية عامة",
+      "diploma": "دبلوم",
+      "bachelor": "بكالوريوس",
+      "master": "ماجستير",
+      "doctorate": "دكتوراه",
+      "noProficiency": "لا يوجد",
+      "basic": "مبتدئ",
+      "intermediate": "متوسط",
+      "advanced": "متقدم",
+      "native": "لغة أم"
+    },
+    "labels": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "fullName": "الاسم الكامل (كما في جواز السفر)",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف المحمول",
+      "country": "الجنسية",
+      "passport": "رقم جواز السفر",
+      "gender": "الجنس",
+      "dateOfBirth": "تاريخ الميلاد",
+      "religion": "الديانة",
+      "maritalStatus": "الحالة الاجتماعية",
+      "wechatId": "معرف WeChat",
+      "address": "عنوان السكن",
+      "city": "المدينة",
+      "postalCode": "الرمز البريدي",
+      "highestEducation": "أعلى مؤهل تعليمي",
+      "schoolName": "اسم المدرسة / الجامعة",
+      "majorField": "التخصص / مجال الدراسة",
+      "graduationYear": "سنة التخرج",
+      "gpaScore": "المعدل التراكمي",
+      "chineseProficiency": "اللغة الصينية (مستوى HSK)",
+      "englishProficiency": "إتقان اللغة الإنجليزية",
+      "testScore": "درجة الاختبار (IELTS/TOEFL)",
+      "preferredIntake": "موعد القبول المفضل",
+      "emergencyContactName": "اسم جهة الاتصال في الطوارئ",
+      "emergencyContactPhone": "هاتف جهة الاتصال في الطوارئ",
+      "emergencyContactRelationship": "صلة القرابة"
+    },
+    "placeholders": {
+      "firstName": "مثال: محمد",
+      "lastName": "مثال: أحمد",
+      "fullName": "مثال: محمد أحمد علي",
+      "email": "مثال: mohammed@example.com",
+      "phone": "مثال: 555 123 4567",
+      "passport": "مثال: AB1234567",
+      "selectGender": "اختر الجنس",
+      "selectReligion": "اختر الديانة",
+      "selectMaritalStatus": "اختر الحالة الاجتماعية",
+      "wechatId": "مثال: wxid_abc123",
+      "address": "مثال: 123 شارع الرئيسي، شقة 4ب",
+      "city": "مثال: القاهرة",
+      "postalCode": "مثال: 11511",
+      "selectEducation": "اختر أعلى مؤهل",
+      "schoolName": "مثال: جامعة القاهرة",
+      "majorField": "مثال: علوم الحاسوب",
+      "graduationYear": "مثال: 2024",
+      "gpaScore": "مثال: 3.5 / 4.0",
+      "selectChinese": "اختر مستوى HSK",
+      "selectEnglish": "اختر المستوى",
+      "testScore": "مثال: IELTS 6.5",
+      "emergencyName": "مثال: اسم الوالد أو الوصي",
+      "emergencyPhone": "مثال: 555 123 4567",
+      "relationship": "مثال: والد، زوج/زوجة"
+    },
+    "hints": {
+      "phoneHint": "أدخل رقم هاتفك بدون رمز الدولة",
+      "passportHint": "أدخل رقم جواز السفر كما هو موضح"
+    },
+    "buttons": {
+      "continueToDocuments": "متابعة إلى المستندات",
+      "continueToPayment": "متابعة إلى الدفع",
+      "continueToReview": "متابعة إلى المراجعة",
+      "submitApplication": "تقديم الطلب",
+      "back": "رجوع",
+      "uploadDocument": "رفع",
+      "selectFile": "اختيار ملف",
+      "next": "Next"
+    },
+    "validation": {
+      "missingFieldsTitle": "يرجى ملء الحقول المطلوبة التالية:",
+      "required": "هذا الحقل مطلوب"
+    },
+    "documents": {
+      "title": "المستندات المطلوبة",
+      "description": "يرجى رفع المستندات التالية. الصيغ المقبولة: PDF، JPG، PNG (الحد الأقصى 10 ميغابايت)",
+      "mandatory": "مطلوب",
+      "optional": "اختياري",
+      "uploaded": "تم الرفع",
+      "pending": "قيد الانتظار"
+    },
+    "payment": {
+      "title": "رسوم التقديم",
+      "applicationFee": "رسوم التقديم",
+      "serviceFee": "رسوم الخدمة",
+      "total": "المجموع",
+      "payNow": "ادفع الآن",
+      "payLater": "ادفع لاحقاً"
+    },
+    "review": {
+      "title": "مراجعة طلبك",
+      "personalDetails": "البيانات الشخصية",
+      "uploadedDocuments": "المستندات المرفوعة",
+      "confirmSubmit": "أؤكد أن جميع المعلومات المقدمة صحيحة",
+      "submitting": "جاري التقديم...",
+      "success": "تم تقديم الطلب بنجاح!",
+      "successMessage": "تم تقديم طلبك. ستتلقى رسالة تأكيد بالبريد الإلكتروني قريباً."
+    },
+    "errors": {
+      "generic": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+      "uploadFailed": "فشل رفع المستند. يرجى المحاولة مرة أخرى.",
+      "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "AISearch": {
+    "placeholder": "جرب: 'ماجستير في الهندسة بأقل من 30000 يوان في بكين'",
+    "search": "بحث",
+    "filters": "فهم الذكاء الاصطناعي",
+    "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+  },
+  "AIChat": {
+    "title": "تشن وي 陈伟",
+    "subtitle": "مستشارك الدراسي",
+    "typing": "يكتب...",
+    "greeting": "مرحباً! 👋 أنا تشن وي (陈伟)، مستشارك الشخصي للدراسة. أنا هنا لمساعدتك في العثور على البرنامج المثالي في الصين، والإجابة على أسئلتك، وحتى إرشادك خلال عملية التقديم. ما الذي يجلبك إلى هنا اليوم؟",
+    "inputPlaceholder": "اكتب رسالتك...",
+    "thinking": "يفكر...",
+    "error": "عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "quickStart": "بداية سريعة:",
+    "quickFind": "🎓 البحث عن برامج",
+    "quickScholarship": "💰 المنح الدراسية",
+    "quickApply": "📝 بدء التقديم",
+    "chatHistory": "سجل المحادثات",
+    "newChat": "محادثة جديدة",
+    "noHistory": "لا توجد محادثات سابقة",
+    "backToChat": "العودة للمحادثة",
+    "loginPrompt": "🔐 سجّل الدخول لحفظ محادثاتك وتتبع طلباتك",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب"
+  },
+  "PaymentDashboard": {
+    "title": "المدفوعات",
+    "subtitle": "إدارة مدفوعات طلبك",
+    "totalAmount": "المبلغ الإجمالي",
+    "totalPaid": "إجمالي المدفوع",
+    "pending": "معلق",
+    "rest": "المبلغ المتبقي",
+    "totalTransactions": "إجمالي المعاملات",
+    "successfullyProcessed": "تمت المعالجة بنجاح",
+    "paymentDue": "دفعة مستحقة",
+    "allTime": "كل الوقت",
+    "amount": "المبلغ",
+    "status": "الحالة",
+    "created": "تاريخ الإنشاء",
+    "method": "طريقة الدفع",
+    "payNow": "ادفع الآن",
+    "viewApplication": "عرض الطلب",
+    "paymentProof": "إثبات الدفع",
+    "paymentRequest": {
+      "title": "طلب الدفع",
+      "amount": "USD 200",
+      "description": "إجراء هذا الدفع",
+      "note": "يرجى إتمام الدفع للمتابعة في طلبك."
+    },
+    "paymentStatuses": {
+      "completed": "مكتمل",
+      "pending": "قيد الانتظار",
+      "processing": "قيد المعالجة",
+      "failed": "فشل",
+      "refunded": "تم الاسترداد"
+    },
+    "types": {
+      "application_fee": "رسوم الطلب",
+      "service_fee": "رسوم الخدمة",
+      "tuition_deposit": "إيداع الرسوم الدراسية",
+      "full_tuition": "الرسوم الدراسية الكاملة",
+      "accommodation": "إقامة",
+      "other": "آخر"
+    },
+    "assistance": {
+      "title": "مساعدة الدفع",
+      "description": "لديك {count} مدفوعات معلقة. إذا كنت بحاجة إلى مساعدة في المدفوعات أو لديك أسئلة:",
+      "point1": "تواصل مع فريق الدعم للحصول على مساعدة في الدفع",
+      "point2": "تحقق مما إذا كنت مؤهلاً لخطط الدفع",
+      "point3": "تحقق من أن طريقة الدفع الخاصة بك مدعومة"
+    },
+    "paidOn": "دفع في",
+    "reference": "مرجع",
+    "verifiedByAdmin": "تم التحقق من قبل المسؤول",
+    "expires": "ينتهي:",
+    "adminNote": "ملاحظة المسؤول:",
+    "paymentLinkExpired": "انتهاء صلاحية رابط الدفع",
+    "document": "وثيقة:",
+    "noPayments": "لا توجد مدفوعات",
+    "noPaymentsDesc": "ليس لديك أي مدفوعات معلقة.",
+    "contactSupport": "اتصل بالدعم"
+  },
+  "Refunds": {
+    "title": "طلبات استرداد الأموال",
+    "statusTitle": "حالة استرداد الأموال",
+    "requestButton": "طلب استرداد",
+    "submittedTitle": "تم تقديم طلب استرداد الأموال",
+    "submittedOn": "تم التقديم في {date}",
+    "reasonLabel": "السبب",
+    "adminResponseLabel": "رد المسؤول",
+    "rejectedTitle": "تم رفض الطلب",
+    "rejectedMessage": "قد تكون مؤهلاً لاسترداد الأموال. انقر فوق الزر لتقديم طلب.",
+    "modalTitle": "طلب استرداد",
+    "modalDescription": "تقديم طلب لاسترداد الأموال. يرجى توضيح سبب طلبك لهذا الاسترداد.",
+    "modalReasonLabel": "سبب الاسترداد",
+    "modalPlaceholder": "تم رفضي بسبب...",
+    "submitButton": "إرسال الطلب",
+    "cancelButton": "إلغاء",
+    "successMessage": "تم تقديم طلب الاسترداد بنجاح",
+    "errorMessage": "فشل تقديم الطلب",
+    "table": {
+      "student": "الطالب",
+      "program": "الجامعة / البرنامج",
+      "reason": "السبب",
+      "status": "الحالة",
+      "date": "التاريخ",
+      "actions": "الإجراءات",
+      "approve": "موافقة",
+      "reject": "رفض",
+      "noRequests": "لم يتم العثور على طلبات استرداد",
+      "approveTitle": "الموافقة على طلب الاسترداد",
+      "rejectTitle": "رفض طلب الاسترداد",
+      "approveDescription": "سيؤدي هذا إلى تحديد الطلب على أنه مقبول وتحديث حالة دفع الطلب إلى مسترد.",
+      "rejectDescription": "سيؤدي هذا إلى تحديد الطلب على أنه مرفوض.",
+      "adminResponsePlaceholder": "أضف ملاحظة للطالب..."
+    }
+  },
+  "Messages": {
+    "title": "الرسائل",
+    "actionRequired": "إجراء مطلوب",
+    "actionCompleted": "مكتمل",
+    "reply": "رد",
+    "replyingTo": "الرد على {name}",
+    "typeReply": "اكتب ردك...",
+    "sendReply": "إرسال الرد",
+    "sending": "جاري الإرسال...",
+    "cancel": "إلغاء",
+    "you": "أنت",
+    "admin": "فريق القبول",
+    "replyTooltip": "الرد على هذه الرسالة",
+    "actionRequiredMessage": "يرجى الرد على هذه الرسالة أو إكمال الإجراء المطلوب.",
+    "takeAction": "اتخاذ إجراء",
+    "attachment": "مرفق",
+    "attachments": "مرفقات",
+    "subtitle": "Communication with admissions team",
+    "conversations": "Conversations",
+    "unreadMessages": "Unread Messages",
+    "noMessages": "No messages yet",
+    "noMessagesDesc": "Messages from the admissions team will appear here"
+  },
+  "QSRankings": {
+    "meta": {
+      "title": "تصنيف QS العالمي للجامعات 2026 — الجامعات الصينية | ادرس في الصين",
+      "description": "استكشف تصنيف QS العالمي للجامعات 2026 للصين. شاهد كيف تصنف 72 جامعة صينية عالمياً، من جامعة بكين (#14) إلى مؤسسات بحثية ناشئة. اعثر على جامعتك المثالية في الصين."
+    },
+    "hero": {
+      "badge": "تصنيف QS العالمي للجامعات 2026",
+      "titleHighlight": "الجامعات الصينية",
+      "titleRest": "في التصنيفات العالمية",
+      "subtitle": "اكتشف مكانة أفضل الجامعات الصينية في تصنيف QS العالمي للجامعات 2026. من جامعة بكين في المرتبة #14 إلى القوى البحثية الناشئة — اعثر على المؤسسة المثالية لدراستك.",
+      "breadcrumb": "تصنيف QS 2026",
+      "statRanked": "جامعة مصنفة",
+      "statHighest": "أعلى تصنيف عالمي",
+      "statTop50": "ضمن أفضل 50 عالمياً",
+      "statCities": "مدينة ممثلة"
+    },
+    "content": {
+      "topUniversitiesTitle": "أفضل الجامعات الصينية المصنفة عالمياً",
+      "browseAllTitle": "تصفح جميع التصنيفات",
+      "searchPlaceholder": "ابحث عن الجامعات...",
+      "allCities": "جميع المدن",
+      "showing": "عرض",
+      "of": "من",
+      "universities": "جامعة",
+      "university": "جامعة",
+      "inCity": "في",
+      "matching": "مطابق لـ",
+      "noResults": "لم يتم العثور على جامعات",
+      "noResultsHint": "حاول تعديل البحث أو الفلاتر",
+      "overallScore": "الدرجة الإجمالية",
+      "score": "الدرجة",
+      "world": "عالمياً",
+      "china": "الصين",
+      "ctaTitle": "مستعد للدراسة في جامعة مصنفة عالمياً؟",
+      "ctaDescription": "تصفح البرامج في الجامعات الصينية المصنفة في QS. اعثر على المنح الدراسية، قارن الرسوم الدراسية، وابدأ طلبك اليوم.",
+      "browseUniversities": "تصفح الجامعات",
+      "explorePrograms": "استكشف البرامج",
+      "disclaimer": "بيانات التصنيف مصدرها تصنيف QS العالمي للجامعات 2026 الصادر عن Quacquarelli Symonds. للتصنيفات الرسمية والأحدث، قم بزيارة",
+      "visitSite": "topuniversities.com",
+      "viewProfile": "عرض الملف الشخصي",
+      "tierTop50": "أفضل 50 عالمياً",
+      "tierTop200": "المرتبة 51–200",
+      "tierTop500": "المرتبة 201–500",
+      "tierRemaining": "+501"
+    }
+  },
+  "ApplyForm": {
+    "badge": "ابدأ رحلتك",
+    "title": "قدّم للدراسة في الصين",
+    "subtitle": "املأ النموذج أدناه وسيتواصل معك فريقنا لإرشادك خلال عملية القبول.",
+    "firstName": "الاسم الأول",
+    "firstNamePlaceholder": "أدخل اسمك الأول",
+    "lastName": "اسم العائلة",
+    "lastNamePlaceholder": "أدخل اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "your.email@example.com",
+    "whatsapp": "رقم واتساب",
+    "whatsappPlaceholder": "أدخل رقم واتساب الخاص بك",
+    "englishLevel": "مستوى اللغة الإنجليزية",
+    "englishLevelPlaceholder": "اختر مستوى لغتك الإنجليزية",
+    "englishLevels": {
+      "beginner": "مبتدئ",
+      "intermediate": "متوسط",
+      "upper_intermediate": "فوق المتوسط",
+      "advanced": "متقدم",
+      "native": "ناطق أصلي"
+    },
+    "department": "التخصص المطلوب",
+    "departmentPlaceholder": "اختر تخصصاً",
+    "departments": {
+      "medicine": "الطب",
+      "engineering": "الهندسة",
+      "computer_science": "علوم الحاسوب",
+      "business": "إدارة الأعمال والاقتصاد",
+      "arts": "الفنون والتصميم",
+      "law": "القانون",
+      "language": "دراسات اللغة",
+      "other": "أخرى"
+    },
+    "startSemester": "متى تريد أن تبدأ؟",
+    "startSemesterPlaceholder": "اختر الفصل الدراسي",
+    "semesters": {
+      "fall_2026": "خريف 2026",
+      "spring_2026": "ربيع 2026",
+      "fall_2027": "خريف 2027"
+    },
+    "submit": "إرسال الطلب",
+    "submitting": "جارٍ الإرسال...",
+    "successTitle": "تم إرسال الطلب!",
+    "successMessage": "شكراً لك! سيتواصل معك فريقنا قريباً لمساعدتك في الخطوات التالية.",
+    "successNewForm": "إرسال طلب آخر",
+    "errorMessage": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "required": "مطلوب",
+    "emailSubject": "استلمنا طلبك — الدراسة في الصين",
+    "emailGreeting": "عزيزي/عزيزتي",
+    "emailBody": "شكراً لاهتمامك بالدراسة في الصين! لقد استلمنا طلبك وسيتواصل معك فريقنا قريباً لإرشادك خلال عملية القبول.",
+    "emailReceived": "تم استلام طلبك",
+    "emailTeamContact": "سيتواصل معك فريق القبول خلال 24 ساعة",
+    "emailNextSteps": "ماذا يحدث بعد ذلك؟",
+    "emailStep1": "سيقوم فريقنا بمراجعة تفاصيل طلبك",
+    "emailStep2": "سيتم التواصل معك عبر واتساب أو البريد الإلكتروني خلال 24 ساعة",
+    "emailStep3": "سنرشدك في اختيار الجامعة وعملية القبول",
+    "emailUrgent": "للأمور العاجلة، يمكنك التواصل معنا على",
+    "emailRegards": "مع أطيب التحيات،",
+    "emailTeamName": "فريق الدراسة في الصين",
+    "emailVisitWebsite": "زيارة موقعنا"
+  }
 }
