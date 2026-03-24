@@ -1,5 +1,74 @@
 # Changelog
 
+## [2026-03-24] - Fix: Mobile-First Responsive Redesign of General Application Form
+
+- **src/app/[locale]/(standalone)/apply/general/page.tsx** [UPDATED]: Redesigned the lead form with a mobile-first layout. Email and WhatsApp fields now each occupy their own full-width row for better usability. All fields stack vertically on mobile (`grid-cols-1`) and use a 2-column grid on `sm+` breakpoints. Hero section is compact on mobile. Fixed Tailwind v4 class syntax (`bg-linear-to-br`, `mt-6!`). Removed duplicate orphaned code block.
+- **Diagnosis**: Identified that Zoho CRM integration works correctly, but emails fail because the `studyatchina.com` domain is not verified in the Resend dashboard. No code fix needed — domain verification required at https://resend.com/domains.
+
+## [2026-03-24] - Feature: Standalone Lead Form Layout with Language Switcher
+
+- **src/app/[locale]/(standalone)/layout.tsx** [NEW]: Standalone layout without Navbar/Footer for immersive pages like the lead form.
+- **src/app/[locale]/(standalone)/apply/general/page.tsx** [MOVED]: Lead form moved from `(public)` to `(standalone)` route group for a clean, distraction-free experience.
+- **Lead Form UI**: Added floating `LanguageSwitcher` component in top-right corner for locale switching without a full navbar.
+
+## [2025-07-20] - Feature: General Application Lead Form with Zoho CRM Integration
+
+- **src/lib/zoho/zoho-client.ts** [NEW]: Zoho CRM API client with OAuth2 token exchange and lead creation. Supports layout ID, tags, and custom UTM tracking fields.
+- **src/lib/zoho/env.ts** [NEW]: Environment variable configuration for Zoho API credentials.
+- **src/lib/utm.ts** [NEW]: UTM parameter capture utility — reads from URL params, persists in sessionStorage.
+- **src/app/[locale]/(public)/apply/general/page.tsx** [NEW]: Premium split-screen lead form page with auto-detecting country dial code based on locale, phone/WhatsApp input, English level, department, start semester selects, and UTM auto-capture.
+- **src/app/[locale]/(public)/apply/lead-actions.ts** [NEW]: Server action with Zod validation, parallel Zoho CRM + email dispatch, and graceful partial-failure handling.
+- **src/lib/email/templates.ts** [UPDATED]: Added `applicationLeadConfirmation` (localized, 9 locales) and `adminApplicationLeadNotification` email templates.
+- **src/lib/email/service.ts** [UPDATED]: Added `sendApplicationLeadConfirmationEmail` and `sendAdminApplicationLeadEmail` service functions.
+- **messages/*.json** [UPDATED]: Added `ApplyForm` namespace with 35+ keys across all 9 locales (en, ar, fa, es, fr, ru, zh, tr, tk).
+
+## [2025-07-18] - Fix: "Language" Study Level Filter Renamed to "Non-Degree" on Universities Page
+
+- **UniversityFilters.tsx** [UPDATED]: Renamed the "Language" study level option to "Non-Degree" to match the database values directly.
+- **UniversitiesClient.tsx** [UPDATED]: Simplified level filtering logic — removed the `levelMap` workaround since the filter now sends "Non-Degree" which matches the DB directly.
+- **messages/en.json** [UPDATED]: Added missing `Universities.filters.active` translation key for active filter label.
+- **messages/ar.json** [UPDATED]: Added missing `Universities.filters.active` Arabic translation key.
+
+## [2025-07-17] - Fix: Programs Page Defaulting to Grid View Instead of List
+
+- **ProgramsClientContent.tsx** [UPDATED]: Fixed a bug where the programs page always showed grid view on load despite `viewMode` being initialized to `'list'`. Root cause: the `useIsMobile` hook defaults to `true` during SSR hydration, triggering a `useEffect` that set `viewMode` to `'grid'`. Added an `else` branch to restore `'list'` when the hook resolves to desktop width.
+
+## [2026-03-24] - Bugfix: Admin Universities Page Crash
+
+- **Admin Universities List**: Fixed a crash occurring when opening a modal from within the actions dropdown. The edit/delete buttons have been extracted directly into the actions column to bypass Radix UI dropdown portal issues.
+- **Hydration Fixes**: Refactored multiple instances of `<Link><Button>` to `<Button asChild><Link>` across `UniversityDialog`, `page.tsx`, and `columns.tsx` to resolve invalid HTML nesting errors.
+
+## [2026-03-24] - Feature: Deadline Badges on Programs Page & Default List View
+
+- **ProgramCard.tsx** [UPDATED]: Added `application_deadline` to the `Program` interface. New `DeadlineBadge` component renders color-coded deadline status on all card variants (mobile grid, desktop grid, list). Red = closed/expired, amber ≤30 days remaining, teal = open with formatted date.
+- **messages/*.json** [UPDATED]: Added `Programs.card.deadlineClosed`, `deadlineToday`, `deadlineDaysLeft`, `deadlineDate` translation keys to all 9 locale files (en, ar, fa, es, fr, ru, zh, tr, tk).
+- **ProgramsClientContent.tsx** [ALREADY SET]: Default view mode was already `'list'`.
+
+## [2026-07-16] - Feature: Upcoming Deadlines Section on University Page
+
+- **UpcomingDeadlines.tsx** [NEW]: Client component that aggregates programs with valid upcoming deadlines, sorts by soonest, and displays up to 5 urgency-color-coded cards (red ≤7 days, amber ≤30 days, teal >30 days) with countdown, program level badge, and "View Program" link.
+- **UniversityContent.tsx** [UPDATED]: Imported and rendered `UpcomingDeadlines` between Scholarship CTA and Programs Section. Added ⏰ "Deadlines" quick-jump button in the sticky navigation bar. Replaced hardcoded English text ("Closed", "Deadline: ...") in program deadline badges with translated `t('programs.deadlineClosed')` and `t('programs.deadlineLabel', { date })` calls.
+- **messages/*.json** [UPDATED]: Added `UniversityDetail.deadlines` namespace (title, noDeadlines, daysLeft, today, closed, deadline, viewProgram, urgent, quickJump) and `programs.deadlineClosed`/`programs.deadlineLabel` keys to all 9 locale files (en, ar, fa, es, fr, ru, zh, tr, tk) with native translations.
+
+## [2026-03-24] - UX: Debounced Age & GPA Filter Inputs
+
+- **ProgramFilters.tsx** [UPDATED]: Replaced instant-apply number inputs for "My Age" and "Min GPA" with a new `DebouncedNumberInput` component. Filters now apply automatically after 500ms of idle typing (or immediately on Enter/blur). Visual feedback shows a spinning loader while typing and a green checkmark when applied.
+- **messages/*.json** [UPDATED]: Added `autoFilterHint` translation key to all 9 locale files (en, ar, fa, es, fr, ru, zh, tr, tk).
+
+## [2026-07-15] - Feature: Maximum Age Display on Program Detail Page
+
+- **programs/[slug]/page.tsx** [UPDATED]: Added `max_age` from the database view to `programData` and rendered a new "Maximum Age" card in the Key Facts Grid (orange themed with `UserCheck` icon). Card only appears when `max_age` has a value.
+- **messages/*.json** [UPDATED]: Added `highlights.maxAge` translation key to all 9 locale files (en, ar, fa, es, fr, ru, zh, tr, tk).
+
+## [2026-03-24] - Fix: University Page Fallback URLs
+
+- **UniversityContent.tsx** [UPDATED]: Fixed "Chat with Advisor" fallback WhatsApp number from `905543081000` (+90 554) to `905453081000` (+90 545) — matching the number used in the Footer.
+
+## [2026-03-24] - Feature: Application Deadline Badge on University Page
+
+- **universities/[slug]/page.tsx** [UPDATED]: Added `application_deadline` to the program data mapping so it is piped from `v_university_programs_full` view to the frontend.
+- **UniversityContent.tsx** [UPDATED]: Added `application_deadline` to the `Program` interface. Program cards now display a color-coded deadline badge — red (expired/closed), amber (≤30 days remaining), teal (open) — using `date-fns` for date parsing and day calculation.
+
 ## [2026-03-24] - Fix: 404 Page Layout
 
 - **404-page-not-found.tsx** [UPDATED]: Replaced oversized SVG illustration (1136px tall, overflowing viewport) with a clean, properly constrained layout — giant transparent "404" text, warning icon, message, and Return Home button, all fitting within viewport.
