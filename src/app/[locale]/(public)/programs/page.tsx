@@ -132,7 +132,7 @@ export default async function ProgramsPage({
     }, {}) || {};
 
     // Transform data to match ProgramCard props
-    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; language_name: string; category: string; scholarship_chance: string; min_age: number; max_age: number; gpa_requirement: number; csca_exam_require: boolean }) => ({
+    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; application_deadline?: string; language_name: string; category: string; scholarship_chance: string; min_age: number; max_age: number; gpa_requirement: number; csca_exam_require: boolean }) => ({
         id: p.id,
         slug: p.slug,
         name: p.display_title || p.program_title,
@@ -145,6 +145,7 @@ export default async function ProgramsPage({
         tuition_fee: p.tuition_fee, // Raw number for Price component
         currency: p.currency || 'CNY', // Currency code
         deadline: p.intake,
+        application_deadline: p.application_deadline,
         badges: [p.language_name, p.level].filter(Boolean),
         category: p.category,
         language: p.language_name,

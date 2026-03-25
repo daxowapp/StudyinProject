@@ -49,24 +49,24 @@ export function UniversityActions({ id }: UniversityActionsProps) {
     return (
         <>
             <div className="flex items-center justify-end gap-2">
-                <Link href={`/admin/universities/${id}/scholarships`}>
-                    <Button variant="outline" size="sm">
+                <Button asChild variant="outline" size="sm">
+                    <Link href={`/admin/universities/${id}/scholarships`}>
                         <Award className="mr-2 h-4 w-4" />
                         Scholarships
-                    </Button>
-                </Link>
-                <Link href={`/admin/universities/${id}/accommodation`}>
-                    <Button variant="outline" size="sm">
+                    </Link>
+                </Button>
+                <Button asChild variant="outline" size="sm">
+                    <Link href={`/admin/universities/${id}/accommodation`}>
                         <Home className="mr-2 h-4 w-4" />
                         Accommodation
-                    </Button>
-                </Link>
-                <Link href={`/admin/universities/${id}`}>
-                    <Button variant="outline" size="sm">
+                    </Link>
+                </Button>
+                <Button asChild variant="outline" size="sm">
+                    <Link href={`/admin/universities/${id}`}>
                         <Edit className="mr-2 h-4 w-4" />
                         Edit
-                    </Button>
-                </Link>
+                    </Link>
+                </Button>
                 <Button
                     variant="destructive"
                     size="icon"

@@ -79,12 +79,12 @@ export default async function ProgramsPage() {
                                 </CardDescription>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Link href={`/admin/programs/${program.id}`}>
-                                    <Button variant="outline" size="sm">
+                                <Button variant="outline" size="sm" asChild>
+                                    <Link href={`/admin/programs/${program.id}`}>
                                         <Languages className="mr-2 h-4 w-4" />
                                         Translations
-                                    </Button>
-                                </Link>
+                                    </Link>
+                                </Button>
                                 <ProgramDialog
                                     program={program}
                                     universities={universities}

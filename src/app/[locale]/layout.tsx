@@ -9,11 +9,8 @@ import { LoadingBar } from "@/components/ui/loading-bar";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { QueryProvider } from "@/providers/QueryProvider";
 import { DeferredScripts } from "@/components/layout/DeferredScripts";
-import { Playfair_Display, Plus_Jakarta_Sans, Cairo } from 'next/font/google';
 import { Metadata } from 'next';
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
-
-import "../globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -78,11 +75,7 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
-    verification: {
-        // Add your verification codes here when you have them
-        // google: 'your-google-verification-code',
-        // yandex: 'your-yandex-verification-code',
-    },
+    verification: {},
     alternates: {
         canonical: `${baseUrl}/en`,
         languages: {
@@ -94,26 +87,6 @@ export const metadata: Metadata = {
     },
 };
 
-const playfair = Playfair_Display({
-    subsets: ['latin'],
-    variable: '--font-heading',
-    display: 'swap',
-    preload: false, // Heading font — not FCP-critical, loaded on demand
-});
-
-const jakarta = Plus_Jakarta_Sans({
-    subsets: ['latin'],
-    variable: '--font-body',
-    display: 'swap',
-    preload: true,
-});
-
-const cairo = Cairo({
-    subsets: ['arabic'],
-    variable: '--font-cairo',
-    display: 'swap',
-    preload: false, // Only preload for RTL users
-});
 
 export default async function LocaleLayout({
     children,
@@ -137,62 +110,53 @@ export default async function LocaleLayout({
     const dir = ['ar', 'fa'].includes(locale) ? 'rtl' : 'ltr';
 
     return (
-        <html lang={locale} dir={dir} suppressHydrationWarning>
-            <head>
-                {/* Preconnect to CDN for static assets */}
-                <link rel="preconnect" href="https://studyatchina.b-cdn.net" crossOrigin="anonymous" />
-                <link rel="dns-prefetch" href="https://studyatchina.b-cdn.net" />
-                {/* Preconnect to Supabase for faster API calls */}
-                <link rel="preconnect" href="https://mxmrdnzmaztskbkqeusm.supabase.co" crossOrigin="anonymous" />
-                <link rel="dns-prefetch" href="https://mxmrdnzmaztskbkqeusm.supabase.co" />
-                {/* Preconnect & DNS-prefetch for third-party script domains */}
-                <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-                <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
-                <link rel="dns-prefetch" href="https://connect.facebook.net" />
-            </head>
-            <body className={`${jakarta.variable} ${playfair.variable} ${cairo.variable} font-body antialiased flex flex-col min-h-screen ${dir === 'rtl' ? 'font-cairo' : ''}`}>
-                <DeferredScripts />
-                <OrganizationJsonLd />
-                <QueryProvider>
-                    <NextIntlClientProvider messages={messages}>
-                        <CurrencyProvider>
-                            <LoadingBar />
-                            {children}
-                            <Toaster />
-                        </CurrencyProvider>
-                    </NextIntlClientProvider>
-                </QueryProvider>
-                <Script
-                    id="fb-pixel"
-                    strategy="lazyOnload"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            !function(f,b,e,v,n,t,s)
-                            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                            n.queue=[];t=b.createElement(e);t.async=!0;
-                            t.src=v;s=b.getElementsByTagName(e)[0];
-                            s.parentNode.insertBefore(t,s)}(window, document,'script',
-                            'https://connect.facebook.net/en_US/fbevents.js');
-                            fbq('init', '1378542223283943');
-                            fbq('track', 'PageView');
-                        `,
-                    }}
+        <>
+            {/* Set lang, dir on <html> and RTL class on <body> at runtime */}
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `document.documentElement.lang="${locale}";document.documentElement.dir="${dir}";${dir === 'rtl' ? 'document.body.classList.add("font-cairo");' : ''}`,
+                }}
+            />
+            <DeferredScripts />
+            <OrganizationJsonLd />
+            <QueryProvider>
+                <NextIntlClientProvider messages={messages}>
+                    <CurrencyProvider>
+                        <LoadingBar />
+                        {children}
+                        <Toaster />
+                    </CurrencyProvider>
+                </NextIntlClientProvider>
+            </QueryProvider>
+            <Script
+                id="fb-pixel"
+                strategy="lazyOnload"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        !function(f,b,e,v,n,t,s)
+                        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                        n.queue=[];t=b.createElement(e);t.async=!0;
+                        t.src=v;s=b.getElementsByTagName(e)[0];
+                        s.parentNode.insertBefore(t,s)}(window, document,'script',
+                        'https://connect.facebook.net/en_US/fbevents.js');
+                        fbq('init', '1378542223283943');
+                        fbq('track', 'PageView');
+                    `,
+                }}
+            />
+            <noscript>
+                <img
+                    height="1"
+                    width="1"
+                    style={{ display: 'none' }}
+                    src="https://www.facebook.com/tr?id=1378542223283943&ev=PageView&noscript=1"
+                    alt=""
                 />
-                <noscript>
-                    <img
-                        height="1"
-                        width="1"
-                        style={{ display: 'none' }}
-                        src="https://www.facebook.com/tr?id=1378542223283943&ev=PageView&noscript=1"
-                        alt=""
-                    />
-                </noscript>
-                <GoogleAnalytics gaId="G-47QZWWTPZ1" />
-            </body>
-        </html>
+            </noscript>
+            <GoogleAnalytics gaId="G-47QZWWTPZ1" />
+        </>
     );
 }
 

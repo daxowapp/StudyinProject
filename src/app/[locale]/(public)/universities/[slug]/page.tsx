@@ -132,6 +132,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             currency: string;
             language_name: string;
             intake: string;
+            application_deadline: string | null;
         };
         return {
             id: prog.id,
@@ -144,6 +145,7 @@ export default async function UniversityDetailPage({ params }: { params: Promise
             currency: prog.currency || 'CNY', // Currency code
             language: prog.language_name || "Not specified",
             intake: prog.intake || "Contact university",
+            application_deadline: prog.application_deadline,
         };
     }) || [];
 

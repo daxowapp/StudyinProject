@@ -7,7 +7,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Plus } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Link } from "@/i18n/routing";
@@ -101,11 +100,11 @@ export default async function AdminUniversitiesPage({
                 <div className="flex gap-2">
                     <BulkMediaImportButton />
                     <BulkAutofillButton />
-                    <Link href="/admin/universities/new">
-                        <Button>
+                    <Button asChild>
+                        <Link href="/admin/universities/new">
                             <Plus className="mr-2 h-4 w-4" /> Add University
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                 </div>
             </div>
 

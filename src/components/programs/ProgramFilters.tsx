@@ -13,9 +13,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { X, GraduationCap, FileCheck } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { X, GraduationCap, FileCheck, Check, Loader2, ChevronsUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 export interface FilterState {
     search: string;
@@ -39,8 +43,136 @@ interface ProgramFiltersProps {
     currentFilters: FilterState;
 }
 
+/**
+ * A debounced number input that shows visual feedback when the filter is applied.
+ * - Waits 500ms after the user stops typing, then applies the filter
+ * - User can press Enter to apply immediately
+ * - Shows a brief checkmark animation after applying
+ */
+function DebouncedNumberInput({
+    id,
+    value,
+    onChange,
+    min,
+    max,
+    step,
+    placeholder,
+    label,
+}: {
+    id: string;
+    value: number | undefined;
+    onChange: (val: number | undefined) => void;
+    min: number;
+    max: number;
+    step?: number;
+    placeholder: string;
+    label: string;
+}) {
+    const [localValue, setLocalValue] = useState<string>(value !== undefined ? String(value) : '');
+    const [status, setStatus] = useState<'idle' | 'typing' | 'applied'>('idle');
+    const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+    const appliedTimer = useRef<NodeJS.Timeout | null>(null);
+
+    // Sync local value when external value changes (e.g. clear filters)
+    useEffect(() => {
+        const externalStr = value !== undefined ? String(value) : '';
+        if (externalStr !== localValue) {
+            setLocalValue(externalStr);
+            setStatus('idle');
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
+
+    const applyFilter = useCallback((rawValue: string) => {
+        if (debounceTimer.current) clearTimeout(debounceTimer.current);
+        
+        const parsed = rawValue ? (step && step < 1 ? parseFloat(rawValue) : parseInt(rawValue)) : undefined;
+        onChange(parsed);
+        
+        setStatus('applied');
+        if (appliedTimer.current) clearTimeout(appliedTimer.current);
+        appliedTimer.current = setTimeout(() => setStatus('idle'), 1500);
+    }, [onChange, step]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+        setLocalValue(newValue);
+        setStatus('typing');
+
+        if (debounceTimer.current) clearTimeout(debounceTimer.current);
+        debounceTimer.current = setTimeout(() => {
+            applyFilter(newValue);
+        }, 500);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyFilter(localValue);
+        }
+    };
+
+    const handleBlur = () => {
+        // Apply immediately on blur if still typing
+        if (status === 'typing') {
+            applyFilter(localValue);
+        }
+    };
+
+    // Cleanup timers
+    useEffect(() => {
+        return () => {
+            if (debounceTimer.current) clearTimeout(debounceTimer.current);
+            if (appliedTimer.current) clearTimeout(appliedTimer.current);
+        };
+    }, []);
+
+    return (
+        <div className="space-y-2 flex-1">
+            <Label htmlFor={id} className="text-xs text-muted-foreground">{label}</Label>
+            <div className="relative">
+                <Input
+                    id={id}
+                    type="number"
+                    min={min}
+                    max={max}
+                    step={step}
+                    placeholder={placeholder}
+                    value={localValue}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    onBlur={handleBlur}
+                    className={`h-9 pr-8 transition-colors ${
+                        status === 'applied' 
+                            ? 'border-green-500/50 ring-1 ring-green-500/20' 
+                            : status === 'typing' 
+                            ? 'border-primary/50 ring-1 ring-primary/20' 
+                            : ''
+                    }`}
+                />
+                {/* Status indicator */}
+                <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                    {status === 'typing' && (
+                        <Loader2 className="h-3.5 w-3.5 text-muted-foreground animate-spin" />
+                    )}
+                    {status === 'applied' && (
+                        <Check className="h-3.5 w-3.5 text-green-500 animate-in fade-in zoom-in duration-200" />
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function ProgramFilters({ onFilterChange, availableCities = [], availableUniversities = [], currentFilters }: ProgramFiltersProps) {
     const t = useTranslations('Programs.filters');
+    const [universityOpen, setUniversityOpen] = useState(false);
+
+    // Sort universities alphabetically
+    const sortedUniversities = useMemo(
+        () => [...availableUniversities].sort((a, b) => a.localeCompare(b)),
+        [availableUniversities]
+    );
 
     const updateFilters = (updates: Partial<FilterState>) => {
         const newFilters = { ...currentFilters, ...updates };
@@ -146,7 +278,7 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
             <div className="space-y-3 pt-2">
                 <Label className="text-sm font-medium">{t('studyLevel')}</Label>
                 <div className="space-y-2.5">
-                    {["Bachelor", "Master", "PhD"].map((level) => (
+                    {["Language", "Bachelor", "Master", "PhD"].map((level) => (
                         <div key={level} className="flex items-center space-x-2">
                             <Checkbox
                                 id={level}
@@ -170,40 +302,29 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                     </AccordionTrigger>
                     <AccordionContent className="pb-3 px-1">
                         <div className="flex gap-4">
-                            <div className="space-y-2 flex-1">
-                                <Label htmlFor="age-filter" className="text-xs text-muted-foreground">{t('myAge')}</Label>
-                                <Input
-                                    id="age-filter"
-                                    type="number"
-                                    min={10}
-                                    max={100}
-                                    placeholder={t('agePlaceholder')}
-                                    value={currentFilters?.age || ''}
-                                    onChange={(e) => {
-                                        const val = e.target.value ? parseInt(e.target.value) : undefined;
-                                        updateFilters({ age: val });
-                                    }}
-                                    className="h-9"
-                                />
-                            </div>
-                            <div className="space-y-2 flex-1">
-                                <Label htmlFor="gpa-filter" className="text-xs text-muted-foreground">{t('minGpa')}</Label>
-                                <Input
-                                    id="gpa-filter"
-                                    type="number"
-                                    min={0.0}
-                                    max={100.0}
-                                    step={0.1}
-                                    placeholder={t('gpaPlaceholder')}
-                                    value={currentFilters?.gpa || ''}
-                                    onChange={(e) => {
-                                        const val = e.target.value ? parseFloat(e.target.value) : undefined;
-                                        updateFilters({ gpa: val });
-                                    }}
-                                    className="h-9"
-                                />
-                            </div>
+                            <DebouncedNumberInput
+                                id="age-filter"
+                                value={currentFilters?.age}
+                                onChange={(val) => updateFilters({ age: val })}
+                                min={10}
+                                max={100}
+                                placeholder={t('agePlaceholder')}
+                                label={t('myAge')}
+                            />
+                            <DebouncedNumberInput
+                                id="gpa-filter"
+                                value={currentFilters?.gpa}
+                                onChange={(val) => updateFilters({ gpa: val })}
+                                min={0}
+                                max={100}
+                                step={0.1}
+                                placeholder={t('gpaPlaceholder')}
+                                label={t('minGpa')}
+                            />
                         </div>
+                        <p className="text-[10px] text-muted-foreground mt-2 italic">
+                            {t('autoFilterHint')}
+                        </p>
                     </AccordionContent>
                 </AccordionItem>
 
@@ -290,17 +411,70 @@ export function ProgramFilters({ onFilterChange, availableCities = [], available
                         {t('university')}
                     </AccordionTrigger>
                     <AccordionContent className="pb-2 px-1">
-                        <Select value={currentFilters?.university || 'all'} onValueChange={(value) => updateFilters({ university: value })}>
-                            <SelectTrigger className="h-10">
-                                <SelectValue placeholder={t('allUniversities')} />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">{t('allUniversities')}</SelectItem>
-                                {availableUniversities.map((uni) => (
-                                    <SelectItem key={uni} value={uni}>{uni}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                        <Popover open={universityOpen} onOpenChange={setUniversityOpen}>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    role="combobox"
+                                    aria-expanded={universityOpen}
+                                    className="w-full h-10 justify-between font-normal"
+                                >
+                                    <span className="truncate">
+                                        {currentFilters?.university && currentFilters.university !== 'all'
+                                            ? currentFilters.university
+                                            : t('allUniversities')}
+                                    </span>
+                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+                                <Command>
+                                    <CommandInput placeholder={t('searchUniversity')} />
+                                    <CommandList>
+                                        <CommandEmpty>{t('noUniversityFound')}</CommandEmpty>
+                                        <CommandGroup>
+                                            <CommandItem
+                                                value="all"
+                                                onSelect={() => {
+                                                    updateFilters({ university: 'all' });
+                                                    setUniversityOpen(false);
+                                                }}
+                                            >
+                                                <Check
+                                                    className={cn(
+                                                        "mr-2 h-4 w-4",
+                                                        (!currentFilters?.university || currentFilters.university === 'all')
+                                                            ? "opacity-100"
+                                                            : "opacity-0"
+                                                    )}
+                                                />
+                                                {t('allUniversities')}
+                                            </CommandItem>
+                                            {sortedUniversities.map((uni) => (
+                                                <CommandItem
+                                                    key={uni}
+                                                    value={uni}
+                                                    onSelect={() => {
+                                                        updateFilters({ university: uni });
+                                                        setUniversityOpen(false);
+                                                    }}
+                                                >
+                                                    <Check
+                                                        className={cn(
+                                                            "mr-2 h-4 w-4",
+                                                            currentFilters?.university === uni
+                                                                ? "opacity-100"
+                                                                : "opacity-0"
+                                                        )}
+                                                    />
+                                                    {uni}
+                                                </CommandItem>
+                                            ))}
+                                        </CommandGroup>
+                                    </CommandList>
+                                </Command>
+                            </PopoverContent>
+                        </Popover>
                     </AccordionContent>
                 </AccordionItem>
 

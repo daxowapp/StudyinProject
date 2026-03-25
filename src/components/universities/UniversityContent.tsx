@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UniversityScholarshipsSection } from "@/components/scholarships/UniversityScholarshipsSection";
 import { ScholarshipCTA } from "@/components/scholarships/ScholarshipCTA";
+import { UpcomingDeadlines } from "./UpcomingDeadlines";
 import { AccommodationSection } from "./AccommodationSection";
 import { UniversityMap } from "./UniversityMap";
 import {
@@ -14,9 +15,10 @@ import {
     Award, TrendingUp, FileText,
     Download, ChevronRight, ChevronLeft,
     Sparkles, Video, Phone, MessageCircle,
-    HelpCircle
+    HelpCircle, AlertCircle, CalendarClock
 } from "lucide-react";
 import { Price } from "@/components/currency/PriceDisplay";
+import { differenceInDays, format, parseISO, isValid } from "date-fns";
 
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -51,6 +53,7 @@ interface Program {
     tuition: string;
     tuition_fee?: number;
     currency?: string;
+    application_deadline?: string | null;
 }
 
 interface University {
@@ -159,6 +162,13 @@ export function UniversityContent({ university }: UniversityContentProps) {
                         {t('quickLinks.exploreCourses')}
                     </button>
                     <button
+                        onClick={() => document.getElementById('deadlines-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
+                    >
+                        <span className="text-lg group-hover:scale-110 transition-transform">⏰</span>
+                        {t('deadlines.quickJump')}
+                    </button>
+                    <button
                         onClick={() => document.getElementById('scholarships-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                         className="group flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 hover:bg-primary/10 text-foreground hover:text-primary font-medium text-sm transition-all whitespace-nowrap border border-transparent hover:border-primary/20"
                     >
@@ -236,6 +246,11 @@ export function UniversityContent({ university }: UniversityContentProps) {
                     >
                         <ScholarshipCTA />
                     </div>
+
+                    {/* Upcoming Deadlines */}
+                    {university.programs && university.programs.length > 0 && (
+                        <UpcomingDeadlines programs={university.programs} />
+                    )}
 
                     {/* Programs Section */}
                     {university.programs && university.programs.length > 0 && (
@@ -323,6 +338,24 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                                             <Calendar className="h-3.5 w-3.5 mr-1.5" />
                                                             {program.intake}
                                                         </Badge>
+                                                        {(() => {
+                                                            if (!program.application_deadline) return null;
+                                                            const date = parseISO(program.application_deadline);
+                                                            if (!isValid(date)) return null;
+                                                            const daysRemaining = differenceInDays(date, new Date());
+                                                            const isExpired = daysRemaining < 0;
+                                                            const isUrgent = !isExpired && daysRemaining <= 30;
+                                                            return (
+                                                                <Badge className={`border-0 px-3 py-1 ${
+                                                                    isExpired ? 'bg-red-100 text-red-700' :
+                                                                    isUrgent ? 'bg-amber-100 text-amber-700' :
+                                                                    'bg-teal-100 text-teal-700'
+                                                                }`}>
+                                                                    {isExpired ? <AlertCircle className="h-3.5 w-3.5 mr-1.5" /> : <CalendarClock className="h-3.5 w-3.5 mr-1.5" />}
+                                                                    {isExpired ? t('programs.deadlineClosed') : t('programs.deadlineLabel', { date: format(date, 'MMM d, yyyy') })}
+                                                                </Badge>
+                                                            );
+                                                        })()}
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-4">
@@ -646,7 +679,7 @@ export function UniversityContent({ university }: UniversityContentProps) {
                                 />
 
                                 <a
-                                    href={university.advisor_chat_url || "https://wa.me/905543081000"}
+                                    href={university.advisor_chat_url || "https://wa.me/905453081000"}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all group text-left"

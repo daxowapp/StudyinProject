@@ -42,6 +42,7 @@ interface Program {
     max_age?: number;
     gpa_requirement?: number;
     csca_exam_require?: boolean;
+    application_deadline?: string;
 }
 
 interface ProgramsClientProps {
@@ -60,10 +61,12 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
     const [sortBy, setSortBy] = useState('relevance');
 
-    // Force grid view on mobile (mobile layout is in ProgramGridCard)
+    // Force grid view on mobile, restore list view on desktop
     useEffect(() => {
         if (isMobile) {
             setViewMode('grid');
+        } else {
+            setViewMode('list');
         }
     }, [isMobile]);
     const ITEMS_PER_PAGE = 12;

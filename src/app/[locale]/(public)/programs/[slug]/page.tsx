@@ -6,7 +6,7 @@ import { UniversityScholarshipsSection } from "@/components/scholarships/Univers
 import { AccommodationSection } from "@/components/universities/AccommodationSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp, Zap, Home } from "lucide-react";
+import { BookOpen, GraduationCap, Building2, MapPin, Calendar, Clock, DollarSign, Globe, CheckCircle2, ArrowRight, Star, Users, TrendingUp, Zap, Home, UserCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -223,6 +223,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                 { q: t('faq.deadlineQ'), a: t('faq.deadline', { deadline: program.intake || "to be announced" }) },
             ],
         gpa_requirement: program.gpa_requirement,
+        max_age: program.max_age,
         score_ielts: program.score_ielts,
         score_toefl: program.score_toefl,
         score_duolingo: program.score_duolingo,
@@ -441,6 +442,21 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                                         <div className="mt-1">
                                             <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.gpaRequirement') || 'Minimum GPA'}</p>
                                             <p className="text-xl font-bold tracking-tight text-foreground">{programData.gpa_requirement}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            )}
+
+                            {/* Maximum Age */}
+                            {programData.max_age && (
+                                <Card className="border border-border/40 shadow-sm bg-white dark:bg-background/50 hover:shadow-md transition-shadow rounded-2xl">
+                                    <CardContent className="p-6 flex flex-col items-start gap-3">
+                                        <div className="h-10 w-10 rounded-full bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center">
+                                            <UserCheck className="h-5 w-5 text-orange-500 dark:text-orange-400" />
+                                        </div>
+                                        <div className="mt-1">
+                                            <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">{t('highlights.maxAge') || 'Maximum Age'}</p>
+                                            <p className="text-xl font-bold tracking-tight text-foreground">{programData.max_age}</p>
                                         </div>
                                     </CardContent>
                                 </Card>

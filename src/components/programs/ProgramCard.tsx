@@ -19,12 +19,13 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap, Globe } from "lucide-react";
+import { Clock, MapPin, Calendar, DollarSign, GraduationCap, Building2, ArrowRight, Eye, GitCompareArrows, Sparkles, Zap, Globe, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { Price } from "@/components/currency/PriceDisplay";
 import { useTranslations } from "next-intl";
 import { useCompare } from "./CompareContext";
 import { useState } from "react";
+import { parseISO, differenceInDays, isValid, format } from "date-fns";
 
 interface Program {
     id: string;
@@ -43,11 +44,59 @@ interface Program {
     scholarship_chance?: string;
     has_fast_track?: boolean;
     csca_exam_require?: boolean;
+    application_deadline?: string;
 }
 
 interface ProgramCardProps {
     program: Program;
     variant?: 'grid' | 'list';
+}
+
+/* ===========================
+   DEADLINE BADGE — shared across all card variants
+   =========================== */
+function DeadlineBadge({ deadline, t }: { deadline?: string; t: ReturnType<typeof useTranslations> }) {
+    if (!deadline) return null;
+
+    const parsed = parseISO(deadline);
+    if (!isValid(parsed)) return null;
+
+    const today = new Date();
+    const daysLeft = differenceInDays(parsed, today);
+
+    if (daysLeft < 0) {
+        return (
+            <Badge className="bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800 text-[10px] px-2 py-0.5 font-medium gap-1">
+                <AlertCircle className="h-2.5 w-2.5" />
+                {t("deadlineClosed")}
+            </Badge>
+        );
+    }
+
+    if (daysLeft === 0) {
+        return (
+            <Badge className="bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800 text-[10px] px-2 py-0.5 font-medium gap-1 animate-pulse">
+                <AlertCircle className="h-2.5 w-2.5" />
+                {t("deadlineToday")}
+            </Badge>
+        );
+    }
+
+    if (daysLeft <= 30) {
+        return (
+            <Badge className="bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800 text-[10px] px-2 py-0.5 font-medium gap-1">
+                <Calendar className="h-2.5 w-2.5" />
+                {t("deadlineDaysLeft", { days: daysLeft })}
+            </Badge>
+        );
+    }
+
+    return (
+        <Badge className="bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800 text-[10px] px-2 py-0.5 font-medium gap-1">
+            <Calendar className="h-2.5 w-2.5" />
+            {t("deadlineDate", { date: format(parsed, 'MMM d, yyyy') })}
+        </Badge>
+    );
 }
 
 export function ProgramCard({ program, variant = 'grid' }: ProgramCardProps) {
@@ -114,6 +163,7 @@ function ProgramGridCard({ program, t, selected, canAdd, handleCompareToggle, is
                                 {t("fastTrack") || 'Fast Track'}
                             </Badge>
                         )}
+                        <DeadlineBadge deadline={program.application_deadline} t={t} />
                     </div>
 
                     {/* Program name */}
@@ -286,6 +336,7 @@ function ProgramGridCard({ program, t, selected, canAdd, handleCompareToggle, is
 
                     {/* Badges */}
                     <div className="flex flex-wrap gap-2 mt-auto">
+                        <DeadlineBadge deadline={program.application_deadline} t={t} />
                         {program.has_fast_track && (
                             <Badge className="bg-yellow-100 text-yellow-800 text-xs hover:bg-yellow-200 border-yellow-200">
                                 <Zap className="h-3 w-3 mr-1 fill-yellow-600 text-yellow-600" />
@@ -393,6 +444,7 @@ function ProgramListCard({ program, t, selected, canAdd, handleCompareToggle, is
                                         📝 Requires CSCA
                                     </Badge>
                                 )}
+                                <DeadlineBadge deadline={program.application_deadline} t={t} />
                             </div>
                             <h3 className="font-bold text-base leading-snug group-hover:text-primary transition-colors line-clamp-1">
                                 {program.name}

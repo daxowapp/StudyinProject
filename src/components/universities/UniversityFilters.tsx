@@ -186,7 +186,7 @@ export function UniversityFilters({
             <div className="space-y-3 pt-2">
                 <Label className="text-sm font-medium">Study Level</Label>
                 <div className="space-y-2.5">
-                    {["Bachelor", "Master", "PhD"].map((level) => (
+                    {["Non-Degree", "Bachelor", "Master", "PhD"].map((level) => (
                         <div key={level} className="flex items-center space-x-2">
                             <Checkbox
                                 id={`uni-level-${level}`}
