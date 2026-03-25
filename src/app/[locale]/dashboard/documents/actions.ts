@@ -5,6 +5,11 @@ import { revalidatePath } from "next/cache";
 
 export async function getStudentDocuments(userId: string) {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user || user.id !== userId) {
+        return { error: "Unauthorized" };
+    }
 
     const { data, error } = await supabase
         .from("student_documents")
@@ -22,6 +27,11 @@ export async function uploadDocument(
     file: File
 ) {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user || user.id !== userId) {
+        return { error: "Unauthorized" };
+    }
 
     try {
         // Upload to storage
@@ -66,6 +76,11 @@ export async function uploadDocument(
 
 export async function deleteDocument(userId: string, documentId: string) {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user || user.id !== userId) {
+        return { error: "Unauthorized" };
+    }
 
     try {
         // Get document info
@@ -108,6 +123,11 @@ export async function deleteDocument(userId: string, documentId: string) {
 
 export async function markDocumentsAsRead(userId: string) {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user || user.id !== userId) {
+        return { error: "Unauthorized" };
+    }
 
     const { error } = await supabase
         .from("student_documents")

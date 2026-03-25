@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 
 const LOCALES = ["ar", "fa", "tr"];
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
     try {
         const supabase = await createClient();
 
@@ -73,21 +73,65 @@ export async function POST(request: NextRequest) {
 
                 try {
                     // Call the AI generation endpoint
-                    const aiResponse = await fetch(`${request.nextUrl.origin}/api/ai/generate`, {
+                    const targetLang = locale === 'ar' ? 'Arabic' : locale === 'fa' ? 'Farsi' : 'Turkish';
+                    const prompt = `You are a professional educational translator. Translate this content into ${targetLang}.
+Context: This is a university program description for an international student platform.
+
+Rules:
+1. Translate both 'title' and 'description' accurately.
+2. Keep the translation natural and professional.
+3. Do not add any conversational text.
+4. MUST return ONLY a valid JSON object.
+
+Input JSON:
+${JSON.stringify({ title, description })}
+
+Output JSON format (must match this exactly):
+{
+  "title": "translated title",
+  "description": "translated description"
+}`;
+                    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+                    
+                    const aiResponse = await fetch(geminiUrl, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            type: "program_translation",
-                            query: `Translate to ${locale === "ar" ? "Arabic" : locale === "fa" ? "Farsi" : "Turkish"}: ${JSON.stringify({ title, description })}`
+                            contents: [{ role: "user", parts: [{ text: prompt }] }],
+                            systemInstruction: {
+                                role: "system",
+                                parts: [{ text: "You are a professional translator. ALWAYS return valid JSON matching the requested structure. NEVER return markdown formatting like \`\`\`json" }]
+                            },
+                            generationConfig: {
+                                temperature: 0.3,
+                                responseMimeType: "application/json"
+                            }
                         }),
                     });
 
                     if (!aiResponse.ok) {
+                        const errText = await aiResponse.text();
+                        console.error('Gemini error:', errText);
                         errors.push(`Failed to translate program ${program.id} to ${locale}`);
                         continue;
                     }
 
-                    const translatedData = await aiResponse.json();
+                    const aiData = await aiResponse.json();
+                    const textContent = aiData.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (!textContent) {
+                        errors.push(`No translation returned for program ${program.id} to ${locale}`);
+                        continue;
+                    }
+
+                    let translatedData;
+                    try {
+                        translatedData = JSON.parse(textContent);
+                    } catch (_e) {
+                        console.error('Failed to parse Gemini JSON:', textContent);
+                        errors.push(`Invalid JSON returned for program ${program.id} to ${locale}`);
+                        continue;
+                    }
 
                     // Save translation to database
                     const { error: insertError } = await supabase

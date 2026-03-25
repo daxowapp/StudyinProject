@@ -106,6 +106,25 @@ IMPORTANT: Return ONLY the JSON object, no markdown, no code blocks, no extra te
             } catch {
                 return NextResponse.json({ raw: cleaned });
             }
+        } else if (type === "program_translation") {
+            const prompt = query;
+            const completion = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [{ role: "user", content: prompt }],
+                temperature: 0.3,
+                max_tokens: 2000,
+            });
+
+            const content = completion.choices[0].message.content || "{}";
+            const cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+
+            try {
+                const data = JSON.parse(cleaned);
+                return NextResponse.json(data);
+            } catch {
+                console.error("Failed to parse AI response:", cleaned);
+                return NextResponse.json({ error: "Failed to parse AI response" }, { status: 500 });
+            }
         }
 
         return NextResponse.json({ error: "Invalid type" }, { status: 400 });

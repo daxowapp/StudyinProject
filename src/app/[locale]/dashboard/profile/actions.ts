@@ -5,6 +5,9 @@ import { revalidatePath } from "next/cache";
 
 export async function getProfile(userId: string) {
     const supabase = await createClient();
+    
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user || user.id !== userId) return { error: "Unauthorized" };
 
     const { data, error } = await supabase
         .from("profiles")
@@ -32,6 +35,9 @@ export async function updateProfile(userId: string, profileData: {
     emergency_contact_relationship?: string;
 }) {
     const supabase = await createClient();
+    
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user || user.id !== userId) return { error: "Unauthorized" };
 
     const { data, error } = await supabase.rpc('update_profile', {
         p_user_id: userId,
@@ -47,6 +53,9 @@ export async function updateProfile(userId: string, profileData: {
 
 export async function uploadProfilePhoto(userId: string, file: File) {
     const supabase = await createClient();
+    
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user || user.id !== userId) return { error: "Unauthorized" };
 
     try {
         // Upload to storage

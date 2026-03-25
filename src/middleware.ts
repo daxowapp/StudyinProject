@@ -6,6 +6,39 @@ import { rateLimit, isBlockedBot } from '@/lib/rate-limit';
 
 const intlMiddleware = createMiddleware(routing);
 
+// ── Geo-Based Locale Detection ─────────────────────────────────────
+// Maps Vercel's x-vercel-ip-country (ISO 3166 alpha-2) → app locale
+const COUNTRY_LOCALE_MAP: Record<string, string> = {
+  // Turkish
+  TR: 'tr',
+  // Arabic-speaking
+  EG: 'ar', SA: 'ar', AE: 'ar', IQ: 'ar', JO: 'ar', MA: 'ar', DZ: 'ar',
+  TN: 'ar', LY: 'ar', SY: 'ar', LB: 'ar', KW: 'ar', BH: 'ar', OM: 'ar',
+  QA: 'ar', YE: 'ar', PS: 'ar', SD: 'ar',
+  // Farsi
+  IR: 'fa',
+  // Turkmen
+  TM: 'tk',
+  // Chinese
+  CN: 'zh', HK: 'zh', MO: 'zh', TW: 'zh',
+  // French-speaking
+  FR: 'fr', SN: 'fr', CM: 'fr', CI: 'fr', ML: 'fr', BF: 'fr', NE: 'fr',
+  TD: 'fr', CG: 'fr', CD: 'fr', GA: 'fr', TG: 'fr', BJ: 'fr', GN: 'fr',
+  MG: 'fr', DJ: 'fr', KM: 'fr',
+  // Spanish-speaking
+  ES: 'es', MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es', VE: 'es',
+  EC: 'es', BO: 'es', PY: 'es', UY: 'es', CR: 'es', PA: 'es', DO: 'es',
+  HN: 'es', SV: 'es', GT: 'es', NI: 'es', CU: 'es',
+  // Russian-speaking
+  RU: 'ru', BY: 'ru', KZ: 'ru', KG: 'ru', TJ: 'ru', UZ: 'ru',
+};
+
+function getGeoLocale(request: NextRequest): string | null {
+  const country = request.headers.get('x-vercel-ip-country');
+  if (!country) return null;
+  return COUNTRY_LOCALE_MAP[country.toUpperCase()] || null;
+}
+
 // AI answer engine bots that should NEVER be rate-limited (GEO/AEO)
 const AI_BOT_WHITELIST = [
     'googlebot', 'bingbot', 'yandexbot', 'baiduspider',
@@ -55,7 +88,48 @@ export async function middleware(request: NextRequest) {
 
     }
 
-    // 2. Run Supabase Auth Middleware to update session
+    // 2. Geo-based language redirect
+    // Only redirect if: no NEXT_LOCALE cookie (user hasn't picked a language manually),
+    // and the request is arriving on the default locale or bare path
+    const localeCookie = request.cookies.get('NEXT_LOCALE')?.value;
+    if (!localeCookie) {
+        const geoLocale = getGeoLocale(request);
+        if (geoLocale && geoLocale !== routing.defaultLocale) {
+            const pathname = request.nextUrl.pathname;
+            // Check if user is on default locale prefix or bare path (no locale)
+            const isDefaultLocale =
+                pathname === '/' ||
+                pathname.startsWith(`/${routing.defaultLocale}/`) ||
+                pathname === `/${routing.defaultLocale}`;
+            const alreadyOnGeoLocale =
+                pathname.startsWith(`/${geoLocale}/`) || pathname === `/${geoLocale}`;
+
+            if (isDefaultLocale && !alreadyOnGeoLocale) {
+                // Strip default locale prefix if present, then prepend geo locale
+                const strippedPath = pathname === `/${routing.defaultLocale}`
+                    ? '/'
+                    : pathname.startsWith(`/${routing.defaultLocale}/`)
+                        ? pathname.slice(routing.defaultLocale.length + 1)
+                        : pathname;
+                const targetPath = `/${geoLocale}${strippedPath === '/' ? '' : strippedPath}`;
+
+                const url = request.nextUrl.clone();
+                url.pathname = targetPath;
+                // Query params (UTMs etc.) are preserved automatically via clone()
+
+                const response = NextResponse.redirect(url);
+                // Set cookie so we don't redirect again on subsequent navigations
+                response.cookies.set('NEXT_LOCALE', geoLocale, {
+                    maxAge: 60 * 60 * 24 * 365,
+                    path: '/',
+                    sameSite: 'lax',
+                });
+                return response;
+            }
+        }
+    }
+
+    // 3. Run Supabase Auth Middleware to update session
     // We pass the request to updateSession, but we don't return its response immediately
     // because we need to let next-intl handle the routing/locale first if possible,
     // OR we need to ensure the session is updated on the response that next-intl generates.

@@ -20,7 +20,7 @@ const COLORS = {
 const STYLES = {
   body: `font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: ${COLORS.text}; background-color: ${COLORS.background}; margin: 0; padding: 0; -webkit-font-smoothing: antialiased;`,
   container: `max-width: 600px; margin: 0 auto; background-color: ${COLORS.card}; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); margin-top: 40px; margin-bottom: 40px;`,
-  header: `background: linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryDark} 100%); padding: 40px 20px; text-align: center;`,
+  header: `background-color: ${COLORS.primary}; padding: 40px 20px; text-align: center;`,
   headerTitle: `color: white; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;`,
   headerSubtitle: `color: rgba(255, 255, 255, 0.9); margin: 10px 0 0 0; font-size: 16px;`,
   content: `padding: 40px 30px;`,

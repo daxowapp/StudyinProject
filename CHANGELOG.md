@@ -1,5 +1,26 @@
 # Changelog
 
+## [2025-03-25] - Fix: Translated Program Titles Now Showing on Localized Pages
+
+- **scripts/populate-program-translations.ts** [UPDATED]: Updated the AI prompt to also generate a translated `title` field alongside `overview` and `curriculum`. The `title` is now included in the upsert to `program_translations`. Previously, the `title` column was always null, causing the page to fall back to the English `display_title`.
+- **scripts/backfill-program-titles.ts** [NEW]: Lightweight script to backfill the `title` field for all existing `program_translations` rows where title is null. Uses `gpt-4o-mini` to translate just the short program name. Supports `--locales`, `--concurrency`, and `--delay` options.
+- **src/app/api/admin/bulk-translate/route.ts** [UPDATED]: Updated the Gemini API request payload to use the standard format (`contents`, `systemInstruction`, `generationConfig`) and improved JSON parsing to ensure more reliable translations for program overviews.
+
+## [2025-03-25] - Feature: Standalone Program Translations CLI Script
+
+- **scripts/populate-program-translations.ts** [NEW]: Standalone CLI script that populates the `program_translations` table with AI-generated overview and curriculum content for all programs. Reuses the same OpenAI prompt and Supabase upsert logic as the admin `bulk-generate-program-content` API route. Supports `--locales=en,tr,ar` (default: all 9), `--overwrite` (regenerate existing), and `--delay=500` (rate-limit ms). Run via `npx tsx scripts/populate-program-translations.ts`.
+
+## [2025-03-25] - Feature: i18n Translation Sync, Geo-Redirect & Arabic Font
+
+- **messages/{ar,es,fa,fr,ru,tk,tr,zh}.json** [UPDATED]: Synced all 62 ApplyForm translation keys across 8 locale files. Removed 9 legacy nested keys (`badge`, `title`, `subtitle`, `englishLevels`, `departments`, `semesters`, `successNewForm`, `errorMessage`, `required`) and added 31 new flat keys with proper translations (`heroTagline`, `heroTitle`, `heroSubtitle`, feature descriptions, form labels, department/semester/english-level enums, etc.). Existing translated values were migrated; new keys received native translations per locale.
+- **src/middleware.ts** [UPDATED]: Added geo-based language redirect using Vercel's `x-vercel-ip-country` header. Maps 50+ countries to 8 non-English locales (Turkish, Arabic, Farsi, Turkmen, Chinese, French, Spanish, Russian). Only triggers for first-time visitors on the default locale (en) with no `NEXT_LOCALE` cookie. Sets a 1-year cookie after redirect to respect future manual language switches. Preserves full path and all query params (UTM tracking safe).
+- **src/app/[locale]/(standalone)/apply/general/page.tsx** [UPDATED]: Added Cairo Google Font (`font-cairo` class) and RTL direction (`dir="rtl"`) for Arabic and Farsi locales on the apply form page.
+- **Emails**: Confirmed all lead confirmation emails already use locale-specific inline translations for all 9 supported languages with proper RTL rendering for Arabic/Farsi.
+
+## [2026-03-25] - Fix: Email Header Background Missing
+
+- **src/lib/email/templates.ts** [UPDATED]: Replaced `linear-gradient` CSS in email header with solid `background-color`. CSS `linear-gradient` is not supported by most email clients (Gmail, Outlook, Yahoo Mail), causing the header to render as blank white space. Now uses `background-color: #2563eb` (Blue 600) for universal compatibility.
+
 ## [2026-03-24] - Fix: Mobile-First Responsive Redesign of General Application Form
 
 - **src/app/[locale]/(standalone)/apply/general/page.tsx** [UPDATED]: Redesigned the lead form with a mobile-first layout. Email and WhatsApp fields now each occupy their own full-width row for better usability. All fields stack vertically on mobile (`grid-cols-1`) and use a 2-column grid on `sm+` breakpoints. Hero section is compact on mobile. Fixed Tailwind v4 class syntax (`bg-linear-to-br`, `mt-6!`). Removed duplicate orphaned code block.

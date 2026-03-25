@@ -206,8 +206,10 @@ export default function ApplyLeadPage() {
     { value: 'fall_2027', label: t('semesterFall2027') },
   ];
 
+  const isRTL = locale === 'ar' || locale === 'fa';
+
   return (
-    <div className="min-h-dvh flex flex-col lg:flex-row bg-white relative">
+    <div className={`min-h-dvh flex flex-col lg:flex-row bg-white relative ${isRTL ? 'font-cairo' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Language Switcher - top-right, always visible */}
       <div className="fixed top-3 right-3 z-50 lg:absolute lg:top-4 lg:right-4">
         <LanguageSwitcher />
