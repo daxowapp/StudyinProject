@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-03-27] - Fix: Admin Panel "Too Many Requests" Error
+
+- **middleware.ts** [UPDATED]: Exempted admin panel routes from the global rate limiter. The in-memory rate limiter (200 req/min per IP) was counting all page requests including admin panel navigation, RSC payloads, and form submissions. Team members sharing the same office/VPN IP collectively exhausted the limit, causing 429 "Too Many Requests" errors when editing data. Admin routes are already protected by authentication and role checks, making rate limiting unnecessary.
+
 ## [2025-03-25] - Fix: Translated Program Titles Now Showing on Localized Pages
 
 - **scripts/populate-program-translations.ts** [UPDATED]: Updated the AI prompt to also generate a translated `title` field alongside `overview` and `curriculum`. The `title` is now included in the upsert to `program_translations`. Previously, the `title` column was always null, causing the page to fall back to the English `display_title`.

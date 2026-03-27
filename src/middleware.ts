@@ -60,9 +60,10 @@ export async function middleware(request: NextRequest) {
         return new NextResponse('Forbidden', { status: 403 });
     }
 
-    // 1. Rate limiting (skip in development and for whitelisted AI/search bots)
+    // 1. Rate limiting (skip in development, whitelisted bots, and admin panel)
     const isDev = process.env.NODE_ENV === 'development';
-    if (!isDev && !isWhitelistedBot(userAgent)) {
+    const isAdminRoute = request.nextUrl.pathname.includes('/admin');
+    if (!isDev && !isWhitelistedBot(userAgent) && !isAdminRoute) {
         const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
             || request.headers.get('x-real-ip')
             || 'unknown';
