@@ -1,15 +1,4 @@
--- =====================================================
--- CREATE v_universities_listing VIEW
--- Pre-aggregates program data per university for the
--- /universities listing page (eliminates N+1 join overhead)
--- 
--- IMPORTANT: Only counts active programs (is_active = true)
--- IMPORTANT: Filters out base64 data: URIs from image columns
--- =====================================================
-
-DROP VIEW IF EXISTS v_universities_listing;
-
-CREATE VIEW v_universities_listing AS
+CREATE OR REPLACE VIEW v_universities_listing AS
 SELECT
     u.id,
     u.slug,
@@ -44,13 +33,11 @@ SELECT
         AND up.scholarship_chance <> ''
         AND up.scholarship_chance <> 'None'
     ) AS has_scholarship,
-    BOOL_OR(up.is_active = true AND up.csca_exam_require = true) AS has_csca_exam
+    BOOL_OR(up.is_active = true AND up.csca_exam_require = true) AS has_csca_exam,
+    ARRAY_REMOVE(ARRAY_AGG(DISTINCT pc.category) FILTER (WHERE up.is_active = true), NULL) AS available_program_categories
 FROM universities u
 LEFT JOIN university_programs up ON up.university_id = u.id
 LEFT JOIN program_catalog pc ON up.program_catalog_id = pc.id
 LEFT JOIN languages l ON up.language_id = l.id
 GROUP BY u.id;
-
 GRANT SELECT ON v_universities_listing TO anon, authenticated, service_role;
-
-SELECT id, name, program_count, logo_url IS NOT NULL AS has_logo FROM v_universities_listing LIMIT 5;

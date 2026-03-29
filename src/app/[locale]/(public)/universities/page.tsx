@@ -49,99 +49,39 @@ export default async function UniversitiesPage() {
     const supabase = await createClient();
     const t = await getTranslations('Universities');
 
-    // 1. Define promises for universities and programs to fetch them in parallel
-    const uniPromise = supabase
-        .from("universities")
-        .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key")
+    // Single optimized query using the pre-aggregated view
+    // This replaces the old approach of fetching ALL 17K+ programs + JS aggregation
+    const { data: universities, error } = await supabase
+        .from("v_universities_listing")
+        .select("id, slug, name, city, province, logo_url, cover_photo_url, banner_url, ranking, university_type, institution_category, has_fast_track, features, portal_key, program_count, min_tuition_fee, min_tuition_currency, available_levels, available_languages, has_scholarship, has_csca_exam, available_program_categories")
         .eq("portal_key", PORTAL_KEY)
-        .order("name")
-        .limit(1000);
+        .order("name");
 
-    const fetchAllPrograms = async () => {
-        const programs: unknown[] = [];
-        const PAGE_SIZE = 1000;
-        let from = 0;
-        let hasMore = true;
-        while (hasMore) {
-            const { data, error: pageError } = await supabase
-                .from("v_university_programs_full")
-                .select("university_id, tuition_fee, currency, scholarship_chance, csca_exam_require, level, language_name")
-                .eq("is_active", true)
-                .range(from, from + PAGE_SIZE - 1);
-
-            if (pageError) {
-                console.error("Error fetching programs page:", pageError.message);
-                break;
-            }
-            if (data && data.length > 0) {
-                programs.push(...data);
-                from += data.length;
-                hasMore = data.length === PAGE_SIZE;
-            } else {
-                hasMore = false;
-            }
-        }
-        return programs;
-    };
-
-    // Execute fetches in parallel
-    const [uniResult, allPrograms] = await Promise.all([
-        uniPromise,
-        fetchAllPrograms()
-    ]);
-
-    if (uniResult.error) {
-        console.error("Error fetching universities:", uniResult.error);
+    if (error) {
+        console.error("Error fetching universities:", error);
         return (
             <div className="min-h-screen bg-linear-to-b from-background to-muted/20 flex items-center justify-center">
                 <div className="text-center max-w-lg mx-auto p-6">
                     <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h1 className="text-2xl font-bold mb-4">{t('error.title')}</h1>
-                    <p className="text-muted-foreground mb-2">{uniResult.error.message}</p>
+                    <p className="text-muted-foreground mb-2">{error.message}</p>
                 </div>
             </div>
         );
     }
 
-    // Aggregate program stats per university in JS (fast in-memory)
-    const programsByUni = new Map<string, {
-        count: number;
-        minFee: number;
-        minCurrency: string;
-        levels: Set<string>;
-        languages: Set<string>;
-        hasScholarship: boolean;
-        hasCsca: boolean;
-    }>();
+    // Strip base64-encoded images (data:image/...) — they bloat the RSC payload
+    // from ~30KB to 46MB and cause serialization stack overflows.
+    // Only pass through proper URLs (https://).
+    const safeUrl = (url: string | null | undefined): string | undefined => {
+        if (!url) return undefined;
+        if (url.startsWith('data:')) return undefined;
+        return url;
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    for (const prog of allPrograms as any[]) {
-        const uid = prog.university_id;
-        let stats = programsByUni.get(uid);
-        if (!stats) {
-            stats = { count: 0, minFee: Infinity, minCurrency: 'CNY', levels: new Set(), languages: new Set(), hasScholarship: false, hasCsca: false };
-            programsByUni.set(uid, stats);
-        }
-        stats.count++;
-        if (prog.tuition_fee > 0 && prog.tuition_fee < stats.minFee) {
-            stats.minFee = prog.tuition_fee;
-            stats.minCurrency = prog.currency || 'CNY';
-        }
-        // View returns flat columns: level, language_name (not nested objects)
-        if (prog.level) stats.levels.add(prog.level);
-        if (prog.language_name) stats.languages.add(prog.language_name);
-        if (prog.scholarship_chance && prog.scholarship_chance !== '' && prog.scholarship_chance !== 'None') {
-            stats.hasScholarship = true;
-        }
-        if (prog.csca_exam_require === true) {
-            stats.hasCsca = true;
-        }
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formattedUniversities = (uniResult.data || []).map((uni: any) => {
-        const stats = programsByUni.get(uni.id);
-        const minTuitionFee = stats && stats.minFee !== Infinity ? stats.minFee : 0;
+    const formattedUniversities = (universities || []).map((uni: any) => {
+        const minTuitionFee = uni.min_tuition_fee || 0;
 
         return {
             id: uni.id,
@@ -149,21 +89,22 @@ export default async function UniversitiesPage() {
             name: uni.name || "Unknown University",
             city: uni.city || "N/A",
             province: uni.province || "N/A",
-            programs: stats?.count || 0,
+            programs: uni.program_count || 0,
             minTuition: minTuitionFee > 0 ? `¥${minTuitionFee.toLocaleString()}/year` : "Contact for pricing",
             minTuitionFee: minTuitionFee,
-            currency: stats?.minCurrency || 'CNY',
+            currency: uni.min_tuition_currency || 'CNY',
             badges: uni.features || [],
-            logo: uni.logo_url,
-            photo: uni.cover_photo_url || uni.banner_url,
+            logo: safeUrl(uni.logo_url),
+            photo: safeUrl(uni.cover_photo_url) || safeUrl(uni.banner_url),
             ranking: uni.ranking,
             university_type: uni.university_type,
             institution_category: uni.institution_category,
             has_fast_track: uni.has_fast_track,
-            availableLevels: stats ? Array.from(stats.levels) : [],
-            availableLanguages: stats ? Array.from(stats.languages) : [],
-            hasScholarship: stats?.hasScholarship || false,
-            hasCscaExam: stats?.hasCsca || false,
+            availableLevels: uni.available_levels || [],
+            availableLanguages: uni.available_languages || [],
+            hasScholarship: uni.has_scholarship || false,
+            hasCscaExam: uni.has_csca_exam || false,
+            availableProgramCategories: uni.available_program_categories || [],
         };
     });
 

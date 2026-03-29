@@ -64,62 +64,12 @@ export default async function ProgramsPage({
     const supabase = await createClient();
     const t = await getTranslations('Programs');
     const params = await searchParams;
-    const universitySlug = params.university;
 
-    // Start fetching universities for slug mapping (Non-blocking)
-    const universitiesPromise = supabase
+    // Fetch universities for fast_track mapping and city dropdowns (lightweight: 373 rows)
+    const { data: universities } = await supabase
         .from("universities")
-        .select("name, slug, has_fast_track")
+        .select("name, slug, has_fast_track, city")
         .eq("portal_key", PORTAL_KEY);
-
-    // Fetch ALL programs using pagination to bypass Supabase's 1000-row default limit
-    const PAGE_SIZE = 1000;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let allPrograms: any[] = [];
-    let page = 0;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let error: any = null;
-    let hasMore = true;
-
-    while (hasMore) {
-        const from = page * PAGE_SIZE;
-        const to = from + PAGE_SIZE - 1;
-
-        let query = supabase
-            .from("v_university_programs_full")
-            .select("*")
-            .eq("portal_key", PORTAL_KEY)
-            .eq("is_active", true)
-            .range(from, to);
-
-        if (universitySlug) {
-            query = query.eq("university_slug", universitySlug);
-        }
-
-        const { data, error: pageError } = await query;
-
-        if (pageError) {
-            error = pageError;
-            break;
-        }
-
-        if (data && data.length > 0) {
-            allPrograms = allPrograms.concat(data);
-            hasMore = data.length === PAGE_SIZE;
-            page++;
-        } else {
-            hasMore = false;
-        }
-    }
-
-    const programs = allPrograms;
-
-    if (error) {
-        console.error("Error fetching programs:", error);
-    }
-
-    // Await the universities fetch
-    const { data: universities } = await universitiesPromise;
 
     const universityMap = universities?.reduce((acc: Record<string, string>, uni: { slug: string; name: string }) => {
         acc[uni.slug] = uni.name;
@@ -131,31 +81,8 @@ export default async function ProgramsPage({
         return acc;
     }, {}) || {};
 
-    // Transform data to match ProgramCard props
-    const formattedPrograms = programs?.map((p: { id: string; slug: string; display_title: string; program_title: string; university_name: string; university_slug: string; city: string; level: string; duration: string; tuition_fee: number; currency: string; intake: string; application_deadline?: string; language_name: string; category: string; scholarship_chance: string; min_age: number; max_age: number; gpa_requirement: number; csca_exam_require: boolean }) => ({
-        id: p.id,
-        slug: p.slug,
-        name: p.display_title || p.program_title,
-        university: p.university_name,
-        university_slug: p.university_slug, // Add slug for filtering
-        city: p.city,
-        level: p.level,
-        duration: p.duration,
-        tuition: `${p.tuition_fee} ${p.currency}/Year`,
-        tuition_fee: p.tuition_fee, // Raw number for Price component
-        currency: p.currency || 'CNY', // Currency code
-        deadline: p.intake,
-        application_deadline: p.application_deadline,
-        badges: [p.language_name, p.level].filter(Boolean),
-        category: p.category,
-        language: p.language_name,
-        scholarship_chance: p.scholarship_chance,
-        has_fast_track: fastTrackMap[p.university_slug] || false,
-        min_age: p.min_age,
-        max_age: p.max_age,
-        gpa_requirement: p.gpa_requirement,
-        csca_exam_require: p.csca_exam_require,
-    })) || [];
+    const availableCities = Array.from(new Set(universities?.map(u => u.city).filter(Boolean)));
+    const availableUniversities = Array.from(new Set(universities?.map(u => u.name).filter(Boolean)));
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -173,18 +100,18 @@ export default async function ProgramsPage({
                             {t('title')}
                         </h1>
                         <p className="text-lg text-muted-foreground mb-8">
-                            {t('subtitle', { count: formattedPrograms.length })}
+                            {t('subtitle', { count: "16,000+" })}
                         </p>
-
-
                     </div>
                 </div>
             </div>
 
             <ProgramsWrapper>
                 <ProgramsClient
-                    programs={formattedPrograms}
                     universityMap={universityMap}
+                    fastTrackMap={fastTrackMap}
+                    availableCities={availableCities}
+                    availableUniversities={availableUniversities}
                     initialFilters={{
                         search: params.search,
                         levels: (() => {

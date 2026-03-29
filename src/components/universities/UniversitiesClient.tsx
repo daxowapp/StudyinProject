@@ -69,6 +69,7 @@ export interface University {
     availableLanguages?: string[];
     hasScholarship?: boolean;
     hasCscaExam?: boolean;
+    availableProgramCategories?: string[];
 }
 
 interface UniversitiesClientProps {
@@ -284,9 +285,37 @@ export function UniversitiesClient({ universities, heroSearchQuery }: Universiti
     const [scholarshipFilter, setScholarshipFilter] = useState(false);
     const [cscaExamFilter, setCscaExamFilter] = useState(false);
 
+    const initialCategory = searchParams.get("category");
+
     // Filter universities based on all criteria
     const filteredUniversities = useMemo(() => {
         return universities.filter((uni) => {
+            // If category is provided in URL, it usually points to a program field (e.g. engineering)
+            if (initialCategory) {
+                const catLower = initialCategory.toLowerCase();
+                const fieldKeywords: Record<string, string[]> = {
+                    'business': ['business', 'mba', 'management', 'economics', 'finance', 'accounting', 'marketing', 'commerce'],
+                    'engineering': ['engineering', 'engineer', 'mechanical', 'electrical', 'civil', 'chemical', 'industrial', 'technology'],
+                    'medicine': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery'],
+                    'medical': ['medicine', 'medical', 'mbbs', 'health', 'nursing', 'pharmacy', 'clinical', 'surgery'],
+                    'cs': ['computer', 'computing', 'software', 'it', 'information technology', 'data science', 'ai', 'artificial intelligence'],
+                    'arts': ['arts', 'humanities', 'literature', 'history', 'philosophy', 'language', 'culture'],
+                    'science': ['science', 'physics', 'chemistry', 'biology', 'mathematics', 'math'],
+                    'law': ['law', 'legal', 'justice', 'jurisprudence'],
+                    'education': ['education', 'teaching', 'pedagogy', 'training']
+                };
+
+                const keywords = fieldKeywords[catLower] || [catLower];
+                const availableCats = (uni.availableProgramCategories || []).map(c => c.toLowerCase());
+                
+                // Keep university if ANY of its program categories match ANY of the keywords
+                const hasMatch = keywords.some(kw => 
+                    availableCats.some(cat => cat.includes(kw))
+                );
+
+                if (!hasMatch) return false;
+            }
+
             // Search filter — use debounced value for instant feel
             if (debouncedSearch) {
                 const query = debouncedSearch.toLowerCase();
@@ -372,7 +401,7 @@ export function UniversitiesClient({ universities, heroSearchQuery }: Universiti
 
             return true;
         });
-    }, [universities, debouncedSearch, selectedCity, selectedInstitutionType, selectedUniversityCategory, filters, selectedLevels, selectedLanguages, maxTuition, scholarshipFilter, cscaExamFilter]);
+    }, [universities, debouncedSearch, selectedCity, selectedInstitutionType, selectedUniversityCategory, filters, selectedLevels, selectedLanguages, maxTuition, scholarshipFilter, cscaExamFilter, initialCategory]);
 
     // Sort universities (#1 + #4)
     const sortedUniversities = useMemo(() => {

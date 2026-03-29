@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { createClient } from "@/lib/supabase/client";
+import { PORTAL_KEY } from "@/lib/constants/portal";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -46,12 +48,14 @@ interface Program {
 }
 
 interface ProgramsClientProps {
-    programs: Program[];
     universityMap?: Record<string, string>;
+    fastTrackMap?: Record<string, boolean>;
+    availableCities?: string[];
+    availableUniversities?: string[];
     initialFilters?: Partial<FilterState>;
 }
 
-export function ProgramsClient({ programs, universityMap = {}, initialFilters = {} }: ProgramsClientProps) {
+export function ProgramsClient({ universityMap = {}, fastTrackMap = {}, availableCities = [], availableUniversities = [], initialFilters = {} }: ProgramsClientProps) {
     const t = useTranslations('Programs');
     const searchParams = useSearchParams();
     const universitySlug = searchParams.get('university');
@@ -85,15 +89,6 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         gpa: undefined,
         ...initialFilters
     });
-
-    // Extract unique cities and universities
-    const availableCities = useMemo(() => {
-        return Array.from(new Set(programs.map(p => p.city).filter(Boolean)));
-    }, [programs]);
-
-    const availableUniversities = useMemo(() => {
-        return Array.from(new Set(programs.map(p => p.university).filter(Boolean)));
-    }, [programs]);
 
     // Initialize filters from URL parameters
     useEffect(() => {
@@ -174,7 +169,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         if (Object.keys(newFilters).length > 0) {
             setFilters(prev => ({ ...prev, ...newFilters }));
         }
-    }, [searchParams, universitySlug, programs, universityMap]);
+    }, [searchParams, universitySlug, universityMap]);
 
     const debouncedSearch = useDebounce(filters.search, 600);
 
@@ -214,27 +209,27 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         staleTime: 10 * 60 * 1000, // 10 min — same search term reuses cache
     });
 
-    // Filter programs based on current filters, then rank by relevance
-    const filteredPrograms = useMemo(() => {
-        const filtered = programs.filter(program => {
-            // Search filter
+    const supabase = createClient();
+    
+    const { data: queryData, isFetching: isFetchingPrograms } = useQuery({
+        queryKey: ['programs', filters, currentPage, sortBy, expandedTerms],
+        placeholderData: keepPreviousData,
+        queryFn: async () => {
+            let query = supabase
+                .from('v_university_programs_full')
+                .select('id, slug, display_title, program_title, university_name, university_slug, city, level, duration, tuition_fee, currency, intake, application_deadline, language_name, category, scholarship_chance, gpa_requirement, csca_exam_require', { count: 'exact' })
+                .eq('portal_key', PORTAL_KEY)
+                .eq('is_active', true);
+            
+            // Search processing
             if (filters.search) {
-                const searchLower = filters.search.toLowerCase();
-                // Combine original search term and expanded terms
-                // We use a Set to avoid duplicates if the expanded terms include the original
+                const searchLower = filters.search.toLowerCase().trim();
                 const uniqueSearchTerms = Array.from(new Set([searchLower, ...expandedTerms]));
-
-                // Check matches against ANY of the search terms
-                const matchesSearch = uniqueSearchTerms.some(term => {
-                    const cleanTerm = term.trim().toLowerCase();
-                    if (!cleanTerm) return false;
-
-                    return program.name.toLowerCase().includes(cleanTerm) ||
-                        (program.category && program.category.toLowerCase().includes(cleanTerm)) ||
-                        (program.badges && program.badges.some(b => b.toLowerCase().includes(cleanTerm)));
-                });
-
-                if (!matchesSearch) return false;
+                
+                const orConditions = uniqueSearchTerms.map(term => 
+                    `program_title.ilike.%${term}%,university_name.ilike.%${term}%,category.ilike.%${term}%`
+                ).join(',');
+                query = query.or(orConditions);
             }
 
             // Level filter
@@ -247,16 +242,19 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                     'language': ['language course', 'language', 'non-degree', 'chinese'],
                     'non-degree': ['language course', 'language', 'non-degree', 'chinese']
                 };
-                const hasMatchingLevel = filters.levels.some(filterLevel => {
-                    const variations = levelMap[filterLevel.toLowerCase()] || [filterLevel.toLowerCase()];
-                    return variations.some(variation =>
-                        program.level?.toLowerCase().includes(variation)
-                    );
+                
+                let validVariations: string[] = [];
+                filters.levels.forEach(l => {
+                    validVariations = validVariations.concat(levelMap[l.toLowerCase()] || [l.toLowerCase()]);
                 });
-                if (!hasMatchingLevel) return false;
+                
+                if (validVariations.length > 0) {
+                    const orConditions = validVariations.map(variation => `level.ilike.%${variation}%`).join(',');
+                    query = query.or(orConditions);
+                }
             }
 
-            // Field filter
+            // Field Filter
             if (filters.field !== 'all') {
                 const fieldLower = filters.field.toLowerCase();
                 const fieldKeywords: Record<string, string[]> = {
@@ -270,146 +268,110 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                     'education': ['education', 'teaching', 'pedagogy', 'training']
                 };
                 const keywords = fieldKeywords[fieldLower] || [fieldLower];
-                const matchesField = keywords.some(keyword => {
-                    const programNameLower = program.name.toLowerCase();
-                    const categoryLower = (program.category || '').toLowerCase();
-                    return programNameLower.includes(keyword) ||
-                        categoryLower.includes(keyword) ||
-                        categoryLower === fieldLower;
-                });
-                if (!matchesField) return false;
+                const orConditions = keywords.map(kw => `program_title.ilike.%${kw}%,category.ilike.%${kw}%`).join(',');
+                query = query.or(orConditions);
             }
 
-            // Tuition filter
-            if (program.tuition_fee && program.tuition_fee > filters.maxTuition) {
-                return false;
+            // Tuition
+            if (filters.maxTuition < 200000) {
+                query = query.lte('tuition_fee', filters.maxTuition);
             }
 
-            // Language filter
+            // Languages
             if (filters.languages.length > 0) {
-                const hasMatchingLanguage = program.badges.some(badge =>
-                    filters.languages.some(filterLang =>
-                        badge.toLowerCase().includes(filterLang.toLowerCase())
-                    )
-                );
-                if (!hasMatchingLanguage) return false;
+                const orConditions = filters.languages.map(lang => `language_name.ilike.%${lang}%`).join(',');
+                query = query.or(orConditions);
             }
 
-            // City filter
+            // City
             if (filters.cities.length > 0) {
-                const hasMatchingCity = filters.cities.some(filterCity =>
-                    program.city.toLowerCase() === filterCity.toLowerCase()
-                );
-                if (!hasMatchingCity) return false;
+                const orConditions = filters.cities.map(city => `city.ilike.%${city}%`).join(',');
+                query = query.or(orConditions);
             }
 
-            // University filter
+            // University
             if (filters.university !== 'all') {
-                const matchesBySlug = program.university_slug === filters.university;
-                const matchesByName = program.university === filters.university;
-                if (!matchesBySlug && !matchesByName) {
-                    return false;
-                }
+                query = query.or(`university_slug.eq.${filters.university},university_name.eq.${filters.university}`);
             }
 
-            // Duration filter
-            if (filters.duration !== 'all' && program.duration !== filters.duration) {
-                return false;
+            // Duration
+            if (filters.duration !== 'all') {
+                query = query.eq('duration', filters.duration);
             }
 
-            // Scholarship filter
-            if (filters.scholarship && !program.scholarship_chance) {
-                return false;
+            // Scholarship
+            if (filters.scholarship) {
+                query = query.not('scholarship_chance', 'is', null).neq('scholarship_chance', '').neq('scholarship_chance', 'None');
             }
 
-            // CSCA Exam filter — when toggled ON, hide programs that require CSCA
-            if (filters.cscaExam && program.csca_exam_require) {
-                return false;
+            // CSCA
+            if (filters.cscaExam) {
+                query = query.neq('csca_exam_require', true);
             }
-
-            // Age filter
-            if (filters.age !== undefined && filters.age !== null) {
-                if (program.min_age !== null && program.min_age !== undefined && filters.age < program.min_age) {
-                    return false; // Applicant is too young
-                }
-                if (program.max_age !== null && program.max_age !== undefined && filters.age > program.max_age) {
-                    return false; // Applicant is too old
-                }
-            }
-
-            // GPA filter
+            
+            // GPA
             if (filters.gpa !== undefined && filters.gpa !== null) {
-                if (program.gpa_requirement !== null && program.gpa_requirement !== undefined && program.gpa_requirement > filters.gpa) {
-                    return false; // Applicant's GPA is lower than the program's minimum requirement
-                }
+                query = query.or(`gpa_requirement.is.null,gpa_requirement.lte.${filters.gpa}`);
             }
-
-            return true;
-        });
-
-        // Apply sorting before relevance, as fallback and normal behavior
-        const sorted = [...filtered].sort((a, b) => {
-            if (sortBy === 'tuition-low') return (a.tuition_fee || 0) - (b.tuition_fee || 0);
-            if (sortBy === 'tuition-high') return (b.tuition_fee || 0) - (a.tuition_fee || 0);
-            if (sortBy === 'deadline') {
-                const aDate = new Date(a.deadline || '').getTime() || Number.MAX_VALUE;
-                const bDate = new Date(b.deadline || '').getTime() || Number.MAX_VALUE;
-                return aDate - bDate;
+            
+            // Sorting
+            if (sortBy === 'tuition-low') {
+                query = query.order('tuition_fee', { ascending: true, nullsFirst: false });
+            } else if (sortBy === 'tuition-high') {
+                query = query.order('tuition_fee', { ascending: false, nullsFirst: false });
+            } else if (sortBy === 'popular') {
+                query = query.order('scholarship_chance', { ascending: false });
             }
-            if (sortBy === 'popular') {
-                 // Fast track programs and programs with scholarships bubble to top
-                 const aPopularity = (a.has_fast_track ? 2 : 0) + (a.scholarship_chance ? 1 : 0);
-                 const bPopularity = (b.has_fast_track ? 2 : 0) + (b.scholarship_chance ? 1 : 0);
-                 return bPopularity - aPopularity;
+            // Fallback default sort
+            query = query.order('id', { ascending: true });
+
+            // Pagination
+            const from = (currentPage - 1) * ITEMS_PER_PAGE;
+            const to = from + ITEMS_PER_PAGE - 1;
+            query = query.range(from, to);
+
+            const { data, error, count } = await query;
+            if (error) {
+                console.error("Fetch error:", error);
+                throw error;
             }
-            return 0; // relevance or default
-        });
-
-        // Rank results by relevance when search is active
-        // Exact matches appear first, then related/synonym matches
-        if (sortBy === 'relevance' && filters.search && expandedTerms.length > 0) {
-            const searchLower = filters.search.toLowerCase().trim();
-
-            const scored = sorted.map(program => {
-                const nameLower = program.name.toLowerCase();
-                const categoryLower = (program.category || '').toLowerCase();
-                let score = 0;
-
-                // Exact full name match (highest priority)
-                if (nameLower === searchLower) {
-                    score = 100;
-                }
-                // Name contains the full original search term
-                else if (nameLower.includes(searchLower)) {
-                    score = 80;
-                }
-                // Category contains the full original search term
-                else if (categoryLower.includes(searchLower)) {
-                    score = 60;
-                }
-                // Badges contain the full original search term
-                else if (program.badges?.some(b => b.toLowerCase().includes(searchLower))) {
-                    score = 40;
-                }
-                // Matched only via expanded synonym terms (related programs)
-                else {
-                    score = 10;
-                }
-
-                // Bonus: each word of the search term found in the name
-                const searchWords = searchLower.split(/\s+/).filter(w => w.length > 2);
-                const wordMatches = searchWords.filter(word => nameLower.includes(word)).length;
-                score += wordMatches * 5;
-
-                return { program, score };
-            });
-
-            scored.sort((a, b) => b.score - a.score);
-            return scored.map(s => s.program);
+            
+            // Transform
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const programs: Program[] = (data || []).map((p: any) => ({
+                id: p.id,
+                slug: p.slug,
+                name: p.display_title || p.program_title,
+                university: p.university_name,
+                university_slug: p.university_slug,
+                city: p.city,
+                level: p.level,
+                duration: p.duration,
+                tuition: `${p.tuition_fee} ${p.currency}/Year`,
+                tuition_fee: p.tuition_fee,
+                currency: p.currency || 'CNY',
+                deadline: p.intake,
+                application_deadline: p.application_deadline,
+                badges: [p.language_name, p.level].filter(Boolean),
+                category: p.category,
+                language: p.language_name,
+                scholarship_chance: p.scholarship_chance,
+                has_fast_track: fastTrackMap[p.university_slug] || false,
+                min_age: undefined,
+                max_age: undefined,
+                gpa_requirement: p.gpa_requirement,
+                csca_exam_require: p.csca_exam_require,
+            }));
+            
+            return { programs, count: count || 0 };
         }
+    });
 
-        return sorted;
-    }, [programs, filters, expandedTerms, sortBy]);
+    const paginatedPrograms = queryData?.programs || [];
+    const totalCount = queryData?.count || 0;
+    const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
 
     const activeFilterCount = useMemo(() => {
         let count = 0;
@@ -422,16 +384,6 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
         if (filters.university !== 'all') count++;
         return count;
     }, [filters]);
-
-    // Reset to page 1 when filters change
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [filters]);
-
-    const totalPages = Math.ceil(filteredPrograms.length / ITEMS_PER_PAGE);
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const paginatedPrograms = filteredPrograms.slice(startIndex, endIndex);
 
     const getPageNumbers = () => {
         const pages: (number | string)[] = [];
@@ -714,7 +666,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 <div className="h-10 w-1 bg-primary rounded-full" />
                                 <div>
                                     <p className="text-sm text-muted-foreground">{t('stats.showing')}</p>
-                                    <p className="font-bold text-lg">{filteredPrograms.length} {t('stats.total').replace('Total ', '')}</p>
+                                    <p className="font-bold text-lg">{totalCount} {t('stats.total').replace('Total ', '')}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -753,11 +705,11 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                     </div>
 
                     {/* Results Grid */}
-                    <div className={viewMode === 'grid' ? "grid gap-6 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-4"}>
+                    <div className={`${viewMode === 'grid' ? "grid gap-6 md:grid-cols-2 xl:grid-cols-3" : "flex flex-col gap-4"} ${isFetchingPrograms ? "opacity-50 pointer-events-none transition-opacity duration-200" : "transition-opacity duration-200"}`}>
                         {paginatedPrograms.map((program) => (
                             <ProgramCard key={program.id} program={program} variant={viewMode} />
                         ))}
-                        {!filteredPrograms.length && (
+                        {!totalCount && (
                             <div className="col-span-full">
                                 {isSearching ? (
                                     <div className="bg-card rounded-xl border shadow-sm p-12 text-center animate-in fade-in zoom-in-95 duration-200">
@@ -827,7 +779,7 @@ export function ProgramsClient({ programs, universityMap = {}, initialFilters = 
                                 </Button>
                             </div>
                             <p className="text-center text-sm text-muted-foreground mt-3">
-                                {t('stats.showing')} {startIndex + 1}-{Math.min(endIndex, filteredPrograms.length)} of {filteredPrograms.length}
+                                {t('stats.showing')} {startIndex + 1}-{Math.min(endIndex, totalCount)} of {totalCount}
                             </p>
                         </div>
                     )}

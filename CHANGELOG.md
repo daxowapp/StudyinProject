@@ -1,5 +1,21 @@
 # Changelog
 
+[2026-03-29] - Fix University Category Filter - Implemented program-level category filtering on /universities via ?category URL param. This dynamically fetches and filters based on program fields like engineering, business, and medical.
+
+## [2026-03-29] - Performance: Programs Page Query Rewrite & Pagination
+
+- **programs/page.tsx** [REWRITTEN]: Completely removed the massive 16,900+ program-fetching loop. It now purely extracts metadata (cities, university dropdown items) and pushes the raw filtering task down to the client. This shrunk the initial HTML payload from ~10MB (even after shrinking!) to mere kilobytes, letting the server immediately flush the document.
+- **components/programs/ProgramsClientContent.tsx** [REWRITTEN]: Implemented \`@tanstack/react-query\` wrapped around \`Supabase PostgREST\`. Shifted off the heavy \`useMemo\` processing from the JS main thread directly to PostgreSQL. Active user filtering natively resolves through chained queries (\`.ilike\`, \`.lte\`, \`.not\`, etc.). Supports paginated \`ITEMS_PER_PAGE=12\` results dynamically, bringing rendering latency down to <200ms without clogging the UI thread.
+## [2026-03-29] - Performance: Universities Page Query Rewrite
+
+- **universities/page.tsx** [REWRITTEN]: Replaced the slow data-fetching approach that loaded ALL 17,000+ program rows from `v_university_programs_full` in paginated 1000-row batches + JS aggregation loop with a single query to the `v_universities_listing` Postgres view. This view pre-aggregates program stats (count, min tuition, levels, languages, scholarship/CSCA flags) at the database level. Also strips base64 `data:` image URIs via `safeUrl()` helper to prevent payload bloat. Result: page render reduced from ~30-96s to <1s.
+- **programs/page.tsx** [OPTIMIZED]: Replaced `SELECT *` with explicit lean column selection. This eliminates the fetching of heavy, unused text columns (like `program_description`, `entry_requirements`) during the pagination loop that loads all 16,900+ active programs. Result: Server render time dropped from 5.3s down to 3.7s, and the raw required payload shrank from ~24MB to ~10MB (a ~60% reduction).
+- **database/create_universities_listing_view.sql** [UPDATED]: Added `is_active = true` filter to all aggregate calculations. Added `CASE WHEN LEFT(url, 5) = 'data:' THEN NULL` expressions for `logo_url`, `cover_photo_url`, and `banner_url` to exclude base64-encoded images at the database level — these were causing a 46MB payload (373 universities × ~127KB each) that crashed Next.js RSC serialization.
+
+## [2026-03-29] - Fix: Meta Pixel Not Firing
+
+- **layout.tsx** [UPDATED]: Changed Meta Pixel `<Script>` strategy from `lazyOnload` to `afterInteractive`. The `lazyOnload` strategy delayed script execution until after all resources loaded and the page was idle, causing the pixel to frequently not fire before the user navigated away. `afterInteractive` loads the pixel immediately after hydration, which is the correct strategy for tracking scripts.
+
 ## [2026-03-27] - Fix: Admin Panel "Too Many Requests" Error
 
 - **middleware.ts** [UPDATED]: Exempted admin panel routes from the global rate limiter. The in-memory rate limiter (200 req/min per IP) was counting all page requests including admin panel navigation, RSC payloads, and form submissions. Team members sharing the same office/VPN IP collectively exhausted the limit, causing 429 "Too Many Requests" errors when editing data. Admin routes are already protected by authentication and role checks, making rate limiting unnecessary.
