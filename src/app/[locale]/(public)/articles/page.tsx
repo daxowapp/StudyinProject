@@ -6,6 +6,33 @@ import { Search, Calendar, Clock, Eye, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { Metadata } from "next";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const title = 'Articles & Resources | Study in China - Studyatchina';
+    const description = 'Guides, tips, and insights for international students studying in China. Explore scholarship advice, visa guides, and campus life articles.';
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: `${baseUrl}/${locale}/articles`,
+            languages: Object.fromEntries(
+                ['en', 'ar', 'fa', 'tr'].map(loc => [loc, `${baseUrl}/${loc}/articles`])
+            ),
+        },
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/articles`,
+            siteName: 'Studyatchina',
+            type: 'website',
+        },
+    };
+}
 
 export default async function ArticlesPage() {
     const supabase = await createClient();

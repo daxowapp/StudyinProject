@@ -13,6 +13,37 @@ export function JsonLd({ data }: JsonLdProps) {
     );
 }
 
+// WebSite schema with SearchAction for sitelinks search box
+export function WebSiteJsonLd({
+    name = 'Studyatchina',
+    url = 'https://studyatchina.com',
+    description = 'Your gateway to studying in China. Browse top Chinese universities, find scholarship opportunities, and apply to degree programs.',
+}: {
+    name?: string;
+    url?: string;
+    description?: string;
+}) {
+    const data = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${url}/#website`,
+        name,
+        url,
+        description,
+        inLanguage: ['en', 'ar', 'fa', 'tr'],
+        potentialAction: {
+            '@type': 'SearchAction',
+            target: {
+                '@type': 'EntryPoint',
+                urlTemplate: `${url}/en/programs?search={search_term_string}`,
+            },
+            'query-input': 'required name=search_term_string',
+        },
+    };
+
+    return <JsonLd data={data} />;
+}
+
 // Organization schema for the website
 export function OrganizationJsonLd({
     name = 'Studyatchina',
@@ -28,9 +59,15 @@ export function OrganizationJsonLd({
     const data = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
+        '@id': `${url}/#organization`,
         name,
         url,
-        logo: `${url}${logo}`,
+        logo: {
+            '@type': 'ImageObject',
+            url: `${url}${logo}`,
+            width: 512,
+            height: 512,
+        },
         description,
         sameAs: [
             // Add social media links when available
@@ -160,7 +197,17 @@ export function BreadcrumbJsonLd({
     return <JsonLd data={data} />;
 }
 
-// FAQPage schema
+/**
+ * FAQPage schema
+ *
+ * NOTE (SEO): As of Aug 2023, Google restricts FAQPage rich results
+ * to government and healthcare authority sites only. Commercial sites
+ * will NOT get FAQ rich results from this markup.
+ *
+ * However, this schema still benefits AI search citability (ChatGPT,
+ * Perplexity, Google AI Overviews) by providing structured Q&A data,
+ * so it remains useful for GEO purposes.
+ */
 export function FAQJsonLd({
     questions,
 }: {

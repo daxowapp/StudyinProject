@@ -10,7 +10,7 @@ import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { QueryProvider } from "@/providers/QueryProvider";
 import { DeferredScripts } from "@/components/layout/DeferredScripts";
 import { Metadata } from 'next';
-import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
 
@@ -79,6 +79,7 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${baseUrl}/en`,
         languages: {
+            'x-default': `${baseUrl}/en`,
             'en': `${baseUrl}/en`,
             'ar': `${baseUrl}/ar`,
             'fa': `${baseUrl}/fa`,
@@ -119,6 +120,7 @@ export default async function LocaleLayout({
             />
             <DeferredScripts />
             <OrganizationJsonLd />
+            <WebSiteJsonLd />
             <QueryProvider>
                 <NextIntlClientProvider messages={messages}>
                     <CurrencyProvider>

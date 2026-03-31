@@ -4,6 +4,36 @@ import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { PORTAL_KEY } from "@/lib/constants/portal";
+import { Metadata } from "next";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const title = 'Study in China | Top Universities, Scholarships & Programs - Studyatchina';
+    const description = 'Your gateway to studying in China. Browse top Chinese universities, find CSC and university scholarships, and apply to degree programs in medicine, engineering, business and more.';
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: `${baseUrl}/${locale}`,
+            languages: {
+                'x-default': `${baseUrl}/en`,
+                ...Object.fromEntries(
+                    ['en', 'ar', 'fa', 'tr'].map(loc => [loc, `${baseUrl}/${loc}`])
+                ),
+            },
+        },
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}`,
+            siteName: 'Studyatchina',
+            type: 'website',
+        },
+    };
+}
 
 // Lazy load below-fold sections for faster initial page load
 const CscaCtaSection = dynamic(

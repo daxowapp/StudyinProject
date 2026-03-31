@@ -18,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/articles',
         '/contact',
         '/faq',
+        '/destinations',
+        '/download-guide',
+        '/qs-rankings',
+        '/privacy-policy',
+        '/terms-of-service',
+        '/cookie-policy',
     ];
 
     // Generate entries for static pages with all locales
@@ -26,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${baseUrl}/${locale}${page}`,
             lastModified: new Date(),
             changeFrequency: page === '' ? 'daily' : 'weekly' as const,
-            priority: page === '' ? 1.0 : 0.8,
+            priority: page === '' ? 1.0 : page === '/privacy-policy' || page === '/terms-of-service' || page === '/cookie-policy' ? 0.3 : 0.8,
             alternates: {
                 languages: Object.fromEntries(
                     locales.map((loc) => [loc, `${baseUrl}/${loc}${page}`])
@@ -109,10 +115,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }))
     );
 
+    // Fetch scholarships
+    const { data: scholarships } = await supabase
+        .from('scholarships')
+        .select('slug, updated_at')
+        .eq('portal_key', PORTAL_KEY)
+        .eq('is_active', true);
+
+    const scholarshipEntries: MetadataRoute.Sitemap = (scholarships || []).flatMap(
+        (scholarship) =>
+            locales.map((locale) => ({
+                url: `${baseUrl}/${locale}/scholarships/${scholarship.slug}`,
+                lastModified: new Date(scholarship.updated_at || Date.now()),
+                changeFrequency: 'weekly' as const,
+                priority: 0.85,
+                alternates: {
+                    languages: Object.fromEntries(
+                        locales.map((loc) => [
+                            loc,
+                            `${baseUrl}/${loc}/scholarships/${scholarship.slug}`,
+                        ])
+                    ),
+                },
+            }))
+    );
+
     return [
         ...staticEntries,
         ...universityEntries,
         ...programEntries,
         ...articleEntries,
+        ...scholarshipEntries,
     ];
 }
+

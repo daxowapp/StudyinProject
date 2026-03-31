@@ -1,0 +1,53 @@
+# Studyatchina
+
+> Your gateway to studying in China — browse top Chinese universities, scholarships, and degree programs.
+
+## About
+
+Studyatchina is a multilingual platform (English, Arabic, Persian, Turkish) that helps international students discover and apply to Chinese universities. We provide:
+
+- University search and comparison across 300+ Chinese institutions
+- Scholarship listings including CSC (China Scholarship Council) and university-specific scholarships  
+- Degree program search by field, level (Bachelor, Master, PhD), and language of instruction
+- Step-by-step application guidance
+- Visa and admission support
+
+## Key Pages
+
+- [Homepage](https://studyatchina.com/en): Overview of services, featured universities and programs
+- [Universities](https://studyatchina.com/en/universities): Browse and filter 300+ Chinese universities by location, ranking, and specialization
+- [Programs](https://studyatchina.com/en/programs): Search degree programs by field, level, language, and tuition
+- [Scholarships](https://studyatchina.com/en/scholarships): CSC scholarships, university scholarships, and government grants
+- [How to Apply](https://studyatchina.com/en/how-to-apply): 6-step application process from profile creation to admission
+- [Destinations](https://studyatchina.com/en/destinations): City and province guides for international students
+- [Articles](https://studyatchina.com/en/articles): Guides, tips, and insights for studying in China
+- [QS Rankings](https://studyatchina.com/en/qs-rankings): Chinese universities in global QS World University Rankings
+- [FAQ](https://studyatchina.com/en/faq): Common questions about studying in China
+- [Contact](https://studyatchina.com/en/contact): Get in touch for admission and scholarship inquiries
+- [Download Guide](https://studyatchina.com/en/download-guide): Free comprehensive PDF guide to studying in China
+
+## Languages
+
+The platform is available in:
+- English: https://studyatchina.com/en
+- Arabic: https://studyatchina.com/ar
+- Persian: https://studyatchina.com/fa
+- Turkish: https://studyatchina.com/tr
+
+## Topics Covered
+
+- Chinese university admissions for international students
+- CSC (China Scholarship Council) scholarship application process
+- MBBS (Medicine) programs in China taught in English
+- Engineering, Business, Computer Science, and Arts programs
+- Student visa (X1/X2) requirements and application
+- Cost of living and tuition fees in Chinese cities
+- Campus life and student experiences
+- QS World University Rankings for Chinese universities
+
+## Contact
+
+- Website: https://studyatchina.com
+- Email: info@studyatchina.com
+- Phone: +90 554 308 10 00
+- Office: Mall Of İstanbul Floor:14 Office:116, 34490 Başakşehir/İstanbul

@@ -2,6 +2,33 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, UserPlus, Upload, Award, CheckCircle, Plane, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studyatchina.com';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const title = 'How to Apply | Study in China - Studyatchina';
+    const description = 'Apply to Chinese universities in 6 simple steps. Create your profile, upload documents, choose scholarships, and track your application progress with Studyatchina.';
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: `${baseUrl}/${locale}/how-to-apply`,
+            languages: Object.fromEntries(
+                ['en', 'ar', 'fa', 'tr'].map(loc => [loc, `${baseUrl}/${loc}/how-to-apply`])
+            ),
+        },
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/${locale}/how-to-apply`,
+            siteName: 'Studyatchina',
+            type: 'website',
+        },
+    };
+}
 
 const steps = [
     {

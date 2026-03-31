@@ -52,6 +52,16 @@ export default function robots(): MetadataRoute.Robots {
                 allow: '/',
                 disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
             },
+            {
+                userAgent: 'OAI-SearchBot',
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
+            {
+                userAgent: 'Applebot',
+                allow: '/',
+                disallow: ['/admin/', '/api/', '/dashboard/', '/auth/'],
+            },
 
             // ── SEO Tool Scrapers ── BLOCK ──
             // These crawl your data for competitor analysis, not for traffic
