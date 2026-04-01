@@ -1,5 +1,9 @@
 # Changelog
 
+[2026-04-01] - Fix: "Unknown Program" Titles on 1,388 Programs - Fixed corrupted program titles showing as "Unknown Program" (and translated variants like "Programme Inconnu", "未知项目", etc.) on program detail pages. Root cause: the `backfill-program-titles.ts` script used "Unknown Program" as a fallback for programs it couldn't match, then translated that string into all 9 locales and saved it to `program_translations`. Fixed 12,492 translation rows across 1,388 programs. Added defensive guard in program detail page to detect and skip corrupted translation titles. Fixed the backfill script to skip unmatched programs instead of using a fallback.
+
+[2026-03-29] - Scholarships Page Optimization - Refactored client-side filtering loop to server-side paginated Supabase architecture for massive performance gain. Added missing coverage translations.
+
 [2026-03-29] - Fix University Category Filter - Implemented program-level category filtering on /universities via ?category URL param. This dynamically fetches and filters based on program fields like engineering, business, and medical.
 
 ## [2026-03-29] - Performance: Programs Page Query Rewrite & Pagination

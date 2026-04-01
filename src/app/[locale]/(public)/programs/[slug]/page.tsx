@@ -173,7 +173,19 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
         .order("display_order");
 
     // Use translated content if available, fallback to original
-    const programTitle = translation?.title || program.display_title || program.program_title;
+    // Guard against corrupted "Unknown Program" titles from backfill script
+    const isCorruptedTitle = (title: string | null | undefined): boolean => {
+        if (!title) return true;
+        const corrupted = [
+            'unknown program', 'programme inconnu', 'programa desconocido',
+            'неизвестная программа', '未知项目', '未知程序', 'برنامه ناشناخته',
+            'برنامج غير معروف', 'البرنامج غير المعروف', 'bilinmeyen program',
+            'bilmeýän programma'
+        ];
+        return corrupted.includes(title.toLowerCase().trim());
+    };
+    const translatedTitle = translation?.title && !isCorruptedTitle(translation.title) ? translation.title : null;
+    const programTitle = translatedTitle || program.display_title || program.program_title;
     const programDescription = translation?.description || program.program_description || t('overview.noDescription');
 
     const programData = {

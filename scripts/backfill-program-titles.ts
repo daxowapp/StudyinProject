@@ -187,7 +187,12 @@ async function main() {
 
     // Assign names
     for (const item of work) {
-        item.programName = programNames.get(item.program_id) || "Unknown Program";
+        const name = programNames.get(item.program_id);
+        if (!name) {
+            console.warn(`⚠️  Skipping program ${item.program_id} - no name found in view`);
+            continue;
+        }
+        item.programName = name;
     }
 
     console.log(`✅ Loaded names for ${programNames.size} programs\n`);
